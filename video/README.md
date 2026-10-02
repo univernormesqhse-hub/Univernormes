@@ -6,15 +6,22 @@ Capsule animée verticale (1080×1920, 30 i/s) « Le Superviseur HSE », reconst
 ```bash
 npm install
 npm run studio            # aperçu interactif dans le navigateur
-npm run render            # out/capsule-superviseur-hse.mp4 (1080p)
-npm run render:whatsapp   # version 720p légère
+npm run render            # rendu + mastering audio (-14 LUFS) → 1080p et 720p dans out/
 ```
 Dans l'environnement cloud, pointer Remotion vers le Chromium préinstallé :
 `REMOTION_BROWSER=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`.
 
+## Direction motion design
+- 9 actes (`src/scenes/`), calés sur les sous-titres de la voix-off : Hook, Terrain, Permis, Urgence, Versus, Action, Manuels, Bouclier, Outro.
+- Transitions de marque en diagonale (marine + liserés verts) aux changements d'acte, caméra avec dérive de zoom et secousses sur les impacts (tampon, VS, cadenas…).
+- Typographie cinétique (mots révélés par masque, mots clés en vert), sous-titres révélés mot à mot.
+- Fond vivant : formes floues en parallaxe, filigrane qui défile, particules.
+- Sound design : bruitages synthétisés dans `public/sfx/` (whoosh, pop, clic, impact, ding, cloche), placés dans `CUES` (`src/SuperviseurHSE.tsx`).
+- Boîte à outils d'animation dans `src/anim.tsx` (`Enter`, `Kinetic`, `Underline`, courbes d'accélération).
+
 ## Structure
 - `src/captions.ts` : script de la voix-off + timings des sous-titres (à modifier pour une autre capsule).
-- `src/SuperviseurHSE.tsx` : storyboard découpé en actes (terrain, urgence, responsable, action, bouclier, carton final).
+- `src/SuperviseurHSE.tsx` : orchestration des actes, transitions, caméra, bruitages.
 - `src/components/` : charte fixe (fond, bandeaux, sous-titres), personnages photo (`PhotoPerson`) et pictos SVG.
 - `public/personnages/` : personnes détourées depuis la photo (superviseur = gilet orange, responsable = casque blanc) et photo d'équipe pour la scène finale.
 - `public/voix-off.m4a` : piste audio (extraite de la capsule d'origine ; à remplacer par une voix-off propre).

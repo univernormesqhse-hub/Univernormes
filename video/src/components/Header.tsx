@@ -1,9 +1,13 @@
+import {easeIn, easeOut, prog, useT} from '../anim';
 import {colors, sansFont, sansItalic} from '../theme';
 import {Globe, WhatsAppIcon} from './Logo';
 
 /** Bandeau haut : logo sur vague blanche (gauche) + bande marine services (droite). */
-export const Header: React.FC = () => (
-  <div style={{position: 'absolute', top: 0, left: 0, width: 1080, height: 260}}>
+export const Header: React.FC<{hideAt: number}> = ({hideAt}) => {
+  const t = useT();
+  const y = -280 * (1 - prog(t, 0.05, 0.75, easeOut)) - 280 * prog(t, hideAt, hideAt + 0.45, easeIn);
+  return (
+  <div style={{position: 'absolute', top: 0, left: 0, width: 1080, height: 260, transform: `translateY(${y}px)`}}>
     <svg width={1080} height={260} style={{position: 'absolute', inset: 0}}>
       {/* bande marine */}
       <path d="M470 0 H1080 V88 H540 Q505 88 492 60 Z" fill={colors.navy} />
@@ -69,4 +73,5 @@ export const Header: React.FC = () => (
       ACCOMPAGNEMENT&nbsp;&nbsp;•&nbsp;&nbsp;CONSEIL
     </div>
   </div>
-);
+  );
+};
