@@ -5,11 +5,12 @@
   "description": "Capsules vidéo animées UNIVERSNORMES (Remotion)",
   "scripts": {
     "studio": "remotion studio",
-    "render": "npm run render:superviseur && npm run render:equipe && npm run render:prevention",
+    "render": "npm run render:superviseur && npm run render:equipe && npm run render:prevention && npm run render:iso",
     "render:superviseur": "remotion render SuperviseurHSE out/capsule-superviseur-hse-raw.mp4 && ffmpeg -v error -y -i out/capsule-superviseur-hse-raw.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:a aac -b:a 192k -ar 48000 -movflags +faststart out/capsule-superviseur-hse.mp4 && ffmpeg -v error -y -i out/capsule-superviseur-hse.mp4 -vf scale=720:-2 -c:v libx264 -crf 25 -preset slow -c:a aac -b:a 128k -movflags +faststart out/capsule-superviseur-hse-720p.mp4",
     "render:equipe": "remotion render EquipeHSE out/capsule-equipe-hse-raw.mp4 && ffmpeg -v error -y -i out/capsule-equipe-hse-raw.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:a aac -b:a 192k -ar 48000 -movflags +faststart out/capsule-equipe-hse.mp4 && ffmpeg -v error -y -i out/capsule-equipe-hse.mp4 -vf scale=720:-2 -c:v libx264 -crf 25 -preset slow -c:a aac -b:a 128k -movflags +faststart out/capsule-equipe-hse-720p.mp4",
     "still": "remotion still",
-    "render:prevention": "remotion render Prevention out/capsule-prevention-raw.mp4 && ffmpeg -v error -y -i out/capsule-prevention-raw.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:a aac -b:a 192k -ar 48000 -movflags +faststart out/capsule-prevention.mp4 && ffmpeg -v error -y -i out/capsule-prevention.mp4 -vf scale=720:-2 -c:v libx264 -crf 25 -preset slow -c:a aac -b:a 128k -movflags +faststart out/capsule-prevention-720p.mp4"
+    "render:prevention": "remotion render Prevention out/capsule-prevention-raw.mp4 && ffmpeg -v error -y -i out/capsule-prevention-raw.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:a aac -b:a 192k -ar 48000 -movflags +faststart out/capsule-prevention.mp4 && ffmpeg -v error -y -i out/capsule-prevention.mp4 -vf scale=720:-2 -c:v libx264 -crf 25 -preset slow -c:a aac -b:a 128k -movflags +faststart out/capsule-prevention-720p.mp4",
+    "render:iso": "remotion render Iso9001 out/capsule-iso9001-raw.mp4 && ffmpeg -v error -y -i out/capsule-iso9001-raw.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:a aac -b:a 192k -ar 48000 -movflags +faststart out/capsule-iso9001.mp4 && ffmpeg -v error -y -i out/capsule-iso9001.mp4 -vf scale=720:-2 -c:v libx264 -crf 25 -preset slow -c:a aac -b:a 128k -movflags +faststart out/capsule-iso9001-720p.mp4"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.532",
