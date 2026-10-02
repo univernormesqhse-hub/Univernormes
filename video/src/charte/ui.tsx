@@ -95,7 +95,7 @@ export const CharterDoc: React.FC<{w?: number; write?: number; seal?: number; du
 };
 
 /** Carton de chapitre : grand numéro, titre et sous-titre, sur bandeau vert / marine. */
-export const Chapter: React.FC<{at: number; until: number; n: number; title: string; sub: string; icons: string[]}> = ({at, until, n, title, sub, icons}) => {
+export const Chapter: React.FC<{at: number; until: number; n: number; title: string; sub: string; icons: string[]; total?: number}> = ({at, until, n, title, sub, icons, total = 5}) => {
   const t = useT();
   const sp = useSpring(at + 0.05, {damping: 12});
   const band = prog(t, at, at + 0.5, easeOut);
@@ -106,7 +106,7 @@ export const Chapter: React.FC<{at: number; until: number; n: number; title: str
       <div style={{position: 'absolute', right: 0, top: 1210, width: 760 * prog(t, at + 0.15, at + 0.65), height: 40, background: colors.green, transform: 'skewY(-4deg)'}} />
       <div style={{position: 'absolute', left: 40, top: 640, fontFamily: sansFont, fontWeight: 900, fontSize: 440, lineHeight: 1, color: 'transparent', WebkitTextStroke: `10px ${colors.greenLight}`, transform: `scale(${sp}) translateX(${(1 - sp) * -120}px)`, opacity: 0.9}}>{n}</div>
       <div style={{position: 'absolute', left: 400, top: 790, width: 640}}>
-        <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 34, color: colors.greenLight, letterSpacing: 6, opacity: prog(t, at + 0.3, at + 0.7)}}>PARTIE {n} / 5</div>
+        <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 34, color: colors.greenLight, letterSpacing: 6, opacity: prog(t, at + 0.3, at + 0.7)}}>PARTIE {n} / {total}</div>
         <div style={{overflow: 'hidden', marginTop: 10}}>
           <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: Math.max(...title.split(' ').map((w) => w.length)) >= 11 ? 64 : title.length > 12 ? 70 : 84, lineHeight: 1.02, color: '#fff', textTransform: 'uppercase', letterSpacing: -2, transform: `translateY(${(1 - prog(t, at + 0.35, at + 0.85)) * 110}%)`}}>{title}</div>
         </div>

@@ -9,6 +9,7 @@ import {PyramideQHSE, PYRAMIDE_FRAMES} from './pyramide/Pyramide';
 import {Promo, PROMO_FRAMES} from './promo/Promo';
 import {DangerRisque, DANGER_FRAMES} from './danger/Danger';
 import {CharteQualite, CHARTE_FRAMES} from './charte/Charte';
+import {EpiEpc, EPI_FRAMES} from './epi/EpiEpc';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -28,5 +29,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="PromoFormationQHSE" component={Promo} durationInFrames={PROMO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="DangerRisque" component={DangerRisque} durationInFrames={DANGER_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CharteQualite" component={CharteQualite} durationInFrames={CHARTE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="EpiEpc" component={EpiEpc} durationInFrames={EPI_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
