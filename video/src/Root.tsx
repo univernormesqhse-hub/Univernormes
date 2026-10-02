@@ -11,6 +11,7 @@ import {DangerRisque, DANGER_FRAMES} from './danger/Danger';
 import {CharteQualite, CHARTE_FRAMES} from './charte/Charte';
 import {EpiEpc, EPI_FRAMES} from './epi/EpiEpc';
 import {InductionHSE, INDUCTION_FRAMES} from './induction/Induction';
+import {IntegrationHSE, INTEGRATION_FRAMES} from './integration/Integration';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -32,5 +33,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CharteQualite" component={CharteQualite} durationInFrames={CHARTE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="EpiEpc" component={EpiEpc} durationInFrames={EPI_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="InductionHSE" component={InductionHSE} durationInFrames={INDUCTION_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="IntegrationHSE" component={IntegrationHSE} durationInFrames={INTEGRATION_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
