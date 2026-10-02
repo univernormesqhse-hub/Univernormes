@@ -12,6 +12,7 @@ import {CharteQualite, CHARTE_FRAMES} from './charte/Charte';
 import {EpiEpc, EPI_FRAMES} from './epi/EpiEpc';
 import {InductionHSE, INDUCTION_FRAMES} from './induction/Induction';
 import {IntegrationHSE, INTEGRATION_FRAMES} from './integration/Integration';
+import {TirantAir, TIRANT_FRAMES} from './tirant/Tirant';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -34,5 +35,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="EpiEpc" component={EpiEpc} durationInFrames={EPI_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="InductionHSE" component={InductionHSE} durationInFrames={INDUCTION_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="IntegrationHSE" component={IntegrationHSE} durationInFrames={INTEGRATION_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="TirantAir" component={TirantAir} durationInFrames={TIRANT_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
