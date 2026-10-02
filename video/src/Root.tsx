@@ -7,6 +7,7 @@ import {Iso, ISO_FRAMES} from './iso/Iso';
 import {Roles, ROLES_FRAMES} from './roles/Roles';
 import {PyramideQHSE, PYRAMIDE_FRAMES} from './pyramide/Pyramide';
 import {Promo, PROMO_FRAMES} from './promo/Promo';
+import {DangerRisque, DANGER_FRAMES} from './danger/Danger';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -24,5 +25,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="AgentSuperviseur" component={Roles} durationInFrames={ROLES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="PyramideQHSE" component={PyramideQHSE} durationInFrames={PYRAMIDE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="PromoFormationQHSE" component={Promo} durationInFrames={PROMO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="DangerRisque" component={DangerRisque} durationInFrames={DANGER_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
