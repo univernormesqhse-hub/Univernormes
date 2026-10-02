@@ -6,7 +6,7 @@ import {colors, sansFont, sansItalic} from '../theme';
 export const OUTRO_AT = 51.6;
 
 /** 51,6 s → fin : signature animée UNIVERSNORMES. */
-export const Outro: React.FC<{at: number; logo?: string}> = ({at: OUTRO_AT, logo}) => {
+export const Outro: React.FC<{at: number; logo?: string; contact?: string}> = ({at: OUTRO_AT, logo, contact}) => {
   const t = useT();
   const globe = useSpring(OUTRO_AT + 0.1, {damping: 11});
   const word = 'UNIVERSNORMES';
@@ -53,7 +53,7 @@ export const Outro: React.FC<{at: number; logo?: string}> = ({at: OUTRO_AT, logo
       <Enter at={OUTRO_AT + 1.4} x={540} y={1560} from="up" dist={80} bouncy>
         <div style={{display: 'flex', alignItems: 'center', gap: 22, background: colors.navy, borderRadius: 60, padding: '18px 40px'}}>
           <WhatsAppIcon size={58} />
-          <div style={{fontFamily: sansFont, fontWeight: 700, fontSize: 30, color: '#fff', whiteSpace: 'nowrap'}}>FORMATIONS • AUDITS • ACCOMPAGNEMENT • CONSEIL</div>
+          <div style={{fontFamily: sansFont, fontWeight: 700, fontSize: 30, color: '#fff', whiteSpace: 'nowrap'}}>{contact ?? 'FORMATIONS • AUDITS • ACCOMPAGNEMENT • CONSEIL'}</div>
         </div>
       </Enter>
     </div>

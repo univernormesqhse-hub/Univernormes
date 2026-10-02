@@ -12,9 +12,13 @@ import {colors, s, sansFont} from '../theme';
 import {captions} from './captions';
 
 const LOGO = 'promo/logo.png';
-const OUTRO_AT = 67.3;
-export const PROMO_FRAMES = s(70.2);
-const WIPES = [20.7, 30.4, 59.1];
+const INFOS_AT = 67.3;
+const OUTRO_AT = 74.2;
+export const PROMO_FRAMES = s(77.2);
+
+// Informations pratiques de la session.
+const SESSION = {date: '05 NOVEMBRE 2026', lieu: 'En ligne · Google Meet', prix: '90 000 FCFA', whatsapp: '+226 67 96 74 19'};
+const WIPES = [20.7, 30.4, 59.1, INFOS_AT];
 const RED = '#D9443A';
 
 /** Photo de la banque d'images dans un cadre de marque, avec zoom lent (Ken Burns). */
@@ -321,6 +325,52 @@ const Cta: React.FC = () => {
   );
 };
 
+/** 67,3 – 74,2 s : informations pratiques de la session (après la voix). */
+const Infos: React.FC = () => {
+  const t = useT();
+  const pulse = 1 + 0.045 * Math.sin((t - 69) * 7);
+  const rows = [
+    {at: 67.7, icon: <F n="calendrier" size={110} />, k: 'Date', v: SESSION.date},
+    {at: 68.15, icon: <div style={{width: 110, height: 110, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Img src={staticFile('promo/google-meet-icone.png')} style={{width: 96}} /></div>, k: 'Lieu', v: SESSION.lieu, meet: true},
+    {at: 68.6, icon: <F n="argent" size={110} />, k: 'Tarif', v: SESSION.prix},
+  ];
+  return (
+    <div style={{position: 'absolute', inset: 0}}>
+      <Kinetic text="Infos *pratiques*" at={67.4} until={74.1} y={410} size={100} />
+      <Enter at={67.5} until={74.1} x={540} y={565} from="up" dist={60}>
+        <div style={{background: colors.green, color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 34, padding: '8px 26px 10px', borderRadius: 40, whiteSpace: 'nowrap'}}>FORMATION · MANAGEMENT QHSE</div>
+      </Enter>
+      {rows.map((r, i) => (
+        <Enter key={r.k} at={r.at} until={74.1} x={540} y={760 + i * 210} from="left" dist={-600}>
+          <div style={{width: 960, height: 180, background: '#fff', borderRadius: 30, boxShadow: '0 16px 32px rgba(30,25,10,0.16)', display: 'flex', alignItems: 'center', gap: 26, padding: '0 30px', borderLeft: `16px solid ${[colors.navy, colors.green, colors.ochre][i]}`}}>
+            {r.icon}
+            <div style={{fontFamily: sansFont, flex: 1}}>
+              <div style={{fontWeight: 800, fontSize: 28, color: '#5B6675', letterSpacing: 3, textTransform: 'uppercase'}}>{r.k}</div>
+              <div style={{fontWeight: 900, fontSize: r.k === 'Lieu' ? 46 : 58, color: colors.navy, lineHeight: 1.1, whiteSpace: 'nowrap'}}>{r.v}</div>
+            </div>
+            {r.meet && <F n="ordinateur" size={90} />}
+          </div>
+        </Enter>
+      ))}
+      <Enter at={69.2} until={74.1} x={540} y={1440} bouncy>
+        <div style={{transform: `scale(${pulse})`, display: 'flex', alignItems: 'center', gap: 22, background: '#25D366', borderRadius: 70, padding: '22px 40px', boxShadow: '0 18px 36px rgba(37,211,102,0.4)'}}>
+          <svg width={70} height={70} viewBox="0 0 48 48">
+            <path d="M24 4C13 4 4 12.8 4 23.6c0 3.7 1 7.1 2.9 10.1L4 44l10.7-2.8c2.8 1.5 6 2.4 9.3 2.4 11 0 20-8.8 20-19.6S35 4 24 4z" fill="none" stroke="#fff" strokeWidth="3.4" strokeLinejoin="round" />
+            <path d="M17.5 14.5c-.6 0-1.6.2-2.3 1.1-.8.9-2.3 2.3-2.3 5.6s2.4 6.5 2.7 7c.3.4 4.6 7.3 11.4 9.9 5.6 2.2 6.8 1.8 8 1.7 1.2-.1 4-1.6 4.5-3.2.6-1.6.6-2.9.4-3.2-.2-.3-.6-.4-1.3-.8l-4.3-2.1c-.6-.2-1-.3-1.4.3-.4.6-1.7 2.1-2 2.5-.4.4-.7.5-1.4.2-.6-.3-2.7-1-5.2-3.2-1.9-1.7-3.2-3.8-3.5-4.4-.4-.6 0-1 .3-1.3l1-1.1c.3-.4.4-.6.6-1.1.2-.4.1-.8 0-1.1l-1.9-4.6c-.5-1.2-1-1.1-1.4-1.1z" fill="#fff" />
+          </svg>
+          <div style={{fontFamily: sansFont, color: '#fff'}}>
+            <div style={{fontWeight: 800, fontSize: 28, letterSpacing: 2}}>RÉSERVE TA PLACE</div>
+            <div style={{fontWeight: 900, fontSize: 54, letterSpacing: 1, whiteSpace: 'nowrap'}}>{SESSION.whatsapp}</div>
+          </div>
+        </div>
+      </Enter>
+      <Enter at={70.0} until={74.1} x={540} y={1600} from="up" dist={40}>
+        <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 30, color: colors.green, whiteSpace: 'nowrap'}}>Places limitées · Inscris-toi dès maintenant</div>
+      </Enter>
+    </div>
+  );
+};
+
 const CUES: Cue[] = [
   {at: 0.25, sfx: 'whoosh', volume: 0.3},
   {at: 2.2, sfx: 'pop', volume: 0.35},
@@ -347,6 +397,9 @@ const CUES: Cue[] = [
   {at: 62.35, sfx: 'rise', volume: 0.35},
   {at: 62.6, sfx: 'ding', volume: 0.35},
   ...[64.7, 65.6, 66.5].map((at) => ({at, sfx: 'pop', volume: 0.35})),
+  ...[67.7, 68.15, 68.6].map((at) => ({at, sfx: 'swish', volume: 0.3})),
+  {at: 69.2, sfx: 'pop', volume: 0.4},
+  {at: 69.3, sfx: 'ding', volume: 0.35},
   {at: OUTRO_AT - 0.35, sfx: 'whoosh', volume: 0.45},
   {at: OUTRO_AT + 0.4, sfx: 'rise', volume: 0.3},
   {at: OUTRO_AT + 1.4, sfx: 'pop', volume: 0.35},
@@ -358,7 +411,7 @@ export const Promo: React.FC = () => {
   // musique : présente mais discrète sous la voix, remonte pour le carton final
   const music = (f: number) => {
     const t = f / 30;
-    return interpolate(t, [0, 0.3, 67.0, 67.6, 69.4, 70.2], [0.32, 0.11, 0.11, 0.38, 0.38, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+    return interpolate(t, [0, 0.3, 67.0, 67.6, 76.4, 77.2], [0.32, 0.11, 0.11, 0.4, 0.4, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   };
   return (
     <AbsoluteFill>
@@ -369,8 +422,9 @@ export const Promo: React.FC = () => {
         <Gate from={20.7} to={30.4}><Formation /></Gate>
         <Gate from={30.4} to={43.5}><Programme /></Gate>
         <Gate from={43.5} to={59.1}><Public /></Gate>
-        <Gate from={59.1} to={OUTRO_AT}><Cta /></Gate>
-        <Gate from={OUTRO_AT} to={99}><Outro at={OUTRO_AT} logo={LOGO} /></Gate>
+        <Gate from={59.1} to={INFOS_AT}><Cta /></Gate>
+        <Gate from={INFOS_AT} to={OUTRO_AT}><Infos /></Gate>
+        <Gate from={OUTRO_AT} to={99}><Outro at={OUTRO_AT} logo={LOGO} contact={`WhatsApp : ${SESSION.whatsapp}`} /></Gate>
       </Camera>
       <Header hideAt={OUTRO_AT} logo={LOGO} />
       <Footer hideAt={OUTRO_AT} />

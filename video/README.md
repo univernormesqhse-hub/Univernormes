@@ -2,7 +2,7 @@
 
 Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `SuperviseurHSE` : « Le Superviseur HSE » (54 s).
-- `PromoFormationQHSE` : vidéo promotionnelle de la formation Management QHSE (70 s) — logo officiel
+- `PromoFormationQHSE` : vidéo promotionnelle de la formation Management QHSE (77 s, session du 05/11/2026 en ligne) — logo officiel
   (`public/promo/logo.png`), banque de photos fournie (`public/promo/`), badges ISO recréés, musique de fond générée.
 - `PyramideQHSE` : « L'anatomie d'un système documentaire QHSE » (73 s) — pyramide documentaire à 5 niveaux, avec
   l'ingénieur au plan (photo détourée) ; script dans `src/pyramide/`.
