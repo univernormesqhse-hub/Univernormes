@@ -8,6 +8,8 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   logo officiel, ingénieur présentateur et photos de la banque ; script dans `src/charte/`.
 - `EpiEpc` : « EPI vs EPC : le guide sécurité » (4 min 29) — 4 chapitres, figure EPI annotée, tableau
   comparatif animé, pyramide de priorité ; images dans `public/epi/`, script dans `src/epi/`.
+- `InductionHSE` : « L'induction HSE » (4 min 43) — 4 chapitres, parcours des 5 objectifs, exemple du travail
+  à chaud, normes ISO 45001 / 14001 ; images dans `public/induction/`, script dans `src/induction/`.
 - `PromoFormationQHSE` : vidéo promotionnelle de la formation Management QHSE (77 s, session du 05/11/2026 en ligne) — logo officiel
   (`public/promo/logo.png`), banque de photos fournie (`public/promo/`), badges ISO recréés, musique de fond générée.
 - `PyramideQHSE` : « L'anatomie d'un système documentaire QHSE » (73 s) — pyramide documentaire à 5 niveaux, avec
@@ -37,6 +39,7 @@ npm run render:promo
 npm run render:danger
 npm run render:charte
 npm run render:epi
+npm run render:induction
 ```
 Dans l'environnement cloud, pointer Remotion vers le Chromium préinstallé :
 `REMOTION_BROWSER=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`.
