@@ -1,8 +1,8 @@
-import {AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, Audio, Img, interpolate, staticFile, useCurrentFrame} from 'remotion';
 import {kf, Pop, useProgress} from './anim';
 import {Background} from './components/Background';
 import {Captions} from './components/Captions';
-import {Responsable, Superviseur} from './components/Characters';
+import {PhotoPerson} from './components/PhotoPerson';
 import {Footer} from './components/Footer';
 import {Header} from './components/Header';
 import {
@@ -37,42 +37,14 @@ const Label: React.FC<{children: string}> = ({children}) => (
   </div>
 );
 
-/** Place un personnage par le milieu de son corps (cx) et ses pieds (bottom). */
-const Placed: React.FC<{cx: number; bottom: number; size: number; opacity?: number; children: React.ReactNode}> = ({
-  cx,
-  bottom,
-  size,
-  opacity = 1,
-  children,
-}) => {
-  const frame = useCurrentFrame();
-  const breathe = 1 + 0.012 * Math.sin(frame / 9);
-  const h = (size * 345) / 290;
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        left: cx - (size * 120) / 290,
-        top: bottom - h,
-        opacity,
-        transformOrigin: `${(120 / 290) * 100}% 100%`,
-        transform: `scaleY(${breathe})`,
-      }}
-    >
-      {children}
-    </div>
-  );
-};
-
 /** 0 – 25 s : le superviseur sur le terrain, jusqu'aux permis de travail. */
 const ActeTerrain: React.FC = () => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
   const T = [0, 12.2, 12.8, 16.1, 16.7, 37];
-  const cx = kf(t, T, [540, 540, 330, 330, 470, 470]);
-  const bottom = kf(t, T, [930, 930, 1080, 1080, 1250, 1250]);
-  const size = kf(t, T, [440, 440, 420, 420, 380, 380]);
-  const pose = t < 7.9 ? 'front' : 'point';
+  const cx = kf(t, T, [540, 540, 300, 300, 330, 330]);
+  const bottom = kf(t, T, [960, 960, 1250, 1250, 1500, 1500]);
+  const height = kf(t, T, [640, 640, 700, 700, 680, 680]);
   // petit rebond au changement de pose
   const bump = interpolate(t, [7.9, 8.05, 8.3], [1, 1.06, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const intro = interpolate(t, [0, 0.4], [0, 1], {extrapolateRight: 'clamp'});
@@ -83,33 +55,35 @@ const ActeTerrain: React.FC = () => {
   return (
     <>
       {t < 7.9 && (
-        <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, opacity: arcOut}}>
-          <path
-            d="M 300 760 A 245 245 0 0 1 780 760"
+        <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, opacity: arcOut * intro}}>
+          <circle cx={540} cy={700} r={290} fill="rgba(124,197,118,0.22)" />
+          <circle
+            cx={540}
+            cy={700}
+            r={290}
             fill="none"
             stroke={colors.green}
-            strokeWidth={9}
+            strokeWidth={10}
             strokeLinecap="round"
             pathLength={1}
             strokeDasharray={1}
             strokeDashoffset={1 - arc}
+            transform="rotate(-90 540 700)"
           />
         </svg>
       )}
       <div style={{position: 'absolute', inset: 0, transform: `scale(${bump})`, transformOrigin: `${cx}px ${bottom}px`}}>
-        <Placed cx={cx} bottom={bottom} size={size} opacity={intro * out}>
-          <Superviseur pose={pose} size={size} />
-        </Placed>
+        <PhotoPerson who="superviseur" cx={cx} bottom={bottom} height={height} opacity={intro * out} />
       </div>
-      <Pop at={0.3} until={7.9} x={540} y={990}>
+      <Pop at={0.3} until={7.9} x={540} y={1030}>
         <Title>Superviseur HSE</Title>
       </Pop>
 
       {/* dangers → gestes corrigés */}
-      <Pop at={12.5} until={14.1} x={790} y={820} rotate={Math.sin(t * 9) * 4}>
+      <Pop at={12.5} until={14.1} x={780} y={860} rotate={Math.sin(t * 9) * 4}>
         <Warning size={210} />
       </Pop>
-      <Pop at={14.1} until={16.3} x={790} y={820}>
+      <Pop at={14.1} until={16.3} x={780} y={860}>
         <Check size={200} progress={useProgress(14.1, 14.6)} />
       </Pop>
 
@@ -152,7 +126,7 @@ const PermisDeTravail: React.FC = () => {
           </Pop>
         );
       })}
-      <Pop at={22.7} until={25.3} x={820} y={800}>
+      <Pop at={22.7} until={25.3} x={780} y={1000}>
         <div style={{position: 'relative'}}>
           <Permit size={170} />
           <div style={{position: 'absolute', left: 70, top: 120}}>
@@ -194,21 +168,21 @@ const ActeUrgence: React.FC = () => {
 const ActeResponsable: React.FC = () => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
-  const cx = kf(t, [33.3, 33.9], [540, 720]);
+  const cx = kf(t, [33.3, 33.9], [540, 300]);
   const opacity = interpolate(t, [30.3, 30.7, 37.4, 37.8], [0, 1, 1, 0]);
   const enter = interpolate(t, [30.3, 30.8], [60, 0], {extrapolateRight: 'clamp'});
   return (
     <>
       <div style={{position: 'absolute', inset: 0, transform: `translateY(${enter}px)`}}>
-        <Placed cx={cx} bottom={1150} size={440} opacity={opacity}>
-          <Responsable size={440} />
-        </Placed>
+        <PhotoPerson who="responsable" cx={cx} bottom={1330} height={760} opacity={opacity} />
       </div>
-      <Pop at={32.0} until={37.8} x={cx + 10} y={1210}>
+      <Pop at={32.0} until={37.8} x={Math.max(cx, 300) + 10} y={1390}>
         <Title>Responsable HSE</Title>
       </Pop>
-      <Pop at={33.5} until={37.8} x={330} y={760}>
+      <Pop at={33.5} until={37.8} x={790} y={860}>
+        <div style={{transform: 'scale(0.78)'}}>
         <BarChart grow={useProgress(33.6, 35.0)} trend={useProgress(35.1, 36.3)} axes={useProgress(33.5, 33.9)} />
+        </div>
       </Pop>
     </>
   );
@@ -221,23 +195,21 @@ const ActeAction: React.FC = () => {
   const opacity = interpolate(t, [37.7, 38.2, 43.4, 43.9, 46.3, 46.7], [0, 1, 1, 0.22, 0.22, 0], {
     extrapolateRight: 'clamp',
   });
-  const cx = kf(t, [43.4, 43.9], [500, 760]);
+  const cx = kf(t, [43.4, 43.9], [540, 820]);
   const shake = t > 44.8 && t < 45.6 ? Math.sin(t * 60) * 6 : 0;
   return (
     <>
-      <Placed cx={cx} bottom={kf(t, [43.4, 43.9], [1200, 1300])} size={420} opacity={opacity}>
-        <Superviseur pose="point" size={420} />
-      </Placed>
-      <Pop at={40.3} until={43.6} x={200} y={900}>
+      <PhotoPerson who="superviseur" cx={cx} bottom={kf(t, [43.4, 43.9], [1420, 1500])} height={720} opacity={opacity} />
+      <Pop at={40.3} until={43.6} x={180} y={960}>
         <Eye size={190} blink={t > 41.2 && t < 41.35 ? 1 : 0} />
       </Pop>
-      <Pop at={41.0} until={43.6} x={500} y={640} rotate={Math.sin(t * 14) * 10}>
+      <Pop at={41.0} until={43.6} x={830} y={560} rotate={Math.sin(t * 14) * 10}>
         <Bell size={140} />
       </Pop>
-      <Pop at={41.8} until={43.6} x={880} y={880}>
+      <Pop at={41.8} until={43.6} x={900} y={1000}>
         <Clipboard size={140} check={useProgress(42.0, 42.6)} />
       </Pop>
-      <Pop at={43.7} until={46.7} x={540 + shake} y={860}>
+      <Pop at={43.7} until={46.7} x={430 + shake} y={900}>
         <div style={{filter: `grayscale(${useProgress(44.8, 45.6)})`}}>
           <Manual size={260} />
         </div>
@@ -251,24 +223,34 @@ const ActeBouclier: React.FC = () => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
   const opacity = interpolate(t, [46.7, 47.1, END_CARD, END_CARD + 0.4], [0, 1, 1, 0]);
-  const r = interpolate(t, [48.5, 49.2], [0, 270], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const r = interpolate(t, [48.5, 49.2], [0, 340], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const shield = useProgress(49.3, 50.4);
   return (
     <div style={{position: 'absolute', inset: 0, opacity}}>
-      <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
-        <circle cx={430} cy={1010} r={r} fill="rgba(124,197,118,0.45)" stroke={colors.green} strokeWidth={6} />
-      </svg>
-      <Pop at={49.0} x={330} y={1060}>
-        <Superviseur size={230} helmet="#3E9E46" />
+      {/* la photo d'équipe se révèle dans un cercle */}
+      <div
+        style={{
+          position: 'absolute',
+          left: 540 - r,
+          top: 1050 - r,
+          width: r * 2,
+          height: r * 2,
+          borderRadius: '50%',
+          overflow: 'hidden',
+          border: r > 0 ? `10px solid ${colors.green}` : 'none',
+          boxShadow: '0 12px 30px rgba(30,25,10,0.25)',
+        }}
+      >
+        <Img
+          src={staticFile('personnages/equipe.jpg')}
+          style={{position: 'absolute', left: r - 400, top: r - 330, width: 1050, height: 700}}
+        />
+      </div>
+      <Pop at={46.8} until={49.0} x={540} y={1050}>
+        <PhotoPersonStatic />
       </Pop>
-      <Pop at={49.2} x={520} y={1060}>
-        <Superviseur size={230} helmet="#E9B949" />
-      </Pop>
-      <Placed cx={740} bottom={1380} size={420}>
-        <Superviseur pose="front" size={420} />
-      </Placed>
       {shield > 0 && (
-        <div style={{position: 'absolute', left: 540 - 430, top: 600}}>
+        <div style={{position: 'absolute', left: 540 - 430, top: 560}}>
           <ShieldOutline size={860} progress={shield} />
         </div>
       )}
@@ -300,6 +282,12 @@ const EndCard: React.FC = () => {
 };
 
 /** N'affiche ses enfants qu'entre `from` et `to` (secondes). */
+const PhotoPersonStatic: React.FC = () => (
+  <div style={{position: 'relative', width: 400, height: 760}}>
+    <PhotoPerson who="superviseur" cx={200} bottom={760} height={760} />
+  </div>
+);
+
 const Gate: React.FC<{from: number; to: number; children: React.ReactNode}> = ({from, to, children}) => {
   const t = useCurrentFrame() / FPS;
   return t >= from && t <= to ? <>{children}</> : null;
