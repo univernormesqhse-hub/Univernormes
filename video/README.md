@@ -2,6 +2,8 @@
 
 Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `SuperviseurHSE` : « Le Superviseur HSE » (54 s).
+- `AgentSuperviseur` : « Agent ou Superviseur HSE : qui fait quoi ? » (64 s) — les deux photos détourées + illustrations
+  Fluent ; script dans `src/roles/`.
 - `Iso9001` : « Les véritables évolutions de la norme qualité » (65 s) — illustrations 3D Microsoft Fluent Emoji
   (licence MIT, `public/fluent/LICENSE-fluentui-emoji.txt`) ; script dans `src/iso/`.
 - `Prevention` : « Pourquoi la prévention rapporte gros » (61 s) — personnages et objets générés avec Nano Banana Pro
@@ -19,6 +21,7 @@ npm run render:superviseur # rendu + mastering audio (-14 LUFS) → 1080p et 720
 npm run render:equipe
 npm run render:prevention
 npm run render:iso
+npm run render:roles
 ```
 Dans l'environnement cloud, pointer Remotion vers le Chromium préinstallé :
 `REMOTION_BROWSER=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`.
