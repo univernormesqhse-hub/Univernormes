@@ -2,6 +2,8 @@
 
 Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `SuperviseurHSE` : « Le Superviseur HSE » (54 s).
+- `PyramideQHSE` : « L'anatomie d'un système documentaire QHSE » (73 s) — pyramide documentaire à 5 niveaux, avec
+  l'ingénieur au plan (photo détourée) ; script dans `src/pyramide/`.
 - `AgentSuperviseur` : « Agent ou Superviseur HSE : qui fait quoi ? » (64 s) — les deux photos détourées + illustrations
   Fluent ; script dans `src/roles/`.
 - `Iso9001` : « Les véritables évolutions de la norme qualité » (65 s) — illustrations 3D Microsoft Fluent Emoji
@@ -22,6 +24,7 @@ npm run render:equipe
 npm run render:prevention
 npm run render:iso
 npm run render:roles
+npm run render:pyramide
 ```
 Dans l'environnement cloud, pointer Remotion vers le Chromium préinstallé :
 `REMOTION_BROWSER=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`.
