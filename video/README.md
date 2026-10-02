@@ -4,6 +4,8 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `SuperviseurHSE` : « Le Superviseur HSE » (54 s).
 - `DangerRisque` : « La différence entre danger et risque » (58 s) — machine à lame animée, logo officiel et
   photos de la banque (`public/promo/`) ; script dans `src/danger/`.
+- `CharteQualite` : « La Charte Qualité » (5 min 11) — 5 chapitres, document « charte » animé en fil rouge,
+  logo officiel, ingénieur présentateur et photos de la banque ; script dans `src/charte/`.
 - `PromoFormationQHSE` : vidéo promotionnelle de la formation Management QHSE (77 s, session du 05/11/2026 en ligne) — logo officiel
   (`public/promo/logo.png`), banque de photos fournie (`public/promo/`), badges ISO recréés, musique de fond générée.
 - `PyramideQHSE` : « L'anatomie d'un système documentaire QHSE » (73 s) — pyramide documentaire à 5 niveaux, avec
@@ -31,6 +33,7 @@ npm run render:roles
 npm run render:pyramide
 npm run render:promo
 npm run render:danger
+npm run render:charte
 ```
 Dans l'environnement cloud, pointer Remotion vers le Chromium préinstallé :
 `REMOTION_BROWSER=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`.

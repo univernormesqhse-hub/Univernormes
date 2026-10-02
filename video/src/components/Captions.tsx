@@ -17,6 +17,9 @@ export const Captions: React.FC<{captions: Caption[]}> = ({captions}) => {
   const step = Math.min(0.11, (dur * 0.6) / words.length);
   const box = prog(t, cap.start, cap.start + 0.22);
   let inKey = false;
+  // Police réduite pour les sous-titres longs (la boîte ne dépasse jamais l'écran).
+  const chars = cap.text.replace(/\*/g, '').length;
+  const fontSize = Math.min(76, Math.floor(990 / (chars * 0.47)));
   return (
     <div style={{position: 'absolute', left: 0, right: 0, top: 1650, display: 'flex', justifyContent: 'center'}}>
       <div
@@ -26,7 +29,7 @@ export const Captions: React.FC<{captions: Caption[]}> = ({captions}) => {
           padding: '6px 34px 14px',
           boxShadow: '0 8px 18px rgba(40,30,10,0.2), 0 1px 0 rgba(0,0,0,0.05)',
           fontFamily: handFont,
-          fontSize: 76,
+          fontSize,
           color: colors.ink,
           whiteSpace: 'nowrap',
           transform: `translateY(${(1 - box) * 18}px) scale(${0.92 + 0.08 * box}) rotate(${(1 - box) * -1.5}deg)`,
