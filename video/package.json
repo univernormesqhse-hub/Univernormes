@@ -5,9 +5,10 @@
   "description": "Capsules vidéo animées UNIVERSNORMES (Remotion)",
   "scripts": {
     "studio": "remotion studio",
-    "render": "remotion render SuperviseurHSE out/raw.mp4 && npm run master",
-    "master": "ffmpeg -v error -y -i out/raw.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:a aac -b:a 192k -ar 48000 -movflags +faststart out/capsule-superviseur-hse.mp4 && ffmpeg -v error -y -i out/capsule-superviseur-hse.mp4 -vf scale=720:-2 -c:v libx264 -crf 25 -preset slow -c:a aac -b:a 128k -movflags +faststart out/capsule-superviseur-hse-720p.mp4",
-    "still": "remotion still SuperviseurHSE"
+    "render": "npm run render:superviseur && npm run render:equipe",
+    "render:superviseur": "remotion render SuperviseurHSE out/capsule-superviseur-hse-raw.mp4 && ffmpeg -v error -y -i out/capsule-superviseur-hse-raw.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:a aac -b:a 192k -ar 48000 -movflags +faststart out/capsule-superviseur-hse.mp4 && ffmpeg -v error -y -i out/capsule-superviseur-hse.mp4 -vf scale=720:-2 -c:v libx264 -crf 25 -preset slow -c:a aac -b:a 128k -movflags +faststart out/capsule-superviseur-hse-720p.mp4",
+    "render:equipe": "remotion render EquipeHSE out/capsule-equipe-hse-raw.mp4 && ffmpeg -v error -y -i out/capsule-equipe-hse-raw.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:a aac -b:a 192k -ar 48000 -movflags +faststart out/capsule-equipe-hse.mp4 && ffmpeg -v error -y -i out/capsule-equipe-hse.mp4 -vf scale=720:-2 -c:v libx264 -crf 25 -preset slow -c:a aac -b:a 128k -movflags +faststart out/capsule-equipe-hse-720p.mp4",
+    "still": "remotion still"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.532",

@@ -5,7 +5,7 @@ import {colors, sansFont, sansItalic} from '../theme';
 export const OUTRO_AT = 51.6;
 
 /** 51,6 s → fin : signature animée UNIVERSNORMES. */
-export const Outro: React.FC = () => {
+export const Outro: React.FC<{at: number}> = ({at: OUTRO_AT}) => {
   const t = useT();
   const globe = useSpring(OUTRO_AT + 0.1, {damping: 11});
   const word = 'UNIVERSNORMES';

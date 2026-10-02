@@ -2,6 +2,7 @@ import {AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame} from 'rem
 import {Gate} from './anim';
 import {Background} from './components/Background';
 import {Captions} from './components/Captions';
+import {captions} from './captions';
 import {Footer} from './components/Footer';
 import {AlertVignette, Camera, Cue, Drain, Flash, SfxTrack, Wipe} from './components/Fx';
 import {Header} from './components/Header';
@@ -89,7 +90,7 @@ export const SuperviseurHSE: React.FC = () => {
         <Gate from={37.7} to={43.7}><Action /></Gate>
         <Gate from={43.7} to={46.7}><Manuels /></Gate>
         <Gate from={46.7} to={51.8}><Bouclier /></Gate>
-        <Gate from={OUTRO_AT} to={99}><Outro /></Gate>
+        <Gate from={OUTRO_AT} to={99}><Outro at={OUTRO_AT} /></Gate>
         <AlertVignette from={25.85} to={27.9} />
         <Drain from={43.75} to={46.65} />
       </Camera>
@@ -99,7 +100,7 @@ export const SuperviseurHSE: React.FC = () => {
       {WIPES.map((at) => (
         <Wipe key={at} at={at} />
       ))}
-      <Captions />
+      <Captions captions={captions} />
       <Audio src={staticFile('voix-off.m4a')} volume={fadeAudio} />
       <SfxTrack cues={CUES} />
     </AbsoluteFill>

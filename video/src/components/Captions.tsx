@@ -1,13 +1,13 @@
 import {useCurrentFrame} from 'remotion';
 import {easeOut, prog} from '../anim';
-import {captions} from '../captions';
+import {Caption} from '../captions';
 import {colors, FPS, handFont} from '../theme';
 
 /**
  * Sous-titre manuscrit dans une boîte blanche : la boîte arrive en ressort léger,
  * les mots se révèlent un à un, les mots clés (*…*) sont surlignés en vert.
  */
-export const Captions: React.FC = () => {
+export const Captions: React.FC<{captions: Caption[]}> = ({captions}) => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
   const cap = captions.find((c) => t >= c.start && t < c.end);
