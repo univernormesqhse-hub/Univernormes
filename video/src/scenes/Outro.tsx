@@ -1,3 +1,4 @@
+import {Img, staticFile} from 'remotion';
 import {easeOut, Enter, prog, useSpring, useT} from '../anim';
 import {Globe, WhatsAppIcon} from '../components/Logo';
 import {colors, sansFont, sansItalic} from '../theme';
@@ -5,7 +6,7 @@ import {colors, sansFont, sansItalic} from '../theme';
 export const OUTRO_AT = 51.6;
 
 /** 51,6 s → fin : signature animée UNIVERSNORMES. */
-export const Outro: React.FC<{at: number}> = ({at: OUTRO_AT}) => {
+export const Outro: React.FC<{at: number; logo?: string}> = ({at: OUTRO_AT, logo}) => {
   const t = useT();
   const globe = useSpring(OUTRO_AT + 0.1, {damping: 11});
   const word = 'UNIVERSNORMES';
@@ -17,6 +18,12 @@ export const Outro: React.FC<{at: number}> = ({at: OUTRO_AT}) => {
         const p = prog(t, OUTRO_AT + i * 0.12, OUTRO_AT + 1.2 + i * 0.12, easeOut);
         return <div key={i} style={{position: 'absolute', left: 540 - 700 * p, top: 760 - 700 * p, width: 1400 * p, height: 1400 * p, borderRadius: '50%', border: `${6 - i * 1.5}px solid ${i === 1 ? colors.navy : colors.green}`, opacity: 0.35 * (1 - p)}} />;
       })}
+      {logo ? (
+        <div style={{position: 'absolute', left: 540, top: 920, transform: `translate(-50%, -50%) scale(${globe})`}}>
+          <Img src={staticFile(logo)} style={{width: 880, display: 'block'}} />
+        </div>
+      ) : (
+        <>
       <div style={{position: 'absolute', left: 540 - 210, top: 760 - 165, transform: `scale(${globe}) rotate(${(1 - globe) * -120}deg)`}}>
         <Globe size={420} />
       </div>
@@ -33,6 +40,8 @@ export const Outro: React.FC<{at: number}> = ({at: OUTRO_AT}) => {
       <Enter at={OUTRO_AT + 0.8} x={540} y={1160} from="up" dist={40}>
         <div style={{fontFamily: sansItalic, fontStyle: 'italic', fontWeight: 700, fontSize: 36, color: colors.navy, whiteSpace: 'nowrap'}}>Qualité · Sécurité · Environnement</div>
       </Enter>
+        </>
+      )}
       <div style={{position: 'absolute', left: 540 - 300 * bar, top: 1215, width: 600 * bar, height: 8, borderRadius: 4, background: colors.green}} />
       <Enter at={OUTRO_AT + 1.1} x={540} y={1320} from="up" dist={60}>
         <div style={{textAlign: 'center', fontFamily: sansItalic, fontStyle: 'italic', fontWeight: 700, fontSize: 46, lineHeight: 1.25, color: colors.ink, whiteSpace: 'nowrap'}}>

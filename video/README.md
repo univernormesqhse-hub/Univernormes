@@ -2,6 +2,8 @@
 
 Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `SuperviseurHSE` : « Le Superviseur HSE » (54 s).
+- `PromoFormationQHSE` : vidéo promotionnelle de la formation Management QHSE (70 s) — logo officiel
+  (`public/promo/logo.png`), banque de photos fournie (`public/promo/`), badges ISO recréés, musique de fond générée.
 - `PyramideQHSE` : « L'anatomie d'un système documentaire QHSE » (73 s) — pyramide documentaire à 5 niveaux, avec
   l'ingénieur au plan (photo détourée) ; script dans `src/pyramide/`.
 - `AgentSuperviseur` : « Agent ou Superviseur HSE : qui fait quoi ? » (64 s) — les deux photos détourées + illustrations
@@ -25,6 +27,7 @@ npm run render:prevention
 npm run render:iso
 npm run render:roles
 npm run render:pyramide
+npm run render:promo
 ```
 Dans l'environnement cloud, pointer Remotion vers le Chromium préinstallé :
 `REMOTION_BROWSER=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`.

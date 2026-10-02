@@ -1,9 +1,10 @@
+import {Img, staticFile} from 'remotion';
 import {easeIn, easeOut, prog, useT} from '../anim';
 import {colors, sansFont, sansItalic} from '../theme';
 import {Globe, WhatsAppIcon} from './Logo';
 
 /** Bandeau haut : logo sur vague blanche (gauche) + bande marine services (droite). */
-export const Header: React.FC<{hideAt: number}> = ({hideAt}) => {
+export const Header: React.FC<{hideAt: number; logo?: string}> = ({hideAt, logo}) => {
   const t = useT();
   const y = -280 * (1 - prog(t, 0.05, 0.75, easeOut)) - 280 * prog(t, hideAt, hideAt + 0.45, easeIn);
   return (
@@ -15,6 +16,10 @@ export const Header: React.FC<{hideAt: number}> = ({hideAt}) => {
       <path d="M0 0 H462 C 430 60, 420 150, 360 196 C 300 236, 120 222, 0 236 Z" fill="#fff" />
       <path d="M462 -4 C 430 60, 420 150, 360 196 C 300 236, 120 222, 0 236" fill="none" stroke={colors.green} strokeWidth="11" />
     </svg>
+    {logo ? (
+      <Img src={staticFile(logo)} style={{position: 'absolute', left: 18, top: 16, width: 350}} />
+    ) : (
+      <>
     <div style={{position: 'absolute', left: 74, top: -6}}>
       <Globe size={150} />
     </div>
@@ -51,6 +56,8 @@ export const Header: React.FC<{hideAt: number}> = ({hideAt}) => {
     >
       Qualité · Sécurité · Environnement
     </div>
+      </>
+    )}
     <div style={{position: 'absolute', left: 548, top: 14}}>
       <WhatsAppIcon size={60} />
     </div>
