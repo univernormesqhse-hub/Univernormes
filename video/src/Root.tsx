@@ -14,6 +14,7 @@ import {InductionHSE, INDUCTION_FRAMES} from './induction/Induction';
 import {IntegrationHSE, INTEGRATION_FRAMES} from './integration/Integration';
 import {TirantAir, TIRANT_FRAMES} from './tirant/Tirant';
 import {ResponsableQHSE, RESPONSABLE_FRAMES} from './responsable/Responsable';
+import {NormesISO, NORMES_FRAMES} from './normes/Normes';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -38,5 +39,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="IntegrationHSE" component={IntegrationHSE} durationInFrames={INTEGRATION_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="TirantAir" component={TirantAir} durationInFrames={TIRANT_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ResponsableQHSE" component={ResponsableQHSE} durationInFrames={RESPONSABLE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="NormesISO" component={NormesISO} durationInFrames={NORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
