@@ -36,6 +36,9 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `CertificationAccreditation` : « Certification vs accréditation » (4 min 42) — 5 parties, tampons, contrôleur des
   contrôleurs, tableau face à face, chaîne de confiance, agrément et triangle, astuce Client / Arbitre ; bruitages
   seuls ; script dans `src/certif/` (`npm run render:certif`).
+- `PiegesIso2026` : « Les pièges de l'ISO 9001:2026 » (15 min 18) — créée à partir de l'audio seul : 5 parties
+  (structure et clause 10.3 fantôme, culture et éthique, climat et résilience, IA, transition), bruitages seuls ;
+  script dans `src/pieges/` (`npm run render:pieges`).
 - `PromoFormationQHSE` : vidéo promotionnelle de la formation Management QHSE (77 s, session du 05/11/2026 en ligne) — logo officiel
   (`public/promo/logo.png`), banque de photos fournie (`public/promo/`), badges ISO recréés, musique de fond générée.
 - `PyramideQHSE` : « L'anatomie d'un système documentaire QHSE » (73 s) — pyramide documentaire à 5 niveaux, avec
