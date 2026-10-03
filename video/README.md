@@ -24,6 +24,9 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   sol (incident puis accident), chaîne causale brisée ; images dans `public/incident/`.
 - `QseQhse` : « La vraie différence entre QSE et QHSE » (73 s) — tuiles-lettres Q·H·S·E animées, sans
   musique de fond (voix off seule) ; script dans `src/qhse/`.
+- `DangerRisque2` : « Danger ou risque ? » (6 min 25) — 4 parties, peau de banane, définitions INRS animées,
+  falaise et rambarde, matrice probabilité × gravité, hiérarchie de prévention ; bruitages seuls (ni musique ni
+  son de fond) ; images dans `public/danger2/`, script dans `src/danger2/` (`npm run render:danger2`).
 - `PromoFormationQHSE` : vidéo promotionnelle de la formation Management QHSE (77 s, session du 05/11/2026 en ligne) — logo officiel
   (`public/promo/logo.png`), banque de photos fournie (`public/promo/`), badges ISO recréés, musique de fond générée.
 - `PyramideQHSE` : « L'anatomie d'un système documentaire QHSE » (73 s) — pyramide documentaire à 5 niveaux, avec
