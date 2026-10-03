@@ -18,6 +18,8 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   direction artistique premium (voir `docs/DIRECTION-ARTISTIQUE.md`, kit `src/premium/`).
 - `NormesISO` : « Le vrai rôle des grandes normes ISO » (62 s) — ISO 9001 / 14001 / 45001, direction
   artistique premium ; script dans `src/normes/`.
+- `EspacesConfines` : « Pourquoi les espaces confinés sont des pièges mortels » (67 s) — coupe de cuve animée
+  (gaz, chute, sauveteur), permis d'entrée et ses 3 règles ; images dans `public/confines/`.
 - `PromoFormationQHSE` : vidéo promotionnelle de la formation Management QHSE (77 s, session du 05/11/2026 en ligne) — logo officiel
   (`public/promo/logo.png`), banque de photos fournie (`public/promo/`), badges ISO recréés, musique de fond générée.
 - `PyramideQHSE` : « L'anatomie d'un système documentaire QHSE » (73 s) — pyramide documentaire à 5 niveaux, avec
@@ -52,6 +54,7 @@ npm run render:integration
 npm run render:tirant
 npm run render:responsable
 npm run render:normes
+npm run render:confines
 ```
 Dans l'environnement cloud, pointer Remotion vers le Chromium préinstallé :
 `REMOTION_BROWSER=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`.
