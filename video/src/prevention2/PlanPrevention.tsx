@@ -9,7 +9,7 @@ import {Header} from '../components/Header';
 import {Outro} from '../scenes/Outro';
 import {s} from '../theme';
 import {captions} from './captions';
-import {Ambience, Sfx, SoundDesign} from './Cine';
+import {Sfx, SoundDesign} from './Cine';
 import {Intro, Organisation, Piliers} from './Scenes1';
 import {Conseil, Implicite, Indicateurs, Relation} from './Scenes2';
 
@@ -26,9 +26,8 @@ const CHAPTERS: [number, number, number, string, string, string[]][] = [
 ];
 
 /**
- * Sound design (sans musique de fond) : ambiance d'usine très faible et permanente,
- * bruitages réalistes sur les actions, impacts sur les révélations, silences avant les moments clés,
- * signature sonore sur le logo.
+ * Sound design (sans musique ni son de fond, à la demande du client) : uniquement des bruitages —
+ * réalistes sur les actions, impacts sur les révélations, signature sonore sur le logo.
  */
 const CUES: Sfx[] = [
   {at: 0.3, s: 'bass-hit', v: 0.22},
@@ -104,7 +103,6 @@ export const PlanPrevention: React.FC = () => (
     <Wipe at={OUTRO_AT} />
     <Captions captions={captions} />
     <Audio src={staticFile('voix-off-plan-prevention.m4a')} />
-    <Ambience total={PLAN_FRAMES / 30} silences={[[143.1, 144.6], [262.9, 264.4]]} level={0.045} />
     <SoundDesign cues={CUES} />
   </AbsoluteFill>
 );

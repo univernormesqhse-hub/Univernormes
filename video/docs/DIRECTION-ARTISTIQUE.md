@@ -41,8 +41,8 @@ manuscrits, titres cinétiques, illustrations 3D, photos en cartes). Il est cons
   montrer où regarder ; peu de texte, un mot-clé par idée.
 - **Infographies animées** : piliers, feuille de route, balance, iceberg, pastèque, jauges.
 - **Micro-animations** : stylo qui signe, tampon, classeur, flux d'informations, scanner.
-- **Sound design sans musique** (`tools/sound_design.py` → `public/sfx2/`, sons synthétisés) :
-  ambiance d'usine permanente très faible (`Ambience`), coupée net avant les révélations (silence),
-  bruitages réalistes (stylo, page, tampon, cadenas), impacts graves sur les révélations, riser,
+- **Sound design sans musique** (`tools/sound_design.py` → `public/sfx2/`, sons synthétisés).
+  Le client ne veut **ni musique ni son de fond** : pas d'ambiance d'usine (le composant `Ambience`
+  reste disponible mais n'est plus utilisé), uniquement des bruitages réalistes (stylo, page, tampon, cadenas), impacts graves sur les révélations, riser,
   notification, signature sonore de marque sur le logo final.
 - **Règle d'or** : pas « une phrase = un son » ; le spectaculaire sert la pédagogie.
