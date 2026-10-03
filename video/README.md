@@ -27,6 +27,9 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `DangerRisque2` : « Danger ou risque ? » (6 min 25) — 4 parties, peau de banane, définitions INRS animées,
   falaise et rambarde, matrice probabilité × gravité, hiérarchie de prévention ; bruitages seuls (ni musique ni
   son de fond) ; images dans `public/danger2/`, script dans `src/danger2/` (`npm run render:danger2`).
+- `Iso2026` : « ISO 9001 version 2026 : ce qui change » (81 s) — les 4 évolutions (culture qualité, risques et
+  opportunités, clarification / annexe A, transition sereine), plans ciné tirés du montage éditorial V4
+  (`public/iso26/`), bruitages seuls ; script dans `src/iso26/` (`npm run render:iso2026`).
 - `PromoFormationQHSE` : vidéo promotionnelle de la formation Management QHSE (77 s, session du 05/11/2026 en ligne) — logo officiel
   (`public/promo/logo.png`), banque de photos fournie (`public/promo/`), badges ISO recréés, musique de fond générée.
 - `PyramideQHSE` : « L'anatomie d'un système documentaire QHSE » (73 s) — pyramide documentaire à 5 niveaux, avec
