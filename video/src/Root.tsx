@@ -21,6 +21,7 @@ import {QseQhse, QHSE_FRAMES} from './qhse/Qhse';
 import {PlanPrevention, PLAN_FRAMES} from './prevention2/PlanPrevention';
 import {DangerRisque2, DANGER2_FRAMES} from './danger2/DangerRisque';
 import {Iso2026, ISO26_FRAMES} from './iso26/Iso2026';
+import {Ishikawa, ISHIKAWA_FRAMES} from './ishikawa/Ishikawa';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -52,5 +53,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="PlanPrevention" component={PlanPrevention} durationInFrames={PLAN_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="DangerRisque2" component={DangerRisque2} durationInFrames={DANGER2_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="Iso2026" component={Iso2026} durationInFrames={ISO26_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="Ishikawa" component={Ishikawa} durationInFrames={ISHIKAWA_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
