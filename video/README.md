@@ -14,6 +14,8 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   le filtre de priorisation et le plan d'action validé par le terrain ; script dans `src/integration/`.
 - `TirantAir` : « Comment calculer le tirant d'air » (75 s) — schéma animé à l'échelle (longe, absorbeur,
   taille, marge = 5,80 m) ; images dans `public/tirant/`, script dans `src/tirant/`.
+- `ResponsableQHSE` : « Comment le responsable QHSE protège l'entreprise » (73 s) — première capsule en
+  direction artistique premium (voir `docs/DIRECTION-ARTISTIQUE.md`, kit `src/premium/`).
 - `PromoFormationQHSE` : vidéo promotionnelle de la formation Management QHSE (77 s, session du 05/11/2026 en ligne) — logo officiel
   (`public/promo/logo.png`), banque de photos fournie (`public/promo/`), badges ISO recréés, musique de fond générée.
 - `PyramideQHSE` : « L'anatomie d'un système documentaire QHSE » (73 s) — pyramide documentaire à 5 niveaux, avec
@@ -46,6 +48,7 @@ npm run render:epi
 npm run render:induction
 npm run render:integration
 npm run render:tirant
+npm run render:responsable
 ```
 Dans l'environnement cloud, pointer Remotion vers le Chromium préinstallé :
 `REMOTION_BROWSER=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`.
