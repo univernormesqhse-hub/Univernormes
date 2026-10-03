@@ -33,6 +33,9 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `Ishikawa` : « Le diagramme d'Ishikawa » (7 min 18) — 5 parties, diagramme en arêtes de poisson animé, enquête
   des 5M, 8M des services, adaptation santé, lean (3M, 4 clés) ; images dans `public/ishikawa/`, bruitages seuls ;
   script dans `src/ishikawa/` (`npm run render:ishikawa`).
+- `CertificationAccreditation` : « Certification vs accréditation » (4 min 42) — 5 parties, tampons, contrôleur des
+  contrôleurs, tableau face à face, chaîne de confiance, agrément et triangle, astuce Client / Arbitre ; bruitages
+  seuls ; script dans `src/certif/` (`npm run render:certif`).
 - `PromoFormationQHSE` : vidéo promotionnelle de la formation Management QHSE (77 s, session du 05/11/2026 en ligne) — logo officiel
   (`public/promo/logo.png`), banque de photos fournie (`public/promo/`), badges ISO recréés, musique de fond générée.
 - `PyramideQHSE` : « L'anatomie d'un système documentaire QHSE » (73 s) — pyramide documentaire à 5 niveaux, avec
