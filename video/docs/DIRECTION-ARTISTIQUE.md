@@ -27,3 +27,22 @@ Référence appliquée à partir de la capsule `ResponsableQHSE` (kit réutilisa
 3. Images libres : `tools/fetch_images.py "<requête>" --out public/banque/<sujet>` (Openverse, CC0 / CC BY /
    CC BY-SA, crédits enregistrés en JSON). Le réseau de l'environnement cloud bloque ces banques :
    le script est à lancer en local, puis les images sont poussées dans le dépôt.
+
+---
+
+# Modèle UNIVERSNORMES « d'origine » enrichi (référence à partir de `PlanPrevention`)
+
+Le client préfère son modèle d'origine (fond papier, bandeaux haut/bas avec le logo, sous-titres
+manuscrits, titres cinétiques, illustrations 3D, photos en cartes). Il est conservé et enrichi :
+
+- **Plans « cinéma »** (`src/prevention2/Cine.tsx` → `CineShot`) : photo plein cadre avec travelling,
+  push/pull, panoramique, caméra à l'épaule très légère, étalonnage, vignettage et reflet lumineux.
+- **Hiérarchie visuelle** : `Highlight` (cercle de mise en évidence qui se dessine puis pulse) pour
+  montrer où regarder ; peu de texte, un mot-clé par idée.
+- **Infographies animées** : piliers, feuille de route, balance, iceberg, pastèque, jauges.
+- **Micro-animations** : stylo qui signe, tampon, classeur, flux d'informations, scanner.
+- **Sound design sans musique** (`tools/sound_design.py` → `public/sfx2/`, sons synthétisés) :
+  ambiance d'usine permanente très faible (`Ambience`), coupée net avant les révélations (silence),
+  bruitages réalistes (stylo, page, tampon, cadenas), impacts graves sur les révélations, riser,
+  notification, signature sonore de marque sur le logo final.
+- **Règle d'or** : pas « une phrase = un son » ; le spectaculaire sert la pédagogie.
