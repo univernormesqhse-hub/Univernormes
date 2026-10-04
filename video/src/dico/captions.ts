@@ -1,0 +1,33 @@
+import {Caption} from '../captions';
+
+// Script de la voix-off « Le dictionnaire essentiel des professionnels de la prévention » (secondes).
+export const captions: Caption[] = [
+  {text: "*QHSE :*", start: 0.0, end: 1.6},
+  {text: "Qualité, Hygiène,", start: 1.76, end: 2.94},
+  {text: "Sécurité, Environnement.", start: 2.94, end: 4.6},
+  {text: "*HSE :*", start: 4.7, end: 5.7},
+  {text: "Hygiène, Sécurité,", start: 5.7, end: 6.8},
+  {text: "Environnement.", start: 6.8, end: 8.0},
+  {text: "*SST :*", start: 8.14, end: 9.3},
+  {text: "Santé et Sécurité", start: 9.4, end: 10.28},
+  {text: "au Travail.", start: 10.28, end: 11.6},
+  {text: "*EPI :*", start: 11.72, end: 12.84},
+  {text: "Équipement de Protection", start: 12.84, end: 13.76},
+  {text: "Individuelle.", start: 13.76, end: 15.2},
+  {text: "*EPC :*", start: 15.34, end: 16.44},
+  {text: "Équipement de Protection", start: 16.44, end: 17.34},
+  {text: "Collective.", start: 17.34, end: 19.1},
+  {text: "*DUERP :*", start: 19.24, end: 20.4},
+  {text: "Document Unique d'Évaluation", start: 20.54, end: 21.6},
+  {text: "des Risques Professionnels.", start: 21.6, end: 23.4},
+  {text: "*AT :*", start: 23.58, end: 24.62},
+  {text: "Accident du Travail.", start: 24.62, end: 26.2},
+  {text: "*FDS :*", start: 26.34, end: 27.5},
+  {text: "Fiche de Données", start: 27.58, end: 28.22},
+  {text: "de Sécurité.", start: 28.22, end: 29.5},
+  {text: "*RPS :*", start: 29.58, end: 30.8},
+  {text: "Risques PsychoSociaux.", start: 30.84, end: 32.5},
+  {text: "*PDCA :*", start: 32.66, end: 34.0},
+  {text: "Plan, Do,", start: 34.14, end: 34.98},
+  {text: "Check, Act.", start: 34.98, end: 36.6},
+];

@@ -45,6 +45,9 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `RisqueBrutReel` : « Risque brut vs risque réel » (79 s) — cotation gravité × probabilité animée, matrice 4×4,
   criticité 16 → 4, illustrations reprises de la vidéo source (`public/risquebrut/`), bruitages seuls ; script dans
   `src/risquebrut/` (`npm run render:risquebrut`).
+- `DictionnaireQHSE` : « Le dictionnaire essentiel des professionnels de la prévention » (40 s) — 10 fiches-sigles
+  (QHSE, HSE, SST, EPI, EPC, DUERP, AT, FDS, RPS, PDCA) : lettres en cascade, définition mot à mot calée sur la voix,
+  photos et icônes 3D, roue PDCA animée, bruitages seuls (sans musique ni ambiance). `npm run render:dictionnaire`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
