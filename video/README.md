@@ -42,6 +42,9 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `TravailHauteur` : « Le travail en hauteur » (5 min 47) — 5 parties : chronomètre d'une seconde, chute de 2 m,
   chaîne de causes, harnais et rituel en 3 temps, culture QHSE, autorité d'arrêt (STOP), choix final ; bruitages
   seuls ; script dans `src/hauteur/` (`npm run render:hauteur`).
+- `RisqueBrutReel` : « Risque brut vs risque réel » (79 s) — cotation gravité × probabilité animée, matrice 4×4,
+  criticité 16 → 4, illustrations reprises de la vidéo source (`public/risquebrut/`), bruitages seuls ; script dans
+  `src/risquebrut/` (`npm run render:risquebrut`).
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
