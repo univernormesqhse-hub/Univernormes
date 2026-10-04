@@ -39,6 +39,12 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `PiegesIso2026` : « Les pièges de l'ISO 9001:2026 » (15 min 18) — créée à partir de l'audio seul : 5 parties
   (structure et clause 10.3 fantôme, culture et éthique, climat et résilience, IA, transition), bruitages seuls ;
   script dans `src/pieges/` (`npm run render:pieges`).
+- `TravailHauteur` : « Le travail en hauteur » (5 min 47) — 5 parties : chronomètre d'une seconde, chute de 2 m,
+  chaîne de causes, harnais et rituel en 3 temps, culture QHSE, autorité d'arrêt (STOP), choix final ; bruitages
+  seuls ; script dans `src/hauteur/` (`npm run render:hauteur`).
+- `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
+  4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
+  `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
 - `PromoFormationQHSE` : vidéo promotionnelle de la formation Management QHSE (77 s, session du 05/11/2026 en ligne) — logo officiel
   (`public/promo/logo.png`), banque de photos fournie (`public/promo/`), badges ISO recréés, musique de fond générée.
 - `PyramideQHSE` : « L'anatomie d'un système documentaire QHSE » (73 s) — pyramide documentaire à 5 niveaux, avec

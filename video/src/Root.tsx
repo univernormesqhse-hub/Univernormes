@@ -25,6 +25,7 @@ import {Ishikawa, ISHIKAWA_FRAMES} from './ishikawa/Ishikawa';
 import {Certification2, CERTIF_FRAMES} from './certif/Certification';
 import {Pieges, PIEGES_FRAMES} from './pieges/Pieges';
 import {PodcastStudio, PodcastVertical, PODCAST_FRAMES} from './podcast/Podcast';
+import {Hauteur, HAUTEUR_FRAMES} from './hauteur/Hauteur';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -61,5 +62,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="PiegesIso2026" component={Pieges} durationInFrames={PIEGES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="PodcastStudio" component={PodcastStudio} durationInFrames={PODCAST_FRAMES} fps={FPS} width={1920} height={1080} />
   <Composition id="PodcastVertical" component={PodcastVertical} durationInFrames={PODCAST_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="TravailHauteur" component={Hauteur} durationInFrames={HAUTEUR_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
