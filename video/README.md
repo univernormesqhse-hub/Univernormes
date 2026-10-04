@@ -48,6 +48,9 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `DictionnaireQHSE` : « Le dictionnaire essentiel des professionnels de la prévention » (40 s) — 10 fiches-sigles
   (QHSE, HSE, SST, EPI, EPC, DUERP, AT, FDS, RPS, PDCA) : lettres en cascade, définition mot à mot calée sur la voix,
   photos et icônes 3D, roue PDCA animée, bruitages seuls (sans musique ni ambiance). `npm run render:dictionnaire`.
+- `SiglesQHSE` : « Le vocabulaire essentiel des sigles en QHSE » (60 s) — 20 sigles (AT, PA, TF, TG, IF, IG, LTI, LTIR,
+  TRIR, MTI, FAI, RWC, DART, SIF, SIFp, RCA, ICAM, 5 Why, FTA, JSA) : tuiles-lettres, développé anglais, définition mot à mot,
+  formules des indicateurs, pyramide de gravité, 5 pourquoi, arbre des causes, JSA ; bruitages seuls. `npm run render:sigles`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
