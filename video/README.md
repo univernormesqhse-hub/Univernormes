@@ -72,6 +72,9 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   identifier ≠ évaluer, étape 1 avec les 5 dangers repérés à la loupe (pictogrammes fournis dans `public/ident/`),
   étape 2 avec matrice probabilité × gravité où se placent les dangers, résumé « on identifie puis on évalue » ;
   bruitages seuls. `npm run render:ident`.
+- `FamillesRisquesSST` : « Les 40 familles de risques SST » (126 s) — une fiche par famille (n° / 40, groupe en
+  couleur, photo issue des capsules précédentes ou composition d'icônes 3D), grille des 40 familles qui se remplit,
+  récap final ; aucune image de la vidéo source, bruitages seuls. `npm run render:familles`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
