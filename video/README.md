@@ -64,6 +64,10 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   se déplient, exemple du petit restaurant (illustrations de la vidéo source recadrées dans `public/swot/`), une section
   par quadrant avec mini-matrice et points cochés au rythme de la voix, modèle SWOT fourni, matrice complète
   internes / externes, conclusion stratégique ; bruitages seuls. `npm run render:swot`.
+- `CinqDocumentsQHSE` : « Les cinq documents incontournables en QHSE » (28 s, partie 1/2) — compteur 10 documents,
+  une fiche par document (politique QSE, DUERP développé lettre à lettre, programme annuel de prévention, procédures,
+  instructions de travail) avec illustrations de la source recadrées (`public/docs5/`), suivi 5 dossiers cochés, teaser
+  « à suivre » ; bruitages seuls. `npm run render:docs5`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
