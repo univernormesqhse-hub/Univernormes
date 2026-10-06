@@ -68,6 +68,10 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   une fiche par document (politique QSE, DUERP développé lettre à lettre, programme annuel de prévention, procédures,
   instructions de travail) avec illustrations de la source recadrées (`public/docs5/`), suivi 5 dossiers cochés, teaser
   « à suivre » ; bruitages seuls. `npm run render:docs5`.
+- `IdentificationEvaluation` : « Différencier l'identification et l'évaluation des risques » (59 s) — duel
+  identifier ≠ évaluer, étape 1 avec les 5 dangers repérés à la loupe (pictogrammes fournis dans `public/ident/`),
+  étape 2 avec matrice probabilité × gravité où se placent les dangers, résumé « on identifie puis on évalue » ;
+  bruitages seuls. `npm run render:ident`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
