@@ -60,6 +60,10 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   tableau de bord) : bandeau « Outil n/10 », images fournies (`public/arsenal/`), actions cochées au rythme de la voix,
   escalier des 5 pourquoi, plan d'actions qui se remplit, final « connaître ≠ savoir utiliser » ; bruitages seuls.
   `npm run render:arsenal`.
+- `AnalyseSwot` : « Comment utiliser l'analyse SWOT » (75 s) — accroche « risque de stagner », tuiles S/W/O/T qui
+  se déplient, exemple du petit restaurant (illustrations de la vidéo source recadrées dans `public/swot/`), une section
+  par quadrant avec mini-matrice et points cochés au rythme de la voix, modèle SWOT fourni, matrice complète
+  internes / externes, conclusion stratégique ; bruitages seuls. `npm run render:swot`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
