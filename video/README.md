@@ -55,6 +55,11 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   (entreprise, chantier, client, fournisseur), trajet domicile ⇄ entreprise avec détour refusé et détours admis
   (enfants, boulangerie), vie courante / droit commun, récapitulatif ; photos client fournies dans `public/zones/`,
   bruitages seuls. `npm run render:zones`.
+- `ArsenalQHSE` : « L'arsenal indispensable du responsable QHSE » (89 s) — 10 outils (analyse des risques, DUERP,
+  JSA/JHA, arbre des causes, 5 pourquoi, plan d'actions, audit interne, veille réglementaire, aspects environnementaux,
+  tableau de bord) : bandeau « Outil n/10 », images fournies (`public/arsenal/`), actions cochées au rythme de la voix,
+  escalier des 5 pourquoi, plan d'actions qui se remplit, final « connaître ≠ savoir utiliser » ; bruitages seuls.
+  `npm run render:arsenal`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).

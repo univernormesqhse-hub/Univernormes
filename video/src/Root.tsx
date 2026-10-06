@@ -30,6 +30,7 @@ import {RisqueBrut, RISQUEBRUT_FRAMES} from './risquebrut/RisqueBrut';
 import {Dico, DICO_FRAMES} from './dico/Dico';
 import {Vocab, VOCAB_FRAMES} from './vocab/Vocab';
 import {Zones, ZONES_FRAMES} from './zones/Zones';
+import {Arsenal, ARSENAL_FRAMES} from './arsenal/Arsenal';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -71,5 +72,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="DictionnaireQHSE" component={Dico} durationInFrames={DICO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="SiglesQHSE" component={Vocab} durationInFrames={VOCAB_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ZonesAccidentTravail" component={Zones} durationInFrames={ZONES_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="ArsenalQHSE" component={Arsenal} durationInFrames={ARSENAL_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
