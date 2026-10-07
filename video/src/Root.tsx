@@ -36,6 +36,7 @@ import {Docs5, DOCS5_FRAMES} from './docs5/Docs5';
 import {Ident, IDENT_FRAMES} from './ident/Ident';
 import {Familles, FAMILLES_FRAMES} from './familles/Familles';
 import {Pls, PLS_FRAMES} from './pls/Pls';
+import {DuerpPdp, DUERPPDP_FRAMES} from './duerppdp/DuerpPdp';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -83,5 +84,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="IdentificationEvaluation" component={Ident} durationInFrames={IDENT_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="FamillesRisquesSST" component={Familles} durationInFrames={FAMILLES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="PlsDeuxSecouristes" component={Pls} durationInFrames={PLS_FRAMES} fps={FPS} width={1920} height={1080} />
+  <Composition id="DuerpPlanPrevention" component={DuerpPdp} durationInFrames={DUERPPDP_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
