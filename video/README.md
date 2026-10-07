@@ -75,6 +75,11 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `FamillesRisquesSST` : « Les 40 familles de risques SST » (126 s) — une fiche par famille (n° / 40, groupe en
   couleur, photo issue des capsules précédentes ou composition d'icônes 3D), grille des 40 familles qui se remplit,
   récap final ; aucune image de la vidéo source, bruitages seuls. `npm run render:familles`.
+- `PlsDeuxSecouristes` : « Position latérale de sécurité à deux secouristes » (16:9, 2 min 34) — recréation complète
+  en motion design d'une démonstration de référence : vue zénithale animée, victime et deux secouristes africains
+  articulés (cinématique des membres), annotations synchronisées, panneau d'étapes, check-list, narration réécrite
+  en synthèse vocale française (`public/pls/voix-off-pls.m4a`). Storyboard et bible : `docs/pls-2-secouristes-storyboard.md`.
+  `npm run render:pls`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
