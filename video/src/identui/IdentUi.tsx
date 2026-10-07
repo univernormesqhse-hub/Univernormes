@@ -26,8 +26,8 @@ export const IDENTUI_FRAMES = s(58.8);
 const ORANGE = '#E8892B';
 const RED = '#D9443A';
 
-const shadow = '0 30px 60px rgba(14,30,60,0.16), 0 6px 14px rgba(14,30,60,0.08)';
-const Card: React.FC<{at: number; until?: number; x: number; y: number; w: number; h?: number; tilt?: number; children: React.ReactNode; style?: React.CSSProperties}> = ({at, until = Infinity, x, y, w, h, tilt = 0, children, style}) => {
+export const shadow = '0 30px 60px rgba(14,30,60,0.16), 0 6px 14px rgba(14,30,60,0.08)';
+export const Card: React.FC<{at: number; until?: number; x: number; y: number; w: number; h?: number; tilt?: number; children: React.ReactNode; style?: React.CSSProperties}> = ({at, until = Infinity, x, y, w, h, tilt = 0, children, style}) => {
   const t = useT();
   const p = prog(t, at, at + 0.55, easeOut);
   const q = until === Infinity ? 0 : prog(t, until - 0.3, until, easeInOut);
@@ -41,14 +41,14 @@ const Card: React.FC<{at: number; until?: number; x: number; y: number; w: numbe
 };
 
 /** Barre de fenêtre d'application (3 pastilles + URL neutre). */
-const Chrome: React.FC<{title: string}> = ({title}) => (
+export const Chrome: React.FC<{title: string}> = ({title}) => (
   <div style={{height: 64, background: '#F3F4F6', display: 'flex', alignItems: 'center', gap: 10, padding: '0 22px', borderBottom: '1px solid #E5E7EB'}}>
     {['#F16A5E', '#F5BE4F', '#61C554'].map((c) => <div key={c} style={{width: 16, height: 16, borderRadius: 8, background: c}} />)}
     <div style={{flex: 1, marginLeft: 16, height: 36, borderRadius: 18, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 700, fontSize: 22, color: '#6B7684'}}>{title}</div>
   </div>
 );
 
-const Check: React.FC<{p: number; size?: number; color?: string}> = ({p, size = 52, color = colors.green}) => (
+export const Check: React.FC<{p: number; size?: number; color?: string}> = ({p, size = 52, color = colors.green}) => (
   <svg width={size} height={size} viewBox="0 0 24 24" style={{flexShrink: 0}}>
     <circle cx={12} cy={12} r={11} fill="none" stroke={p > 0.99 ? color : '#D5D9DE'} strokeWidth={1.6} />
     <path d="M6.5 12.5 L10.5 16.2 L17.5 8.2" fill="none" stroke={color} strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" pathLength={1} strokeDasharray={`${p} 1`} />
@@ -297,7 +297,7 @@ const Final: React.FC = () => {
 };
 
 /* ── Fond et logo discret ── */
-const Backdrop: React.FC = () => {
+export const Backdrop: React.FC = () => {
   const t = useT();
   return (
     <AbsoluteFill style={{background: 'linear-gradient(180deg, #FBFAF6 0%, #F1EDE3 100%)'}}>

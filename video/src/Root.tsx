@@ -38,6 +38,7 @@ import {Familles, FAMILLES_FRAMES} from './familles/Familles';
 import {Pls, PLS_FRAMES} from './pls/Pls';
 import {DuerpPdp, DUERPPDP_FRAMES} from './duerppdp/DuerpPdp';
 import {IdentUi, IDENTUI_FRAMES} from './identui/IdentUi';
+import {EquipeHse, EQUIPEHSE_FRAMES} from './equipeui/EquipeUi';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -87,5 +88,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="PlsDeuxSecouristes" component={Pls} durationInFrames={PLS_FRAMES} fps={FPS} width={1920} height={1080} />
   <Composition id="DuerpPlanPrevention" component={DuerpPdp} durationInFrames={DUERPPDP_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="IdentificationEvaluationUi" component={IdentUi} durationInFrames={IDENTUI_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="EquipeHsePerformante" component={EquipeHse} durationInFrames={EQUIPEHSE_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
