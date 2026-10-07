@@ -90,6 +90,10 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
 - `EquipeHsePerformante` : « L'architecture d'une équipe HSE performante » au format UI motion premium (skill
   `video-promo-diagnostic-qhse`) — règles empilées puis barrées, bureau ↔ chantier, 6 maillons, organigramme qui se
   construit (avatars à peau foncée), flux descendant / remontant, circuit fermé ; voix d'origine. `npm run render:equipe`.
+- `TableauBordQhse` : « Pourquoi alléger votre tableau de bord QHSE » au format UI motion premium enrichi —
+  mur de 50 indicateurs qui sature puis explose en particules (flou de mouvement), tuile survivante qui devient
+  l'indicateur clé, boucle en parallaxe 3D, traversées de caméra entre plans, reflets lumineux, raccord final
+  50 → 5 indicateurs vitaux ; valeurs marquées EXEMPLE ; voix d'origine. `npm run render:tableaubord`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
