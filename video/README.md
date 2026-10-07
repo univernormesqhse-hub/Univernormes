@@ -84,6 +84,9 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   chaudière / salariés internes (cadre DUERP) puis arrivée des intervenants extérieurs, coactivité, cadre plan de
   prévention, règle d'or en deux colonnes ; images fournies (`public/duerppdp/`) et visuels des capsules précédentes,
   aucune image de la source, bruitages seuls. `npm run render:duerppdp`.
+- `IdentificationEvaluationUi` : « Identifier ou évaluer ? » au format UI motion premium (skill
+  `video-promo-diagnostic-qhse`) — cartes d'interface en 3D, chaîne des 5 dangers, tableau de cotation qui se classe,
+  jauges probabilité × gravité, cartes cochées, final marine avec règle tapée ; voix d'origine. `npm run render:identui`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
