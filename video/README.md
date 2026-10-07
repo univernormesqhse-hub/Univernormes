@@ -102,6 +102,10 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   enrichi — tour de paperasse tamponnée qui s'effondre, ouvertures en iris, 4 piliers 3D, carte-titre qui se retourne,
   chemins libres vers une cible, radar des risques, écosystème en orbite, engrenages, plaque ISO qui pivote en
   « système d'exploitation » ; voix d'origine. `npm run render:iso9001monde`.
+- `CompterAccidents` : « Pourquoi compter les accidents ne suffit plus » au format UI motion premium enrichi —
+  jauge réactif → proactif, coupes glitch RVB, écran de chiffres qui se brouille, courbe dans un rétroviseur,
+  ligne de temps qui défile vers la gauche, écran partagé à volet, ondes sonar, retour en arrière qui efface le pic
+  (« accident évité ») ; valeurs marquées EXEMPLE ; voix d'origine. `npm run render:compteracc`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
