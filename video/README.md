@@ -94,6 +94,10 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   mur de 50 indicateurs qui sature puis explose en particules (flou de mouvement), tuile survivante qui devient
   l'indicateur clé, boucle en parallaxe 3D, traversées de caméra entre plans, reflets lumineux, raccord final
   50 → 5 indicateurs vitaux ; valeurs marquées EXEMPLE ; voix d'origine. `npm run render:tableaubord`.
+- `NormeIsoFonctionnement` : « Comment fonctionne vraiment une norme ISO » au format UI motion premium enrichi —
+  compteur à rouleaux 9001 → 14001 → 45001, réseau « chaos » qui se réaligne en processus dans le cadre ISO
+  (raccord début / fin), document qui se déplie en 3D, tiroir qui se referme, éventail de cartes par domaine,
+  transitions en panoramique filé ; voix d'origine. `npm run render:normeiso`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
