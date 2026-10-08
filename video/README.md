@@ -124,6 +124,12 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   coule, relais OHSAS → 45001, punaises sur plan, aiguillage MASE / 45001, message vocal, usine à gaz démêlée, calques
   alignés, cadran des 5 questions, façade en carton emportée par le vent, transitions « plan qui se déroule » ;
   voix d'origine (`public/voix-guide-iso-trio-origine.m4a`). `npm run render:guideiso`.
+- `InductionHsePremium` : « L'induction HSE » au format UI motion premium enrichi, illustré par les photos terrain
+  fournies (`public/induction/`, marques retirées) — lettres H-S-E remplies de photos, polaroïd qui se développe,
+  barrière levante, badge d'accès imprimé, distribution de cartes (qui est concerné), itinéraire GPS des 5 objectifs,
+  zoom plan → terrain, mallette d'EPI, alertes façon smartphone, tri des déchets, panoramique 360°, vision thermique et
+  étincelles, permis de feu validé, photo en trois volets étalonnés, cartes « idées reçues » balayées, cercles de
+  protection, empreintes du premier pas, transitions pellicule + flash ; voix d'origine. `npm run render:inductionhse`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).

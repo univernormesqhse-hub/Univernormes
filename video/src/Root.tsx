@@ -46,6 +46,7 @@ import {CompterAcc, COMPTERACC_FRAMES} from './compteracc/CompterAcc';
 import {AccidentAZ, ACCIDENTAZ_FRAMES} from './accidentaz/AccidentAZ';
 import {CertifIso, CERTIFISO_FRAMES} from './certifiso/CertifIso';
 import {GuideIso, GUIDEISO_FRAMES} from './guideiso/GuideIso';
+import {InductionHse, INDUCTIONHSE_FRAMES} from './inductionhse/InductionHse';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -103,5 +104,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="AccidentTravailAZ" component={AccidentAZ} durationInFrames={ACCIDENTAZ_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CertifIsoPourquoi" component={CertifIso} durationInFrames={CERTIFISO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="GuideIsoTrio" component={GuideIso} durationInFrames={GUIDEISO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="InductionHsePremium" component={InductionHse} durationInFrames={INDUCTIONHSE_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
