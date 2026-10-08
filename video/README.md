@@ -130,6 +130,10 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   zoom plan → terrain, mallette d'EPI, alertes façon smartphone, tri des déchets, panoramique 360°, vision thermique et
   étincelles, permis de feu validé, photo en trois volets étalonnés, cartes « idées reçues » balayées, cercles de
   protection, empreintes du premier pas, transitions pellicule + flash ; voix d'origine. `npm run render:inductionhse`.
+- `HierarchiePrevention` : « Les 9 principes généraux de prévention » (44 s) au format UI motion premium — fil vertical
+  façon réseau social qui s'enclenche carte par carte avec anneau n/9, micro-animation propre à chaque principe (détour,
+  matrice de risques, vanne à la source, établi ergonomique, mise à jour technique, machine à sous de substitution,
+  Gantt, parapluie collectif vs casque, consignes cochées), pyramide finale ; voix d'origine. `npm run render:hierarchie`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
