@@ -139,6 +139,11 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   qui brûle, cylindre 3D des travaux par points chauds, distorsion de chaleur, plan avec rayon d'exclusion, coupe de
   bâtiment à braises cachées, bouton d'arrêt d'urgence, accéléré du feu couvant, planche de BD photo, permis cadenassé
   puis validé, allumettes 3/10 (30 %, INRS) ; voix d'origine. `npm run render:permisfeu`.
+- `DangerSoudage` : « Le danger invisible du soudage » (75 s), univers « laboratoire » inédit — fumée particulaire
+  simulée sur photo, microscope classant les particules par taille, flux vers le visage, parcours des particules dans
+  les voies respiratoires (schémas fournis, `public/soudage/`), poumons qui s'assombrissent, pictogrammes de danger,
+  recul de caméra vers l'atelier, aspiration en tourbillon, ventilation, entonnoir collectif → individuel, air qui
+  s'éclaircit ; voix d'origine. `npm run render:soudage`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
