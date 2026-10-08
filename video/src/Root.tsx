@@ -48,6 +48,7 @@ import {CertifIso, CERTIFISO_FRAMES} from './certifiso/CertifIso';
 import {GuideIso, GUIDEISO_FRAMES} from './guideiso/GuideIso';
 import {InductionHse, INDUCTIONHSE_FRAMES} from './inductionhse/InductionHse';
 import {HierarchiePrev, HIERARCHIEPREV_FRAMES} from './hierarchieprev/HierarchiePrev';
+import {PermisFeu, PERMISFEU_FRAMES} from './permisfeu/PermisFeu';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -107,5 +108,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="GuideIsoTrio" component={GuideIso} durationInFrames={GUIDEISO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="InductionHsePremium" component={InductionHse} durationInFrames={INDUCTIONHSE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="HierarchiePrevention" component={HierarchiePrev} durationInFrames={HIERARCHIEPREV_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="PermisDeFeu" component={PermisFeu} durationInFrames={PERMISFEU_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );

@@ -134,6 +134,11 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   façon réseau social qui s'enclenche carte par carte avec anneau n/9, micro-animation propre à chaque principe (détour,
   matrice de risques, vanne à la source, établi ergonomique, mise à jour technique, machine à sous de substitution,
   Gantt, parapluie collectif vs casque, consignes cochées), pyramide finale ; voix d'origine. `npm run render:hierarchie`.
+- `PermisDeFeu` : « Comment fonctionne le permis de feu » dans un univers sombre « braises » inédit, illustré par les
+  photos fournies (`public/permisfeu/`, marques retirées) — allumette qui s'enflamme, document qui apparaît par un bord
+  qui brûle, cylindre 3D des travaux par points chauds, distorsion de chaleur, plan avec rayon d'exclusion, coupe de
+  bâtiment à braises cachées, bouton d'arrêt d'urgence, accéléré du feu couvant, planche de BD photo, permis cadenassé
+  puis validé, allumettes 3/10 (30 %, INRS) ; voix d'origine. `npm run render:permisfeu`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
