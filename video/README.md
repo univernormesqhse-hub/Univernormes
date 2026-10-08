@@ -144,6 +144,10 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   les voies respiratoires (schémas fournis, `public/soudage/`), poumons qui s'assombrissent, pictogrammes de danger,
   recul de caméra vers l'atelier, aspiration en tourbillon, ventilation, entonnoir collectif → individuel, air qui
   s'éclaircit ; voix d'origine. `npm run render:soudage`.
+- `FeuClasseA` : « Comment identifier un feu de classe A » (26 s) — pictogramme A qui s'embrase, tiroir de fiches
+  A/B/C/D/F, bûche aux fissures incandescentes, portique scanner bois / papier / carton, trappe qui rejette le CO₂,
+  radar de localisation de l'extincteur, partage à l'équipe sur smartphone ; voix d'origine (sous-titres lus sur la
+  source par OCR). `npm run render:classea`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
