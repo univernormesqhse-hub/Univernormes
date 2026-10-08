@@ -118,6 +118,12 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   remise à plat, carrousel en profondeur des 5 effets internes, lettres qui tombent (POURQUOI → QUOI), cercles au
   feutre et vote d'experts, loi barrée vs recette, duel NORME vs STANDARD, propagation du PDF, transitions en stores
   vénitiens ; voix d'origine (`public/voix-certif-iso-origine.m4a`). `npm run render:certifiso`.
+- `GuideIsoTrio` : « Guide ISO 9001, 14001, 45001 » au format UI motion premium enrichi — fil rouge de la maison
+  (fondation 9001, murs 14001, toit 45001) avec mini-carte de chantier, soupe à l'alphabet, labyrinthe, indicateur
+  d'étages, double hélice d'ADN, roue PDCA, coulage de béton, briques, étoiles CSRD, peinture « greenwashing » qui
+  coule, relais OHSAS → 45001, punaises sur plan, aiguillage MASE / 45001, message vocal, usine à gaz démêlée, calques
+  alignés, cadran des 5 questions, façade en carton emportée par le vent, transitions « plan qui se déroule » ;
+  voix d'origine (`public/voix-guide-iso-trio-origine.m4a`). `npm run render:guideiso`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
