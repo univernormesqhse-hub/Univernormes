@@ -12,7 +12,7 @@ import {NARR_END, SEG} from './timeline';
 
 /**
  * « La gestion de l'accident du travail de A à Z » — UI motion premium (skill video-promo-diagnostic-qhse),
- * voix off masculine dynamique, et techniques de montage nouvelles dans la série :
+ * voix off d'origine, et techniques de montage nouvelles dans la série :
  * transitions « page tournée » (chaque étape est une page de dossier), tableau à palettes (split-flap),
  * formulaire déchiré, diagramme de Venn qui converge puis perd un cercle, doubles comptes à rebours
  * en accéléré, enveloppe en vol sur trajectoire, tapis roulant de certificats avec écriture manuscrite,
@@ -108,7 +108,8 @@ const flapSfx = (at: number, n: number, gap = 0.05): Sfx[] => Array.from({length
 
 /* ─────────── Page 0 : accroche ─────────── */
 
-const FormBody: React.FC = () => (
+const FIELDS = ['Nom de la victime', 'Date et heure', 'Lieu', 'Circonstances', 'Lésions', 'Témoins'];
+const FormBody: React.FC<{fill: number}> = ({fill}) => (
   <div style={{width: 760, height: 820, borderRadius: 30, background: '#fff', boxShadow: shadow, padding: '46px 54px', boxSizing: 'border-box'}}>
     <div style={{display: 'flex', alignItems: 'center', gap: 20}}>
       <F n="clipboard" size={86} />
@@ -117,27 +118,48 @@ const FormBody: React.FC = () => (
         <div style={{fontFamily: sansFont, fontWeight: 700, fontSize: 26, color: '#8A93A0'}}>Accident du travail</div>
       </div>
     </div>
-    {['Nom de la victime', 'Date et heure', 'Lieu', 'Circonstances', 'Lésions', 'Témoins'].map((l, i) => (
-      <div key={l} style={{marginTop: i ? 26 : 50}}>
-        <div style={{fontFamily: sansFont, fontWeight: 700, fontSize: 22, color: '#8A93A0'}}>{l}</div>
-        <div style={{height: 50, borderRadius: 12, background: '#F3F4F6', marginTop: 8}} />
-      </div>
-    ))}
+    {FIELDS.map((l, i) => {
+      const f = Math.max(0, Math.min(1, fill * FIELDS.length - i));
+      return (
+        <div key={l} style={{marginTop: i ? 26 : 50}}>
+          <div style={{display: 'flex', alignItems: 'center', gap: 10, fontFamily: sansFont, fontWeight: 700, fontSize: 22, color: f >= 1 ? colors.green : '#8A93A0'}}>{l}{f >= 1 && <span>✓</span>}</div>
+          <div style={{height: 50, borderRadius: 12, background: '#F3F4F6', marginTop: 8, position: 'relative', overflow: 'hidden'}}>
+            <div style={{position: 'absolute', left: 16, top: 18, height: 14, borderRadius: 7, width: `${f * (55 + ((i * 17) % 35))}%`, background: colors.navy, opacity: 0.75}} />
+          </div>
+        </div>
+      );
+    })}
   </div>
 );
 
+const STAKES: [string, string, number, number, string][] = [['Juridique', 'balance', 250, 540, 'h1b'], ['Financier', 'argent', 905, 700, 'h1b'], ['Humain', 'coeur', 540, 1330, 'h1b']];
+const MILES: [string, number, string][] = [['Jour J', 0.02, colors.navy], ['Soins', 0.3, colors.green], ['Des mois', 0.6, colors.ochre], ['Rechute', 0.96, RED]];
+
 const Hook: React.FC = () => {
   const t = useT();
-  const inF = pop(t, 0.15, 0.6);
+  const intro = 1 - prog(t, A('h1') - 0.3, A('h1') + 0.1, easeIn);
+  const inF = pop(t, A('h1') + 0.1, 0.6);
+  const fill = prog(t, A('h1c') + 0.3, Z('h1c') - 0.8, (v) => v);
   const tear = prog(t, A('h2') - 0.25, A('h2') + 0.55, easeIn);
   const watch = pop(t, A('h2') - 0.2, 0.5);
   const into = prog(t, A('h3') - 0.15, A('h3') + 0.55, easeIn);
   const person = pop(t, A('h3') + 0.2, 0.5);
+  const up = prog(t, A('h4') - 0.2, A('h4') + 0.5, easeInOut);
+  const track = prog(t, A('h4') + 2.3, Z('h4') - 0.3, easeInOut);
+  const done = pop(t, A('h5') + 0.4, 0.4);
   const jag = 'polygon(0 0, 52% 0, 47% 12%, 54% 24%, 46% 38%, 53% 52%, 45% 66%, 52% 80%, 47% 100%, 0 100%)';
   const jagR = 'polygon(52% 0, 100% 0, 100% 100%, 47% 100%, 52% 80%, 45% 66%, 53% 52%, 46% 38%, 54% 24%, 47% 12%)';
   const ang = t * 300;
   return (
     <AbsoluteFill>
+      {/* signature d'ouverture */}
+      {intro > 0 && (
+        <AbsoluteFill style={{opacity: intro}}>
+          <At x={540} y={640} style={{transform: `translate(-50%, -50%) scale(${pop(t, 0.2, 0.6)})`}}><F n="bouclier" size={260} /></At>
+          <Kinetic text="Prévenir vaut toujours mieux que *corriger*" at={0.6} y={1000} size={88} />
+          <At x={540} y={1250} style={{opacity: pop(t, 3.4)}}><Label size={34} color="#8A93A0" style={{letterSpacing: 6}}>Les pratiques qui font la différence</Label></At>
+        </AbsoluteFill>
+      )}
       {/* chronomètre (derrière le formulaire) */}
       {watch > 0 && into < 1 && (
         <At x={540} y={880} style={{transform: `translate(-50%, -50%) scale(${(0.6 + 0.4 * watch) * (1 + 3.2 * into)})`, opacity: 1 - into}}>
@@ -155,18 +177,26 @@ const Hook: React.FC = () => {
           </svg>
         </At>
       )}
-      {/* formulaire qui se déchire en deux */}
-      {tear < 1 && (
-        <At x={540} y={860} style={{opacity: inF, transform: `translate(-50%, -50%) translateY(${(1 - inF) * 80}px)`}}>
+      {/* formulaire qui se remplit, entouré de ses enjeux, puis se déchire */}
+      {tear < 1 && inF > 0 && (
+        <At x={540} y={880} style={{opacity: inF, transform: `translate(-50%, -50%) translateY(${(1 - inF) * 80}px) scale(0.86)`}}>
           <div style={{position: 'relative', width: 760, height: 820}}>
-            <div style={{position: 'absolute', inset: 0, clipPath: jag, transform: `translate(${-tear * 520}px, ${tear * 420}px) rotate(${-tear * 22}deg)`}}><FormBody /></div>
-            <div style={{position: 'absolute', inset: 0, clipPath: jagR, transform: `translate(${tear * 520}px, ${tear * 380}px) rotate(${tear * 26}deg)`}}><FormBody /></div>
+            <div style={{position: 'absolute', inset: 0, clipPath: jag, transform: `translate(${-tear * 520}px, ${tear * 420}px) rotate(${-tear * 22}deg)`}}><FormBody fill={fill} /></div>
+            <div style={{position: 'absolute', inset: 0, clipPath: jagR, transform: `translate(${tear * 520}px, ${tear * 380}px) rotate(${tear * 26}deg)`}}><FormBody fill={fill} /></div>
           </div>
         </At>
       )}
+      {tear < 1 && STAKES.map(([l, n, x, y], i) => {
+        const p = pop(t, A('h1b') + 1.0 + i * 0.9, 0.4) * (1 - prog(t, Z('h1b') + 0.4, Z('h1b') + 0.8));
+        return p > 0 ? (
+          <At key={l} x={x} y={y} style={{transform: `translate(-50%, -50%) scale(${p}) rotate(${(i - 1) * 5}deg)`}}>
+            <div style={{display: 'flex', alignItems: 'center', gap: 10, background: i === 2 ? colors.green : colors.navy, borderRadius: 50, padding: '10px 28px 10px 14px', boxShadow: shadow}}><F n={n} size={70} /><Label size={36} color="#fff">{l}</Label></div>
+          </At>
+        ) : null;
+      })}
       {/* la personne derrière chaque délai */}
       {person > 0 && (
-        <At x={540} y={840} style={{transform: `translate(-50%, -50%) scale(${0.5 + 0.5 * person})`, opacity: person}}>
+        <At x={540} y={840 - up * 230} style={{transform: `translate(-50%, -50%) scale(${(0.5 + 0.5 * person) * (1 - 0.35 * up)})`, opacity: person}}>
           {[0, 1, 2].map((r) => {
             const ph = ((t - A('h3') + r * 0.45) % 1.35) / 1.35;
             return <div key={r} style={{position: 'absolute', left: 260 - 260 * (0.7 + ph), top: 260 - 260 * (0.7 + ph), width: 520 * (0.7 + ph), height: 520 * (0.7 + ph), borderRadius: '50%', border: `5px solid rgba(46,155,62,${1 - ph})`}} />;
@@ -174,9 +204,33 @@ const Hook: React.FC = () => {
           <div style={{width: 520, height: 520, borderRadius: '50%', background: '#fff', boxShadow: shadow, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><F n="ouvrier-dark" size={360} /></div>
         </At>
       )}
-      <Kinetic text="Pas un simple *formulaire*" at={0.6} until={A('h2') - 0.2} y={1430} size={78} />
-      <Kinetic text="Une course contre *la montre*" at={A('h2')} until={A('h3') - 0.1} y={1430} size={78} accent={RED} />
-      <Kinetic text="Derrière chaque délai : *une personne*" at={A('h3') + 0.1} y={1430} size={70} />
+      {/* le marathon médical */}
+      {up > 0 && (
+        <div style={{opacity: up}}>
+          <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+            <line x1={90} y1={1060} x2={990} y2={1060} stroke="#D5D9DE" strokeWidth={12} strokeLinecap="round" />
+            <line x1={90} y1={1060} x2={90 + 900 * track} y2={1060} stroke={track > 0.9 ? RED : colors.green} strokeWidth={12} strokeLinecap="round" />
+          </svg>
+          {MILES.map(([l, u, c], k) => {
+            const on = track >= u - 0.01;
+            return (
+              <At key={l} x={90 + 900 * u} y={1060}>
+                <div style={{width: 46, height: 46, borderRadius: 23, background: on ? c : '#fff', border: `6px solid ${c}`, boxSizing: 'border-box', transform: `scale(${on ? 1.15 : 0.8})`}} />
+                <div style={{position: 'absolute', left: 23, top: k % 2 ? -80 : 70, transform: `translateX(${k === 3 ? -80 : -50}%)`, whiteSpace: 'nowrap', opacity: on ? 1 : 0.35}}><Label size={30} color={c}>{l}</Label></div>
+              </At>
+            );
+          })}
+          <At x={90 + 900 * track} y={1000}><F n="pas" size={70} /></At>
+          {done > 0 && <At x={540} y={1210} style={{transform: `translate(-50%, -50%) scale(${done})`}}><div style={{display: 'flex', alignItems: 'center', gap: 14, background: '#fff', borderRadius: 40, padding: '10px 26px', boxShadow: shadow}}><Check p={prog(t, A('h5') + 0.6, A('h5') + 1.0)} size={56} /><Label size={34}>Maîtriser tout le processus</Label></div></At>}
+        </div>
+      )}
+      <Kinetic text="Pas qu'un tas de *paperasse*" at={A('h1') + 3.9} until={A('h1b') - 0.2} y={1460} size={76} />
+      <Kinetic text="Un vrai *casse-tête*" at={A('h1b')} until={Z('h1b') - 0.1} y={1460} size={84} accent={RED} />
+      <Kinetic text="Décortiquer *chaque rouage*" at={A('h1c')} until={A('h2') - 0.3} y={1460} size={80} />
+      <Kinetic text="Derrière chaque *délai*…" at={A('h2')} until={A('h3') - 0.1} y={1460} size={80} accent={RED} />
+      <Kinetic text="… *une personne*" at={A('h3') + 0.1} until={A('h4') - 0.2} y={1460} size={92} />
+      <Kinetic text="Un vrai *marathon*" at={A('h4')} until={A('h5') - 0.2} y={1460} size={92} accent={colors.ochre} />
+      <Kinetic text="Une maîtrise *indispensable*" at={A('h5')} y={1460} size={80} />
     </AbsoluteFill>
   );
 };
@@ -184,12 +238,7 @@ const Hook: React.FC = () => {
 /* ─────────── Page 1 : sommaire en tableau d'affichage ─────────── */
 
 const MENU = ["L'ACCIDENT", 'OBLIGATIONS', 'LE MÉDECIN', "L'ENQUÊTE", 'LA RECHUTE'];
-const menuAt = (i: number) => {
-  const w = [11, 16, 11, 10, 11];
-  const tot = w.reduce((a, b) => a + b, 0);
-  const cum = w.slice(0, i).reduce((a, b) => a + b, 0);
-  return A('m1') + ((Z('m1') - A('m1')) * cum) / tot;
-};
+const menuAt = (i: number) => [58.3, 60.2, 62.5, 64.6, 66.8][i];
 const Menu: React.FC = () => {
   const t = useT();
   const go = pop(t, A('m2'), 0.3);
@@ -305,7 +354,7 @@ const Obligations: React.FC = () => {
   const t = useT();
   const push = prog(t, A('o3') - 0.4, A('o3') + 0.2, easeInOut);
   // trajectoire de l'enveloppe : employeur → CPAM
-  const fly = prog(t, A('o2') + 1.4, A('o2') + 2.6, easeInOut);
+  const fly = prog(t, A('o2f'), A('o2f') + 1.4, easeInOut);
   const bx = (u: number) => (1 - u) ** 2 * 230 + 2 * (1 - u) * u * 540 + u * u * 850;
   const by = (u: number) => (1 - u) ** 2 * 1300 + 2 * (1 - u) * u * 1040 + u * u * 1300;
   const doc1 = pop(t, A('o3') + 0.1, 0.5);
@@ -315,7 +364,7 @@ const Obligations: React.FC = () => {
       <AbsoluteFill style={{transform: `translateY(${-push * 1400}px)`}}>
         <Dial x={300} y={760} hours={24} at={A('o1')} label="Salarié → employeur" who={['salarie', 'employeur']} />
         <Dial x={780} y={760} hours={48} at={A('o2')} label="Employeur → CPAM" who={['employeur', 'batiment']} />
-        <div style={{opacity: pop(t, A('o2') + 1.0)}}>
+        <div style={{opacity: pop(t, A('o2f') - 0.4)}}>
           <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
             <path d="M230 1300 Q540 1040 850 1300" fill="none" stroke={colors.navy} strokeWidth={5} strokeDasharray="4 16" strokeLinecap="round" opacity={0.4} />
             <path d="M230 1300 Q540 1040 850 1300" fill="none" stroke={colors.green} strokeWidth={8} strokeLinecap="round" pathLength={1} strokeDasharray={`${fly} 1`} />
@@ -325,13 +374,13 @@ const Obligations: React.FC = () => {
           {fly > 0 && fly < 1 && (
             <At x={bx(fly)} y={by(fly) - 30} style={{transform: `translate(-50%, -50%) rotate(${(fly - 0.5) * 50}deg) scale(${1 + Math.sin(fly * Math.PI) * 0.3})`}}><F n="enveloppe" size={120} /></At>
           )}
-          {fly >= 1 && <At x={900} y={1180} style={{transform: `translate(-50%, -50%) scale(${pop(t, A('o2') + 2.6, 0.3)})`}}><Check p={prog(t, A('o2') + 2.7, A('o2') + 3.0)} size={80} /></At>}
-          <At x={540} y={1470} style={{opacity: pop(t, A('o2') + 1.2)}}><Label size={30}>DAT · déclaration d'accident du travail</Label></At>
+          {fly >= 1 && <At x={900} y={1180} style={{transform: `translate(-50%, -50%) scale(${pop(t, A('o2f') + 1.4, 0.3)})`}}><Check p={prog(t, A('o2f') + 1.5, A('o2f') + 1.8)} size={80} /></At>}
+          <At x={540} y={1470} style={{opacity: pop(t, A('o2f'))}}><Label size={30}>DAT · déclaration d'accident du travail</Label></At>
         </div>
       </AbsoluteFill>
       {doc1 > 0 && <At x={300} y={900} style={{transform: `translate(-50%, -50%) translateY(${(1 - doc1) * 700}px) rotate(${(1 - doc1) * -14 - 3}deg)`}}><Doc title="Feuille d'accident" n="pansement2" badge="0 € avancé" sub="Soins pris en charge" accent={colors.green} /></At>}
       {doc2 > 0 && <At x={780} y={940} style={{transform: `translate(-50%, -50%) translateY(${(1 - doc2) * 700}px) rotate(${(1 - doc2) * 14 + 3}deg)`}}><Doc title="Attestation de salaire" n="argent" badge="IJ" sub="Indemnités journalières (si arrêt)" accent={colors.navy} /></At>}
-      <Kinetic text="Le chrono *démarre*" at={A('o1')} until={A('o3') - 0.4} y={470} size={80} accent={RED} />
+      <Kinetic text="Le chrono *tourne*" at={Z('o0') + 0.4} until={A('o3') - 0.4} y={470} size={80} accent={RED} />
       <Kinetic text="Et ce n'est pas *tout*" at={A('o3')} y={470} size={80} />
     </AbsoluteFill>
   );
@@ -351,8 +400,8 @@ const Doctor: React.FC = () => {
   const belt = pos * 640;
   return (
     <AbsoluteFill>
-      <At x={180} y={520} style={{opacity: pop(t, A('d1') - 0.4), transform: `translate(-50%, -50%) rotate(${Math.sin(t * 2) * 3}deg)`}}><F n="medecin" size={210} /></At>
-      <div style={{position: 'absolute', left: 300, top: 470, opacity: pop(t, A('d1') - 0.3)}}>
+      <At x={180} y={520} style={{opacity: pop(t, A('dp')), transform: `translate(-50%, -50%) rotate(${Math.sin(t * 2) * 3}deg)`}}><F n="medecin" size={210} /></At>
+      <div style={{position: 'absolute', left: 300, top: 470, opacity: pop(t, A('dp') + 0.3)}}>
         <div style={{fontFamily: handFont, fontSize: 56, color: colors.navy}}>Sa plume =</div>
         <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 52, color: colors.green}}>LE MOTEUR DU DOSSIER</div>
       </div>
@@ -382,7 +431,7 @@ const Doctor: React.FC = () => {
         );
       })}
       {/* tapis roulant */}
-      <div style={{position: 'absolute', left: 40, right: 40, top: 1300, height: 70, borderRadius: 35, background: colors.navy, boxShadow: shadow, overflow: 'hidden', opacity: pop(t, A('d1') - 0.5)}}>
+      <div style={{position: 'absolute', left: 40, right: 40, top: 1300, height: 70, borderRadius: 35, background: colors.navy, boxShadow: shadow, overflow: 'hidden', opacity: pop(t, A('dp') + 2)}}>
         {Array.from({length: 14}, (_, k) => (
           <div key={k} style={{position: 'absolute', top: 15, left: ((k * 80 - belt * 0.9) % 1120 + 1120) % 1120 - 40, width: 40, height: 40, borderRadius: 20, border: '5px solid rgba(255,255,255,0.35)', boxSizing: 'border-box'}} />
         ))}
@@ -602,7 +651,7 @@ const Relapse: React.FC = () => {
 const Finale: React.FC = () => {
   const t = useT();
   const dz = prog(t, A('f1') - 0.2, Z('f1') + 0.3, easeInOut);
-  const q = pop(t, A('f1') + 1.2, 0.4);
+  const q = pop(t, Z('f1') - 2.6, 0.4);
   const go = prog(t, A('f2') - 0.1, A('f2') + 0.5, easeInOut);
   const line = prog(t, A('f2') + 0.2, Z('f2') + 0.2, easeInOut);
   return (
@@ -633,8 +682,8 @@ const Finale: React.FC = () => {
               <div style={{position: 'absolute', left: 60, top: k % 2 ? -70 : 150, transform: 'translateX(-50%)', whiteSpace: 'nowrap'}}><Label size={28}>{l}</Label></div>
             </At>
           ))}
-          <Kinetic text="Le suivi *continue*" at={A('f2')} until={A('f3') - 0.1} y={520} size={84} />
-          <Kinetic text="La prévention *non plus*" at={A('f3')} y={1220} size={92} />
+          <Kinetic text="Repenser *le suivi*" at={A('f2')} until={A('f3') - 0.1} y={520} size={84} />
+          <Kinetic text="Accompagner et *prévenir* encore" at={A('f3')} y={1220} size={86} />
         </AbsoluteFill>
       )}
     </AbsoluteFill>
@@ -670,8 +719,8 @@ const CUES: Sfx[] = [
   {at: A('a5') + 1.3, s: 'tampon', v: 0.7},
   // obligations
   ...['o1', 'o2'].flatMap((k) => [{at: A(k) - 0.3, s: 'sfx/pop', v: 0.45}, ...Array.from({length: 10}, (_, j) => ({at: A(k) + 0.3 + j * 0.28, s: 'tick', v: 0.32}))]),
-  {at: A('o2') + 1.4, s: 'sfx/whoosh', v: 0.5},
-  {at: A('o2') + 2.65, s: 'notification', v: 0.42},
+  {at: A('o2f'), s: 'sfx/whoosh', v: 0.5},
+  {at: A('o2f') + 1.45, s: 'notification', v: 0.42},
   {at: A('o3') - 0.4, s: 'soft-whoosh', v: 0.5},
   {at: A('o3') + 0.1, s: 'page', v: 0.5},
   {at: A('o4') + 0.1, s: 'page', v: 0.5},
@@ -701,7 +750,7 @@ const CUES: Sfx[] = [
   // conclusion
   {at: A('f1') - 0.2, s: 'riser', v: 0.3, dur: 2},
   {at: A('f1') + 0.3, s: 'tampon', v: 0.6},
-  {at: A('f1') + 1.2, s: 'deep-hit', v: 0.5},
+  {at: Z('f1') - 2.6, s: 'deep-hit', v: 0.5},
   {at: A('f2') - 0.1, s: 'soft-whoosh', v: 0.5},
   ...[0.05, 0.42, 0.75, 0.98].map((u) => ({at: A('f2') + 0.2 + u * (Z('f2') - A('f2')), s: 'sfx/pop', v: 0.4})),
   {at: A('f3'), s: 'bass-hit', v: 0.45},
@@ -718,7 +767,10 @@ export const AccidentAZ: React.FC = () => (
       const k = ['a', 'o', 'd', 'e', 'r'][i];
       return (
         <Page key={k} i={i + 2}>
-          <Chapter n={i + 1} title={title} at={C[i + 2]} until={Z(`${k}0`) + 0.1} />
+          <Chapter n={i + 1} title={title} at={C[i + 2]} until={Math.min(Z(`${k}0`), A(`${k}0`) + 3.8) + 0.1} />
+          {i === 0 && <Kinetic text="Cocher les *bonnes cases*" at={A('a0b')} until={A('a1') - 0.2} y={900} size={84} />}
+          {i === 2 && <Kinetic text="Tout repose sur *le médecin*" at={Z('d0') + 0.6} until={A('dp') - 0.2} y={900} size={84} />}
+          {i === 4 && <Kinetic text="Un dossier *soi-disant* clos" at={A('r0') + 4.5} until={A('r1') - 0.3} y={900} size={84} accent={RED} />}
           {i === 0 && <Venn />}
           {i === 1 && <Obligations />}
           {i === 2 && <Doctor />}
@@ -729,7 +781,7 @@ export const AccidentAZ: React.FC = () => (
     })}
     <Page i={7}><Finale /></Page>
     <AbsoluteFill style={{zIndex: 100}}><Captions captions={captions} /></AbsoluteFill>
-    <Audio src={staticFile('voix-off-accident-a-z.m4a')} />
+    <Audio src={staticFile('voix-accident-a-z-origine.m4a')} />
     <SoundDesign cues={CUES} />
   </AbsoluteFill>
 );

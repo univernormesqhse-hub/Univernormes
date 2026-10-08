@@ -110,8 +110,8 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   pages de dossier qui se tournent, tableau à palettes (split-flap), formulaire déchiré, diagramme de Venn de la
   règle de trois, doubles comptes à rebours 24 h / 48 h, enveloppe DAT en vol, tapis roulant de certificats écrits
   à la main, loupe sur dossier flou, éphéméride de la phase contradictoire, électrocardiogramme, cadenas à trois
-  molettes, sablier 60 jours, dolly zoom sur le dossier clos ; nouvelle voix off masculine dynamique (Kokoro,
-  timbre mixé, locale) dans `public/voix-off-accident-a-z.m4a`. `npm run render:accidentaz`.
+  molettes, sablier 60 jours, dolly zoom sur le dossier clos ; voix d'origine (5 min 26)
+  dans `public/voix-accident-a-z-origine.m4a`. `npm run render:accidentaz`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
