@@ -112,6 +112,12 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   à la main, loupe sur dossier flou, éphéméride de la phase contradictoire, électrocardiogramme, cadenas à trois
   molettes, sablier 60 jours, dolly zoom sur le dossier clos ; voix d'origine (5 min 26)
   dans `public/voix-accident-a-z-origine.m4a`. `npm run render:accidentaz`.
+- `CertifIsoPourquoi` : « Pourquoi faire certifier son entreprise ISO » au format UI motion premium enrichi —
+  pièce prestige/stratégie, autocollants ISO plaqués puis décollés en diagonale, scanner rayons X extérieur/intérieur,
+  passeport tamponné et portes 3D des marchés publics, bulles qui se décodent, citation au surligneur, vue éclatée
+  remise à plat, carrousel en profondeur des 5 effets internes, lettres qui tombent (POURQUOI → QUOI), cercles au
+  feutre et vote d'experts, loi barrée vs recette, duel NORME vs STANDARD, propagation du PDF, transitions en stores
+  vénitiens ; voix d'origine (`public/voix-certif-iso-origine.m4a`). `npm run render:certifiso`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
