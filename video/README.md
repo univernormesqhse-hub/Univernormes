@@ -148,6 +148,10 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   A/B/C/D/F, bûche aux fissures incandescentes, portique scanner bois / papier / carton, trappe qui rejette le CO₂,
   radar de localisation de l'extincteur, partage à l'équipe sur smartphone ; voix d'origine (sous-titres lus sur la
   source par OCR). `npm run render:classea`.
+- `OriginesIncendie` : « Maîtriser les différentes origines d'un incendie industriel » (49 s) — plan-séquence sur une
+  planche « tableau périodique des feux » (A, B, C, D, F, batteries) : la caméra vole de case en case, chaque case a son
+  animation (braises, nappe qui s'embrase, jet de gaz, gerbe Mg/Na/Al, poêle, emballement thermique), vue d'ensemble
+  puis partage ; voix d'origine (sous-titres lus par OCR). `npm run render:origines`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
