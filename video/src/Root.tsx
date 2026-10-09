@@ -52,6 +52,7 @@ import {PermisFeu, PERMISFEU_FRAMES} from './permisfeu/PermisFeu';
 import {DangerSoudage, DANGERSOUDAGE_FRAMES} from './dangersoudage/DangerSoudage';
 import {FeuClasseA, FEUCLASSEA_FRAMES} from './feuclassea/FeuClasseA';
 import {OriginesIncendie, ORIGINESINCENDIE_FRAMES} from './originesincendie/OriginesIncendie';
+import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -115,5 +116,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="DangerSoudage" component={DangerSoudage} durationInFrames={DANGERSOUDAGE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="FeuClasseA" component={FeuClasseA} durationInFrames={FEUCLASSEA_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="OriginesIncendie" component={OriginesIncendie} durationInFrames={ORIGINESINCENDIE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
