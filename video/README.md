@@ -163,6 +163,12 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   le haut (charge suspendue, chutes d'objets avec ombres) puis plongée verticale (trou, trappe à charnière, fissures) ;
   objets « billboards » face caméra, balayage radar au sol, cube gyroscopique dans le viseur, rubalise circulaire,
   ouverture et clignement de paupières ; voix d'origine (sous-titres lus par OCR). `npm run render:sixdirections`.
+- `MiTempsTherapeutique` : « Le mi-temps thérapeutique » (4 min 46) — couverture titrée dès la première image (exportée
+  aussi en `out/couverture-mi-temps-therapeutique.png` et intégrée comme vignette du MP4), cartes de chapitre en origami,
+  classeur à onglets, mur contre escalier, curseur de comparaison, ordonnance qui s'écrit, batterie, route qui
+  bifurque, dominos des 4 acteurs, verre à deux robinets (employeur / Sécurité sociale), rosette « travail effectif »,
+  bocal de congés, avenant signé, astérisque d'exception, brique contre plume, balançoire à ressort ; voix d'origine
+  (transcription locale Whisper via sherpa-onnx). `npm run render:mitemps`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
