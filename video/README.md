@@ -158,6 +158,11 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   animée par norme (roue PDCA, usine qui verdit, danger → coche, ferme → assiette, Venn RSE, jauge d'énergie, cadenas C-I-D,
   ECG, cible de mesure), final : lignes illuminées puis convergence vers un pôle « Confiance » ; voix d'origine.
   `npm run render:rolenormes`.
+- `SixDirections` : « La sécurité dans les six directions » (1 min 20) — diorama 3D réel (CSS preserve-3d) : disque
+  d'atelier flottant, opérateur au centre, caméra orbitale qui tourne autour de lui pour chaque direction, bascule vers
+  le haut (charge suspendue, chutes d'objets avec ombres) puis plongée verticale (trou, trappe à charnière, fissures) ;
+  objets « billboards » face caméra, balayage radar au sol, cube gyroscopique dans le viseur, rubalise circulaire,
+  ouverture et clignement de paupières ; voix d'origine (sous-titres lus par OCR). `npm run render:sixdirections`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
