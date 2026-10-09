@@ -181,6 +181,12 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   vision double avec distorsion (filtre SVG), déchiqueteuse, DUERP à la machine à écrire, racine arrachée, cartons
   jaune et rouge, boomerang, planètes en orbite, mocktail, chaîne humaine, 3 piliers, tir à la corde ; voix d'origine,
   sous-titres recalés mot à mot (`tools/`). `npm run render:zeroalcool`.
+- `IngenieurQhse` : « L'ingénieur QHSE » (5 min 09) — photo réelle de l'ingénieur (`public/ingenieur/`, détourée)
+  en fil rouge : couverture « magazine » avec le titre derrière le sujet (exportée en `out/couverture-ingenieur-qhse.png`,
+  intégrée comme vignette), parallaxe 2,5D et annotations AR, transitions en diaphragme, lettres QHSE extrudées, cartes
+  de mission façon jeu de rôle, stories, arbre de compétences avec XP, portrait scindé hard/soft skills, courbe
+  boursière des salaires (chiffres cités par la vidéo d'origine), rose des vents des carrières, casque VR et scan IA,
+  globe 3D ; voix d'origine, sous-titres recalés mot à mot. `npm run render:ingenieur`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
