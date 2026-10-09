@@ -187,6 +187,12 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   de mission façon jeu de rôle, stories, arbre de compétences avec XP, portrait scindé hard/soft skills, courbe
   boursière des salaires (chiffres cités par la vidéo d'origine), rose des vents des carrières, casque VR et scan IA,
   globe 3D ; voix d'origine, sous-titres recalés mot à mot. `npm run render:ingenieur`.
+- `EpiVsEpcGuide` : « EPI vs EPC : le guide sécurité » (4 min 25) — images réelles d'EPI et d'EPC (`public/epiepc/`,
+  détourées, marques floutées), couverture en duel scindé (exportée en `out/couverture-epi-vs-epc.png`, intégrée comme
+  vignette), chapitres ouverts par fermeture éclair, bascule « de l'autre côté du miroir », habillage d'une opératrice
+  par ses EPI, projecteur sur la protection solitaire, capot sur la source du danger, aspiration de particules, filet
+  qui rattrape, ring de boxe et rounds, lingot de la règle d'or, podium, Plan A/B/C, risque résiduel, parapluie
+  collectif ; voix d'origine, sous-titres recalés mot à mot. `npm run render:epivsepc`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).

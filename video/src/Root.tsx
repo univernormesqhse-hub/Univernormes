@@ -57,6 +57,7 @@ import {MiTemps, MITEMPS_FRAMES} from './mitemps/MiTemps';
 import {DemarcheQualite, DEMARCHEQUALITE_FRAMES} from './demarchequalite/DemarcheQualite';
 import {ZeroAlcool, ZEROALCOOL_FRAMES} from './zeroalcool/ZeroAlcool';
 import {IngenieurQhse, INGENIEURQHSE_FRAMES} from './ingenieurqhse/IngenieurQhse';
+import {EpiEpcGuide, EPIEPCGUIDE_FRAMES} from './epiepc/EpiEpc';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 
 export const RemotionRoot: React.FC = () => (
@@ -126,6 +127,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="DemarcheQualite10Etapes" component={DemarcheQualite} durationInFrames={DEMARCHEQUALITE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ZeroAlcool" component={ZeroAlcool} durationInFrames={ZEROALCOOL_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="IngenieurQhse" component={IngenieurQhse} durationInFrames={INGENIEURQHSE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="EpiVsEpcGuide" component={EpiEpcGuide} durationInFrames={EPIEPCGUIDE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
