@@ -152,10 +152,12 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   planche « tableau périodique des feux » (A, B, C, D, F, batteries) : la caméra vole de case en case, chaque case a son
   animation (braises, nappe qui s'embrase, jet de gaz, gerbe Mg/Na/Al, poêle, emballement thermique), vue d'ensemble
   puis partage ; voix d'origine (sous-titres lus par OCR). `npm run render:origines`.
-- `RoleNormesIso` : « Le rôle stratégique des grandes normes ISO » (2 min 36) — plan de métro des 9 normes (9001,
-  14001, 45001, 22000, 26000, 50001, 27001, 13485, 17025) : rame qui roule le long des courbes avec caméra embarquée,
-  panneau « station » à chaque arrêt (mots-clés synchronisés, triangle C-I-D pour 27001, mention « non certifiable »
-  pour 26000), vue d'ensemble finale ; voix d'origine (sous-titres lus par OCR). `npm run render:rolenormes`.
+- `RoleNormesIso` : « Le rôle stratégique des grandes normes ISO » (2 min 36) — plan de métro des 9 normes, version
+  « excellence » : voyage en caméra embarquée (flou de mouvement selon la vitesse, traînée lumineuse, lignes de vitesse,
+  parallaxe, roulis dans les courbes), afficheur LED « Prochain arrêt », panneaux en portes coulissantes avec illustration
+  animée par norme (roue PDCA, usine qui verdit, danger → coche, ferme → assiette, Venn RSE, jauge d'énergie, cadenas C-I-D,
+  ECG, cible de mesure), final : lignes illuminées puis convergence vers un pôle « Confiance » ; voix d'origine.
+  `npm run render:rolenormes`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
