@@ -55,6 +55,7 @@ import {OriginesIncendie, ORIGINESINCENDIE_FRAMES} from './originesincendie/Orig
 import {SixDirections, SIXDIRECTIONS_FRAMES} from './sixdirections/SixDirections';
 import {MiTemps, MITEMPS_FRAMES} from './mitemps/MiTemps';
 import {DemarcheQualite, DEMARCHEQUALITE_FRAMES} from './demarchequalite/DemarcheQualite';
+import {ZeroAlcool, ZEROALCOOL_FRAMES} from './zeroalcool/ZeroAlcool';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 
 export const RemotionRoot: React.FC = () => (
@@ -122,6 +123,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="SixDirections" component={SixDirections} durationInFrames={SIXDIRECTIONS_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="MiTempsTherapeutique" component={MiTemps} durationInFrames={MITEMPS_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="DemarcheQualite10Etapes" component={DemarcheQualite} durationInFrames={DEMARCHEQUALITE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="ZeroAlcool" component={ZeroAlcool} durationInFrames={ZEROALCOOL_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );

@@ -175,6 +175,12 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   rangée en feuille de route, tour de Jenga, machine entrée → processus → sortie, main des 5M, volant de pilote,
   dépliant en accordéon, tableau de bord automobile, machine à sous des critères d'un bon indicateur, puzzle, roue de
   Deming sur sa pente avec sa cale, route vers l'horizon ; voix d'origine (transcription locale). `npm run render:demarche`.
+- `ZeroAlcool` : « Zéro alcool : sécurité d'abord » (5 min 38) — couverture titrée dès la première image (exportée en
+  `out/couverture-zero-alcool.png`, intégrée comme vignette), habillage sombre « du bar à la lumière » : capsule de
+  bouteille qui saute à chaque partie, grille de 764 silhouettes, iceberg, bouchon qui saute, étiquette de prix,
+  vision double avec distorsion (filtre SVG), déchiqueteuse, DUERP à la machine à écrire, racine arrachée, cartons
+  jaune et rouge, boomerang, planètes en orbite, mocktail, chaîne humaine, 3 piliers, tir à la corde ; voix d'origine,
+  sous-titres recalés mot à mot (`tools/`). `npm run render:zeroalcool`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
