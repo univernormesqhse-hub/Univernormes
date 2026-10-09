@@ -169,6 +169,12 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   bifurque, dominos des 4 acteurs, verre à deux robinets (employeur / Sécurité sociale), rosette « travail effectif »,
   bocal de congés, avenant signé, astérisque d'exception, brique contre plume, balançoire à ressort ; voix d'origine
   (transcription locale Whisper via sherpa-onnx). `npm run render:mitemps`.
+- `DemarcheQualite10Etapes` : « Démarche qualité en 10 étapes » (5 min 29) — couverture titrée dès la première image
+  (exportée en `out/couverture-demarche-qualite-10-etapes.png` et intégrée comme vignette), fil rouge « jeu de
+  société » : plateau de 10 cases, pion qui saute, dé 3D, étapes qui jaillissent en pop-up ; avalanche de feuilles
+  rangée en feuille de route, tour de Jenga, machine entrée → processus → sortie, main des 5M, volant de pilote,
+  dépliant en accordéon, tableau de bord automobile, machine à sous des critères d'un bon indicateur, puzzle, roue de
+  Deming sur sa pente avec sa cale, route vers l'horizon ; voix d'origine (transcription locale). `npm run render:demarche`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
