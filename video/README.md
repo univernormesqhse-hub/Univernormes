@@ -193,6 +193,12 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   par ses EPI, projecteur sur la protection solitaire, capot sur la source du danger, aspiration de particules, filet
   qui rattrape, ring de boxe et rounds, lingot de la règle d'or, podium, Plan A/B/C, risque résiduel, parapluie
   collectif ; voix d'origine, sous-titres recalés mot à mot. `npm run render:epivsepc`.
+- `TreizeVeritesHse` : « Les 13 vérités du HSE » (5 min 28) — photos réelles (`public/verites/`, `public/induction/`,
+  `public/ingenieur/`), fil rouge « dossier confidentiel » : 13 vérités déclassifiées (caviardage, marqueurs de preuve),
+  couverture dossier kraft (exportée en `out/couverture-13-verites-hse.png`, intégrée comme vignette), intercalaires qui
+  s'ouvrent, photo « super-héros » BD déchirée, couteau suisse des 10 métiers, tapis de course, vinyle « on a toujours
+  fait comme ça », atome à l'électron libre, insigne → poignée de main, funambule sécurité/production, manomètre,
+  trousseau des clés du succès, piste du marathon ; voix d'origine, sous-titres recalés mot à mot. `npm run render:verites`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
