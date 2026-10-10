@@ -59,6 +59,8 @@ import {ZeroAlcool, ZEROALCOOL_FRAMES} from './zeroalcool/ZeroAlcool';
 import {IngenieurQhse, INGENIEURQHSE_FRAMES} from './ingenieurqhse/IngenieurQhse';
 import {EpiEpcGuide, EPIEPCGUIDE_FRAMES} from './epiepc/EpiEpc';
 import {Verites, VERITES_FRAMES} from './verites/Verites';
+import {QuartHeure, QUARTHEURE_FRAMES} from './quartheure/QuartHeure';
+import {Causerie, CAUSERIE_FRAMES} from './causerie/Causerie';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 
 export const RemotionRoot: React.FC = () => (
@@ -130,6 +132,8 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="IngenieurQhse" component={IngenieurQhse} durationInFrames={INGENIEURQHSE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="EpiVsEpcGuide" component={EpiEpcGuide} durationInFrames={EPIEPCGUIDE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="TreizeVeritesHse" component={Verites} durationInFrames={VERITES_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="QuartHeureSecurite" component={QuartHeure} durationInFrames={QUARTHEURE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CauserieParticipative" component={Causerie} durationInFrames={CAUSERIE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );

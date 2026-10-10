@@ -199,6 +199,13 @@ Capsules animées verticales (1080×1920, 30 i/s) dans la charte UNIVERSNORMES :
   s'ouvrent, photo « super-héros » BD déchirée, couteau suisse des 10 métiers, tapis de course, vinyle « on a toujours
   fait comme ça », atome à l'électron libre, insigne → poignée de main, funambule sécurité/production, manomètre,
   trousseau des clés du succès, piste du marathon ; voix d'origine, sous-titres recalés mot à mot. `npm run render:verites`.
+- `QuartHeureSecurite` : « Le Quart d'Heure Sécurité » (4 min 38) — photos réelles (briefings, marquage au sol,
+  presque-accident), chronomètre de 15 min en fil rouge, transitions en balayage d'horloge, couverture titrée (exportée en
+  `out/couverture-quart-heure-securite.png`, intégrée comme vignette), année en 365 points, ciel jour/nuit, colonne qui
+  se redresse, courbe de glycémie, carte « menu » 10/15/20 min, cercle de respiration, glitch des bugs humains, jeu
+  « trouvez le risque », courriel frauduleux à l'hameçon, fissure du petit écart, arbre de la culture active ; voix
+  d'origine, sous-titres recalés mot à mot. `npm run render:quartheure`.
+- `CauserieParticipative` : « Quart d'heure sécurité : le rendre participatif » (4 min 44) — photos réelles détourées   (briefing en atelier, animateurs, chutes), fil rouge de l'étincelle de la discussion, transitions en bulle de parole   qui s'ouvre puis éclate, couverture titrée (exportée en `out/couverture-causerie-participative.png`, intégrée comme   vignette), étiquette pivotante, fossé intention / impact et pont-levier, bulles « liste de courses », programme en   éventail de cartes, chaussure aux trois cailloux, machine à sous du charisme, vitre « monologue » qui vole en éclats,   table de mixage des tons, diable à ressort, réseau descendant vs maillé, flou → net, filet de sécurité, fiche recette,   panneau de réglages du déploiement, projecteur sur un seul sujet, balance passif / participatif ; voix d'origine,   sous-titres recalés mot à mot. `npm run render:causerie`.
 - `PodcastStudio` / `PodcastVertical` : podcast studio multicaméra des pièges de l'ISO 9001:2026 à partir des
   4 images de référence (`public/podcast/`), cadrages pilotés par la détection des locuteurs ; script dans
   `src/podcast/` (`npm run render:podcast`, `npm run render:podcast-v`).
