@@ -33,6 +33,7 @@ import {Zones, ZONES_FRAMES} from './zones/Zones';
 import {Arsenal, ARSENAL_FRAMES} from './arsenal/Arsenal';
 import {Swot, SWOT_FRAMES} from './swot/Swot';
 import {Docs5, DOCS5_FRAMES} from './docs5/Docs5';
+import {Docs5Couverture} from './docs5/Couverture';
 import {Ident, IDENT_FRAMES} from './ident/Ident';
 import {Familles, FAMILLES_FRAMES} from './familles/Familles';
 import {Pls, PLS_FRAMES} from './pls/Pls';
@@ -134,6 +135,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="ArsenalQHSE" component={Arsenal} durationInFrames={ARSENAL_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="AnalyseSwot" component={Swot} durationInFrames={SWOT_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CinqDocumentsQHSE" component={Docs5} durationInFrames={DOCS5_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CinqDocumentsQHSECouverture" component={Docs5Couverture} durationInFrames={91} fps={FPS} width={1080} height={1920} />
   <Composition id="IdentificationEvaluation" component={Ident} durationInFrames={IDENT_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="FamillesRisquesSST" component={Familles} durationInFrames={FAMILLES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="PlsDeuxSecouristes" component={Pls} durationInFrames={PLS_FRAMES} fps={FPS} width={1920} height={1080} />
