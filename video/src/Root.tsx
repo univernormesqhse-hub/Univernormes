@@ -46,6 +46,7 @@ import {CompterAcc, COMPTERACC_FRAMES} from './compteracc/CompterAcc';
 import {AccidentAZ, ACCIDENTAZ_FRAMES} from './accidentaz/AccidentAZ';
 import {CertifIso, CERTIFISO_FRAMES} from './certifiso/CertifIso';
 import {GuideIso, GUIDEISO_FRAMES} from './guideiso/GuideIso';
+import {GuideIsoCouverture} from './guideiso/Couverture';
 import {InductionHse, INDUCTIONHSE_FRAMES} from './inductionhse/InductionHse';
 import {InductionHseCouverture} from './inductionhse/Couverture';
 import {HierarchiePrev, HIERARCHIEPREV_FRAMES} from './hierarchieprev/HierarchiePrev';
@@ -137,6 +138,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="AccidentTravailAZ" component={AccidentAZ} durationInFrames={ACCIDENTAZ_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CertifIsoPourquoi" component={CertifIso} durationInFrames={CERTIFISO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="GuideIsoTrio" component={GuideIso} durationInFrames={GUIDEISO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="GuideIsoTrioCouverture" component={GuideIsoCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <Composition id="InductionHsePremium" component={InductionHse} durationInFrames={INDUCTIONHSE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="InductionHsePremiumCouverture" component={InductionHseCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <Composition id="HierarchiePrevention" component={HierarchiePrev} durationInFrames={HIERARCHIEPREV_FRAMES} fps={FPS} width={1080} height={1920} />
