@@ -19,7 +19,7 @@ const RECAP = 120.6;
 const OUTRO_AT = 122.6;
 export const FAMILLES_FRAMES = s(126.0);
 
-const GROUPS: Record<string, [string, string]> = {
+export const GROUPS: Record<string, [string, string]> = {
   meca: ['Physiques & mécaniques', RED],
   energie: ['Énergies', '#E67E22'],
   chimbio: ['Chimiques & biologiques', PURPLE],
@@ -31,7 +31,7 @@ const GROUPS: Record<string, [string, string]> = {
 };
 
 type Fam = {n: number; at: number; tAt: number; title: string; spoken: string; g: string; img: string; icons: string[]; sfx: string};
-const FAMS: Fam[] = [
+export const FAMS: Fam[] = [
   {n: 1, at: 0.0, tAt: 0.9, title: "Mécanique", spoken: "Risque mécanique", g: 'meca', img: 'ident/machine.jpg', icons: ["engrenage", "outils"], sfx: 'sfx/click'},
   {n: 2, at: 2.1, tAt: 3.36, title: "Coupure & perforation", spoken: "Risque de coupure et perforation", g: 'meca', img: '', icons: ["couteau", "ciseaux", "tournevis"], sfx: 'sfx/swish'},
   {n: 3, at: 5.22, tAt: 6.64, title: "Chute de hauteur", spoken: "Risque de chute de hauteur", g: 'meca', img: 'incident/chute-echelle.jpg', icons: ["echelle"], sfx: 'sfx/thud'},
