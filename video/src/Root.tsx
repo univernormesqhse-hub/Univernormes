@@ -67,6 +67,7 @@ import {ChefQhse, CHEFQHSE_FRAMES} from './chefqhse/ChefQhse';
 import {SeptM, SEPTM_FRAMES} from './septm/SeptM';
 import {Specialiser, SPECIALISER_FRAMES} from './specialiser/Specialiser';
 import {CinqPourquoi, CINQPOURQUOI_FRAMES} from './cinqpourquoi/CinqPourquoi';
+import {OutilsQualite, OUTILSQUALITE_FRAMES} from './outilsqualite/OutilsQualite';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 
 export const RemotionRoot: React.FC = () => (
@@ -146,6 +147,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="MethodeDes7M" component={SeptM} durationInFrames={SEPTM_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="SeSpecialiserQhse" component={Specialiser} durationInFrames={SPECIALISER_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="MethodeCinqPourquoi" component={CinqPourquoi} durationInFrames={CINQPOURQUOI_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="OutilsMethodesQualite" component={OutilsQualite} durationInFrames={OUTILSQUALITE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
