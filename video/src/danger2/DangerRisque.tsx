@@ -19,7 +19,7 @@ const OUTRO_AT = 381.5;
 export const DANGER2_FRAMES = s(384.9);
 
 /** Cartons de chapitre : [début, fin, n°, titre, sous-titre, icônes]. */
-const CHAPTERS: [number, number, number, string, string, string[]][] = [
+export const CHAPTERS: [number, number, number, string, string, string[]][] = [
   [69.2, 73.3, 1, 'Le danger', 'Une propriété intrinsèque', ['danger', 'bombe', 'chaud']],
   [146.2, 152.2, 2, 'Le risque', "L'éventualité d'une rencontre", ['de', 'ouvrier', 'bris']],
   [265.9, 270.9, 3, 'Quantifier', 'Probabilité × gravité', ['balance', 'graphique', 'loupe']],
