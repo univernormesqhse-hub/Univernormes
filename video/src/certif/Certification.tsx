@@ -18,7 +18,7 @@ const OUTRO_AT = 279.0;
 export const CERTIF_FRAMES = s(282.4);
 
 /** Cartons de chapitre : [début, fin, n°, titre, sous-titre, icônes]. */
-const CHAPTERS: [number, number, number, string, string, string[]][] = [
+export const CHAPTERS: [number, number, number, string, string, string[]][] = [
   [45.22, 50.46, 1, 'La certification', 'La preuve de conformité', ['check', 'usine', 'diplome']],
   [85.54, 90.34, 2, "L'accréditation", 'Le contrôle des contrôleurs', ['loupe2', 'microscope', 'temple']],
   [129.58, 134.0, 3, 'Hiérarchie de confiance', 'Visualiser le système', ['couronne', 'trinome', 'balance']],

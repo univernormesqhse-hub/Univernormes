@@ -23,6 +23,7 @@ import {DangerRisque2, DANGER2_FRAMES} from './danger2/DangerRisque';
 import {Iso2026, ISO26_FRAMES} from './iso26/Iso2026';
 import {Ishikawa, ISHIKAWA_FRAMES} from './ishikawa/Ishikawa';
 import {Certification2, CERTIF_FRAMES} from './certif/Certification';
+import {CertificationCouverture} from './certif/Couverture';
 import {Pieges, PIEGES_FRAMES} from './pieges/Pieges';
 import {PiegesPartie2Couverture} from './pieges/Couverture';
 import {PodcastStudio, PodcastVertical, PODCAST_FRAMES} from './podcast/Podcast';
@@ -133,6 +134,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="Iso2026" component={Iso2026} durationInFrames={ISO26_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="Ishikawa" component={Ishikawa} durationInFrames={ISHIKAWA_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CertificationAccreditation" component={Certification2} durationInFrames={CERTIF_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CertificationAccreditationCouverture" component={CertificationCouverture} durationInFrames={91} fps={FPS} width={1080} height={1920} />
   <Composition id="PiegesIso2026" component={Pieges} durationInFrames={PIEGES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="PiegesIso2026Partie2Couverture" component={PiegesPartie2Couverture} durationInFrames={91} fps={FPS} width={1080} height={1920} />
   <Composition id="PodcastStudio" component={PodcastStudio} durationInFrames={PODCAST_FRAMES} fps={FPS} width={1920} height={1080} />
