@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, Audio, Img, random, staticFile} from 'remotion';
+import {AbsoluteFill, Audio, Img, interpolate, random, staticFile} from 'remotion';
 import {easeIn, easeInOut, easeOut, Gate, prog, useT} from '../anim';
 import {Captions} from '../components/Captions';
 import {Check} from '../identui/IdentUi';
@@ -507,7 +507,11 @@ const P3: React.FC = () => {
 };
 
 /* ─────────── Partie 4 : la méthode ─────────── */
-const SEGS: [string, number, number, string][] = [['Accroche', 232.86, 0.1, SKY], ['Cœur du sujet', 236.26, 0.32, YEL], ['Questions ouvertes', 242.7, 0.3, GREEN], ['Message clé', 246.58, 0.12, ORA], ['Signalements', 253.86, 0.16, RED]];
+/** Durées affichées dans la vidéo d'origine (celle du message clé y est masquée : pas de durée inventée). */
+const SEGS: [string, number, number, string, string][] = [['Accroche', 232.86, 1, SKY, '1 min'], ['Cœur du sujet', 236.26, 6, YEL, '5 à 7 min'], ['Questions ouvertes', 242.7, 4, GREEN, '3 à 5 min'], ['Message clé', 246.58, 1, ORA, ''], ['Signalements', 253.86, 1, RED, '1 min']];
+const SEG_SUM = SEGS.reduce((a, sg) => a + sg[2], 0);
+const SEG_X = SEGS.reduce<number[]>((a, sg) => [...a, a[a.length - 1] + sg[2] / SEG_SUM], [0]);
+const SEG_T = [...SEGS.map((sg) => sg[1]), 256.0];
 const P4: React.FC = () => {
   const t = useT();
   const o = win(t, 183.9, 259.0, 0.4);
@@ -569,20 +573,20 @@ const P4: React.FC = () => {
       })()}
       {/* la barre de lecture des 15 minutes */}
       {t > 227.5 && (() => {
-        let acc = 0;
-        const head = prog(t, 232.86, 256.0, (x) => x);
+        const head = interpolate(t, SEG_T, SEG_X, {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
         return (
           <AbsoluteFill style={{opacity: pop(t, 227.5)}}>
             <Title>Le déroulé : <span style={{color: ORA}}>15 minutes chrono</span></Title>
             <Abs x={70} y={640} w={940} h={140} style={{borderRadius: 20, background: '#0A1320', border: '4px solid #2B3A4C', overflow: 'hidden', display: 'flex'}}>
-              {SEGS.map(([l, at, w, c]) => { const x0 = acc; acc += w; return <div key={l} style={{width: `${w * 100}%`, height: '100%', background: t > at ? c : 'rgba(255,255,255,0.06)', borderRight: '4px solid #0A1320', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: t > at ? 1 : 0.6, boxShadow: l === 'Questions ouvertes' && t > 241.5 ? 'inset 0 0 0 6px #fff' : 'none'}} data-x={x0} />; })}
+              {SEGS.map(([l, at, w, c]) => { return <div key={l} style={{width: `${(w / SEG_SUM) * 100}%`, height: '100%', background: t > at ? c : 'rgba(255,255,255,0.06)', borderRight: '4px solid #0A1320', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: t > at ? 1 : 0.6, boxShadow: l === 'Questions ouvertes' && t > 241.5 ? 'inset 0 0 0 6px #fff' : 'none'}} />; })}
             </Abs>
             <Abs x={70 + 940 * head - 4} y={620} w={8} h={180} style={{background: '#fff', boxShadow: '0 0 16px #fff'}} />
-            <Abs x={70} y={810} w={940} style={{display: 'flex', justifyContent: 'space-between'}}><T size={26} color={DIM}>0:00</T><T size={26} color={DIM}>15:00</T></Abs>
-            {(() => { const cur = SEGS.filter((sg) => t >= sg[1]).length - 1; if (cur < 0) return null; const [l, at, , c] = SEGS[cur]; const ic = ['question', 'cible', 'bulle', 'megaphone', 'danger'][cur]; return (
+            {SEGS.map(([l, at, , c, dur], k) => dur && t > at && <Abs key={l} x={70 + 940 * SEG_X[k]} y={796} w={940 * (SEG_X[k + 1] - SEG_X[k])} style={{textAlign: 'center', opacity: pop(t, at)}}><T size={24} color={c} style={{whiteSpace: 'nowrap'}}>{dur}</T></Abs>)}
+            <Abs x={0} y={838} w={1080} style={{textAlign: 'center'}}><Hand size={30} color={DIM}>durées citées par la vidéo d'origine</Hand></Abs>
+            {(() => { const cur = SEGS.filter((sg) => t >= sg[1]).length - 1; if (cur < 0) return null; const [l, at, , c, dur] = SEGS[cur]; const ic = ['question', 'cible', 'bulle', 'megaphone', 'danger'][cur]; return (
               <Abs key={l} x={140} y={900} w={800} h={420} style={{borderRadius: 30, background: `${c}22`, border: `5px solid ${c}`, display: 'flex', alignItems: 'center', gap: 30, padding: '0 40px', boxSizing: 'border-box', transform: `translateY(${(1 - spring(t, at, 8, 14)) * 300}px)`, opacity: pop(t, at)}}>
                 <F n={ic} size={180} />
-                <div><T size={54} color={c}>{l}</T><Hand size={36} style={{marginTop: 10}}>{['une question pour capter l’attention', 'un, allez, deux points essentiels', 'faire parler l’équipe, partager', 'une seule phrase à retenir', 'chacun signale ce qu’il a vu'][cur]}</Hand>{cur === 2 && t > 241.5 && <div style={{marginTop: 10}}><Chip c="#fff" size={22}>Le moment le plus important</Chip></div>}</div>
+                <div><T size={54} color={c}>{l}</T><Hand size={36} style={{marginTop: 10}}>{['une question pour capter l’attention', 'un, allez, deux points essentiels', 'faire parler l’équipe, partager', 'une seule phrase à retenir', 'chacun signale ce qu’il a vu'][cur]}</Hand><div style={{display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 12}}>{dur && <Chip c={c} size={22}>{dur}</Chip>}{cur === 2 && t > 241.5 && <Chip c="#fff" size={22}>Le moment le plus important</Chip>}</div></div>
               </Abs>
             ); })()}
             {t > 255.6 && <Row y={1400} gap={12}><Chip c={SKY} dark={false} q={spring(t, 255.66)} size={28}>Simple</Chip><Chip c={YEL} q={spring(t, 256.74)} size={28}>Rythmé</Chip><Chip c={GREEN} q={spring(t, 257.46)} size={28}>Efficace</Chip></Row>}
