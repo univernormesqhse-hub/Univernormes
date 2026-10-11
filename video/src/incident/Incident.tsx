@@ -14,13 +14,13 @@ import {captions} from './captions';
 const LOGO = 'promo/logo.png';
 const OUTRO_AT = 61.7;
 export const INCIDENT_FRAMES = s(64.7);
-const AMBER = '#E39B1F';
-const FLOOR = 1300;
+export const AMBER = '#E39B1F';
+export const FLOOR = 1300;
 const CABLE_X = 560;
 const fade = (t: number, a: number, b: number) => (1 - prog(t, b - 0.3, b, easeIn)) * (t >= a ? 1 : 0);
 
 /** Personnage simple, placé par les pieds ; rot = bascule autour des pieds ; step = balancement de marche. */
-const Person: React.FC<{x: number; y?: number; rot?: number; suit?: string; o?: number; step?: number; arms?: number}> = ({x, y = FLOOR, rot = 0, suit = '#F07A2A', o = 1, step = 0, arms = 0}) => {
+export const Person: React.FC<{x: number; y?: number; rot?: number; suit?: string; o?: number; step?: number; arms?: number}> = ({x, y = FLOOR, rot = 0, suit = '#F07A2A', o = 1, step = 0, arms = 0}) => {
   const sw = Math.sin(step) * 14;
   return (
     <svg width={160} height={260} viewBox="-80 -250 160 260" style={{position: 'absolute', left: x - 80, top: y - 250, transform: `rotate(${rot}deg)`, transformOrigin: '80px 250px', overflow: 'visible', opacity: o}}>
@@ -37,7 +37,7 @@ const Person: React.FC<{x: number; y?: number; rot?: number; suit?: string; o?: 
 };
 
 /** Câble électrique enroulé au sol ; glow = mise en évidence. */
-const Cable: React.FC<{x?: number; y?: number; glow?: number; o?: number; scale?: number}> = ({x = CABLE_X, y = FLOOR, glow = 0, o = 1, scale = 1}) => (
+export const Cable: React.FC<{x?: number; y?: number; glow?: number; o?: number; scale?: number}> = ({x = CABLE_X, y = FLOOR, glow = 0, o = 1, scale = 1}) => (
   <svg width={260} height={90} viewBox="-130 -80 260 90" style={{position: 'absolute', left: x - 130, top: y - 80, transform: `scale(${scale})`, transformOrigin: '130px 80px', overflow: 'visible', opacity: o, filter: glow ? `drop-shadow(0 0 ${8 + glow * 14}px rgba(227,155,31,${0.5 + 0.4 * glow}))` : undefined}}>
     <path d="M-120 0 C -90 -10, -70 -60, -30 -50 C 10 -40, -20 -10, 10 -14 C 40 -18, 30 -66, 70 -56 C 110 -46, 90 -6, 120 -4" stroke="#2B2F36" strokeWidth={12} fill="none" strokeLinecap="round" />
     <path d="M-120 0 C -90 -10, -70 -60, -30 -50 C 10 -40, -20 -10, 10 -14 C 40 -18, 30 -66, 70 -56 C 110 -46, 90 -6, 120 -4" stroke={AMBER} strokeWidth={4} fill="none" strokeLinecap="round" strokeDasharray="10 14" opacity={0.8} />
@@ -45,7 +45,7 @@ const Cable: React.FC<{x?: number; y?: number; glow?: number; o?: number; scale?
 );
 
 /** Étiquette de qualification (INCIDENT / ACCIDENT). */
-const Tag: React.FC<{title: string; sub: string; color: string; icon: string}> = ({title, sub, color, icon}) => (
+export const Tag: React.FC<{title: string; sub: string; color: string; icon: string}> = ({title, sub, color, icon}) => (
   <div style={{display: 'flex', alignItems: 'center', gap: 20, background: '#fff', borderRadius: 28, padding: '18px 30px 18px 20px', boxShadow: '0 16px 34px rgba(30,25,10,0.18)', borderLeft: `14px solid ${color}`, fontFamily: sansFont}}>
     <F n={icon} size={92} />
     <div>
@@ -56,7 +56,7 @@ const Tag: React.FC<{title: string; sub: string; color: string; icon: string}> =
 );
 
 /** Sol de l'atelier. */
-const Floor: React.FC<{y?: number; x0?: number; x1?: number}> = ({y = FLOOR, x0 = 40, x1 = 1040}) => (
+export const Floor: React.FC<{y?: number; x0?: number; x1?: number}> = ({y = FLOOR, x0 = 40, x1 = 1040}) => (
   <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
     <line x1={x0} y1={y} x2={x1} y2={y} stroke={colors.navy} strokeWidth={8} strokeLinecap="round" />
     {Array.from({length: 14}, (_, i) => <line key={i} x1={x0 + 30 + i * ((x1 - x0) / 14)} y1={y + 14} x2={x0 + i * ((x1 - x0) / 14)} y2={y + 40} stroke="#C9BEA2" strokeWidth={4} />)}

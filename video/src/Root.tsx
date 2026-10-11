@@ -17,6 +17,7 @@ import {ResponsableQHSE, RESPONSABLE_FRAMES} from './responsable/Responsable';
 import {NormesISO, NORMES_FRAMES} from './normes/Normes';
 import {EspacesConfines, CONFINES_FRAMES} from './confines/Confines';
 import {IncidentAccident, INCIDENT_FRAMES} from './incident/Incident';
+import {IncidentCouverture} from './incident/Couverture';
 import {QseQhse, QHSE_FRAMES} from './qhse/Qhse';
 import {PlanPrevention, PLAN_FRAMES} from './prevention2/PlanPrevention';
 import {DangerRisque2, DANGER2_FRAMES} from './danger2/DangerRisque';
@@ -131,6 +132,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="NormesISO" component={NormesISO} durationInFrames={NORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="EspacesConfines" component={EspacesConfines} durationInFrames={CONFINES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="IncidentAccident" component={IncidentAccident} durationInFrames={INCIDENT_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="IncidentAccidentCouverture" component={IncidentCouverture} durationInFrames={91} fps={FPS} width={1080} height={1920} />
   <Composition id="QseQhse" component={QseQhse} durationInFrames={QHSE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="PlanPrevention" component={PlanPrevention} durationInFrames={PLAN_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="DangerRisque2" component={DangerRisque2} durationInFrames={DANGER2_FRAMES} fps={FPS} width={1080} height={1920} />
