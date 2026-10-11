@@ -73,6 +73,7 @@ import {Toolbox, TOOLBOX_FRAMES} from './toolbox/Toolbox';
 import {MgmtIntegre, MGMTINTEGRE_FRAMES} from './mgmtintegre/MgmtIntegre';
 import {Indicateurs, INDICATEURS_FRAMES} from './indicateurs/Indicateurs';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
+import {RoleNormesCouverture} from './rolenormes/Couverture';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -157,5 +158,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="ManagementIntegreQse" component={MgmtIntegre} durationInFrames={MGMTINTEGRE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="IndicateursSecurite" component={Indicateurs} durationInFrames={INDICATEURS_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
 );
