@@ -30,7 +30,7 @@ type Entry = {
   cat: string;
 };
 
-const ENTRIES: Entry[] = [
+export const ENTRIES: Entry[] = [
   {at: 0.0, end: 4.7, acr: 'QHSE', cat: 'Management', color: colors.navy, icons: ['trophee', 'savon', 'casque', 'feuille'], photo: 'promo/audit-reunion.jpg',
     words: [['Qualité', 1.76, true], ['Hygiène', 2.44, true], ['Sécurité', 2.94, true], ['Environnement', 3.44, true]]},
   {at: 4.7, end: 8.14, acr: 'HSE', cat: 'Management', color: colors.green, icons: ['savon', 'casque', 'feuille'], photo: 'promo/raffinerie.jpg',
