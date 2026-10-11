@@ -70,6 +70,7 @@ import {CinqPourquoi, CINQPOURQUOI_FRAMES} from './cinqpourquoi/CinqPourquoi';
 import {OutilsQualite, OUTILSQUALITE_FRAMES} from './outilsqualite/OutilsQualite';
 import {Toolbox, TOOLBOX_FRAMES} from './toolbox/Toolbox';
 import {MgmtIntegre, MGMTINTEGRE_FRAMES} from './mgmtintegre/MgmtIntegre';
+import {Indicateurs, INDICATEURS_FRAMES} from './indicateurs/Indicateurs';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 
 export const RemotionRoot: React.FC = () => (
@@ -152,6 +153,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="OutilsMethodesQualite" component={OutilsQualite} durationInFrames={OUTILSQUALITE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ToolboxMeeting" component={Toolbox} durationInFrames={TOOLBOX_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ManagementIntegreQse" component={MgmtIntegre} durationInFrames={MGMTINTEGRE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="IndicateursSecurite" component={Indicateurs} durationInFrames={INDICATEURS_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
