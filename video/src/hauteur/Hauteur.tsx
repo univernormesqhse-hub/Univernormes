@@ -18,7 +18,7 @@ const OUTRO_AT = 344.0;
 export const HAUTEUR_FRAMES = s(347.4);
 
 /** Cartons de chapitre : [début, fin, n°, titre, sous-titre, icônes]. */
-const CHAPTERS: [number, number, number, string, string, string[]][] = [
+export const CHAPTERS: [number, number, number, string, string, string[]][] = [
   [38.64, 42.26, 1, 'Le danger invisible', 'Première cause de décès', ['danger', 'echelle', 'crane']],
   [83.6, 88.02, 2, 'Les causes réelles', 'Le comportement humain', ['cerveau', 'chrono', 'maillon']],
   [147.74, 151.1, 3, 'La règle des pros', 'Vérifier. Toujours.', ['casque', 'cadenas', 'check']],
