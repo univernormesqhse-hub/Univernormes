@@ -49,6 +49,7 @@ import {GuideIso, GUIDEISO_FRAMES} from './guideiso/GuideIso';
 import {InductionHse, INDUCTIONHSE_FRAMES} from './inductionhse/InductionHse';
 import {HierarchiePrev, HIERARCHIEPREV_FRAMES} from './hierarchieprev/HierarchiePrev';
 import {PermisFeu, PERMISFEU_FRAMES} from './permisfeu/PermisFeu';
+import {PermisFeuCouverture} from './permisfeu/Couverture';
 import {DangerSoudage, DANGERSOUDAGE_FRAMES} from './dangersoudage/DangerSoudage';
 import {FeuClasseA, FEUCLASSEA_FRAMES} from './feuclassea/FeuClasseA';
 import {FeuClasseACouverture} from './feuclassea/Couverture';
@@ -136,6 +137,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="InductionHsePremium" component={InductionHse} durationInFrames={INDUCTIONHSE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="HierarchiePrevention" component={HierarchiePrev} durationInFrames={HIERARCHIEPREV_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="PermisDeFeu" component={PermisFeu} durationInFrames={PERMISFEU_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="PermisDeFeuCouverture" component={PermisFeuCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <Composition id="DangerSoudage" component={DangerSoudage} durationInFrames={DANGERSOUDAGE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="FeuClasseA" component={FeuClasseA} durationInFrames={FEUCLASSEA_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="FeuClasseACouverture" component={FeuClasseACouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
