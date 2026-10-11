@@ -44,6 +44,7 @@ import {NormeIso, NORMEISO_FRAMES} from './normeiso/NormeIso';
 import {Iso9001Monde, ISO9001MONDE_FRAMES} from './iso9001monde/Iso9001Monde';
 import {CompterAcc, COMPTERACC_FRAMES} from './compteracc/CompterAcc';
 import {AccidentAZ, ACCIDENTAZ_FRAMES} from './accidentaz/AccidentAZ';
+import {AccidentAZCouverture} from './accidentaz/Couverture';
 import {CertifIso, CERTIFISO_FRAMES} from './certifiso/CertifIso';
 import {CertifIsoCouverture} from './certifiso/Couverture';
 import {GuideIso, GUIDEISO_FRAMES} from './guideiso/GuideIso';
@@ -137,6 +138,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="Iso9001Monde" component={Iso9001Monde} durationInFrames={ISO9001MONDE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CompterAccidents" component={CompterAcc} durationInFrames={COMPTERACC_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="AccidentTravailAZ" component={AccidentAZ} durationInFrames={ACCIDENTAZ_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="AccidentTravailAZCouverture" component={AccidentAZCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <Composition id="CertifIsoPourquoi" component={CertifIso} durationInFrames={CERTIFISO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CertifIsoPourquoiCouverture" component={CertifIsoCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <Composition id="GuideIsoTrio" component={GuideIso} durationInFrames={GUIDEISO_FRAMES} fps={FPS} width={1080} height={1920} />
