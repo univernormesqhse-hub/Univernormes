@@ -24,7 +24,7 @@ const TEAL = '#1A9E8F';
 type Img = {src: string; at: number; x: number; y: number; w: number; h: number; rot?: number; pos?: string; from?: 'up' | 'down' | 'left' | 'right' | 'scale'; until?: number};
 type Tool = {n: number; at: number; title: string; short: string; icon: string; color: string; imgs: Img[]; chips: [string, number, string][]; extra?: 'why' | 'plan' | 'audit'};
 
-const TOOLS: Tool[] = [
+export const TOOLS: Tool[] = [
   {n: 1, at: 8.42, title: 'Analyse des *risques* professionnels', short: 'Analyse des risques', icon: 'danger', color: RED,
     imgs: [{src: 'arsenal/risk.jpg', at: 9.0, x: 540, y: 900, w: 560, h: 520, from: 'scale', until: 12.0}, {src: 'arsenal/cartographie.jpg', at: 12.1, x: 540, y: 900, w: 980, h: 360, from: 'right'}],
     chips: [['Identifier les dangers', 10.82, 'loupe'], ['Évaluer les risques', 12.1, 'balance'], ['Définir la prévention', 13.08, 'bouclier']]},
@@ -56,7 +56,7 @@ const TOOLS: Tool[] = [
     chips: [['Suivre les indicateurs', 70.5, 'graphique'], ['Mesurer la performance', 71.68, 'cible'], ['Prendre les bonnes décisions', 72.72, 'ampoule']]},
 ];
 const endOf = (i: number) => (i + 1 < TOOLS.length ? TOOLS[i + 1].at : END_AT);
-const card = (c: string): React.CSSProperties => ({background: '#fff', borderRadius: 24, boxShadow: '0 10px 22px rgba(14,30,60,0.14)', borderLeft: `12px solid ${c}`});
+export const card = (c: string): React.CSSProperties => ({background: '#fff', borderRadius: 24, boxShadow: '0 10px 22px rgba(14,30,60,0.14)', borderLeft: `12px solid ${c}`});
 
 /** Bandeau « Outil n / 10 » avec jauge de progression. */
 const ToolHead: React.FC<{tool: Tool}> = ({tool}) => {
