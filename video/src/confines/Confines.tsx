@@ -196,7 +196,7 @@ const Drame: React.FC = () => {
   );
 };
 
-const RULES = [
+export const RULES = [
   {at: 48.86, n: 'telephone', l: 'Détecteur de gaz', s: "l'atmosphère analysée en continu", src: 'confines/detecteur.jpg', pos: '70% 50%'},
   {at: 52.24, n: 'vent', l: 'Ventilation forcée', s: "l'air renouvelé", src: 'confines/ventilation.jpg', pos: '50% 60%'},
   {at: 54.74, n: 'yeux', l: 'Surveillant extérieur', s: 'prêt à alerter des secours équipés', src: 'confines/tripode-formation.jpg', pos: '45% 50%'},

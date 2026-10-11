@@ -16,6 +16,7 @@ import {TirantAir, TIRANT_FRAMES} from './tirant/Tirant';
 import {ResponsableQHSE, RESPONSABLE_FRAMES} from './responsable/Responsable';
 import {NormesISO, NORMES_FRAMES} from './normes/Normes';
 import {EspacesConfines, CONFINES_FRAMES} from './confines/Confines';
+import {ConfinesCouverture} from './confines/Couverture';
 import {IncidentAccident, INCIDENT_FRAMES} from './incident/Incident';
 import {IncidentCouverture} from './incident/Couverture';
 import {QseQhse, QHSE_FRAMES} from './qhse/Qhse';
@@ -132,6 +133,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="ResponsableQHSE" component={ResponsableQHSE} durationInFrames={RESPONSABLE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="NormesISO" component={NormesISO} durationInFrames={NORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="EspacesConfines" component={EspacesConfines} durationInFrames={CONFINES_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="EspacesConfinesCouverture" component={ConfinesCouverture} durationInFrames={91} fps={FPS} width={1080} height={1920} />
   <Composition id="IncidentAccident" component={IncidentAccident} durationInFrames={INCIDENT_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="IncidentAccidentCouverture" component={IncidentCouverture} durationInFrames={91} fps={FPS} width={1080} height={1920} />
   <Composition id="QseQhse" component={QseQhse} durationInFrames={QHSE_FRAMES} fps={FPS} width={1080} height={1920} />
