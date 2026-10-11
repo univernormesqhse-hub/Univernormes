@@ -18,7 +18,7 @@ const OUTRO_AT = 278.2;
 export const PLAN_FRAMES = s(281.6);
 
 /** Cartons de chapitre : [début, fin, n°, titre, sous-titre, icônes]. */
-const CHAPTERS: [number, number, number, string, string, string[]][] = [
+export const CHAPTERS: [number, number, number, string, string, string[]][] = [
   [43.9, 47.0, 1, "L'organisation", 'Maîtriser le changement', ['engrenage', 'equipe', 'carte']],
   [82.1, 85.6, 2, 'La relation', 'Contrôle ou partenariat', ['poignee', 'balance', 'cadenas']],
   [169.8, 175.4, 3, "L'implicite", 'Rendre le non-dit visible', ['bulle', 'ampoule', 'memo']],
