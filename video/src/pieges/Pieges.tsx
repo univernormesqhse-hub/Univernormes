@@ -19,7 +19,7 @@ const OUTRO_AT = 914.7;
 export const PIEGES_FRAMES = s(918.1);
 
 /** Cartons de chapitre : [début, fin, n°, titre, sous-titre, icônes]. */
-const CHAPTERS: [number, number, number, string, string, string[]][] = [
+export const CHAPTERS: [number, number, number, string, string, string[]][] = [
   [98.52, 101.48, 1, 'Le piège de la structure', 'Sous le capot', ['engrenage', 'clipboard', 'puzzle']],
   [346.08, 351.08, 2, 'Culture & éthique', 'Le virage humain', ['equipe', 'balance', 'cerveau']],
   [480.48, 485.06, 3, 'Climat & résilience', 'Les pressions externes', ['globe', 'bouclier', 'fusee']],
