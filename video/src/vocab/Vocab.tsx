@@ -41,7 +41,7 @@ const FAM = {
 
 const e = (at: number, acr: string, fam: keyof typeof FAM, words: W[], v: Visual, en?: string): Entry => ({at, acr, fam: FAM[fam][0], color: FAM[fam][1], words, v, en});
 
-const ENTRIES: Entry[] = [
+export const ENTRIES: Entry[] = [
   e(3.42, 'AT', 'acc', [['Accident', 4.22, 1], ['du', 4.46], ['Travail', 4.66, 1]], {k: 'photo', src: 'incident/blessure-soins.jpg', icons: ['pansement', 'ambulance']}),
   e(5.56, 'PA', 'acc', [["Presqu'", 6.32, 1], ['Accident', 6.5, 1]], {k: 'pyramid', lit: ['PA']}),
   e(7.5, 'TF', 'ind', [['Taux', 8.16, 1], ['de', 8.24], ['Fréquence', 8.42, 1]], {k: 'formula', num: "Nb d'accidents avec arrêt", mult: '× 1 000 000', den: 'Heures travaillées', icon: 'graphique'}),
