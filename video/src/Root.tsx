@@ -14,6 +14,7 @@ import {InductionHSE, INDUCTION_FRAMES} from './induction/Induction';
 import {IntegrationHSE, INTEGRATION_FRAMES} from './integration/Integration';
 import {TirantAir, TIRANT_FRAMES} from './tirant/Tirant';
 import {ResponsableQHSE, RESPONSABLE_FRAMES} from './responsable/Responsable';
+import {ResponsableCouverture} from './responsable/Couverture';
 import {NormesISO, NORMES_FRAMES} from './normes/Normes';
 import {NormesCouverture} from './normes/Couverture';
 import {EspacesConfines, CONFINES_FRAMES} from './confines/Confines';
@@ -132,6 +133,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="IntegrationHSE" component={IntegrationHSE} durationInFrames={INTEGRATION_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="TirantAir" component={TirantAir} durationInFrames={TIRANT_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ResponsableQHSE" component={ResponsableQHSE} durationInFrames={RESPONSABLE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="ResponsableQHSECouverture" component={ResponsableCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <Composition id="NormesISO" component={NormesISO} durationInFrames={NORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="NormesISOCouverture" component={NormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <Composition id="EspacesConfines" component={EspacesConfines} durationInFrames={CONFINES_FRAMES} fps={FPS} width={1080} height={1920} />
