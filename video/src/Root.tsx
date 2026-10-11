@@ -64,6 +64,7 @@ import {Causerie, CAUSERIE_FRAMES} from './causerie/Causerie';
 import {Codification, CODIFICATION_FRAMES} from './codification/Codification';
 import {Smi, SMI_FRAMES} from './smi/Smi';
 import {ChefQhse, CHEFQHSE_FRAMES} from './chefqhse/ChefQhse';
+import {SeptM, SEPTM_FRAMES} from './septm/SeptM';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 
 export const RemotionRoot: React.FC = () => (
@@ -140,6 +141,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CodificationDocumentsQhse" component={Codification} durationInFrames={CODIFICATION_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="QseIntegreSmi" component={Smi} durationInFrames={SMI_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="MissionsResponsableQhse" component={ChefQhse} durationInFrames={CHEFQHSE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="MethodeDes7M" component={SeptM} durationInFrames={SEPTM_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
