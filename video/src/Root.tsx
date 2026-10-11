@@ -40,6 +40,7 @@ import {DuerpPdp, DUERPPDP_FRAMES} from './duerppdp/DuerpPdp';
 import {IdentUi, IDENTUI_FRAMES} from './identui/IdentUi';
 import {EquipeHse, EQUIPEHSE_FRAMES} from './equipeui/EquipeUi';
 import {TableauBord, TABLEAUBORD_FRAMES} from './tableaubord/TableauBord';
+import {TableauBordCouverture} from './tableaubord/Couverture';
 import {NormeIso, NORMEISO_FRAMES} from './normeiso/NormeIso';
 import {NormeIsoCouverture} from './normeiso/Couverture';
 import {Iso9001Monde, ISO9001MONDE_FRAMES} from './iso9001monde/Iso9001Monde';
@@ -137,6 +138,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="IdentificationEvaluationUi" component={IdentUi} durationInFrames={IDENTUI_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="EquipeHsePerformante" component={EquipeHse} durationInFrames={EQUIPEHSE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="TableauBordQhse" component={TableauBord} durationInFrames={TABLEAUBORD_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="TableauBordQhseCouverture" component={TableauBordCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <Composition id="NormeIsoFonctionnement" component={NormeIso} durationInFrames={NORMEISO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="NormeIsoFonctionnementCouverture" component={NormeIsoCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <Composition id="Iso9001Monde" component={Iso9001Monde} durationInFrames={ISO9001MONDE_FRAMES} fps={FPS} width={1080} height={1920} />
