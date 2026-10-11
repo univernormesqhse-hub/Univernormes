@@ -13,6 +13,7 @@ import {EpiEpc, EPI_FRAMES} from './epi/EpiEpc';
 import {InductionHSE, INDUCTION_FRAMES} from './induction/Induction';
 import {IntegrationHSE, INTEGRATION_FRAMES} from './integration/Integration';
 import {TirantAir, TIRANT_FRAMES} from './tirant/Tirant';
+import {TirantCouverture} from './tirant/Couverture';
 import {ResponsableQHSE, RESPONSABLE_FRAMES} from './responsable/Responsable';
 import {ResponsableCouverture} from './responsable/Couverture';
 import {NormesISO, NORMES_FRAMES} from './normes/Normes';
@@ -132,6 +133,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="InductionHSE" component={InductionHSE} durationInFrames={INDUCTION_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="IntegrationHSE" component={IntegrationHSE} durationInFrames={INTEGRATION_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="TirantAir" component={TirantAir} durationInFrames={TIRANT_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="TirantAirCouverture" component={TirantCouverture} durationInFrames={91} fps={FPS} width={1080} height={1920} />
   <Composition id="ResponsableQHSE" component={ResponsableQHSE} durationInFrames={RESPONSABLE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ResponsableQHSECouverture" component={ResponsableCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <Composition id="NormesISO" component={NormesISO} durationInFrames={NORMES_FRAMES} fps={FPS} width={1080} height={1920} />
