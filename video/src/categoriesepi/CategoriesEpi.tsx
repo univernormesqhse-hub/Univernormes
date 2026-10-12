@@ -88,13 +88,19 @@ const Bg: React.FC = () => {
     <AbsoluteFill style={{background: BG, overflow: 'hidden'}}>
       <AbsoluteFill style={{background: `radial-gradient(90% 60% at 50% 42%, ${cat3 > 0 ? `rgba(120,20,30,${0.55 * cat3})` : '#1A2B47'} 0%, ${BG} 70%)`}} />
       <AbsoluteFill style={{background: 'radial-gradient(90% 60% at 50% 42%, #1A2B47 0%, rgba(10,19,34,0) 70%)', opacity: 1 - cat3}} />
-      <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, opacity: 0.18}}>
-        {Array.from({length: 13}, (_, k) => <line key={`v${k}`} x1={540 + (k - 6) * 60} y1={1250} x2={540 + (k - 6) * 260} y2={1920} stroke={SKY} strokeWidth={2} />)}
-        {Array.from({length: 8}, (_, k) => {
-          const y = 1250 + Math.pow(((k + (t * 0.6) % 1) / 8), 1.8) * 670;
-          return <line key={`h${k}`} x1={0} y1={y} x2={1080} y2={y} stroke={SKY} strokeWidth={2} />;
-        })}
-      </svg>
+      {/* sol en perspective : le nom UNIVERSNORMES défile vers le spectateur, rangée par rangée */}
+      <div style={{position: 'absolute', left: -540, top: 1180, width: 2160, height: 740, perspective: 700, perspectiveOrigin: '50% 0%', overflow: 'hidden', WebkitMaskImage: 'linear-gradient(180deg, transparent 0%, #000 35%)', maskImage: 'linear-gradient(180deg, transparent 0%, #000 35%)'}}>
+        <div style={{position: 'absolute', left: 0, top: 0, width: 2160, height: 1600, transform: 'rotateX(62deg)', transformOrigin: '50% 0%'}}>
+          {Array.from({length: 12}, (_, k) => {
+            const y = ((k * 120 + t * 80) % 1440) - 120;
+            return (
+              <div key={k} style={{position: 'absolute', left: 0, right: 0, top: y, display: 'flex', justifyContent: 'center', gap: 60, whiteSpace: 'nowrap', transform: `translateX(${(k % 2 ? -1 : 1) * ((t * 40) % 760) - (k % 2 ? 0 : 380)}px)`}}>
+                {Array.from({length: 5}, (_, j) => <span key={j} style={{fontFamily: sansFont, fontWeight: 900, fontSize: 60, letterSpacing: 4, color: 'transparent', WebkitTextStroke: `2px ${k % 3 === 0 ? C1 : SKY}`, opacity: 0.32}}>UNIVERSNORMES</span>)}
+              </div>
+            );
+          })}
+        </div>
+      </div>
       {/* halo lumineux qui dérive */}
       <div style={{position: 'absolute', left: 540 + Math.sin(t * 0.4) * 300 - 450, top: 300 + Math.cos(t * 0.3) * 120, width: 900, height: 900, borderRadius: '50%', background: 'radial-gradient(circle, rgba(77,168,255,0.10) 0%, rgba(77,168,255,0) 65%)'}} />
       {/* poussières en suspension */}
