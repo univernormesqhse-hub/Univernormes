@@ -205,7 +205,6 @@
           <div class="link" id="lk1" style="left: 75px;">1</div><div class="link" id="lk2" style="left: 265px;">2</div><div class="link" id="lk3" style="left: 455px;">3</div><div class="link" id="lk4" style="left: 645px;">4</div><div class="link" id="lk5" style="left: 835px;">5</div>
           <div style="position: absolute; left: 225px; top: 549px; width: 40px; height: 12px; background: var(--navy);"></div><div style="position: absolute; left: 415px; top: 549px; width: 40px; height: 12px; background: var(--navy);"></div><div style="position: absolute; left: 605px; top: 549px; width: 40px; height: 12px; background: var(--navy);"></div><div style="position: absolute; left: 795px; top: 549px; width: 40px; height: 12px; background: var(--navy);"></div>
         </div>
-        <div class="card red" id="e0" style="left: 110px; top: 760px; width: 860px; height: 480px; text-align: center;"><div class="big" style="margin-top: 70px; font-size: 220px; line-height: 1; color: var(--red);">5</div><div class="big" style="font-size: 64px;">erreurs à éviter</div></div>
         <div class="card red ecard" id="e1"><div class="num">1</div><div class="ttl">Idéal <span style="color: var(--red);">≠</span> réel</div>
           <div class="zone"><div style="position: absolute; left: 0; top: 0; width: 50%; height: 100%; background: #F7F9FC;"><svg style="position: absolute; left: 50px; top: 120px;" width="320" height="260" viewBox="0 0 320 260"><path id="e1line" d="M 10 130 H 300" stroke="#2E9B3E" stroke-width="12" fill="none" stroke-linecap="round" /><circle cx="10" cy="130" r="18" fill="#2E9B3E" /><circle cx="155" cy="130" r="18" fill="#2E9B3E" /><circle cx="300" cy="130" r="18" fill="#2E9B3E" /></svg><div class="lab" style="left: 30px; top: 30px;">Sur le papier</div></div>
             <div style="position: absolute; left: 50%; top: 0; width: 50%; height: 100%;"><img src="assets/photo-terrain.jpg" style="object-position: 60% 40%;" /><div class="pill" style="left: 20px; top: 20px;">LE TERRAIN</div></div></div></div>
@@ -262,7 +261,7 @@
       </div>
 
       <!-- ===== voix + bruitages ===== -->
-      <audio class="clip" id="voice" src="assets/voix.m4a" data-start="0" data-duration="71.19" data-volume="1" data-track-index="10"></audio>
+      <audio class="clip" id="voice" src="assets/voix-origine.m4a" data-start="0" data-duration="{{VOICE_DUR}}" data-volume="1" data-track-index="10"></audio>
       <!--SFX-->
     </div>
     <script>
@@ -270,20 +269,6 @@
       const tl = gsap.timeline({ paused: true });
       /*KARA_ENDS*/
       const GREEN = '#2E9B3E', RED = '#D9443A', NAVY = '#0E2A5C';
-      // --- karaoké : 4 grammaires ---
-      document.querySelectorAll('.kara').forEach((k) => {
-        const key = k.id.slice(2), s = parseFloat(k.dataset.s), mode = k.classList[1];
-        tl.fromTo(k, { opacity: 0 }, { opacity: 1, duration: 0.12 }, Math.max(0, s - 0.12));
-        tl.to(k, { opacity: 0, duration: 0.12 }, KARA_ENDS[key] - 0.1);
-        k.querySelectorAll('.w').forEach((w) => {
-          const t = parseFloat(w.dataset.t);
-          const col = w.classList.contains('g') ? GREEN : w.classList.contains('r') ? RED : (k.style.color ? '#fff' : NAVY);
-          if (mode === 'ink' || mode === 'grey') tl.to(w, { color: col, duration: 0.08 }, t);
-          else if (mode === 'blur') { tl.fromTo(w, { opacity: 0, filter: 'blur(14px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.26, ease: 'power2.out' }, t); if (w.classList.contains('g') || w.classList.contains('r')) tl.set(w, { color: col }, t); }
-          else { tl.fromTo(w, { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.3, ease: 'back.out(2)' }, t); tl.set(w, { color: col }, t); }
-          if (w.classList.contains('h')) tl.fromTo(w, { '--hl-x': 0 }, { '--hl-x': 1, duration: 0.3, ease: 'power2.out' }, t + 0.18);
-        });
-      });
       const pop = (sel, at, from) => tl.fromTo(sel, Object.assign({ opacity: 0, scale: 0.55 }, from || {}), { opacity: 1, scale: 1, x: 0, y: 0, duration: 0.42, ease: 'back.out(2.2)' }, at);
       const slam = (sel, at) => tl.fromTo(sel, { opacity: 0, scale: 1.35, rotation: -2 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.28, ease: 'power4.in' }, at);
       const blurOut = (sel, at) => tl.to(sel, { filter: 'blur(26px)', opacity: 0, scale: 1.04, duration: 0.3, ease: 'power2.in' }, at);
@@ -376,8 +361,6 @@
       // S5 · 5 erreurs : chaîne + cartes néo-brutalistes
       blurIn('#s5', 41.05);
       tl.fromTo('#chain .link', { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.08, ease: 'back.out(2)' }, 41.3);
-      slam('#e0', 42.0);
-      out('#e0', 43.55, 0.2);
       const errs = [['#e1', '#lk1', 43.75, 47.75], ['#e2', '#lk2', 47.85, 51.1], ['#e3', '#lk3', 51.2, 53.4], ['#e4', '#lk4', 53.5, 56.7], ['#e5', '#lk5', 56.8, 59.6]];
       errs.forEach(([c, l, a, b]) => {
         slam(c, a);
@@ -416,6 +399,29 @@
       tl.fromTo('#endlogo', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.6)' }, 71.3);
       tl.fromTo('#endtag', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5 }, 71.8);
       tl.fromTo('#endsub', { opacity: 0, clipPath: 'inset(0 100% 0 0)' }, { opacity: 1, clipPath: 'inset(0 0% 0 0)', duration: 0.8 }, 72.2);
+      // --- remappage : toutes les animations ci-dessus sont posées sur la timeline de référence (src/timeline-tts.json)
+      //     et recalées phrase par phrase sur la voix d'origine (timeline.json) ---
+      const MAP = /*MAP*/;
+      const M = (t) => { for (let i = 1; i < MAP.length; i++) { const [a0, b0] = MAP[i - 1], [a1, b1] = MAP[i]; if (t <= a1) return b0 + (t - a0) * (b1 - b0) / Math.max(1e-6, a1 - a0); } const [a, b] = MAP[MAP.length - 1]; return b + (t - a); };
+      tl.getChildren(false, true, true).forEach((c) => {
+        const s = c.startTime(), d = c.totalDuration(), ns = M(s);
+        if (d > 1.2) { const ne = M(s + d); if (ne - ns > 0.05) c.timeScale(d / (ne - ns)); }
+        c.startTime(ns);
+      });
+      // --- karaoké : 4 grammaires ---
+      document.querySelectorAll('.kara').forEach((k) => {
+        const key = k.id.slice(2), s = parseFloat(k.dataset.s), mode = k.classList[1];
+        tl.fromTo(k, { opacity: 0 }, { opacity: 1, duration: 0.12 }, Math.max(0, s - 0.12));
+        tl.to(k, { opacity: 0, duration: 0.12 }, KARA_ENDS[key] - 0.1);
+        k.querySelectorAll('.w').forEach((w) => {
+          const t = parseFloat(w.dataset.t);
+          const dark = !!k.style.color; const col = w.classList.contains('g') ? (dark ? '#8FD99A' : GREEN) : w.classList.contains('r') ? (dark ? '#FF9A90' : RED) : (dark ? '#fff' : NAVY);
+          if (mode === 'ink' || mode === 'grey') tl.to(w, { color: col, duration: 0.08 }, t);
+          else if (mode === 'blur') { tl.fromTo(w, { opacity: 0, filter: 'blur(14px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.26, ease: 'power2.out' }, t); if (w.classList.contains('g') || w.classList.contains('r')) tl.set(w, { color: col }, t); }
+          else { tl.fromTo(w, { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.3, ease: 'back.out(2)' }, t); tl.set(w, { color: col }, t); }
+          if (w.classList.contains('h')) tl.fromTo(w, { '--hl-x': 0 }, { '--hl-x': 1, duration: 0.3, ease: 'power2.out' }, t + 0.18);
+        });
+      });
       window.__timelines['main'] = tl;
       tl.seek(0);
     </script>

@@ -3,7 +3,7 @@ workflow: general-video
 flow: automation
 storyboard: no
 aspect: "9:16"
-duration: 74.6
+duration: 117.65
 destination: social-vertical
 ---
 
@@ -11,7 +11,7 @@ destination: social-vertical
 
 ## Intent
 
-Version courte premium (≈ 75 s) de la vidéo source de 6 min 30 « Quelques erreurs à éviter lors de l'établissement de votre
+Version courte premium (≈ 1 min 58) de la vidéo source de 6 min 30 « Quelques erreurs à éviter lors de l'établissement de votre
 cartographie de processus », en combinant les 4 skills vidéo du dépôt dans la charte UNIVERSNORMES :
 
 | Scène | Contenu | Style dominant |
@@ -30,8 +30,10 @@ Fil rouge inédit : une route GPS en bas d'écran dont le repère avance d'étap
 
 ## Assets
 
-- Voix off française générée en local (Kokoro, voix `ff_siwis`), script fidèle au contenu de la vidéo source ;
-  `timeline.json` = début / fin de chaque phrase. Corrections de prononciation : « labirinte », « ritme », « Iso ».
+- **Voix d'origine** de la vidéo source : 21 extraits montés bout à bout (`assets/voix-origine.m4a`, 114 s),
+  `timeline.json` = début / fin de chaque extrait dans le montage. Le karaoké reprend les mots exacts du narrateur.
+- Les animations sont écrites sur une timeline de référence (`src/timeline-tts.json`, première version avec voix générée
+  `assets/voix.m4a`) puis recalées phrase par phrase sur la voix d'origine (fonction `M` dans `build.py` et le template).
 - Photos réelles de la banque UNIVERSNORMES (`video/public/`), professionnels africains noirs quand une personne est visible.
 - Polices Montserrat, Patrick Hand (charte), Archivo Black, Space Mono, Caveat (OFL) ; icônes Fluent Emoji ; bruitages `sfx2`.
 
