@@ -19,7 +19,7 @@ const Pillars: React.FC = () => {
         return (
           <Abs key={l} x={160 + i * 290} y={640} w={180} h={620} style={{transformOrigin: '50% 100%', transform: `scaleY(${rise})`}}>
             <div style={{width: '100%', height: '100%', borderRadius: 10, background: `repeating-linear-gradient(90deg, #1C3260 0 22px, #233D73 22px 44px)`, border: `3px solid ${CYAN}88`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-              <T size={150} style={{textShadow: `0 0 40px ${CYAN}`}}>{l}</T>
+              <T size={150} color="#fff" style={{textShadow: `0 0 40px ${CYAN}`}}>{l}</T>
             </div>
           </Abs>
         );
@@ -79,7 +79,7 @@ const Micro: React.FC = () => {
     <AbsoluteFill>
       <Title>Une anticipation <Glow>millimétrée</Glow></Title>
       <svg width={1080} height={700} style={{position: 'absolute', left: 0, top: 520}}>
-        <path d="M 160 120 L 160 460 Q 160 560 300 560 L 640 560 Q 760 560 760 440 L 760 400" stroke="#C9D3E6" strokeWidth={60} fill="none" strokeLinecap="round" />
+        <path d="M 160 120 L 160 460 Q 160 560 300 560 L 640 560 Q 760 560 760 440 L 760 400" stroke="#8C9AB8" strokeWidth={60} fill="none" strokeLinecap="round" />
         <rect x={130} y={240} width={60} height={110} fill="#8C9AB8" />
         <rect x={190 + (1 - sq) * 140} y={265} width={420 - (1 - sq) * 140} height={60} fill="#C9D3E6" />
         <rect x={610} y={230} width={240} height={130} rx={14} fill={BLUE} />
@@ -207,15 +207,15 @@ const Shred: React.FC = () => {
   return (
     <AbsoluteFill>
       <Title>Pas un énième formulaire…</Title>
-      <Abs x={290} y={500 + sh * 420} w={500} h={600} style={{clipPath: `inset(0 0 ${sh * 70}% 0)`, background: '#F4F7FF', borderRadius: 8, padding: 40, boxSizing: 'border-box', opacity: inv ? 0.25 : 1}}>
+      <Abs x={290} y={500 + sh * 420} w={500} h={600} style={{clipPath: `inset(0 0 ${sh * 70}% 0)`, background: '#fff', borderRadius: 8, boxShadow: '0 20px 40px rgba(20,33,61,0.2)', padding: 40, boxSizing: 'border-box', opacity: inv ? 0.25 : 1}}>
         <T size={34} color={NIGHT}>FORMULAIRE ADM-47</T>
-        {Array.from({length: 9}, (_, i) => <div key={i} style={{marginTop: 30, height: 14, width: `${60 + (i % 3) * 12}%`, background: '#C9D3E6', borderRadius: 7}} />)}
+        {Array.from({length: 9}, (_, i) => <div key={i} style={{marginTop: 30, height: 14, width: `${60 + (i % 3) * 12}%`, background: '#8C9AB8', borderRadius: 7}} />)}
       </Abs>
       <Abs x={240} y={920} w={600} h={180} style={{background: '#33415F', borderRadius: 20, border: `4px solid ${LINE}`, opacity: inv ? 0.25 : 1}}>
         <div style={{margin: '30px 40px', height: 16, borderRadius: 8, background: NIGHT}} />
       </Abs>
       {Array.from({length: 12}, (_, i) => (
-        <div key={i} style={{position: 'absolute', left: 300 + i * 40, top: 1100, width: 26, height: sh * 260 * (0.7 + random(`s${i}`) * 0.3), background: '#F4F7FF', opacity: inv ? 0.25 : 1}} />
+        <div key={i} style={{position: 'absolute', left: 300 + i * 40, top: 1100, width: 26, height: sh * 260 * (0.7 + random(`s${i}`) * 0.3), background: '#fff', border: '1px solid #C9D3E6', opacity: inv ? 0.25 : 1}} />
       ))}
       {inv && (
         <AbsoluteFill style={{opacity: pop(t, 76.9)}}>
@@ -266,7 +266,7 @@ const Barrier: React.FC = () => {
           <Mono size={40} color={s.c}>0{i + 1}</Mono><F n={s.ic} size={90} /><T size={40}>{s.l}</T>
         </Abs>
       ))}
-      <Abs x={140} y={1040} w={40} h={300} style={{background: '#C9D3E6', borderRadius: 8}} />
+      <Abs x={140} y={1040} w={40} h={300} style={{background: '#8C9AB8', borderRadius: 8}} />
       <Abs x={160} y={1060} w={760} h={50} style={{transformOrigin: '0 50%', transform: `rotate(${-80 + down * 80}deg)`, background: `repeating-linear-gradient(90deg, ${RED} 0 70px, #fff 70px 140px)`, borderRadius: 12, boxShadow: '0 10px 20px rgba(0,0,0,0.4)'}} />
       {t > 89.9 && <Row y={1180}><div style={{transform: `scale(${spring(t, 89.9)})`}}><Chip c={GREEN} dark size={44}>La proactivité à l’état pur</Chip></div></Row>}
     </AbsoluteFill>

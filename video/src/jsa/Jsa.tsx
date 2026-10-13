@@ -6,14 +6,14 @@ import {Sfx, SoundDesign} from '../prevention2/Cine';
 import {Outro} from '../scenes/Outro';
 import {s} from '../theme';
 import {captions} from './captions';
-import {Bg, Cover, Header, LOGO, NIGHT, OUTRO_AT, PT, ScanWipe, WIPE} from './kit';
+import {Bg, Cover, Header, LOGO, OUTRO_AT, PAPER, PT, ScanWipe, WIPE} from './kit';
 import {Intro, P1} from './s1';
 import {P2, P3} from './s2';
 import {Final, P4, P5, P6} from './s3';
 
 /**
  * « Maîtrise de la JSA » (6 min 32) — voix d'origine, sous-titres recalés mot à mot, photos réelles.
- * Univers inédit dans la série : salle de contrôle nocturne (HUD), bleu électrique et vert de la vidéo source.
+ * Univers « papier quadrillé » de la série, panneaux façon interface de supervision (HUD), bleus et verts de la vidéo source.
  * Fil rouge : un tableau de consignation à 6 cadenas, verrouillés un à un à chaque partie (en-tête) et tous fermés au
  * mot de la fin ; transitions en balayage laser de scanner, compteur de module qui défile, cadenas qui claque.
  * Autres techniques nouvelles : piliers J-S-A qui soutiennent un fronton, acronyme qui se déplie, dé 3D barré,
@@ -74,7 +74,7 @@ const CUES: Sfx[] = [
 ];
 
 export const Jsa: React.FC = () => (
-  <AbsoluteFill style={{background: NIGHT}}>
+  <AbsoluteFill style={{background: PAPER}}>
     <Bg />
     <Gate from={2.0} to={53.5}><Intro /></Gate>
     <Gate from={55.6} to={92.6}><P1 /></Gate>

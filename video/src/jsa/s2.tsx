@@ -35,7 +35,7 @@ const Conveyor: React.FC = () => {
           </Abs>
         );
       })}
-      <Abs x={40} y={1120} w={1000} h={60} style={{borderRadius: 30, background: `repeating-linear-gradient(90deg, #22355E 0 40px, #1A2A4C 40px 80px)`, backgroundPosition: `${t * 120}px 0`, border: `4px solid ${LINE}`}} />
+      <Abs x={40} y={1120} w={1000} h={60} style={{borderRadius: 30, background: `repeating-linear-gradient(90deg, #8C9AB8 0 40px, #A9B4CC 40px 80px)`, backgroundPosition: `${t * 120}px 0`, border: `4px solid ${LINE}`}} />
       <Abs x={Math.max(-200, x) - 80} y={960} w={160} h={160} style={{display: 'flex', gap: split ? 8 : 0, alignItems: 'flex-end', justifyContent: 'center', opacity: pop(t, 99.5)}}>
         {(split ? [0, 1, 2] : [0]).map((k) => (
           <div key={k} style={{width: split ? 46 : 150, height: split ? 70 + k * 15 : 140, borderRadius: 10, background: safe ? GREEN : '#C08A4A', border: `4px solid ${marked && !safe ? RED : NIGHT}`, boxShadow: safe ? `0 0 30px ${GREEN}` : 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 900, fontSize: 30}}>{marked && !safe ? '!' : safe ? '✓' : split ? '' : 'TÂCHE'}</div>
@@ -92,7 +92,7 @@ const Choose: React.FC = () => {
         const p = pop(t, c.at - 0.2);
         return (
           <Photo key={i} src={c.ph} x={60 + (i % 2) * 490} y={600 + Math.floor(i / 2) * 470} w={470} h={440} q={0.6 + p * 0.4} o={p} c={ORANGE}>
-            <div style={{position: 'absolute', left: 0, right: 0, bottom: 0, padding: '50px 20px 18px', background: 'linear-gradient(180deg, transparent, rgba(10,19,36,0.92))'}}><T size={34}>{c.l}</T></div>
+            <div style={{position: 'absolute', left: 0, right: 0, bottom: 0, padding: '50px 20px 18px', background: 'linear-gradient(180deg, transparent, rgba(10,19,36,0.92))'}}><T size={34} color="#fff">{c.l}</T></div>
           </Photo>
         );
       })}
@@ -147,8 +147,8 @@ const Bulb: React.FC = () => {
         <path d="M 200 420 L 200 300 Q 250 250 300 300 L 300 420" fill="none" stroke="#C08A00" strokeWidth={8} />
         {[0, 1, 2, 3].map((i) => <rect key={i} x={170} y={430 + i * 40} width={160} height={30} rx={12} fill="#9AA8C4" />)}
       </svg>
-      {t > 151.8 && <Abs x={720} y={600} style={{opacity: pop(t, 151.8), transform: 'rotate(10deg)'}}><Chip c={PANEL} size={30} style={{border: `3px solid ${YEL}`}}>😏 une blague ?</Chip></Abs>}
-      {t > 156.4 && <Abs x={680} y={860} style={{transform: `scale(${five})`}}><div style={{width: 260, height: 260, borderRadius: 130, background: ORANGE, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 60px ${ORANGE}`}}><T size={190}>5</T></div></Abs>}
+      {t > 151.8 && <Abs x={720} y={600} style={{opacity: pop(t, 151.8), transform: 'rotate(10deg)'}}><Chip c={PANEL} dark size={30} style={{border: `3px solid ${YEL}`}}>😏 une blague ?</Chip></Abs>}
+      {t > 156.4 && <Abs x={680} y={860} style={{transform: `scale(${five})`}}><div style={{width: 260, height: 260, borderRadius: 130, background: ORANGE, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 60px ${ORANGE}`}}><T size={190} color="#fff">5</T></div></Abs>}
     </AbsoluteFill>
   );
 };
@@ -172,9 +172,9 @@ const Ladder: React.FC = () => {
     <AbsoluteFill>
       <Title>L’expert JSA répond : <Glow c={ORANGE}>5 étapes</Glow></Title>
       <svg width={360} height={1000} style={{position: 'absolute', left: 60, top: 470}}>
-        <line x1={60} y1={980} x2={130} y2={20} stroke="#C9D3E6" strokeWidth={18} />
-        <line x1={300} y1={980} x2={230} y2={20} stroke="#C9D3E6" strokeWidth={18} />
-        {Array.from({length: 6}, (_, i) => <line key={i} x1={68 + i * 11} y1={890 - i * 150} x2={292 - i * 11} y2={890 - i * 150} stroke="#C9D3E6" strokeWidth={14} />)}
+        <line x1={60} y1={980} x2={130} y2={20} stroke="#8C9AB8" strokeWidth={18} />
+        <line x1={300} y1={980} x2={230} y2={20} stroke="#8C9AB8" strokeWidth={18} />
+        {Array.from({length: 6}, (_, i) => <line key={i} x1={68 + i * 11} y1={890 - i * 150} x2={292 - i * 11} y2={890 - i * 150} stroke="#8C9AB8" strokeWidth={14} />)}
       </svg>
       <Abs x={180} y={y - 120} style={{opacity: pop(t, 158.2)}}><F n="casque" size={120} /></Abs>
       {STEP.map((s, i) => {
@@ -204,7 +204,7 @@ const Film: React.FC = () => {
           const x = i * 330 - off;
           const trap = t > 174.2 + (i % 4) * 0.25;
           return (
-            <div key={i} style={{position: 'absolute', left: x, top: 50, width: 300, height: 360, borderRadius: 10, background: PANEL, border: `3px solid ${trap ? RED : LINE}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <div key={i} style={{position: 'absolute', left: x, top: 50, width: 300, height: 360, borderRadius: 10, background: '#fff', border: `3px solid ${trap ? RED : '#33415F'}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
               <F n={ic} size={150} />
               {trap && <div style={{position: 'absolute', right: 16, top: 16, transform: `scale(${spring(t, 174.2 + (i % 4) * 0.25)})`}}><F n="danger" size={80} /></div>}
             </div>
@@ -247,7 +247,7 @@ const UV: React.FC = () => {
           );
         })}
       </Hud>
-      <div style={{position: 'absolute', left: tx - 170, top: ty - 140, width: 340, height: 280, borderRadius: '50%', background: `radial-gradient(ellipse, ${VIO}55 0%, ${VIO}22 50%, transparent 70%)`, mixBlendMode: 'screen', opacity: cur >= 0 && t < 199 ? 1 : 0}} />
+      <div style={{position: 'absolute', left: tx - 170, top: ty - 140, width: 340, height: 280, borderRadius: '50%', background: `radial-gradient(ellipse, ${VIO}33 0%, ${VIO}14 50%, transparent 70%)`, opacity: cur >= 0 && t < 199 ? 1 : 0}} />
       <Photo src="incident/chute-echelle.jpg" x={640} y={1330} w={380} h={240} c={RED} o={pop(t, 188.4)} pos="50% 60%" />
       {t > 196.0 && <Abs x={60} y={1360} w={540} style={{opacity: pop(t, 196.0)}}><T size={38}>Le risque devient une <Glow c={RED}>cible claire</Glow></T></Abs>}
     </AbsoluteFill>
@@ -273,7 +273,7 @@ const Puzzle: React.FC = () => {
         return (
           <React.Fragment key={i}>
             <Abs x={60 + (1 - join) * -20} y={y} w={500} h={200} style={{opacity: inn, clipPath: 'polygon(0 0, 100% 0, 100% 35%, 92% 35%, 92% 65%, 100% 65%, 100% 100%, 0 100%)', background: `linear-gradient(160deg, ${RED}, #B8323A)`, display: 'flex', alignItems: 'center', gap: 16, padding: '0 30px', boxSizing: 'border-box'}}>
-              <F n={p.ic} size={80} /><T size={34}>{p.d}</T>
+              <F n={p.ic} size={80} /><T size={34} color="#fff">{p.d}</T>
             </Abs>
             <Abs x={520 + (1 - join) * 500} y={y} w={500} h={200} style={{opacity: join, clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 65%, 8% 65%, 8% 35%, 0 35%)', background: `linear-gradient(160deg, ${GREEN}, #1A9C63)`, display: 'flex', alignItems: 'center', padding: '0 30px 0 60px', boxSizing: 'border-box', boxShadow: join > 0.99 ? `0 0 30px ${GREEN}` : 'none'}}>
               <T size={34} color={NIGHT}>{p.m}</T>
@@ -305,7 +305,7 @@ const Reel: React.FC<{start: number; stop: number; target: string; c: string}> =
     <div style={{position: 'relative', flex: 1, height: H * 1.6, overflow: 'hidden', background: '#05080F', borderRadius: 14, border: `3px solid ${settled ? c : LINE}`}}>
       {words.map((w, k) => (
         <div key={k} style={{position: 'absolute', left: 0, right: 0, top: (k - 1) * H + H * 0.3 + (settled ? 0 : frac * H), height: H, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', filter: settled ? 'none' : 'blur(3px)'}}>
-          <T size={32} color={settled ? c : WHITE}>{w}</T>
+          <T size={32} color={settled ? c : '#fff'}>{w}</T>
         </div>
       ))}
     </div>
@@ -340,7 +340,7 @@ const Slots: React.FC = () => {
           {'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((l, i) => <div key={l} style={{flex: 1, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 26, color: i / 25 <= az ? GREEN : LINE}}>{l}</div>)}
         </Abs>
       )}
-      {t > 251.6 && <Abs x={600} y={1240} style={{transform: `rotate(-8deg) scale(${spring(t, 251.6)})`, border: `6px solid ${GREEN}`, borderRadius: 14, padding: '4px 18px', background: `${NIGHT}EE`}}><T size={40} color={GREEN}>ON ANTICIPE TOUT</T></Abs>}
+      {t > 251.6 && <Abs x={600} y={1240} style={{transform: `rotate(-8deg) scale(${spring(t, 251.6)})`, border: `6px solid ${GREEN}`, borderRadius: 14, padding: '4px 18px', background: `#ffffffee`}}><T size={40} color={GREEN}>ON ANTICIPE TOUT</T></Abs>}
     </AbsoluteFill>
   );
 };

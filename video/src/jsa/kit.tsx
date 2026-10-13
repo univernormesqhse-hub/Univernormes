@@ -3,20 +3,22 @@ import {AbsoluteFill, Img, staticFile} from 'remotion';
 import {easeIn, easeInOut, easeOut, prog, useT} from '../anim';
 import {handFont, sansFont} from '../theme';
 
-/* Palette « salle de contrôle » : nuit bleue + bleu électrique et vert de la vidéo source. */
+/* Palette « papier quadrillé » de la série (comme la capsule ISO 9001) ; WHITE = encre du texte, PANEL = carte blanche. */
 export const LOGO = 'promo/logo.png';
-export const NIGHT = '#0A1324';
-export const PANEL = '#13213A';
-export const LINE = '#2A3B5E';
-export const WHITE = '#F4F7FF';
-export const DIM = '#9AA8C4';
-export const BLUE = '#2F7BFF';
-export const CYAN = '#3FD7FF';
-export const GREEN = '#2BD98C';
-export const ORANGE = '#FF9F1C';
-export const YEL = '#FFD23F';
-export const RED = '#FF4D5E';
-export const VIO = '#9B7BFF';
+export const PAPER = '#F8F5EC';
+export const NIGHT = '#14213D';
+export const PANEL = '#FFFFFF';
+export const LINE = '#D5DBE6';
+export const WHITE = '#14213D';
+export const DIM = '#5B6577';
+export const BLUE = '#2F6FDB';
+export const CYAN = '#1E9BD7';
+export const GREEN = '#1FA67A';
+export const ORANGE = '#F28C1E';
+export const YEL = '#F5B700';
+export const RED = '#E5484D';
+export const VIO = '#7B5CD6';
+export const BP = '#1C4C9C';
 export const PH = (p: string) => staticFile(p);
 
 export type Pt = {n: number; l: string; sub: string; at: number; end: number; c: string};
@@ -53,7 +55,7 @@ export const Abs: React.FC<{x: number; y: number; w?: number; h?: number; childr
   <div style={{position: 'absolute', left: x, top: y, width: w, height: h, ...style}}>{children}</div>
 );
 export const Chip: React.FC<{children: React.ReactNode; c?: string; q?: number; size?: number; dark?: boolean; style?: React.CSSProperties}> = ({children, c = BLUE, q = 1, size = 34, dark = false, style}) => (
-  <div style={{display: 'inline-flex', alignItems: 'center', gap: 12, padding: '12px 26px', borderRadius: 50, background: c, color: dark ? NIGHT : '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: size, transform: `scale(${q})`, boxShadow: `0 0 30px ${c}66`, whiteSpace: 'nowrap', ...style}}>{children}</div>
+  <div style={{display: 'inline-flex', alignItems: 'center', gap: 12, padding: '12px 26px', borderRadius: 50, background: c, color: dark ? NIGHT : '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: size, transform: `scale(${q})`, boxShadow: `0 12px 28px ${c}55`, whiteSpace: 'nowrap', ...style}}>{children}</div>
 );
 export const Row: React.FC<{y: number; children: React.ReactNode; gap?: number}> = ({y, children, gap = 14}) => (
   <Abs x={0} y={y} w={1080} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap, flexWrap: 'wrap', padding: '0 40px', boxSizing: 'border-box'}}>{children}</Abs>
@@ -61,13 +63,14 @@ export const Row: React.FC<{y: number; children: React.ReactNode; gap?: number}>
 export const Title: React.FC<{children: React.ReactNode; y?: number; size?: number; o?: number}> = ({children, y = 330, size = 56, o = 1}) => (
   <Abs x={50} y={y} w={980} style={{textAlign: 'center', opacity: o}}><T size={size}>{children}</T></Abs>
 );
-export const Glow: React.FC<{children: React.ReactNode; c?: string}> = ({children, c = CYAN}) => <span style={{color: c, textShadow: `0 0 24px ${c}AA`}}>{children}</span>;
+/** Surligneur : texte encre, trait de couleur sous les mots. */
+export const Glow: React.FC<{children: React.ReactNode; c?: string}> = ({children, c = CYAN}) => <span style={{backgroundImage: `linear-gradient(${c}77, ${c}77)`, backgroundRepeat: 'no-repeat', backgroundSize: '100% 42%', backgroundPosition: '0 88%', padding: '0 4px'}}>{children}</span>;
 /** Panneau HUD : fond translucide, coins en équerre lumineux. */
 export const Hud: React.FC<{x: number; y: number; w: number; h: number; c?: string; children?: React.ReactNode; style?: React.CSSProperties}> = ({x, y, w, h, c = CYAN, children, style}) => {
   const k = 34;
   const cor = (s: React.CSSProperties) => <div style={{position: 'absolute', width: k, height: k, borderColor: c, borderStyle: 'solid', borderWidth: 0, ...s}} />;
   return (
-    <Abs x={x} y={y} w={w} h={h} style={{background: `${PANEL}E6`, borderRadius: 18, boxShadow: `0 0 0 2px ${c}33, 0 30px 60px rgba(0,0,0,0.45)`, ...style}}>
+    <Abs x={x} y={y} w={w} h={h} style={{background: PANEL, borderRadius: 18, boxShadow: `0 0 0 2px ${c}44, 0 24px 50px rgba(20,33,61,0.16)`, ...style}}>
       {cor({left: -6, top: -6, borderLeftWidth: 5, borderTopWidth: 5})}
       {cor({right: -6, top: -6, borderRightWidth: 5, borderTopWidth: 5})}
       {cor({left: -6, bottom: -6, borderLeftWidth: 5, borderBottomWidth: 5})}
@@ -82,7 +85,7 @@ export const Cite: React.FC<{y: number; children: React.ReactNode; o?: number}> 
 export const Photo: React.FC<{src: string; x: number; y: number; w: number; h: number; q?: number; r?: number; pos?: string; children?: React.ReactNode; filter?: string; o?: number; c?: string}> = ({src, x, y, w, h, q = 1, r = 0, pos = 'center', children, filter, o = 1, c = CYAN}) => {
   const t = useT();
   return (
-    <Abs x={x} y={y} w={w} h={h} style={{borderRadius: 24, overflow: 'hidden', border: `4px solid ${c}`, boxShadow: `0 0 40px ${c}44, 0 30px 60px rgba(0,0,0,0.5)`, transform: `scale(${q}) rotate(${r}deg)`, opacity: o}}>
+    <Abs x={x} y={y} w={w} h={h} style={{borderRadius: 24, overflow: 'hidden', border: '8px solid #fff', boxShadow: `0 0 0 3px ${c}, 0 26px 50px rgba(20,33,61,0.28)`, transform: `scale(${q}) rotate(${r}deg)`, opacity: o}}>
       <Img src={PH(src)} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: pos, transform: `scale(${1.04 + (t % 40) * 0.003})`, filter}} />
       {children}
     </Abs>
@@ -100,7 +103,7 @@ export const Padlock: React.FC<{size: number; c: string; closed: number; n?: num
   return (
     <div style={{position: 'relative', width: size, height: size * 1.3}}>
       <svg width={size} height={size * 0.75} style={{position: 'absolute', left: 0, top: -lift, transform: `rotate(${(1 - closed) * -18}deg)`, transformOrigin: '78% 100%'}}>
-        <path d={`M ${size * 0.24} ${size * 0.75} L ${size * 0.24} ${size * 0.4} A ${size * 0.26} ${size * 0.26} 0 0 1 ${size * 0.76} ${size * 0.4} L ${size * 0.76} ${size * 0.75}`} fill="none" stroke="#C9D3E6" strokeWidth={size * 0.11} />
+        <path d={`M ${size * 0.24} ${size * 0.75} L ${size * 0.24} ${size * 0.4} A ${size * 0.26} ${size * 0.26} 0 0 1 ${size * 0.76} ${size * 0.4} L ${size * 0.76} ${size * 0.75}`} fill="none" stroke="#8C9AB8" strokeWidth={size * 0.11} />
       </svg>
       <div style={{position: 'absolute', left: 0, top: size * 0.55, width: size, height: size * 0.75, borderRadius: size * 0.14, background: `linear-gradient(160deg, ${c}, ${c}AA)`, boxShadow: closed > 0.95 ? `0 0 ${size * 0.4}px ${c}AA` : 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: size * 0.34, color: '#fff'}}>
         {n ?? <div style={{width: size * 0.14, height: size * 0.28, borderRadius: size * 0.07, background: NIGHT}} />}
@@ -121,14 +124,14 @@ export const Cover: React.FC = () => {
   const out = prog(t, 2.0, 2.7, easeIn);
   if (out >= 1) return null;
   return (
-    <AbsoluteFill style={{zIndex: 60, background: NIGHT, opacity: 1 - out}}>
+    <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
       <Img src={PH('soudage/soudeur-etincelles.jpg')} style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 1040, objectFit: 'cover', objectPosition: '55% 50%'}} />
-      <AbsoluteFill style={{background: `linear-gradient(180deg, ${NIGHT}55 0%, ${NIGHT}00 25%, ${NIGHT}CC 46%, ${NIGHT} 54%)`}} />
+      <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 32%, ${PAPER}DD 47%, ${PAPER} 53%)`}} />
       <Abs x={0} y={95} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.4)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
       <Abs x={60} y={900} w={960} style={{textAlign: 'center'}}>
-        <div style={{display: 'inline-block', padding: '8px 26px', borderRadius: 40, border: `3px solid ${CYAN}`, color: CYAN, fontFamily: sansFont, fontWeight: 800, fontSize: 30, letterSpacing: 3}}>JOB SAFETY ANALYSIS · JSA / JHA</div>
+        <div style={{display: 'inline-block', padding: '8px 26px', borderRadius: 40, background: NIGHT, color: '#fff', fontFamily: sansFont, fontWeight: 800, fontSize: 30, letterSpacing: 3}}>JOB SAFETY ANALYSIS · JSA / JHA</div>
         <T size={96} style={{marginTop: 26, textTransform: 'uppercase', letterSpacing: -2}}>Maîtrise de la</T>
-        <T size={260} style={{letterSpacing: 6, lineHeight: 0.95}}><Glow c={CYAN}>JSA</Glow></T>
+        <T size={240} style={{letterSpacing: 6, lineHeight: 1}}><span style={{background: YEL, padding: '0 34px', borderRadius: 24}}>JSA</span></T>
         <T size={50} color={DIM} style={{marginTop: 10}}>Analyser chaque étape. Neutraliser le danger <span style={{color: GREEN}}>avant</span>.</T>
       </Abs>
       <Row y={1500}><LotoBoard size={78} locked={6} /></Row>
@@ -150,17 +153,17 @@ export const ScanWipe: React.FC<{p: Pt}> = ({p}) => {
   const lock = prog(t, a + 1.15, a + 1.35, easeIn);
   return (
     <AbsoluteFill style={{zIndex: 55, pointerEvents: 'none'}}>
-      <div style={{position: 'absolute', left: 0, right: 0, top, height: Math.max(0, bot - top), overflow: 'hidden', background: NIGHT}}>
+      <div style={{position: 'absolute', left: 0, right: 0, top, height: Math.max(0, bot - top), overflow: 'hidden', background: BP}}>
         <div style={{position: 'absolute', left: 0, top: -top, width: 1080, height: 1920}}>
-          <div style={{position: 'absolute', inset: 0, backgroundImage: `linear-gradient(${p.c}22 2px, transparent 2px), linear-gradient(90deg, ${p.c}22 2px, transparent 2px)`, backgroundSize: '90px 90px'}} />
-          <div style={{position: 'absolute', left: 540 - 420, top: 520, width: 840, height: 840, borderRadius: 420, border: `3px dashed ${p.c}55`, transform: `rotate(${t * 40}deg)`}} />
+          <div style={{position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.12) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,0.12) 2px, transparent 2px)', backgroundSize: '90px 90px'}} />
+          <div style={{position: 'absolute', left: 540 - 420, top: 520, width: 840, height: 840, borderRadius: 420, border: '3px dashed rgba(255,255,255,0.35)', transform: `rotate(${t * 40}deg)`}} />
           <Abs x={0} y={470} w={1080} style={{textAlign: 'center'}}>
-            <Mono size={34} color={p.c}>// MODULE {String(p.n).padStart(2, '0')} / 06</Mono>
-            <T size={300} color={WHITE} style={{marginTop: 10, textShadow: `0 0 50px ${p.c}`}}>0{dig}</T>
+            <Mono size={34} color="#ffffffcc">// MODULE {String(p.n).padStart(2, '0')} / 06</Mono>
+            <T size={300} color="#fff" style={{marginTop: 10, textShadow: `0 0 50px ${p.c}`}}>0{dig}</T>
           </Abs>
           <Abs x={60} y={1010} w={960} style={{textAlign: 'center', opacity: prog(t, a + 0.6, a + 1.0)}}>
-            <T size={78}>{p.l}</T>
-            <Hand size={50} color={p.c} style={{marginTop: 14}}>{p.sub}</Hand>
+            <T size={78} color="#fff">{p.l}</T>
+            <Hand size={50} color={p.c === BLUE || p.c === VIO ? '#BFD4FF' : p.c} style={{marginTop: 14}}>{p.sub}</Hand>
           </Abs>
           <Abs x={540 - 70} y={1260} style={{opacity: prog(t, a + 0.7, a + 1.0), transform: `scale(${1 + Math.max(0, 1 - Math.abs(t - a - 1.35) * 5) * 0.15})`}}>
             <Padlock size={140} c={p.c} closed={lock} />
@@ -183,7 +186,7 @@ export const Header: React.FC = () => {
   const locked = p ? p.n - 1 + prog(t, p.at + 1.15, p.at + 1.35) : fin ? 6 : 0;
   return (
     <AbsoluteFill style={{zIndex: 40, pointerEvents: 'none'}}>
-      <div style={{position: 'absolute', left: '50%', top: 80, transform: 'translateX(-50%)', background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 8px 24px rgba(0,0,0,0.35)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div>
+      <div style={{position: 'absolute', left: '50%', top: 80, transform: 'translateX(-50%)', background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 8px 24px rgba(20,33,61,0.12)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div>
       {(intro || p || fin) && (
         <div style={{position: 'absolute', left: 0, right: 0, top: 214, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 16, opacity: intro ? pop(t, 2.6) * (1 - prog(t, 52.8, 53.1)) : p ? pop(t, p.at + WIPE - 0.3) * (1 - prog(t, p.end - 0.3, p.end)) : pop(t, 366.5)}}>
           <LotoBoard size={22} locked={locked} />
@@ -196,9 +199,10 @@ export const Header: React.FC = () => {
 export const Bg: React.FC = () => {
   const t = useT();
   return (
-    <AbsoluteFill style={{background: `radial-gradient(ellipse at 50% 35%, #142546 0%, ${NIGHT} 65%)`}}>
-      <AbsoluteFill style={{backgroundImage: 'linear-gradient(rgba(63,215,255,0.05) 2px, transparent 2px), linear-gradient(90deg, rgba(63,215,255,0.05) 2px, transparent 2px)', backgroundSize: '72px 72px', backgroundPosition: `0 ${(t * 8) % 72}px`}} />
-      <div style={{position: 'absolute', left: 0, right: 0, top: ((t * 120) % 2400) - 240, height: 240, background: 'linear-gradient(180deg, transparent, rgba(63,215,255,0.05), transparent)'}} />
+    <AbsoluteFill style={{background: PAPER}}>
+      <AbsoluteFill style={{backgroundImage: 'linear-gradient(rgba(20,33,61,0.045) 2px, transparent 2px), linear-gradient(90deg, rgba(20,33,61,0.045) 2px, transparent 2px)', backgroundSize: '60px 60px', backgroundPosition: `0 ${(t * 5) % 60}px`}} />
+      <div style={{position: 'absolute', right: -170, top: 320 + Math.sin(t * 0.3) * 40, width: 440, height: 440, borderRadius: 220, background: `${CYAN}18`}} />
+      <div style={{position: 'absolute', left: -150, top: 1250 + Math.cos(t * 0.25) * 40, width: 380, height: 380, borderRadius: 190, background: `${YEL}22`}} />
     </AbsoluteFill>
   );
 };

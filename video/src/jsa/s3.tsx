@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Img, random} from 'remotion';
 import {F} from '../iso/ui';
-import {Abs, BLUE, Chip, CYAN, DIM, easeIn, easeInOut, easeOut, Glow, GREEN, Hud, LINE, LotoBoard, Mono, NIGHT, PANEL, PH, Photo, pop, prog, RED, Row, Sc, spring, T, Title, useT, VIO, WHITE, YEL} from './kit';
+import {Abs, BLUE, Chip, CYAN, DIM, easeIn, easeInOut, easeOut, Glow, GREEN, Hud, LINE, LotoBoard, Mono, NIGHT, ORANGE, PANEL, PH, Photo, pop, prog, RED, Row, Sc, spring, T, Title, useT, VIO, WHITE, YEL} from './kit';
 
 /* ─────────── PARTIE 4 : les critères de déclenchement ─────────── */
 
@@ -12,7 +12,7 @@ const Toolbox: React.FC = () => {
   return (
     <AbsoluteFill>
       <Title>Quand sortir cet outil ?</Title>
-      <Abs x={290} y={1000} w={500} h={300} style={{background: `linear-gradient(180deg, ${RED}, #B8323A)`, borderRadius: 24, boxShadow: '0 30px 60px rgba(0,0,0,0.5)'}}><div style={{margin: '120px auto 0', width: 140, height: 40, borderRadius: 10, background: '#C9D3E6'}} /></Abs>
+      <Abs x={290} y={1000} w={500} h={300} style={{background: `linear-gradient(180deg, ${RED}, #B8323A)`, borderRadius: 24, boxShadow: '0 30px 60px rgba(0,0,0,0.5)'}}><div style={{margin: '120px auto 0', width: 140, height: 40, borderRadius: 10, background: '#8C9AB8'}} /></Abs>
       <Abs x={360} y={1000 - open * 420} w={360} h={440} style={{opacity: open, zIndex: 0}}>
         <Hud x={0} y={0} w={360} h={440} c={YEL}><Abs x={0} y={60} w={360} style={{textAlign: 'center'}}><F n="clipboard" size={150} /><T size={70} color={YEL}>JSA</T></Abs></Hud>
       </Abs>
@@ -52,7 +52,7 @@ const Board: React.FC = () => {
         <Abs x={30} y={24} w={940} style={{display: 'flex', justifyContent: 'space-between'}}><Mono size={26} color={YEL}>DÉCLENCHEURS</Mono><Mono size={26} color={YEL}>STATUT</Mono></Abs>
         {TRIG.map((r, i) => (
           <Abs key={i} x={30} y={90 + i * 160} w={940} h={140} style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `2px solid ${LINE}`}}>
-            <Flap text={r.l.padEnd(23, ' ')} at={r.at - 0.3} size={30} c={WHITE} />
+            <Flap text={r.l.padEnd(23, ' ')} at={r.at - 0.3} size={30} c="#fff" />
             <div style={{opacity: pop(t, r.at + 0.5), transform: `scale(${spring(t, r.at + 0.5)})`}}><Chip c={GREEN} dark size={26}>AVANT ✓</Chip></div>
           </Abs>
         ))}
@@ -82,7 +82,7 @@ const Dna: React.FC = () => {
             <div style={{position: 'absolute', left: Math.min(xa, xb), top: y + 10, width: Math.abs(xa - xb), height: 6, background: letter && lit ? YEL : LINE, opacity: 0.8}} />
             <div style={{position: 'absolute', left: xa - 20, top: y - 7, width: 40, height: 40, borderRadius: 20, background: CYAN, opacity: 0.5 + za * 0.5, transform: `scale(${0.8 + za * 0.25})`}} />
             <div style={{position: 'absolute', left: xb - 20, top: y - 7, width: 40, height: 40, borderRadius: 20, background: GREEN, opacity: 0.5 - za * 0.5, transform: `scale(${0.8 - za * 0.25})`}} />
-            {letter && lit && <Abs x={500} y={y - 30} w={80} style={{textAlign: 'center', transform: `scale(${spring(t, 278.0 + li * 0.12)})`}}><T size={70} color={YEL} style={{textShadow: `0 0 30px ${YEL}`}}>{L[li]}</T></Abs>}
+            {letter && lit && <Abs x={500} y={y - 30} w={80} style={{textAlign: 'center', transform: `scale(${spring(t, 278.0 + li * 0.12)})`}}><T size={70} color={ORANGE}>{L[li]}</T></Abs>}
           </React.Fragment>
         );
       })}
@@ -109,13 +109,13 @@ const Versus: React.FC = () => {
   return (
     <AbsoluteFill>
       <Abs x={0} y={420} w={540} h={1000} style={{transform: `translateX(${(1 - l) * -540}px)`, background: `linear-gradient(160deg, ${BLUE}, #123A8A)`, clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 20}}>
-        <F n="loupe" size={200} /><T size={110}>JSA</T><Mono size={26} color="#CFE0FF">LA LOUPE</Mono>
+        <F n="loupe" size={200} /><T size={110} color="#fff">JSA</T><Mono size={26} color="#CFE0FF">LA LOUPE</Mono>
       </Abs>
       <Abs x={540} y={420} w={540} h={1000} style={{transform: `translateX(${(1 - r) * 540}px)`, background: `linear-gradient(200deg, ${VIO}, #4B2FA8)`, clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0 100%)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 20, paddingLeft: 60, boxSizing: 'border-box'}}>
-        <F n="globe" size={200} /><T size={50} style={{textAlign: 'center'}}>ÉVALUATION<br />DES RISQUES</T><Mono size={26} color="#E3D9FF">LE GRAND ANGLE</Mono>
+        <F n="globe" size={200} /><T size={50} color="#fff" style={{textAlign: 'center'}}>ÉVALUATION<br />DES RISQUES</T><Mono size={26} color="#E3D9FF">LE GRAND ANGLE</Mono>
       </Abs>
       <Abs x={390} y={770} w={300} h={300} style={{transform: `scale(${vs}) rotate(${(1 - vs) * 90}deg)`, borderRadius: 150, background: YEL, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 80px ${YEL}`}}><T size={140} color={NIGHT}>VS</T></Abs>
-      {t > 289.9 && <Row y={1460}><Chip c={PANEL} size={36} style={{opacity: pop(t, 289.9), border: `3px solid ${YEL}`}}>Un truc qui bloque même les pros</Chip></Row>}
+      {t > 289.9 && <Row y={1460}><Chip c={PANEL} dark size={36} style={{opacity: pop(t, 289.9), border: `3px solid ${YEL}`}}>Un truc qui bloque même les pros</Chip></Row>}
     </AbsoluteFill>
   );
 };
@@ -136,7 +136,7 @@ const Lens: React.FC = () => {
         {[0.25, 0.5, 0.75].map((k) => <div key={k} style={{position: 'absolute', left: `${k * 100}%`, top: 0, bottom: 0, width: 1, background: '#ffffff22', opacity: 1 - z}} />)}
         <div style={{position: 'absolute', left: 30, top: 24}}><Mono size={34} color={z > 0.5 ? CYAN : VIO}>● REC  {mm} mm</Mono></div>
         <div style={{position: 'absolute', left: 30, bottom: 30}}><Chip c={z > 0.5 ? CYAN : VIO} dark={z > 0.5} size={34}>{z > 0.5 ? 'JSA · une loupe, un microscope' : 'Évaluation des risques · grand angle'}</Chip></div>
-        {z > 0.9 && t > 305.9 && <div style={{position: 'absolute', right: 30, top: 90, opacity: pop(t, 305.9)}}><Chip c={PANEL} size={28} style={{border: `3px solid ${CYAN}`}}>1 tâche · juste avant l’intervention</Chip></div>}
+        {z > 0.9 && t > 305.9 && <div style={{position: 'absolute', right: 30, top: 90, opacity: pop(t, 305.9)}}><Chip c={PANEL} dark size={28} style={{border: `3px solid ${CYAN}`}}>1 tâche · juste avant l’intervention</Chip></div>}
       </Abs>
       {split && (
         <AbsoluteFill style={{opacity: pop(t, 310.4)}}>
@@ -185,7 +185,7 @@ const Trap: React.FC = () => {
         const fx = 220 + random(`px${i}`) * 520, fy = 1000 + random(`py${i}`) * 180;
         return <Img key={i} src={PH(src)} style={{position: 'absolute', left: fx - 140, top: -400 + p * (fy + 400) - 140, width: 280, height: 280, objectFit: 'contain', transform: `rotate(${p * (random(`pr${i}`) - 0.5) * 120}deg)`, opacity: t > at ? 1 : 0, filter: 'drop-shadow(0 20px 20px rgba(0,0,0,0.5))'}} />;
       })}
-      {t > 337.0 && <Abs x={80} y={520} style={{opacity: pop(t, 337.0)}}><Chip c={PANEL} size={36} style={{border: `3px dashed ${DIM}`}}>harnais, lignes de vie… en vrac</Chip></Abs>}
+      {t > 337.0 && <Abs x={80} y={520} style={{opacity: pop(t, 337.0)}}><Chip c={PANEL} dark size={36} style={{border: `3px dashed ${DIM}`}}>harnais, lignes de vie… en vrac</Chip></Abs>}
       {t > 339.0 && <Row y={700}><T size={44} color={DIM} style={{opacity: pop(t, 339.0)}}>Le recruteur attend <Glow c={YEL}>tout autre chose</Glow></T></Row>}
     </AbsoluteFill>
   );
@@ -204,7 +204,7 @@ const Answer: React.FC = () => {
           <T size={50} style={{fontWeight: 700, lineHeight: 1.35}}>{ANS.slice(0, n)}<span style={{opacity: Math.floor(t * 3) % 2 && n < ANS.length ? 1 : 0}}>|</span></T>
         </div>
       </Abs>
-      {t > 351.5 && <Abs x={640} y={1180} style={{transform: `rotate(-12deg) scale(${spring(t, 351.5, 8, 18)})`}}><div style={{padding: '24px 46px', background: RED, clipPath: 'polygon(0 20%, 15% 0, 30% 15%, 50% 0, 65% 18%, 85% 2%, 100% 25%, 92% 50%, 100% 78%, 80% 100%, 60% 85%, 40% 100%, 22% 84%, 0 95%, 8% 55%)'}}><T size={90}>BAM !</T></div></Abs>}
+      {t > 351.5 && <Abs x={640} y={1180} style={{transform: `rotate(-12deg) scale(${spring(t, 351.5, 8, 18)})`}}><div style={{padding: '24px 46px', background: RED, clipPath: 'polygon(0 20%, 15% 0, 30% 15%, 50% 0, 65% 18%, 85% 2%, 100% 25%, 92% 50%, 100% 78%, 80% 100%, 60% 85%, 40% 100%, 22% 84%, 0 95%, 8% 55%)'}}><T size={90} color="#fff">BAM !</T></div></Abs>}
     </AbsoluteFill>
   );
 };
@@ -257,7 +257,7 @@ const Pendulum: React.FC = () => {
     <AbsoluteFill>
       <Title>Une réflexion de fond</Title>
       <Abs x={538} y={460} w={4} h={4} style={{transformOrigin: '2px 2px', transform: `rotate(${a}deg)`}}>
-        <div style={{position: 'absolute', left: 0, top: 0, width: 4, height: 600, background: '#C9D3E6'}} />
+        <div style={{position: 'absolute', left: 0, top: 0, width: 4, height: 600, background: '#8C9AB8'}} />
         <div style={{position: 'absolute', left: -60, top: 590, width: 124, height: 124, borderRadius: 62, background: `radial-gradient(circle at 35% 35%, #fff, ${CYAN})`, boxShadow: `0 0 40px ${CYAN}`}} />
       </Abs>
       <Abs x={50} y={1200} w={440} style={{opacity: pop(t, 372.5), textAlign: 'center', transform: `scale(${a < -10 ? 1.08 : 1})`}}><Chip c={GREEN} dark size={34}>Prévention absolue ?</Chip></Abs>
