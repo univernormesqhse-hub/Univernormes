@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: 'Montserrat'; src: url('assets/Montserrat.woff2') format('woff2'); font-weight: 100 900; }
+      @font-face { font-family: 'Patrick Hand'; src: url('assets/PatrickHand.woff2') format('woff2'); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #F1EDE3; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: 'Montserrat', sans-serif; color: #0E2A5C; }
+      .scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      .paper { position: absolute; inset: 0; background: radial-gradient(circle at 50% 35%, #FBF8F1 0%, #F1EDE3 60%, #E7E1D3 100%); }
+      .dots { position: absolute; inset: -200px 0 0 0; background-image: radial-gradient(rgba(14,42,92,0.13) 3px, transparent 3px); background-size: 54px 54px; }
+      .night { position: absolute; inset: 0; background: radial-gradient(circle at 50% 40%, #173B78 0%, #0E2A5C 50%, #081A3A 100%); }
+      .logo { position: absolute; left: 50%; top: 70px; transform: translateX(-50%); background: #fff; border-radius: 26px; padding: 12px 30px; box-shadow: 0 10px 30px rgba(14,42,92,0.15); }
+      .logo img { height: 80px; display: block; }
+      .title { position: absolute; left: 60px; width: 960px; top: 300px; text-align: center; font-weight: 900; font-size: 70px; line-height: 1.05; letter-spacing: -1.5px; }
+      .title em { font-style: normal; color: #2E9B3E; }
+      .title .r { color: #D9443A; }
+      .sub { position: absolute; left: 60px; width: 960px; top: 470px; text-align: center; font-family: 'Patrick Hand', cursive; font-size: 46px; color: #4A5A78; }
+      .kicker { display: inline-block; padding: 10px 28px; border-radius: 40px; background: #2E9B3E; color: #fff; font-weight: 900; font-size: 30px; letter-spacing: 4px; }
+      .photo { position: absolute; border-radius: 34px; overflow: hidden; border: 8px solid #fff; box-shadow: 0 34px 70px rgba(14,42,92,0.28); background: #ccc; }
+      .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tag { position: absolute; padding: 14px 30px; border-radius: 18px; font-weight: 900; font-size: 54px; color: #fff; background: #0E2A5C; box-shadow: 0 16px 34px rgba(14,42,92,0.3); white-space: nowrap; }
+      .tag.g { background: #2E9B3E; } .tag.r { background: #D9443A; } .tag.o { background: #E8892B; } .tag.w { background: #fff; color: #0E2A5C; }
+      .chip { position: absolute; display: inline-flex; align-items: center; gap: 16px; padding: 16px 32px 16px 20px; border-radius: 60px; font-weight: 800; font-size: 38px; color: #0E2A5C; background: #fff; white-space: nowrap; box-shadow: 0 16px 34px rgba(14,42,92,0.22); }
+      .chip img { width: 62px; height: 62px; }
+      .chip.r { background: #D9443A; color: #fff; } .chip.g { background: #2E9B3E; color: #fff; } .chip.n { background: #0E2A5C; color: #fff; }
+      .card { position: absolute; border-radius: 30px; background: #fff; padding: 30px 36px; box-shadow: 0 26px 56px rgba(14,42,92,0.22); }
+      .card h3 { font-size: 28px; letter-spacing: 3px; color: #2E9B3E; font-weight: 900; }
+      .card p { font-size: 50px; font-weight: 900; margin-top: 6px; line-height: 1.05; }
+      .step { position: absolute; width: 300px; border-radius: 26px 26px 0 0; box-shadow: 0 20px 40px rgba(14,42,92,0.25); transform-origin: 50% 100%; text-align: center; color: #fff; }
+      .step .n { font-weight: 900; font-size: 92px; line-height: 1; margin-top: 26px; }
+      .step .a { font-weight: 900; font-size: 50px; margin-top: 8px; }
+      .step .l { font-family: 'Patrick Hand', cursive; font-size: 40px; margin-top: 4px; opacity: 0.92; }
+      .row { position: absolute; left: 110px; width: 860px; height: 108px; border-radius: 24px; background: #fff; display: flex; align-items: center; gap: 22px; padding: 0 28px; box-shadow: 0 14px 30px rgba(14,42,92,0.16); }
+      .row .k { width: 66px; height: 66px; border-radius: 33px; background: #0E2A5C; color: #fff; font-weight: 900; font-size: 34px; display: flex; align-items: center; justify-content: center; }
+      .row .t { font-size: 42px; font-weight: 800; }
+      .row .w { margin-left: auto; width: 76px; height: 76px; }
+      .pip { position: absolute; top: 224px; height: 50px; padding: 0 22px; border-radius: 25px; border: 4px solid rgba(14,42,92,0.25); font-weight: 900; font-size: 26px; color: rgba(14,42,92,0.72); display: flex; align-items: center; background: rgba(255,255,255,0.92); }
+      .stamp { position: absolute; border: 12px solid #D9443A; color: #D9443A; border-radius: 22px; padding: 12px 36px; font-weight: 900; font-size: 70px; letter-spacing: 2px; background: rgba(255,255,255,0.9); white-space: nowrap; }
+      .stamp.g { border-color: #2E9B3E; color: #2E9B3E; }
+      .wipe { position: absolute; left: -400px; top: -200px; width: 1880px; height: 2320px; transform: rotate(-12deg); }
+      .cap { position: absolute; left: 70px; width: 940px; top: 1560px; display: flex; justify-content: center; }
+      .cap span { display: inline-block; background: #fff; color: #0E2A5C; padding: 16px 32px; border-radius: 22px; font-weight: 800; font-size: 50px; line-height: 1.15; text-align: center; box-shadow: 0 14px 34px rgba(14,42,92,0.22); border-bottom: 6px solid #2E9B3E; }
+      .cap b { color: #2E9B3E; font-weight: 900; }
+      .pillar { position: absolute; top: 880px; width: 200px; height: 520px; transform-origin: 50% 100%; }
+      .pillar .col { position: absolute; left: 30px; right: 30px; top: 90px; bottom: 0; border-radius: 16px 16px 0 0; background: linear-gradient(90deg, #DCD5C4, #fff 45%, #DCD5C4); box-shadow: 0 16px 30px rgba(14,42,92,0.2); }
+      .pillar img { position: absolute; left: 50px; top: 0; width: 100px; height: 100px; }
+      .pillar .lab { position: absolute; left: -10px; right: -10px; top: 210px; text-align: center; font-weight: 900; font-size: 34px; line-height: 1.05; }
+      .pillar .ok { position: absolute; left: 62px; top: 360px; width: 76px; height: 76px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="63.6" data-width="1080" data-height="1920">
+      <div class="paper"></div>
+      <div class="dots" id="dots"></div>
+
+      <!-- Couverture : titre de la thématique (image 0) -->
+      <div class="scene clip" id="cover" data-start="0" data-duration="3.4" data-track-index="0" style="z-index: 30; background: #0E2A5C;">
+        <div class="photo" style="left: 0; top: 0; width: 1080px; height: 1180px; border: none; border-radius: 0;"><img id="covimg" src="assets/photo-surcharge.jpg" style="filter: brightness(0.7) saturate(1.05);" /></div>
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,42,92,0.7) 0%, rgba(14,42,92,0.05) 20%, rgba(14,42,92,0.15) 42%, #0E2A5C 62%);"></div>
+        <div class="logo"><img src="assets/logo.png" /></div>
+        <div style="position: absolute; left: 50px; width: 980px; top: 1000px; text-align: center; color: #fff;">
+          <div class="kicker">SÉCURITÉ AU TRAVAIL</div>
+          <div style="font-weight: 900; font-size: 92px; line-height: 1; margin-top: 30px; letter-spacing: -2px;">LES ACRONYMES</div>
+          <div style="font-weight: 900; font-size: 92px; line-height: 1; letter-spacing: -2px;">DE SÉCURITÉ</div>
+          <div style="font-family: 'Patrick Hand', cursive; font-size: 62px; color: #8FD99A; margin-top: 22px;">Comment les différencier ?</div>
+        </div>
+        <div class="tag g" id="ct1" style="left: 70px; top: 1500px;">JSA</div>
+        <div class="tag w" id="ct2" style="left: 300px; top: 1500px;">SOP</div>
+        <div class="tag o" id="ct3" style="left: 530px; top: 1500px;">SWMS</div>
+        <div class="tag r" id="ct4" style="left: 800px; top: 1500px;">RAMS</div>
+      </div>
+
+      <!-- En-tête permanent : logo + progression JSA → SOP → SWMS -->
+      <div class="scene clip" id="header" data-start="3.0" data-duration="57.4" data-track-index="1" style="z-index: 20; pointer-events: none;">
+        <div class="logo"><img src="assets/logo.png" /></div>
+        <div class="pip" id="pp1" style="left: 300px;">1 · JSA</div>
+        <div class="pip" id="pp2" style="left: 470px;">2 · SOP</div>
+        <div class="pip" id="pp3" style="left: 640px;">3 · SWMS</div>
+      </div>
+
+      <!-- S1 : l'avalanche d'acronymes -->
+      <div class="scene clip" id="s1" data-start="3.1" data-duration="5.0" data-track-index="2">
+        <div class="title" id="s1t">Une <span class="r">avalanche</span> d'acronymes</div>
+        <div id="s1spin" style="position: absolute; inset: 0;">
+          <div class="photo" id="s1p" style="left: 190px; top: 520px; width: 700px; height: 900px;"><img id="s1img" src="assets/photo-surcharge.jpg" /></div>
+          <div class="tag r av" style="left: 60px; top: 560px; transform: rotate(-12deg);">RAMS</div>
+          <div class="tag g av" style="left: 760px; top: 600px; transform: rotate(9deg);">JSA</div>
+          <div class="tag av" style="left: 40px; top: 820px; transform: rotate(7deg);">SOP</div>
+          <div class="tag o av" style="left: 780px; top: 860px; transform: rotate(-8deg);">SWMS</div>
+          <div class="tag w av" style="left: 90px; top: 1090px; transform: rotate(-5deg);">JSA</div>
+          <div class="tag av" style="left: 730px; top: 1120px; transform: rotate(12deg);">RAMS</div>
+          <div class="tag g av" style="left: 120px; top: 1330px; transform: rotate(10deg);">SWMS</div>
+          <div class="tag o av" style="left: 690px; top: 1350px; transform: rotate(-11deg);">SOP</div>
+          <div class="tag r av" style="left: 400px; top: 1420px; transform: rotate(4deg);">JSA</div>
+        </div>
+      </div>
+
+      <!-- S2 : une progression logique -->
+      <div class="scene clip" id="s2" data-start="7.95" data-duration="5.6" data-track-index="2">
+        <div class="title" id="s2t">Une progression <em>logique</em></div>
+        <div class="photo" id="s2p" style="left: 90px; top: 520px; width: 330px; height: 330px; border-radius: 165px;"><img src="assets/photo-lunettes.jpg" style="object-position: 50% 30%;" /></div>
+        <div class="step" id="st1" style="left: 75px; top: 1130px; height: 290px; background: #2E9B3E;"><div class="n">1</div><div class="a">JSA</div><div class="l">Anticiper</div></div>
+        <div class="step" id="st2" style="left: 390px; top: 960px; height: 460px; background: #0E2A5C;"><div class="n">2</div><div class="a">SOP</div><div class="l">Exécuter</div></div>
+        <div class="step" id="st3" style="left: 705px; top: 790px; height: 630px; background: #E8892B;"><div class="n">3</div><div class="a">SWMS</div><div class="l">Haut risque</div></div>
+        <svg id="s2arrow" style="position: absolute; left: 0; top: 0;" width="1080" height="1920" viewBox="0 0 1080 1920"><path id="s2path" d="M 225 1080 C 360 900, 480 960, 540 910 S 760 720, 860 700" fill="none" stroke="#D9443A" stroke-width="12" stroke-linecap="round" stroke-dasharray="14 22" /><path id="s2head" d="M 830 670 L 878 698 L 840 738" fill="none" stroke="#D9443A" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        <div class="chip g" id="s2c" style="left: 470px; top: 600px;"><img src="assets/ic-check.png" />N'importe quelle tâche</div>
+      </div>
+
+      <!-- S3 : 1 · JSA -->
+      <div class="scene clip" id="s3" data-start="13.55" data-duration="10.9" data-track-index="2">
+        <div class="title" id="s3t" style="font-size: 120px; top: 290px; letter-spacing: 6px;"><em>JSA</em></div>
+        <div class="sub" id="s3s" style="top: 430px;">Job Safety Analysis · analyse de sécurité</div>
+        <div class="chip n" id="s3c1" style="left: 300px; top: 530px;"><img src="assets/ic-loupe.png" />ANTICIPER</div>
+        <div class="photo" id="s3p1" style="left: 120px; top: 650px; width: 840px; height: 760px;"><img id="s3img1" src="assets/photo-jsa.jpg" style="object-position: 50% 35%;" /></div>
+        <div class="photo" id="s3p2" style="left: 120px; top: 560px; width: 840px; height: 470px;"><img id="s3img2" src="assets/photo-danger.jpg" style="object-position: 50% 50%;" /></div>
+        <div class="chip r" id="s3off" style="left: 590px; top: 520px;"><svg width="54" height="54" viewBox="0 0 54 54"><path d="M 17 14 A 18 18 0 1 0 37 14" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" /><line x1="27" y1="6" x2="27" y2="26" stroke="#fff" stroke-width="6" stroke-linecap="round" /></svg>Outil éteint</div>
+        <svg id="s3ret" style="position: absolute; left: 430px; top: 690px;" width="220" height="220" viewBox="0 0 220 220"><circle cx="110" cy="110" r="90" fill="none" stroke="#D9443A" stroke-width="8" /><circle cx="110" cy="110" r="44" fill="none" stroke="#D9443A" stroke-width="6" /><line x1="110" y1="0" x2="110" y2="50" stroke="#D9443A" stroke-width="8" /><line x1="110" y1="170" x2="110" y2="220" stroke="#D9443A" stroke-width="8" /><line x1="0" y1="110" x2="50" y2="110" stroke="#D9443A" stroke-width="8" /><line x1="170" y1="110" x2="220" y2="110" stroke="#D9443A" stroke-width="8" /></svg>
+        <div class="row" id="r1" style="top: 1070px;"><div class="k">1</div><div class="t">Étape 1 · préparer</div><img class="w" src="assets/ic-danger.png" /></div>
+        <div class="row" id="r2" style="top: 1195px;"><div class="k">2</div><div class="t">Étape 2 · découper</div><img class="w" src="assets/ic-danger.png" /></div>
+        <div class="row" id="r3" style="top: 1320px;"><div class="k">3</div><div class="t">Étape 3 · ranger</div><img class="w" src="assets/ic-danger.png" /></div>
+      </div>
+
+      <!-- S4 : 2 · SOP -->
+      <div class="scene clip" id="s4" data-start="24.3" data-duration="12.9" data-track-index="2">
+        <div class="title" id="s4t" style="font-size: 120px; top: 290px; letter-spacing: 6px;"><span style="color: #0E2A5C;">SOP</span></div>
+        <div class="sub" id="s4s" style="top: 430px;">Standard Operating Procedure · procédure standard</div>
+        <div class="card" id="s4a" style="left: 70px; top: 700px; width: 380px; height: 470px; text-align: center;"><img src="assets/ic-loupe.png" style="width: 130px;" /><h3>JSA</h3><p style="font-size: 44px;">L'analyse</p><div style="margin-top: 18px; display: flex; justify-content: center; gap: 10px;"><img src="assets/ic-danger.png" style="width: 60px;" /><img src="assets/ic-danger.png" style="width: 60px;" /><img src="assets/ic-danger.png" style="width: 60px;" /></div></div>
+        <svg id="s4arr" style="position: absolute; left: 470px; top: 880px;" width="140" height="100" viewBox="0 0 140 100"><path d="M 6 50 L 120 50 M 86 16 L 124 50 L 86 84" fill="none" stroke="#2E9B3E" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        <div class="card" id="s4b" style="left: 630px; top: 640px; width: 390px; height: 590px; border-top: 22px solid #0E2A5C;">
+          <h3 style="color: #0E2A5C;">MODE D'EMPLOI</h3>
+          <div class="ln" style="display: flex; align-items: center; gap: 14px; margin-top: 28px;"><div style="width: 50px; height: 50px; border-radius: 25px; background: #2E9B3E; color: #fff; font-weight: 900; font-size: 28px; display: flex; align-items: center; justify-content: center;">1</div><div class="bar" style="height: 16px; width: 230px; border-radius: 8px; background: #C9D2E3; transform-origin: 0 50%;"></div></div>
+          <div class="ln" style="display: flex; align-items: center; gap: 14px; margin-top: 34px;"><div style="width: 50px; height: 50px; border-radius: 25px; background: #2E9B3E; color: #fff; font-weight: 900; font-size: 28px; display: flex; align-items: center; justify-content: center;">2</div><div class="bar" style="height: 16px; width: 190px; border-radius: 8px; background: #C9D2E3; transform-origin: 0 50%;"></div></div>
+          <div class="ln" style="display: flex; align-items: center; gap: 14px; margin-top: 34px;"><div style="width: 50px; height: 50px; border-radius: 25px; background: #2E9B3E; color: #fff; font-weight: 900; font-size: 28px; display: flex; align-items: center; justify-content: center;">3</div><div class="bar" style="height: 16px; width: 210px; border-radius: 8px; background: #C9D2E3; transform-origin: 0 50%;"></div></div>
+          <div class="ln" style="display: flex; align-items: center; gap: 14px; margin-top: 34px;"><div style="width: 50px; height: 50px; border-radius: 25px; background: #2E9B3E; color: #fff; font-weight: 900; font-size: 28px; display: flex; align-items: center; justify-content: center;">4</div><div class="bar" style="height: 16px; width: 170px; border-radius: 8px; background: #C9D2E3; transform-origin: 0 50%;"></div></div>
+          <img src="assets/ic-check.png" id="s4ok" style="position: absolute; right: 26px; bottom: 26px; width: 90px;" />
+        </div>
+        <div class="photo" id="s4p" style="left: 110px; top: 560px; width: 860px; height: 620px; opacity: 0;"><img id="s4img" src="assets/photo-meuleuse.jpg" style="object-position: 50% 45%;" /></div>
+        <div class="chip" id="s4c1" style="left: 80px; top: 1215px;"><img src="assets/ic-bouclier.png" />Mesures de sécurité</div>
+        <div class="chip n" id="s4c2" style="left: 340px; top: 1335px;"><img src="assets/ic-outils.png" />Technique la plus sûre</div>
+        <div id="s4epi" style="position: absolute; left: 0; width: 1080px; top: 1215px; display: flex; justify-content: center; gap: 24px;">
+          <div class="chip g epi" style="position: relative;"><img src="assets/ic-casque.png" />Casque</div>
+          <div class="chip g epi" style="position: relative;"><img src="assets/ic-gants.png" />Gants</div>
+          <div class="chip g epi" style="position: relative;"><img src="assets/ic-lunettes.png" />Lunettes</div>
+        </div>
+      </div>
+
+      <!-- S5 : 3 · SWMS (fond inversé : haut risque) -->
+      <div class="scene clip" id="s5" data-start="37.0" data-duration="12.2" data-track-index="2">
+        <div class="night"></div>
+        <div class="title" id="s5t" style="font-size: 120px; top: 290px; letter-spacing: 6px; color: #fff;"><span style="color: #F2A65A;">SWMS</span></div>
+        <div class="sub" id="s5s" style="top: 430px; color: #C9D6EE;">Safe Work Method Statement</div>
+        <div class="photo" id="s5p" style="left: 110px; top: 560px; width: 860px; height: 820px; border-color: #F2A65A;"><img id="s5img" src="assets/photo-grues.jpg" style="object-position: 50% 40%;" /></div>
+        <div class="tag r" id="s5hr" style="left: 330px; top: 520px;">⚠ HAUT RISQUE</div>
+        <div id="s5sh" style="position: absolute; left: 340px; top: 690px; width: 400px; height: 470px;">
+          <svg width="400" height="470" viewBox="0 0 400 470"><path d="M 200 14 L 380 80 L 380 230 C 380 340, 300 420, 200 456 C 100 420, 20 340, 20 230 L 20 80 Z" fill="#2E9B3E" stroke="#fff" stroke-width="14" /><path d="M 120 240 L 180 300 L 290 180" fill="none" stroke="#fff" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          <div style="position: absolute; left: -100px; right: -100px; top: 486px; text-align: center; font-weight: 900; font-size: 52px; color: #fff;">Le bouclier ultime</div>
+        </div>
+        <div class="card" id="s5a" style="left: 70px; top: 720px; width: 400px; text-align: center;"><img src="assets/ic-loupe.png" style="width: 110px;" /><h3>JSA</h3><p style="font-size: 42px;">L'analyse</p></div>
+        <div class="card" id="s5b" style="left: 610px; top: 720px; width: 400px; text-align: center;"><img src="assets/ic-memo.png" style="width: 110px;" /><h3 style="color: #0E2A5C;">SOP</h3><p style="font-size: 42px;">La procédure</p></div>
+        <div class="card" id="s5f" style="left: 190px; top: 640px; width: 700px; height: 640px; text-align: center; border-top: 26px solid #F2A65A;">
+          <img src="assets/ic-classeur.png" style="width: 200px; margin-top: 30px;" />
+          <h3 style="color: #B85F10; font-size: 34px; margin-top: 20px;">SWMS</h3>
+          <p style="font-size: 54px;">Dossier de conformité</p>
+          <p style="font-family: 'Patrick Hand', cursive; font-weight: 400; font-size: 42px; color: #4A5A78;">analyse + procédure</p>
+        </div>
+        <div class="stamp" id="s5st" style="left: 160px; top: 1300px; transform: rotate(-6deg);">EXIGÉ PAR LA LOI</div>
+      </div>
+
+      <!-- S6 : l'acronyme n'a aucune importance -->
+      <div class="scene clip" id="s6" data-start="49.05" data-duration="3.85" data-track-index="2">
+        <div class="title" id="s6t">L'acronyme ? <span class="r">Peu importe</span></div>
+        <div class="card" id="s6doc" style="left: 170px; top: 520px; width: 740px; height: 880px; padding: 0; overflow: hidden;">
+          <div style="height: 200px; background: #0E2A5C; position: relative; overflow: hidden;">
+            <div class="hd" style="position: absolute; left: 0; right: 0; top: 50px; text-align: center; font-weight: 900; font-size: 96px; color: #fff;">JSA</div>
+            <div class="hd" style="position: absolute; left: 0; right: 0; top: 50px; text-align: center; font-weight: 900; font-size: 96px; color: #F2A65A;">SOP</div>
+            <div class="hd" style="position: absolute; left: 0; right: 0; top: 50px; text-align: center; font-weight: 900; font-size: 96px; color: #8FD99A;">SWMS</div>
+            <div class="hd" style="position: absolute; left: 0; right: 0; top: 50px; text-align: center; font-weight: 900; font-size: 96px; color: #FF8A80;">RAMS</div>
+            <div id="s6x" style="position: absolute; left: 120px; right: 120px; top: 92px; height: 16px; background: #D9443A; transform-origin: 0 50%;"></div>
+          </div>
+          <div style="padding: 50px 60px;">
+            <div style="height: 22px; width: 560px; border-radius: 11px; background: #DDE3EE;"></div>
+            <div style="height: 22px; width: 480px; border-radius: 11px; background: #DDE3EE; margin-top: 30px;"></div>
+            <div style="height: 22px; width: 600px; border-radius: 11px; background: #DDE3EE; margin-top: 30px;"></div>
+            <div style="height: 22px; width: 420px; border-radius: 11px; background: #DDE3EE; margin-top: 30px;"></div>
+            <div style="height: 22px; width: 540px; border-radius: 11px; background: #DDE3EE; margin-top: 30px;"></div>
+            <div style="height: 22px; width: 380px; border-radius: 11px; background: #DDE3EE; margin-top: 30px;"></div>
+          </div>
+        </div>
+        <div class="chip r" id="s6c" style="left: 280px; top: 1290px;">Aucune importance</div>
+      </div>
+
+      <!-- S7 : les 4 piliers -->
+      <div class="scene clip" id="s7" data-start="52.75" data-duration="7.85" data-track-index="2">
+        <div class="title" id="s7t">L'essentiel : <em>4 piliers</em></div>
+        <div class="photo" id="s7p" style="left: 390px; top: 450px; width: 300px; height: 300px; border-radius: 150px;"><img src="assets/photo-responsable.jpg" style="object-position: 50% 25%;" /></div>
+        <div id="s7roof" style="position: absolute; left: 70px; width: 940px; top: 800px; height: 80px; border-radius: 14px; background: #0E2A5C; color: #fff; font-weight: 900; font-size: 40px; letter-spacing: 8px; display: flex; align-items: center; justify-content: center;">SÉCURITÉ DE LA TÂCHE</div>
+        <div class="pillar" id="pl1" style="left: 80px;"><div class="col"></div><img src="assets/ic-clipboard.png" /><div class="lab">Définir la tâche</div><img class="ok" src="assets/ic-check.png" /></div>
+        <div class="pillar" id="pl2" style="left: 310px;"><div class="col"></div><img src="assets/ic-memo.png" /><div class="lab">Lister les étapes</div><img class="ok" src="assets/ic-check.png" /></div>
+        <div class="pillar" id="pl3" style="left: 540px;"><div class="col"></div><img src="assets/ic-danger.png" /><div class="lab">Évaluer les risques</div><img class="ok" src="assets/ic-check.png" /></div>
+        <div class="pillar" id="pl4" style="left: 770px;"><div class="col"></div><img src="assets/ic-bouclier.png" /><div class="lab">Imposer les contrôles</div><img class="ok" src="assets/ic-check.png" /></div>
+        <div style="position: absolute; left: 50px; width: 980px; top: 1400px; height: 34px; border-radius: 10px; background: #0E2A5C;"></div>
+      </div>
+
+      <!-- Carte de fin -->
+      <div class="scene clip" id="end" data-start="60.4" data-duration="3.2" data-track-index="3" style="z-index: 40; background: linear-gradient(180deg, #FBFAF6, #EEF3EE);">
+        <img src="assets/logo.png" style="position: absolute; left: 190px; top: 700px; width: 700px;" id="endlogo" />
+        <div id="endtag" style="position: absolute; left: 60px; width: 960px; top: 1080px; text-align: center; font-weight: 900; font-size: 44px; color: #0E2A5C;">Des normes aujourd'hui,<br /><span style="color: #2E9B3E;">un avenir durable demain</span></div>
+      </div>
+
+      <!-- Transitions : volet diagonal marine / vert -->
+      <div class="scene clip" id="w1" data-start="13.25" data-duration="0.75" data-track-index="4" style="z-index: 25;"><div class="wipe" style="background: #2E9B3E;"></div><div class="wipe" style="background: #0E2A5C;"></div></div>
+      <div class="scene clip" id="w2" data-start="24.0" data-duration="0.75" data-track-index="4" style="z-index: 25;"><div class="wipe" style="background: #2E9B3E;"></div><div class="wipe" style="background: #0E2A5C;"></div></div>
+      <div class="scene clip" id="w3" data-start="36.7" data-duration="0.75" data-track-index="4" style="z-index: 25;"><div class="wipe" style="background: #E8892B;"></div><div class="wipe" style="background: #0E2A5C;"></div></div>
+      <div class="scene clip" id="w4" data-start="48.75" data-duration="0.75" data-track-index="4" style="z-index: 25;"><div class="wipe" style="background: #2E9B3E;"></div><div class="wipe" style="background: #0E2A5C;"></div></div>
+
+      <!-- Sous-titres (voix d'origine) -->
+      <div id="caps" style="position: absolute; inset: 0; z-index: 35; pointer-events: none;">
+      <div class="clip cap" id="cap5" data-start="4.40" data-duration="0.40" data-track-index="9"><span>cette <b>avalanche</b></span></div>
+      <div class="clip cap" id="cap6" data-start="4.80" data-duration="0.80" data-track-index="9"><span>d&#x27;acronymes de</span></div>
+      <div class="clip cap" id="cap7" data-start="5.60" data-duration="0.80" data-track-index="9"><span>sécurité donne</span></div>
+      <div class="clip cap" id="cap8" data-start="6.40" data-duration="1.60" data-track-index="9"><span>vite le <b>vertige</b>.</span></div>
+      <div class="clip cap" id="cap9" data-start="8.00" data-duration="0.40" data-track-index="9"><span>Pourtant,</span></div>
+      <div class="clip cap" id="cap10" data-start="8.40" data-duration="0.80" data-track-index="9"><span>derrière ce jargon</span></div>
+      <div class="clip cap" id="cap11" data-start="9.20" data-duration="1.20" data-track-index="9"><span>se cache une <b>progression</b></span></div>
+      <div class="clip cap" id="cap12" data-start="10.40" data-duration="0.80" data-track-index="9"><span>très <b>logique</b> pour</span></div>
+      <div class="clip cap" id="cap13" data-start="11.20" data-duration="1.20" data-track-index="9"><span>sécuriser n&#x27;importe</span></div>
+      <div class="clip cap" id="cap14" data-start="12.40" data-duration="1.20" data-track-index="9"><span>quelle tâche.</span></div>
+      <div class="clip cap" id="cap15" data-start="13.60" data-duration="0.40" data-track-index="9"><span>Tout commence par</span></div>
+      <div class="clip cap" id="cap16" data-start="14.00" data-duration="1.20" data-track-index="9"><span>l&#x27;<b>anticipation</b></span></div>
+      <div class="clip cap" id="cap17" data-start="15.20" data-duration="1.20" data-track-index="9"><span>avec la <b>JSA</b>,</span></div>
+      <div class="clip cap" id="cap18" data-start="16.40" data-duration="0.80" data-track-index="9"><span>ou analyse de</span></div>
+      <div class="clip cap" id="cap19" data-start="17.20" data-duration="1.20" data-track-index="9"><span>sécurité.</span></div>
+      <div class="clip cap" id="cap20" data-start="18.40" data-duration="0.40" data-track-index="9"><span>Avant même</span></div>
+      <div class="clip cap" id="cap21" data-start="18.80" data-duration="0.80" data-track-index="9"><span>d&#x27;allumer l&#x27;outil,</span></div>
+      <div class="clip cap" id="cap22" data-start="19.60" data-duration="1.60" data-track-index="9"><span>on décortique l&#x27;opération</span></div>
+      <div class="clip cap" id="cap23" data-start="21.20" data-duration="1.20" data-track-index="9"><span><b>étape par étape</b> pour</span></div>
+      <div class="clip cap" id="cap24" data-start="22.40" data-duration="0.40" data-track-index="9"><span>traquer chaque</span></div>
+      <div class="clip cap" id="cap25" data-start="22.80" data-duration="1.60" data-track-index="9"><span><b>danger</b> potentiel.</span></div>
+      <div class="clip cap" id="cap26" data-start="24.40" data-duration="0.40" data-track-index="9"><span>Ensuite,</span></div>
+      <div class="clip cap" id="cap27" data-start="24.80" data-duration="0.80" data-track-index="9"><span>la <b>SOP</b>,</span></div>
+      <div class="clip cap" id="cap28" data-start="25.60" data-duration="0.80" data-track-index="9"><span>ou procédure</span></div>
+      <div class="clip cap" id="cap29" data-start="26.40" data-duration="0.80" data-track-index="9"><span>standard,</span></div>
+      <div class="clip cap" id="cap30" data-start="27.20" data-duration="0.80" data-track-index="9"><span>prend le relais pour</span></div>
+      <div class="clip cap" id="cap31" data-start="28.00" data-duration="0.80" data-track-index="9"><span>transformer cette</span></div>
+      <div class="clip cap" id="cap32" data-start="28.80" data-duration="0.80" data-track-index="9"><span>analyse en <b>mode</b></span></div>
+      <div class="clip cap" id="cap33" data-start="29.60" data-duration="1.20" data-track-index="9"><span><b>d&#x27;emploi</b> concret.</span></div>
+      <div class="clip cap" id="cap34" data-start="30.80" data-duration="0.80" data-track-index="9"><span>Elle récupère les</span></div>
+      <div class="clip cap" id="cap35" data-start="31.60" data-duration="1.20" data-track-index="9"><span><b>mesures de sécurité</b></span></div>
+      <div class="clip cap" id="cap36" data-start="32.80" data-duration="0.40" data-track-index="9"><span>et dicte la</span></div>
+      <div class="clip cap" id="cap37" data-start="33.20" data-duration="1.20" data-track-index="9"><span><b>technique</b> d&#x27;exécution</span></div>
+      <div class="clip cap" id="cap38" data-start="34.40" data-duration="0.80" data-track-index="9"><span>la plus sûre,</span></div>
+      <div class="clip cap" id="cap39" data-start="35.20" data-duration="0.80" data-track-index="9"><span><b>équipement de</b></span></div>
+      <div class="clip cap" id="cap40" data-start="36.00" data-duration="1.20" data-track-index="9"><span><b>protection</b> inclus.</span></div>
+      <div class="clip cap" id="cap41" data-start="37.20" data-duration="1.20" data-track-index="9"><span>Et pour les opérations</span></div>
+      <div class="clip cap" id="cap42" data-start="38.40" data-duration="0.80" data-track-index="9"><span>à <b>haut risque</b>,</span></div>
+      <div class="clip cap" id="cap43" data-start="39.20" data-duration="0.40" data-track-index="9"><span>on déploie le</span></div>
+      <div class="clip cap" id="cap44" data-start="39.60" data-duration="1.60" data-track-index="9"><span><b>bouclier ultime</b> :</span></div>
+      <div class="clip cap" id="cap45" data-start="41.20" data-duration="1.60" data-track-index="9"><span>le <b>SWMS</b>.</span></div>
+      <div class="clip cap" id="cap46" data-start="42.80" data-duration="1.20" data-track-index="9"><span>Ce document fusionne</span></div>
+      <div class="clip cap" id="cap47" data-start="44.00" data-duration="0.80" data-track-index="9"><span>l&#x27;analyse et la</span></div>
+      <div class="clip cap" id="cap48" data-start="44.80" data-duration="1.20" data-track-index="9"><span>procédure en un</span></div>
+      <div class="clip cap" id="cap49" data-start="46.00" data-duration="0.80" data-track-index="9"><span>seul grand dossier</span></div>
+      <div class="clip cap" id="cap50" data-start="46.80" data-duration="0.80" data-track-index="9"><span>de <b>conformité</b></span></div>
+      <div class="clip cap" id="cap51" data-start="47.60" data-duration="1.60" data-track-index="9"><span><b>exigé par la loi</b>.</span></div>
+      <div class="clip cap" id="cap52" data-start="49.20" data-duration="0.80" data-track-index="9"><span>Au final,</span></div>
+      <div class="clip cap" id="cap53" data-start="50.00" data-duration="0.80" data-track-index="9"><span>l&#x27;acronyme imprimé en</span></div>
+      <div class="clip cap" id="cap54" data-start="50.80" data-duration="0.80" data-track-index="9"><span>haut de la page n&#x27;a</span></div>
+      <div class="clip cap" id="cap55" data-start="51.60" data-duration="1.20" data-track-index="9"><span><b>aucune importance</b>.</span></div>
+      <div class="clip cap" id="cap56" data-start="52.80" data-duration="0.80" data-track-index="9"><span>L&#x27;essentiel,</span></div>
+      <div class="clip cap" id="cap57" data-start="53.60" data-duration="0.80" data-track-index="9"><span>c&#x27;est qu&#x27;il réunisse</span></div>
+      <div class="clip cap" id="cap58" data-start="54.40" data-duration="1.20" data-track-index="9"><span><b>quatre piliers</b> :</span></div>
+      <div class="clip cap" id="cap59" data-start="55.60" data-duration="0.80" data-track-index="9"><span><b>définir</b> la tâche,</span></div>
+      <div class="clip cap" id="cap60" data-start="56.40" data-duration="1.20" data-track-index="9"><span><b>lister</b> les étapes,</span></div>
+      <div class="clip cap" id="cap61" data-start="57.60" data-duration="1.20" data-track-index="9"><span><b>évaluer</b> les risques</span></div>
+      <div class="clip cap" id="cap62" data-start="58.80" data-duration="0.40" data-track-index="9"><span>et <b>imposer</b> les</span></div>
+      <div class="clip cap" id="cap63" data-start="59.20" data-duration="1.00" data-track-index="9"><span>bons <b>contrôles</b>.</span></div>
+      </div>
+
+      <!-- Voix d'origine + bruitages -->
+      <audio class="clip" id="voice" src="assets/voix-origine.m4a" data-start="0" data-duration="60.6" data-volume="1" data-track-index="10"></audio>
+      <audio class="clip" id="sfx0" src="assets/sfx-pop.wav" data-start="0.1" data-duration="0.14" data-volume="0.45" data-track-index="20"></audio>
+      <audio class="clip" id="sfx1" src="assets/sfx-pop.wav" data-start="0.85" data-duration="0.14" data-volume="0.45" data-track-index="21"></audio>
+      <audio class="clip" id="sfx2" src="assets/sfx-pop.wav" data-start="1.65" data-duration="0.14" data-volume="0.45" data-track-index="22"></audio>
+      <audio class="clip" id="sfx3" src="assets/sfx-pop.wav" data-start="2.75" data-duration="0.14" data-volume="0.45" data-track-index="23"></audio>
+      <audio class="clip" id="sfx4" src="assets/sfx-whoosh.wav" data-start="3.0" data-duration="0.55" data-volume="0.45" data-track-index="20"></audio>
+      <audio class="clip" id="sfx5" src="assets/sfx-swish.wav" data-start="4.4" data-duration="0.25" data-volume="0.35" data-track-index="21"></audio>
+      <audio class="clip" id="sfx6" src="assets/sfx-thud.wav" data-start="4.6" data-duration="0.40" data-volume="0.35" data-track-index="22"></audio>
+      <audio class="clip" id="sfx7" src="assets/sfx-thud.wav" data-start="5.0" data-duration="0.40" data-volume="0.3" data-track-index="23"></audio>
+      <audio class="clip" id="sfx8" src="assets/sfx-thud.wav" data-start="5.4" data-duration="0.40" data-volume="0.3" data-track-index="20"></audio>
+      <audio class="clip" id="sfx9" src="assets/sfx-thud.wav" data-start="5.8" data-duration="0.40" data-volume="0.3" data-track-index="21"></audio>
+      <audio class="clip" id="sfx10" src="assets/sfx-tension.wav" data-start="6.3" data-duration="2.90" data-volume="0.35" data-track-index="22"></audio>
+      <audio class="clip" id="sfx11" src="assets/sfx-whoosh.wav" data-start="7.75" data-duration="0.55" data-volume="0.45" data-track-index="23"></audio>
+      <audio class="clip" id="sfx12" src="assets/sfx-pop.wav" data-start="8.7" data-duration="0.14" data-volume="0.35" data-track-index="20"></audio>
+      <audio class="clip" id="sfx13" src="assets/sfx-tick.wav" data-start="9.4" data-duration="0.05" data-volume="0.5" data-track-index="21"></audio>
+      <audio class="clip" id="sfx14" src="assets/sfx-tick.wav" data-start="9.85" data-duration="0.05" data-volume="0.5" data-track-index="22"></audio>
+      <audio class="clip" id="sfx15" src="assets/sfx-tick.wav" data-start="10.3" data-duration="0.05" data-volume="0.5" data-track-index="23"></audio>
+      <audio class="clip" id="sfx16" src="assets/sfx-riser.wav" data-start="10.6" data-duration="2.00" data-volume="0.3" data-track-index="20"></audio>
+      <audio class="clip" id="sfx17" src="assets/sfx-ding.wav" data-start="12.4" data-duration="0.70" data-volume="0.4" data-track-index="21"></audio>
+      <audio class="clip" id="sfx18" src="assets/sfx-swish.wav" data-start="13.25" data-duration="0.25" data-volume="0.5" data-track-index="22"></audio>
+      <audio class="clip" id="sfx19" src="assets/sfx-click.wav" data-start="14.0" data-duration="0.12" data-volume="0.45" data-track-index="23"></audio>
+      <audio class="clip" id="sfx20" src="assets/sfx-bass-hit.wav" data-start="15.2" data-duration="0.70" data-volume="0.45" data-track-index="20"></audio>
+      <audio class="clip" id="sfx21" src="assets/sfx-page.wav" data-start="16.4" data-duration="0.45" data-volume="0.35" data-track-index="21"></audio>
+      <audio class="clip" id="sfx22" src="assets/sfx-soft-whoosh.wav" data-start="18.3" data-duration="0.60" data-volume="0.4" data-track-index="22"></audio>
+      <audio class="clip" id="sfx23" src="assets/sfx-click.wav" data-start="18.8" data-duration="0.12" data-volume="0.5" data-track-index="23"></audio>
+      <audio class="clip" id="sfx24" src="assets/sfx-pop.wav" data-start="19.7" data-duration="0.14" data-volume="0.35" data-track-index="20"></audio>
+      <audio class="clip" id="sfx25" src="assets/sfx-pop.wav" data-start="20.4" data-duration="0.14" data-volume="0.35" data-track-index="21"></audio>
+      <audio class="clip" id="sfx26" src="assets/sfx-pop.wav" data-start="21.2" data-duration="0.14" data-volume="0.35" data-track-index="22"></audio>
+      <audio class="clip" id="sfx27" src="assets/sfx-tick.wav" data-start="22.5" data-duration="0.05" data-volume="0.5" data-track-index="23"></audio>
+      <audio class="clip" id="sfx28" src="assets/sfx-tick.wav" data-start="22.8" data-duration="0.05" data-volume="0.5" data-track-index="20"></audio>
+      <audio class="clip" id="sfx29" src="assets/sfx-tick.wav" data-start="23.1" data-duration="0.05" data-volume="0.5" data-track-index="21"></audio>
+      <audio class="clip" id="sfx30" src="assets/sfx-deep-hit.wav" data-start="22.85" data-duration="1.40" data-volume="0.35" data-track-index="22"></audio>
+      <audio class="clip" id="sfx31" src="assets/sfx-swish.wav" data-start="24.0" data-duration="0.25" data-volume="0.5" data-track-index="23"></audio>
+      <audio class="clip" id="sfx32" src="assets/sfx-bass-hit.wav" data-start="24.75" data-duration="0.70" data-volume="0.45" data-track-index="20"></audio>
+      <audio class="clip" id="sfx33" src="assets/sfx-page.wav" data-start="25.6" data-duration="0.45" data-volume="0.35" data-track-index="21"></audio>
+      <audio class="clip" id="sfx34" src="assets/sfx-whoosh.wav" data-start="27.2" data-duration="0.55" data-volume="0.35" data-track-index="22"></audio>
+      <audio class="clip" id="sfx35" src="assets/sfx-swish.wav" data-start="28.0" data-duration="0.25" data-volume="0.35" data-track-index="23"></audio>
+      <audio class="clip" id="sfx36" src="assets/sfx-stylo.wav" data-start="28.7" data-duration="1.20" data-volume="0.45" data-track-index="20"></audio>
+      <audio class="clip" id="sfx37" src="assets/sfx-validation.wav" data-start="29.9" data-duration="0.12" data-volume="0.4" data-track-index="21"></audio>
+      <audio class="clip" id="sfx38" src="assets/sfx-soft-whoosh.wav" data-start="30.7" data-duration="0.60" data-volume="0.4" data-track-index="22"></audio>
+      <audio class="clip" id="sfx39" src="assets/sfx-pop.wav" data-start="31.7" data-duration="0.14" data-volume="0.35" data-track-index="23"></audio>
+      <audio class="clip" id="sfx40" src="assets/sfx-pop.wav" data-start="33.3" data-duration="0.14" data-volume="0.35" data-track-index="20"></audio>
+      <audio class="clip" id="sfx41" src="assets/sfx-pop.wav" data-start="35.2" data-duration="0.14" data-volume="0.35" data-track-index="21"></audio>
+      <audio class="clip" id="sfx42" src="assets/sfx-pop.wav" data-start="35.45" data-duration="0.14" data-volume="0.35" data-track-index="22"></audio>
+      <audio class="clip" id="sfx43" src="assets/sfx-pop.wav" data-start="35.7" data-duration="0.14" data-volume="0.35" data-track-index="23"></audio>
+      <audio class="clip" id="sfx44" src="assets/sfx-swish.wav" data-start="36.7" data-duration="0.25" data-volume="0.5" data-track-index="20"></audio>
+      <audio class="clip" id="sfx45" src="assets/sfx-tension.wav" data-start="37.3" data-duration="2.90" data-volume="0.3" data-track-index="21"></audio>
+      <audio class="clip" id="sfx46" src="assets/sfx-deep-hit.wav" data-start="38.4" data-duration="1.40" data-volume="0.45" data-track-index="22"></audio>
+      <audio class="clip" id="sfx47" src="assets/sfx-cadenas.wav" data-start="39.7" data-duration="0.26" data-volume="0.45" data-track-index="23"></audio>
+      <audio class="clip" id="sfx48" src="assets/sfx-bass-hit.wav" data-start="41.2" data-duration="0.70" data-volume="0.5" data-track-index="20"></audio>
+      <audio class="clip" id="sfx49" src="assets/sfx-soft-whoosh.wav" data-start="42.6" data-duration="0.60" data-volume="0.4" data-track-index="21"></audio>
+      <audio class="clip" id="sfx50" src="assets/sfx-whoosh.wav" data-start="43.3" data-duration="0.55" data-volume="0.35" data-track-index="22"></audio>
+      <audio class="clip" id="sfx51" src="assets/sfx-whoosh.wav" data-start="44.2" data-duration="0.55" data-volume="0.35" data-track-index="23"></audio>
+      <audio class="clip" id="sfx52" src="assets/sfx-thud.wav" data-start="45.4" data-duration="0.40" data-volume="0.45" data-track-index="20"></audio>
+      <audio class="clip" id="sfx53" src="assets/sfx-tampon.wav" data-start="47.6" data-duration="0.35" data-volume="0.6" data-track-index="21"></audio>
+      <audio class="clip" id="sfx54" src="assets/sfx-swish.wav" data-start="48.75" data-duration="0.25" data-volume="0.5" data-track-index="22"></audio>
+      <audio class="clip" id="sfx55" src="assets/sfx-page.wav" data-start="49.4" data-duration="0.45" data-volume="0.35" data-track-index="23"></audio>
+      <audio class="clip" id="sfx56" src="assets/sfx-tick.wav" data-start="50.0" data-duration="0.05" data-volume="0.45" data-track-index="20"></audio>
+      <audio class="clip" id="sfx57" src="assets/sfx-tick.wav" data-start="50.45" data-duration="0.05" data-volume="0.45" data-track-index="21"></audio>
+      <audio class="clip" id="sfx58" src="assets/sfx-tick.wav" data-start="50.9" data-duration="0.05" data-volume="0.45" data-track-index="22"></audio>
+      <audio class="clip" id="sfx59" src="assets/sfx-tick.wav" data-start="51.3" data-duration="0.05" data-volume="0.45" data-track-index="23"></audio>
+      <audio class="clip" id="sfx60" src="assets/sfx-deep-hit.wav" data-start="51.65" data-duration="1.40" data-volume="0.4" data-track-index="20"></audio>
+      <audio class="clip" id="sfx61" src="assets/sfx-whoosh.wav" data-start="52.5" data-duration="0.55" data-volume="0.45" data-track-index="21"></audio>
+      <audio class="clip" id="sfx62" src="assets/sfx-pop.wav" data-start="53.4" data-duration="0.14" data-volume="0.35" data-track-index="22"></audio>
+      <audio class="clip" id="sfx63" src="assets/sfx-riser.wav" data-start="54.4" data-duration="2.00" data-volume="0.3" data-track-index="23"></audio>
+      <audio class="clip" id="sfx64" src="assets/sfx-ding.wav" data-start="55.7" data-duration="0.70" data-volume="0.4" data-track-index="20"></audio>
+      <audio class="clip" id="sfx65" src="assets/sfx-ding.wav" data-start="56.5" data-duration="0.70" data-volume="0.4" data-track-index="21"></audio>
+      <audio class="clip" id="sfx66" src="assets/sfx-ding.wav" data-start="57.7" data-duration="0.70" data-volume="0.4" data-track-index="22"></audio>
+      <audio class="clip" id="sfx67" src="assets/sfx-ding.wav" data-start="59.3" data-duration="0.70" data-volume="0.4" data-track-index="23"></audio>
+      <audio class="clip" id="sfx68" src="assets/sfx-tampon.wav" data-start="59.85" data-duration="0.35" data-volume="0.5" data-track-index="20"></audio>
+      <audio class="clip" id="sfx69" src="assets/sfx-signature-marque.wav" data-start="60.5" data-duration="2.60" data-volume="0.6" data-track-index="21"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const pop = (sel, at, from) => tl.fromTo(sel, Object.assign({ opacity: 0, scale: 0.6 }, from || {}), { opacity: 1, scale: 1, x: 0, y: 0, duration: 0.45, ease: 'back.out(2)' }, at);
+      const rise = (sel, at) => tl.fromTo(sel, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, at);
+      const out = (sel, at) => tl.to(sel, { opacity: 0, duration: 0.3, ease: 'power2.in' }, at);
+      const pip = (sel, color, at) => tl.to(sel, { borderColor: color, backgroundColor: color, color: '#fff', duration: 0.3 }, at);
+
+      // fond : la trame de points glisse
+      tl.fromTo('#dots', { y: 0 }, { y: 216, duration: 63.6, ease: 'none' }, 0);
+
+      // couverture : les acronymes tombent sur la voix
+      tl.fromTo('#covimg', { scale: 1.0 }, { scale: 1.12, duration: 3.4, ease: 'none' }, 0);
+      pop('#ct1', 0.1, { y: -80 }); pop('#ct2', 0.85, { y: -80 }); pop('#ct3', 1.65, { y: -80 }); pop('#ct4', 2.75, { y: -80 });
+      tl.to('#cover', { yPercent: -100, duration: 0.45, ease: 'power3.in' }, 3.0);
+
+      // en-tête
+      tl.fromTo('#header .pip', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }, 9.3);
+      pip('#pp1', '#2E9B3E', 15.2); pip('#pp2', '#0E2A5C', 24.8); pip("#pp3", "#B85F10", 41.2);
+
+      // S1 : avalanche
+      rise('#s1t', 3.3);
+      tl.fromTo('#s1p', { opacity: 0, scale: 0.8, rotation: -4 }, { opacity: 1, scale: 1, rotation: 2, duration: 0.6, ease: 'power3.out' }, 3.3);
+      tl.fromTo('#s1img', { scale: 1.05 }, { scale: 1.25, duration: 4.8, ease: 'none' }, 3.3);
+      tl.fromTo('#s1 .av', { opacity: 0, y: -700 }, { opacity: 1, y: 0, duration: 0.55, ease: 'bounce.out', stagger: 0.22 }, 4.4);
+      tl.fromTo('#s1spin', { rotation: 0, scale: 1 }, { rotation: 7, scale: 1.08, duration: 1.4, ease: 'sine.inOut' }, 6.4);
+      tl.fromTo('#s1spin', { filter: 'blur(0px)' }, { filter: 'blur(5px)', duration: 0.6, ease: 'power1.in', yoyo: true, repeat: 1 }, 6.6);
+      tl.to('#s1', { xPercent: -100, duration: 0.45, ease: 'power3.in' }, 7.75);
+
+      // S2 : progression
+      tl.fromTo('#s2', { xPercent: 100 }, { xPercent: 0, duration: 0.45, ease: 'power3.out' }, 7.95);
+      rise('#s2t', 8.4);
+      pop('#s2p', 8.7);
+      tl.fromTo('#st1', { scaleY: 0 }, { scaleY: 1, duration: 0.5, ease: 'back.out(1.6)' }, 9.4);
+      tl.fromTo('#st2', { scaleY: 0 }, { scaleY: 1, duration: 0.5, ease: 'back.out(1.6)' }, 9.85);
+      tl.fromTo('#st3', { scaleY: 0 }, { scaleY: 1, duration: 0.5, ease: 'back.out(1.6)' }, 10.3);
+      tl.fromTo('#s2path', { strokeDashoffset: 0, opacity: 0 }, { strokeDashoffset: -180, opacity: 1, duration: 2.2, ease: 'none' }, 10.8);
+      tl.fromTo('#s2head', { opacity: 0, scale: 0.5, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: 0.3 }, 11.7);
+      pop('#s2c', 12.4, { x: 120 });
+
+      // S3 : JSA
+      tl.fromTo('#s3t', { opacity: 0, scale: 2.4 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'power4.out' }, 15.2);
+      rise('#s3s', 16.4);
+      pop('#s3c1', 14.0, { y: -40 });
+      tl.fromTo('#s3p1', { opacity: 0, rotationY: -25, transformPerspective: 1400 }, { opacity: 1, rotationY: 8, duration: 0.8, ease: 'power3.out' }, 13.75);
+      tl.fromTo('#s3img1', { scale: 1.05 }, { scale: 1.2, duration: 4.6, ease: 'none' }, 13.75);
+      out(['#s3p1', '#s3c1'], 18.25);
+      tl.fromTo('#s3p2', { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 18.4);
+      tl.fromTo('#s3img2', { scale: 1.0 }, { scale: 1.18, duration: 5.8, ease: 'none' }, 18.4);
+      pop('#s3off', 18.8, { x: 100 });
+      pop('#r1', 19.7, { x: -200 }); pop('#r2', 20.4, { x: -200 }); pop('#r3', 21.2, { x: -200 });
+      tl.fromTo('#s3 .row .w', { opacity: 0, scale: 0, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: 'back.out(3)', stagger: 0.3 }, 22.5);
+      tl.to('#s3 .row', { borderLeft: '14px solid #D9443A', duration: 0.2, stagger: 0.3 }, 22.5);
+      tl.fromTo('#s3ret', { opacity: 0, scale: 2, rotation: 90, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: 'power3.out' }, 22.8);
+      tl.to('#s3ret', { scale: 1.12, duration: 0.25, yoyo: true, repeat: 3, ease: 'sine.inOut' }, 23.3);
+
+      // S4 : SOP
+      tl.fromTo('#s4t', { opacity: 0, scale: 2.4 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'power4.out' }, 24.75);
+      rise('#s4s', 25.6);
+      tl.fromTo('#s4a', { opacity: 0, x: -200 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out' }, 27.2);
+      tl.fromTo('#s4arr', { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.4, ease: 'power2.out' }, 28.0);
+      tl.fromTo('#s4b', { opacity: 0, rotationY: 50, transformPerspective: 1400 }, { opacity: 1, rotationY: -8, duration: 0.7, ease: 'power3.out' }, 28.2);
+      tl.fromTo('#s4b .bar', { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: 'power2.out', stagger: 0.3 }, 28.7);
+      tl.fromTo('#s4ok', { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(3)' }, 29.9);
+      out(['#s4a', '#s4arr', '#s4b'], 30.6);
+      tl.fromTo('#s4p', { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out' }, 30.8);
+      tl.fromTo('#s4img', { scale: 1.05, x: 0 }, { scale: 1.22, x: -30, duration: 6.2, ease: 'none' }, 30.8);
+      pop('#s4c1', 31.7, { x: -150 });
+      pop('#s4c2', 33.3, { x: 150 });
+      out(['#s4c1', '#s4c2'], 34.95);
+      tl.fromTo('#s4 .epi', { opacity: 0, y: 80, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'back.out(2)', stagger: 0.25 }, 35.2);
+
+      // S5 : SWMS
+      tl.fromTo('#s5t', { opacity: 0, scale: 2.4 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'power4.out' }, 41.2);
+      rise('#s5s', 41.6);
+      tl.fromTo('#s5p', { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out' }, 37.3);
+      tl.fromTo('#s5img', { scale: 1.3, y: 60 }, { scale: 1.08, y: 0, duration: 5.4, ease: 'none' }, 37.3);
+      tl.fromTo('#s5hr', { opacity: 0, scale: 2.2 }, { opacity: 1, scale: 1, duration: 0.3, ease: 'power4.out' }, 38.4);
+      tl.to('#s5hr', { opacity: 0.4, duration: 0.15, yoyo: true, repeat: 5 }, 38.8);
+      tl.fromTo('#s5sh', { opacity: 0, scale: 0.2, y: 120 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.8)' }, 39.6);
+      tl.fromTo('#s5p img', { filter: 'brightness(1)' }, { filter: 'brightness(0.45)', duration: 0.5 }, 39.6);
+      out(['#s5p', '#s5sh', '#s5hr'], 42.6);
+      pop('#s5a', 43.3, { x: -250 }); pop('#s5b', 44.2, { x: 250 });
+      tl.to('#s5a', { x: 260, opacity: 0, scale: 0.6, duration: 0.45, ease: 'power3.in' }, 45.0);
+      tl.to('#s5b', { x: -260, opacity: 0, scale: 0.6, duration: 0.45, ease: 'power3.in' }, 45.0);
+      tl.fromTo('#s5f', { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.55, ease: 'back.out(1.8)' }, 45.4);
+      tl.fromTo('#s5st', { opacity: 0, scale: 2.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: 'power4.in' }, 47.6);
+      tl.fromTo('#s5f', { x: 0 }, { x: 10, duration: 0.05, repeat: 5, yoyo: true }, 47.9);
+
+      // S6 : l'acronyme importe peu
+      rise('#s6t', 49.3);
+      tl.fromTo('#s6doc', { opacity: 0, y: 120, rotation: -3 }, { opacity: 1, y: 0, rotation: 0, duration: 0.6, ease: 'power3.out' }, 49.4);
+      tl.set('#s6 .hd', { yPercent: 120, opacity: 0 }, 0);
+      [50.0, 50.45, 50.9, 51.3].forEach((t, i) => {
+        tl.to('#s6 .hd:nth-child(' + (i + 1) + ')', { yPercent: 0, opacity: 1, duration: 0.2, ease: 'power2.out' }, t);
+        if (i < 3) tl.to('#s6 .hd:nth-child(' + (i + 1) + ')', { yPercent: -120, opacity: 0, duration: 0.2, ease: 'power2.in' }, t + 0.42);
+      });
+      tl.fromTo('#s6x', { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: 'power2.inOut' }, 51.65);
+      pop('#s6c', 51.75, { y: 60 });
+      tl.to('#s6', { yPercent: -100, duration: 0.45, ease: 'power3.in' }, 52.5);
+
+      // S7 : 4 piliers
+      tl.fromTo('#s7', { yPercent: 100 }, { yPercent: 0, duration: 0.45, ease: 'power3.out' }, 52.75);
+      rise('#s7t', 53.0);
+      pop('#s7p', 53.4);
+      tl.fromTo('#s7 .pillar .col', { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: 0.5, ease: 'back.out(1.4)', stagger: 0.12 }, 54.5);
+      tl.fromTo('#s7 .pillar > img:not(.ok)', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.12 }, 54.8);
+      tl.fromTo('#s7 .pillar .lab', { opacity: 0.25 }, { opacity: 0.25, duration: 0.01 }, 54.5);
+      tl.fromTo('#s7 .pillar .ok', { opacity: 0, scale: 0 }, { opacity: 0, scale: 0, duration: 0.01 }, 54.5);
+      [['#pl1', 55.6], ['#pl2', 56.4], ['#pl3', 57.6], ['#pl4', 59.2]].forEach(([p, t]) => {
+        tl.to(p + ' .lab', { opacity: 1, color: '#2E9B3E', duration: 0.25 }, t);
+        tl.to(p + ' .ok', { opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(3)' }, t + 0.1);
+        tl.to(p + ' .col', { background: 'linear-gradient(90deg, #BFE3C4, #fff 45%, #BFE3C4)', duration: 0.3 }, t);
+      });
+      tl.fromTo('#s7roof', { opacity: 0, y: -260 }, { opacity: 1, y: 0, duration: 0.4, ease: 'bounce.out' }, 59.75);
+
+      // fin
+      tl.fromTo('#end', { opacity: 0 }, { opacity: 1, duration: 0.35 }, 60.4);
+      tl.fromTo('#endlogo', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.6)' }, 60.6);
+      tl.fromTo('#endtag', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5 }, 61.1);
+
+      // volets diagonaux : entrée puis sortie
+      [['#w1', 13.25], ['#w2', 24.0], ['#w3', 36.7], ['#w4', 48.75]].forEach(([w, at]) => {
+        tl.fromTo(w + ' .wipe', { xPercent: 100 }, { xPercent: 0, duration: 0.32, stagger: 0.06, ease: 'power3.in' }, at);
+        tl.to(w + ' .wipe', { xPercent: -100, duration: 0.32, stagger: 0.06, ease: 'power3.out' }, at + 0.38);
+      });
+
+      window.__timelines['main'] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
