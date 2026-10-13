@@ -826,7 +826,7 @@ const Agile: React.FC = () => {
         <svg width={460} height={260}><path d={Array.from({length: 46}, (_, i) => `${i ? 'L' : 'M'}${i * 10} ${130 + Math.sin(i * 0.35 + t * 4) * 70}`).join(' ')} fill="none" stroke={GREEN} strokeWidth={40} strokeLinecap="round" /></svg>
         <T size={40} color={GREEN} style={{textAlign: 'center'}}>Des outils agiles et adaptés</T>
       </Abs>
-      <Row y={1150}><Photo src="iso26/tablette-matrice.jpg" x={-380} y={0} w={760} h={300} q={pop(t, 228.5)} /></Row>
+      <Photo src="iso26/tablette-matrice.jpg" x={160} y={1060} w={760} h={340} q={pop(t, 228.5)} />
     </>
   );
 };
