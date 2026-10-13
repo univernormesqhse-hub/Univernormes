@@ -23,8 +23,11 @@ du skill `video-promo-diagnostic-qhse` : fond papier, cartes blanches, inclinais
 
 - Voix d'origine conservée (`assets/voix-origine.m4a`, coupée avant le générique Gemini Notebook).
 - Sous-titres repris des sous-titres incrustés de la vidéo d'origine (la transcription automatique était bloquée par le réseau).
-- 7 photos réalistes générées par IA (Higgsfield, modèle Z Image), personnes africaines noires (CLAUDE.md) :
-  `photo-surcharge`, `photo-lunettes`, `photo-jsa`, `photo-danger`, `photo-meuleuse`, `photo-grues`, `photo-responsable` (.jpg).
+- Photos réelles de la banque UNIVERSNORMES (`video/public/`), professionnels africains noirs :
+  couverture (`verites/operatrice-tablette`), avalanche (`docs5/dossiers`), progression (`causerie/manager`),
+  JSA (`promo/terrain-controle`, `arsenal/jsa`), SOP (`permisfeu/meuleuse`), SWMS (`zones/chantier`),
+  4 piliers (`causerie/animatrice`). Les 7 images générées sur Higgsfield n'ont pas pu être téléchargées
+  (domaine d8j0ntlcm91z4.cloudfront.net bloqué par le réseau de l'environnement).
 - Icônes Fluent Emoji (MIT), polices Montserrat et Patrick Hand, bruitages de `video/public/sfx2`.
 
 ## Customizations
