@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: 'Montserrat'; src: url('assets/Montserrat.woff2') format('woff2'); font-weight: 100 900; }
+      @font-face { font-family: 'Patrick Hand'; src: url('assets/PatrickHand.woff2') format('woff2'); }
+      @font-face { font-family: 'Archivo Black'; src: url('assets/ArchivoBlack.woff2') format('woff2'); }
+      @font-face { font-family: 'Space Mono'; src: url('assets/SpaceMono-Bold.woff2') format('woff2'); font-weight: 700; }
+      @font-face { font-family: 'Caveat'; src: url('assets/Caveat-600.woff2') format('woff2'); font-weight: 600; }
+      :root { --navy: #0E2A5C; --green: #2E9B3E; --paper: #F1EDE3; --red: #D9443A; --ink: #0B1A33; --pale: #B9C1CF; --grey: #9AA0AA; --hl: #BFE8C6; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--paper); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: 'Montserrat', sans-serif; color: var(--ink); }
+      .scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      /* fond papier millimétré (Ray) teinté marine */
+      .paper { position: absolute; inset: 0; background-color: var(--paper); background-image: linear-gradient(rgba(14,42,92,0.075) 2px, transparent 2px), linear-gradient(90deg, rgba(14,42,92,0.075) 2px, transparent 2px); background-size: 68px 68px; }
+      .light { position: absolute; inset: 0; background-color: #F4F5F7; background-image: radial-gradient(rgba(14,42,92,0.12) 2.5px, transparent 2.5px); background-size: 46px 46px; }
+      .warm { position: absolute; inset: 0; background: #FBFAF4; overflow: hidden; }
+      .ring { position: absolute; border-radius: 50%; border: 90px solid var(--green); filter: blur(60px); opacity: 0.16; }
+      .logo { position: absolute; left: 50%; top: 64px; transform: translateX(-50%); background: #fff; border-radius: 24px; padding: 10px 26px; box-shadow: 0 10px 30px rgba(14,42,92,0.14); }
+      .logo img { height: 70px; display: block; }
+      /* karaoké (4 variantes) */
+      .kara { position: absolute; left: 60px; width: 960px; text-align: center; font-weight: 800; font-size: 62px; line-height: 1.14; letter-spacing: -1px; color: var(--navy); }
+      .kara .w { display: inline-block; position: relative; }
+      .kara.ink .w { color: var(--pale); }
+      .kara.grey .w { color: #C2C6CD; font-weight: 700; }
+      .kara .w.h::before { content: ''; position: absolute; left: -6px; right: -6px; bottom: 6px; height: 44%; background: var(--hl); z-index: -1; transform: scaleX(var(--hl-x, 0)); transform-origin: 0 50%; }
+      .kara .w.h { z-index: 0; }
+      /* composants */
+      .card { position: absolute; background: #fff; border: 6px solid var(--navy); border-radius: 22px; box-shadow: 14px 14px 0 var(--navy); }
+      .card.red { box-shadow: 14px 14px 0 var(--red); }
+      .card.grn { box-shadow: 14px 14px 0 var(--green); }
+      .soft { position: absolute; background: #fff; border-radius: 34px; box-shadow: 0 34px 70px rgba(14,42,92,0.22); overflow: hidden; }
+      .mono { font-family: 'Space Mono', monospace; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; }
+      .lab { position: absolute; font-family: 'Space Mono', monospace; font-weight: 700; font-size: 26px; letter-spacing: 3px; color: #5B6577; text-transform: uppercase; white-space: nowrap; }
+      .chip { position: absolute; background: var(--navy); color: #fff; font-weight: 800; font-size: 44px; padding: 12px 30px 14px; border-radius: 18px; box-shadow: 0 16px 30px rgba(14,42,92,0.28); white-space: nowrap; }
+      .chip.g { background: var(--green); } .chip.r { background: var(--red); } .chip.w { background: #fff; color: var(--navy); }
+      .pill { position: absolute; background: var(--ink); color: #fff; font-family: 'Space Mono'; font-weight: 700; font-size: 28px; letter-spacing: 3px; padding: 8px 22px; border-radius: 8px; white-space: nowrap; }
+      .photo { position: absolute; overflow: hidden; border-radius: 28px; border: 8px solid #fff; box-shadow: 0 30px 60px rgba(14,42,92,0.25); background: #ccd; }
+      .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .big { font-family: 'Archivo Black'; text-transform: uppercase; }
+      .hand { font-family: 'Patrick Hand', cursive; }
+      .burst { position: absolute; width: 900px; height: 900px; }
+      .burst i { position: absolute; left: 450px; top: 430px; width: 660px; height: 66px; border-radius: 40px; background: var(--green); transform-origin: 0 50%; }
+      .stamp { position: absolute; border: 12px solid var(--red); color: var(--red); border-radius: 20px; padding: 10px 34px; font-family: 'Archivo Black'; font-size: 62px; background: rgba(255,255,255,0.92); white-space: nowrap; }
+      /* route GPS (fil rouge) */
+      .stop { position: absolute; top: 1660px; width: 44px; height: 44px; border-radius: 22px; background: #fff; border: 6px solid #9DA8BA; }
+      .stopl { position: absolute; top: 1716px; width: 200px; margin-left: -78px; text-align: center; font-family: 'Patrick Hand'; font-size: 34px; color: #5B6577; }
+      /* chaîne des 5 erreurs (William) */
+      .link { position: absolute; top: 520px; width: 150px; height: 70px; border-radius: 35px; border: 6px solid var(--navy); background: #fff; font-family: 'Archivo Black'; font-size: 34px; display: flex; align-items: center; justify-content: center; color: var(--navy); }
+      .band { position: absolute; left: 80px; width: 920px; border-radius: 28px; display: flex; align-items: center; gap: 26px; padding: 0 30px; color: #fff; box-shadow: 0 20px 40px rgba(14,42,92,0.2); transform-origin: 0 50%; }
+      .band .av { width: 170px; height: 170px; border-radius: 85px; border: 10px solid #fff; overflow: hidden; flex: none; }
+      .band .av img { width: 100%; height: 100%; object-fit: cover; }
+      .band .t { font-family: 'Archivo Black'; font-size: 50px; letter-spacing: 1px; }
+      .band .s { font-family: 'Patrick Hand'; font-size: 42px; opacity: 0.95; }
+      .band .ic { width: 110px; height: 110px; margin-left: auto; }
+      .lvl { position: absolute; left: 0; width: 150px; height: 70px; border-radius: 16px; font-family: 'Space Mono'; font-weight: 700; font-size: 24px; letter-spacing: 2px; display: flex; align-items: center; justify-content: center; color: #6B7488; background: #fff; border: 4px solid #C9D0DC; }
+      .ecard { position: absolute; left: 90px; top: 650px; width: 900px; height: 760px; }
+      .ecard .num { position: absolute; left: 34px; top: 10px; font-family: 'Archivo Black'; font-size: 150px; color: var(--red); line-height: 1.1; }
+      .ecard .ttl { position: absolute; left: 190px; top: 50px; right: 30px; font-family: 'Archivo Black'; font-size: 56px; line-height: 1.02; text-transform: uppercase; }
+      .ecard .zone { position: absolute; left: 34px; right: 34px; top: 210px; bottom: 34px; border-radius: 18px; overflow: hidden; background: #EEF1F6; }
+      .ecard .zone img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="74.6" data-width="1080" data-height="1920">
+      <div class="paper" id="paper"></div>
+
+      <!-- ===== COUVERTURE (titre de la thématique dès l'image 0) ===== -->
+      <div class="scene clip" id="cover" data-start="0" data-duration="3.95" data-track-index="2" style="z-index: 30; background: var(--navy);">
+        <div class="photo" style="left: 0; top: 0; width: 1080px; height: 1060px; border: none; border-radius: 0;"><img id="covimg" src="assets/photo-couverture.jpg" style="filter: brightness(0.85) saturate(1.1);" /></div>
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,42,92,0.75) 0%, rgba(14,42,92,0.05) 18%, rgba(14,42,92,0.2) 38%, var(--navy) 58%);"></div>
+        <div class="logo"><img src="assets/logo.png" /></div>
+        <div style="position: absolute; left: 40px; width: 1000px; top: 760px; text-align: center; color: #fff;">
+          <div style="display: inline-block; padding: 10px 28px; border-radius: 40px; background: var(--green); font-weight: 900; font-size: 30px; letter-spacing: 4px;">ISO 9001 · QUALITÉ</div>
+          <div class="big" style="font-size: 104px; line-height: 1; margin-top: 26px; letter-spacing: -1px;">CARTOGRAPHIE</div>
+          <div class="big" style="font-size: 82px; line-height: 1.05;">DES PROCESSUS</div>
+          <div style="margin-top: 26px; display: inline-flex; align-items: center; gap: 18px;"><span style="background: var(--red); border-radius: 16px; padding: 6px 22px; font-family: 'Archivo Black'; font-size: 64px;">5</span><span class="hand" style="font-size: 70px; color: #fff;">erreurs à éviter</span></div>
+        </div>
+        {{hook1-cover}}
+        <div class="chip r" id="cv1" style="left: 130px; top: 1580px;">🌀 Labyrinthe</div>
+        <div class="chip g" id="cv2" style="left: 560px; top: 1580px;">✓ Carte claire</div>
+      </div>
+
+      <!-- ===== en-tête permanent : logo ===== -->
+      <div class="scene clip" id="header" data-start="3.6" data-duration="67.6" data-track-index="1" style="z-index: 20; pointer-events: none;">
+        <div class="logo"><img src="assets/logo.png" /></div>
+      </div>
+
+      <!-- ===== route GPS : 5 étapes (fil rouge) ===== -->
+      <div class="scene clip" id="route" data-start="7.4" data-duration="63.8" data-track-index="3" style="z-index: 19; pointer-events: none;">
+        <div style="position: absolute; left: 110px; width: 860px; top: 1678px; height: 8px; border-radius: 4px; background: repeating-linear-gradient(90deg, #9DA8BA 0 18px, transparent 18px 30px);"></div>
+        <div id="routefill" style="position: absolute; left: 110px; width: 860px; top: 1678px; height: 8px; border-radius: 4px; background: var(--green); transform-origin: 0 50%;"></div>
+        <div class="stop" id="st1" style="left: 110px;"></div><div class="stopl" style="left: 110px;">Définition</div>
+        <div class="stop" id="st2" style="left: 325px;"></div><div class="stopl" style="left: 325px;">3 niveaux</div>
+        <div class="stop" id="st3" style="left: 540px;"></div><div class="stopl" style="left: 540px;">3 familles</div>
+        <div class="stop" id="st4" style="left: 755px;"></div><div class="stopl" style="left: 755px;">5 erreurs</div>
+        <div class="stop" id="st5" style="left: 948px;"></div><div class="stopl" style="left: 948px;">Pilotage</div>
+        <svg id="pin" style="position: absolute; left: 92px; top: 1586px;" width="80" height="100" viewBox="0 0 80 100"><path d="M 40 96 C 40 96, 6 56, 6 36 A 34 34 0 1 1 74 36 C 74 56, 40 96, 40 96 Z" fill="#D9443A" stroke="#fff" stroke-width="5" /><circle cx="40" cy="36" r="13" fill="#fff" /></svg>
+      </div>
+
+      <!-- ===== S1 · GPS (ambassa) ===== -->
+      <div class="scene clip" id="s1" data-start="3.75" data-duration="3.85" data-track-index="2">
+        <div class="light"></div>
+        <div class="burst" id="br1" style="left: 690px; top: 1480px;"><i style="transform: rotate(-95deg);"></i><i style="transform: rotate(-125deg);"></i><i style="transform: rotate(-155deg);"></i><i style="transform: rotate(-185deg);"></i></div>
+        {{hook2}}
+        <div class="photo" id="s1p" style="left: 300px; top: 520px; width: 480px; height: 480px; border-radius: 44px; transform: rotate(-6deg);"><img src="assets/photo-boussole.jpg" style="object-position: 50% 38%;" /></div>
+        <div class="big" id="s1g" style="position: absolute; left: 0; width: 1080px; top: 1060px; text-align: center; font-size: 230px; color: var(--navy); letter-spacing: 8px;">GPS</div>
+        <div class="chip" id="s1c" style="left: 300px; top: 1340px;">de l'entreprise</div>
+      </div>
+
+      <!-- ===== S2 · Définition (Ray) ===== -->
+      <div class="scene clip" id="s2" data-start="7.5" data-duration="11.15" data-track-index="2">
+        {{def1}}
+        {{def2}}
+        {{def3}}
+        <!-- A : l'organigramme barré -->
+        <div class="card" id="org" style="left: 130px; top: 600px; width: 820px; height: 560px;">
+          <div class="lab" style="left: 30px; top: 22px;">Organigramme</div>
+          <svg style="position: absolute; left: 60px; top: 80px;" width="700" height="440" viewBox="0 0 700 440"><g fill="#fff" stroke="#0E2A5C" stroke-width="7"><rect x="270" y="20" width="160" height="80" rx="12" /><rect x="40" y="210" width="160" height="80" rx="12" /><rect x="270" y="210" width="160" height="80" rx="12" /><rect x="500" y="210" width="160" height="80" rx="12" /><rect x="40" y="340" width="160" height="70" rx="12" /><rect x="500" y="340" width="160" height="70" rx="12" /></g><path d="M 350 100 V 160 M 120 160 H 580 M 120 160 V 210 M 350 160 V 210 M 580 160 V 210 M 120 290 V 340 M 580 290 V 340" fill="none" stroke="#0E2A5C" stroke-width="7" /></svg>
+          <svg id="orgx" style="position: absolute; left: 160px; top: 40px;" width="500" height="480" viewBox="0 0 500 480"><path d="M 40 40 L 460 440 M 460 40 L 40 440" fill="none" stroke="#D9443A" stroke-width="30" stroke-linecap="round" /></svg>
+        </div>
+        <!-- B : le flux, du client à la valeur -->
+        <div id="flow" style="position: absolute; left: 0; top: 0; width: 1080px; height: 1920px;">
+          <div class="card grn" id="fA" style="left: 250px; top: 560px; width: 580px; height: 130px; display: flex; align-items: center; justify-content: center; gap: 20px;"><img src="assets/ic-cible.png" style="width: 80px;" /><span class="big" style="font-size: 44px;">Demande client</span></div>
+          <div class="pill" id="fp1" style="left: 380px; top: 770px;">PROCESSUS 1</div>
+          <div class="pill" id="fp2" style="left: 380px; top: 880px;">PROCESSUS 2</div>
+          <div class="pill" id="fp3" style="left: 380px; top: 990px;">PROCESSUS 3</div>
+          <svg id="fline" style="position: absolute; left: 0; top: 0;" width="1080" height="1920" viewBox="0 0 1080 1920"><path id="fpath" d="M 540 696 V 1140" fill="none" stroke="#2E9B3E" stroke-width="10" stroke-dasharray="20 18" /></svg>
+          <div id="fdot" style="position: absolute; left: 524px; top: 700px; width: 32px; height: 32px; border-radius: 16px; background: var(--red); box-shadow: 0 0 0 8px rgba(217,68,58,0.25);"></div>
+          <div class="card grn" id="fB" style="left: 250px; top: 1150px; width: 580px; height: 150px; display: flex; align-items: center; justify-content: center; gap: 20px; background: var(--green); color: #fff;"><img src="assets/ic-check.png" style="width: 84px;" /><span class="big" style="font-size: 46px;">Valeur livrée</span></div>
+          <div class="photo" id="fphoto" style="left: 760px; top: 760px; width: 240px; height: 300px; transform: rotate(5deg);"><img src="assets/photo-flux.jpg" style="object-position: 40% 30%;" /></div>
+        </div>
+        <!-- C : ISO 9001 § 4.4 -->
+        <div class="photo" id="isoP" style="left: 70px; top: 610px; width: 470px; height: 640px; transform: rotate(-4deg);"><img src="assets/photo-flux.jpg" style="object-position: 45% 40%;" /></div>
+        <div class="card" id="isoC" style="left: 580px; top: 690px; width: 430px; height: 470px; text-align: center;">
+          <div class="lab" style="left: 0; right: 0; top: 30px; text-align: center;">La norme</div>
+          <div class="big" style="margin-top: 90px; font-size: 76px; color: var(--navy);">ISO</div>
+          <div class="big" style="font-size: 96px; color: var(--green); line-height: 1;">9001</div>
+          <div class="pill" style="left: 75px; top: 340px;">§ 4.4 · PROCESSUS</div>
+        </div>
+        <div class="stamp" id="isoS" style="left: 330px; top: 1240px; border-color: var(--green); color: var(--green); transform: rotate(-5deg);">EXIGÉ</div>
+      </div>
+
+      <!-- ===== S3 · 3 niveaux (William + zoom cartographique) ===== -->
+      <div class="scene clip" id="s3" data-start="18.55" data-duration="13.0" data-track-index="2">
+        {{niv0}}
+        {{niv1}}
+        {{niv2}}
+        {{niv3}}
+        <div class="soft" id="app" style="left: 90px; top: 560px; width: 740px; height: 900px;">
+          <div id="vp" style="position: absolute; inset: 0; overflow: hidden; background: #DCE3EE;">
+            <div id="L1" style="position: absolute; inset: 0;"><img src="assets/photo-macro.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%;" /></div>
+            <div id="L2" style="position: absolute; inset: 0;"><img src="assets/photo-meso.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: 35% 50%;" /></div>
+            <div id="L3" style="position: absolute; inset: 0; background: #F7F9FC;">
+              <svg style="position: absolute; left: 60px; top: 150px;" width="620" height="640" viewBox="0 0 620 640"><g id="logi" fill="none" stroke="#0E2A5C" stroke-width="7" stroke-linejoin="round"><rect x="210" y="10" width="200" height="70" rx="35" fill="#BFE8C6" /><path d="M 310 80 V 130" /><rect x="190" y="130" width="240" height="90" rx="12" fill="#fff" /><path d="M 310 220 V 270" /><path d="M 310 270 L 410 340 L 310 410 L 210 340 Z" fill="#FFE7A3" /><path d="M 410 340 H 520 V 470" /><path d="M 310 410 V 470" /><rect x="190" y="470" width="240" height="90" rx="12" fill="#fff" /><rect x="440" y="470" width="160" height="90" rx="12" fill="#fff" /><path d="M 310 560 V 610" /></g></svg>
+              <div class="lab" style="left: 280px; top: 175px; color: var(--navy);">DÉBUT</div>
+              <div class="lab" style="left: 270px; top: 310px; color: var(--navy);">TÂCHE 1</div>
+              <div class="lab" style="left: 340px; top: 475px; color: var(--navy); font-size: 22px;">?</div>
+              <div class="lab" style="left: 270px; top: 650px; color: var(--navy);">TÂCHE 2</div>
+              <div class="photo" id="L3p" style="left: 470px; top: 30px; width: 230px; height: 230px; border-radius: 115px; border-color: var(--green);"><img src="assets/photo-micro.jpg" style="object-position: 55% 30%;" /></div>
+            </div>
+          </div>
+          <div style="position: absolute; left: 24px; top: 24px; right: 24px; height: 78px; border-radius: 39px; background: #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 16px; padding: 0 26px; font-weight: 700; font-size: 32px; color: #5B6577;"><img src="assets/ic-loupe.png" style="width: 44px;" />Carte des processus</div>
+          <div class="pill" id="vb" style="left: 24px; bottom: 26px; background: rgba(11,26,51,0.88);">VUE SATELLITE</div>
+        </div>
+        <!-- échelle de zoom -->
+        <div id="ladder" style="position: absolute; left: 860px; top: 640px; width: 150px; height: 700px;">
+          <div style="position: absolute; left: 0; width: 150px; height: 88px; border-radius: 20px; background: #fff; border: 4px solid #C9D0DC; font-size: 60px; font-weight: 800; color: var(--navy); text-align: center; line-height: 78px;">+</div>
+          <div class="lvl" id="lv1" style="top: 130px;">MACRO</div>
+          <div class="lvl" id="lv2" style="top: 220px;">MÉSO</div>
+          <div class="lvl" id="lv3" style="top: 310px;">MICRO</div>
+          <div style="position: absolute; left: 0; top: 410px; width: 150px; height: 88px; border-radius: 20px; background: #fff; border: 4px solid #C9D0DC; font-size: 60px; font-weight: 800; color: var(--navy); text-align: center; line-height: 74px;">−</div>
+        </div>
+        <div class="chip" id="who1" style="left: 90px; top: 1490px;">Direction · Auditeur</div>
+        <div class="chip g" id="who2" style="left: 90px; top: 1490px;">Pilotes de processus</div>
+        <div class="chip w" id="who3" style="left: 90px; top: 1490px; border: 5px solid var(--navy);">Opérateurs</div>
+      </div>
+
+      <!-- ===== S4 · 3 familles (Amadou) ===== -->
+      <div class="scene clip" id="s4" data-start="31.45" data-duration="9.7" data-track-index="2">
+        <div class="warm"><div class="ring" id="rg1" style="left: -300px; top: 200px; width: 900px; height: 900px;"></div><div class="ring" id="rg2" style="left: 560px; top: 1100px; width: 800px; height: 800px; border-color: #F2C230;"></div></div>
+        {{fam0}}
+        {{fam1}}
+        {{fam2}}
+        {{fam3}}
+        <div class="band" id="bd1" style="top: 560px; height: 250px; background: var(--navy);"><div class="av"><img src="assets/photo-management.jpg" style="object-position: 50% 22%;" /></div><div><div class="t">MANAGEMENT</div><div class="s">fixe le cap</div></div><img class="ic" src="assets/ic-cerveau.png" /></div>
+        <div class="band" id="bd2" style="top: 850px; height: 290px; background: var(--green); width: 860px; clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%);"><div class="av"><img src="assets/photo-realisation.jpg" style="object-position: 50% 22%;" /></div><div><div class="t">RÉALISATION</div><div class="s">crée la valeur client</div></div><img class="ic" src="assets/ic-engrenage.png" style="margin-right: 60px;" /></div>
+        <div class="chip w" id="cli" style="left: 830px; top: 950px; font-size: 34px; padding: 10px 18px; border: 4px solid var(--green); color: var(--green);">CLIENT</div>
+        <div class="band" id="bd3" style="top: 1180px; height: 250px; background: #5B6E8C;"><div class="av"><img src="assets/photo-support.jpg" style="object-position: 40% 25%;" /></div><div><div class="t">SUPPORT</div><div class="s">sans lui, tout s'arrête</div></div><img class="ic" src="assets/ic-outils.png" /></div>
+      </div>
+
+      <!-- ===== S5 · 5 erreurs (Ray + chaîne William) ===== -->
+      <div class="scene clip" id="s5" data-start="41.05" data-duration="18.7" data-track-index="2">
+        {{err0}}
+        {{err1}}
+        {{err2}}
+        {{err3}}
+        {{err4}}
+        {{err5}}
+        <div id="chain">
+          <div class="link" id="lk1" style="left: 75px;">1</div><div class="link" id="lk2" style="left: 265px;">2</div><div class="link" id="lk3" style="left: 455px;">3</div><div class="link" id="lk4" style="left: 645px;">4</div><div class="link" id="lk5" style="left: 835px;">5</div>
+          <div style="position: absolute; left: 225px; top: 549px; width: 40px; height: 12px; background: var(--navy);"></div><div style="position: absolute; left: 415px; top: 549px; width: 40px; height: 12px; background: var(--navy);"></div><div style="position: absolute; left: 605px; top: 549px; width: 40px; height: 12px; background: var(--navy);"></div><div style="position: absolute; left: 795px; top: 549px; width: 40px; height: 12px; background: var(--navy);"></div>
+        </div>
+        <div class="card red" id="e0" style="left: 110px; top: 760px; width: 860px; height: 480px; text-align: center;"><div class="big" style="margin-top: 70px; font-size: 220px; line-height: 1; color: var(--red);">5</div><div class="big" style="font-size: 64px;">erreurs à éviter</div></div>
+        <div class="card red ecard" id="e1"><div class="num">1</div><div class="ttl">Idéal <span style="color: var(--red);">≠</span> réel</div>
+          <div class="zone"><div style="position: absolute; left: 0; top: 0; width: 50%; height: 100%; background: #F7F9FC;"><svg style="position: absolute; left: 50px; top: 120px;" width="320" height="260" viewBox="0 0 320 260"><path id="e1line" d="M 10 130 H 300" stroke="#2E9B3E" stroke-width="12" fill="none" stroke-linecap="round" /><circle cx="10" cy="130" r="18" fill="#2E9B3E" /><circle cx="155" cy="130" r="18" fill="#2E9B3E" /><circle cx="300" cy="130" r="18" fill="#2E9B3E" /></svg><div class="lab" style="left: 30px; top: 30px;">Sur le papier</div></div>
+            <div style="position: absolute; left: 50%; top: 0; width: 50%; height: 100%;"><img src="assets/photo-terrain.jpg" style="object-position: 60% 40%;" /><div class="pill" style="left: 20px; top: 20px;">LE TERRAIN</div></div></div></div>
+        <div class="card red ecard" id="e2"><div class="num">2</div><div class="ttl">Trop complexe</div>
+          <div class="zone"><img src="assets/photo-couverture.jpg" style="filter: brightness(0.6);" /><svg style="position: absolute; left: 0; top: 0;" width="832" height="510" viewBox="0 0 832 510"><path id="tangle" d="M 60 260 C 200 40, 300 480, 420 240 S 640 20, 700 300 S 380 470, 260 330 S 120 90, 420 120 S 780 200, 610 420 S 210 470, 120 380 S 300 60, 540 200 S 760 470, 770 120" fill="none" stroke="#FFDD57" stroke-width="10" stroke-linecap="round" /></svg>
+            <div class="big" id="q1" style="position: absolute; left: 90px; top: 60px; font-size: 110px; color: #fff;">?</div><div class="big" id="q2" style="position: absolute; left: 650px; top: 300px; font-size: 130px; color: #fff;">?</div><div class="big" id="q3" style="position: absolute; left: 380px; top: 330px; font-size: 90px; color: #FFDD57;">?</div></div></div>
+        <div class="card red ecard" id="e3"><div class="num">3</div><div class="ttl">Sans pilote</div>
+          <div class="zone" style="background: #E9EDF3;"><div style="position: absolute; left: 60px; top: 60px; width: 330px; height: 330px; border-radius: 165px; overflow: hidden; border: 10px dashed #9AA3B5;"><img id="e3img" src="assets/photo-pilote.jpg" style="object-position: 50% 25%; filter: grayscale(1) brightness(1.15) opacity(0.35);" /></div>
+            <div class="mono" style="position: absolute; left: 430px; top: 110px; font-size: 34px; color: #5B6577;">PILOTE :</div><div class="mono" id="e3c" style="position: absolute; left: 430px; top: 170px; font-size: 54px; color: var(--red);">_ _ _ _</div>
+            <div class="chip r" id="e3x" style="left: 430px; top: 290px; font-size: 38px;">Rien ne bouge</div></div></div>
+        <div class="card red ecard" id="e4"><div class="num">4</div><div class="ttl">Jamais mise à jour</div>
+          <div class="zone"><img src="assets/photo-archives.jpg" style="object-position: 50% 40%; filter: sepia(0.35) brightness(0.95);" />
+            <div class="card" id="e4cal" style="left: 470px; top: 60px; width: 300px; height: 300px; border-radius: 26px; text-align: center; box-shadow: 10px 10px 0 var(--navy);"><div style="height: 70px; background: var(--red); border-radius: 16px 16px 0 0; color: #fff;" class="mono"><div style="padding-top: 16px; font-size: 30px;">MAJ</div></div><div class="big" id="e4y" style="font-size: 96px; margin-top: 40px; color: var(--navy);">2019</div></div>
+            <div class="pill" style="left: 30px; top: 30px;">AU MUR</div></div></div>
+        <div class="card red ecard" id="e5"><div class="num">5</div><div class="ttl">Aucun indicateur</div>
+          <div class="zone" style="background: #fff;"><svg style="position: absolute; left: 70px; top: 40px;" width="420" height="300" viewBox="0 0 420 300"><path d="M 30 260 A 180 180 0 0 1 390 260" fill="none" stroke="#E3E7EE" stroke-width="40" stroke-linecap="round" /><line id="needle" x1="210" y1="260" x2="60" y2="250" stroke="#D9443A" stroke-width="14" stroke-linecap="round" /><circle cx="210" cy="260" r="22" fill="#0E2A5C" /></svg>
+            <div class="mono" style="position: absolute; left: 110px; top: 360px; font-size: 44px; color: var(--navy);">KPI : <span style="color: var(--red);">— —</span></div>
+            <div class="photo" style="left: 540px; top: 40px; width: 250px; height: 400px; border-color: #E3E7EE;"><img src="assets/photo-indicateurs.jpg" style="object-position: 70% 50%;" /></div></div></div>
+      </div>
+
+      <!-- ===== S6 · Outil de pilotage (Ray + ambassa + William) ===== -->
+      <div class="scene clip" id="s6" data-start="59.7" data-duration="6.95" data-track-index="2">
+        <div class="light"></div>
+        {{con1}}
+        {{con2}}
+        <div class="card" id="c1" style="left: 110px; top: 640px; width: 860px; padding: 40px 0; text-align: center;"><div class="big" style="font-size: 54px;">Un document</div><div class="big" style="font-size: 54px;">pour l'auditeur</div><div id="c1s" style="position: absolute; left: 60px; right: 60px; top: 50%; height: 14px; background: var(--red); transform-origin: 0 50%;"></div></div>
+        <div class="card grn" id="c2" style="left: 110px; top: 900px; width: 860px; padding: 34px 0; text-align: center; background: var(--green); color: #fff;"><div class="big" style="font-size: 60px;">Un outil de pilotage</div></div>
+        <div class="soft" id="dash" style="left: 150px; top: 1080px; width: 780px; height: 380px; padding: 0;">
+          <div class="lab" style="left: 30px; top: 22px; color: var(--navy);">Pouls de l'entreprise</div>
+          <svg style="position: absolute; left: 20px; top: 70px;" width="740" height="290" viewBox="0 0 740 290"><path id="pulse" d="M 0 160 H 120 L 150 160 L 175 60 L 205 250 L 235 110 L 255 160 H 380 L 410 160 L 435 40 L 465 250 L 495 120 L 515 160 H 740" fill="none" stroke="#2E9B3E" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" /></svg>
+        </div>
+      </div>
+
+      <!-- ===== S7 · CTA (ambassa + Amadou) ===== -->
+      <div class="scene clip" id="s7" data-start="66.55" data-duration="4.75" data-track-index="2">
+        <div class="warm"><div class="ring" style="left: -280px; top: 1100px; width: 900px; height: 900px;"></div><div class="ring" style="left: 600px; top: 150px; width: 800px; height: 800px; border-color: #F2C230;"></div></div>
+        {{cta1}}
+        {{cta2}}
+        <div class="chip g" id="k1" style="left: 120px; top: 620px; font-size: 64px; padding: 20px 40px;">✓ CLAIRE</div>
+        <div class="chip" id="k2" style="left: 470px; top: 790px; font-size: 64px; padding: 20px 40px;">🌀 LABYRINTHE</div>
+        <div class="soft" id="cbox" style="left: 90px; top: 1020px; width: 900px; height: 330px; padding: 0;">
+          <div style="position: absolute; left: 30px; top: 30px; width: 90px; height: 90px; border-radius: 45px; background: var(--paper); display: flex; align-items: center; justify-content: center;"><img src="assets/ic-boussole.png" style="width: 60px;" /></div>
+          <div style="position: absolute; left: 140px; top: 38px; font-weight: 800; font-size: 34px; color: var(--navy);">Ajouter un commentaire…</div>
+          <div id="typed" style="position: absolute; left: 140px; top: 100px; right: 40px; font-weight: 600; font-size: 44px; color: var(--ink); white-space: nowrap; overflow: hidden;"></div>
+          <div class="chip g" id="send" style="right: 30px; bottom: 30px; left: auto; font-size: 34px;">Publier</div>
+        </div>
+      </div>
+
+      <!-- ===== Carte de fin ===== -->
+      <div class="scene clip" id="end" data-start="71.15" data-duration="3.45" data-track-index="4" style="z-index: 40; background: linear-gradient(180deg, #FBFAF6, #EEF3EE);">
+        <img src="assets/logo.png" id="endlogo" style="position: absolute; left: 190px; top: 680px; width: 700px;" />
+        <div id="endtag" style="position: absolute; left: 60px; width: 960px; top: 1070px; text-align: center; font-weight: 900; font-size: 46px; color: var(--navy);">Des normes aujourd'hui,<br /><span style="color: var(--green);">un avenir durable demain</span></div>
+        <div class="hand" id="endsub" style="position: absolute; left: 0; width: 1080px; top: 1250px; text-align: center; font-size: 54px; color: #5B6577;">Cartographie des processus · ISO 9001</div>
+      </div>
+
+      <!-- ===== voix + bruitages ===== -->
+      <audio class="clip" id="voice" src="assets/voix.m4a" data-start="0" data-duration="71.19" data-volume="1" data-track-index="10"></audio>
+      <!--SFX-->
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      /*KARA_ENDS*/
+      const GREEN = '#2E9B3E', RED = '#D9443A', NAVY = '#0E2A5C';
+      // --- karaoké : 4 grammaires ---
+      document.querySelectorAll('.kara').forEach((k) => {
+        const key = k.id.slice(2), s = parseFloat(k.dataset.s), mode = k.classList[1];
+        tl.fromTo(k, { opacity: 0 }, { opacity: 1, duration: 0.12 }, Math.max(0, s - 0.12));
+        tl.to(k, { opacity: 0, duration: 0.12 }, KARA_ENDS[key] - 0.1);
+        k.querySelectorAll('.w').forEach((w) => {
+          const t = parseFloat(w.dataset.t);
+          const col = w.classList.contains('g') ? GREEN : w.classList.contains('r') ? RED : (k.style.color ? '#fff' : NAVY);
+          if (mode === 'ink' || mode === 'grey') tl.to(w, { color: col, duration: 0.08 }, t);
+          else if (mode === 'blur') { tl.fromTo(w, { opacity: 0, filter: 'blur(14px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.26, ease: 'power2.out' }, t); if (w.classList.contains('g') || w.classList.contains('r')) tl.set(w, { color: col }, t); }
+          else { tl.fromTo(w, { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.3, ease: 'back.out(2)' }, t); tl.set(w, { color: col }, t); }
+          if (w.classList.contains('h')) tl.fromTo(w, { '--hl-x': 0 }, { '--hl-x': 1, duration: 0.3, ease: 'power2.out' }, t + 0.18);
+        });
+      });
+      const pop = (sel, at, from) => tl.fromTo(sel, Object.assign({ opacity: 0, scale: 0.55 }, from || {}), { opacity: 1, scale: 1, x: 0, y: 0, duration: 0.42, ease: 'back.out(2.2)' }, at);
+      const slam = (sel, at) => tl.fromTo(sel, { opacity: 0, scale: 1.35, rotation: -2 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.28, ease: 'power4.in' }, at);
+      const blurOut = (sel, at) => tl.to(sel, { filter: 'blur(26px)', opacity: 0, scale: 1.04, duration: 0.3, ease: 'power2.in' }, at);
+      const blurIn = (sel, at) => tl.fromTo(sel, { filter: 'blur(26px)', opacity: 0, scale: 0.96 }, { filter: 'blur(0px)', opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out' }, at);
+      const out = (sel, at, d) => tl.to(sel, { opacity: 0, duration: d || 0.25 }, at);
+
+      // fond
+      tl.fromTo('#paper', { backgroundPosition: '0px 0px' }, { backgroundPosition: '0px 272px', duration: 74.6, ease: 'none' }, 0);
+      // COUVERTURE
+      tl.fromTo('#covimg', { scale: 1.0 }, { scale: 1.12, duration: 3.95, ease: 'none' }, 0);
+      pop('#cv1', 2.3, { y: 60 }); pop('#cv2', 3.2, { y: 60 });
+      tl.to('#cv1', { opacity: 0.35, scale: 0.9, duration: 0.25 }, 3.25);
+      blurOut('#cover', 3.65);
+
+      // ROUTE GPS : le repère avance d'étape en étape
+      tl.fromTo('#route', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4 }, 7.5);
+      tl.set('#routefill', { scaleX: 0 }, 0);
+      [[7.7, 0, '#st1'], [18.95, 215, '#st2'], [31.8, 430, '#st3'], [41.35, 645, '#st4'], [59.95, 838, '#st5']].forEach(([t, x, s]) => {
+        tl.to('#pin', { x: x, duration: 0.7, ease: 'power3.inOut' }, t);
+        tl.to('#routefill', { scaleX: x / 860, duration: 0.7, ease: 'power3.inOut' }, t);
+        tl.to(s, { backgroundColor: GREEN, borderColor: GREEN, scale: 1.25, duration: 0.25 }, t + 0.6);
+        tl.fromTo('#pin', { y: 0 }, { y: -26, duration: 0.18, yoyo: true, repeat: 1 }, t + 0.7);
+      });
+
+      // S1 · GPS
+      blurIn('#s1', 3.75);
+      tl.fromTo('#br1 i', { scaleX: 0 }, { scaleX: 1, duration: 0.5, stagger: 0.06, ease: 'power3.out' }, 3.9);
+      tl.fromTo('#br1', { rotation: 0 }, { rotation: 8, duration: 3.6, ease: 'sine.inOut', transformOrigin: '50% 48%' }, 3.9);
+      tl.fromTo('#s1p', { opacity: 0, scale: 0.6, rotation: -20 }, { opacity: 1, scale: 1, rotation: -6, duration: 0.5, ease: 'back.out(2)' }, 4.1);
+      tl.fromTo('#s1g', { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: 'power3.out' }, 6.15);
+      pop('#s1c', 6.5);
+      blurOut('#s1', 7.3);
+
+      // S2 · Définition
+      blurIn('#s2', 7.5);
+      slam('#org', 8.0);
+      tl.fromTo('#orgx path', { strokeDasharray: 1300, strokeDashoffset: 1300 }, { strokeDashoffset: 0, duration: 0.35, ease: 'power2.in' }, 9.45);
+      tl.fromTo('#org', { x: 0 }, { x: 14, duration: 0.05, repeat: 5, yoyo: true }, 9.8);
+      out('#org', 10.0);
+      pop('#fA', 10.3, { y: -60 });
+      tl.fromTo(['#fp1', '#fp2', '#fp3'], { opacity: 0, x: -120 }, { opacity: 1, x: 0, duration: 0.3, stagger: 0.18, ease: 'back.out(2)' }, 10.9);
+      tl.fromTo('#fpath', { strokeDashoffset: 0 }, { strokeDashoffset: -228, duration: 3.0, ease: 'none' }, 10.6);
+      tl.fromTo('#fdot', { y: 0, opacity: 0 }, { y: 440, opacity: 1, duration: 2.0, ease: 'power1.inOut' }, 11.3);
+      pop('#fB', 12.9, { y: 60 });
+      pop('#fphoto', 11.8, { x: 120 });
+      out('#flow', 13.65);
+      tl.fromTo('#isoP', { opacity: 0, x: -200, rotation: -12 }, { opacity: 1, x: 0, rotation: -4, duration: 0.5, ease: 'power3.out' }, 13.85);
+      tl.fromTo('#isoC', { opacity: 0, rotationY: 60, transformPerspective: 1400 }, { opacity: 1, rotationY: -6, duration: 0.6, ease: 'power3.out' }, 15.4);
+      tl.fromTo('#isoS', { opacity: 0, scale: 2.4 }, { opacity: 1, scale: 1, duration: 0.28, ease: 'power4.in' }, 17.25);
+      blurOut('#s2', 18.3);
+
+      // S3 · 3 niveaux — zoom cartographique
+      blurIn('#s3', 18.55);
+      tl.fromTo('#app', { opacity: 0, rotationY: -28, transformPerspective: 1600, y: 80 }, { opacity: 1, rotationY: -7, y: 0, duration: 0.8, ease: 'power3.out' }, 18.75);
+      tl.fromTo('#ladder', { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out' }, 19.3);
+      tl.set(['#L2', '#L3'], { opacity: 0 }, 0);
+      const lv = (id, color, at) => { tl.to('#ladder .lvl', { backgroundColor: '#fff', color: '#6B7488', borderColor: '#C9D0DC', duration: 0.2 }, at); tl.to(id, { backgroundColor: color, color: '#fff', borderColor: color, duration: 0.2 }, at); };
+      lv('#lv1', NAVY, 21.3);
+      tl.fromTo('#L1 img', { scale: 1.0 }, { scale: 1.16, duration: 3.6, ease: 'none' }, 21.0);
+      pop('#who1', 23.6, { x: -100 });
+      // zoom macro → méso
+      tl.to('#L1', { scale: 2.6, opacity: 0, duration: 0.55, ease: 'power2.in', transformOrigin: '45% 55%' }, 24.6);
+      tl.fromTo('#L2', { scale: 0.45, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: 'power2.out' }, 24.75);
+      tl.set('#vb', { textContent: "VUE DE L'INTÉRIEUR" }, 24.9);
+      lv('#lv2', GREEN, 24.85); out('#who1', 24.7, 0.15); pop('#who2', 26.2, { x: -100 });
+      tl.fromTo('#L2 img', { scale: 1.0 }, { scale: 1.14, duration: 3.0, ease: 'none' }, 25.3);
+      // zoom méso → micro (logigramme)
+      tl.to('#L2', { scale: 2.6, opacity: 0, duration: 0.55, ease: 'power2.in', transformOrigin: '40% 50%' }, 27.45);
+      tl.fromTo('#L3', { scale: 0.45, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: 'power2.out' }, 27.6);
+      tl.set('#vb', { textContent: 'TÂCHE PAR TÂCHE' }, 27.75);
+      lv('#lv3', '#5B6E8C', 27.7); out('#who2', 27.55, 0.15); pop('#who3', 29.6, { x: -100 });
+      tl.fromTo('#logi > *', { opacity: 0, scale: 0.6, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: 0.25, stagger: 0.14, ease: 'back.out(2)' }, 28.1);
+      pop('#L3p', 29.2);
+      blurOut('#s3', 31.25);
+
+      // S4 · 3 familles
+      blurIn('#s4', 31.45);
+      tl.fromTo(['#rg1', '#rg2'], { x: 0, y: 0 }, { x: 90, y: -70, duration: 9.7, ease: 'none' }, 31.45);
+      tl.fromTo(['#bd1', '#bd2', '#bd3'], { opacity: 0.0, scaleX: 0.15 }, { opacity: 0.18, scaleX: 1, duration: 0.5, stagger: 0.12, ease: 'power3.out' }, 32.2);
+      tl.to('#bd1', { opacity: 1, duration: 0.35 }, 34.1);
+      tl.fromTo('#bd1 .av', { scale: 0 }, { scale: 1, duration: 0.4, ease: 'back.out(2)' }, 34.1);
+      tl.to('#bd2', { opacity: 1, duration: 0.35 }, 36.0);
+      tl.fromTo('#bd2 .av', { scale: 0 }, { scale: 1, duration: 0.4, ease: 'back.out(2)' }, 36.0);
+      pop('#cli', 37.7, { x: 60 });
+      tl.to('#bd3', { opacity: 1, duration: 0.35 }, 39.0);
+      tl.fromTo('#bd3 .av', { scale: 0 }, { scale: 1, duration: 0.4, ease: 'back.out(2)' }, 39.0);
+      tl.to(['#bd1', '#bd2'], { y: 10, duration: 0.08, yoyo: true, repeat: 3 }, 40.1);
+      blurOut('#s4', 40.85);
+
+      // S5 · 5 erreurs : chaîne + cartes néo-brutalistes
+      blurIn('#s5', 41.05);
+      tl.fromTo('#chain .link', { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.08, ease: 'back.out(2)' }, 41.3);
+      slam('#e0', 42.0);
+      out('#e0', 43.55, 0.2);
+      const errs = [['#e1', '#lk1', 43.75, 47.75], ['#e2', '#lk2', 47.85, 51.1], ['#e3', '#lk3', 51.2, 53.4], ['#e4', '#lk4', 53.5, 56.7], ['#e5', '#lk5', 56.8, 59.6]];
+      errs.forEach(([c, l, a, b]) => {
+        slam(c, a);
+        tl.to(l, { backgroundColor: RED, borderColor: RED, color: '#fff', rotation: 8, duration: 0.2 }, a + 0.2);
+        tl.fromTo(l, { y: 0 }, { y: 16, duration: 0.1, yoyo: true, repeat: 1 }, a + 0.2);
+        if (b < 59) tl.to(c, { x: -1100, rotation: -6, duration: 0.25, ease: 'power3.in' }, b - 0.25);
+      });
+      tl.fromTo('#e1line', { strokeDasharray: 300, strokeDashoffset: 300 }, { strokeDashoffset: 0, duration: 0.8 }, 44.1);
+      tl.fromTo('#tangle', { strokeDasharray: 5200, strokeDashoffset: 5200 }, { strokeDashoffset: 0, duration: 1.6, ease: 'power1.in' }, 48.1);
+      pop('#q1', 49.6); pop('#q2', 49.9); pop('#q3', 50.2);
+      tl.fromTo('#e3c', { opacity: 1 }, { opacity: 0.15, duration: 0.2, yoyo: true, repeat: 5 }, 51.6);
+      pop('#e3x', 52.4, { x: 60 });
+      tl.fromTo('#e4cal', { rotation: 0 }, { rotation: -12, duration: 0.5, ease: 'back.out(3)' }, 55.0);
+      tl.fromTo('#e4y', { color: NAVY }, { color: RED, duration: 0.2 }, 55.4);
+      tl.fromTo('#needle', { rotation: 0, svgOrigin: '210 260' }, { rotation: 20, duration: 0.3, yoyo: true, repeat: 3, ease: 'sine.inOut' }, 57.6);
+      blurOut('#s5', 59.45);
+
+      // S6 · outil de pilotage
+      blurIn('#s6', 59.7);
+      slam('#c1', 60.1);
+      tl.fromTo('#c1s', { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: 'power2.inOut' }, 62.0);
+      tl.to('#c1', { opacity: 0.45, duration: 0.2 }, 62.35);
+      slam('#c2', 63.4);
+      tl.fromTo('#dash', { opacity: 0, y: 80, rotationX: 25, transformPerspective: 1400 }, { opacity: 1, y: 0, rotationX: 0, duration: 0.6, ease: 'power3.out' }, 64.0);
+      tl.fromTo('#pulse', { strokeDasharray: 1600, strokeDashoffset: 1600 }, { strokeDashoffset: 0, duration: 1.6, ease: 'none' }, 64.6);
+      blurOut('#s6', 66.35);
+
+      // S7 · CTA
+      blurIn('#s7', 66.55);
+      pop('#k1', 68.0, { x: -120 }); pop('#k2', 68.6, { x: 120 });
+      tl.fromTo('#cbox', { opacity: 0, y: 100 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' }, 69.2);
+      const msg = 'Ma carte est claire ✅';
+      const ty = { n: 0 }; tl.to(ty, { n: msg.length, duration: 1.1, ease: 'none', onUpdate: () => { document.getElementById('typed').textContent = Array.from(msg).slice(0, Math.round(ty.n)).join(''); } }, 69.6);
+      tl.to('#send', { scale: 0.9, duration: 0.08, yoyo: true, repeat: 1 }, 70.8);
+      // FIN
+      tl.fromTo('#endlogo', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.6)' }, 71.3);
+      tl.fromTo('#endtag', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5 }, 71.8);
+      tl.fromTo('#endsub', { opacity: 0, clipPath: 'inset(0 100% 0 0)' }, { opacity: 1, clipPath: 'inset(0 0% 0 0)', duration: 0.8 }, 72.2);
+      window.__timelines['main'] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
