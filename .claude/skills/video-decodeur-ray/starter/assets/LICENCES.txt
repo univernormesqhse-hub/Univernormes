@@ -1,0 +1,2 @@
+Polices Inter, Roboto, Archivo Black, Space Mono, Caveat : SIL Open Font License 1.1 (paquets @fontsource sur npm).
+Icônes : Fluent Emoji (Microsoft, MIT). GSAP : licence standard GreenSock.

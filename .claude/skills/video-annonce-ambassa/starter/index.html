@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: 'Roboto'; src: url('assets/Roboto-400.woff2') format('woff2'); font-weight: 400; }
+      @font-face { font-family: 'Roboto'; src: url('assets/Roboto-700.woff2') format('woff2'); font-weight: 700; }
+      @font-face { font-family: 'Roboto'; src: url('assets/Roboto-900.woff2') format('woff2'); font-weight: 900; }
+      :root { --bg: #F3F3F3; --ink: #17171A; --coral: #D87554; --grey: #B4B3B4; --soft: #4F4E54; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--bg); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: 'Roboto', sans-serif; color: var(--ink); }
+      .scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      .bg { position: absolute; inset: 0; background-color: var(--bg); background-image: radial-gradient(rgba(23,23,26,0.10) 2.5px, transparent 2.5px); background-size: 46px 46px; }
+      /* éclat corail : 4 traits épais arrondis qui rayonnent depuis un coin hors champ */
+      .burst { position: absolute; width: 900px; height: 900px; }
+      .burst i { position: absolute; left: 450px; top: 430px; width: 680px; height: 70px; border-radius: 40px; background: var(--coral); transform-origin: 0 50%; }
+      .mark { position: absolute; left: 0; width: 1080px; top: 1640px; text-align: center; font-weight: 700; font-size: 48px; color: #858487; }
+      /* titres : gros mot gras + ligne secondaire ; les mots à venir sont gris */
+      .h1 { position: absolute; left: 60px; width: 960px; text-align: center; font-weight: 900; font-size: 128px; line-height: 1; letter-spacing: -3px; }
+      .h2 { position: absolute; left: 60px; width: 960px; text-align: center; font-weight: 700; font-size: 66px; line-height: 1.12; letter-spacing: -1px; }
+      .h3 { position: absolute; left: 60px; width: 960px; text-align: center; font-weight: 400; font-size: 58px; line-height: 1.15; color: var(--soft); }
+      .w { color: var(--grey); }
+      .chip { position: absolute; background: var(--ink); color: #fff; font-weight: 700; font-size: 54px; padding: 12px 26px 16px; border-radius: 16px; box-shadow: 0 18px 30px rgba(0,0,0,0.25); white-space: nowrap; }
+      .tile { position: absolute; background: var(--ink); border-radius: 26px; box-shadow: 0 30px 50px rgba(0,0,0,0.25); }
+      .dot { position: absolute; width: 30px; height: 30px; border-radius: 15px; background: var(--coral); }
+      .editor { position: absolute; background: #1C1C1F; border-radius: 26px; box-shadow: 0 36px 60px rgba(0,0,0,0.3); overflow: hidden; }
+      .editor .ln { position: absolute; height: 18px; border-radius: 9px; transform-origin: 0 50%; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="15" data-width="1080" data-height="1920">
+      <div class="bg"></div>
+      <div class="burst" id="br1" style="left: 690px; top: 1480px;"><i style="transform: rotate(-95deg);"></i><i style="transform: rotate(-125deg);"></i><i style="transform: rotate(-155deg);"></i><i style="transform: rotate(-185deg);"></i></div>
+      <div class="burst" id="br2" style="left: -500px; top: -480px; opacity: 0;"><i style="transform: rotate(5deg);"></i><i style="transform: rotate(35deg);"></i><i style="transform: rotate(65deg);"></i><i style="transform: rotate(95deg);"></i></div>
+      <div class="mark">universnormes</div>
+
+      <!-- Beat 1 : logo + mot géant -->
+      <div class="scene clip" id="b1" data-start="0" data-duration="3.2" data-track-index="1">
+        <div class="tile" id="logo" style="left: 395px; top: 380px; width: 290px; height: 290px; transform: rotate(-6deg);"><svg style="position: absolute; left: 95px; top: 85px;" width="110" height="120" viewBox="0 0 110 120"><path d="M 10 8 L 102 60 L 10 112 Z" fill="#D87554" stroke="#D87554" stroke-width="10" stroke-linejoin="round" /></svg></div>
+        <div class="h1" id="b1h" style="top: 760px;">ISO 45001</div>
+        <div class="h2" id="b1s" style="top: 910px;"><span class="w" data-t="0.9">expliquée</span> <span class="w" data-t="1.1">en</span> <span class="w" data-t="1.25">60 secondes</span></div>
+        <div class="chip" id="b1c" style="left: 370px; top: 1010px;">pas à pas</div>
+      </div>
+
+      <!-- Beat 2 : éditeur sombre + pellicule + puces -->
+      <div class="scene clip" id="b2" data-start="3.2" data-duration="4.6" data-track-index="1">
+        <div class="editor" id="ed" style="left: 90px; top: 300px; width: 900px; height: 340px;">
+          <div class="dot" style="left: 30px; top: 26px; width: 18px; height: 18px; background: #E86A5C;"></div><div class="dot" style="left: 60px; top: 26px; width: 18px; height: 18px; background: #B3B3B3;"></div><div class="dot" style="left: 90px; top: 26px; width: 18px; height: 18px; background: #B3B3B3;"></div>
+          <div class="ln" style="left: 40px; top: 80px; width: 260px; background: var(--coral);"></div>
+          <div class="ln" style="left: 90px; top: 125px; width: 420px; background: #55545A;"></div>
+          <div class="ln" style="left: 90px; top: 170px; width: 360px; background: #55545A;"></div>
+          <div class="ln" style="left: 140px; top: 215px; width: 320px; background: var(--coral);"></div>
+          <div class="ln" style="left: 140px; top: 260px; width: 470px; background: #55545A;"></div>
+          <div class="ln" style="left: 40px; top: 300px; width: 140px; background: #F3F3F3;"></div>
+        </div>
+        <div id="film" style="position: absolute; left: 90px; top: 680px; width: 900px; display: flex; gap: 22px;">
+          <div class="tile fr" style="position: relative; width: 162px; height: 120px; border-radius: 14px;"><div class="dot" style="left: 22px; bottom: 20px;"></div></div>
+          <div class="tile fr" style="position: relative; width: 162px; height: 120px; border-radius: 14px;"><div class="dot" style="left: 62px; bottom: 34px;"></div></div>
+          <div class="tile fr" style="position: relative; width: 162px; height: 120px; border-radius: 14px;"><div class="dot" style="left: 90px; bottom: 60px;"></div></div>
+          <div class="tile fr" style="position: relative; width: 162px; height: 120px; border-radius: 14px;"><div class="dot" style="left: 108px; bottom: 34px;"></div></div>
+          <div class="tile fr" style="position: relative; width: 162px; height: 120px; border-radius: 14px;"><div class="dot" style="left: 120px; bottom: 14px;"></div></div>
+        </div>
+        <div class="h2" style="top: 870px; font-weight: 900; font-size: 92px;"><span class="w" data-t="3.4">Il</span> <span class="w" data-t="3.55">suit</span> <span class="w" data-t="3.75">le</span> <span class="w" data-t="3.9">risque</span></div>
+        <div class="h3" style="top: 990px;"><span class="w" data-t="4.4">étape</span> <span class="w" data-t="4.7">par</span> <span class="w" data-t="4.9">étape</span></div>
+        <div class="chip" id="c21" style="left: 230px; top: 1100px;">Analyse</div>
+        <div class="chip" id="c22" style="left: 540px; top: 1100px;">Contrôle</div>
+      </div>
+
+      <!-- Beat 3 : grille de vérification + loupe -->
+      <div class="scene clip" id="b3" data-start="7.8" data-duration="3.6" data-track-index="1">
+        <div id="grid3" style="position: absolute; left: 110px; top: 380px; width: 860px; display: grid; grid-template-columns: repeat(3, 270px); gap: 25px;">
+          <div class="tile g" style="position: relative; height: 190px; border-radius: 18px;"><div class="dot" style="left: 40px; top: 80px;"></div></div>
+          <div class="tile g" style="position: relative; height: 190px; border-radius: 18px;"><div class="dot" style="left: 120px; top: 80px;"></div></div>
+          <div class="tile g" style="position: relative; height: 190px; border-radius: 18px;"><div class="dot" style="left: 200px; top: 80px;"></div></div>
+          <div class="tile g" style="position: relative; height: 190px; border-radius: 18px;"><div class="dot" style="left: 40px; top: 120px;"></div></div>
+          <div class="tile g" id="bad" style="position: relative; height: 190px; border-radius: 18px;"><div class="dot" style="left: 120px; top: 120px;"></div></div>
+          <div class="tile g" style="position: relative; height: 190px; border-radius: 18px;"><div class="dot" style="left: 200px; top: 120px;"></div></div>
+        </div>
+        <svg id="loupe" style="position: absolute; left: 470px; top: 560px;" width="160" height="160" viewBox="0 0 160 160"><circle cx="64" cy="64" r="42" fill="none" stroke="#fff" stroke-width="16" /><line x1="96" y1="96" x2="146" y2="146" stroke="#fff" stroke-width="20" stroke-linecap="round" /></svg>
+        <div class="h2" style="top: 900px; font-weight: 900; font-size: 92px;"><span class="w" data-t="8.1">Il</span> <span class="w" data-t="8.25">vérifie</span> <span class="w" data-t="8.55">tout</span></div>
+        <div class="chip" id="c3" style="left: 250px; top: 1030px;">et corrige les écarts</div>
+      </div>
+
+      <!-- Beat 4 : appel à l'action -->
+      <div class="scene clip" id="b4" data-start="11.4" data-duration="3.6" data-track-index="1">
+        <div class="h3" style="top: 330px; color: var(--ink);"><span class="w" data-t="11.5">N'oublie</span> <span class="w" data-t="11.7">pas</span> <span class="w" data-t="11.85">de</span> <span class="w" data-t="11.95">t'abonner</span> <span class="w" data-t="12.2">à</span></div>
+        <div class="h1" id="b4h" style="top: 420px; font-size: 118px;">universnormes</div>
+        <img id="b4i" src="assets/logo.png" style="position: absolute; left: 320px; top: 620px; width: 440px; background: #fff; border-radius: 30px; padding: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.2); transform: rotate(-4deg);" />
+        <div class="h2" style="top: 1010px;"><span class="w" data-t="12.9">et</span> <span class="w" data-t="13.05">commente</span></div>
+        <div class="chip" id="b4c" style="left: 270px; top: 1110px; font-size: 96px; padding: 18px 46px 24px; border-radius: 22px;">« AUDIT »</div>
+      </div>
+
+      <audio class="clip" id="s1" src="assets/sfx-pop.wav" data-start="0.15" data-duration="0.14" data-volume="0.45" data-track-index="20"></audio>
+      <audio class="clip" id="s2" src="assets/sfx-pop.wav" data-start="1.6" data-duration="0.14" data-volume="0.4" data-track-index="21"></audio>
+      <audio class="clip" id="s3" src="assets/sfx-whoosh.wav" data-start="3.0" data-duration="0.55" data-volume="0.4" data-track-index="22"></audio>
+      <audio class="clip" id="s4" src="assets/sfx-tick.wav" data-start="3.6" data-duration="0.05" data-volume="0.4" data-track-index="20"></audio>
+      <audio class="clip" id="s5" src="assets/sfx-pop.wav" data-start="5.6" data-duration="0.14" data-volume="0.4" data-track-index="21"></audio>
+      <audio class="clip" id="s6" src="assets/sfx-whoosh.wav" data-start="7.6" data-duration="0.55" data-volume="0.4" data-track-index="22"></audio>
+      <audio class="clip" id="s7" src="assets/sfx-validation.wav" data-start="9.9" data-duration="0.12" data-volume="0.45" data-track-index="20"></audio>
+      <audio class="clip" id="s8" src="assets/sfx-whoosh.wav" data-start="11.2" data-duration="0.55" data-volume="0.4" data-track-index="21"></audio>
+      <audio class="clip" id="s9" src="assets/sfx-bass-hit.wav" data-start="13.4" data-duration="0.7" data-volume="0.45" data-track-index="22"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      // mots à venir gris → noirs à leur data-t
+      document.querySelectorAll('.w').forEach((w) => tl.to(w, { color: '#17171A', duration: 0.1 }, parseFloat(w.dataset.t)));
+      const pop = (sel, at, from) => tl.fromTo(sel, Object.assign({ opacity: 0, scale: 0.7, y: 30 }, from || {}), { opacity: 1, scale: 1, x: 0, y: 0, duration: 0.4, ease: 'back.out(2)' }, at);
+      // passage « flou » : la scène sortante se brouille et s'efface, l'entrante sort du flou
+      const blurOut = (sel, at) => tl.to(sel, { filter: 'blur(26px)', opacity: 0, scale: 1.04, duration: 0.3, ease: 'power2.in' }, at);
+      const blurIn = (sel, at) => tl.fromTo(sel, { filter: 'blur(26px)', opacity: 0, scale: 0.96 }, { filter: 'blur(0px)', opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out' }, at);
+      // l'éclat corail respire et change de coin
+      tl.fromTo('#br1', { rotation: 0 }, { rotation: 8, duration: 3, yoyo: true, repeat: 4, ease: 'sine.inOut', transformOrigin: '50% 48%' }, 0);
+      tl.fromTo('#br1 i', { scaleX: 0 }, { scaleX: 1, duration: 0.5, stagger: 0.06, ease: 'power3.out' }, 0);
+      tl.to('#br1', { opacity: 0, duration: 0.3 }, 7.6);
+      tl.to('#br2', { opacity: 1, duration: 0.3 }, 7.8);
+      tl.fromTo('#br2 i', { scaleX: 0 }, { scaleX: 1, duration: 0.5, stagger: 0.06, ease: 'power3.out' }, 7.8);
+      // B1
+      tl.fromTo('#logo', { scale: 1.12 }, { scale: 1, duration: 0.5, ease: 'back.out(2)' }, 0.05); // visible dès l'image 0 (couverture)
+      tl.fromTo('#b1h', { scale: 1.08 }, { scale: 1, duration: 0.4, ease: 'power3.out' }, 0.05);
+      pop('#b1c', 1.6);
+      blurOut('#b1', 2.9);
+      // B2
+      blurIn('#b2', 3.2);
+      tl.fromTo('#ed .ln', { scaleX: 0 }, { scaleX: 1, duration: 0.3, stagger: 0.12, ease: 'power2.out' }, 3.4);
+      tl.fromTo('#film .fr', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.1, ease: 'back.out(2)' }, 3.7);
+      pop('#c21', 5.6); pop('#c22', 5.9);
+      blurOut('#b2', 7.5);
+      // B3
+      blurIn('#b3', 7.8);
+      tl.fromTo('#grid3 .g', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.3, stagger: 0.07, ease: 'back.out(2)' }, 7.9);
+      tl.fromTo('#loupe', { x: -300, y: -120, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.9, ease: 'power2.inOut' }, 8.6);
+      tl.to('#bad', { boxShadow: '0 0 0 8px #D87554', duration: 0.2 }, 9.6);
+      pop('#c3', 9.9);
+      blurOut('#b3', 11.1);
+      // B4
+      blurIn('#b4', 11.4);
+      tl.fromTo('#b4h', { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.35, ease: 'power3.out' }, 12.3);
+      pop('#b4i', 12.5, { rotation: 10 });
+      pop('#b4c', 13.4);
+      window.__timelines['main'] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

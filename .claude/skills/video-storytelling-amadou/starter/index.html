@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: 'Inter'; src: url('assets/Inter-400.woff2') format('woff2'); font-weight: 400; }
+      @font-face { font-family: 'Inter'; src: url('assets/Inter-600.woff2') format('woff2'); font-weight: 600; }
+      @font-face { font-family: 'Inter'; src: url('assets/Inter-800.woff2') format('woff2'); font-weight: 800; }
+      @font-face { font-family: 'Caveat'; src: url('assets/Caveat-600.woff2') format('woff2'); font-weight: 600; }
+      :root { --bg: #FBFAF4; --ink: #1A171A; --yel: #FECD01; --skin: #6B3F25; --skin2: #8A5636; --teal: #538D94; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--bg); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: 'Inter', sans-serif; color: var(--ink); }
+      .scene { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      /* fond chaud + grandes formes jaunes floutées qui dérivent */
+      .blob { position: absolute; border: 90px solid var(--yel); border-radius: 50%; filter: blur(60px); opacity: 0.22; }
+      /* texte : mots qui sortent du flou ; mot-clé surligné au feutre jaune */
+      .tx { position: absolute; left: 70px; width: 940px; top: 300px; text-align: center; font-size: 60px; line-height: 1.22; letter-spacing: -0.5px; }
+      .tx .w { display: inline-block; }
+      .tx .k { position: relative; display: inline-block; z-index: 0; }
+      .tx .k::before { content: ''; position: absolute; left: -6px; right: -6px; bottom: 6px; height: 46%; background: var(--yel); z-index: -1; transform: scaleX(var(--hl, 0)); transform-origin: 0 50%; }
+      .tx .name { font-weight: 800; font-size: 76px; }
+      .script { font-family: 'Caveat', cursive; font-weight: 600; }
+      .ring { position: absolute; border-radius: 50%; overflow: hidden; border: 18px solid var(--yel); background: var(--yel); }
+      .ring img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .ray { position: absolute; width: 40px; height: 300px; background: var(--yel); border-radius: 20px; opacity: 0.55; transform-origin: 50% 100%; }
+      .card { position: absolute; background: #fff; border-radius: 28px; box-shadow: 0 20px 44px rgba(26,23,26,0.12); text-align: center; font-weight: 600; font-size: 34px; }
+      .bubble { position: absolute; background: var(--ink); color: #fff; font-weight: 800; font-size: 36px; padding: 14px 26px; border-radius: 30px; white-space: nowrap; }
+      .btn { position: absolute; background: var(--yel); color: var(--ink); font-weight: 800; font-size: 44px; padding: 22px 50px; border-radius: 60px; box-shadow: 0 14px 30px rgba(254,205,1,0.45); white-space: nowrap; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="16" data-width="1080" data-height="1920">
+      <div class="blob" id="bl1" style="left: -260px; top: 120px; width: 900px; height: 900px;"></div>
+      <div class="blob" id="bl2" style="left: 560px; top: 1050px; width: 800px; height: 800px;"></div>
+
+      <!-- Personnage plat réutilisable (peau foncée) : <use href="#perso"> -->
+      <svg width="0" height="0" style="position: absolute;">
+        <defs>
+          <g id="perso">
+            <rect x="58" y="300" width="34" height="210" rx="10" fill="#1F2A44" /><rect x="108" y="300" width="34" height="210" rx="10" fill="#1F2A44" />
+            <rect x="50" y="500" width="48" height="22" rx="10" fill="#2B2B2B" /><rect x="102" y="500" width="48" height="22" rx="10" fill="#2B2B2B" />
+            <path d="M 40 150 Q 100 128 160 150 L 166 310 L 34 310 Z" fill="var(--shirt, #F4F4F0)" />
+            <rect x="12" y="160" width="30" height="150" rx="14" fill="var(--shirt, #F4F4F0)" /><rect x="158" y="160" width="30" height="150" rx="14" fill="var(--shirt, #F4F4F0)" />
+            <circle cx="27" cy="318" r="16" fill="#6B3F25" /><circle cx="173" cy="318" r="16" fill="#6B3F25" />
+            <rect x="86" y="112" width="28" height="34" fill="#6B3F25" />
+            <ellipse cx="100" cy="76" rx="50" ry="58" fill="#6B3F25" />
+            <path d="M 50 70 Q 52 16 100 16 Q 148 16 150 70 Q 130 40 100 42 Q 70 40 50 70 Z" fill="#1A1414" />
+            <circle cx="82" cy="80" r="6" fill="#1A1414" /><circle cx="118" cy="80" r="6" fill="#1A1414" />
+            <path d="M 86 104 Q 100 114 114 104" fill="none" stroke="#1A1414" stroke-width="5" stroke-linecap="round" />
+          </g>
+        </defs>
+      </svg>
+
+      <!-- Beat 1 : portrait dans le disque jaune, rayons -->
+      <div class="scene clip" id="b1" data-start="0" data-duration="3.8" data-track-index="1">
+        <div class="tx"><span class="w" data-t="0.15">Bonjour,</span> <span class="w" data-t="0.55">ici</span><br /><span class="k name" data-t="0.9" data-h="1.3"><span class="w" data-t="0.9">UNIVERSNORMES.</span></span></div>
+        <div id="rays" style="position: absolute; left: 540px; top: 1350px;">
+          <div class="ray" style="left: -20px; top: -560px; transform: rotate(-60deg);"></div><div class="ray" style="left: -20px; top: -560px; transform: rotate(-30deg);"></div><div class="ray" style="left: -20px; top: -560px; transform: rotate(0deg);"></div><div class="ray" style="left: -20px; top: -560px; transform: rotate(30deg);"></div><div class="ray" style="left: -20px; top: -560px; transform: rotate(60deg);"></div>
+        </div>
+        <div class="ring" id="por" style="left: 190px; top: 900px; width: 700px; height: 700px;"><img src="assets/portrait.jpg" style="object-position: 50% 20%;" /></div>
+      </div>
+
+      <!-- Beat 2 : personnages plats + bulles de pensée -->
+      <div class="scene clip" id="b2" data-start="3.8" data-duration="4.6" data-track-index="1">
+        <div class="tx"><span class="w" data-t="3.9">La</span> <span class="k" data-t="4.1" data-h="4.4"><span class="w" data-t="4.1">prévention,</span></span><br /><span class="w" data-t="4.8">c'est</span> <span class="w" data-t="5.0">savoir</span> <span class="k" data-t="5.2" data-h="5.5"><span class="w" data-t="5.2">anticiper</span></span></div>
+        <div class="script" id="sc2" style="position: absolute; left: 0; width: 1080px; top: 520px; text-align: center; font-size: 92px;">pour rentrer chez soi</div>
+        <svg id="p1" style="position: absolute; left: 170px; top: 1040px; --shirt: #F4F4F0;" width="200" height="530" viewBox="0 0 200 530"><use href="#perso" /></svg>
+        <svg id="p2" style="position: absolute; left: 700px; top: 1040px; --shirt: #538D94;" width="200" height="530" viewBox="0 0 200 530"><use href="#perso" /></svg>
+        <div class="card" id="th1" style="left: 330px; top: 760px; width: 230px; height: 200px; border-radius: 100px; padding-top: 40px;"><img src="assets/agent-hse.png" style="width: 120px;" /></div>
+        <div class="card" id="th2" style="left: 560px; top: 820px; width: 160px; height: 140px; border-radius: 70px; padding-top: 22px;"><img src="assets/ampoule.png" style="width: 96px;" /></div>
+        <div class="bubble" id="bb" style="left: 90px; top: 960px;">SÉCURITÉ !</div>
+      </div>
+
+      <!-- Beat 3 : ampoule suspendue qui s'allume -->
+      <div class="scene clip" id="b3" data-start="8.4" data-duration="3.4" data-track-index="1">
+        <div class="tx"><span class="w" data-t="8.5">Une</span> <span class="k" data-t="8.7" data-h="9.0"><span class="w" data-t="8.7">idée</span></span> <span class="w" data-t="9.0">à</span> <span class="w" data-t="9.15">la</span> <span class="k" data-t="9.3" data-h="9.6"><span class="w" data-t="9.3">fois.</span></span></div>
+        <div id="lamp" style="position: absolute; left: 540px; top: 0; width: 0; height: 0;">
+          <div style="position: absolute; left: -3px; top: 430px; width: 6px; height: 390px; background: #3A3A3A;"></div>
+          <div id="glow" style="position: absolute; left: -260px; top: 760px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(254,205,1,0.75) 0%, rgba(254,205,1,0) 70%);"></div>
+          <svg style="position: absolute; left: -90px; top: 800px;" width="180" height="250" viewBox="0 0 180 250"><rect x="62" y="0" width="56" height="48" rx="6" fill="#7D7D7D" /><path d="M 90 48 C 20 60, 10 120, 40 160 C 55 180, 60 200, 62 220 L 118 220 C 120 200, 125 180, 140 160 C 170 120, 160 60, 90 48 Z" id="bulb" fill="#FFF6C9" stroke="#3A3A3A" stroke-width="6" /><path d="M 70 150 L 90 120 L 110 150" fill="none" stroke="#3A3A3A" stroke-width="5" /></svg>
+        </div>
+      </div>
+
+      <!-- Beat 4 : carte de profil + bouton -->
+      <div class="scene clip" id="b4" data-start="11.8" data-duration="4.2" data-track-index="1">
+        <div class="ring" id="pr4" style="left: 340px; top: 470px; width: 400px; height: 400px;"><img src="assets/portrait.jpg" style="object-position: 50% 20%;" /></div>
+        <div id="nm4" style="position: absolute; left: 0; width: 1080px; top: 940px; text-align: center; font-weight: 800; font-size: 96px; letter-spacing: -2px;">UNIVERSNORMES</div>
+        <div class="script" id="sc4" style="position: absolute; left: 0; width: 1080px; top: 1060px; text-align: center; font-size: 78px;">sécurité &amp; prévention</div>
+        <div class="btn" id="btn4" style="left: 300px; top: 1220px;">Pose ta question</div>
+      </div>
+
+      <audio class="clip" id="s1" src="assets/sfx-soft-whoosh.wav" data-start="0.3" data-duration="0.6" data-volume="0.4" data-track-index="20"></audio>
+      <audio class="clip" id="s2" src="assets/sfx-pop.wav" data-start="1.3" data-duration="0.14" data-volume="0.4" data-track-index="21"></audio>
+      <audio class="clip" id="s3" src="assets/sfx-swish.wav" data-start="3.8" data-duration="0.25" data-volume="0.4" data-track-index="22"></audio>
+      <audio class="clip" id="s4" src="assets/sfx-pop.wav" data-start="6.2" data-duration="0.14" data-volume="0.4" data-track-index="20"></audio>
+      <audio class="clip" id="s5" src="assets/sfx-pop.wav" data-start="6.6" data-duration="0.14" data-volume="0.4" data-track-index="21"></audio>
+      <audio class="clip" id="s6" src="assets/sfx-ding.wav" data-start="9.7" data-duration="0.7" data-volume="0.45" data-track-index="22"></audio>
+      <audio class="clip" id="s7" src="assets/sfx-soft-whoosh.wav" data-start="11.8" data-duration="0.6" data-volume="0.4" data-track-index="20"></audio>
+      <audio class="clip" id="s8" src="assets/sfx-click.wav" data-start="13.9" data-duration="0.12" data-volume="0.55" data-track-index="21"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      // mots qui sortent du flou à leur data-t ; surlignage jaune à data-h
+      document.querySelectorAll('.tx .w').forEach((w) => tl.fromTo(w, { opacity: 0, filter: 'blur(14px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.28, ease: 'power2.out' }, parseFloat(w.dataset.t)));
+      document.querySelectorAll('.tx .k').forEach((k) => tl.fromTo(k, { '--hl': 0 }, { '--hl': 1, duration: 0.3, ease: 'power2.out' }, parseFloat(k.dataset.h)));
+      const pop = (sel, at, from) => tl.fromTo(sel, Object.assign({ opacity: 0, scale: 0.5 }, from || {}), { opacity: 1, scale: 1, x: 0, y: 0, duration: 0.45, ease: 'back.out(1.8)' }, at);
+      // formes floues qui dérivent
+      tl.fromTo('#bl1', { x: 0, y: 0, rotation: 0 }, { x: 120, y: 80, rotation: 40, duration: 16, ease: 'none' }, 0);
+      tl.fromTo('#bl2', { x: 0, y: 0 }, { x: -140, y: -60, duration: 16, ease: 'none' }, 0);
+      // B1 : le disque jaune grandit, le portrait monte, les rayons jaillissent
+      tl.fromTo('#por', { scale: 0.2, y: 500 }, { scale: 1, y: 0, duration: 0.7, ease: 'back.out(1.4)' }, 0.2);
+      tl.fromTo('#rays .ray', { scaleY: 0 }, { scaleY: 1, duration: 0.4, stagger: 0.06, ease: 'back.out(2)' }, 1.3);
+      tl.to('#b1', { opacity: 0, duration: 0.25 }, 3.55);
+      // B2
+      pop('#p1', 3.9, { y: 200 }); pop('#p2', 4.2, { y: 200 });
+      pop('#th1', 5.3); pop('#th2', 5.6);
+      tl.fromTo('#sc2', { opacity: 0, clipPath: 'inset(0 100% 0 0)' }, { opacity: 1, clipPath: 'inset(0 0% 0 0)', duration: 0.9, ease: 'power1.inOut' }, 5.9);
+      pop('#bb', 6.6, { x: -60 });
+      tl.fromTo('#p1', { rotation: 0 }, { rotation: -3, duration: 0.3, yoyo: true, repeat: 3, transformOrigin: '50% 100%' }, 6.6);
+      tl.to('#b2', { opacity: 0, duration: 0.25 }, 8.15);
+      // B3 : l'ampoule descend, se balance, s'allume
+      tl.fromTo('#lamp', { y: -600 }, { y: 0, duration: 0.8, ease: 'bounce.out' }, 8.4);
+      tl.fromTo('#lamp', { rotation: 0 }, { rotation: 4, duration: 0.8, yoyo: true, repeat: 2, ease: 'sine.inOut', transformOrigin: '0 0' }, 9.2);
+      tl.fromTo('#glow', { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' }, 9.7);
+      tl.fromTo('#bulb', { fill: '#FFF6C9' }, { fill: '#FECD01', duration: 0.2 }, 9.7);
+      tl.to('#b3', { opacity: 0, duration: 0.25 }, 11.55);
+      // B4
+      pop('#pr4', 11.9);
+      tl.fromTo('#nm4', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, 12.3);
+      tl.fromTo('#sc4', { opacity: 0, clipPath: 'inset(0 100% 0 0)' }, { opacity: 1, clipPath: 'inset(0 0% 0 0)', duration: 0.9, ease: 'power1.inOut' }, 12.7);
+      pop('#btn4', 13.5);
+      tl.to('#btn4', { scale: 0.92, duration: 0.08, yoyo: true, repeat: 1 }, 13.9);
+      window.__timelines['main'] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
