@@ -114,6 +114,7 @@ import {Jsa, JSA_FRAMES} from './jsa/Jsa';
 import {TdbQhse, TDB_FRAMES} from './tdbQhse/TdbQhse';
 import {Kpi12, KPI12_FRAMES} from './kpi12/Kpi12';
 import {PlanAction, PLANACTION_FRAMES} from './planAction/PlanAction';
+import {TroisIso, TROISISO_FRAMES} from './troisIso/TroisIso';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -241,6 +242,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="TableauBordQhseEfficace" component={TdbQhse} durationInFrames={TDB_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="DouzeIndicateursQhse" component={Kpi12} durationInFrames={KPI12_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="MaitriserPlanActionQhse" component={PlanAction} durationInFrames={PLANACTION_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="TroisNormesIsoSimplifiees" component={TroisIso} durationInFrames={TROISISO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
