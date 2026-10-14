@@ -116,6 +116,7 @@ import {Kpi12, KPI12_FRAMES} from './kpi12/Kpi12';
 import {PlanAction, PLANACTION_FRAMES} from './planAction/PlanAction';
 import {TroisIso, TROISISO_FRAMES} from './troisIso/TroisIso';
 import {Haccp, HACCP_FRAMES} from './haccp/Haccp';
+import {Coordo, COORDO_FRAMES} from './coordo/Coordo';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -245,6 +246,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="MaitriserPlanActionQhse" component={PlanAction} durationInFrames={PLANACTION_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="TroisNormesIsoSimplifiees" component={TroisIso} durationInFrames={TROISISO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="MaitriserPrpPrpoCcp" component={Haccp} durationInFrames={HACCP_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="RoleCoordinateurHse" component={Coordo} durationInFrames={COORDO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
