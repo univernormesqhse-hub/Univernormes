@@ -120,6 +120,7 @@ import {Coordo, COORDO_FRAMES} from './coordo/Coordo';
 import {Assistant, ASSISTANT_FRAMES} from './assistant/Assistant';
 import {Animateur, ANIMATEUR_FRAMES} from './animateur/Animateur';
 import {Acronymes, ACRONYMES_FRAMES} from './acronymes/Acronymes';
+import {AcroSecu, ACROSECU_FRAMES} from './acrosecu/AcroSecu';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -253,6 +254,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="ImpactAssistantHse" component={Assistant} durationInFrames={ASSISTANT_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="AnimateurHseReflexe" component={Animateur} durationInFrames={ANIMATEUR_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="VocabulaireAcronymesHse" component={Acronymes} durationInFrames={ACRONYMES_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="AcronymesSecuriteIndustrielle" component={AcroSecu} durationInFrames={ACROSECU_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
