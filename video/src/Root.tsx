@@ -111,6 +111,7 @@ import {Indicateurs, INDICATEURS_FRAMES} from './indicateurs/Indicateurs';
 import {FichePoste, FICHEPOSTE_FRAMES} from './fichePoste/FichePoste';
 import {ImplIso, IMPLISO_FRAMES} from './implIso/ImplIso';
 import {Jsa, JSA_FRAMES} from './jsa/Jsa';
+import {TdbQhse, TDB_FRAMES} from './tdbQhse/TdbQhse';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -235,6 +236,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="FichePosteFonction" component={FichePoste} durationInFrames={FICHEPOSTE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ImplementationIso" component={ImplIso} durationInFrames={IMPLISO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="MaitriseJsa" component={Jsa} durationInFrames={JSA_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="TableauBordQhseEfficace" component={TdbQhse} durationInFrames={TDB_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
