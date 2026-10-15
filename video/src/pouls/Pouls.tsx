@@ -213,7 +213,7 @@ const Terrain: React.FC = () => {
       <Center y={320}><Kin text="Que se passe-t-il vraiment sur le terrain ?" at={2.8} size={58} /></Center>
       <Abs x={60} y={500} w={960} h={240}>
         {docs.map((d, k) => (
-          <div key={k} style={{position: 'absolute', left: 30 + k * 310, top: 0, width: 280, height: 220, borderRadius: 24, background: '#fff', boxShadow: '0 16px 30px rgba(20,33,61,0.14)', textAlign: 'center', paddingTop: 20, boxSizing: 'border-box', transform: `scale(${Math.min(1, spring(t, d.a, 8, 13))}) translateY(${-sweep * 120}px) rotate(${sweep * (k - 1) * 14}deg)`, opacity: 1 - sweep * 0.75}}>
+          <div key={k} style={{position: 'absolute', left: 30 + k * 310, top: 0, width: 280, height: 220, borderRadius: 24, background: '#fff', boxShadow: '0 16px 30px rgba(20,33,61,0.14)', textAlign: 'center', paddingTop: 20, boxSizing: 'border-box', transform: `scale(${Math.min(1, spring(t, d.a, 8, 13))}) translateY(${-sweep * 60}px) rotate(${sweep * (k - 1) * 14}deg)`, opacity: 1 - sweep}}>
             <div style={{display: 'flex', justifyContent: 'center'}}><F n={d.ic} size={110} /></div>
             <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 32, color: DIM, marginTop: 10}}>{d.l}</div>
             <div style={{position: 'absolute', left: 6, top: 6, fontFamily: sansFont, fontWeight: 900, fontSize: 22, color: '#fff', background: DIM, borderRadius: 10, padding: '2px 10px', opacity: pop(t, 3.5)}}>au-delà</div>
@@ -321,7 +321,7 @@ const Marche: React.FC = () => {
           <line x1={210} y1={220} x2={210 + Math.sin(ring * Math.PI) * 110} y2={220 - Math.cos(ring * Math.PI) * 110} stroke={PULSE} strokeWidth={8} strokeLinecap="round" />
           <rect x={185} y={22} width={50} height={26} rx={6} fill={INK} />
         </svg>
-        <div style={{position: 'absolute', left: 0, right: 0, top: 250, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 64, color: BLUE}}>{Math.round(ring * 30)} min</div>
+        <div style={{position: 'absolute', left: 95, width: 230, top: 100, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 50, whiteSpace: 'nowrap', color: BLUE, background: '#fff', borderRadius: 16}}>{Math.round(ring * 30)} min</div>
       </Abs>
       <Cite y={860} at={50.0} text="30 minutes : durée citée par la vidéo d’origine" />
       <Abs x={0} y={0} w={1080} h={1920} style={{opacity: pop(t, 51.0)}}><Steps pts={path} at={51.0} dur={4.4} c={`${BLUE}AA`} size={30} /></Abs>
@@ -332,7 +332,7 @@ const Marche: React.FC = () => {
         <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 44, color: DIM, opacity: pop(t, 58.3)}}>→</div>
         <div style={{fontFamily: handFont, fontWeight: 700, fontSize: lerp(38, 76, swap), color: PULSE, opacity: pop(t, 58.3)}}>la manière</div>
       </Abs>
-      <Stamp at={60.6} c={PULSE} text="ça change tout" x={300} y={880} rot={-6} size={54} />
+      <Stamp at={60.6} c={PULSE} text="ça change tout" x={300} y={1345} rot={-6} size={54} />
     </Out>
   );
 };
@@ -389,14 +389,14 @@ const Lundi: React.FC = () => {
 /* ═════════════ SECTION 2 ═════════════ */
 const Posture: React.FC = () => {
   const t = useT();
-  const tilt = (prog(t, 102.7, 103.4, easeInOut) - prog(t, 104.5, 105.6, easeInOut) * 2) * 10;
+  const tilt = (prog(t, 104.5, 105.6, easeInOut) * 2 - prog(t, 102.7, 103.4, easeInOut)) * 10;
   return (
     <Out end={111.9}>
       <Abs x={140} y={330} w={800} h={420} style={{borderRadius: 30, background: '#fff', boxShadow: '0 20px 40px rgba(20,33,61,0.15)', opacity: pop(t, 88.4), overflow: 'hidden'}}>
         <div style={{position: 'absolute', left: 60, top: 40, opacity: 0.85}}><F n="clipboard" size={220} /></div>
         <div style={{position: 'absolute', left: 320, top: 70, fontFamily: sansFont, fontWeight: 900, fontSize: 56, color: INK}}>Inspection ?</div>
         <div style={{position: 'absolute', left: 320, top: 150, fontFamily: sansFont, fontWeight: 700, fontSize: 30, color: DIM}}>comme on en a l’habitude</div>
-        <Stamp at={91.5} c={RED} text="absolument pas" x={300} y={240} rot={-8} size={56} />
+        <Stamp at={91.5} c={RED} text="absolument pas" x={230} y={250} rot={-6} size={48} />
       </Abs>
       <Center y={800}><Kin text="C’est même tout le contraire." at={95.1} size={54} color={RED} /></Center>
       {t > 98.2 && (
@@ -506,7 +506,7 @@ const Niveau1: React.FC = () => {
         <Tile ch="1" size={80} c={BLUE} /><div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 46, color: INK}}>La référence</div><div style={{fontFamily: sansFont, fontWeight: 700, fontSize: 26, color: DIM}}>le site a-t-il la même tête ?</div></div>
       </Abs>
       {[0, 1].map((k) => (
-        <Abs key={k} x={70} y={460 + k * 420} w={940} h={390} style={{borderRadius: 26, overflow: 'hidden', border: '8px solid #fff', boxShadow: '0 20px 40px rgba(20,33,61,0.2)', opacity: pop(t, k ? 158.2 : 152.6), transform: `translateX(${(1 - pop(t, k ? 158.2 : 152.6, 0.6)) * (k ? 300 : -300)}px)`}}>
+        <Abs key={k} x={70} y={460 + k * 400} w={940} h={370} style={{borderRadius: 26, overflow: 'hidden', border: '8px solid #fff', boxShadow: '0 20px 40px rgba(20,33,61,0.2)', opacity: pop(t, k ? 158.2 : 152.6), transform: `translateX(${(1 - pop(t, k ? 158.2 : 152.6, 0.6)) * (k ? 300 : -300)}px)`}}>
           <Img src={PH('zones/entrepot.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: '30% 40%', filter: k ? 'saturate(1.1)' : 'saturate(0.85) sepia(0.15)'}} />
           {k === 1 && (
             <>
@@ -522,7 +522,7 @@ const Niveau1: React.FC = () => {
         </Abs>
       ))}
       <Abs x={0} y={1300} w={1080} style={{display: 'flex', justifyContent: 'center', gap: 14}}><Pill at={161.0} c={GREEN} size={28}>en bien ?</Pill><Pill at={161.6} c={RED} size={28}>en mal ?</Pill><Pill at={162.9} c={INK} size={28}>1er grand indicateur</Pill></Abs>
-      <Cite y={1270} at={159.0} text="différences ajoutées pour illustrer" />
+      <Cite y={1248} at={159.0} text="différences ajoutées pour illustrer" />
     </Out>
   );
 };
@@ -636,6 +636,7 @@ const Presence: React.FC = () => {
   return (
     <Out end={236.9}>
       <Center y={320}><Kin text="Quel impact sur la culture ?" at={216.9} size={58} color={ORANGE} /></Center>
+      {t < 224.2 && <div style={{opacity: 1 - prog(t, 223.6, 224.1)}}><Deep src="induction/accueil-groupe.jpg" x={110} y={430} w={860} h={560} at={217.4} pos="50% 45%"><div style={{position: 'absolute', left: 20, bottom: 20}}><Pill at={219.7} c={ORANGE} size={30}>la culture d’entreprise</Pill></div></Deep><Center y={1060}><Kin text="Le principe clé : être présent" at={221.9} size={52} /></Center></div>}
       <Abs x={0} y={420} w={1080} style={{opacity: pop(t, 224.0)}}><Word text="PRÉSENT" at={224.1} size={104} c={ORANGE} variant={1} gap={8} /></Abs>
       <Abs x={0} y={570} w={1080} style={{display: 'flex', justifyContent: 'center', gap: 12}}><Pill at={225.8} c={BLUE} size={30}>régulière</Pill><Pill at={227.1} c={TEAL} size={30}>visible</Pill><Pill at={228.0} c={GREEN} size={30}>bienveillante</Pill></Abs>
       <Abs x={90} y={680} w={900} h={170} style={{display: 'flex', justifyContent: 'center', gap: 40, opacity: pop(t, 229.1) * (1 - prog(t, 232.4, 232.9))}}>
@@ -705,7 +706,7 @@ const Piliers: React.FC = () => {
   const P = [{k: 'REGULARITE', l: 'Régularité', s: 'non négociable', s2: 'habitude + confiance', a: 268.4, sa: 269.7, s2a: 271.0, c: BLUE},
     {k: 'INTENTION', l: 'Intention claire', s: 'observer & comprendre', s2: 'pas inspecter & juger', a: 274.6, sa: 276.6, s2a: 278.6, c: TEAL},
     {k: 'PRESENCE', l: 'Présence pleine', s: 'sans checklist', s2: 'sans téléphone', a: 280.5, sa: 282.2, s2a: 282.9, c: ORANGE},
-    {k: 'ACCES', l: 'Accessibilité', s: 's’arrêter · écouter', s2: 'échanger', a: 284.7, sa: 285.9, s2a: 288.8, c: VIO}];
+    {k: 'ACCESSIBLE', l: 'Acces­sibilité', s: 's’arrêter · écouter', s2: 'échanger', a: 284.7, sa: 285.9, s2a: 288.8, c: VIO}];
   const roof = Math.min(1, spring(t, 288.9, 8, 12));
   return (
     <Out end={290.15}>
@@ -723,15 +724,17 @@ const Piliers: React.FC = () => {
             <div style={{position: 'absolute', left: 0, right: 0, top: 0, height: 34, background: 'rgba(255,255,255,0.25)'}} />
             {Array.from({length: 4}, (_, j) => <div key={j} style={{position: 'absolute', top: 40, bottom: 0, left: 30 + j * 46, width: 6, background: 'rgba(255,255,255,0.18)', borderRadius: 3}} />)}
             <div style={{position: 'absolute', left: 0, right: 0, top: 60, textAlign: 'center'}}><Tile ch={String(k + 1)} size={70} c={p.c} /></div>
-            <div style={{position: 'absolute', left: 8, right: 8, top: 160, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: '#fff', lineHeight: 1.1}}>{p.l}</div>
+            <div style={{position: 'absolute', left: 8, right: 8, top: 160, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 28, color: '#fff', lineHeight: 1.1}}>{p.l}</div>
             <div style={{position: 'absolute', left: 8, right: 8, top: 270, textAlign: 'center', fontFamily: handFont, fontWeight: 700, fontSize: 30, color: '#fff', opacity: pop(t, p.sa), lineHeight: 1.1}}>{p.s}</div>
             <div style={{position: 'absolute', left: 8, right: 8, top: 380, textAlign: 'center', fontFamily: handFont, fontWeight: 700, fontSize: 30, color: '#fff', opacity: pop(t, p.s2a), lineHeight: 1.1}}>{p.s2}</div>
           </div>
         );
       })}
+      {t < 268.6 && [0, 1, 2, 3].map((k) => <div key={k} style={{position: 'absolute', left: 80 + k * 236, top: 600, width: 210, height: 640, borderRadius: '10px 10px 0 0', border: `5px dashed ${VIO}88`, boxSizing: 'border-box', opacity: pop(t, 262.6 + k * 0.25) * (1 - prog(t, 268.2, 268.6)), display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 90, color: `${VIO}55`}}>?</div>)}
+      {t < 268.6 && <Abs x={0} y={760} w={1080} style={{textAlign: 'center', opacity: 1 - prog(t, 268.0, 268.4)}}><Pill at={264.1} c={GOLDC} size={44}>règles d’or</Pill></Abs>}
       <div style={{position: 'absolute', left: 60, right: 60, top: 1240, height: 40, background: INK, borderRadius: 8, opacity: pop(t, 266.7)}} />
       <Abs x={0} y={1290} w={1080} style={{display: 'flex', justifyContent: 'center', opacity: pop(t, 266.7)}}>
-        <Board text={['', 'REGULARITE', 'INTENTION', 'PRESENCE', 'ACCES'][P.reduce((a, p, i) => (t >= p.a ? i + 1 : a), 0)] || 'PILIERS'} at={P.reduce((a, p) => (t >= p.a ? p.a : a), 266.7)} h={56} c={INK} stag={0.04} />
+        <Board text={['', 'REGULARITE', 'INTENTION', 'PRESENCE', 'ACCESSIBLE'][P.reduce((a, p, i) => (t >= p.a ? i + 1 : a), 0)] || 'PILIERS'} at={P.reduce((a, p) => (t >= p.a ? p.a : a), 266.7)} h={56} c={INK} stag={0.04} />
       </Abs>
     </Out>
   );
