@@ -122,6 +122,7 @@ import {Animateur, ANIMATEUR_FRAMES} from './animateur/Animateur';
 import {Acronymes, ACRONYMES_FRAMES} from './acronymes/Acronymes';
 import {AcroSecu, ACROSECU_FRAMES} from './acrosecu/AcroSecu';
 import {ProcProc, PROCPROC_FRAMES} from './procProc/ProcProc';
+import {IdProc, IDPROC_FRAMES} from './idProc/IdProc';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -257,6 +258,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="VocabulaireAcronymesHse" component={Acronymes} durationInFrames={ACRONYMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="AcronymesSecuriteIndustrielle" component={AcroSecu} durationInFrames={ACROSECU_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ProcedureDesProcedures" component={ProcProc} durationInFrames={PROCPROC_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="IdentifierLesProcessus" component={IdProc} durationInFrames={IDPROC_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
