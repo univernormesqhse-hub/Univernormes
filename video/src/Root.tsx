@@ -130,6 +130,7 @@ import {Deming, DEMING_FRAMES} from './deming/Deming';
 import {AccInc, ACCINC_FRAMES} from './accInc/AccInc';
 import {SecuInd, SECUIND_FRAMES} from './secuInd/SecuInd';
 import {PlanHse, PLANHSE_FRAMES} from './planHse/PlanHse';
+import {Pouls, POULS_FRAMES} from './pouls/Pouls';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -273,6 +274,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="AccidentIncidentQuasi" component={AccInc} durationInFrames={ACCINC_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="SecuriteTravailVsIndustrielle" component={SecuInd} durationInFrames={SECUIND_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LePlanHse" component={PlanHse} durationInFrames={PLANHSE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="PriseDePoulsTerrain" component={Pouls} durationInFrames={POULS_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
