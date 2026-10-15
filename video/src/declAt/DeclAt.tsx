@@ -120,6 +120,7 @@ const Pneumatique: React.FC<{i: number}> = ({i}) => {
   const unroll = prog(t, S0.at + 0.95, S0.at + 1.6, easeOut) * (1 - prog(t, S0.at + 2.5, S0.at + 2.95, easeInOut));
   const H = 820;
   const long = S0.title.length > 22;
+  const mid = S0.title.length > 14;
   return (
     <AbsoluteFill style={{zIndex: 35, opacity: bg}}>
       <AbsoluteFill style={{background: '#F3F7FB'}} />
@@ -131,8 +132,8 @@ const Pneumatique: React.FC<{i: number}> = ({i}) => {
           <div style={{position: 'absolute', left: 0, right: 0, top: 70, textAlign: 'center'}}>
             <div style={{display: 'inline-block', padding: '8px 24px', border: `6px solid ${S0.c}`, borderRadius: 12, color: S0.c, fontFamily: sansFont, fontWeight: 900, fontSize: 38, letterSpacing: 3, transform: `rotate(-4deg) scale(${lerp(1.8, 1, prog(t, S0.at + 1.3, S0.at + 1.5, easeIn))})`, opacity: prog(t, S0.at + 1.3, S0.at + 1.45)}}>DOSSIER N°{S0.n}</div>
           </div>
-          <div style={{position: 'absolute', left: 50, right: 50, top: 210, textAlign: 'center'}}><Kin text={S0.title} at={S0.at + 1.35} size={long ? 66 : 88} /></div>
-          <div style={{position: 'absolute', left: 0, right: 0, top: long ? 470 : 400, textAlign: 'center'}}><Pill at={S0.at + 1.8} c={S0.c} size={36}>{S0.s}</Pill></div>
+          <div style={{position: 'absolute', left: 50, right: 50, top: 210, textAlign: 'center'}}><Kin text={S0.title} at={S0.at + 1.35} size={long ? 62 : mid ? 72 : 88} /></div>
+          <div style={{position: 'absolute', left: 0, right: 0, top: long ? 480 : 410, textAlign: 'center'}}><Pill at={S0.at + 1.8} c={S0.c} size={36}>{S0.s}</Pill></div>
           <div style={{position: 'absolute', left: 0, right: 0, top: 590, display: 'flex', justifyContent: 'center', gap: 10}}>{(STATIONS[i + 1]).toUpperCase().slice(0, 7).split('').map((ch, j) => <div key={j} style={{transform: `scale(${Math.max(0, Math.min(1, spring(t, S0.at + 1.6 + j * 0.06, 8, 12)))})`}}><Tile ch={ch} size={72} c={S0.c} /></div>)}</div>
         </div>
       )}
@@ -265,7 +266,7 @@ const Criteres: React.FC = () => {
   const lock = prog(t, 86.8, 88.6);
   return (
     <Out end={97.65}>
-      <Center y={320}><Kin text="Trois critères réunis en même temps" at={64.5} size={54} color={BLUE} /></Center>
+      <Center y={320}><Kin text="Trois critères réunis" at={64.5} size={62} color={BLUE} /></Center>
       <Abs x={0} y={420} w={1080} style={{display: 'flex', justifyContent: 'center', gap: 10, opacity: pop(t, 67.4)}}>{['1', '2', '3'].map((n, k) => <div key={k} style={{transform: `scale(${Math.min(1, spring(t, 67.5 + k * 0.2, 8, 12))})`}}><Tile ch={n} size={70} c={C[k].c} /></div>)}</Abs>
       {C.map((x, k) => {
         const ok = lock * 3 > k + 0.3;
@@ -318,7 +319,7 @@ const Trajet: React.FC = () => {
   const brk = prog(t, 138.7, 139.3, easeOut);
   return (
     <Out end={146.2}>
-      <Center y={320}><Kin text="Accident du travail ≠ accident de trajet" at={123.7} size={52} /></Center>
+      <Center y={320}><Kin text="Travail ≠ trajet" at={123.7} size={66} /></Center>
       <Abs x={60} y={420} w={960} h={640} style={{borderRadius: 30, background: '#EEF3F0', border: '6px solid #C9D2DF', overflow: 'hidden', opacity: pop(t, 127.6)}}>
         <svg width={960} height={640} style={{position: 'absolute', inset: 0}}>
           {Array.from({length: 9}, (_, k) => <line key={k} x1={0} y1={k * 80} x2={960} y2={k * 80} stroke="#DCE6DF" strokeWidth={2} />)}
@@ -515,9 +516,9 @@ const Bonnes: React.FC = () => {
               return (
                 <div key={k} style={{position: 'relative', width: 170, height: 200, borderRadius: 18, background: paid ? (k === 0 ? `${ORANGE}22` : `${TEAL}22`) : '#fff', border: `5px solid ${paid ? (k === 0 ? ORANGE : TEAL) : '#C9D2DF'}`, textAlign: 'center', paddingTop: 20, boxSizing: 'border-box', opacity: pop(t, 270.5 + k * 0.1)}}>
                   <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 52, color: INK}}>{d}</div>
-                  <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 20, color: DIM, marginTop: 6}}>{k === 0 ? 'jour de l’accident' : 'arrêt'}</div>
+                  <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 20, color: DIM, marginTop: 6, opacity: paid && k === 0 ? 0 : 1}}>{k === 0 ? 'jour de l’accident' : 'arrêt'}</div>
                   {lost && <div style={{position: 'absolute', left: 8, right: 8, top: 120, fontFamily: sansFont, fontWeight: 900, fontSize: 18, color: RED, opacity: pop(t, 271.3) * (1 - cr3)}}>perdu en maladie</div>}
-                  {paid && <div style={{position: 'absolute', left: 0, right: 0, bottom: 12, fontFamily: sansFont, fontWeight: 900, fontSize: 24, color: k === 0 ? ORANGE : TEAL}}>{k === 0 ? '100 % employeur' : 'Sécu'}</div>}
+                  {paid && <div style={{position: 'absolute', left: 4, right: 4, bottom: 12, fontFamily: sansFont, fontWeight: 900, fontSize: k === 0 ? 20 : 24, lineHeight: 1.1, color: k === 0 ? ORANGE : TEAL}}>{k === 0 ? '100 % employeur' : 'Sécu'}</div>}
                 </div>
               );
             })}
@@ -640,7 +641,7 @@ const Faute: React.FC = () => {
   const up = prog(t, 402.0, 403.8, easeOut);
   return (
     <Out end={405.0}>
-      <Center y={320}><Kin text="La faute inexcusable de l’employeur" at={386.9} size={54} color={RED} /></Center>
+      <Center y={320}><Kin text="La faute inexcusable" at={386.9} size={64} color={RED} /></Center>
       <Deep src="promo/hse-machine.jpg" x={70} y={430} w={560} h={520} at={384.0} pos="50% 40%" />
       <Abs x={650} y={430} w={370} h={520} style={{display: 'flex', flexDirection: 'column', gap: 16}}>
         {[{l: 'savait qu’il y avait un danger', a: 391.7, ic: 'danger'}, {l: 'en avait conscience', a: 394.2, ic: 'cerveau'}, {l: 'n’a pas pris les mesures', a: 395.6, ic: 'sens-interdit'}].map((x, k) => (
@@ -661,7 +662,7 @@ const Temporaires: React.FC = () => {
   const flip = prog(t, 427.0, 428.4, easeInOut);
   return (
     <Out end={431.1}>
-      <Center y={320}><Kin text="Un point que peu de gens connaissent" at={405.1} size={54} color={RED} /></Center>
+      <Center y={320}><Kin text="Un point méconnu" at={405.1} size={64} color={RED} /></Center>
       <Abs x={0} y={420} w={1080} style={{display: 'flex', justifyContent: 'center', gap: 14}}><Pill at={411.3} c={BLUE} size={30}>intérimaires</Pill><Pill at={412.1} c={TEAL} size={30}>CDD</Pill><Pill at={412.8} c={VIO} size={30}>stagiaires</Pill></Abs>
       <Deep src="personnages/equipe.jpg" x={110} y={520} w={860} h={360} at={409.8} pos="50% 25%">
         <div style={{position: 'absolute', right: 20, top: 20}}><Pill at={413.7} c={RED} size={28}>poste dangereux</Pill></div>
