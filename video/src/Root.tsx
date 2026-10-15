@@ -128,6 +128,7 @@ import {Durab, DURAB_FRAMES} from './durab/Durab';
 import {AiprAtex, AIPRATEX_FRAMES} from './aiprAtex/AiprAtex';
 import {Deming, DEMING_FRAMES} from './deming/Deming';
 import {AccInc, ACCINC_FRAMES} from './accInc/AccInc';
+import {SecuInd, SECUIND_FRAMES} from './secuInd/SecuInd';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -269,6 +270,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="AiprVsAtex" component={AiprAtex} durationInFrames={AIPRATEX_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoueDeDeming" component={Deming} durationInFrames={DEMING_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="AccidentIncidentQuasi" component={AccInc} durationInFrames={ACCINC_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="SecuriteTravailVsIndustrielle" component={SecuInd} durationInFrames={SECUIND_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
