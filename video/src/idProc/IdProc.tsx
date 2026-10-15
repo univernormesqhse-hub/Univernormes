@@ -489,7 +489,7 @@ const Donut: React.FC = () => {
   const t = useT();
   const parts = [{v: 65, l: 'réalisation', s: 'crée la valeur client', c: GREEN, a: 148.6}, {v: 20, l: 'support', s: 'fournit les ressources', c: BLUE, a: 154.2}, {v: 15, l: 'management', s: 'stratégie', c: VIO, a: 157.8}];
   const bloat = prog(t, 162.7, 164.5, easeInOut) * (1 - prog(t, 168.6, 169.6));
-  const R = 220, C = 2 * Math.PI * R;
+  const R = 205, C = 2 * Math.PI * R;
   let acc = 0;
   return (
     <Out end={169.7}>
