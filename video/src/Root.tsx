@@ -124,6 +124,7 @@ import {AcroSecu, ACROSECU_FRAMES} from './acrosecu/AcroSecu';
 import {ProcProc, PROCPROC_FRAMES} from './procProc/ProcProc';
 import {IdProc, IDPROC_FRAMES} from './idProc/IdProc';
 import {ProcVs, PROCVS_FRAMES} from './procVs/ProcVs';
+import {Durab, DURAB_FRAMES} from './durab/Durab';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -261,6 +262,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="ProcedureDesProcedures" component={ProcProc} durationInFrames={PROCPROC_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="IdentifierLesProcessus" component={IdProc} durationInFrames={IDPROC_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ProcessusVsProcedure" component={ProcVs} durationInFrames={PROCVS_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="DurabiliteDecodee" component={Durab} durationInFrames={DURAB_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
