@@ -45,7 +45,7 @@ const DECODE = [
 const partIdx = (t: number) => PARTS.reduce((k, p, i) => (t >= p.at ? i : k), -1);
 
 /* ═════════════ Briques communes ═════════════ */
-const Kin: React.FC<{text: string; at: number; size: number; color?: string; stagger?: number; style?: React.CSSProperties}> = ({text, at, size, color = INK, stagger = 0.025, style}) => {
+export const Kin: React.FC<{text: string; at: number; size: number; color?: string; stagger?: number; style?: React.CSSProperties}> = ({text, at, size, color = INK, stagger = 0.025, style}) => {
   const t = useT();
   let n = 0;
   return (
@@ -62,10 +62,10 @@ const Kin: React.FC<{text: string; at: number; size: number; color?: string; sta
     </div>
   );
 };
-const Center: React.FC<{y: number; children: React.ReactNode; style?: React.CSSProperties}> = ({y, children, style}) => (
+export const Center: React.FC<{y: number; children: React.ReactNode; style?: React.CSSProperties}> = ({y, children, style}) => (
   <Abs x={40} y={y} w={1000} style={{textAlign: 'center', ...style}}>{children}</Abs>
 );
-const Deep: React.FC<{src: string; x: number; y: number; w: number; h: number; at: number; pos?: string; tilt?: number; children?: React.ReactNode; filter?: string; round?: number}> = ({src, x, y, w, h, at, pos = 'center', tilt = 1, children, filter, round = 30}) => {
+export const Deep: React.FC<{src: string; x: number; y: number; w: number; h: number; at: number; pos?: string; tilt?: number; children?: React.ReactNode; filter?: string; round?: number}> = ({src, x, y, w, h, at, pos = 'center', tilt = 1, children, filter, round = 30}) => {
   const t = useT();
   const k = t - at;
   const inn = prog(t, at, at + 0.7, easeOut);
@@ -82,7 +82,7 @@ const Deep: React.FC<{src: string; x: number; y: number; w: number; h: number; a
   );
 };
 /** Store vénitien : la photo apparaît à travers des lamelles qui pivotent. */
-const Blinds: React.FC<{src: string; x: number; y: number; w: number; h: number; at: number; pos?: string; n?: number; children?: React.ReactNode; filter?: string}> = ({src, x, y, w, h, at, pos = 'center', n = 10, children, filter}) => {
+export const Blinds: React.FC<{src: string; x: number; y: number; w: number; h: number; at: number; pos?: string; n?: number; children?: React.ReactNode; filter?: string}> = ({src, x, y, w, h, at, pos = 'center', n = 10, children, filter}) => {
   const t = useT();
   const sh = h / n;
   const k = t - at;
@@ -103,12 +103,12 @@ const Blinds: React.FC<{src: string; x: number; y: number; w: number; h: number;
     </Abs>
   );
 };
-const Pill: React.FC<{at: number; c: string; children: React.ReactNode; size?: number; style?: React.CSSProperties}> = ({at, c, children, size = 34, style}) => {
+export const Pill: React.FC<{at: number; c: string; children: React.ReactNode; size?: number; style?: React.CSSProperties}> = ({at, c, children, size = 34, style}) => {
   const t = useT();
   const p = Math.min(1, spring(t, at, 8, 14));
   return <div style={{display: 'inline-block', padding: `${size * 0.3}px ${size * 0.7}px`, borderRadius: 60, background: c, color: '#fff', fontFamily: sansFont, fontWeight: 800, fontSize: size, transform: `scale(${Math.max(0, p)})`, boxShadow: '0 10px 24px rgba(20,33,61,0.18)', whiteSpace: 'nowrap', ...style}}>{children}</div>;
 };
-const Stamp: React.FC<{at: number; c: string; text: string; x: number; y: number; rot?: number; size?: number}> = ({at, c, text, x, y, rot = -8, size = 54}) => {
+export const Stamp: React.FC<{at: number; c: string; text: string; x: number; y: number; rot?: number; size?: number}> = ({at, c, text, x, y, rot = -8, size = 54}) => {
   const t = useT();
   if (t < at) return null;
   const p = prog(t, at, at + 0.22, easeIn);
@@ -118,11 +118,11 @@ const Stamp: React.FC<{at: number; c: string; text: string; x: number; y: number
     </Abs>
   );
 };
-const Cite: React.FC<{y: number; at: number; text: string}> = ({y, at, text}) => {
+export const Cite: React.FC<{y: number; at: number; text: string}> = ({y, at, text}) => {
   const t = useT();
   return <Abs x={0} y={y} w={1080} style={{textAlign: 'center', fontFamily: sansFont, fontWeight: 700, fontSize: 24, color: DIM, opacity: pop(t, at)}}>{text}</Abs>;
 };
-const Dust: React.FC<{n?: number; c?: string}> = ({n = 22, c = GOLD}) => {
+export const Dust: React.FC<{n?: number; c?: string}> = ({n = 22, c = GOLD}) => {
   const t = useT();
   return (
     <AbsoluteFill style={{pointerEvents: 'none'}}>
@@ -135,25 +135,25 @@ const Dust: React.FC<{n?: number; c?: string}> = ({n = 22, c = GOLD}) => {
     </AbsoluteFill>
   );
 };
-const Out: React.FC<{end: number; children: React.ReactNode}> = ({end, children}) => {
+export const Out: React.FC<{end: number; children: React.ReactNode}> = ({end, children}) => {
   const t = useT();
   const o = prog(t, end - 0.4, end, easeIn);
   return <AbsoluteFill style={{opacity: 1 - o, transform: `translateY(${-o * 50}px)`}}>{children}</AbsoluteFill>;
 };
-const Card: React.FC<{x: number; y: number; w: number; h?: number; at: number; c?: string; children: React.ReactNode; style?: React.CSSProperties}> = ({x, y, w, h, at, c, children, style}) => {
+export const Card: React.FC<{x: number; y: number; w: number; h?: number; at: number; c?: string; children: React.ReactNode; style?: React.CSSProperties}> = ({x, y, w, h, at, c, children, style}) => {
   const t = useT();
   const p = Math.min(1, spring(t, at, 8, 14));
   return <Abs x={x} y={y} w={w} h={h} style={{background: '#fff', borderRadius: 26, boxShadow: '0 20px 44px rgba(20,33,61,0.16)', borderTop: c ? `10px solid ${c}` : undefined, padding: 26, boxSizing: 'border-box', transform: `translateY(${(1 - p) * 60}px) scale(${0.9 + 0.1 * Math.max(0, p)})`, opacity: t >= at ? 1 : 0, ...style}}>{children}</Abs>;
 };
 
 /* ─── Tuiles en bois (capsule « vocabulaire HSE ») ─── */
-const Tile: React.FC<{ch: string; size: number; c?: string; glow?: number}> = ({ch, size, c = INK, glow = 0}) => (
+export const Tile: React.FC<{ch: string; size: number; c?: string; glow?: number}> = ({ch, size, c = INK, glow = 0}) => (
   <div style={{width: size, height: size, borderRadius: size * 0.14, background: `linear-gradient(160deg, #FBEBC6, ${WOOD} 55%, #E2BE7C)`, boxShadow: `0 ${size * 0.08}px 0 #B98A4A, 0 ${size * 0.16}px ${size * 0.25}px rgba(20,33,61,0.3)${glow ? `, 0 0 ${size * 0.5 * glow}px ${c}` : ''}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: size * 0.62, color: c, position: 'relative', flexShrink: 0}}>
     {ch}
     <div style={{position: 'absolute', inset: size * 0.05, borderRadius: size * 0.11, border: '1px solid rgba(255,255,255,0.5)'}} />
   </div>
 );
-const Word: React.FC<{text: string; at: number; size: number; c: string; variant?: number; gap?: number}> = ({text, at, size, c, variant = 0, gap}) => {
+export const Word: React.FC<{text: string; at: number; size: number; c: string; variant?: number; gap?: number}> = ({text, at, size, c, variant = 0, gap}) => {
   const t = useT();
   return (
     <div style={{display: 'flex', gap: gap ?? size * 0.1, justifyContent: 'center'}}>
@@ -177,7 +177,7 @@ const Half: React.FC<{ch: string; top: boolean; w: number; h: number; c: string}
     <div style={{position: 'absolute', left: 0, top: top ? 0 : -h / 2, width: w, height: h, lineHeight: `${h}px`, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: h * 0.68, color: c}}>{ch}</div>
   </div>
 );
-const Flap: React.FC<{ch: string; at: number; h: number; w?: number; n?: number; c?: string; seed?: string}> = ({ch, at, h, w = h * 0.74, n = 8, c = INK, seed = ''}) => {
+export const Flap: React.FC<{ch: string; at: number; h: number; w?: number; n?: number; c?: string; seed?: string}> = ({ch, at, h, w = h * 0.74, n = 8, c = INK, seed = ''}) => {
   const t = useT();
   const seq = [...Array.from({length: n}, (_, k) => POOL[Math.floor(random(`${seed}${ch}${k}`) * POOL.length)]), ch];
   const raw = (t - at) / FL;
@@ -197,7 +197,7 @@ const Flap: React.FC<{ch: string; at: number; h: number; w?: number; n?: number;
     </div>
   );
 };
-const Board: React.FC<{text: string; at: number; h: number; gap?: number; c?: string; stag?: number; n?: number}> = ({text, at, h, gap = 4, c = INK, stag = 0.05, n = 7}) => (
+export const Board: React.FC<{text: string; at: number; h: number; gap?: number; c?: string; stag?: number; n?: number}> = ({text, at, h, gap = 4, c = INK, stag = 0.05, n = 7}) => (
   <div style={{display: 'flex', gap, justifyContent: 'center'}}>
     {text.split('').map((ch, i) => <Flap key={`${text}${i}`} ch={ch} at={at + i * stag} h={h} c={c} n={n + (i % 3)} seed={text} />)}
   </div>
