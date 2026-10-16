@@ -124,12 +124,13 @@ const Cover: React.FC = () => {
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 30%, ${PAPER}DD 38%, ${PAPER} 43%)`}} />
       <Abs x={0} y={90} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
       <div style={{position: 'absolute', left: -100, top: 690, width: 1300, height: 90, transform: 'rotate(-4deg)', background: `repeating-conic-gradient(${NAVY} 0 25%, ${YEL} 0 50%) 0 0 / 90px 90px`, border: `6px solid ${INK}`}} />
-      <Abs x={0} y={820} w={1080} style={{textAlign: 'center'}}>
-        <div style={{display: 'flex', justifyContent: 'center', gap: 8}}>{'AMPUTATION'.split('').map((c, i) => <Tile key={i} ch={c} size={92} c={RED} />)}</div>
-        <T size={96} style={{marginTop: 20, textTransform: 'uppercase', letterSpacing: -2}}>Guide de <span style={{backgroundImage: `linear-gradient(${YEL}, ${YEL})`, backgroundRepeat: 'no-repeat', backgroundSize: '100% 42%', backgroundPosition: '0 88%'}}>crise</span></T>
-        <div style={{display: 'inline-block', marginTop: 14, fontFamily: MONO, fontWeight: 700, fontSize: 28, letterSpacing: 3, color: '#fff', background: RED, padding: '8px 20px', borderRadius: 6}}>LES GESTES QUI SAUVENT</div>
+      <Abs x={50} y={810} w={980} style={{textAlign: 'center'}}>
+        <T size={56} style={{lineHeight: 1.08, whiteSpace: "nowrap"}}>Comment prendre en charge</T>
+        <T size={72} style={{marginTop: 8, lineHeight: 1.05, color: RED, whiteSpace: "nowrap"}}><span style={{backgroundImage: `linear-gradient(${YEL}, ${YEL})`, backgroundRepeat: 'no-repeat', backgroundSize: '100% 40%', backgroundPosition: '0 90%', color: INK}}>un membre sectionné</span></T>
+        <T size={50} style={{marginTop: 8, lineHeight: 1.08, whiteSpace: "nowrap"}}>à la suite d’un accident ?</T>
+        <div style={{display: 'inline-block', marginTop: 18, fontFamily: MONO, fontWeight: 700, fontSize: 28, letterSpacing: 3, color: '#fff', background: RED, padding: '8px 20px', borderRadius: 6}}>LES GESTES QUI SAUVENT</div>
       </Abs>
-      <Abs x={140} y={1260} w={800} h={170} style={{background: '#fff', border: `5px solid ${INK}`, borderRadius: 18, boxShadow: `8px 8px 0 ${RED}`, display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
+      <Abs x={140} y={1190} w={800} h={170} style={{background: "#fff", border: `5px solid ${INK}`, borderRadius: 18, boxShadow: `8px 8px 0 ${RED}`, display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
         {['stop', 'telephone', 'main-levee', 'froid', 'ambulance'].map((ic, k) => <div key={k} style={{textAlign: 'center'}}><F n={ic} size={74} /><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 16, color: INK}}>{k + 1}</div></div>)}
       </Abs>
     </AbsoluteFill>
