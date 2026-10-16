@@ -136,6 +136,7 @@ import {TdbPilot, TDBPILOT_FRAMES} from './tdbPilot/TdbPilot';
 import {DangerSit, DANGERSIT_FRAMES} from './dangerSit/DangerSit';
 import {ArbreCauses, ARBRECAUSES_FRAMES} from './arbreCauses/ArbreCauses';
 import {Amputation, AMPUTATION_FRAMES} from './amputation/Amputation';
+import {Echafaudage, ECHAF_FRAMES} from './echafaudage/Echafaudage';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -285,6 +286,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="DangerOuSituationDangereuse" component={DangerSit} durationInFrames={DANGERSIT_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ArbreDesCauses" component={ArbreCauses} durationInFrames={ARBRECAUSES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="AmputationGuideCrise" component={Amputation} durationInFrames={AMPUTATION_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="SecuriteEchafaudages" component={Echafaudage} durationInFrames={ECHAF_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
