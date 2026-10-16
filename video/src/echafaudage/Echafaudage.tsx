@@ -269,7 +269,7 @@ const Intro: React.FC = () => {
   const grim = prog(t, 11.0, 12.4);
   return (
     <Out end={29.8}>
-      <HiLine words={['Une', 'merveille', 'd’ingénierie', 'modulaire']} mark={[1]} at={7.4} y={320} size={56} />
+      <HiLine words={['Une', 'merveille', 'd’ingénierie', 'modulaire']} mark={[1]} at={7.4} y={330} size={46} />
       {t < 18.7 && (
         <>
           <Abs x={70} y={450} w={460} h={640}><Scaffold w={420} h={600} at={3.0} dur={4.5} /></Abs>
@@ -335,7 +335,7 @@ const Moitie: React.FC = () => {
           <svg width={440} height={440}><circle cx={220} cy={220} r={170} fill="none" stroke="#E3E8EF" strokeWidth={60} /><circle cx={220} cy={220} r={170} fill="none" stroke={RED} strokeWidth={60} strokeDasharray={1068} strokeDashoffset={1068 * (1 - 0.5 * d)} transform="rotate(-90 220 220)" /></svg>
           <div style={{position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 110, color: RED}}><Count n={50} a={65.8} b={67.6} suf="%" /></div><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 20, color: DIM}}>près de</div></div>
         </div>
-        <Win x={0} y={0} w={470} h={440} at={69.2} title="inspection-du-travail" c={RED} >
+        <Win x={470} y={0} w={470} h={440} at={69.2} title="inspection-du-travail" c={RED}>
           <div style={{padding: 20}}>
             <div style={{display: 'flex', justifyContent: 'center'}}><F n="clipboard" size={110} /></div>
             <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 28, color: INK, textAlign: 'center', marginTop: 10}}>des manquements relevés</div>
