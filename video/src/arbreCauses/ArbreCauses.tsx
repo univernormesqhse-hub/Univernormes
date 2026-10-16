@@ -285,7 +285,8 @@ const Rigueur: React.FC = () => {
   return (
     <Out end={114.65}>
       <HiLine words={['Une', 'discipline', 'de', 'fer']} mark={[1, 3]} at={100.9} y={320} size={60} />
-      {t < 100.0 && <Center y={330}><Kin text="À chaud, on mélange tout" at={93.7} size={56} color={RED} /></Center>}
+      {t < 93.4 && <div style={{opacity: 1 - prog(t, 93.0, 93.4)}}><Center y={330}><Kin text="Qu’est-ce qui la rend si robuste ?" at={83.0} size={54} color={VIO} /></Center><Deep src="docs5/procedures.jpg" x={140} y={450} w={800} h={560} at={83.3} pos="50% 40%"><div style={{position: 'absolute', left: 16, top: 16}}><Mono at={84.6} c={VIO} size={24}>sa rigueur</Mono></div><div style={{position: 'absolute', right: 16, bottom: 16}}><Mono at={87.9} c={INK} size={24}>structurer l’enquête</Mono></div></Deep><Stamp at={91.5} c={VIO} text="fondamental" x={330} y={1060} rot={-5} size={52} /></div>}
+      {t >= 93.4 && t < 100.0 && <Center y={330}><Kin text="À chaud, on mélange tout" at={93.7} size={56} color={RED} /></Center>}
       <Abs x={70} y={440} w={940} h={760}>
         {sort > 0 && <>
           <div style={{position: 'absolute', left: 0, top: 0, width: 455, height: 760, borderRadius: 22, background: '#fff', border: `5px solid ${INK}`, boxShadow: `8px 8px 0 ${INK}`, opacity: sort}}><div style={{background: INK, color: '#fff', fontFamily: MONO, fontWeight: 700, fontSize: 26, padding: '12px 18px'}}>■ FAITS</div><div style={{padding: '8px 18px', fontFamily: sansFont, fontWeight: 700, fontSize: 22, color: DIM}}>prouvés · objectifs · incontestables</div></div>
@@ -373,7 +374,8 @@ const Scenario: React.FC = () => {
   const close = prog(t, 168.6, 169.4, easeIn);
   return (
     <Out end={170.6}>
-      <HiLine words={['Un', 'grand', 'classique']} mark={[1]} at={152.7} y={320} size={60} />
+      {t < 152.5 && <div style={{opacity: 1 - prog(t, 152.1, 152.5)}}><Center y={330}><Kin text="Place à un exemple concret" at={146.2} size={56} color={ORANGE} /></Center><Blinds src="promo/terrain-controle.jpg" x={110} y={450} w={860} h={600} at={146.4} pos="50% 35%"><div style={{position: 'absolute', left: 20, bottom: 20}}><Mono at={146.9} c={ORANGE} size={26}>tiré du terrain</Mono></div><div style={{position: 'absolute', right: 20, top: 20}}><Mono at={149.6} c={INK} size={24}>la véritable source</Mono></div></Blinds></div>}
+      {t >= 152.5 && <HiLine words={['Un', 'grand', 'classique']} mark={[1]} at={152.7} y={320} size={60} />}
       <Deep src="promo/hse-machine.jpg" x={70} y={440} w={560} h={430} at={155.8} pos="40% 40%">
         <div style={{position: 'absolute', left: 16, top: 16}}><Mono at={156.0} c={RED} size={22}>accident sur une machine</Mono></div>
       </Deep>
@@ -499,7 +501,7 @@ const Organisme: React.FC = () => {
   const edges = pts.flatMap((_, a) => [[a, (a + 1) % 14], [a, (a + 5) % 14]]);
   return (
     <Out end={274.35}>
-      <HiLine words={['Un', 'changement', 'total', 'de', 'perspective']} mark={[1]} at={258.7} y={320} size={52} />
+      <HiLine words={['Un', 'changement', 'total', 'de', 'perspective']} mark={[1]} at={258.7} y={330} size={44} />
       <Abs x={70} y={430} w={940} h={600} style={{borderRadius: 26, background: NIGHT, border: `5px solid ${INK}`, boxShadow: `9px 9px 0 ${GREEN}`, overflow: 'hidden'}}>
         <svg width={940} height={600} style={{position: 'absolute', inset: 0}}>
           {edges.map(([a, b], k) => <line key={k} x1={pts[a][0]} y1={pts[a][1]} x2={pts[b][0]} y2={pts[b][1]} stroke={strong > 0 ? GREEN : '#3A4458'} strokeWidth={lerp(2, 7, strong)} opacity={0.5 + 0.5 * strong} />)}
