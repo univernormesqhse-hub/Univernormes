@@ -229,7 +229,7 @@ const Lieux: React.FC = () => {
           <div style={{position: 'absolute', left: 12, bottom: 12}}><Mono at={l.a} c={INK} size={20}>{l.l}</Mono></div>
         </Abs>
       ))}
-      <Abs x={140} y={1110} w={800} h={170} style={{opacity: pop(t, 92.6)}}>
+      <Abs x={140} y={1150} w={800} h={170} style={{opacity: pop(t, 92.6)}}>
         <svg width={800} height={170} style={{position: 'absolute', inset: 0}}><polygon points="400,160 380,170 420,170" fill={INK} /><g transform={`rotate(${tip * 12} 400 70)`}><line x1={100} y1={70} x2={700} y2={70} stroke={INK} strokeWidth={10} strokeLinecap="round" /></g><line x1={400} y1={70} x2={400} y2={165} stroke={INK} strokeWidth={8} /></svg>
         <div style={{position: 'absolute', left: 30, top: lerp(0, -60, tip), textAlign: 'center'}}><F n="coeur" size={70} /><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 16}}>corps humain</div></div>
         <div style={{position: 'absolute', right: 30, top: lerp(0, 60, tip), textAlign: 'center'}}><F n="engrenage" size={70} /><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 16}}>puissance mécanique</div></div>
@@ -388,13 +388,13 @@ const Methode: React.FC = () => {
           {layers.map((L, k) => {
             const y = 120 + k * 70 * (1 - ex) + k * 210 * ex;
             return (
-              <div key={k} style={{position: 'absolute', left: 140 - k * 30, top: y, width: 600 + k * 60, height: 170, transform: `perspective(1200px) rotateX(${50 * (1 - ex * 0.4)}deg)`, background: L.c, border: `5px solid ${L.b}`, borderRadius: 24, opacity: pop(t, L.a), boxShadow: '0 20px 40px rgba(20,33,61,0.18)', zIndex: 3 - k}}>
-                {k === 2 && [0, 1, 2].map((j) => <div key={j} style={{position: 'absolute', left: 40 + j * 200, top: 50, width: 120, height: 60, borderRadius: 12, background: ICE, border: `3px solid ${BLUE}`}} />)}
+              <div key={k} style={{position: 'absolute', left: 60 - k * 20, top: y, width: 520 + k * 40, height: 170, transform: `perspective(1200px) rotateX(${50 * (1 - ex * 0.4)}deg)`, background: L.c, border: `5px solid ${L.b}`, borderRadius: 24, opacity: pop(t, L.a), boxShadow: '0 20px 40px rgba(20,33,61,0.18)', zIndex: 3 - k}}>
+                {k === 2 && [0, 1, 2].map((j) => <div key={j} style={{position: 'absolute', left: 40 + j * 180, top: 50, width: 120, height: 60, borderRadius: 12, background: ICE, border: `3px solid ${BLUE}`}} />)}
               </div>
             );
           })}
-          {layers.map((L, k) => <div key={`l${k}`} style={{position: 'absolute', right: 0, top: 150 + k * 280, width: 300, opacity: pop(t, L.a + 0.3) * ex}}><Mono at={L.a + 0.3} c={L.b} size={18}>{`${k + 1} · ${L.l}`}</Mono></div>)}
-          <div style={{position: 'absolute', left: 290, top: 140 - 20, opacity: pop(t, 195.0) * (1 - ex * 0.3)}}><F n="pansement" size={110} /></div>
+          {layers.map((L, k) => <div key={`l${k}`} style={{position: 'absolute', right: 0, top: 160 + k * 280, width: 310, opacity: pop(t, L.a + 0.3) * ex}}><Mono at={L.a + 0.3} c={L.b} size={18}>{`${k + 1} · ${L.l}`}</Mono></div>)}
+          <div style={{position: 'absolute', left: 230, top: 140 - 20, opacity: pop(t, 195.0) * (1 - ex * 0.3)}}><F n="pansement" size={110} /></div>
         </Abs>
       )}
       {t >= 206.8 && (
