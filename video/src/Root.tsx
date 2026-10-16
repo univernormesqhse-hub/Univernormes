@@ -137,6 +137,7 @@ import {DangerSit, DANGERSIT_FRAMES} from './dangerSit/DangerSit';
 import {ArbreCauses, ARBRECAUSES_FRAMES} from './arbreCauses/ArbreCauses';
 import {Amputation, AMPUTATION_FRAMES} from './amputation/Amputation';
 import {Echafaudage, ECHAF_FRAMES} from './echafaudage/Echafaudage';
+import {Iso14001, ISO14001_FRAMES} from './iso14001/Iso14001';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -287,6 +288,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="ArbreDesCauses" component={ArbreCauses} durationInFrames={ARBRECAUSES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="AmputationGuideCrise" component={Amputation} durationInFrames={AMPUTATION_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="SecuriteEchafaudages" component={Echafaudage} durationInFrames={ECHAF_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="AspectsIso14001Cotation" component={Iso14001} durationInFrames={ISO14001_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
