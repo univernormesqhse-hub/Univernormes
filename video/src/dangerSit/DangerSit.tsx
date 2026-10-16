@@ -321,9 +321,9 @@ const Quiz: React.FC = () => {
   const msg = 'Ma réponse : …';
   return (
     <Out end={59.0}>
-      <Abs x={70} y={330} w={940} style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-        <HiLine words={['À', 'vous', 'de', 'jouer']} mark={[3]} at={51.7} y={0} size={60} x={0} w={640} />
-        <div style={{position: 'relative', width: 170, height: 170, marginTop: 0}}>
+      <HiLine words={['À', 'vous', 'de', 'jouer']} mark={[3]} at={51.7} y={350} size={64} x={60} w={700} />
+      <Abs x={830} y={320} w={180} h={180}>
+        <div style={{position: 'relative', width: 170, height: 170}}>
           <svg width={170} height={170}><circle cx={85} cy={85} r={70} fill="#fff" stroke="#DDE3EC" strokeWidth={14} /><circle cx={85} cy={85} r={70} fill="none" stroke={left <= 3 ? RED : VIO} strokeWidth={14} strokeDasharray={440} strokeDashoffset={440 * ring} transform="rotate(-90 85 85)" strokeLinecap="round" /></svg>
           <div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: MONO, fontWeight: 700, fontSize: 64, color: left <= 3 ? RED : INK}}>{left}</div>
         </div>
