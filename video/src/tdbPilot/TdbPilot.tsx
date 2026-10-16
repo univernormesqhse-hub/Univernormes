@@ -186,8 +186,6 @@ const Feux: React.FC<{i: number}> = ({i}) => {
       <AbsoluteFill style={{background: PAPER}} />
       <Bg />
       <AbsoluteFill style={{background: `rgba(31,166,122,${0.25 * flash})`}} />
-      <Burst at={S0.at + 1.6} corner="tl" size={330} c={S0.c} />
-      <Burst at={S0.at + 1.7} corner="br" size={330} c={CORAL} />
       <Abs x={110} y={360} w={860} h={250} style={{background: NIGHT, borderRadius: 30, border: `6px solid ${INK}`, boxShadow: `10px 10px 0 ${S0.c}`, display: 'flex', alignItems: 'center', justifyContent: 'space-around', padding: '0 30px', boxSizing: 'border-box'}}>
         {[0, 1, 2, 3, 4].map((j) => {
           const on = !go && k > 0.3 + j * 0.24;
@@ -225,7 +223,6 @@ const Cover: React.FC = () => {
       <Abs x={90} y={1290} w={900} h={200} style={{background: NIGHT, borderRadius: 30, border: `6px solid ${INK}`, boxShadow: `10px 10px 0 ${BURG}`, display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '0 24px', boxSizing: 'border-box'}}>
         {SECT.map((x, k) => <div key={k} style={{width: 120, height: 120, borderRadius: 60, background: `radial-gradient(circle at 35% 35%, #fff, ${k < 4 ? RED : GREEN} 55%)`, border: '6px solid #0B0F18', boxShadow: `0 0 30px ${k < 4 ? RED : GREEN}`}} />)}
       </Abs>
-      <Burst at={-1} corner="tr" size={280} />
     </AbsoluteFill>
   );
 };
@@ -276,7 +273,6 @@ const Chaos: React.FC = () => {
       {t < 22.1 && <Stamp at={18.1} c={RED} text="le chaos total" x={260} y={1090} rot={-6} size={58} />}
       {t > 22.0 && <Abs x={0} y={1060} w={1080} style={{textAlign: 'center', opacity: pop(t, 22.4)}}><div style={{display: 'flex', justifyContent: 'center', gap: 6}}>{[0, 1, 2].map((k) => <div key={k} style={{transform: `rotate(${t * (k % 2 ? -90 : 90)}deg)`, marginTop: k === 1 ? 30 : 0}}><F n="engrenage" size={110} /></div>)}</div><div style={{fontFamily: handFont, fontWeight: 700, fontSize: 52, color: TEAL}}>une mécanique de précision</div></Abs>}
       {t > 25.4 && <Abs x={0} y={1290} w={1080}><Word text="QHSE" at={25.6} size={90} c={BLUE} variant={0} /></Abs>}
-      <Burst at={19.6} corner="br" out={27.25} />
     </Out>
   );
 };
@@ -313,7 +309,6 @@ const Unifie: React.FC = () => {
       )}
       {t > 37.6 && <Abs x={0} y={1120} w={1080} style={{textAlign: 'center'}}><Mono at={37.7} c={INK} size={30}>un système unifié</Mono></Abs>}
       {t > 44.3 && <Abs x={0} y={1200} w={1080} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 16, opacity: pop(t, 44.3)}}><F n="yeux" size={80} /><div style={{fontFamily: handFont, fontWeight: 700, fontSize: 54, color: INK}}>en un seul coup d’œil</div></Abs>}
-      <Burst at={37.6} corner="tl" out={46.15} />
     </Out>
   );
 };
@@ -360,10 +355,9 @@ const Missions: React.FC = () => {
           <Blinds src="induction/briefing-atelier.jpg" x={70} y={440} w={940} h={560} at={93.6} pos="50% 45%">
             <div style={{position: 'absolute', right: 20, top: 20}}><Mono at={95.3} c={VIO} size={24}>visible par tous</Mono></div>
           </Blinds>
-          <HiLine words={['des', 'objectifs', 'abstraits']} at={93.8} y={1040} size={44} c={DIM} hand="→ une réalité concrète" handAt={94.4} />
+          <HiLine words={['des', 'objectifs', 'abstraits']} at={93.8} y={1040} size={44} c={DIM} hand="une réalité concrète" handAt={94.4} />
         </>
       )}
-      <Burst at={74.9} corner="tr" out={97.65} />
     </Out>
   );
 };
@@ -388,7 +382,7 @@ const Decisions: React.FC = () => {
         <div style={{position: 'absolute', right: 0, top: 0, width: 440, height: 400, borderRadius: 24, background: shock > 0 ? `rgba(245,196,0,${0.25 + 0.5 * shock})` : '#fff', border: `5px solid ${INK}`, boxShadow: `8px 8px 0 ${ORANGE}`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', opacity: pop(t, 109.3), transform: `translateX(${Math.sin(t * 70) * 10 * shock}px)`}}>
           <F n="eclair" size={140} />
           <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 40, color: INK, marginTop: 10}}>un électrochoc</div>
-          <Mono at={112.2} c={ORANGE} size={24} style={{marginTop: 10}}>→ l’action</Mono>
+          <Mono at={112.2} c={ORANGE} size={24} style={{marginTop: 10}}>l’action</Mono>
         </div>
       </Abs>
     </Out>
@@ -419,7 +413,6 @@ const Gravite: React.FC = () => {
         <div style={{position: 'relative', fontFamily: sansFont, fontWeight: 900, fontSize: 32, color: DIM, opacity: pop(t, 126.9)}}>une petite ligne de tableur<Strike p={prog(t, 128.9, 129.4)} /></div>
       </Abs>
       <Abs x={70} y={1070} w={940} style={{display: 'flex', justifyContent: 'center', gap: 16}}><Pill at={134.5} c={RED} size={30}>impact humain</Pill><Pill at={137.5} c={INK} size={30}>impact opérationnel</Pill></Abs>
-      <Burst at={117.3} corner="bl" out={140.05} />
     </Out>
   );
 };
@@ -474,7 +467,6 @@ const Iso45: React.FC = () => {
         </div>
       </Abs>
       <Abs x={0} y={1220} w={1080} style={{textAlign: 'center', fontFamily: handFont, fontWeight: 700, fontSize: 46, color: DIM, opacity: pop(t, 181.7)}}>gestion des risques professionnels</Abs>
-      <Burst at={174.2} corner="tr" out={183.85} />
     </Out>
   );
 };
@@ -509,7 +501,6 @@ const Rebut: React.FC = () => {
       </Abs>
       {t > 210.8 && <Abs x={0} y={1240} w={1080} style={{textAlign: 'center'}}><Mono at={210.9} c={BLUE} size={28}>radiographie des points de friction</Mono></Abs>}
       <Cite y={1300} at={209.3} text="valeurs des cadrans illustratives (ajout graphique)" />
-      <Burst at={191.8} corner="tl" out={213.35} />
     </Out>
   );
 };
@@ -551,7 +542,6 @@ const Circulaire: React.FC = () => {
       </Abs>
       <Abs x={0} y={1170} w={1080} style={{textAlign: 'center'}}><div style={{display: 'inline-block', position: 'relative', fontFamily: sansFont, fontWeight: 900, fontSize: 34, color: DIM, opacity: pop(t, 242.1)}}>polluer un peu moins<Strike p={prog(t, 244.2, 244.8)} /></div></Abs>
       {t > 258.4 && <Abs x={0} y={1240} w={1080} style={{textAlign: 'center'}}><Mono at={258.5} c={GREEN} size={28}>levier de performance stratégique</Mono></Abs>}
-      <Burst at={240.4} corner="br" c={GREEN} out={260.55} />
     </Out>
   );
 };
@@ -568,7 +558,7 @@ const ParUnite: React.FC = () => {
           <div style={{flex: 1, height: 160, background: '#C9D2DF', borderRadius: 8}} />
           <div style={{flex: 1, height: 160 + 160 * dbl, background: RED, borderRadius: 8}} />
         </div>
-        <div style={{position: 'absolute', left: 0, right: 0, bottom: 40, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 24, color: DIM}}>production ×2 → facture ×2</div>
+        <div style={{position: 'absolute', left: 0, right: 0, bottom: 40, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 24, color: DIM}}>production ×2, facture ×2</div>
       </Brut>
       <Brut x={560} y={460} w={450} h={600} at={273.3} sh={GREEN}>
         <Mono at={273.4} c={GREEN} size={18}>par unité produite</Mono>
@@ -608,7 +598,7 @@ const Infobesite: React.FC = () => {
       {t < 314.6 && (
         <Abs x={0} y={450} w={1080} h={700}>
           <Center y={60}><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 60, color: INK, opacity: pop(t, 306.6)}}>une fortune…</div></Center>
-          <Center y={220}><div style={{fontSize: 180, fontWeight: 900, color: RED, opacity: pop(t, 308.3), transform: `translateY(${prog(t, 308.3, 309.2, easeIn) * 60}px)`}}>↘</div></Center>
+          
           <Center y={500}><div style={{display: 'inline-block', position: 'relative', fontFamily: sansFont, fontWeight: 900, fontSize: 44, color: DIM, opacity: pop(t, 310.3)}}>un manque de données<Strike p={prog(t, 311.5, 312.1)} /></div></Center>
           {t > 313.4 && <Center y={590}><Mono at={313.5} c={RED} size={48}>l’infobésité</Mono></Center>}
           {Array.from({length: 30}, (_, k) => rain > 0 && <div key={k} style={{position: 'absolute', left: random(`rx${k}`) * 1000, top: ((random(`ry${k}`) * 700 + rain * 600) % 760) - 60, fontFamily: MONO, fontWeight: 700, fontSize: 30, color: `${RED}88`}}>{Math.floor(random(`rv${k}`) * 900)}</div>)}
@@ -685,14 +675,11 @@ const Final: React.FC = () => {
       </Deep>
       <Abs x={70} y={920} w={940} h={200} style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 30, opacity: pop(t, 397.0)}}>
         <div style={{textAlign: 'center', filter: `grayscale(${1 - wake})`}}><F n="sablier" size={110} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 24, color: DIM}}>données dormantes</div></div>
-        <div style={{fontSize: 70, fontWeight: 900, color: ORANGE, opacity: wake}}>→</div>
         <div style={{textAlign: 'center', transform: `scale(${0.6 + 0.4 * wake})`, opacity: wake}}><F n="fusee" size={120} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 24, color: ORANGE}}>actions décisives</div></div>
       </Abs>
       <Abs x={0} y={1140} w={1080} style={{display: 'flex', justifyContent: 'center', gap: 12}}><Pill at={400.5} c={BLUE} size={28}>commerciales</Pill><Pill at={401.6} c={RED} size={28}>humaines</Pill><Pill at={402.3} c={GREEN} size={28}>environnementales</Pill></Abs>
       {t > 404.0 && <Abs x={0} y={1230} w={1080} style={{textAlign: 'center'}}><div style={{display: 'inline-block', position: 'relative', fontFamily: sansFont, fontWeight: 900, fontSize: 34, color: DIM}}>un chiffre ignoré<Strike p={prog(t, 405.9, 406.5)} /></div><div style={{fontFamily: handFont, fontWeight: 700, fontSize: 52, color: RED, opacity: pop(t, 407.3)}}>une opportunité gâchée</div></Abs>}
       {t > 408.4 && <Dust n={22} c={YEL} />}
-      <Burst at={391.8} corner="tl" />
-      <Burst at={392.0} corner="br" c={YEL} />
     </Out>
   );
 };
@@ -754,4 +741,4 @@ export const TdbPilot: React.FC = () => (
   </AbsoluteFill>
 );
 
-export const _u = [Dust, easeIn];
+export const _u = [Dust, easeIn, Burst];
