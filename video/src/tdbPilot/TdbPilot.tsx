@@ -63,7 +63,7 @@ const Burst: React.FC<{at: number; corner: 'tl' | 'tr' | 'bl' | 'br'; size?: num
   const t = useT();
   const p = prog(t, at, at + 0.5, easeOut) * (out ? 1 - prog(t, out - 0.4, out, easeIn) : 1);
   if (p <= 0) return null;
-  const pos: React.CSSProperties = {tl: {left: -size * 0.35, top: 300 - size * 0.2}, tr: {right: -size * 0.35, top: 300 - size * 0.2}, bl: {left: -size * 0.35, bottom: 360}, br: {right: -size * 0.35, bottom: 360}}[corner];
+  const pos: React.CSSProperties = {tl: {left: -size * 0.4, top: 430}, tr: {right: -size * 0.4, top: 430}, bl: {left: -size * 0.35, bottom: 360}, br: {right: -size * 0.35, bottom: 360}}[corner];
   const rot = {tl: 135, tr: 225, bl: 45, br: -45}[corner];
   return (
     <div style={{position: 'absolute', ...pos, width: size, height: size, transform: `rotate(${rot + (1 - p) * 40}deg) scale(${p})`, opacity: 0.95, pointerEvents: 'none', zIndex: 1}}>
@@ -72,10 +72,10 @@ const Burst: React.FC<{at: number; corner: 'tl' | 'tr' | 'bl' | 'br'; size?: num
   );
 };
 /* ─── Brique « Amadou » : phrase avec mot surligné jaune ─── */
-const HiLine: React.FC<{words: string[]; mark?: number[]; at: number; size?: number; y: number; hand?: string; handAt?: number; c?: string}> = ({words, mark = [], at, size = 58, y, hand, handAt = 0, c = INK}) => {
+const HiLine: React.FC<{words: string[]; mark?: number[]; at: number; size?: number; y: number; hand?: string; handAt?: number; c?: string; x?: number; w?: number}> = ({words, mark = [], at, size = 58, y, hand, handAt = 0, c = INK, x = 50, w = 980}) => {
   const t = useT();
   return (
-    <Abs x={50} y={y} w={980} style={{textAlign: 'center'}}>
+    <Abs x={x} y={y} w={w} style={{textAlign: 'center'}}>
       <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: size, color: c, lineHeight: 1.18}}>
         {words.map((w, i) => {
           const st = at + i * 0.09;
@@ -273,7 +273,7 @@ const Chaos: React.FC = () => {
         const y = lerp(f.y + Math.cos(t * 1.6 + k) * 30, gy, order);
         return <div key={k} style={{position: 'absolute', left: x, top: y, transform: `rotate(${lerp(f.r + t * 40 * (k % 2 ? 1 : -1), 0, order)}deg)`, opacity: pop(t, 12.4 + k * 0.08)}}><F n={f.ic} size={100} /></div>;
       })}
-      <Stamp at={18.1} c={RED} text="le chaos total" x={260} y={1090} rot={-6} size={58} />
+      {t < 22.1 && <Stamp at={18.1} c={RED} text="le chaos total" x={260} y={1090} rot={-6} size={58} />}
       {t > 22.0 && <Abs x={0} y={1060} w={1080} style={{textAlign: 'center', opacity: pop(t, 22.4)}}><div style={{display: 'flex', justifyContent: 'center', gap: 6}}>{[0, 1, 2].map((k) => <div key={k} style={{transform: `rotate(${t * (k % 2 ? -90 : 90)}deg)`, marginTop: k === 1 ? 30 : 0}}><F n="engrenage" size={110} /></div>)}</div><div style={{fontFamily: handFont, fontWeight: 700, fontSize: 52, color: TEAL}}>une mécanique de précision</div></Abs>}
       {t > 25.4 && <Abs x={0} y={1290} w={1080}><Word text="QHSE" at={25.6} size={90} c={BLUE} variant={0} /></Abs>}
       <Burst at={19.6} corner="br" out={27.25} />
@@ -375,7 +375,7 @@ const Decisions: React.FC = () => {
     <Out end={113.75}>
       <Brut x={70} y={330} w={940} at={97.8} sh={YEL}>
         <div style={{fontFamily: 'Georgia, serif', fontSize: 110, color: YEL, lineHeight: 0.6}}>“</div>
-        <HiLine words={['Un', 'tableau', 'de', 'bord', 'n’a', 'de', 'valeur', 'que', 's’il', 'déclenche', 'de', 'vraies', 'décisions.']} mark={[9, 12]} at={100.4} y={70} size={46} />
+        <HiLine words={['Un', 'tableau', 'de', 'bord', 'n’a', 'de', 'valeur', 'que', 's’il', 'déclenche', 'de', 'vraies', 'décisions.']} mark={[9, 12]} at={100.4} y={70} size={46} x={10} w={860} />
         <div style={{height: 230}} />
       </Brut>
       <Abs x={70} y={720} w={940} h={420}>
@@ -519,7 +519,7 @@ const RespQualite: React.FC = () => {
   const pts = Array.from({length: 30}, (_, k) => `${k ? 'L' : 'M'}${20 + k * 14} ${110 - Math.sin(k * 0.6 + live * 2) * 30 - k * 1.5}`).join(' ');
   return (
     <Out end={232.15}>
-      <Center y={320}><Kin text="Le responsable qualité entre en scène" at={213.4} size={54} color={VIO} /></Center>
+      <Center y={320}><Kin text="Le responsable qualité" at={213.4} size={62} color={VIO} /></Center>
       <Deep src="verites/operatrice-tablette.jpg" x={70} y={450} w={500} h={600} at={214.4} pos="50% 30%" />
       <Brut x={600} y={450} w={410} h={290} at={218.8} sh={VIO}>
         <Mono at={218.9} c={VIO} size={16}>plan d’action · temps réel</Mono>
@@ -561,7 +561,7 @@ const ParUnite: React.FC = () => {
   const unit = prog(t, 273.3, 275.0, easeOut);
   return (
     <Out end={282.9}>
-      <HiLine words={['Eau', 'et', 'énergie', 'par', 'unité', 'produite']} mark={[3, 4]} at={263.2} y={320} size={56} />
+      <HiLine words={['Eau', 'et', 'énergie', 'par', 'unité', 'produite']} mark={[3, 4]} at={263.2} y={330} size={46} />
       <Brut x={70} y={460} w={450} h={600} at={267.6} sh={RED}>
         <Mono at={267.7} c={RED} size={18}>consommation totale</Mono>
         <div style={{position: 'absolute', left: 50, right: 50, bottom: 110, height: 380, display: 'flex', alignItems: 'flex-end', gap: 40}}>
@@ -679,8 +679,8 @@ const Final: React.FC = () => {
   const wake = prog(t, 398.0, 399.6, easeInOut);
   return (
     <Out end={OUTRO_AT}>
-      <HiLine words={['Quelle', 'décision', 'concrète', 'vont-ils', 'déclencher', '?']} mark={[1, 4]} at={391.8} y={320} size={58} />
-      <Deep src="verites/plans.jpg" x={150} y={500} w={780} h={380} at={386.3} pos="50% 30%">
+      <HiLine words={['Quelle', 'décision', 'concrète', 'vont-ils', 'déclencher', '?']} mark={[1, 4]} at={391.8} y={320} size={52} />
+      <Deep src="verites/plans.jpg" x={150} y={530} w={780} h={360} at={386.3} pos="50% 30%">
         <div style={{position: 'absolute', left: 20, top: 20}}><Mono at={389.0} c={INK} size={20}>face au tableau de bord</Mono></div>
       </Deep>
       <Abs x={70} y={920} w={940} h={200} style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 30, opacity: pop(t, 397.0)}}>
