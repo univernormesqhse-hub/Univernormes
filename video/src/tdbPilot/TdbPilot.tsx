@@ -48,16 +48,16 @@ const SECT = [
 const sectIdx = (t: number) => SECT.reduce((k, x, i) => (t >= x.at ? i : k), -1);
 
 /* ─── Briques « Ray » ─── */
-const Brut: React.FC<{x: number; y: number; w: number; h?: number; at: number; sh?: string; children: React.ReactNode; style?: React.CSSProperties}> = ({x, y, w, h, at, sh = INK, children, style}) => {
+export const Brut: React.FC<{x: number; y: number; w: number; h?: number; at: number; sh?: string; children: React.ReactNode; style?: React.CSSProperties}> = ({x, y, w, h, at, sh = INK, children, style}) => {
   const t = useT();
   const p = Math.max(0, Math.min(1, spring(t, at, 8, 13)));
   return <Abs x={x} y={y} w={w} h={h} style={{background: '#fff', border: `5px solid ${INK}`, borderRadius: 14, boxShadow: `8px 8px 0 ${sh}`, padding: 22, boxSizing: 'border-box', transform: `translateY(${(1 - p) * 50}px) scale(${0.92 + 0.08 * p})`, opacity: t >= at ? 1 : 0, ...style}}>{children}</Abs>;
 };
-const Mono: React.FC<{children: React.ReactNode; at: number; c?: string; size?: number; style?: React.CSSProperties}> = ({children, at, c = INK, size = 20, style}) => {
+export const Mono: React.FC<{children: React.ReactNode; at: number; c?: string; size?: number; style?: React.CSSProperties}> = ({children, at, c = INK, size = 20, style}) => {
   const t = useT();
   return <span style={{display: 'inline-block', background: c, color: '#fff', fontFamily: MONO, fontWeight: 700, fontSize: size, letterSpacing: 2, padding: '4px 12px', borderRadius: 4, textTransform: 'uppercase', opacity: pop(t, at), transform: `translateY(${(1 - pop(t, at)) * 10}px)`, ...style}}>{children}</span>;
 };
-const Strike: React.FC<{p: number; c?: string}> = ({p, c = BURG}) => <div style={{position: 'absolute', left: -6, right: -6, top: '52%', height: 6, background: c, transform: `scaleX(${p})`, transformOrigin: '0 50%'}} />;
+export const Strike: React.FC<{p: number; c?: string}> = ({p, c = BURG}) => <div style={{position: 'absolute', left: -6, right: -6, top: '52%', height: 6, background: c, transform: `scaleX(${p})`, transformOrigin: '0 50%'}} />;
 /* ─── Brique « Ambassade » : éclat corail à branches arrondies, entrant par un coin ─── */
 const Burst: React.FC<{at: number; corner: 'tl' | 'tr' | 'bl' | 'br'; size?: number; c?: string; out?: number}> = ({at, corner, size = 300, c = CORAL, out}) => {
   const t = useT();
@@ -72,7 +72,7 @@ const Burst: React.FC<{at: number; corner: 'tl' | 'tr' | 'bl' | 'br'; size?: num
   );
 };
 /* ─── Brique « Amadou » : phrase avec mot surligné jaune ─── */
-const HiLine: React.FC<{words: string[]; mark?: number[]; at: number; size?: number; y: number; hand?: string; handAt?: number; c?: string; x?: number; w?: number}> = ({words, mark = [], at, size = 58, y, hand, handAt = 0, c = INK, x = 50, w = 980}) => {
+export const HiLine: React.FC<{words: string[]; mark?: number[]; at: number; size?: number; y: number; hand?: string; handAt?: number; c?: string; x?: number; w?: number}> = ({words, mark = [], at, size = 58, y, hand, handAt = 0, c = INK, x = 50, w = 980}) => {
   const t = useT();
   return (
     <Abs x={x} y={y} w={w} style={{textAlign: 'center'}}>
@@ -89,7 +89,7 @@ const HiLine: React.FC<{words: string[]; mark?: number[]; at: number; size?: num
   );
 };
 /* ─── Brique « William » : maillon ─── */
-const Link: React.FC<{label: string; sub: string; at: number; c: string; broken?: number; dim?: number; n: string}> = ({label, sub, at, c, broken = 0, dim = 0, n}) => {
+export const Link: React.FC<{label: string; sub: string; at: number; c: string; broken?: number; dim?: number; n: string}> = ({label, sub, at, c, broken = 0, dim = 0, n}) => {
   const t = useT();
   const p = Math.max(0, Math.min(1, spring(t, at, 8, 12)));
   return (
