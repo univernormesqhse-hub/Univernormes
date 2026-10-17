@@ -507,7 +507,7 @@ const N22000: React.FC = () => {
 const N26000: React.FC = () => {
   const t = useT();
   const phase2 = t >= 79.2;
-  const P3 = [{ic: 'equipe', l: 'sociales', a: 75.14, c: BLUE}, {ic: 'planete', l: 'environnementales', a: 75.62, c: GREEN}, {ic: 'balance', l: 'éthiques', a: 76.3, c: VIO}];
+  const P3 = [{ic: 'equipe', l: 'sociales', a: 75.14, c: BLUE}, {ic: 'planete', l: 'environnementales', a: 75.62, c: GREEN}, {ic: 'graphique', l: 'économie', a: 76.3, c: VIO}];
   const roof = Math.max(0, Math.min(1, spring(t, 77.1, 8, 11)));
   return (
     <Out end={84.95}>
