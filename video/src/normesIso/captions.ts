@@ -53,7 +53,7 @@ export const captions: Caption[] = [
   {text: "Elle aide les organisations", start: 72.74, end: 73.91},
   {text: "à intégrer les questions", start: 73.94, end: 75.11},
   {text: "*sociales*,", start: 75.14, end: 75.59},
-  {text: "*environnementales* et *économie*", start: 75.62, end: 77.07},
+  {text: "*environnementales* et *économiques*", start: 75.62, end: 77.07},
   {text: "dans leurs décisions et", start: 77.10, end: 77.91},
   {text: "leurs activités.", start: 77.94, end: 79.31},
   {text: "*Attention* :", start: 79.34, end: 80.15},
