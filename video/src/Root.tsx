@@ -139,6 +139,7 @@ import {Amputation, AMPUTATION_FRAMES} from './amputation/Amputation';
 import {Echafaudage, ECHAF_FRAMES} from './echafaudage/Echafaudage';
 import {Iso14001, ISO14001_FRAMES} from './iso14001/Iso14001';
 import {AccueilSecu, ACCUEIL_FRAMES} from './accueilSecu/AccueilSecu';
+import {IsoAfrique, ISOAFR_FRAMES} from './isoAfrique/IsoAfrique';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -291,6 +292,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="SecuriteEchafaudages" component={Echafaudage} durationInFrames={ECHAF_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="AspectsIso14001Cotation" component={Iso14001} durationInFrames={ISO14001_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="AccueilSecuriteSite" component={AccueilSecu} durationInFrames={ACCUEIL_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="Iso9001AfriqueOuest" component={IsoAfrique} durationInFrames={ISOAFR_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
