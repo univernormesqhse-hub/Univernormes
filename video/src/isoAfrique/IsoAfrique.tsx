@@ -16,7 +16,7 @@ import {captions} from './captions';
  * recalés mot à mot, photos réelles, thème « papier quadrillé ».
  * Fil rouge : LE TUBE PNEUMATIQUE À SIX GUICHETS (portrait → répartition → fossé → pourquoi → potentiel → avenir) ;
  * la capsule du dossier file d'un guichet à l'autre et chaque guichet passé se coche.
- * Transitions : LE PNEUMATIQUE (1 et 5), LA LOUPE (2 et 6), LE STORE VÉNITIEN (3), LE GYROPHARE (4).
+ * Transitions : LE GYROPHARE à chaque partie (faisceaux bleus et bande à damier qui dépose le numéro et le titre).
  * Condensé de la série : texte cinétique, mot surligné jaune, mot manuscrit, tuiles de bois, palettes d'affichage,
  * fenêtres d'interface, store vénitien sur photo, photos en profondeur, compteurs, cartes à ombre dure, étiquettes
  * monospace, tampons, mots barrés, onde de choc, cases cochées, poussière.
@@ -41,12 +41,12 @@ const OUTRO_AT = 235.6;
 export const ISOAFR_FRAMES = s(OUTRO_AT + 3.8);
 type TK = 'tube' | 'gyro' | 'loupe' | 'store';
 const SECT: {at: number; n: string; title: string; s: string; c: string; g: string; k: TK; lab: string}[] = [
-  {at: 37.9, n: '1', title: 'Portrait de la qualité', s: 'la vue d’ensemble', c: BLUE, g: 'portrait', k: 'tube', lab: 'DOSSIER N°1'},
-  {at: 63.45, n: '2', title: 'La répartition', s: 'une domination écrasante', c: VIO, g: 'répartition', k: 'loupe', lab: 'PARTIE 2 / 6'},
-  {at: 112.6, n: '3', title: 'Le grand écart', s: 'une histoire à deux vitesses', c: RED, g: 'fossé', k: 'store', lab: 'PARTIE 3 / 6'},
+  {at: 37.9, n: '1', title: 'Portrait de la qualité', s: 'la vue d’ensemble', c: BLUE, g: 'portrait', k: 'gyro', lab: 'PARTIE 1 / 6'},
+  {at: 63.45, n: '2', title: 'La répartition', s: 'une domination écrasante', c: VIO, g: 'répartition', k: 'gyro', lab: 'PARTIE 2 / 6'},
+  {at: 112.6, n: '3', title: 'Le grand écart', s: 'une histoire à deux vitesses', c: RED, g: 'fossé', k: 'gyro', lab: 'PARTIE 3 / 6'},
   {at: 137.05, n: '4', title: 'Derrière les chiffres', s: 'le pourquoi', c: ORANGE, g: 'pourquoi', k: 'gyro', lab: 'PARTIE 4 / 6'},
-  {at: 181.9, n: '5', title: 'Le potentiel', s: 'vers l’opportunité', c: GREEN, g: 'potentiel', k: 'tube', lab: 'DOSSIER N°5'},
-  {at: 220.6, n: '6', title: 'Et demain ?', s: 'la question ouverte', c: TEAL, g: 'avenir', k: 'loupe', lab: 'PARTIE 6 / 6'},
+  {at: 181.9, n: '5', title: 'Le potentiel', s: 'vers l’opportunité', c: GREEN, g: 'potentiel', k: 'gyro', lab: 'PARTIE 5 / 6'},
+  {at: 220.6, n: '6', title: 'Et demain ?', s: 'la question ouverte', c: TEAL, g: 'avenir', k: 'gyro', lab: 'PARTIE 6 / 6'},
 ];
 const sectIdx = (t: number) => SECT.reduce((k, x, i) => (t >= x.at ? i : k), -1);
 const ALLDONE = 231.1;
