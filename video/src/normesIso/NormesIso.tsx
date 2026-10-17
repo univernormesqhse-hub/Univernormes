@@ -318,10 +318,9 @@ const Cover: React.FC = () => {
   if (out >= 1) return null;
   return (
     <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
-      <Img src={PH('iso26/ecrans-referentiels.jpg')} style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 900, objectFit: 'cover', objectPosition: '50% 40%'}} />
-      <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 32%, ${PAPER}DD 42%, ${PAPER} 47%)`}} />
+      <Img src={PH('normesiso/sphere-iso.jpg')} style={{position: 'absolute', left: 130, top: 205, width: 820, height: 574, objectFit: 'contain', mixBlendMode: 'multiply', transform: `translateY(${Math.sin(t * 2.4) * 8}px) rotate(${Math.sin(t * 1.6) * 1.5}deg)`}} />
       <Abs x={0} y={90} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
-      <Abs x={0} y={720} w={1080} style={{textAlign: 'center'}}>
+      <Abs x={0} y={800} w={1080} style={{textAlign: 'center'}}>
         <div style={{display: 'inline-block', fontFamily: MONO, fontWeight: 700, fontSize: 28, letterSpacing: 4, color: '#fff', background: INK, padding: '8px 22px', borderRadius: 6}}>9 NORMES INCONTOURNABLES</div>
         <div style={{fontFamily: handFont, fontWeight: 700, fontSize: 92, color: INK, marginTop: 12}}>le rôle des</div>
         <div style={{marginTop: 6}}><Board text="NORMES" at={-1} h={110} c={BLUE} stag={0.03} /></div>
