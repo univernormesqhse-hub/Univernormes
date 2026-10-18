@@ -144,6 +144,7 @@ import {Ohsas, OHSAS_FRAMES} from './ohsas/Ohsas';
 import {IfsBrc, IFSBRC_FRAMES} from './ifsBrc/IfsBrc';
 import {EntretienHse, ENTRETIEN_FRAMES} from './entretienHse/EntretienHse';
 import {NormesIso, NORMESISO_FRAMES} from './normesIso/NormesIso';
+import {Zones3, ZONES3_FRAMES} from './zones3/Zones3';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -301,6 +302,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="MandatInvisibleIfsBrc" component={IfsBrc} durationInFrames={IFSBRC_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ReussirEntretienHse" component={EntretienHse} durationInFrames={ENTRETIEN_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseNormesIso" component={NormesIso} durationInFrames={NORMESISO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseTroisZones" component={Zones3} durationInFrames={ZONES3_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
