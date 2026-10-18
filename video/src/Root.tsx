@@ -148,6 +148,7 @@ import {Zones3, ZONES3_FRAMES} from './zones3/Zones3';
 import {Qhse2, QHSE2_FRAMES} from './qhse2/Qhse2';
 import {VendrediBilan, VENDREDI_FRAMES} from './vendrediBilan/VendrediBilan';
 import {NeufPrincipes, NEUF_FRAMES} from './neufPrincipes/NeufPrincipes';
+import {Caidat2, CAIDAT_FRAMES} from './caidat/Caidat';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -309,6 +310,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseQseHseQhse" component={Qhse2} durationInFrames={QHSE2_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseVendrediBilan" component={VendrediBilan} durationInFrames={VENDREDI_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseNeufPrincipes" component={NeufPrincipes} durationInFrames={NEUF_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseCaidat" component={Caidat2} durationInFrames={CAIDAT_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
