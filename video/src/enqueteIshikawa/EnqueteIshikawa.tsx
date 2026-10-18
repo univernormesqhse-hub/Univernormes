@@ -42,6 +42,11 @@ const IMG = {
   signatures: 'ishikawa-gen/signatures.jpg',
   dos: 'ishikawa-gen/dos.jpg',
   final: 'ishikawa-gen/final.jpg',
+  chute: 'ishikawa-gen/chute-hauteur.jpg',
+  piece: 'ishikawa-gen/piece-mouvement.jpg',
+  blessure: 'ishikawa-gen/blessure.jpg',
+  data: 'ishikawa-gen/base-donnees.jpg',
+  test: 'ishikawa-gen/test-mental.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -748,15 +753,15 @@ const Diag5M: React.FC = () => {
           {t < 185.3 && (
             <>
               <GlassCard x={60} y={440} w={460} h={560} at={176.46} c={DIM}>
-                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40, gap: 14, filter: t > 179.6 ? 'grayscale(0.7)' : undefined}}>
-                  <F n="pansement" size={170} />
+                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, filter: t > 179.6 ? 'grayscale(0.7)' : undefined}}>
+                  <Pic src={IMG.blessure} ic="pansement" w={460} h={320} pos="50% 40%" />
                   <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 46, color: DIM}}>la blessure</div>
                   <div style={{fontFamily: MONO, fontWeight: 700, fontSize: 24, color: DIM, opacity: pop(t, 179.66)}}>= le résultat final</div>
                 </div>
               </GlassCard>
               <GlassCard x={560} y={440} w={460} h={560} at={180.9} c={RED}>
-                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40, gap: 14}}>
-                  <div style={{filter: `drop-shadow(0 0 ${16 + 12 * Math.abs(Math.sin(t * 6))}px ${RED})`}}><F n="danger" size={170} /></div>
+                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 60, gap: 14}}>
+                  <div style={{filter: `drop-shadow(0 0 ${16 + 12 * Math.abs(Math.sin(t * 6))}px ${RED})`}}><F n="danger" size={220} /></div>
                   <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 46, color: RED}}>l’effet</div>
                   <div style={{fontFamily: MONO, fontWeight: 700, fontSize: 24, color: INK, opacity: pop(t, 182.94)}}>= le risque, le danger direct</div>
                 </div>
@@ -770,8 +775,8 @@ const Diag5M: React.FC = () => {
                 <F n="bris" size={140} />
                 <span style={{position: 'relative', fontFamily: sansFont, fontWeight: 900, fontSize: 56, color: DIM}}>un bras cassé<Strike p={prog(t, 187.0, 187.4)} c={RED} /></span>
               </Abs>
-              <Card x={60} y={730} w={460} h={340} at={187.82} c={RED}><IcoLab ic="echelle" l="une chute de hauteur" size={130} fs={34} c={RED} /></Card>
-              <Card x={560} y={730} w={460} h={340} at={189.26} c={RED}><IcoLab ic="engrenage" l="contact avec une pièce en mouvement" size={130} fs={30} c={RED} /></Card>
+              <Card x={60} y={730} w={460} h={340} at={187.82} c={RED}><Pic src={IMG.chute} ic="echelle" w={450} h={260} pos="50% 25%" zoom={1.05 + 0.05 * prog(t, 187.8, 190)} /><div style={{height: 70, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 32, color: RED}}>une chute de hauteur</div></Card>
+              <Card x={560} y={730} w={460} h={340} at={189.26} c={RED}><Pic src={IMG.piece} ic="engrenage" w={450} h={260} pos="50% 50%" zoom={1.05 + 0.05 * prog(t, 189.2, 191)} /><div style={{height: 70, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 26, color: RED, textAlign: 'center', lineHeight: 1.05}}>contact avec une pièce en mouvement</div></Card>
               <Abs x={60} y={1110} w={960} h={270} style={{borderRadius: 26, background: `linear-gradient(110deg, ${GREEN}, #2FBF71)`, border: `6px solid ${INK}`, boxShadow: `8px 8px 0 ${INK}55`, display: 'flex', alignItems: 'center', gap: 26, padding: '0 36px', opacity: pop(t, 194.66), overflow: 'hidden'}}>
                 <F n="cible" size={150} />
                 <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 50, color: '#fff', lineHeight: 1.05}}>éliminer le danger<br />à la source</div>
@@ -829,7 +834,8 @@ const Racine: React.FC = () => {
       {ph === 1 && (
         <>
           <HiLine words={['Le', 'test', 'mental']} mark={[1, 2]} at={211.6} y={330} size={68} />
-          <Win x={60} y={440} w={960} h={500} at={211.6} title="test : si j’enlève cette cause…" c={ORANGE}>
+          {t < 216.9 && <Deep src={IMG.test} x={60} y={440} w={960} h={500} at={211.6} pos="40% 40%"><div style={{position: 'absolute', left: 24, bottom: 24}}><Pill at={212.4} c={ORANGE} size={28}>un petit test mental</Pill></div></Deep>}
+          {t >= 216.9 && <Win x={60} y={440} w={960} h={500} at={216.9} title="test : si j’enlève cette cause…" c={ORANGE}>
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 20, height: 440}}>
               {['sol glissant', 'carter absent', 'éclairage'].map((c, k) => {
                 const isP = k === 1;
@@ -837,7 +843,7 @@ const Racine: React.FC = () => {
               })}
             </div>
             {pull > 0 && <div style={{position: 'absolute', left: 430, top: 60 - pull * 30, opacity: 1 - prog(t, 218.2, 218.6)}}><F n="main-levee" size={110} /></div>}
-          </Win>
+          </Win>}
           <Abs x={60} y={980} w={960} h={170} style={{background: '#fff', border: `5px solid ${INK}`, borderRadius: 24, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 34px', opacity: pop(t, 218.74)}}>
             <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 38, color: INK}}>l’accident se serait-il produit ?</div>
             <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 70, color: RED, transform: `scale(${pop(t, 220.62)})`}}>NON</div>
@@ -961,7 +967,7 @@ const Collectif: React.FC = () => {
               return t > a && <div key={k} style={{position: 'absolute', left: lerp(120, 700, p), top: 200 - Math.sin(p * Math.PI) * 160, width: 70, height: 90, background: '#fff', border: `3px solid ${INK}`, borderRadius: 6, transform: `rotate(${p * 360}deg) scale(${1 - p * 0.6})`, opacity: 1 - prog(t, a + 0.8, a + 0.95)}} />;
             })}
             <div style={{position: 'absolute', left: 640, top: 60, width: 280, height: 420}}>
-              {[0, 1, 2].map((k) => <div key={k} style={{position: 'absolute', left: 0, top: 60 + k * 120, width: 280, height: 140, borderRadius: '50%/30%', background: `linear-gradient(180deg, ${BLUE}, ${NAVY})`, border: `5px solid ${INK}`, boxShadow: `0 0 ${20 + 15 * Math.sin(t * 4 + k)}px ${BLUE}88`}} />)}
+              <div style={{position: 'absolute', left: -60, top: 40, width: 360, height: 380, borderRadius: 24, overflow: 'hidden', border: `5px solid ${INK}`, boxShadow: `0 0 ${24 + 16 * Math.sin(t * 4)}px ${BLUE}AA`}}><Pic src={IMG.data} ic="ordinateur" w={360} h={380} pos="65% 50%" zoom={1.08 - 0.06 * prog(t, 304.4, 316)} /></div>
               <div style={{position: 'absolute', left: 0, right: 0, top: 440, textAlign: 'center', fontFamily: MONO, fontWeight: 700, fontSize: 22, color: NAVY}}>base de données</div>
             </div>
           </Abs>
