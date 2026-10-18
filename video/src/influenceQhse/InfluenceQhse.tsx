@@ -25,22 +25,22 @@ import {captions} from './captions';
  * puis OUVRE les vraies causes, carrousel de l'histoire qui se répète, façade qui s'effondre, film sépia du gendarme,
  * batterie qui se vide, aimant du changement désirable, chemin qui bifurque.
  */
-/** Images générées (ChatGPT) — chemin vide = icône en attendant. */
+/** Images générées (ChatGPT) d'après les prompts de prompts-images-influence-qhse.md. */
 const IMG = {
-  cover: '',
-  certifs: '',
-  controleur: '',
-  influenceur: '',
-  critique: '',
-  ecoute: '',
-  bulldozer: '',
-  bureau: '',
-  tiroir: '',
-  usine: '',
-  ecart: '',
-  coupable: '',
-  terrain: '',
-  adhesion: '',
+  cover: 'influence-gen/couverture.jpg',
+  certifs: 'influence-gen/certifications.jpg',
+  controleur: 'influence-gen/controleur.jpg',
+  influenceur: 'influence-gen/influenceur.jpg',
+  critique: 'influence-gen/critique.jpg',
+  ecoute: 'influence-gen/ecoute.jpg',
+  bulldozer: 'influence-gen/bulldozer.jpg',
+  bureau: 'influence-gen/bureau.jpg',
+  tiroir: 'influence-gen/tiroir.jpg',
+  usine: 'influence-gen/usine-a-gaz.jpg',
+  ecart: 'influence-gen/ecart.jpg',
+  coupable: 'influence-gen/coupable.jpg',
+  terrain: 'influence-gen/terrain.jpg',
+  adhesion: 'influence-gen/adhesion.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -405,8 +405,8 @@ const Cover: React.FC = () => {
   if (out >= 1) return null;
   return (
     <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
-      <div style={{position: 'absolute', left: 0, top: 0}}><Pic src={IMG.cover} ic="megaphone" w={1080} h={900} pos="50% 35%" /></div>
-      <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 32%, ${PAPER}DD 42%, ${PAPER} 47%)`}} />
+      <div style={{position: 'absolute', left: 0, top: 200}}><Pic src={IMG.cover} ic="megaphone" w={1080} h={760} pos="60% 30%" /></div>
+      <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER} 9%, ${PAPER}00 16%, ${PAPER}00 36%, ${PAPER}DD 44%, ${PAPER} 49%)`}} />
       <Abs x={0} y={90} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
       <Abs x={0} y={700} w={1080} style={{textAlign: 'center'}}>
         <div style={{display: 'inline-block', fontFamily: MONO, fontWeight: 700, fontSize: 30, letterSpacing: 4, color: '#fff', background: INK, padding: '8px 22px', borderRadius: 6}}>RESPONSABLE QHSE</div>
@@ -495,9 +495,9 @@ const Profils: React.FC = () => {
   return (
     <Out end={49.2}>
       <HiLine words={['Contrôleur', 'ou', 'influenceur', '?']} mark={[0, 2]} at={34.9} y={330} size={58} />
-      {[{x: 60, src: IMG.controleur, ic: 'superviseur', c: RED, l: 'le contrôleur', s: 'tombe dans tous les pièges', a: 35.62, as: 38.78}, {x: 560, src: IMG.influenceur, ic: 'formatrice', c: GREEN, l: 'l’influenceur', s: 'les déjoue', a: 40.74, as: 43.66}].map((p, k) => (
+      {[{x: 60, src: IMG.controleur, ic: 'superviseur', c: RED, pos: '42% 30%', l: 'le contrôleur', s: 'tombe dans tous les pièges', a: 35.62, as: 38.78}, {x: 560, src: IMG.influenceur, ic: 'formatrice', c: GREEN, pos: '68% 30%', l: 'l’influenceur', s: 'les déjoue', a: 40.74, as: 43.66}].map((p, k) => (
         <Abs key={p.l} x={p.x} y={440} w={460} h={820} style={{background: '#fff', border: `6px solid ${INK}`, borderRadius: 30, boxShadow: `9px 9px 0 ${p.c}`, overflow: 'hidden', opacity: pop(t, p.a - 0.3), transform: `translateX(${(1 - split) * (k ? 300 : -300)}px) perspective(1200px) rotateY(${(1 - pop(t, p.a - 0.3)) * (k ? 30 : -30)}deg)`}}>
-          <Pic src={p.src} ic={p.ic} w={460} h={560} pos="50% 25%" zoom={1.08 - 0.06 * prog(t, p.a, p.a + 8)} />
+          <Pic src={p.src} ic={p.ic} w={460} h={560} pos={p.pos} zoom={1.08 - 0.06 * prog(t, p.a, p.a + 8)} />
           <div style={{background: p.c, color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 44, textAlign: 'center', padding: '12px 0'}}>{p.l}</div>
           <div style={{fontFamily: MONO, fontWeight: 700, fontSize: 24, color: INK, textAlign: 'center', marginTop: 20, opacity: pop(t, p.as)}}>{p.s}</div>
           {k === 0 && t > 39.38 && [0, 1, 2].map((j) => <div key={j} style={{position: 'absolute', left: 80 + j * 120, top: lerp(-120, 420, prog(t, 39.4 + j * 0.2, 40.0 + j * 0.2, easeIn)), transform: `rotate(${j * 30}deg)`}}><F n="danger" size={80} /></div>)}
@@ -740,7 +740,7 @@ const Vigilance: React.FC = () => {
   const t = useT();
   const ph = t < 235.0 ? 0 : t < 252.6 ? 1 : 2;
   const cnt = t >= 239.78 ? 2 : t >= 238.22 ? 1 : 0;
-  const eye = prog(t, 241.0, 241.6);
+  const eye = prog(t, 241.0, 241.6) * (1 - prog(t, 243.6, 244.3));
   const roll = prog(t, 245.5, 250.0, easeIn);
   const curve = prog(t, 253.8, 259.4, easeInOut);
   return (
