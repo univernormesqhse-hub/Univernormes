@@ -25,23 +25,23 @@ import {captions} from './captions';
  * signatures tracées à la plume, rapports aspirés dans une base de données, barre de recherche qui trouve puis OUVRE la
  * tendance, bouclier brisé qui se reforme, volant des humains, œil qui s'ouvre.
  */
-/** Images : emplacements prévus pour les visuels générés (ChatGPT) — en attendant, photos de la bibliothèque. */
+/** Images générées (ChatGPT) d'après les prompts de prompts-images-enquete-ishikawa.md. */
 const IMG = {
-  cover: 'iso26/rapport-audit.jpg',
-  panique: 'promo/hse-machine.jpg',
-  faits: 'promo/terrain-controle.jpg',
-  flaque: 'ident/flaque.jpg',
-  equipe5m: 'promo/audit-reunion.jpg',
-  matiere: '',
-  materiel: 'ident/machine.jpg',
-  methode: 'iso26/audit-checklist.jpg',
-  mainoeuvre: 'promo/formation-consignation.jpg',
-  milieu: 'ident/glissade.jpg',
-  immediat: 'risquebrut/danger-immediat.jpg',
-  permanent: 'risquebrut/etat-conforme.jpg',
-  signatures: 'iso26/direction-equipe.jpg',
-  dos: 'ident/caisses.jpg',
-  final: 'personnages/equipe.jpg',
+  cover: 'ishikawa-gen/couverture.jpg',
+  panique: 'ishikawa-gen/panique.jpg',
+  faits: 'ishikawa-gen/faits.jpg',
+  flaque: 'ishikawa-gen/flaque.jpg',
+  equipe5m: 'ishikawa-gen/equipe-5m.jpg',
+  matiere: 'ishikawa-gen/matiere.jpg',
+  materiel: 'ishikawa-gen/materiel.jpg',
+  methode: 'ishikawa-gen/methode.jpg',
+  mainoeuvre: 'ishikawa-gen/main-oeuvre.jpg',
+  milieu: 'ishikawa-gen/milieu.jpg',
+  immediat: 'ishikawa-gen/immediat.jpg',
+  permanent: 'ishikawa-gen/permanent.jpg',
+  signatures: 'ishikawa-gen/signatures.jpg',
+  dos: 'ishikawa-gen/dos.jpg',
+  final: 'ishikawa-gen/final.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -371,7 +371,7 @@ const Cover: React.FC = () => {
     <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
       <Img src={PH(IMG.cover)} style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 900, objectFit: 'cover', objectPosition: '50% 45%'}} />
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 32%, ${PAPER}DD 42%, ${PAPER} 47%)`}} />
-      <Abs x={0} y={90} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
+      <Abs x={0} y={90} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
       <Abs x={0} y={700} w={1080} style={{textAlign: 'center'}}>
         <div style={{display: 'inline-block', fontFamily: MONO, fontWeight: 700, fontSize: 30, letterSpacing: 4, color: '#fff', background: INK, padding: '8px 22px', borderRadius: 6}}>ACCIDENT · INCIDENT</div>
         <div style={{fontFamily: handFont, fontWeight: 700, fontSize: 88, color: INK, marginTop: 10}}>l’</div>
@@ -579,7 +579,6 @@ const Faits: React.FC = () => {
 const Objectivite: React.FC = () => {
   const t = useT();
   const ph = t < 98.0 ? 0 : t < 105.3 ? 1 : 2;
-  const ruler = prog(t, 102.3, 103.6, easeOut);
   const fall = prog(t, 110.3, 111.4, easeIn);
   return (
     <Out end={115.5}>
@@ -612,7 +611,6 @@ const Objectivite: React.FC = () => {
           <Stamp at={100.1} c={RED} text="opinion" x={620} y={700} rot={-8} size={60} />
           <Abs x={60} y={820} w={960} h={560} style={{border: `6px solid ${INK}`, borderRadius: 30, overflow: 'hidden', boxShadow: `10px 10px 0 ${GREEN}`, opacity: pop(t, 101.26)}}>
             <Pic src={IMG.flaque} ic="goutte" w={960} h={560} zoom={1.1 - 0.08 * prog(t, 101.3, 105.3)} />
-            <div style={{position: 'absolute', left: 120, bottom: 70, width: 720 * ruler, height: 60, background: YEL, border: `4px solid ${INK}`, borderRadius: 8, backgroundImage: `repeating-linear-gradient(90deg, ${INK} 0 3px, transparent 3px 24px)`, overflow: 'hidden'}} />
             <div style={{position: 'absolute', left: 0, right: 0, top: 30, textAlign: 'center'}}>{t > 102.3 && <span style={{display: 'inline-block', background: INK, color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 54, padding: '6px 24px', borderRadius: 14}}>flaque d’huile : <Count n={30} a={102.3} b={103.6} /> cm</span>}</div>
           </Abs>
           <Stamp at={104.46} c={GREEN} text="un fait" x={640} y={1250} rot={-6} size={60} />
