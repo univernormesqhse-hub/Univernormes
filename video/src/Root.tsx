@@ -151,6 +151,7 @@ import {NeufPrincipes, NEUF_FRAMES} from './neufPrincipes/NeufPrincipes';
 import {Caidat2, CAIDAT_FRAMES} from './caidat/Caidat';
 import {PermisTravail, PERMIS_FRAMES} from './permisTravail/PermisTravail';
 import {Responsabilite2, RESPONSABILITE_FRAMES} from './responsabilite/Responsabilite';
+import {CartoRisques, CARTO_FRAMES} from './cartoRisques/CartoRisques';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -315,6 +316,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseCaidat" component={Caidat2} durationInFrames={CAIDAT_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondensePermisTravail" component={PermisTravail} durationInFrames={PERMIS_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseResponsabilite" component={Responsabilite2} durationInFrames={RESPONSABILITE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseCartoRisques" component={CartoRisques} durationInFrames={CARTO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
