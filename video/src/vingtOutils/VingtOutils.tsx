@@ -27,13 +27,13 @@ import {captions} from './captions';
  */
 /** Images générées (ChatGPT) — chemin vide = icône en attendant. */
 const IMG = {
-  cover: '',
-  noye: '',
-  enquete: '',
-  brain: '',
-  releve: '',
-  audit: '',
-  donnees: '',
+  cover: 'vingt-gen/final.jpg',
+  noye: 'influence-gen/bureau.jpg',
+  enquete: 'ishikawa-gen/flaque.jpg',
+  brain: 'promo/audit-reunion.jpg',
+  releve: 'iso26/audit-checklist.jpg',
+  audit: 'influence-gen/ecoute.jpg',
+  donnees: 'ishikawa-gen/base-donnees.jpg',
   aero: '',
   s5: 'vingt-gen/5s.jpg',
   d8: 'vingt-gen/8d.jpg',
