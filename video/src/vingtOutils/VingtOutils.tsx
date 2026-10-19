@@ -35,11 +35,11 @@ const IMG = {
   audit: '',
   donnees: '',
   aero: '',
-  s5: '',
-  d8: '',
-  roue: '',
-  montre: '',
-  final: '',
+  s5: 'vingt-gen/5s.jpg',
+  d8: 'vingt-gen/8d.jpg',
+  roue: 'vingt-gen/roue.jpg',
+  montre: 'vingt-gen/montre.jpg',
+  final: 'vingt-gen/final.jpg',
   ishikawa: 'ishikawa-gen/equipe-5m.jpg',
 };
 const BLUE = '#1F6FD1';
