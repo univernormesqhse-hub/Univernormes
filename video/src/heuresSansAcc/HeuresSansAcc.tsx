@@ -441,11 +441,11 @@ const Cover: React.FC = () => {
       <div style={{position: 'absolute', left: 0, top: 200}}><Pic src={IMG.cover} ic="chantier" w={1080} h={760} pos="50% 30%" /></div>
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER} 9%, ${PAPER}00 16%, ${PAPER}00 36%, ${PAPER}DD 44%, ${PAPER} 49%)`}} />
       <Abs x={0} y={90} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
-      <Abs x={0} y={700} w={1080} style={{textAlign: 'center'}}>
-        <div style={{display: 'inline-block', fontFamily: MONO, fontWeight: 700, fontSize: 30, letterSpacing: 4, color: '#fff', background: INK, padding: '8px 22px', borderRadius: 6}}>QUESTION D’ENTRETIEN HSE</div>
-        <div style={{marginTop: 18}}><Board text="20 000 H" at={-1} h={84} gap={2} c={GREEN} stag={0.02} /></div>
-        <div style={{fontFamily: handFont, fontWeight: 700, fontSize: 70, color: RED, marginTop: 10}}>sans accident avec arrêt</div>
-        <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 40, color: NAVY, marginTop: 4}}>comment le calculer ?</div>
+      <Abs x={0} y={930} w={1080} style={{textAlign: 'center'}}>
+        <div style={{display: 'inline-block', fontFamily: MONO, fontWeight: 700, fontSize: 26, letterSpacing: 4, color: '#fff', background: INK, padding: '8px 22px', borderRadius: 6}}>QUESTION D’ENTRETIEN HSE</div>
+        <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 58, lineHeight: 1.12, color: INK, marginTop: 18, padding: '0 50px', textTransform: 'uppercase'}}>
+          Comment calculer le <span style={{color: '#fff', background: BLUE, padding: '0 10px', borderRadius: 10}}>nombre total d’heures</span> et de <span style={{color: '#fff', background: TEAL, padding: '0 10px', borderRadius: 10}}>jours</span> <span style={{color: RED}}>sans accident avec arrêt</span> ?
+        </div>
       </Abs>
       <Abs x={60} y={1400} w={960} h={120} style={{background: '#fff', border: `5px solid ${INK}`, borderRadius: 18, boxShadow: `7px 7px 0 ${BURG}`, overflow: 'hidden'}}>
         <Tube x={30} y={34} w={900} h={24} />
