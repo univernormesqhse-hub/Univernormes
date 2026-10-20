@@ -25,12 +25,12 @@ import {captions} from './captions';
  * radar d'anticipation, sondage animé des 4 niveaux.
  */
 const IMG = {
-  cover: '',
-  deni: '',
-  mini: '',
-  gest: '',
-  pro: '',
-  dir: '',
+  cover: 'maturite-gen/couverture.jpg',
+  deni: 'maturite-gen/deni.jpg',
+  mini: 'maturite-gen/minimaliste.jpg',
+  gest: 'maturite-gen/gestionnaire.jpg',
+  pro: 'maturite-gen/proactif.jpg',
+  dir: 'maturite-gen/direction.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -427,7 +427,7 @@ const Cover: React.FC = () => {
   if (out >= 1) return null;
   return (
     <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
-      <div style={{position: 'absolute', left: 0, top: 200}}><Pic src={IMG.cover} ic="montagne" w={1080} h={740} pos="50% 40%" /></div>
+      <div style={{position: 'absolute', left: 0, top: 200}}><Pic src={IMG.cover} ic="montagne" w={1080} h={740} pos="50% 30%" /></div>
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER} 9%, ${PAPER}00 16%, ${PAPER}00 34%, ${PAPER}DD 43%, ${PAPER} 48%)`}} />
       <Abs x={0} y={90} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
       <Abs x={0} y={930} w={1080} style={{textAlign: 'center'}}>
