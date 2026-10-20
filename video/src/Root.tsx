@@ -156,6 +156,7 @@ import {EnqueteIshikawa, ENQUETE_FRAMES} from './enqueteIshikawa/EnqueteIshikawa
 import {InfluenceQhse, INFLUENCE_FRAMES} from './influenceQhse/InfluenceQhse';
 import {VingtOutils, VINGT_FRAMES} from './vingtOutils/VingtOutils';
 import {HeuresSansAcc, HEURES_FRAMES} from './heuresSansAcc/HeuresSansAcc';
+import {MaturitePrev, MATURITE_FRAMES} from './maturitePrev/MaturitePrev';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -325,6 +326,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseInfluenceQhse" component={InfluenceQhse} durationInFrames={INFLUENCE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseVingtOutils" component={VingtOutils} durationInFrames={VINGT_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseHeuresSansAcc" component={HeuresSansAcc} durationInFrames={HEURES_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseMaturitePrev" component={MaturitePrev} durationInFrames={MATURITE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
