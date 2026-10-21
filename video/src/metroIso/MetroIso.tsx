@@ -22,12 +22,12 @@ import {captions} from './captions';
  * capsule pneumatique, loupe, store vénitien. Barre de recherche qui trouve puis OUVRE le plan du réseau.
  */
 const IMG = {
-  cover: '',
-  qualite: '',
-  environnement: '',
-  sst: '',
-  audit: '',
-  terrain: '',
+  cover: 'metroiso-gen/couverture.jpg',
+  qualite: 'metroiso-gen/qualite.jpg',
+  environnement: 'metroiso-gen/environnement.jpg',
+  sst: 'metroiso-gen/sst.jpg',
+  audit: 'metroiso-gen/audit.jpg',
+  terrain: 'metroiso-gen/terrain.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
