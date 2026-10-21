@@ -32,6 +32,7 @@ const ST: St[] = [
   {n: 'ISO 19011', def: "Lignes directrices pour l'audit des systèmes de management", dom: 'Audit', c: '#8C6BD6', icon: '19011-6', at: 67.0, kw: [["Programme d'audit", 75.4], ['Entretiens conduits', 76.7], ['Preuves objectives', 78.6], ['Constats formulés', 80.6], ['Actions correctives suivies', 82.4]]},
 ];
 const FINAL = 84.4;
+const QUAI = ['quai-bleu', 'quai-vert', 'quai-orange', 'quai-violet'];
 const OUTRO_AT = 105.6;
 export const METROPLAN_FRAMES = s(OUTRO_AT + 3.8);
 const pos = (i: number): [number, number] => [i % 2 ? 790 : 290, 520 + i * 640];
@@ -50,17 +51,17 @@ const bez = (i: number, u: number): [number, number] => {
   return [m * m * m * x0 + 3 * m * m * u * c1[0] + 3 * m * u * u * c2[0] + u * u * u * x3, m * m * m * y0 + 3 * m * m * u * c1[1] + 3 * m * u * u * c2[1] + u * u * u * y3];
 };
 /** Position de la rame, avancement global et vitesse instantanée (0..1). */
-const train = (t: number): {x: number; y: number; p: number; v: number; dx: number} => {
+const train = (t: number): {x: number; y: number; p: number; v: number; dx: number; dy: number} => {
   let idx = 0;
   for (let i = 0; i < ST.length; i++) if (t >= ST[i].at - TRAVEL) idx = i;
-  if (t < ST[0].at - TRAVEL || idx === 0) return {x: pos(0)[0], y: pos(0)[1], p: 0, v: 0, dx: 0};
+  if (t < ST[0].at - TRAVEL || idx === 0) return {x: pos(0)[0], y: pos(0)[1], p: 0, v: 0, dx: 0, dy: 0};
   const raw = Math.min(1, Math.max(0, (t - (ST[idx].at - TRAVEL)) / TRAVEL));
   const u = easeInOut(raw);
   const u2 = easeInOut(Math.min(1, raw + 0.02));
   const [x, y] = bez(idx - 1, u);
-  const [x2] = bez(idx - 1, u2);
+  const [x2, y2] = bez(idx - 1, u2);
   const v = raw > 0 && raw < 1 ? Math.sin(raw * Math.PI) : 0;
-  return {x, y, p: idx - 1 + u, v, dx: x2 - x};
+  return {x, y, p: idx - 1 + u, v, dx: x2 - x, dy: y2 - y};
 };
 
 /* ─────────── Plan du réseau (caméra embarquée) ─────────── */
@@ -140,9 +141,7 @@ const Map: React.FC = () => {
               const back = train(t - (k + 1) * 0.035);
               return <div key={k} style={{position: 'absolute', left: back.x - 50 + k, top: back.y - 50 + k, width: 100 - k * 2, height: 100 - k * 2, borderRadius: 30, background: ST[Math.min(ST.length - 1, Math.ceil(tr.p))].c, opacity: (0.5 - k * 0.034) * tr.v, filter: 'blur(6px)'}} />;
             })}
-            <div style={{position: 'absolute', left: tr.x - 60, top: tr.y - 60, width: 120, height: 120, borderRadius: 30, background: '#fff', boxShadow: `0 0 ${40 + 60 * tr.v}px rgba(255,255,255,0.8)`, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 5, transform: `rotate(${tr.dx * 3}deg)`}}>
-              <div style={{width: 70, height: 50, borderRadius: 14, background: '#0B1626', display: 'flex', alignItems: 'center', justifyContent: 'space-around', padding: '0 8px', boxSizing: 'border-box'}}>{[0, 1].map((k) => <div key={k} style={{width: 18, height: 24, borderRadius: 4, background: '#7CC4FF'}} />)}</div>
-            </div>
+            <Img src={staticFile('metroiso-gen/metro/rame-dessus.png')} style={{position: 'absolute', left: tr.x - 165, top: tr.y - 60, width: 330, height: 120, zIndex: 5, transform: `rotate(${Math.abs(tr.dx) + Math.abs(tr.dy) > 0.01 ? (Math.atan2(tr.dy, tr.dx) * 180) / Math.PI : 90}deg)`, filter: `drop-shadow(0 0 ${18 + 40 * tr.v}px rgba(255,255,255,0.75))`}} />
           </>
         )}
       </div>
@@ -294,7 +293,7 @@ const Panel: React.FC = () => {
   return (
     <div style={{position: 'absolute', left: 40, right: 40, top: 990, height: H, zIndex: 20}}>
       {/* contenu derrière les portes */}
-      <div style={{position: 'absolute', inset: 0, borderRadius: 40, background: '#0C182A', border: `4px solid ${st.c}`, boxShadow: `0 30px 80px rgba(0,0,0,0.5), 0 0 70px ${st.c}40`, overflow: 'hidden', opacity: doors > 0 ? 1 : 0}}>
+      <div style={{position: 'absolute', inset: 0, borderRadius: 40, background: `linear-gradient(rgba(12,24,42,0.80), rgba(12,24,42,0.90)), url(${staticFile(`metroiso-gen/metro/${QUAI[i]}.jpg`)}) center / cover`, border: `4px solid ${st.c}`, boxShadow: `0 30px 80px rgba(0,0,0,0.5), 0 0 70px ${st.c}40`, overflow: 'hidden', opacity: doors > 0 ? 1 : 0}}>
         <div style={{height: 140, background: `linear-gradient(90deg, ${st.c}, ${st.c}CC)`, display: 'flex', alignItems: 'center', gap: 20, padding: '0 30px'}}>
           <div style={{width: 160, height: 96, borderRadius: 20, background: '#fff', overflow: 'hidden', flexShrink: 0, border: '4px solid #fff'}}><Img src={ICO(st.icon)} style={{width: '100%', height: '100%', objectFit: 'cover', display: 'block'}} /></div>
           <div style={{flex: 1}}>
@@ -389,6 +388,29 @@ const Titles: React.FC = () => {
   );
 };
 
+/** Caméra embarquée : la cabine dans le tunnel apparaît pendant chaque trajet, proportionnellement à la vitesse. */
+const Tunnel: React.FC = () => {
+  const t = useT();
+  const v = train(t).v;
+  if (v < 0.02) return null;
+  return <AbsoluteFill style={{opacity: v * 0.7}}><Img src={staticFile('metroiso-gen/metro/cabine-tunnel.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${1.08 + 0.12 * v})`, filter: `blur(${1 + 2 * v}px)`}} /></AbsoluteFill>;
+};
+/** Arrivée en station : la rame de face surgit puis file vers l'écran. */
+const Arrive: React.FC = () => {
+  const t = useT();
+  const st = ST.find((x) => t >= x.at - 0.6 && t < x.at + 0.5);
+  if (!st || t >= FINAL) return null;
+  const q = prog(t, st.at - 0.6, st.at + 0.5);
+  return <div style={{position: 'absolute', left: 540 - 350, top: 380, width: 700, height: 700, zIndex: 15, opacity: Math.sin(q * Math.PI) * 0.95, transform: `scale(${0.35 + 1.4 * q})`, filter: `drop-shadow(0 0 40px ${st.c})`}}><Img src={staticFile('metroiso-gen/metro/rame-face.png')} style={{width: '100%', height: '100%', objectFit: 'contain'}} /></div>;
+};
+/** Terminus baigné de lumière derrière le final « Pratique ». */
+const Terminus: React.FC = () => {
+  const t = useT();
+  const q = prog(t, FINAL, FINAL + 2.5, easeInOut);
+  if (q <= 0) return null;
+  return <AbsoluteFill style={{opacity: q * 0.55}}><Img src={staticFile('metroiso-gen/metro/terminus.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${1.15 - 0.1 * q})`}} /><AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(11,22,38,0.55), rgba(11,22,38,0.75))'}} /></AbsoluteFill>;
+};
+
 /** Vignette et grain ciné. */
 const Grade: React.FC = () => {
   const t = useT();
@@ -425,7 +447,10 @@ const CUES: Sfx[] = [
 export const MetroIsoPlan: React.FC = () => (
   <AbsoluteFill style={{background: BG}}>
     <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 30%, rgba(61,134,224,0.2), transparent 60%)'}} />
+    <Gate from={0} to={FINAL}><Tunnel /></Gate>
+    <Gate from={FINAL} to={OUTRO_AT}><Terminus /></Gate>
     <Gate from={0} to={OUTRO_AT}><Map /></Gate>
+    <Gate from={0} to={FINAL}><Arrive /></Gate>
     <Gate from={0} to={OUTRO_AT}><Panel /></Gate>
     <Gate from={0} to={OUTRO_AT}><Titles /></Gate>
     <Gate from={0} to={OUTRO_AT}><Grade /></Gate>
