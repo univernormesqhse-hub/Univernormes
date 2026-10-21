@@ -28,6 +28,8 @@ const IMG = {
   sst: 'metroiso-gen/sst.jpg',
   audit: 'metroiso-gen/audit.jpg',
   terrain: 'metroiso-gen/terrain.jpg',
+  profils: 'metroiso-gen/profils.jpg',
+  exigences: 'metroiso-gen/exigences.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -376,6 +378,11 @@ const LoupeSweep: React.FC<{x0: number; y0: number; x1: number; y1: number; a: n
   );
 };
 
+/** Pictogramme du jeu d'icônes à la charte (planches générées, découpées sans texte). */
+const ICO = (k: string) => `metroiso-gen/ico/${k}.png`;
+const Ico: React.FC<{k: string; w: number; h: number; c?: string; style?: React.CSSProperties}> = ({k, w, h, c = INK, style}) => (
+  <div style={{width: w, height: h, borderRadius: Math.min(w, h) * 0.22, overflow: 'hidden', border: `4px solid ${c}`, background: '#fff', boxSizing: 'border-box', flexShrink: 0, ...style}}><Img src={staticFile(ICO(k))} style={{width: '100%', height: '100%', objectFit: 'cover', display: 'block'}} /></div>
+);
 /** Pastille de ligne de métro. */
 const LineBadge: React.FC<{code: string; c: string; size: number}> = ({code, c, size}) => (
   <div style={{width: size, height: size, borderRadius: size, background: c, border: `${size * 0.06}px solid #fff`, boxShadow: `0 0 0 ${size * 0.04}px ${INK}, 0 ${size * 0.08}px ${size * 0.2}px rgba(0,0,0,0.25)`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', fontFamily: sansFont, fontWeight: 900, lineHeight: 0.95}}>
@@ -444,9 +451,10 @@ const Intro: React.FC = () => {
       <HiLine words={t < 10.9 ? ['4', 'normes', 'ISO', 'de', 'base'] : ['Le', 'plan', 'du', 'réseau']} mark={t < 10.9 ? [0, 1] : [1, 3]} at={t < 10.9 ? 2.8 : 11.0} y={330} size={62} />
       {t < 10.9 && (
         <Abs x={60} y={450} w={960} h={900}>
+          <Shot src={IMG.profils} ic="badge" x={0} y={0} w={960} h={380} at={2.9} c={NAVY} />
           {[{l: 'professionnel QHSE', c: BLUE, a: 5.58}, {l: 'assistant QHSE', c: GREEN, a: 7.3}, {l: 'futur responsable QHSE', c: ORANGE, a: 8.3}].map((p, k) => (
-            <div key={p.l} style={{position: 'absolute', left: 60 + k * 30, top: 40 + k * 230, width: 780, height: 190, borderRadius: 22, background: '#fff', border: `5px solid ${INK}`, boxShadow: `8px 8px 0 ${p.c}`, display: 'flex', alignItems: 'center', overflow: 'hidden', opacity: pop(t, p.a), transform: `translateX(${(1 - prog(t, p.a, p.a + 0.5, easeOut)) * 900}px) rotate(${(k - 1) * 2}deg)`}}>
-              <div style={{width: 150, alignSelf: 'stretch', background: p.c, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><F n="badge" size={90} /></div>
+            <div key={p.l} style={{position: 'absolute', left: 60 + k * 30, top: 410 + k * 165, width: 780, height: 145, borderRadius: 22, background: '#fff', border: `5px solid ${INK}`, boxShadow: `8px 8px 0 ${p.c}`, display: 'flex', alignItems: 'center', overflow: 'hidden', opacity: pop(t, p.a), transform: `translateX(${(1 - prog(t, p.a, p.a + 0.5, easeOut)) * 900}px) rotate(${(k - 1) * 2}deg)`}}>
+              <div style={{width: 190, alignSelf: 'stretch', background: p.c, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Ico k="tr-1" w={160} h={96} c="#fff" /></div>
               <div style={{flex: 1, padding: '0 26px'}}><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 22, color: DIM}}>TITRE DE TRANSPORT · RÉSEAU QHSE</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 42, color: INK}}>{p.l}</div></div>
               <div style={{width: 0, alignSelf: 'stretch', borderLeft: `5px dashed ${DIM}`, marginRight: 60}} />
             </div>
@@ -462,8 +470,8 @@ const Intro: React.FC = () => {
 };
 
 /* ═════════════ LIGNE GÉNÉRIQUE ═════════════ */
-type St = {l: string; a: number};
-const LineScene: React.FC<{code: string; c: string; mg: string; mgAt: number; t0: number; end: number; img: string; ic: string; st: St[]}> = ({code, c, mg, mgAt, t0, end, img, ic, st}) => {
+type St = {l: string; a: number; i: string};
+const LineScene: React.FC<{code: string; c: string; mg: string; mgAt: number; t0: number; end: number; img: string; ic: string; st: St[]; emb: string}> = ({code, c, mg, mgAt, t0, end, img, ic, st, emb}) => {
   const t = useT();
   const reached = st.filter((x) => t >= x.a).length;
   const y0 = 0;
@@ -478,6 +486,7 @@ const LineScene: React.FC<{code: string; c: string; mg: string; mgAt: number; t0
       <Abs x={60} y={300} w={960} h={130} style={{display: 'flex', alignItems: 'center', gap: 24}}>
         <div style={{opacity: pop(t, t0), transform: `scale(${0.5 + 0.5 * pop(t, t0)}) rotate(${(1 - pop(t, t0)) * -90}deg)`}}><LineBadge code={code} c={c} size={130} /></div>
         <div style={{opacity: pop(t, mgAt)}}><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 24, color: DIM}}>DIRECTION</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 44, color: c, lineHeight: 1.05}}>{mg}</div></div>
+        <div style={{marginLeft: 'auto', opacity: pop(t, mgAt + 0.3), transform: `scale(${0.6 + 0.4 * pop(t, mgAt + 0.3)})`}}><Ico k={emb} w={150} h={90} c={c} /></div>
       </Abs>
       <Shot src={img} ic={ic} x={60} y={460} w={960} h={380} at={t0 + 0.2} c={c} blinds />
       <Abs x={60} y={880} w={960} h={520}>
@@ -486,7 +495,8 @@ const LineScene: React.FC<{code: string; c: string; mg: string; mgAt: number; t0
         {st.map((x, k) => { const on = t >= x.a; return (
           <div key={x.l} style={{position: 'absolute', left: 0, top: y0 + k * gap - 30, width: 960, height: 60, display: 'flex', alignItems: 'center'}}>
             <div style={{marginLeft: 80, width: 60, height: 60, borderRadius: 30, background: on ? '#fff' : '#E3E8EF', border: `8px solid ${on ? c : INK}`, boxSizing: 'border-box', boxShadow: on ? `0 0 24px ${c}` : 'none'}} />
-            <div style={{marginLeft: 40, fontFamily: sansFont, fontWeight: 900, fontSize: on ? 38 : 34, color: on ? INK : '#9AA7BC', background: on ? `${c}22` : 'transparent', borderRadius: 12, padding: '4px 14px', opacity: 0.35 + 0.65 * pop(t, x.a)}}>{x.l}</div>
+            <div style={{marginLeft: 26, opacity: on ? 1 : 0.3, transform: `scale(${on ? 1 + 0.12 * (1 - prog(t, x.a, x.a + 0.4)) : 0.9})`, filter: on ? 'none' : 'grayscale(1)'}}><Ico k={x.i} w={120} h={66} c={on ? c : '#C9D2DF'} /></div>
+            <div style={{marginLeft: 18, fontFamily: sansFont, fontWeight: 900, fontSize: on ? 36 : 32, color: on ? INK : '#9AA7BC', background: on ? `${c}22` : 'transparent', borderRadius: 12, padding: '4px 14px', opacity: 0.35 + 0.65 * pop(t, x.a)}}>{x.l}</div>
           </div>
         ); })}
         {t > t0 + 0.4 && <div style={{position: 'absolute', left: 60, top: yy - 60, transform: 'scale(0.9)'}}><Train c={c} w={100} /></div>}
@@ -494,10 +504,10 @@ const LineScene: React.FC<{code: string; c: string; mg: string; mgAt: number; t0
     </Out>
   );
 };
-const L9001: St[] = [{l: 'structurer les processus', a: 22.5}, {l: 'maîtriser les non-conformités', a: 24.94}, {l: 'suivre les indicateurs', a: 27.1}, {l: 'actions correctives', a: 30.26}, {l: 'améliorer continuellement', a: 31.22}];
-const L14001: St[] = [{l: 'aspects et impacts', a: 41.74}, {l: 'maîtriser les déchets', a: 43.94}, {l: 'prévenir les pollutions', a: 45.38}, {l: 'performance environnementale', a: 46.94}];
-const L45001: St[] = [{l: 'identifier les dangers', a: 56.42}, {l: 'évaluer les risques', a: 59.06}, {l: 'mesures de prévention', a: 61.22}, {l: 'réduire accidents et maladies', a: 63.38}];
-const L19011: St[] = [{l: 'programme d’audit', a: 75.38}, {l: 'conduire des entretiens', a: 76.62}, {l: 'preuves objectives', a: 78.5}, {l: 'formuler des constats', a: 80.54}, {l: 'suivre les actions correctives', a: 82.26}];
+const L9001: St[] = [{l: 'structurer les processus', a: 22.5, i: '9001-1'}, {l: 'maîtriser les non-conformités', a: 24.94, i: '9001-2'}, {l: 'suivre les indicateurs', a: 27.1, i: '9001-3'}, {l: 'actions correctives', a: 30.26, i: '9001-4'}, {l: 'améliorer continuellement', a: 31.22, i: '9001-5'}];
+const L14001: St[] = [{l: 'aspects et impacts', a: 41.74, i: '14001-1'}, {l: 'maîtriser les déchets', a: 43.94, i: '14001-2'}, {l: 'prévenir les pollutions', a: 45.38, i: '14001-3'}, {l: 'performance environnementale', a: 46.94, i: '14001-4'}];
+const L45001: St[] = [{l: 'identifier les dangers', a: 56.42, i: '45001-1'}, {l: 'évaluer les risques', a: 59.06, i: '45001-2'}, {l: 'mesures de prévention', a: 61.22, i: '45001-3'}, {l: 'réduire accidents et maladies', a: 63.38, i: '45001-4'}];
+const L19011: St[] = [{l: 'programme d’audit', a: 75.38, i: '19011-1'}, {l: 'conduire des entretiens', a: 76.62, i: '19011-2'}, {l: 'preuves objectives', a: 78.5, i: '19011-3'}, {l: 'formuler des constats', a: 80.54, i: '19011-4'}, {l: 'suivre les actions correctives', a: 82.26, i: '19011-5'}];
 
 /* ═════════════ 5 · CORRESPONDANCE ═════════════ */
 const Retiens: React.FC = () => {
@@ -506,14 +516,14 @@ const Retiens: React.FC = () => {
     <Out end={99.1}>
       <HiLine words={['Connaître', 'ne', 'suffit', 'pas']} mark={[0, 2]} at={86.3} y={330} size={66} />
       <Abs x={60} y={450} w={960} h={300} style={{background: '#fff', border: `6px solid ${INK}`, borderRadius: 26, boxShadow: `8px 8px 0 ${RED}`, display: 'flex', alignItems: 'center', overflow: 'hidden', opacity: pop(t, 84.7)}}>
-        <div style={{width: 200, alignSelf: 'stretch', background: NAVY, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><F n="livres" size={120} /></div>
+        <div style={{width: 340, alignSelf: 'stretch', position: 'relative', overflow: 'hidden'}}><Pic src={IMG.exigences} ic="livres" w={340} h={290} pos="40% 40%" /><div style={{position: 'absolute', right: 10, bottom: 10}}><Ico k="tr-2" w={110} h={60} c={RED} /></div></div>
         <div style={{flex: 1, padding: '0 30px'}}><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 24, color: DIM}}>STATION</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 56, color: INK}}>les exigences</div><div style={{fontFamily: sansFont, fontWeight: 700, fontSize: 30, color: DIM}}>connaître la norme</div></div>
-        <Stamp at={87.46} c={RED} text="ne suffit pas" x={420} y={150} rot={-8} size={50} />
+        <Stamp at={87.46} c={RED} text="ne suffit pas" x={500} y={205} rot={-6} size={40} />
       </Abs>
       <Abs x={60} y={790} w={960} h={570}>
         <div style={{position: 'absolute', left: 92, top: 0, width: 36, height: 560, borderRadius: 18, background: INK}} />
         <div style={{position: 'absolute', left: 98, top: 0, width: 24, height: 560 * prog(t, 89.4, 98.0), borderRadius: 12, background: `linear-gradient(180deg, ${RED}, ${GREEN})`}} />
-        {[{l: 'outils opérationnels', ic: 'outils', a: 91.94, y: 60}, {l: 'appliquer sur le terrain', ic: 'casque', a: 94.02, y: 260}, {l: 'résultats mesurables', ic: 'hausse', a: 97.62, y: 460}].map((p) => <div key={p.l} style={{position: 'absolute', left: 0, top: p.y - 50, width: 960, height: 100, display: 'flex', alignItems: 'center', opacity: 0.3 + 0.7 * pop(t, p.a)}}><div style={{marginLeft: 70, width: 80, height: 80, borderRadius: 40, background: t > p.a ? '#fff' : '#E3E8EF', border: `9px solid ${t > p.a ? GREEN : INK}`, boxSizing: 'border-box'}} /><div style={{marginLeft: 30, display: 'flex', alignItems: 'center', gap: 18, background: '#fff', border: `5px solid ${INK}`, borderRadius: 20, padding: '10px 24px', boxShadow: t > p.a ? `6px 6px 0 ${GREEN}` : 'none'}}><F n={p.ic} size={64} /><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 38, color: INK}}>{p.l}</span></div></div>)}
+        {[{l: 'outils opérationnels', ic: 'tr-3', a: 91.94, y: 60}, {l: 'appliquer sur le terrain', ic: 'tr-5', a: 94.02, y: 260}, {l: 'résultats mesurables', ic: 'tr-4', a: 97.62, y: 460}].map((p) => <div key={p.l} style={{position: 'absolute', left: 0, top: p.y - 50, width: 960, height: 100, display: 'flex', alignItems: 'center', opacity: 0.3 + 0.7 * pop(t, p.a)}}><div style={{marginLeft: 70, width: 80, height: 80, borderRadius: 40, background: t > p.a ? '#fff' : '#E3E8EF', border: `9px solid ${t > p.a ? GREEN : INK}`, boxSizing: 'border-box'}} /><div style={{marginLeft: 30, display: 'flex', alignItems: 'center', gap: 18, background: '#fff', border: `5px solid ${INK}`, borderRadius: 20, padding: '10px 24px', boxShadow: t > p.a ? `6px 6px 0 ${GREEN}` : 'none'}}><Ico k={p.ic} w={110} h={60} c={t > p.a ? GREEN : '#C9D2DF'} /><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 38, color: INK}}>{p.l}</span></div></div>)}
       </Abs>
     </Out>
   );
@@ -532,6 +542,7 @@ const Terminus: React.FC = () => {
         <div style={{position: 'absolute', left: 86, width: 788 * run, top: 236, height: 18, borderRadius: 9, background: `linear-gradient(90deg, ${BLUE}, ${GREEN}, ${ORANGE}, ${VIO})`}} />
         {[{l: 'THÉORIE', x: 80, c: DIM}, {l: 'PRATIQUE', x: 880, c: GREEN}].map((p) => <div key={p.l} style={{position: 'absolute', left: p.x - 50, top: 195, width: 100, height: 100, borderRadius: 50, background: '#fff', border: `10px solid ${p.c}`, boxSizing: 'border-box'}} />)}
         {[{l: 'théorie', x: 80, a: 103.3}, {l: 'pratique', x: 880, a: 104.74}].map((p) => <div key={p.l} style={{position: 'absolute', left: Math.max(10, Math.min(p.x - 110, 960 - 240)), top: 310, width: 220, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 36, color: INK, opacity: pop(t, p.a)}}>{p.l}</div>)}
+        <div style={{position: 'absolute', left: 480 - 100, top: 300, opacity: pop(t, 103.3), transform: `scale(${0.6 + 0.4 * pop(t, 103.3)})`}}><Ico k="tr-6" w={200} h={100} c={NAVY} /></div>
         <div style={{position: 'absolute', left: 80 + 800 * run - 55, top: 130}}><Train c={NAVY} w={110} /></div>
         <div style={{position: 'absolute', left: 0, right: 0, top: 30, display: 'flex', justifyContent: 'center', gap: 14}}><Pill at={99.38} c={NAVY} size={28}>Universnormes QHSE</Pill><Pill at={101.9} c={GREEN} size={28}>développer tes compétences</Pill></div>
       </Abs>
@@ -560,10 +571,10 @@ export const MetroIso: React.FC = () => (
   <AbsoluteFill style={{background: PAPER}}>
     <Bg />
     <Gate from={2.6} to={17.25}><Intro /></Gate>
-    <Gate from={17.6} to={34.25}><LineScene code="9001" c={BLUE} mg="management de la qualité" mgAt={20.02} t0={17.6} end={34.2} img={IMG.qualite} ic="graphique" st={L9001} /></Gate>
-    <Gate from={34.6} to={50.35}><LineScene code="14001" c={GREEN} mg="management environnemental" mgAt={36.98} t0={34.6} end={50.3} img={IMG.environnement} ic="recyclage" st={L14001} /></Gate>
-    <Gate from={50.7} to={66.85}><LineScene code="45001" c={ORANGE} mg="santé et sécurité au travail" mgAt={53.22} t0={50.7} end={66.8} img={IMG.sst} ic="casque" st={L45001} /></Gate>
-    <Gate from={67.2} to={84.35}><LineScene code="19011" c={VIO} mg="audit des systèmes de management" mgAt={70.22} t0={67.2} end={84.3} img={IMG.audit} ic="auditeur" st={L19011} /></Gate>
+    <Gate from={17.6} to={34.25}><LineScene emb="9001-6" code="9001" c={BLUE} mg="management de la qualité" mgAt={20.02} t0={17.6} end={34.2} img={IMG.qualite} ic="graphique" st={L9001} /></Gate>
+    <Gate from={34.6} to={50.35}><LineScene emb="14001-5" code="14001" c={GREEN} mg="management environnemental" mgAt={36.98} t0={34.6} end={50.3} img={IMG.environnement} ic="recyclage" st={L14001} /></Gate>
+    <Gate from={50.7} to={66.85}><LineScene emb="45001-5" code="45001" c={ORANGE} mg="santé et sécurité au travail" mgAt={53.22} t0={50.7} end={66.8} img={IMG.sst} ic="casque" st={L45001} /></Gate>
+    <Gate from={67.2} to={84.35}><LineScene emb="19011-6" code="19011" c={VIO} mg="audit des systèmes de management" mgAt={70.22} t0={67.2} end={84.3} img={IMG.audit} ic="auditeur" st={L19011} /></Gate>
     <Gate from={84.6} to={99.15}><Retiens /></Gate>
     <Gate from={99.4} to={OUTRO_AT}><Terminus /></Gate>
     {SECT.map((x, i) => <Gate key={x.n} from={x.at} to={x.at + 3.7}><Gyro i={i} /></Gate>)}
