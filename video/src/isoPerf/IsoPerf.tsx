@@ -31,6 +31,10 @@ const IMG = {
   panique: 'isoperf-gen/panique.jpg',
   usine: 'isoperf-gen/usine-a-gaz.jpg',
   amelioration: 'isoperf-gen/amelioration.jpg',
+  fracture: 'isoperf-gen/fracture.jpg',
+  auditeur: 'isoperf-gen/auditeur.jpg',
+  b52: 'isoperf-gen/b52.jpg',
+  chrono: 'isoperf-gen/chrono.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -442,13 +446,13 @@ const Fracture: React.FC = () => {
     <Out end={30.0}>
       <HiLine words={['Une', 'vraie', 'fracture']} mark={[2]} at={16.2} y={330} size={70} />
       <Abs x={60} y={440} w={960} h={940}>
-        <div style={{position: 'absolute', left: 0, top: 0, width: 480 - split * 20, height: 940, borderRadius: '30px 0 0 30px', background: `linear-gradient(160deg, ${GREEN}22, #fff)`, border: `5px solid ${INK}`, transform: `translateX(${-split * 20}px)`, overflow: 'hidden'}}>
-          <div style={{position: 'absolute', left: 0, right: 0, top: 120, textAlign: 'center', opacity: pop(t, 26.02)}}><F n="couronne" size={170} /></div>
-          <div style={{position: 'absolute', left: 20, right: 20, top: 330, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 44, color: GREEN, lineHeight: 1.1, opacity: pop(t, 26.02)}}>l’esprit de la norme</div>
+        <div style={{position: 'absolute', left: 0, top: 0, width: 480 - split * 20, height: 940, borderRadius: '30px 0 0 30px', background: `linear-gradient(160deg, ${GREEN}22, #fff)`, ...(IMG.fracture ? {backgroundImage: `url(${PH(IMG.fracture)})`, backgroundSize: '1410px 940px', backgroundPosition: '-225px 0'} : {}), border: `5px solid ${INK}`, transform: `translateX(${-split * 20}px)`, overflow: 'hidden'}}>
+          {!IMG.fracture && <div style={{position: 'absolute', left: 0, right: 0, top: 120, textAlign: 'center', opacity: pop(t, 26.02)}}><F n="couronne" size={170} /></div>}
+          <div style={{position: 'absolute', left: 20, right: 20, top: IMG.fracture ? 760 : 330, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 44, color: GREEN, lineHeight: 1.1, opacity: pop(t, 26.02), background: IMG.fracture ? 'rgba(255,255,255,0.92)' : undefined, borderRadius: 18, padding: IMG.fracture ? '14px 8px' : 0, boxShadow: IMG.fracture ? `5px 5px 0 ${GREEN}` : undefined}}>l’esprit de la norme</div>
         </div>
-        <div style={{position: 'absolute', right: 0, top: 0, width: 480 - split * 20, height: 940, borderRadius: '0 30px 30px 0', background: `linear-gradient(200deg, ${DIM}22, #fff)`, border: `5px solid ${INK}`, transform: `translateX(${split * 20}px)`, overflow: 'hidden'}}>
-          <div style={{position: 'absolute', left: 0, right: 0, top: 120, textAlign: 'center', opacity: pop(t, 29.02), filter: 'grayscale(1)'}}><F n="diplome" size={170} /></div>
-          <div style={{position: 'absolute', left: 20, right: 20, top: 330, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 44, color: DIM, lineHeight: 1.1, opacity: pop(t, 29.02)}}>toutes les autres</div>
+        <div style={{position: 'absolute', right: 0, top: 0, width: 480 - split * 20, height: 940, borderRadius: '0 30px 30px 0', background: `linear-gradient(200deg, ${DIM}22, #fff)`, ...(IMG.fracture ? {backgroundImage: `url(${PH(IMG.fracture)})`, backgroundSize: '1410px 940px', backgroundPosition: '-705px 0'} : {}), border: `5px solid ${INK}`, transform: `translateX(${split * 20}px)`, overflow: 'hidden'}}>
+          {!IMG.fracture && <div style={{position: 'absolute', left: 0, right: 0, top: 120, textAlign: 'center', opacity: pop(t, 29.02), filter: 'grayscale(1)'}}><F n="diplome" size={170} /></div>}
+          <div style={{position: 'absolute', left: 20, right: 20, top: IMG.fracture ? 760 : 330, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 44, color: DIM, lineHeight: 1.1, opacity: pop(t, 29.02), background: IMG.fracture ? 'rgba(255,255,255,0.92)' : undefined, borderRadius: 18, padding: IMG.fracture ? '14px 8px' : 0, boxShadow: IMG.fracture ? `5px 5px 0 ${DIM}` : undefined}}>toutes les autres</div>
         </div>
         <svg width={960} height={940} style={{position: 'absolute', left: 0, top: 0}}>
           <path d="M 480 0 L 460 150 L 500 290 L 450 430 L 510 600 L 470 760 L 490 940" fill="none" stroke={RED} strokeWidth={10} strokeLinecap="round" strokeDasharray={1100} strokeDashoffset={1100 * (1 - prog(t, 21.7, 22.8))} style={{filter: `drop-shadow(0 0 10px ${RED})`}} />
@@ -555,6 +559,7 @@ const Cycle: React.FC = () => {
               {!panic ? <><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 90, lineHeight: 1, opacity: 0.6 + 0.4 * Math.sin(t * 2)}}>Zzz</div><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 22, marginTop: 10}}>hibernation</div></> : <><F n="sirene" size={120} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 36}}>PANIQUE</div></>}
             </div>
           </Abs>
+          {t > 117.1 && t < 122.3 && <Shot src={IMG.auditeur} ic="loupe" x={60} y={500} w={960} h={640} at={117.2} c={NAVY} blinds><div style={{position: 'absolute', left: 24, bottom: 24}}><Pill at={119.0} c={ORANGE} size={28}>on corrige vite fait</Pill></div></Shot>}
           <Abs x={0} y={1260} w={1080} style={{display: 'flex', justifyContent: 'center', gap: 14}}>
             <Pill at={112.74} c={RED} size={26}>3 semaines avant l’audit</Pill>
             {t > 122.3 && <Pill at={122.38} c={NAVY} size={26}>et on se rendort</Pill>}
@@ -581,8 +586,9 @@ const Cycle: React.FC = () => {
           {t >= 155.7 && (
             <>
               <Abs x={60} y={440} w={960} h={560} style={{background: 'linear-gradient(180deg, #BFE3FF, #F4FAFF)', border: `5px solid ${INK}`, borderRadius: 28, overflow: 'hidden', opacity: pop(t, 158.7)}}>
-                <div style={{position: 'absolute', left: lerp(-360, 980, bomb), top: 70, transform: 'scaleX(-1)', filter: 'drop-shadow(0 20px 10px rgba(0,0,0,0.25))'}}><F n="avion" size={300} /></div>
-                <div style={{position: 'absolute', left: 620 + Math.sin(t * 9) * 30, top: 380 + Math.cos(t * 7) * 20}}><F n="microbe" size={70} /></div>
+                {IMG.b52 && <div style={{position: 'absolute', inset: 0}}><Pic src={IMG.b52} ic="avion" w={950} h={550} zoom={1.02 + 0.1 * prog(t, 158.7, 167)} /></div>}
+                {!IMG.b52 && <div style={{position: 'absolute', left: lerp(-360, 980, bomb), top: 70, transform: 'scaleX(-1)', filter: 'drop-shadow(0 20px 10px rgba(0,0,0,0.25))'}}><F n="avion" size={300} /></div>}
+                {!IMG.b52 && <div style={{position: 'absolute', left: 620 + Math.sin(t * 9) * 30, top: 380 + Math.cos(t * 7) * 20}}><F n="microbe" size={70} /></div>}
                 <div style={{position: 'absolute', left: 30, bottom: 24}}><Pill at={163.78} c={RED} size={26}>système énorme</Pill></div>
                 <div style={{position: 'absolute', right: 30, bottom: 24}}><Pill at={165.58} c={GREEN} size={26}>problème tout simple</Pill></div>
               </Abs>
@@ -636,9 +642,9 @@ const Chiffres: React.FC = () => {
             </div>
           </SearchOpen>
           <Abs x={60} y={1110} w={960} h={260} style={{background: NIGHT, border: `5px solid ${INK}`, borderRadius: 26, display: 'flex', alignItems: 'center', gap: 30, padding: '0 36px', opacity: pop(t, 216.78)}}>
-            <div style={{position: 'relative', width: 170, height: 170, borderRadius: 85, border: `8px solid #fff`}}>
+            {IMG.chrono ? <div style={{width: 300, height: 210, borderRadius: 18, overflow: 'hidden', border: `4px solid ${GOLD}`, flexShrink: 0}}><Pic src={IMG.chrono} ic="chrono" w={300} h={210} pos="60% 45%" zoom={1 + 0.08 * prog(t, 216.8, 222.8)} /></div> : <div style={{position: 'relative', width: 170, height: 170, borderRadius: 85, border: `8px solid #fff`}}>
               <div style={{position: 'absolute', left: 77, top: 14, width: 10, height: 66, background: GOLD, borderRadius: 5, transformOrigin: '50% 100%', transform: `rotate(${prog(t, 218.1, 221.5) * 720}deg)`}} />
-            </div>
+            </div>}
             <div><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 22, color: '#9AA7BC'}}>certifié en</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 60, color: GOLD}}>moins de 2 mois</div><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 22, color: '#fff', opacity: pop(t, 222.82)}}>le vrai défi est ailleurs</div></div>
           </Abs>
         </>
