@@ -30,3 +30,22 @@ Fin incluse dans chaque prompt : *Photographie réaliste haut de gamme, style re
 **6 · usine-a-gaz.jpg (paysage)** — Employé africain écrasé sous un mur entier de classeurs et de procédures empilés jusqu'au plafond, avec un immense organigramme compliqué de flèches derrière lui, pour une simple tâche posée sur son bureau, effet absurde et humoristique. Photographie réaliste haut de gamme, style reportage industriel, lumière naturelle douce, faible profondeur de champ, couleurs fidèles, aucun texte lisible, aucun logo, aucune marque, aucun filigrane.
 
 **7 · amelioration.jpg (paysage)** — Lever de soleil sur une usine propre et moderne, une équipe africaine en EPI marche sur un chemin qui monte doucement vers l'horizon, image symbolique d'un chemin d'amélioration continue sans fin. Photographie réaliste haut de gamme, style reportage industriel, lumière naturelle douce, faible profondeur de champ, couleurs fidèles, aucun texte lisible, aucun logo, aucune marque, aucun filigrane.
+
+---
+
+## Images bonus (facultatives, pour remplacer les derniers pictogrammes)
+
+| # | Fichier | Format | Où dans la vidéo |
+|---|---------|--------|------------------|
+| 8 | `b52.jpg` | paysage | métaphore « tuer un moustique avec un bombardier B-52 » |
+| 9 | `auditeur.jpg` | paysage | « l'auditeur vient, on corrige vite fait » |
+| 10 | `fracture.jpg` | paysage | la fracture : l'esprit de la norme / toutes les autres |
+| 11 | `chrono.jpg` | paysage | anecdote : certifié en moins de deux mois |
+
+**8 · b52.jpg (paysage)** — Image surréaliste et humoristique : un énorme bombardier militaire stratégique vole au-dessus d'un petit bureau d'usine, en visant un minuscule moustique posé sur une feuille de papier, un employé africain regarde la scène, incrédule, effet absurde de disproportion. Photographie réaliste haut de gamme, style reportage industriel, lumière naturelle douce, faible profondeur de champ, couleurs fidèles, aucun texte lisible, aucun logo, aucune marque, aucun filigrane.
+
+**9 · auditeur.jpg (paysage)** — Auditeur externe sérieux, checklist en main, interroge un responsable qualité africain nerveux qui tend un classeur visiblement rempli à la hâte, dans un atelier fraîchement rangé, regard méfiant de l'auditeur. Photographie réaliste haut de gamme, style reportage industriel, lumière naturelle douce, faible profondeur de champ, couleurs fidèles, aucun texte lisible, aucun logo, aucune marque, aucun filigrane.
+
+**10 · fracture.jpg (paysage)** — Image coupée en deux par une fissure verticale : à gauche une usine lumineuse et dynamique avec une équipe africaine engagée, à droite la même usine grise, terne et figée, avec un certificat encadré poussiéreux au mur, contraste saisissant. Photographie réaliste haut de gamme, style reportage industriel, lumière naturelle douce, faible profondeur de champ, couleurs fidèles, aucun texte lisible, aucun logo, aucune marque, aucun filigrane.
+
+**11 · chrono.jpg (paysage)** — Gros plan d'un chronomètre posé sur un certificat encadré tout neuf, sur un bureau de direction, une main d'homme africain appuie sur le bouton du chronomètre, sensation de course contre la montre. Photographie réaliste haut de gamme, style reportage industriel, lumière naturelle douce, faible profondeur de champ, couleurs fidèles, aucun texte lisible, aucun logo, aucune marque, aucun filigrane.
