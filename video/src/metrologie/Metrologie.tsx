@@ -25,9 +25,9 @@ import {captions} from './captions';
  * puis OUVRE le face-à-face, tableau comparatif, double carte finale « SI / DE COMBIEN ».
  */
 const IMG = {
-  cover: '',
-  technicien: '',
-  maitrise: '',
+  cover: 'metro-gen/couverture.jpg',
+  technicien: 'metro-gen/technicien.jpg',
+  maitrise: 'metro-gen/maitrise.jpg',
   verification: 'metro-gen/verification.jpg',
   rebut: 'metro-gen/rebut.jpg',
   etalonnage: 'metro-gen/etalonnage.jpg',
