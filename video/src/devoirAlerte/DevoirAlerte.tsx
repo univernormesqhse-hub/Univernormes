@@ -26,11 +26,11 @@ import {captions} from './captions';
  */
 const IMG = {
   cover: '',
-  leila: '',
-  ventilation: '',
-  direction: '',
-  silence: '',
-  peur: '',
+  leila: 'alerte-gen/leila.jpg',
+  ventilation: 'alerte-gen/ventilation.jpg',
+  direction: 'alerte-gen/direction.jpg',
+  silence: 'alerte-gen/silence.jpg',
+  peur: 'alerte-gen/peur.jpg',
   diagnostic: '',
   escalade: '',
 };
