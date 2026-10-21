@@ -27,10 +27,10 @@ const IMG = {
   cover: '',
   trophee: '',
   meritante: '',
-  hibernation: '',
-  panique: '',
-  usine: '',
-  amelioration: '',
+  hibernation: 'isoperf-gen/hibernation.jpg',
+  panique: 'isoperf-gen/panique.jpg',
+  usine: 'isoperf-gen/usine-a-gaz.jpg',
+  amelioration: 'isoperf-gen/amelioration.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -514,7 +514,7 @@ const Mondes: React.FC = () => {
   return (
     <Out end={92.4}>
       <HiLine words={t < 71.6 ? ['Deux', 'mondes', 'parallèles'] : ['Le', 'fossé']} mark={t < 71.6 ? [1, 2] : [1]} at={t < 71.6 ? 60.6 : 71.7} y={330} size={66} />
-      {[{x: 60, c: GREEN, l: 'l’entreprise méritante', src: IMG.meritante, ic: 'pousse', a: 75.02, L: [{l: 'outil formidable', a: 77.54}, {l: 's’améliorer chaque jour', a: 78.82}, {l: 'plus efficace', a: 80.0}, {l: 'réduire les coûts', a: 81.3}], ok: true}, {x: 560, c: RED, l: 'le certificat à tout prix', src: IMG.usine, ic: 'classeur', a: 83.42, L: [{l: 'un poids mort', a: 88.26}, {l: 'un monstre bureaucratique', a: 89.1}, {l: 'coûter de l’argent', a: 91.3}], ok: false}].map((s0, k) => (
+      {[{x: 60, c: GREEN, l: 'l’entreprise méritante', src: IMG.meritante, ic: 'pousse', a: 75.02, L: [{l: 'outil formidable', a: 77.54}, {l: 's’améliorer chaque jour', a: 78.82}, {l: 'plus efficace', a: 80.0}, {l: 'réduire les coûts', a: 81.3}], ok: true}, {x: 560, c: RED, l: 'le certificat à tout prix', src: IMG.hibernation, ic: 'classeur', a: 83.42, L: [{l: 'un poids mort', a: 88.26}, {l: 'un monstre bureaucratique', a: 89.1}, {l: 'coûter de l’argent', a: 91.3}], ok: false}].map((s0, k) => (
         <Abs key={s0.l} x={s0.x} y={440} w={460} h={940} style={{background: '#fff', border: `6px solid ${INK}`, borderRadius: 28, boxShadow: `9px 9px 0 ${s0.c}`, overflow: 'hidden', opacity: t < 71.6 ? pop(t, 62.0 + k * 3) : pop(t, s0.a - 0.4), transform: `perspective(1200px) rotateY(${(1 - pop(t, (t < 71.6 ? 62.0 + k * 3 : s0.a - 0.4))) * (k ? 40 : -40)}deg)`}}>
           <Pic src={s0.src} ic={s0.ic} w={460} h={360} zoom={1.08 - 0.05 * prog(t, s0.a, s0.a + 8)} filter={k ? 'saturate(0.6)' : undefined} />
           <div style={{background: s0.c, color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 32, textAlign: 'center', padding: '12px 10px', lineHeight: 1.05}}>{s0.l}</div>
@@ -551,7 +551,7 @@ const Cycle: React.FC = () => {
               const hot = audit && t > 112.74;
               return <div key={k} style={{position: 'absolute', left: 400 + Math.cos(ang) * 320 - 55, top: 400 + Math.sin(ang) * 320 - 55, width: 110, height: 110, borderRadius: 55, background: hot ? RED : reached ? '#C9D2DF' : '#fff', border: `5px solid ${hot ? INK : reached ? DIM : '#C9D2DF'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 40, color: hot ? '#fff' : reached ? DIM : INK, boxShadow: hot ? `0 0 ${30 + 20 * Math.abs(Math.sin(t * 9))}px ${RED}` : 'none', transform: `scale(${hot ? 1.15 + 0.1 * Math.sin(t * 12) : 1})`}}>{m}</div>;
             })}
-            <div style={{position: 'absolute', left: 400 - 160, top: 400 - 160, width: 320, height: 320, borderRadius: 160, background: panic ? RED : NIGHT, border: `6px solid ${INK}`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', opacity: pop(t, 103.2)}}>
+            <div style={{position: 'absolute', left: 400 - 160, top: 400 - 160, width: 320, height: 320, borderRadius: 160, background: panic ? RED : NIGHT, backgroundImage: (panic ? IMG.panique : IMG.hibernation) ? `linear-gradient(${panic ? 'rgba(224,74,63,0.55)' : 'rgba(14,20,34,0.6)'}, ${panic ? 'rgba(224,74,63,0.55)' : 'rgba(14,20,34,0.6)'}), url(${staticFile(panic ? IMG.panique : IMG.hibernation)})` : undefined, backgroundSize: 'cover', backgroundPosition: 'center', overflow: 'hidden', border: `6px solid ${INK}`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', opacity: pop(t, 103.2)}}>
               {!panic ? <><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 90, lineHeight: 1, opacity: 0.6 + 0.4 * Math.sin(t * 2)}}>Zzz</div><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 22, marginTop: 10}}>hibernation</div></> : <><F n="sirene" size={120} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 36}}>PANIQUE</div></>}
             </div>
           </Abs>
