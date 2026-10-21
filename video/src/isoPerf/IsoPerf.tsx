@@ -24,9 +24,9 @@ import {captions} from './captions';
  * entreprises méritantes, anneau 40/30/30, chrono « moins de 2 mois », chemin sans fin avec le jalon certification.
  */
 const IMG = {
-  cover: '',
-  trophee: '',
-  meritante: '',
+  cover: 'isoperf-gen/couverture.jpg',
+  trophee: 'isoperf-gen/trophee.jpg',
+  meritante: 'isoperf-gen/meritante.jpg',
   hibernation: 'isoperf-gen/hibernation.jpg',
   panique: 'isoperf-gen/panique.jpg',
   usine: 'isoperf-gen/usine-a-gaz.jpg',
