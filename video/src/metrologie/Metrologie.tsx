@@ -28,9 +28,9 @@ const IMG = {
   cover: '',
   technicien: '',
   maitrise: '',
-  verification: '',
-  rebut: '',
-  etalonnage: '',
+  verification: 'metro-gen/verification.jpg',
+  rebut: 'metro-gen/rebut.jpg',
+  etalonnage: 'metro-gen/etalonnage.jpg',
   operateur: '',
   choix: '',
 };
