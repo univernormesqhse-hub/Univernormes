@@ -411,6 +411,34 @@ const Terminus: React.FC = () => {
   return <AbsoluteFill style={{opacity: q * 0.55}}><Img src={staticFile('metroiso-gen/metro/terminus.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${1.15 - 0.1 * q})`}} /><AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(11,22,38,0.55), rgba(11,22,38,0.75))'}} /></AbsoluteFill>;
 };
 
+/** Couverture (image 0 + vignette) : photo du quai, titre, pastilles des 4 lignes, rame de face. */
+const Cover: React.FC = () => {
+  const t = useT();
+  const out = prog(t, 1.9, 2.6, easeIn);
+  if (out >= 1) return null;
+  return (
+    <AbsoluteFill style={{zIndex: 70, background: BG, opacity: 1 - out}}>
+      <Img src={staticFile('metroiso-gen/couverture.jpg')} style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 1080, objectFit: 'cover', objectPosition: '50% 35%'}} />
+      <AbsoluteFill style={{background: `linear-gradient(180deg, rgba(11,22,38,0.35) 0%, rgba(11,22,38,0) 20%, rgba(11,22,38,0) 38%, ${BG} 56%)`}} />
+      <div style={{position: 'absolute', right: 50, top: 70, background: 'rgba(255,255,255,0.95)', borderRadius: 26, padding: '10px 28px'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div>
+      <div style={{position: 'absolute', left: 560, top: 640, width: 520, height: 520, filter: 'drop-shadow(0 0 40px rgba(124,196,255,0.6))'}}><Img src={staticFile('metroiso-gen/metro/rame-face.png')} style={{width: '100%', height: '100%', objectFit: 'contain'}} /></div>
+      <div style={{position: 'absolute', left: 60, right: 60, top: 1010}}>
+        <div style={{display: 'inline-block', fontFamily: 'monospace', fontWeight: 700, fontSize: 30, letterSpacing: 4, color: '#05090F', background: '#7CFFB2', padding: '8px 20px', borderRadius: 8}}>PLAN DU RÉSEAU QHSE</div>
+        <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 118, color: '#fff', lineHeight: 0.98, textTransform: 'uppercase', marginTop: 20, textShadow: '0 6px 30px rgba(0,0,0,0.6)'}}>Les 4 normes<br />ISO de base</div>
+        <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 40, color: '#7CC4FF', marginTop: 16, lineHeight: 1.15}}>que tout professionnel QHSE doit maîtriser</div>
+      </div>
+      <div style={{position: 'absolute', left: 60, right: 60, top: 1500, height: 170}}>
+        <div style={{position: 'absolute', left: 60, right: 60, top: 72, height: 26, borderRadius: 13, background: `linear-gradient(90deg, ${ST.map((x) => x.c).join(', ')})`, boxShadow: '0 0 30px rgba(124,196,255,0.5)'}} />
+        {ST.map((x, k) => (
+          <div key={x.n} style={{position: 'absolute', left: 60 + k * ((960 - 240) / (ST.length - 1)) - 60, top: 25, width: 120, textAlign: 'center'}}>
+            <div style={{width: 120, height: 120, borderRadius: 60, background: x.c, border: '10px solid #fff', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', fontFamily: sansFont, fontWeight: 900, lineHeight: 0.95, boxShadow: `0 0 30px ${x.c}`}}><span style={{fontSize: 18, opacity: 0.85}}>ISO</span><span style={{fontSize: x.n.length > 8 ? 26 : 30}}>{x.n.replace('ISO ', '')}</span></div>
+          </div>
+        ))}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
 /** Vignette et grain ciné. */
 const Grade: React.FC = () => {
   const t = useT();
@@ -454,6 +482,7 @@ export const MetroIsoPlan: React.FC = () => (
     <Gate from={0} to={OUTRO_AT}><Panel /></Gate>
     <Gate from={0} to={OUTRO_AT}><Titles /></Gate>
     <Gate from={0} to={OUTRO_AT}><Grade /></Gate>
+    <Gate from={0} to={2.7}><Cover /></Gate>
     <Gate from={OUTRO_AT - 0.5} to={999}><AbsoluteFill style={{background: 'linear-gradient(180deg, #FBFAF6 0%, #F1EDE3 100%)', zIndex: 80}} /></Gate>
     <Gate from={OUTRO_AT} to={999}><AbsoluteFill style={{zIndex: 81}}><Outro at={OUTRO_AT} logo={LOGO} /></AbsoluteFill></Gate>
     <AbsoluteFill style={{zIndex: 100}}><Gate from={0} to={OUTRO_AT}><Captions captions={captions} /></Gate></AbsoluteFill>
