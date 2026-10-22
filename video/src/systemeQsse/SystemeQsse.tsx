@@ -23,16 +23,16 @@ import {captions} from './captions';
  * prompts-images-systeme-qsse.md. Fil rouge : tube pneumatique à six guichets adaptés ; gyrophare à chaque guichet.
  */
 const IMG = {
-  cover: '',
-  qualite: '',
-  sante: '',
-  environnement: '',
-  architecte: '',
-  conception: '',
-  reunion: '',
-  chef: '',
-  accompagnement: '',
-  surcharge: '',
+  cover: 'sysqsse-gen/couverture.jpg',
+  qualite: 'sysqsse-gen/qualite.jpg',
+  sante: 'sysqsse-gen/sante.jpg',
+  environnement: 'sysqsse-gen/environnement.jpg',
+  architecte: 'sysqsse-gen/architecte.jpg',
+  conception: 'sysqsse-gen/conception.jpg',
+  reunion: 'sysqsse-gen/reunion.jpg',
+  chef: 'sysqsse-gen/chef.jpg',
+  accompagnement: 'sysqsse-gen/accompagnement.jpg',
+  surcharge: 'sysqsse-gen/surcharge.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -717,6 +717,7 @@ const Outils: React.FC = () => {
           {cur && f === 0 && <div style={{marginTop: 8, background: x.c, color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 24, padding: '6px 8px', borderRadius: 12, border: `3px solid ${INK}`, lineHeight: 1.05}}>{x.l}</div>}
           {cur && f === 0 && <div style={{fontFamily: MONO, fontWeight: 700, fontSize: 17, color: DIM, marginTop: 4}}>{x.s}</div>}
         </div>; })}
+        {t > 222.6 && t < 229.8 && <div style={{position: 'absolute', left: 640, top: 340, width: 320, height: 220, borderRadius: 20, overflow: 'hidden', border: `5px solid ${VIO}`, boxShadow: `6px 6px 0 ${INK}`, opacity: pop(t, 222.86) * (1 - prog(t, 229.3, 229.8)), transform: `rotate(3deg)`}}><Pic src={IMG.reunion} ic="chrono" w={320} h={220} /></div>}
         {t > 231.8 && <div style={{position: 'absolute', left: 60, right: 60, top: 896, height: 40, borderRadius: 20, background: '#E3E8EF', border: `4px solid ${INK}`, overflow: 'hidden', opacity: pop(t, 231.8)}}><div style={{width: `${100 * prog(t, 232.4, 236.9)}%`, height: '100%', background: `linear-gradient(90deg, ${GREEN}, ${YEL})`}} /></div>}
         {t > 231.8 && <div style={{position: 'absolute', left: 60, right: 60, top: 896, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 22, color: INK, opacity: pop(t, 232.4)}}>{t < 236.9 ? 'efforts reconnus · progrès mesurés' : 'une dynamique plus forte ↑'}</div>}
       </Abs>
