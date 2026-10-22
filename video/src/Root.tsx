@@ -163,6 +163,7 @@ import {DevoirAlerte, ALERTE_FRAMES} from './devoirAlerte/DevoirAlerte';
 import {MetroIso, METROISO_FRAMES} from './metroIso/MetroIso';
 import {MetroIsoPlan, METROPLAN_FRAMES} from './metroIso/MetroIsoPlan';
 import {DiagQhse, DIAG_FRAMES} from './diagQhse/DiagQhse';
+import {SystemeQsse, SYSQSSE_FRAMES} from './systemeQsse/SystemeQsse';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -339,6 +340,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseMetroIso" component={MetroIso} durationInFrames={METROISO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="MetroIsoPlan" component={MetroIsoPlan} durationInFrames={METROPLAN_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseDiagQhse" component={DiagQhse} durationInFrames={DIAG_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseSystemeQsse" component={SystemeQsse} durationInFrames={SYSQSSE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
