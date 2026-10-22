@@ -21,13 +21,13 @@ import {captions} from './captions';
  * pneumatique à six guichets adaptés aux familles ; gyrophare express à chaque changement de famille.
  */
 const IMG = {
-  cover: '',
-  evenements: '',
-  indicateurs: '',
-  international: '',
-  classification: '',
-  gravite: '',
-  analyse: '',
+  cover: 'sigles-gen/couverture.jpg',
+  evenements: 'sigles-gen/evenements.jpg',
+  indicateurs: 'sigles-gen/indicateurs.jpg',
+  international: 'sigles-gen/international.jpg',
+  classification: 'sigles-gen/classification.jpg',
+  gravite: 'sigles-gen/gravite.jpg',
+  analyse: 'sigles-gen/analyse.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
