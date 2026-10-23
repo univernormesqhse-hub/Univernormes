@@ -172,6 +172,7 @@ import {SuperviseurHse, SUPERVISEUR_FRAMES} from './superviseurHse/SuperviseurHs
 import {Iso45001Active, ISO45001A_FRAMES} from './iso45001Active/Iso45001Active';
 import {QuaranteDevoirs, DEVOIRS_FRAMES} from './quaranteDevoirs/QuaranteDevoirs';
 import {ToolboxCondense, TOOLBOXC_FRAMES} from './toolboxCondense/ToolboxCondense';
+import {ChutesPlainPied, CHUTES_FRAMES} from './chutesPlainPied/ChutesPlainPied';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -357,6 +358,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseIso45001Active" component={Iso45001Active} durationInFrames={ISO45001A_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseQuaranteDevoirs" component={QuaranteDevoirs} durationInFrames={DEVOIRS_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseToolbox" component={ToolboxCondense} durationInFrames={TOOLBOXC_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseChutesPlainPied" component={ChutesPlainPied} durationInFrames={CHUTES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
