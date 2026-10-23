@@ -167,6 +167,7 @@ import {SystemeQsse, SYSQSSE_FRAMES} from './systemeQsse/SystemeQsse';
 import {SiglesQhse, SIGLES_FRAMES} from './siglesQhse/SiglesQhse';
 import {Soudure, SOUDURE_FRAMES} from './soudure/Soudure';
 import {ReglesOr, REGLES_FRAMES} from './reglesOr/ReglesOr';
+import {ChefOrchestre, ORCHESTRE_FRAMES} from './chefOrchestre/ChefOrchestre';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -347,6 +348,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseSiglesQhse" component={SiglesQhse} durationInFrames={SIGLES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseSoudure" component={Soudure} durationInFrames={SOUDURE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseReglesOr" component={ReglesOr} durationInFrames={REGLES_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseChefOrchestre" component={ChefOrchestre} durationInFrames={ORCHESTRE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
