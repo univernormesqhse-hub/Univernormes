@@ -23,6 +23,8 @@ const IMG = {
   cover: 'maturite-gen/proactif.jpg',
   c40: 'heures-gen/secteurs.jpg',
   cDev: 'metroiso-gen/sst.jpg',
+  cResp: 'sysqsse-gen/sante.jpg',
+  cHse: 'ishikawa-gen/panique.jpg',
   inspection: 'metroiso-gen/terrain.jpg',
   permis: 'ishikawa-gen/signatures.jpg',
   sshp: 'sysqsse-gen/conception.jpg',
@@ -461,10 +463,11 @@ const Cover: React.FC = () => {
       <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="equipe" w={1080} h={820} pos="50% 30%" /></div>
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 0%, ${PAPER}00 22%, ${PAPER}CC 30%, ${PAPER} 35%)`}} />
       <Abs x={0} y={70} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
-      <Abs x={0} y={620} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="40" src={IMG.c40} size={330} ls={0} /></Abs>
-      <Abs x={0} y={920} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="DEVOIRS" src={IMG.cDev} size={176} ls={0} seed={2} /></Abs>
-      <Abs x={0} y={1100} w={1080} style={{textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 62, color: NAVY, letterSpacing: -1}}>DU RESPONSABLE HSE</Abs>
-      <Abs x={0} y={1200} w={1080} style={{display: 'flex', justifyContent: 'center', gap: 12}}>{PILLARS.map((p) => <div key={p.n} style={{width: 150, height: 150, borderRadius: 26, background: p.c, border: `5px solid ${INK}`, boxShadow: `5px 5px 0 ${INK}`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}><F n={p.ic} size={64} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 22, color: '#fff'}}>PILIER {p.n}</div></div>)}</Abs>
+      <Abs x={0} y={575} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="40" src={IMG.c40} size={320} ls={0} /></Abs>
+      <Abs x={0} y={865} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="DEVOIRS" src={IMG.cDev} size={172} ls={0} seed={2} /></Abs>
+      <Abs x={0} y={1045} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="DU RESPONSABLE" src={IMG.cResp} size={90} ls={0} seed={4} /></Abs>
+      <Abs x={0} y={1140} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="HSE" src={IMG.cHse} size={168} ls={4} seed={6} /></Abs>
+      <Abs x={0} y={1330} w={1080} style={{display: 'flex', justifyContent: 'center', gap: 12}}>{PILLARS.map((p) => <div key={p.n} style={{width: 150, height: 112, borderRadius: 22, background: p.c, border: `5px solid ${INK}`, boxShadow: `4px 4px 0 ${INK}`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}><F n={p.ic} size={48} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 20, color: '#fff'}}>PILIER {p.n}</div></div>)}</Abs>
       <Abs x={60} y={1480} w={960} h={120} style={{background: '#fff', border: `5px solid ${INK}`, borderRadius: 18, boxShadow: `7px 7px 0 ${BURG}`, overflow: 'hidden'}}>
         <Tube x={30} y={34} w={900} h={24} />
         {SECT.map((x, k) => <div key={k} style={{position: 'absolute', left: 70 + k * 164 - 20, top: 26, width: 40, height: 40, borderRadius: 10, background: x.c, border: '4px solid #fff', boxSizing: 'border-box', color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{x.n}</div>)}
