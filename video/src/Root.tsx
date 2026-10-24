@@ -1,6 +1,7 @@
 import {Composition} from 'remotion';
 import {SuperviseurHSE, TOTAL_FRAMES} from './SuperviseurHSE';
 import {FPS} from './theme';
+import {CategoriesEpi, CATEGORIESEPI_FRAMES} from './categoriesepi/CategoriesEpi';
 import {EquipeHSE, EQUIPE_FRAMES} from './equipe/EquipeHSE';
 import {Prevention, PREVENTION_FRAMES} from './prevention/Prevention';
 import {Iso, ISO_FRAMES} from './iso/Iso';
@@ -365,5 +366,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseAffichagesOblig" component={AffichagesOblig} durationInFrames={AFFICH_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
+  <Composition id="CategoriesEpi" component={CategoriesEpi} durationInFrames={CATEGORIESEPI_FRAMES} fps={FPS} width={1080} height={1920} />
   </>
 );
