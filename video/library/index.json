@@ -1,0 +1,183 @@
+{
+ "generated": "build-library.mjs — ne pas éditer",
+ "count": 10,
+ "items": [
+  {
+   "section": "templates",
+   "slug": "capsule-metro-condense",
+   "name": "Capsule condensé « métro »",
+   "description": "Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro.",
+   "quand": "Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo.",
+   "component": "src/langageDg/LangageDg.tsx",
+   "demo": "Demo-CapsuleMetroCondense",
+   "audio": null,
+   "tags": [
+    "template",
+    "métro",
+    "condensé",
+    "couverture"
+   ],
+   "hash": "fba9c3dac057",
+   "path": "templates/capsule-metro-condense/index.md",
+   "preview": "templates/capsule-metro-condense/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "barre-recherche-ouvre",
+   "name": "Barre de recherche qui trouve et ouvre",
+   "description": "Requête tapée lettre à lettre, liste de résultats scannée, « TROUVÉ ✓ », curseur qui clique et la fenêtre du résultat s’ouvre en plein cadre.",
+   "quand": "Introduire une notion clé, une comparaison ou un outil ; une fois par capsule.",
+   "component": "src/langageDg/LangageDg.tsx",
+   "demo": "Demo-BarreRechercheOuvre",
+   "audio": null,
+   "tags": [
+    "recherche",
+    "interface",
+    "wahou"
+   ],
+   "hash": "fba9c3dac057",
+   "path": "assets/barre-recherche-ouvre/index.md",
+   "preview": "assets/barre-recherche-ouvre/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "couverture-lettres-photo-animees",
+   "name": "Couverture en lettres-photos animées",
+   "description": "Titre dont chaque lettre est remplie d’une photo qui dérive, contour marine et reflet blanc qui balaie ; photo en haut fondue dans le papier quadrillé, badge mono, chips, tube des guichets.",
+   "quand": "Frame 0 / miniature de chaque capsule ; titres courts (≤ 14 caractères par ligne à 104 px).",
+   "component": "src/langageDg/LangageDg.tsx",
+   "demo": "Demo-CouvertureLettresPhoto",
+   "audio": null,
+   "tags": [
+    "couverture",
+    "titre",
+    "lettre-photo"
+   ],
+   "hash": "fba9c3dac057",
+   "path": "assets/couverture-lettres-photo-animees/index.md",
+   "preview": "assets/couverture-lettres-photo-animees/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "metro-stations",
+   "name": "Ligne de métro + bandeau de station",
+   "description": "Ligne colorée à 8 stations en bas de la zone utile, pastille qui avance, bandeau « LIGNE HSE · STATION x/8 » de 3 s à chaque arrêt.",
+   "quand": "Fil conducteur de toute capsule « métro » ; stations calées sur les mots clés de la voix.",
+   "component": "src/langageDg/LangageDg.tsx",
+   "demo": "Demo-MetroStations",
+   "audio": null,
+   "tags": [
+    "métro",
+    "progression"
+   ],
+   "hash": "fba9c3dac057",
+   "path": "assets/metro-stations/index.md",
+   "preview": "assets/metro-stations/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "transition-gyrophare",
+   "name": "Transition gyrophare",
+   "description": "Faisceau de gyrophare qui balaie l’écran, bandeau damier qui traverse en biais et carte de partie numérotée.",
+   "quand": "Transition principale entre parties d’une capsule (≈ 3,7 s).",
+   "component": "src/langageDg/LangageDg.tsx",
+   "demo": "Demo-TransitionGyrophare",
+   "audio": null,
+   "tags": [
+    "transition",
+    "métro",
+    "partie"
+   ],
+   "hash": "fba9c3dac057",
+   "path": "assets/transition-gyrophare/index.md",
+   "preview": "assets/transition-gyrophare/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "transition-loupe",
+   "name": "Transition loupe",
+   "description": "Une loupe balaie l’écran et grossit la carte de partie avant de la révéler.",
+   "quand": "Partie qui « examine » ou zoome sur un sujet (profil, analyse).",
+   "component": "src/langageDg/LangageDg.tsx",
+   "demo": "Demo-TransitionLoupe",
+   "audio": null,
+   "tags": [
+    "transition",
+    "loupe"
+   ],
+   "hash": "fba9c3dac057",
+   "path": "assets/transition-loupe/index.md",
+   "preview": "assets/transition-loupe/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "transition-pneumatique",
+   "name": "Transition tube pneumatique",
+   "description": "Capsule qui file dans le tube de verre et livre la carte de partie au guichet.",
+   "quand": "Partie qui « livre » une idée clé ou change de posture.",
+   "component": "src/langageDg/LangageDg.tsx",
+   "demo": "Demo-TransitionPneumatique",
+   "audio": null,
+   "tags": [
+    "transition",
+    "tube",
+    "pneumatique"
+   ],
+   "hash": "fba9c3dac057",
+   "path": "assets/transition-pneumatique/index.md",
+   "preview": "assets/transition-pneumatique/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "transition-store-venitien",
+   "name": "Transition store vénitien",
+   "description": "Lames de store qui pivotent pour révéler la partie suivante.",
+   "quand": "Révélation d’un contenu ou d’une photo ; aussi `<Shot blinds />` pour découvrir une image.",
+   "component": "src/accueilSecu/AccueilSecu.tsx",
+   "demo": "Demo-TransitionStoreVenitien",
+   "audio": null,
+   "tags": [
+    "transition",
+    "store",
+    "révélation"
+   ],
+   "hash": "73739a5e729c",
+   "path": "assets/transition-store-venitien/index.md",
+   "preview": "assets/transition-store-venitien/preview.mp4"
+  },
+  {
+   "section": "subtitles",
+   "slug": "sous-titres-papier-mot-a-mot",
+   "name": "Sous-titres papier mot à mot",
+   "description": "Carte blanche manuscrite sous le métro, mots qui apparaissent en suivant la voix, mot clé en vert (`*emph*`).",
+   "quand": "Style par défaut des capsules UNIVERSNORMES (thème papier quadrillé clair).",
+   "component": "src/components/Captions.tsx",
+   "demo": "Demo-SousTitresPapierMotAMot",
+   "audio": null,
+   "tags": [
+    "sous-titres",
+    "mot à mot"
+   ],
+   "hash": "3e72c620f7ca",
+   "path": "subtitles/sous-titres-papier-mot-a-mot/index.md",
+   "preview": "subtitles/sous-titres-papier-mot-a-mot/preview.mp4"
+  },
+  {
+   "section": "sounds",
+   "slug": "kit-sfx-transition",
+   "name": "Kit SFX de transition",
+   "description": "Séquence whoosh → 4 dings → soft-whoosh → thud → pop → whoosh qui accompagne chaque transition de partie.",
+   "quand": "À chaque transition (gyrophare, loupe, tube, store) ; volume 0,12–0,45 sous la voix.",
+   "component": "src/langageDg/LangageDg.tsx",
+   "demo": null,
+   "audio": "public/sfx/whoosh.wav",
+   "tags": [
+    "son",
+    "transition"
+   ],
+   "hash": "fba9c3dac057",
+   "path": "sounds/kit-sfx-transition/index.md",
+   "preview": null
+  }
+ ]
+}
