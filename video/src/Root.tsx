@@ -179,6 +179,8 @@ import {LangageDg, LANGAGE_FRAMES} from './langageDg/LangageDg';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
+import {LibraryDemos} from './library-demos';
+
 export const RemotionRoot: React.FC = () => (
   <>
   <Composition
@@ -367,5 +369,6 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseLangageDg" component={LangageDg} durationInFrames={LANGAGE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
+  <LibraryDemos />
   </>
 );
