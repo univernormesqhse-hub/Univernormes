@@ -174,6 +174,7 @@ import {QuaranteDevoirs, DEVOIRS_FRAMES} from './quaranteDevoirs/QuaranteDevoirs
 import {ToolboxCondense, TOOLBOXC_FRAMES} from './toolboxCondense/ToolboxCondense';
 import {ChutesPlainPied, CHUTES_FRAMES} from './chutesPlainPied/ChutesPlainPied';
 import {AtmpEcosysteme, ATMP_FRAMES} from './atmpEcosysteme/AtmpEcosysteme';
+import {AffichagesOblig, AFFICH_FRAMES} from './affichagesOblig/AffichagesOblig';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -361,6 +362,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseToolbox" component={ToolboxCondense} durationInFrames={TOOLBOXC_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseChutesPlainPied" component={ChutesPlainPied} durationInFrames={CHUTES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseAtmpEcosysteme" component={AtmpEcosysteme} durationInFrames={ATMP_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseAffichagesOblig" component={AffichagesOblig} durationInFrames={AFFICH_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   </>
