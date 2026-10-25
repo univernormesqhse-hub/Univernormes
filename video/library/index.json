@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 34,
+ "count": 40,
  "items": [
   {
    "section": "templates",
@@ -20,6 +20,24 @@
    "hash": "fba9c3dac057",
    "path": "templates/capsule-metro-condense/index.md",
    "preview": "templates/capsule-metro-condense/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "affiche-arrachee",
+   "name": "Affiche de couloir arrachée (récit)",
+   "description": "Décor de couloir avec affiche « KAIZEN – Amélioration continue ! » punaisée près d’une machine à café, puis l’affiche est arrachée et tombe, laissant sa trace en pointillés.",
+   "quand": "Démonter un cliché, opposer slogan et réalité (skill capsule-recit-illustre).",
+   "component": "src/kaizen/Kaizen.tsx",
+   "demo": "Demo-AfficheArrachee",
+   "audio": null,
+   "tags": [
+    "récit",
+    "cliché",
+    "décor"
+   ],
+   "hash": "2d0a2fad7606",
+   "path": "assets/affiche-arrachee/index.md",
+   "preview": "assets/affiche-arrachee/preview.mp4"
   },
   {
    "section": "assets",
@@ -203,6 +221,24 @@
   },
   {
    "section": "assets",
+   "slug": "grand-chiffre-compteur",
+   "name": "Grand chiffre-clé compteur",
+   "description": "Chiffre géant contouré noir qui compte de 0 à la valeur, unité à côté, suivi d’une grille de tuiles (ex. 10 indicateurs) ou d’un anneau de jours.",
+   "quand": "Faire claquer une règle chiffrée (10 indicateurs, 30 jours, 90 jours…) sans inventer de valeur.",
+   "component": "src/kaizen/Kaizen.tsx",
+   "demo": "Demo-GrandChiffreCompteur",
+   "audio": null,
+   "tags": [
+    "chiffre",
+    "compteur",
+    "règle"
+   ],
+   "hash": "2d0a2fad7606",
+   "path": "assets/grand-chiffre-compteur/index.md",
+   "preview": "assets/grand-chiffre-compteur/preview.mp4"
+  },
+  {
+   "section": "assets",
    "slug": "jauge-compteur-100",
    "name": "Jauge circulaire + compteur",
    "description": "Anneau conic-gradient qui se remplit en même temps qu’un compteur `Count` (même courbe easeOut), sur voile papier.",
@@ -382,6 +418,24 @@
   },
   {
    "section": "assets",
+   "slug": "pyramide-domino",
+   "name": "Pyramide de priorités + dominos",
+   "description": "Étages néo-brutalistes qui tombent du haut (sécurité → qualité → productivité), tampon « NON NÉGOCIABLE », puis huit dominos qui basculent en cascade (« effet domino »).",
+   "quand": "Hiérarchiser des priorités, montrer un enchaînement de conséquences.",
+   "component": "src/kaizen/Kaizen.tsx",
+   "demo": "Demo-PyramideDomino",
+   "audio": null,
+   "tags": [
+    "hiérarchie",
+    "priorités",
+    "wahou"
+   ],
+   "hash": "2d0a2fad7606",
+   "path": "assets/pyramide-domino/index.md",
+   "preview": "assets/pyramide-domino/preview.mp4"
+  },
+  {
+   "section": "assets",
    "slug": "quatre-ingredients-blueprint",
    "name": "4 ingrédients sur plan (silence + hiérarchie qui s’aplatit)",
    "description": "Grille 2×2 de cases pointillées qui se remplissent ; au « silence » les autres cases floutent et l’égaliseur tombe à zéro ; à la « fiction » l’organigramme pyramidal s’aplatit en ligne.",
@@ -436,6 +490,42 @@
   },
   {
    "section": "assets",
+   "slug": "roue-pdca",
+   "name": "Roue PDCA qui se remplit puis tourne",
+   "description": "Quatre quarts colorés (Planifier, Faire, Vérifier, Agir) qui s’allument sur la voix, moyeu « PDCA », puis la roue tourne en continu (lettres contre-rotées pour rester lisibles).",
+   "quand": "Expliquer un cycle (PDCA, amélioration continue, boucle de rétroaction).",
+   "component": "src/kaizen/Kaizen.tsx",
+   "demo": "Demo-RoueePdca",
+   "audio": null,
+   "tags": [
+    "cycle",
+    "pdca",
+    "schéma"
+   ],
+   "hash": "2d0a2fad7606",
+   "path": "assets/roue-pdca/index.md",
+   "preview": "assets/roue-pdca/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "six-etapes-progression",
+   "name": "Déploiement en étapes + barre de progression",
+   "description": "Barre hachurée « DÉPLOIEMENT n/6 » qui avance, grille de 6 cartes qui s’activent et se cochent une à une, puis des points dispersés qui s’alignent (« ne pas s’éparpiller »).",
+   "quand": "Méthode en N étapes, plan de déploiement, procédure.",
+   "component": "src/kaizen/Kaizen.tsx",
+   "demo": "Demo-SixEtapesProgression",
+   "audio": null,
+   "tags": [
+    "étapes",
+    "progression",
+    "néo-brutal"
+   ],
+   "hash": "2d0a2fad7606",
+   "path": "assets/six-etapes-progression/index.md",
+   "preview": "assets/six-etapes-progression/preview.mp4"
+  },
+  {
+   "section": "assets",
    "slug": "telephone-messages",
    "name": "Téléphone + bulles de messagerie",
    "description": "Maquette de smartphone (bandeau vert, logo), bulle question puis réponses qui pop une à une, indicateur « … » de frappe.",
@@ -469,6 +559,24 @@
    "hash": "f8abb3c971fb",
    "path": "assets/texte-morph-preuve/index.md",
    "preview": "assets/texte-morph-preuve/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "tour-qui-s-effondre",
+   "name": "Tour qui s’effondre sur un sol instable",
+   "description": "Blocs néo-brutalistes empilés sur un sol « sans standards » qui s’écroulent et s’éparpillent en tournant.",
+   "quand": "Montrer qu’une méthode échoue sans prérequis (discipline, standards, fondations).",
+   "component": "src/kaizen/Kaizen.tsx",
+   "demo": "Demo-TourQuiSEffondre",
+   "audio": null,
+   "tags": [
+    "effondrement",
+    "prérequis",
+    "wahou"
+   ],
+   "hash": "2d0a2fad7606",
+   "path": "assets/tour-qui-s-effondre/index.md",
+   "preview": "assets/tour-qui-s-effondre/preview.mp4"
   },
   {
    "section": "assets",

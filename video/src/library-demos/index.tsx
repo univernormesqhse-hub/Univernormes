@@ -8,6 +8,7 @@ import {PremierEmploi} from '../premierEmploi/PremierEmploi';
 import {CafeHse} from '../cafeHse/CafeHse';
 import {NormesIsac} from '../normesIsac/NormesIsac';
 import {EquipeIsac} from '../equipeIsac/EquipeIsac';
+import {Kaizen} from '../kaizen/Kaizen';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -45,6 +46,12 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-OrganigrammeCamera', C: EquipeIsac, at: 23.4, dur: 13},
   {id: 'Demo-CircuitFerme', C: EquipeIsac, at: 65.6, dur: 10},
   {id: 'Demo-PileReglesQuiTombe', C: EquipeIsac, at: 2.7, dur: 2.6},
+  {id: 'Demo-RoueePdca', C: Kaizen, at: 52.6, dur: 7},
+  {id: 'Demo-PyramideDomino', C: Kaizen, at: 129.8, dur: 23},
+  {id: 'Demo-SixEtapesProgression', C: Kaizen, at: 159.6, dur: 16},
+  {id: 'Demo-TourQuiSEffondre', C: Kaizen, at: 228.8, dur: 8},
+  {id: 'Demo-GrandChiffreCompteur', C: Kaizen, at: 268.4, dur: 5},
+  {id: 'Demo-AfficheArrachee', C: Kaizen, at: 2.8, dur: 7.6},
 ];
 
 export const LibraryDemos: React.FC = () => (
