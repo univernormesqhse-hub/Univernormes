@@ -5,6 +5,7 @@ import {Window} from './Window';
 import {LangageDg} from '../langageDg/LangageDg';
 import {AccueilSecu} from '../accueilSecu/AccueilSecu';
 import {PremierEmploi} from '../premierEmploi/PremierEmploi';
+import {CafeHse} from '../cafeHse/CafeHse';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -24,6 +25,14 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-RadarCibles', C: PremierEmploi, at: 188.6, dur: 5},
   {id: 'Demo-ReseauGraphe', C: PremierEmploi, at: 201.6, dur: 10},
   {id: 'Demo-CercleViciseBrise', C: PremierEmploi, at: 221.4, dur: 6},
+  {id: 'Demo-CitationOndeChoc', C: CafeHse, at: 16.2, dur: 9.5},
+  {id: 'Demo-CarteRetournee3d', C: CafeHse, at: 43.0, dur: 7.5},
+  {id: 'Demo-PlanArchitecte', C: CafeHse, at: 82.4, dur: 4},
+  {id: 'Demo-QuatreIngredients', C: CafeHse, at: 94.4, dur: 24},
+  {id: 'Demo-CoffreTresor', C: CafeHse, at: 199.0, dur: 6},
+  {id: 'Demo-PontTraducteur', C: CafeHse, at: 254.2, dur: 4.6},
+  {id: 'Demo-FeuilleDeRoute', C: CafeHse, at: 268.4, dur: 22},
+  {id: 'Demo-PageDecollee', C: CafeHse, at: 296.4, dur: 6},
 ];
 
 export const LibraryDemos: React.FC = () => (
