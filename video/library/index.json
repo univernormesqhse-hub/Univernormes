@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 40,
+ "count": 42,
  "items": [
   {
    "section": "templates",
@@ -35,7 +35,7 @@
     "cliché",
     "décor"
    ],
-   "hash": "2d0a2fad7606",
+   "hash": "4b396a264fb4",
    "path": "assets/affiche-arrachee/index.md",
    "preview": "assets/affiche-arrachee/preview.mp4"
   },
@@ -56,6 +56,46 @@
    "hash": "fba9c3dac057",
    "path": "assets/barre-recherche-ouvre/index.md",
    "preview": "assets/barre-recherche-ouvre/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "bouton-s-abonner",
+   "name": "Bouton « S'abonner » cliqué (néo-brutal)",
+   "description": "Bouton rouge à ombre dure, curseur qui glisse et clique, bouton qui s'enfonce et devient « ✓ Abonné » noir, onde de choc, chips thématiques qui s'allument.",
+   "quand": "Appel à l'abonnement en fin de capsule (skill capsule-ui-neo-brutal).",
+   "component": "src/plansPrev/PlansPrevention.tsx",
+   "demo": "Demo-BoutonSAbonner",
+   "audio": null,
+   "tags": [
+    "abonnement",
+    "cta",
+    "néo-brutal",
+    "curseur",
+    "clic"
+   ],
+   "hash": "090b8a844e73",
+   "path": "assets/bouton-s-abonner/index.md",
+   "preview": "assets/bouton-s-abonner/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "cadenas-consignation",
+   "name": "Cadenas de consignation + jauge d'énergie",
+   "description": "Photo de la machine qui se désature, cadenas SVG dont l'anse se ferme, étiquette « CONSIGNÉ – ne pas manœuvrer », jauge d'énergie qui tombe à 0 ✓.",
+   "quand": "Illustrer une consignation / LOTO, une mise en sécurité avant intervention, ou tout « on coupe avant d'agir ».",
+   "component": "src/plansPrev/PlansPrevention.tsx",
+   "demo": "Demo-CadenasConsignation",
+   "audio": null,
+   "tags": [
+    "consignation",
+    "cadenas",
+    "énergie",
+    "jauge",
+    "maintenance"
+   ],
+   "hash": "090b8a844e73",
+   "path": "assets/cadenas-consignation/index.md",
+   "preview": "assets/cadenas-consignation/preview.mp4"
   },
   {
    "section": "assets",
@@ -233,7 +273,7 @@
     "compteur",
     "règle"
    ],
-   "hash": "2d0a2fad7606",
+   "hash": "4b396a264fb4",
    "path": "assets/grand-chiffre-compteur/index.md",
    "preview": "assets/grand-chiffre-compteur/preview.mp4"
   },
@@ -430,7 +470,7 @@
     "priorités",
     "wahou"
    ],
-   "hash": "2d0a2fad7606",
+   "hash": "4b396a264fb4",
    "path": "assets/pyramide-domino/index.md",
    "preview": "assets/pyramide-domino/preview.mp4"
   },
@@ -502,7 +542,7 @@
     "pdca",
     "schéma"
    ],
-   "hash": "2d0a2fad7606",
+   "hash": "4b396a264fb4",
    "path": "assets/roue-pdca/index.md",
    "preview": "assets/roue-pdca/preview.mp4"
   },
@@ -520,7 +560,7 @@
     "progression",
     "néo-brutal"
    ],
-   "hash": "2d0a2fad7606",
+   "hash": "4b396a264fb4",
    "path": "assets/six-etapes-progression/index.md",
    "preview": "assets/six-etapes-progression/preview.mp4"
   },
@@ -574,7 +614,7 @@
     "prérequis",
     "wahou"
    ],
-   "hash": "2d0a2fad7606",
+   "hash": "4b396a264fb4",
    "path": "assets/tour-qui-s-effondre/index.md",
    "preview": "assets/tour-qui-s-effondre/preview.mp4"
   },

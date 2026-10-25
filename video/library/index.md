@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-40 motions validés. Galerie visuelle : `library/gallery.html`.
+42 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,12 +10,14 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (36)
+## Assets (38)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
 | [Affiche de couloir arrachée (récit)](assets/affiche-arrachee/index.md) | Décor de couloir avec affiche « KAIZEN – Amélioration continue ! » punaisée près d’une machine à café, puis l’affiche est arrachée et tombe, laissant sa trace en pointillés. | Démonter un cliché, opposer slogan et réalité (skill capsule-recit-illustre). | `src/kaizen/Kaizen.tsx` | [mp4](assets/affiche-arrachee/preview.mp4) |
 | [Barre de recherche qui trouve et ouvre](assets/barre-recherche-ouvre/index.md) | Requête tapée lettre à lettre, liste de résultats scannée, « TROUVÉ ✓ », curseur qui clique et la fenêtre du résultat s’ouvre en plein cadre. | Introduire une notion clé, une comparaison ou un outil ; une fois par capsule. | `src/langageDg/LangageDg.tsx` | [mp4](assets/barre-recherche-ouvre/preview.mp4) |
+| [Bouton « S'abonner » cliqué (néo-brutal)](assets/bouton-s-abonner/index.md) | Bouton rouge à ombre dure, curseur qui glisse et clique, bouton qui s'enfonce et devient « ✓ Abonné » noir, onde de choc, chips thématiques qui s'allument. | Appel à l'abonnement en fin de capsule (skill capsule-ui-neo-brutal). | `src/plansPrev/PlansPrevention.tsx` | [mp4](assets/bouton-s-abonner/preview.mp4) |
+| [Cadenas de consignation + jauge d'énergie](assets/cadenas-consignation/index.md) | Photo de la machine qui se désature, cadenas SVG dont l'anse se ferme, étiquette « CONSIGNÉ – ne pas manœuvrer », jauge d'énergie qui tombe à 0 ✓. | Illustrer une consignation / LOTO, une mise en sécurité avant intervention, ou tout « on coupe avant d'agir ». | `src/plansPrev/PlansPrevention.tsx` | [mp4](assets/cadenas-consignation/preview.mp4) |
 | [Carte néo-brutaliste + tuiles cochées](assets/carte-norme-neo-brutal/index.md) | Carte blanche bordure noire / ombre dure, en-tête couleur avec pictogramme, badge incliné « n/9 » qui se colle, puis tuiles grisées qui s’activent une à une avec coche ronde. | Présenter un élément d’une série (norme, outil, étape) et ses bénéfices au fil de la voix. | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/carte-norme-neo-brutal/preview.mp4) |
 | [Carte qui se retourne en 3D](assets/carte-retournee-3d/index.md) | Panneau rouge « PARLER » qui bascule sur l’axe X (rotateX 180°) et révèle au dos le panneau vert « ÉCOUTER ». | Inversion de posture, avant/après, mythe/réalité. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/carte-retournee-3d/preview.mp4) |
 | [Cercle vicieux qui éclate](assets/cercle-vicieux-brise/index.md) | Deux flèches tournent en boucle avec le paradoxe au centre, puis éclatent en morceaux et laissent place à la solution (médaille). | Paradoxe, blocage, boucle à casser (« pas d’expérience → pas de job »). | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/cercle-vicieux-brise/preview.mp4) |

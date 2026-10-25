@@ -9,6 +9,7 @@ import {CafeHse} from '../cafeHse/CafeHse';
 import {NormesIsac} from '../normesIsac/NormesIsac';
 import {EquipeIsac} from '../equipeIsac/EquipeIsac';
 import {Kaizen} from '../kaizen/Kaizen';
+import {PlansPrevention} from '../plansPrev/PlansPrevention';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -52,6 +53,8 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-TourQuiSEffondre', C: Kaizen, at: 228.8, dur: 8},
   {id: 'Demo-GrandChiffreCompteur', C: Kaizen, at: 268.4, dur: 5},
   {id: 'Demo-AfficheArrachee', C: Kaizen, at: 2.8, dur: 7.6},
+  {id: 'Demo-CadenasConsignation', C: PlansPrevention, at: 24.2, dur: 4.4},
+  {id: 'Demo-BoutonSAbonner', C: PlansPrevention, at: 60.5, dur: 5.8},
 ];
 
 export const LibraryDemos: React.FC = () => (
