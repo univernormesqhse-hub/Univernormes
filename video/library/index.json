@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 16,
+ "count": 24,
  "items": [
   {
    "section": "templates",
@@ -41,6 +41,24 @@
   },
   {
    "section": "assets",
+   "slug": "carte-retournee-3d",
+   "name": "Carte qui se retourne en 3D",
+   "description": "Panneau rouge « PARLER » qui bascule sur l’axe X (rotateX 180°) et révèle au dos le panneau vert « ÉCOUTER ».",
+   "quand": "Inversion de posture, avant/après, mythe/réalité.",
+   "component": "src/cafeHse/CafeHse.tsx",
+   "demo": "Demo-CarteRetournee3d",
+   "audio": null,
+   "tags": [
+    "3d",
+    "avant-après",
+    "inversion"
+   ],
+   "hash": "5b103cd3545f",
+   "path": "assets/carte-retournee-3d/index.md",
+   "preview": "assets/carte-retournee-3d/preview.mp4"
+  },
+  {
+   "section": "assets",
    "slug": "cercle-vicieux-brise",
    "name": "Cercle vicieux qui éclate",
    "description": "Deux flèches tournent en boucle avec le paradoxe au centre, puis éclatent en morceaux et laissent place à la solution (médaille).",
@@ -53,9 +71,45 @@
     "rupture",
     "wahou"
    ],
-   "hash": "338b5dc0a9de",
+   "hash": "f8abb3c971fb",
    "path": "assets/cercle-vicieux-brise/index.md",
    "preview": "assets/cercle-vicieux-brise/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "citation-onde-de-choc",
+   "name": "Citation tapée + onde de choc",
+   "description": "Citation qui s’écrit lettre à lettre avec guillemet géant et mot clé surligné, puis la carte tremble, trois ondes concentriques et tampon.",
+   "quand": "Phrase déclic, verbatim marquant, révélation choc.",
+   "component": "src/cafeHse/CafeHse.tsx",
+   "demo": "Demo-CitationOndeChoc",
+   "audio": null,
+   "tags": [
+    "citation",
+    "choc",
+    "texte"
+   ],
+   "hash": "5b103cd3545f",
+   "path": "assets/citation-onde-de-choc/index.md",
+   "preview": "assets/citation-onde-de-choc/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "coffre-tresor",
+   "name": "Coffre au trésor qui s’ouvre",
+   "description": "Cadenas qui tombe, couvercle qui bascule, pièces d’or lumineuses qui remontent en continu.",
+   "quand": "Information précieuse, retour d’expérience, presque-accidents, « l’or » d’un sujet.",
+   "component": "src/cafeHse/CafeHse.tsx",
+   "demo": "Demo-CoffreTresor",
+   "audio": null,
+   "tags": [
+    "trésor",
+    "révélation",
+    "wahou"
+   ],
+   "hash": "5b103cd3545f",
+   "path": "assets/coffre-tresor/index.md",
+   "preview": "assets/coffre-tresor/preview.mp4"
   },
   {
    "section": "assets",
@@ -77,6 +131,24 @@
   },
   {
    "section": "assets",
+   "slug": "feuille-de-route",
+   "name": "Feuille de route sinueuse",
+   "description": "Route grise en S, trait rouge qui avance tout au long de la séquence, jalons qui surgissent sur leurs mots et maison illuminée à l’arrivée.",
+   "quand": "Conseils, étapes d’un parcours, plan d’action qui mène à une finalité.",
+   "component": "src/cafeHse/CafeHse.tsx",
+   "demo": "Demo-FeuilleDeRoute",
+   "audio": null,
+   "tags": [
+    "parcours",
+    "étapes",
+    "conclusion"
+   ],
+   "hash": "5b103cd3545f",
+   "path": "assets/feuille-de-route/index.md",
+   "preview": "assets/feuille-de-route/preview.mp4"
+  },
+  {
+   "section": "assets",
    "slug": "jauge-compteur-100",
    "name": "Jauge circulaire + compteur",
    "description": "Anneau conic-gradient qui se remplit en même temps qu’un compteur `Count` (même courbe easeOut), sur voile papier.",
@@ -89,7 +161,7 @@
     "compteur",
     "jauge"
    ],
-   "hash": "338b5dc0a9de",
+   "hash": "f8abb3c971fb",
    "path": "assets/jauge-compteur-100/index.md",
    "preview": "assets/jauge-compteur-100/preview.mp4"
   },
@@ -112,6 +184,60 @@
   },
   {
    "section": "assets",
+   "slug": "page-qui-se-decolle",
+   "name": "Document qui se décolle sur l’humain",
+   "description": "Une fiche « procédure · KPI » pivote et s’envole par le coin, révélant derrière les personnes et familles qui apparaissent une à une.",
+   "quand": "Rappeler l’humain derrière les chiffres, les procédures, les indicateurs.",
+   "component": "src/cafeHse/CafeHse.tsx",
+   "demo": "Demo-PageDecollee",
+   "audio": null,
+   "tags": [
+    "révélation",
+    "humain",
+    "conclusion"
+   ],
+   "hash": "5b103cd3545f",
+   "path": "assets/page-qui-se-decolle/index.md",
+   "preview": "assets/page-qui-se-decolle/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "plan-architecte",
+   "name": "Plan d’architecte qui se trace",
+   "description": "Fond bleu plan quadrillé, cadre d’une maison dessiné en pointillés au rythme de la voix (pathLength + dashoffset).",
+   "quand": "Construire un cadre, une méthode, une structure « invisible ».",
+   "component": "src/cafeHse/CafeHse.tsx",
+   "demo": "Demo-PlanArchitecte",
+   "audio": null,
+   "tags": [
+    "plan",
+    "construction",
+    "trait"
+   ],
+   "hash": "5b103cd3545f",
+   "path": "assets/plan-architecte/index.md",
+   "preview": "assets/plan-architecte/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "pont-traducteur",
+   "name": "Pont qui se construit entre deux mondes",
+   "description": "Deux colonnes (direction / terrain), arche qui se trace, tablier et suspentes qui montent, personnage HSE qui se pose au milieu.",
+   "quand": "Rôle d’interface, de traducteur, de médiateur entre deux groupes.",
+   "component": "src/cafeHse/CafeHse.tsx",
+   "demo": "Demo-PontTraducteur",
+   "audio": null,
+   "tags": [
+    "pont",
+    "relation",
+    "rôle"
+   ],
+   "hash": "5b103cd3545f",
+   "path": "assets/pont-traducteur/index.md",
+   "preview": "assets/pont-traducteur/preview.mp4"
+  },
+  {
+   "section": "assets",
    "slug": "porte-lumineuse-3d",
    "name": "Porte 3D qui s’ouvre sur la lumière",
    "description": "Porte en arche qui pivote en 3D (rotateY), halo doré et rayons volumétriques derrière, personnage qui franchit le seuil en rapetissant.",
@@ -124,9 +250,27 @@
     "révélation",
     "wahou"
    ],
-   "hash": "338b5dc0a9de",
+   "hash": "f8abb3c971fb",
    "path": "assets/porte-lumineuse-3d/index.md",
    "preview": "assets/porte-lumineuse-3d/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "quatre-ingredients-blueprint",
+   "name": "4 ingrédients sur plan (silence + hiérarchie qui s’aplatit)",
+   "description": "Grille 2×2 de cases pointillées qui se remplissent ; au « silence » les autres cases floutent et l’égaliseur tombe à zéro ; à la « fiction » l’organigramme pyramidal s’aplatit en ligne.",
+   "quand": "Liste de 3 à 4 conditions / piliers avec un effet propre à chacun.",
+   "component": "src/cafeHse/CafeHse.tsx",
+   "demo": "Demo-QuatreIngredients",
+   "audio": null,
+   "tags": [
+    "liste",
+    "grille",
+    "wahou"
+   ],
+   "hash": "5b103cd3545f",
+   "path": "assets/quatre-ingredients-blueprint/index.md",
+   "preview": "assets/quatre-ingredients-blueprint/preview.mp4"
   },
   {
    "section": "assets",
@@ -142,7 +286,7 @@
     "liste",
     "wahou"
    ],
-   "hash": "338b5dc0a9de",
+   "hash": "f8abb3c971fb",
    "path": "assets/radar-cibles/index.md",
    "preview": "assets/radar-cibles/preview.mp4"
   },
@@ -160,7 +304,7 @@
     "graphe",
     "idée-reçue"
    ],
-   "hash": "338b5dc0a9de",
+   "hash": "f8abb3c971fb",
    "path": "assets/reseau-graphe/index.md",
    "preview": "assets/reseau-graphe/preview.mp4"
   },
@@ -178,7 +322,7 @@
     "avant-après",
     "cv"
    ],
-   "hash": "338b5dc0a9de",
+   "hash": "f8abb3c971fb",
    "path": "assets/texte-morph-preuve/index.md",
    "preview": "assets/texte-morph-preuve/preview.mp4"
   },
