@@ -21,14 +21,15 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * gyrophare, loupe, store vénitien, capsule pneumatique ; barre de recherche qui ouvre la feuille de route.
  */
 const IMG = {
-  cover: 'isoperf-gen/meritante.jpg',
+  cover: 'kaizen-gen/tableau.jpg',
   cMet: 'vingt-gen/montre.jpg',
-  cKai: 'isoperf-gen/meritante.jpg',
+  cKai: 'kaizen-gen/tableau.jpg',
   capot: 'vingt-gen/montre.jpg',
-  gemba: 'influence-gen/terrain.jpg',
+  gemba: 'kaizen-gen/gemba.jpg',
+  comite: 'kaizen-gen/comite.jpg',
   standard: 'vingt-gen/5s.jpg',
   chrono: 'isoperf-gen/chrono.jpg',
-  audit: 'isoperf-gen/auditeur.jpg',
+  audit: 'kaizen-gen/audit.jpg',
   equipe: 'vingt-gen/final.jpg',
   route: 'isoperf-gen/amelioration.jpg',
 };
@@ -735,7 +736,8 @@ const Mesure: React.FC = () => {
       {ph === 0 && (
         <>
           <HiLine words={t < 259.6 ? ['Changer', 'de', 'dimension'] : ['Une', 'maîtrise', 'systémique']} mark={t < 259.6 ? [0, 2] : [1, 2]} at={t < 259.6 ? 252.8 : 262.0} y={330} size={64} />
-          <Abs x={60} y={440} w={960} h={930} style={{...nb(NIGHT), overflow: 'hidden', opacity: pop(t, 245.8)}}>
+          <Shot src={IMG.comite} ic="equipe" x={60} y={440} w={960} h={320} at={245.6} c={VIO} />
+          <Abs x={60} y={790} w={960} h={930} style={{...nb(NIGHT), overflow: 'hidden', opacity: pop(t, 245.8), transform: 'scale(0.62)', transformOrigin: '50% 0'}}>
             {Array.from({length: 9}, (_, k) => { const a = (k / 9) * Math.PI * 2; const x = 480 + Math.cos(a) * 320 * net, y = 440 + Math.sin(a) * 300 * net; return <React.Fragment key={k}><svg style={{position: 'absolute', left: 0, top: 0}} width={952} height={922}><line x1={480} y1={440} x2={x} y2={y} stroke={ACC} strokeWidth={4} strokeDasharray="10 8" strokeDashoffset={-t * 40} opacity={net} /></svg><div style={{position: 'absolute', left: x - 40, top: y - 40, width: 80, height: 80, borderRadius: 40, background: '#1E2638', border: `4px solid ${ACC}`, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: net}}><F n="outils" size={44} /></div></React.Fragment>; })}
             <div style={{position: 'absolute', left: 380, top: 340, width: 200, height: 200, borderRadius: 100, background: VIO, border: `5px solid #fff`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transform: `scale(${lerp(0.5, 1, net)})`}}><F n="calendrier" size={80} /><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 20, color: '#fff', textAlign: 'center'}}>comité mensuel</span></div>
             <div style={{position: 'absolute', left: 24, top: 18, fontFamily: MONO, fontWeight: 700, fontSize: 22, color: GOLD}}>{net < 0.5 ? 'UN ATELIER LOCAL…' : 'UN PROGRAMME ROBUSTE'}</div>
