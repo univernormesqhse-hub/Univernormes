@@ -178,6 +178,7 @@ import {AffichagesOblig, AFFICH_FRAMES} from './affichagesOblig/AffichagesOblig'
 import {LangageDg, LANGAGE_FRAMES} from './langageDg/LangageDg';
 import {PremierEmploi, PREMIER_FRAMES} from './premierEmploi/PremierEmploi';
 import {CafeHse, CAFE_FRAMES} from './cafeHse/CafeHse';
+import {NormesIsac, NORMES_ISAC_FRAMES} from './normesIsac/NormesIsac';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -371,6 +372,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseLangageDg" component={LangageDg} durationInFrames={LANGAGE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondensePremierEmploi" component={PremierEmploi} durationInFrames={PREMIER_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseCafeHse" component={CafeHse} durationInFrames={CAFE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseNormesIsac" component={NormesIsac} durationInFrames={NORMES_ISAC_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <LibraryDemos />
