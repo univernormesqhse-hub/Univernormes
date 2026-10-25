@@ -3,6 +3,7 @@ import {SuperviseurHSE, TOTAL_FRAMES} from './SuperviseurHSE';
 import {FPS} from './theme';
 import {CategoriesEpi, CATEGORIESEPI_FRAMES} from './categoriesepi/CategoriesEpi';
 import {CategoriesEpiCouverture} from './categoriesepi/Couverture';
+import {Negligences, NEGLIGENCES_FRAMES} from './negligences/Negligences';
 import {Recit14001, RECIT14001_FRAMES} from './recit14001/Recit14001';
 import {Pub14001Carre, Pub14001Vertical, PUB14001_FRAMES} from './pub14001/Pub14001';
 import {EquipeHSE, EQUIPE_FRAMES} from './equipe/EquipeHSE';
@@ -238,6 +239,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CategoriesEpi" component={CategoriesEpi} durationInFrames={CATEGORIESEPI_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CategoriesEpiCouverture" component={CategoriesEpiCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <Composition id="PubIso14001Vertical" component={Pub14001Vertical} durationInFrames={PUB14001_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="DecryptageNegligences" component={Negligences} durationInFrames={NEGLIGENCES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RecitIso14001" component={Recit14001} durationInFrames={RECIT14001_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="PubIso14001Carre" component={Pub14001Carre} durationInFrames={PUB14001_FRAMES} fps={FPS} width={1080} height={1080} />
   </>
