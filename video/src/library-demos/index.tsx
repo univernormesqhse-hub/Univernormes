@@ -7,6 +7,7 @@ import {AccueilSecu} from '../accueilSecu/AccueilSecu';
 import {PremierEmploi} from '../premierEmploi/PremierEmploi';
 import {CafeHse} from '../cafeHse/CafeHse';
 import {NormesIsac} from '../normesIsac/NormesIsac';
+import {EquipeIsac} from '../equipeIsac/EquipeIsac';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -41,6 +42,9 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-PanneauIndicateurNon', C: NormesIsac, at: 82.2, dur: 5.6},
   {id: 'Demo-EditeurCodeLive', C: NormesIsac, at: 150.9, dur: 8.4},
   {id: 'Demo-TriangleCid', C: NormesIsac, at: 107.2, dur: 7.6},
+  {id: 'Demo-OrganigrammeCamera', C: EquipeIsac, at: 23.4, dur: 13},
+  {id: 'Demo-CircuitFerme', C: EquipeIsac, at: 65.6, dur: 10},
+  {id: 'Demo-PileReglesQuiTombe', C: EquipeIsac, at: 2.7, dur: 2.6},
 ];
 
 export const LibraryDemos: React.FC = () => (
