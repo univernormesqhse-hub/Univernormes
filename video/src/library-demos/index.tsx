@@ -6,6 +6,7 @@ import {LangageDg} from '../langageDg/LangageDg';
 import {AccueilSecu} from '../accueilSecu/AccueilSecu';
 import {PremierEmploi} from '../premierEmploi/PremierEmploi';
 import {CafeHse} from '../cafeHse/CafeHse';
+import {NormesIsac} from '../normesIsac/NormesIsac';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -33,6 +34,13 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-PontTraducteur', C: CafeHse, at: 254.2, dur: 4.6},
   {id: 'Demo-FeuilleDeRoute', C: CafeHse, at: 268.4, dur: 22},
   {id: 'Demo-PageDecollee', C: CafeHse, at: 296.4, dur: 6},
+  {id: 'Demo-SousTitresNeoBrutal', C: NormesIsac, at: 13.0, dur: 6},
+  {id: 'Demo-CarteNormeNeoBrutal', C: NormesIsac, at: 12.9, dur: 12},
+  {id: 'Demo-PelliculeFilm', C: NormesIsac, at: 9.4, dur: 3.4},
+  {id: 'Demo-TelephoneMessages', C: NormesIsac, at: 5.9, dur: 3.6},
+  {id: 'Demo-PanneauIndicateurNon', C: NormesIsac, at: 82.2, dur: 5.6},
+  {id: 'Demo-EditeurCodeLive', C: NormesIsac, at: 150.9, dur: 8.4},
+  {id: 'Demo-TriangleCid', C: NormesIsac, at: 107.2, dur: 7.6},
 ];
 
 export const LibraryDemos: React.FC = () => (
