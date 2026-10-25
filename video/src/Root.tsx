@@ -181,6 +181,7 @@ import {CafeHse, CAFE_FRAMES} from './cafeHse/CafeHse';
 import {NormesIsac, NORMES_ISAC_FRAMES} from './normesIsac/NormesIsac';
 import {EquipeIsac, EQUIPE_ISAC_FRAMES} from './equipeIsac/EquipeIsac';
 import {Kaizen, KAIZEN_FRAMES} from './kaizen/Kaizen';
+import {PlansPrevention, PLANS_PREV_FRAMES} from './plansPrev/PlansPrevention';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -377,6 +378,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseNormesIsac" component={NormesIsac} durationInFrames={NORMES_ISAC_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseEquipeIsac" component={EquipeIsac} durationInFrames={EQUIPE_ISAC_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseKaizen" component={Kaizen} durationInFrames={KAIZEN_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondensePlansPrevention" component={PlansPrevention} durationInFrames={PLANS_PREV_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <LibraryDemos />
