@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 31,
+ "count": 34,
  "items": [
   {
    "section": "templates",
@@ -92,6 +92,24 @@
    "hash": "f8abb3c971fb",
    "path": "assets/cercle-vicieux-brise/index.md",
    "preview": "assets/cercle-vicieux-brise/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "circuit-ferme",
+   "name": "Circuit fermé (flux descendants / montants)",
+   "description": "Dézoom sur l’organigramme complet : flèches bleues (directives) et vertes (remontées) passent en pointillés qui défilent, des pastilles circulent dans les deux sens, badge « CIRCUIT FERMÉ ».",
+   "quand": "Conclure sur une boucle de rétroaction : PDCA, remontée terrain, amélioration continue.",
+   "component": "src/equipeIsac/EquipeIsac.tsx",
+   "demo": "Demo-CircuitFerme",
+   "audio": null,
+   "tags": [
+    "boucle",
+    "flux",
+    "conclusion"
+   ],
+   "hash": "fc61ee7e4a0d",
+   "path": "assets/circuit-ferme/index.md",
+   "preview": "assets/circuit-ferme/preview.mp4"
   },
   {
    "section": "assets",
@@ -220,6 +238,24 @@
   },
   {
    "section": "assets",
+   "slug": "organigramme-camera",
+   "name": "Organigramme vivant filmé par une caméra",
+   "description": "Organigramme dont les rôles (portraits détourés en médaillons) apparaissent au fil de la voix ; une caméra (zoom + panoramique interpolés par images clés) se pose sur chaque rôle, les autres se grisent, une fiche à puces cochées accompagne le rôle actif.",
+   "quand": "Présenter une équipe, une chaîne de responsabilités, un processus à étapes reliées.",
+   "component": "src/equipeIsac/EquipeIsac.tsx",
+   "demo": "Demo-OrganigrammeCamera",
+   "audio": null,
+   "tags": [
+    "organigramme",
+    "caméra",
+    "wahou"
+   ],
+   "hash": "fc61ee7e4a0d",
+   "path": "assets/organigramme-camera/index.md",
+   "preview": "assets/organigramme-camera/preview.mp4"
+  },
+  {
+   "section": "assets",
    "slug": "page-qui-se-decolle",
    "name": "Document qui se décolle sur l’humain",
    "description": "Une fiche « procédure · KPI » pivote et s’envole par le coin, révélant derrière les personnes et familles qui apparaissent une à une.",
@@ -271,6 +307,24 @@
    "hash": "04e409ab153e",
    "path": "assets/pellicule-film/index.md",
    "preview": "assets/pellicule-film/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "pile-regles-qui-tombe",
+   "name": "Pile de règles qui s’effondre",
+   "description": "Cartes néo-brutalistes « RÈGLE n°1…7 » qui tombent et s’empilent, puis la pile bascule et s’éparpille.",
+   "quand": "Démonter une idée reçue (« empiler des règles ne suffit pas »), trop de procédures.",
+   "component": "src/equipeIsac/EquipeIsac.tsx",
+   "demo": "Demo-PileReglesQuiTombe",
+   "audio": null,
+   "tags": [
+    "néo-brutal",
+    "idée-reçue",
+    "chute"
+   ],
+   "hash": "fc61ee7e4a0d",
+   "path": "assets/pile-regles-qui-tombe/index.md",
+   "preview": "assets/pile-regles-qui-tombe/preview.mp4"
   },
   {
    "section": "assets",
