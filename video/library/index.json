@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 10,
+ "count": 16,
  "items": [
   {
    "section": "templates",
@@ -41,6 +41,24 @@
   },
   {
    "section": "assets",
+   "slug": "cercle-vicieux-brise",
+   "name": "Cercle vicieux qui éclate",
+   "description": "Deux flèches tournent en boucle avec le paradoxe au centre, puis éclatent en morceaux et laissent place à la solution (médaille).",
+   "quand": "Paradoxe, blocage, boucle à casser (« pas d’expérience → pas de job »).",
+   "component": "src/premierEmploi/PremierEmploi.tsx",
+   "demo": "Demo-CercleViciseBrise",
+   "audio": null,
+   "tags": [
+    "boucle",
+    "rupture",
+    "wahou"
+   ],
+   "hash": "338b5dc0a9de",
+   "path": "assets/cercle-vicieux-brise/index.md",
+   "preview": "assets/cercle-vicieux-brise/preview.mp4"
+  },
+  {
+   "section": "assets",
    "slug": "couverture-lettres-photo-animees",
    "name": "Couverture en lettres-photos animées",
    "description": "Titre dont chaque lettre est remplie d’une photo qui dérive, contour marine et reflet blanc qui balaie ; photo en haut fondue dans le papier quadrillé, badge mono, chips, tube des guichets.",
@@ -59,6 +77,24 @@
   },
   {
    "section": "assets",
+   "slug": "jauge-compteur-100",
+   "name": "Jauge circulaire + compteur",
+   "description": "Anneau conic-gradient qui se remplit en même temps qu’un compteur `Count` (même courbe easeOut), sur voile papier.",
+   "quand": "Un pourcentage ou un total à faire claquer (« à 100 % », score, taux).",
+   "component": "src/premierEmploi/PremierEmploi.tsx",
+   "demo": "Demo-JaugeCompteur100",
+   "audio": null,
+   "tags": [
+    "chiffre",
+    "compteur",
+    "jauge"
+   ],
+   "hash": "338b5dc0a9de",
+   "path": "assets/jauge-compteur-100/index.md",
+   "preview": "assets/jauge-compteur-100/preview.mp4"
+  },
+  {
+   "section": "assets",
    "slug": "metro-stations",
    "name": "Ligne de métro + bandeau de station",
    "description": "Ligne colorée à 8 stations en bas de la zone utile, pastille qui avance, bandeau « LIGNE HSE · STATION x/8 » de 3 s à chaque arrêt.",
@@ -73,6 +109,78 @@
    "hash": "fba9c3dac057",
    "path": "assets/metro-stations/index.md",
    "preview": "assets/metro-stations/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "porte-lumineuse-3d",
+   "name": "Porte 3D qui s’ouvre sur la lumière",
+   "description": "Porte en arche qui pivote en 3D (rotateY), halo doré et rayons volumétriques derrière, personnage qui franchit le seuil en rapetissant.",
+   "quand": "Idée de passage, d’accès, de « premier pas » (diplôme → terrain, entrée dans un rôle).",
+   "component": "src/premierEmploi/PremierEmploi.tsx",
+   "demo": "Demo-PorteLumineuse3d",
+   "audio": null,
+   "tags": [
+    "3d",
+    "révélation",
+    "wahou"
+   ],
+   "hash": "338b5dc0a9de",
+   "path": "assets/porte-lumineuse-3d/index.md",
+   "preview": "assets/porte-lumineuse-3d/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "radar-cibles",
+   "name": "Radar qui détecte des cibles",
+   "description": "Écran radar vert, balayage conique en rotation, cibles qui apparaissent avec onde de ping à chaque mot clé.",
+   "quand": "Lister des pistes, des cibles, des zones à prospecter ou à surveiller.",
+   "component": "src/premierEmploi/PremierEmploi.tsx",
+   "demo": "Demo-RadarCibles",
+   "audio": null,
+   "tags": [
+    "radar",
+    "liste",
+    "wahou"
+   ],
+   "hash": "338b5dc0a9de",
+   "path": "assets/radar-cibles/index.md",
+   "preview": "assets/radar-cibles/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "reseau-graphe",
+   "name": "Graphe de réseau qui se tisse",
+   "description": "Bulle « idée reçue » + tampon FAUX, puis nœud central et contacts reliés par des traits pointillés animés qui défilent.",
+   "quand": "Montrer un réseau, des parties prenantes, des interactions ; démonter une idée reçue.",
+   "component": "src/premierEmploi/PremierEmploi.tsx",
+   "demo": "Demo-ReseauGraphe",
+   "audio": null,
+   "tags": [
+    "réseau",
+    "graphe",
+    "idée-reçue"
+   ],
+   "hash": "338b5dc0a9de",
+   "path": "assets/reseau-graphe/index.md",
+   "preview": "assets/reseau-graphe/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "texte-morph-preuve",
+   "name": "Morph de texte flou → net + tampon",
+   "description": "Une ligne de CV se dissout en flou et se reforme en version chiffrée surlignée, puis tampon « PREUVE » et barres qui montent.",
+   "quand": "Avant/après d’une formulation (vague → quantifié), reformulation d’un argument.",
+   "component": "src/premierEmploi/PremierEmploi.tsx",
+   "demo": "Demo-TexteMorphPreuve",
+   "audio": null,
+   "tags": [
+    "texte",
+    "avant-après",
+    "cv"
+   ],
+   "hash": "338b5dc0a9de",
+   "path": "assets/texte-morph-preuve/index.md",
+   "preview": "assets/texte-morph-preuve/preview.mp4"
   },
   {
    "section": "assets",
