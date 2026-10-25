@@ -20,14 +20,16 @@ import {captions} from './captions';
  * loupe, capsule pneumatique et store vénitien plein écran ; barre de recherche qui trouve et ouvre les PME.
  */
 const IMG = {
-  cover: 'sysqsse-gen/architecte.jpg',
+  cover: 'premier-gen/porte.jpg',
+  pme: 'premier-gen/pme.jpg',
+  candidature: 'premier-gen/candidature.jpg',
   cPrem: 'maturite-gen/proactif.jpg',
   cQhse: 'heures-gen/equipe-chantier.jpg',
   terrain: 'influence-gen/terrain.jpg',
   bureau: 'influence-gen/bureau.jpg',
   reseau: 'sysqsse-gen/accompagnement.jpg',
-  certif: 'influence-gen/certifications.jpg',
-  entretien: 'heures-gen/entretien.jpg',
+  certif: 'premier-gen/certification.jpg',
+  entretien: 'premier-gen/entretien.jpg',
   equipe: 'isoperf-gen/meritante.jpg',
 };
 const BLUE = '#1F6FD1';
@@ -461,7 +463,7 @@ const Cover: React.FC = () => {
   if (out >= 1) return null;
   return (
     <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
-      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="superviseur" w={1080} h={800} pos="50% 25%" /></div>
+      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="superviseur" w={1080} h={800} pos="50% 18%" /></div>
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 0%, ${PAPER}00 22%, ${PAPER}CC 30%, ${PAPER} 35%)`}} />
       <Abs x={0} y={70} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
       <Abs x={0} y={560} w={1080} style={{textAlign: 'center'}}><div style={{display: 'inline-block', fontFamily: MONO, fontWeight: 700, fontSize: 28, letterSpacing: 4, color: '#fff', background: NAVY, padding: '8px 24px', borderRadius: 8}}>JEUNE DIPLÔMÉ · PLAN EN 5 ÉTAPES</div></Abs>
@@ -505,7 +507,7 @@ const Porte: React.FC = () => {
                 <div style={{position: 'absolute', right: 60, bottom: 30, fontFamily: sansFont, fontWeight: 900, fontSize: 34, color: RED, opacity: pop(t, 25.6)}}>boule au ventre</div>
                 <div style={{position: 'absolute', left: 396, top: 140, width: 8, height: 260, background: INK, transformOrigin: '50% 100%', transform: `rotate(${lerp(-70, 60, prog(t, 22.2, 27.0, easeInOut)) + Math.sin(t * 9) * 3}deg)`}} />
               </div>
-              <Shot src={IMG.equipe} ic="equipe" x={80} y={580} w={800} h={330} at={21.4} c={GOLD} />
+              <Shot src={IMG.cover} ic="diplome" x={80} y={580} w={800} h={330} at={21.4} c={GOLD} pos="50% 45%" />
             </>}
           </Abs>
         </>
@@ -570,7 +572,7 @@ const Illusion: React.FC = () => {
           <HiLine words={t < 98.0 ? ['L’opportunité', ':', 'les', 'PME'] : ['Créer', 'l’opportunité']} mark={t < 98.0 ? [0, 3] : [0, 1]} at={t < 98.0 ? 91.9 : 100.4} y={330} size={64} />
           <SearchOpen x={60} y={440} w={960} h={930} at={88.0} query="opportunités QHSE" results={['Grandes entreprises : postes rares', 'PME : de vrais besoins', 'Sites d’annonces']} found={1} foundAt={90.3} clickAt={90.8} c={BLUE}>
             <div style={{position: 'absolute', inset: 0, padding: 30, display: 'flex', flexDirection: 'column', gap: 22}}>
-              <div style={{display: 'flex', alignItems: 'center', gap: 20}}><F n="usine2" size={140} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 46, color: INK}}>PME locales</div></div>
+              <div style={{position: 'relative', height: 260, borderRadius: 20, overflow: 'hidden', border: `4px solid ${INK}`}}><Pic src={IMG.pme} ic="usine2" w={890} h={260} pos="50% 35%" /><div style={{position: 'absolute', left: 16, bottom: 14, background: BLUE, color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 36, padding: '4px 18px', borderRadius: 12}}>PME locales</div></div>
               {[{l: 'de vrais besoins', ok: true, a: 92.9}, {l: 'pas encore le réflexe de recruter', ok: false, a: 94.9}].map((x) => <div key={x.l} style={{display: 'flex', alignItems: 'center', gap: 16, height: 110, borderRadius: 20, background: x.ok ? '#E5F7EC' : '#FDE8E8', border: `4px solid ${x.ok ? GREEN : RED}`, padding: '0 22px', opacity: pop(t, x.a)}}><div style={{width: 60, height: 60, borderRadius: 30, background: x.ok ? GREEN : RED, color: '#fff', fontSize: 36, fontWeight: 900, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{x.ok ? '✓' : '✕'}</div><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 32, color: INK}}>{x.l}</span></div>)}
               <div style={{display: 'flex', alignItems: 'center', gap: 16, height: 150, borderRadius: 24, background: BLUE, border: `5px solid ${INK}`, padding: '0 22px', opacity: pop(t, 99.26), transform: `scale(${t > 99.26 ? spring(t, 99.26) : 0.6})`}}><F n="ampoule" size={100} /><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 34, color: '#fff'}}>proposer des solutions concrètes</span></div>
               {t > 101.54 && <div style={{alignSelf: 'center', transform: `scale(${spring(t, 101.54)})`}}><Pill at={101.54} c={GOLD} size={34}>là où personne ne la voit encore</Pill></div>}
@@ -665,13 +667,14 @@ const Opportunite: React.FC = () => {
       {ph === 1 && (
         <>
           <HiLine words={['Des', 'candidatures', 'bien', 'ciblées']} mark={[1, 3]} at={195.78} y={330} size={60} />
-          <Abs x={60} y={440} w={960} h={930}>
-            <div style={{position: 'absolute', left: 130, top: 0, width: 700, height: 700, borderRadius: '50%', background: '#0D2A1A', border: `8px solid ${INK}`, overflow: 'hidden', opacity: pop(t, 184.7)}}>
+          <Shot src={IMG.candidature} ic="chantier" x={60} y={440} w={960} h={300} at={184.7} c={VIO} pos="50% 30%" />
+          <Abs x={60} y={760} w={960} h={610}>
+            <div style={{position: 'absolute', left: 130, top: 0, width: 700, height: 700, transform: 'scale(0.74)', transformOrigin: '50% 0', borderRadius: '50%', background: '#0D2A1A', border: `8px solid ${INK}`, overflow: 'hidden', opacity: pop(t, 184.7)}}>
               {[1, 0.7, 0.4].map((r) => <div key={r} style={{position: 'absolute', left: 350 - 350 * r, top: 350 - 350 * r, width: 700 * r, height: 700 * r, borderRadius: '50%', border: '2px solid #2EE07A55', boxSizing: 'border-box'}} />)}
               <div style={{position: 'absolute', inset: 0, background: `conic-gradient(from ${sweep}deg, #2EE07A88, transparent 50deg)`}} />
               {[{l: 'chantiers', ic: 'chantier', a: 190.02, x: 160, y: 140}, {l: 'petites usines', ic: 'usine', a: 191.18, x: 430, y: 260}, {l: 'transport', ic: 'camion', a: 192.1, x: 200, y: 440}].map((p) => <div key={p.l} style={{position: 'absolute', left: p.x, top: p.y, display: 'flex', flexDirection: 'column', alignItems: 'center', transform: `scale(${t > p.a ? spring(t, p.a) : 0})`}}><div style={{position: 'absolute', left: 30, top: 30, width: 60, height: 60, borderRadius: 30, border: '4px solid #2EE07A', transform: `scale(${1 + ((t - p.a) % 1) * 2})`, opacity: 1 - ((t - p.a) % 1)}} /><F n={p.ic} size={120} /><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 24, color: '#fff', background: '#2EE07A44', padding: '2px 10px', borderRadius: 8}}>{p.l}</span></div>)}
             </div>
-            <div style={{position: 'absolute', left: 0, right: 0, top: 760, display: 'flex', justifyContent: 'center', gap: 14}}><Pill at={188.06} c={VIO} size={30}>regarder autour de soi</Pill>{t > 194.38 && <Pill at={194.38} c={GREEN} size={30}>candidatures spontanées</Pill>}</div>
+            <div style={{position: 'absolute', left: 0, right: 0, top: 540, display: 'flex', justifyContent: 'center', gap: 14}}><Pill at={188.06} c={VIO} size={30}>regarder autour de soi</Pill>{t > 194.38 && <Pill at={194.38} c={GREEN} size={30}>candidatures spontanées</Pill>}</div>
           </Abs>
         </>
       )}
