@@ -4,6 +4,7 @@ import {FPS} from '../theme';
 import {Window} from './Window';
 import {LangageDg} from '../langageDg/LangageDg';
 import {AccueilSecu} from '../accueilSecu/AccueilSecu';
+import {PremierEmploi} from '../premierEmploi/PremierEmploi';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -17,6 +18,12 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-BarreRechercheOuvre', C: LangageDg, at: 156.8, dur: 5},
   {id: 'Demo-MetroStations', C: LangageDg, at: 14.4, dur: 4},
   {id: 'Demo-SousTitresPapierMotAMot', C: LangageDg, at: 19.5, dur: 5},
+  {id: 'Demo-PorteLumineuse3d', C: PremierEmploi, at: 41.0, dur: 5.5},
+  {id: 'Demo-JaugeCompteur100', C: PremierEmploi, at: 51.8, dur: 3.2},
+  {id: 'Demo-TexteMorphPreuve', C: PremierEmploi, at: 121.6, dur: 6.2},
+  {id: 'Demo-RadarCibles', C: PremierEmploi, at: 188.6, dur: 5},
+  {id: 'Demo-ReseauGraphe', C: PremierEmploi, at: 201.6, dur: 10},
+  {id: 'Demo-CercleViciseBrise', C: PremierEmploi, at: 221.4, dur: 6},
 ];
 
 export const LibraryDemos: React.FC = () => (
