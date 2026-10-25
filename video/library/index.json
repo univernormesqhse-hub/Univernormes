@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 24,
+ "count": 31,
  "items": [
   {
    "section": "templates",
@@ -38,6 +38,24 @@
    "hash": "fba9c3dac057",
    "path": "assets/barre-recherche-ouvre/index.md",
    "preview": "assets/barre-recherche-ouvre/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "carte-norme-neo-brutal",
+   "name": "Carte néo-brutaliste + tuiles cochées",
+   "description": "Carte blanche bordure noire / ombre dure, en-tête couleur avec pictogramme, badge incliné « n/9 » qui se colle, puis tuiles grisées qui s’activent une à une avec coche ronde.",
+   "quand": "Présenter un élément d’une série (norme, outil, étape) et ses bénéfices au fil de la voix.",
+   "component": "src/normesIsac/NormesIsac.tsx",
+   "demo": "Demo-CarteNormeNeoBrutal",
+   "audio": null,
+   "tags": [
+    "néo-brutal",
+    "carte",
+    "liste"
+   ],
+   "hash": "04e409ab153e",
+   "path": "assets/carte-norme-neo-brutal/index.md",
+   "preview": "assets/carte-norme-neo-brutal/preview.mp4"
   },
   {
    "section": "assets",
@@ -131,6 +149,24 @@
   },
   {
    "section": "assets",
+   "slug": "editeur-code-live",
+   "name": "Éditeur de code qui construit le résultat",
+   "description": "Fenêtre `objectif.ts` (3 pastilles, onglet) dont les lignes se tapent avec point d’accent, flèche, puis tuiles-résultats qui se cochent en direct.",
+   "quand": "Montrer qu’un résultat découle de paramètres (« force de frappe » code), conclusion en 3 points.",
+   "component": "src/normesIsac/NormesIsac.tsx",
+   "demo": "Demo-EditeurCodeLive",
+   "audio": null,
+   "tags": [
+    "code",
+    "néo-brutal",
+    "conclusion"
+   ],
+   "hash": "04e409ab153e",
+   "path": "assets/editeur-code-live/index.md",
+   "preview": "assets/editeur-code-live/preview.mp4"
+  },
+  {
+   "section": "assets",
    "slug": "feuille-de-route",
    "name": "Feuille de route sinueuse",
    "description": "Route grise en S, trait rouge qui avance tout au long de la séquence, jalons qui surgissent sur leurs mots et maison illuminée à l’arrivée.",
@@ -199,6 +235,42 @@
    "hash": "5b103cd3545f",
    "path": "assets/page-qui-se-decolle/index.md",
    "preview": "assets/page-qui-se-decolle/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "panneau-indicateur-non",
+   "name": "Recherche → certificat « NON » + panneau qui pivote",
+   "description": "Barre de recherche qui ouvre un certificat ; tampon NON incliné qui se colle, panneau en bois dont la flèche « lignes directrices » pivote et s’allume pendant que « certification » s’éteint.",
+   "quand": "Corriger une idée reçue, opposer deux voies (bonne / mauvaise).",
+   "component": "src/normesIsac/NormesIsac.tsx",
+   "demo": "Demo-PanneauIndicateurNon",
+   "audio": null,
+   "tags": [
+    "recherche",
+    "idée-reçue",
+    "récit"
+   ],
+   "hash": "04e409ab153e",
+   "path": "assets/panneau-indicateur-non/index.md",
+   "preview": "assets/panneau-indicateur-non/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "pellicule-film",
+   "name": "Pellicule de film qui défile",
+   "description": "Bande noire perforée en défilement continu avec vignettes colorées (une par élément), puis badge incliné « 9 NORMES » qui se colle.",
+   "quand": "Annoncer une série / un sommaire (« découvrons 9 normes »).",
+   "component": "src/normesIsac/NormesIsac.tsx",
+   "demo": "Demo-PelliculeFilm",
+   "audio": null,
+   "tags": [
+    "néo-brutal",
+    "sommaire",
+    "défilement"
+   ],
+   "hash": "04e409ab153e",
+   "path": "assets/pellicule-film/index.md",
+   "preview": "assets/pellicule-film/preview.mp4"
   },
   {
    "section": "assets",
@@ -310,6 +382,24 @@
   },
   {
    "section": "assets",
+   "slug": "telephone-messages",
+   "name": "Téléphone + bulles de messagerie",
+   "description": "Maquette de smartphone (bandeau vert, logo), bulle question puis réponses qui pop une à une, indicateur « … » de frappe.",
+   "quand": "Accroche-question, interaction avec le spectateur, question finale (skill capsule-recit-illustre).",
+   "component": "src/normesIsac/NormesIsac.tsx",
+   "demo": "Demo-TelephoneMessages",
+   "audio": null,
+   "tags": [
+    "téléphone",
+    "récit",
+    "question"
+   ],
+   "hash": "04e409ab153e",
+   "path": "assets/telephone-messages/index.md",
+   "preview": "assets/telephone-messages/preview.mp4"
+  },
+  {
+   "section": "assets",
    "slug": "texte-morph-preuve",
    "name": "Morph de texte flou → net + tampon",
    "description": "Une ligne de CV se dissout en flou et se reforme en version chiffrée surlignée, puis tampon « PREUVE » et barres qui montent.",
@@ -396,6 +486,41 @@
    "hash": "73739a5e729c",
    "path": "assets/transition-store-venitien/index.md",
    "preview": "assets/transition-store-venitien/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "triangle-cid",
+   "name": "Triangle qui se trace + menaces repoussées",
+   "description": "Triangle tracé (pathLength) avec trois sommets en médaillons qui surgissent, puis éclairs qui rebondissent autour d’un bouclier pulsant.",
+   "quand": "Trois piliers indissociables (C-I-D, qualité-coût-délai…), protection contre des menaces.",
+   "component": "src/normesIsac/NormesIsac.tsx",
+   "demo": "Demo-TriangleCid",
+   "audio": null,
+   "tags": [
+    "triangle",
+    "protection",
+    "schéma"
+   ],
+   "hash": "04e409ab153e",
+   "path": "assets/triangle-cid/index.md",
+   "preview": "assets/triangle-cid/preview.mp4"
+  },
+  {
+   "section": "subtitles",
+   "slug": "sous-titres-neo-brutal",
+   "name": "Sous-titres néo-brutalistes",
+   "description": "2 à 4 mots en grotesque très grasse dans une carte blanche à bordure noire 4 px et ombre dure 8 px, mot porteur en vert, entrée en ressort de 6 images, ~0,15 s d’avance sur la voix.",
+   "quand": "Capsules « UI motion » épurées (skill capsule-ui-neo-brutal) ; voix de synthèse ou voix off rythmée.",
+   "component": "src/components/NeoCaptions.tsx",
+   "demo": "Demo-SousTitresNeoBrutal",
+   "audio": null,
+   "tags": [
+    "sous-titres",
+    "néo-brutal"
+   ],
+   "hash": "7ee294bc1ec7",
+   "path": "subtitles/sous-titres-neo-brutal/index.md",
+   "preview": "subtitles/sous-titres-neo-brutal/preview.mp4"
   },
   {
    "section": "subtitles",
