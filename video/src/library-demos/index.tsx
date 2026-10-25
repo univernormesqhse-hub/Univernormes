@@ -10,6 +10,7 @@ import {NormesIsac} from '../normesIsac/NormesIsac';
 import {EquipeIsac} from '../equipeIsac/EquipeIsac';
 import {Kaizen} from '../kaizen/Kaizen';
 import {PlansPrevention} from '../plansPrev/PlansPrevention';
+import {OutilsStrat} from '../outilsStrat/OutilsStrat';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -55,6 +56,8 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-AfficheArrachee', C: Kaizen, at: 2.8, dur: 7.6},
   {id: 'Demo-CadenasConsignation', C: PlansPrevention, at: 24.2, dur: 4.4},
   {id: 'Demo-BoutonSAbonner', C: PlansPrevention, at: 60.5, dur: 5.8},
+  {id: 'Demo-MatricesStrategiques', C: OutilsStrat, at: 28.0, dur: 21},
+  {id: 'Demo-NuageGroupes', C: OutilsStrat, at: 68.6, dur: 7},
 ];
 
 export const LibraryDemos: React.FC = () => (
