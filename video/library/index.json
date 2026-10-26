@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 49,
+ "count": 50,
  "items": [
   {
    "section": "templates",
@@ -316,7 +316,7 @@
     "couches",
     "dézoom"
    ],
-   "hash": "0ca93d77da59",
+   "hash": "0b43f90ffcc2",
    "path": "assets/forage-couches/index.md",
    "preview": "assets/forage-couches/preview.mp4"
   },
@@ -651,6 +651,26 @@
    "hash": "f8abb3c971fb",
    "path": "assets/reseau-graphe/index.md",
    "preview": "assets/reseau-graphe/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "roue-deming-pente",
+   "name": "Roue de Deming qui se construit puis gravit la pente",
+   "description": "Roue PDCA en SVG (P D C A, quadrants qui poussent au mot prononcé, libellés autour), qui se met à tourner puis roule en montant une pente marine ; la cale « ISO 9001 » se glisse sous la roue.",
+   "quand": "PDCA, amélioration continue, progrès qui ne recule pas, base d'un système de management.",
+   "component": "src/qualiteOutilsMetro/QualiteOutilsMetro.tsx",
+   "demo": "Demo-RoueDemingPente",
+   "audio": null,
+   "tags": [
+    "pdca",
+    "deming",
+    "amélioration continue",
+    "iso 9001",
+    "roue"
+   ],
+   "hash": "79a842448fdf",
+   "path": "assets/roue-deming-pente/index.md",
+   "preview": "assets/roue-deming-pente/preview.mp4"
   },
   {
    "section": "assets",

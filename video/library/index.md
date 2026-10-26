@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-49 motions validés. Galerie visuelle : `library/gallery.html`.
+50 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (45)
+## Assets (46)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -48,6 +48,7 @@
 | [4 ingrédients sur plan (silence + hiérarchie qui s’aplatit)](assets/quatre-ingredients-blueprint/index.md) | Grille 2×2 de cases pointillées qui se remplissent ; au « silence » les autres cases floutent et l’égaliseur tombe à zéro ; à la « fiction » l’organigramme pyramidal s’aplatit en ligne. | Liste de 3 à 4 conditions / piliers avec un effet propre à chacun. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/quatre-ingredients-blueprint/preview.mp4) |
 | [Radar qui détecte des cibles](assets/radar-cibles/index.md) | Écran radar vert, balayage conique en rotation, cibles qui apparaissent avec onde de ping à chaque mot clé. | Lister des pistes, des cibles, des zones à prospecter ou à surveiller. | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/radar-cibles/preview.mp4) |
 | [Graphe de réseau qui se tisse](assets/reseau-graphe/index.md) | Bulle « idée reçue » + tampon FAUX, puis nœud central et contacts reliés par des traits pointillés animés qui défilent. | Montrer un réseau, des parties prenantes, des interactions ; démonter une idée reçue. | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/reseau-graphe/preview.mp4) |
+| [Roue de Deming qui se construit puis gravit la pente](assets/roue-deming-pente/index.md) | Roue PDCA en SVG (P D C A, quadrants qui poussent au mot prononcé, libellés autour), qui se met à tourner puis roule en montant une pente marine ; la cale « ISO 9001 » se glisse sous la roue. | PDCA, amélioration continue, progrès qui ne recule pas, base d'un système de management. | `src/qualiteOutilsMetro/QualiteOutilsMetro.tsx` | [mp4](assets/roue-deming-pente/preview.mp4) |
 | [Roue PDCA qui se remplit puis tourne](assets/roue-pdca/index.md) | Quatre quarts colorés (Planifier, Faire, Vérifier, Agir) qui s’allument sur la voix, moyeu « PDCA », puis la roue tourne en continu (lettres contre-rotées pour rester lisibles). | Expliquer un cycle (PDCA, amélioration continue, boucle de rétroaction). | `src/kaizen/Kaizen.tsx` | [mp4](assets/roue-pdca/preview.mp4) |
 | [Déploiement en étapes + barre de progression](assets/six-etapes-progression/index.md) | Barre hachurée « DÉPLOIEMENT n/6 » qui avance, grille de 6 cartes qui s’activent et se cochent une à une, puis des points dispersés qui s’alignent (« ne pas s’éparpiller »). | Méthode en N étapes, plan de déploiement, procédure. | `src/kaizen/Kaizen.tsx` | [mp4](assets/six-etapes-progression/preview.mp4) |
 | [Téléphone + bulles de messagerie](assets/telephone-messages/index.md) | Maquette de smartphone (bandeau vert, logo), bulle question puis réponses qui pop une à une, indicateur « … » de frappe. | Accroche-question, interaction avec le spectateur, question finale (skill capsule-recit-illustre). | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/telephone-messages/preview.mp4) |
