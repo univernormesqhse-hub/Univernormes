@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-45 motions validés. Galerie visuelle : `library/gallery.html`.
+47 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,10 +10,11 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (41)
+## Assets (43)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
+| [Acronyme qui se déplie lettre par lettre](assets/acronyme-deplie/index.md) | Colonne de tuiles-lettres qui pivotent et se colorent au mot prononcé, chaque carte se déroule (scaleX) avec le mot complet, dernier mot en couleur. | Expliquer un sigle (AMDEC, SMART, QHSE, PDCA…) en synchronisation avec la voix. | `src/amdec/Amdec.tsx` | [mp4](assets/acronyme-deplie/preview.mp4) |
 | [Affiche de couloir arrachée (récit)](assets/affiche-arrachee/index.md) | Décor de couloir avec affiche « KAIZEN – Amélioration continue ! » punaisée près d’une machine à café, puis l’affiche est arrachée et tombe, laissant sa trace en pointillés. | Démonter un cliché, opposer slogan et réalité (skill capsule-recit-illustre). | `src/kaizen/Kaizen.tsx` | [mp4](assets/affiche-arrachee/preview.mp4) |
 | [Barre de recherche qui trouve et ouvre](assets/barre-recherche-ouvre/index.md) | Requête tapée lettre à lettre, liste de résultats scannée, « TROUVÉ ✓ », curseur qui clique et la fenêtre du résultat s’ouvre en plein cadre. | Introduire une notion clé, une comparaison ou un outil ; une fois par capsule. | `src/langageDg/LangageDg.tsx` | [mp4](assets/barre-recherche-ouvre/preview.mp4) |
 | [Bouton « S'abonner » cliqué (néo-brutal)](assets/bouton-s-abonner/index.md) | Bouton rouge à ombre dure, curseur qui glisse et clique, bouton qui s'enfonce et devient « ✓ Abonné » noir, onde de choc, chips thématiques qui s'allument. | Appel à l'abonnement en fin de capsule (skill capsule-ui-neo-brutal). | `src/plansPrev/PlansPrevention.tsx` | [mp4](assets/bouton-s-abonner/preview.mp4) |
@@ -54,6 +55,7 @@
 | [Transition loupe](assets/transition-loupe/index.md) | Une loupe balaie l’écran et grossit la carte de partie avant de la révéler. | Partie qui « examine » ou zoome sur un sujet (profil, analyse). | `src/langageDg/LangageDg.tsx` | [mp4](assets/transition-loupe/preview.mp4) |
 | [Transition tube pneumatique](assets/transition-pneumatique/index.md) | Capsule qui file dans le tube de verre et livre la carte de partie au guichet. | Partie qui « livre » une idée clé ou change de posture. | `src/langageDg/LangageDg.tsx` | [mp4](assets/transition-pneumatique/preview.mp4) |
 | [Transition store vénitien](assets/transition-store-venitien/index.md) | Lames de store qui pivotent pour révéler la partie suivante. | Révélation d’un contenu ou d’une photo ; aussi `<Shot blinds />` pour découvrir une image. | `src/accueilSecu/AccueilSecu.tsx` | [mp4](assets/transition-store-venitien/preview.mp4) |
+| [Formule G × F × D = C puis tri animé des priorités](assets/tri-priorites/index.md) | Trois tuiles (G, F, D) tombent au mot prononcé, résultat « = C » qui s'allume, puis barres de criticité qui se remplissent et se réordonnent (la plus critique monte en tête avec le badge « PRIORITÉ 1 »). | Cotation / criticité (AMDEC, évaluation des risques, matrice), classement par priorité, tout calcul produit de facteurs. | `src/amdec/Amdec.tsx` | [mp4](assets/tri-priorites/preview.mp4) |
 | [Triangle qui se trace + menaces repoussées](assets/triangle-cid/index.md) | Triangle tracé (pathLength) avec trois sommets en médaillons qui surgissent, puis éclairs qui rebondissent autour d’un bouclier pulsant. | Trois piliers indissociables (C-I-D, qualité-coût-délai…), protection contre des menaces. | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/triangle-cid/preview.mp4) |
 
 ## Sous-titres (2)

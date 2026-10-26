@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 45,
+ "count": 47,
  "items": [
   {
    "section": "templates",
@@ -20,6 +20,25 @@
    "hash": "fba9c3dac057",
    "path": "templates/capsule-metro-condense/index.md",
    "preview": "templates/capsule-metro-condense/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "acronyme-deplie",
+   "name": "Acronyme qui se déplie lettre par lettre",
+   "description": "Colonne de tuiles-lettres qui pivotent et se colorent au mot prononcé, chaque carte se déroule (scaleX) avec le mot complet, dernier mot en couleur.",
+   "quand": "Expliquer un sigle (AMDEC, SMART, QHSE, PDCA…) en synchronisation avec la voix.",
+   "component": "src/amdec/Amdec.tsx",
+   "demo": "Demo-AcronymeDeplie",
+   "audio": null,
+   "tags": [
+    "acronyme",
+    "sigle",
+    "lettres",
+    "déroulé"
+   ],
+   "hash": "948310b33add",
+   "path": "assets/acronyme-deplie/index.md",
+   "preview": "assets/acronyme-deplie/preview.mp4"
   },
   {
    "section": "assets",
@@ -751,6 +770,27 @@
    "hash": "73739a5e729c",
    "path": "assets/transition-store-venitien/index.md",
    "preview": "assets/transition-store-venitien/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "tri-priorites",
+   "name": "Formule G × F × D = C puis tri animé des priorités",
+   "description": "Trois tuiles (G, F, D) tombent au mot prononcé, résultat « = C » qui s'allume, puis barres de criticité qui se remplissent et se réordonnent (la plus critique monte en tête avec le badge « PRIORITÉ 1 »).",
+   "quand": "Cotation / criticité (AMDEC, évaluation des risques, matrice), classement par priorité, tout calcul produit de facteurs.",
+   "component": "src/amdec/Amdec.tsx",
+   "demo": "Demo-TriPriorites",
+   "audio": null,
+   "tags": [
+    "criticité",
+    "amdec",
+    "cotation",
+    "tri",
+    "priorités",
+    "formule"
+   ],
+   "hash": "948310b33add",
+   "path": "assets/tri-priorites/index.md",
+   "preview": "assets/tri-priorites/preview.mp4"
   },
   {
    "section": "assets",

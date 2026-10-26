@@ -12,6 +12,7 @@ import {Kaizen} from '../kaizen/Kaizen';
 import {PlansPrevention} from '../plansPrev/PlansPrevention';
 import {OutilsStrat} from '../outilsStrat/OutilsStrat';
 import {SmartMethode} from '../smartMethode/SmartMethode';
+import {Amdec} from '../amdec/Amdec';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -60,6 +61,8 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-MatricesStrategiques', C: OutilsStrat, at: 28.0, dur: 21},
   {id: 'Demo-NuageGroupes', C: OutilsStrat, at: 68.6, dur: 7},
   {id: 'Demo-MaisonEtapes', C: SmartMethode, at: 29.7, dur: 5},
+  {id: 'Demo-TriPriorites', C: Amdec, at: 30.8, dur: 5.6},
+  {id: 'Demo-AcronymeDeplie', C: Amdec, at: 2.8, dur: 4.1},
 ];
 
 export const LibraryDemos: React.FC = () => (
