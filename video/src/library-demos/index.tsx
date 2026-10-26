@@ -20,6 +20,7 @@ import {PiliersPrevMetro} from '../piliersPrevMetro/PiliersPrevMetro';
 import {PiliersTerrainMetro} from '../piliersTerrainMetro/PiliersTerrainMetro';
 import {SainSaufMetro} from '../sainSaufMetro/SainSaufMetro';
 import {BonOutilMetro} from '../bonOutilMetro/BonOutilMetro';
+import {EdificeIsoMetro} from '../edificeIsoMetro/EdificeIsoMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -79,6 +80,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-AtelierBalaye', C: SainSaufMetro, at: 21.8, dur: 7.4},
   {id: 'Demo-MaisonRetour', C: SainSaufMetro, at: 55.8, dur: 5.2},
   {id: 'Demo-BesoinOutilFlip', C: BonOutilMetro, at: 64.8, dur: 8},
+  {id: 'Demo-EdificeCleDeVoute', C: EdificeIsoMetro, at: 52.0, dur: 18},
 ];
 
 export const LibraryDemos: React.FC = () => (
