@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-48 motions validés. Galerie visuelle : `library/gallery.html`.
+49 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,12 +10,13 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (44)
+## Assets (45)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
 | [Acronyme qui se déplie lettre par lettre](assets/acronyme-deplie/index.md) | Colonne de tuiles-lettres qui pivotent et se colorent au mot prononcé, chaque carte se déroule (scaleX) avec le mot complet, dernier mot en couleur. | Expliquer un sigle (AMDEC, SMART, QHSE, PDCA…) en synchronisation avec la voix. | `src/amdec/Amdec.tsx` | [mp4](assets/acronyme-deplie/preview.mp4) |
 | [Affiche de couloir arrachée (récit)](assets/affiche-arrachee/index.md) | Décor de couloir avec affiche « KAIZEN – Amélioration continue ! » punaisée près d’une machine à café, puis l’affiche est arrachée et tombe, laissant sa trace en pointillés. | Démonter un cliché, opposer slogan et réalité (skill capsule-recit-illustre). | `src/kaizen/Kaizen.tsx` | [mp4](assets/affiche-arrachee/preview.mp4) |
+| [Arête de poisson (Ishikawa) filmée par une caméra](assets/arete-camera/index.md) | Tête « problème », colonne vertébrale qui se trace, 5 arêtes qui poussent, caméra qui plonge sur chaque M avec médaillon polaroïd, causes greffées au mot prononcé, étoiles « causes principales », petites branches secondaires, faisceau qui balaie, tête qui passe au vert « problème résolu ». | Ishikawa / 5 M, analyse de causes, tout schéma hiérarchique à explorer branche par branche. | `src/ishikawaMetro/IshikawaMetro.tsx` | [mp4](assets/arete-camera/preview.mp4) |
 | [Barre de recherche qui trouve et ouvre](assets/barre-recherche-ouvre/index.md) | Requête tapée lettre à lettre, liste de résultats scannée, « TROUVÉ ✓ », curseur qui clique et la fenêtre du résultat s’ouvre en plein cadre. | Introduire une notion clé, une comparaison ou un outil ; une fois par capsule. | `src/langageDg/LangageDg.tsx` | [mp4](assets/barre-recherche-ouvre/preview.mp4) |
 | [Bouton « S'abonner » cliqué (néo-brutal)](assets/bouton-s-abonner/index.md) | Bouton rouge à ombre dure, curseur qui glisse et clique, bouton qui s'enfonce et devient « ✓ Abonné » noir, onde de choc, chips thématiques qui s'allument. | Appel à l'abonnement en fin de capsule (skill capsule-ui-neo-brutal). | `src/plansPrev/PlansPrevention.tsx` | [mp4](assets/bouton-s-abonner/preview.mp4) |
 | [Cadenas de consignation + jauge d'énergie](assets/cadenas-consignation/index.md) | Photo de la machine qui se désature, cadenas SVG dont l'anse se ferme, étiquette « CONSIGNÉ – ne pas manœuvrer », jauge d'énergie qui tombe à 0 ✓. | Illustrer une consignation / LOTO, une mise en sécurité avant intervention, ou tout « on coupe avant d'agir ». | `src/plansPrev/PlansPrevention.tsx` | [mp4](assets/cadenas-consignation/preview.mp4) |

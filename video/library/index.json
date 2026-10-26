@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 48,
+ "count": 49,
  "items": [
   {
    "section": "templates",
@@ -57,6 +57,27 @@
    "hash": "4b396a264fb4",
    "path": "assets/affiche-arrachee/index.md",
    "preview": "assets/affiche-arrachee/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "arete-camera",
+   "name": "Arête de poisson (Ishikawa) filmée par une caméra",
+   "description": "Tête « problème », colonne vertébrale qui se trace, 5 arêtes qui poussent, caméra qui plonge sur chaque M avec médaillon polaroïd, causes greffées au mot prononcé, étoiles « causes principales », petites branches secondaires, faisceau qui balaie, tête qui passe au vert « problème résolu ».",
+   "quand": "Ishikawa / 5 M, analyse de causes, tout schéma hiérarchique à explorer branche par branche.",
+   "component": "src/ishikawaMetro/IshikawaMetro.tsx",
+   "demo": "Demo-AreteCamera",
+   "audio": null,
+   "tags": [
+    "ishikawa",
+    "5m",
+    "causes",
+    "arête de poisson",
+    "caméra",
+    "schéma"
+   ],
+   "hash": "e8b7694ecce8",
+   "path": "assets/arete-camera/index.md",
+   "preview": "assets/arete-camera/preview.mp4"
   },
   {
    "section": "assets",
