@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 50,
+ "count": 52,
  "items": [
   {
    "section": "templates",
@@ -190,6 +190,26 @@
    "hash": "f8abb3c971fb",
    "path": "assets/cercle-vicieux-brise/index.md",
    "preview": "assets/cercle-vicieux-brise/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "checklist-dechiree",
+   "name": "Idée reçue barrée puis checklist déchirée",
+   "description": "Checklist de contraintes cochée mécaniquement + tampon « AMENDE », barre de recherche dont le 1er résultat (l'idée reçue) est barré en rouge, puis la page se déchire en deux moitiés qui s'écartent sur « en réalité ».",
+   "quand": "Casser un cliché, opposer « ce qu'on croit » et « ce qui est vrai », ouverture d'une capsule.",
+   "component": "src/piliersPrevMetro/PiliersPrevMetro.tsx",
+   "demo": "Demo-ChecklistDechiree",
+   "audio": null,
+   "tags": [
+    "cliché",
+    "déchirure",
+    "checklist",
+    "idée reçue",
+    "recherche"
+   ],
+   "hash": "b819fe33de04",
+   "path": "assets/checklist-dechiree/index.md",
+   "preview": "assets/checklist-dechiree/preview.mp4"
   },
   {
    "section": "assets",
@@ -725,6 +745,26 @@
    "hash": "04e409ab153e",
    "path": "assets/telephone-messages/index.md",
    "preview": "assets/telephone-messages/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "temple-trois-piliers",
+   "name": "Temple qui se bâtit pilier par pilier",
+   "description": "Toit « politique » qui flotte, piliers colorés qui poussent au mot prononcé (libellé vertical), temple en miniature pendant les détails, puis plein écran : le toit tombe et se verrouille (éclair doré), la fondation s'illumine, un trophée couronne l'ensemble.",
+   "quand": "« X piliers », fondations d'une politique / d'un système, tout modèle à 3 ou 4 appuis.",
+   "component": "src/piliersPrevMetro/PiliersPrevMetro.tsx",
+   "demo": "Demo-TempleTroisPiliers",
+   "audio": null,
+   "tags": [
+    "piliers",
+    "temple",
+    "politique",
+    "fondation",
+    "architecture"
+   ],
+   "hash": "b819fe33de04",
+   "path": "assets/temple-trois-piliers/index.md",
+   "preview": "assets/temple-trois-piliers/preview.mp4"
   },
   {
    "section": "assets",

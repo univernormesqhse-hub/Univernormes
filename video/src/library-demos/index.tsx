@@ -16,6 +16,7 @@ import {Amdec} from '../amdec/Amdec';
 import {CinqPourquoiMetro} from '../cinqPourquoiMetro/CinqPourquoiMetro';
 import {IshikawaMetro} from '../ishikawaMetro/IshikawaMetro';
 import {QualiteOutilsMetro} from '../qualiteOutilsMetro/QualiteOutilsMetro';
+import {PiliersPrevMetro} from '../piliersPrevMetro/PiliersPrevMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -69,6 +70,8 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-ForageCouches', C: CinqPourquoiMetro, at: 10.4, dur: 21},
   {id: 'Demo-AreteCamera', C: IshikawaMetro, at: 19.8, dur: 23},
   {id: 'Demo-RoueDemingPente', C: QualiteOutilsMetro, at: 10.0, dur: 13.6},
+  {id: 'Demo-TempleTroisPiliers', C: PiliersPrevMetro, at: 55.0, dur: 9.4},
+  {id: 'Demo-ChecklistDechiree', C: PiliersPrevMetro, at: 7.0, dur: 4.0},
 ];
 
 export const LibraryDemos: React.FC = () => (

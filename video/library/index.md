@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-50 motions validés. Galerie visuelle : `library/gallery.html`.
+52 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (46)
+## Assets (48)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -23,6 +23,7 @@
 | [Carte néo-brutaliste + tuiles cochées](assets/carte-norme-neo-brutal/index.md) | Carte blanche bordure noire / ombre dure, en-tête couleur avec pictogramme, badge incliné « n/9 » qui se colle, puis tuiles grisées qui s’activent une à une avec coche ronde. | Présenter un élément d’une série (norme, outil, étape) et ses bénéfices au fil de la voix. | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/carte-norme-neo-brutal/preview.mp4) |
 | [Carte qui se retourne en 3D](assets/carte-retournee-3d/index.md) | Panneau rouge « PARLER » qui bascule sur l’axe X (rotateX 180°) et révèle au dos le panneau vert « ÉCOUTER ». | Inversion de posture, avant/après, mythe/réalité. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/carte-retournee-3d/preview.mp4) |
 | [Cercle vicieux qui éclate](assets/cercle-vicieux-brise/index.md) | Deux flèches tournent en boucle avec le paradoxe au centre, puis éclatent en morceaux et laissent place à la solution (médaille). | Paradoxe, blocage, boucle à casser (« pas d’expérience → pas de job »). | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/cercle-vicieux-brise/preview.mp4) |
+| [Idée reçue barrée puis checklist déchirée](assets/checklist-dechiree/index.md) | Checklist de contraintes cochée mécaniquement + tampon « AMENDE », barre de recherche dont le 1er résultat (l'idée reçue) est barré en rouge, puis la page se déchire en deux moitiés qui s'écartent sur « en réalité ». | Casser un cliché, opposer « ce qu'on croit » et « ce qui est vrai », ouverture d'une capsule. | `src/piliersPrevMetro/PiliersPrevMetro.tsx` | [mp4](assets/checklist-dechiree/preview.mp4) |
 | [Circuit fermé (flux descendants / montants)](assets/circuit-ferme/index.md) | Dézoom sur l’organigramme complet : flèches bleues (directives) et vertes (remontées) passent en pointillés qui défilent, des pastilles circulent dans les deux sens, badge « CIRCUIT FERMÉ ». | Conclure sur une boucle de rétroaction : PDCA, remontée terrain, amélioration continue. | `src/equipeIsac/EquipeIsac.tsx` | [mp4](assets/circuit-ferme/preview.mp4) |
 | [Citation tapée + onde de choc](assets/citation-onde-de-choc/index.md) | Citation qui s’écrit lettre à lettre avec guillemet géant et mot clé surligné, puis la carte tremble, trois ondes concentriques et tampon. | Phrase déclic, verbatim marquant, révélation choc. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/citation-onde-de-choc/preview.mp4) |
 | [Coffre au trésor qui s’ouvre](assets/coffre-tresor/index.md) | Cadenas qui tombe, couvercle qui bascule, pièces d’or lumineuses qui remontent en continu. | Information précieuse, retour d’expérience, presque-accidents, « l’or » d’un sujet. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/coffre-tresor/preview.mp4) |
@@ -52,6 +53,7 @@
 | [Roue PDCA qui se remplit puis tourne](assets/roue-pdca/index.md) | Quatre quarts colorés (Planifier, Faire, Vérifier, Agir) qui s’allument sur la voix, moyeu « PDCA », puis la roue tourne en continu (lettres contre-rotées pour rester lisibles). | Expliquer un cycle (PDCA, amélioration continue, boucle de rétroaction). | `src/kaizen/Kaizen.tsx` | [mp4](assets/roue-pdca/preview.mp4) |
 | [Déploiement en étapes + barre de progression](assets/six-etapes-progression/index.md) | Barre hachurée « DÉPLOIEMENT n/6 » qui avance, grille de 6 cartes qui s’activent et se cochent une à une, puis des points dispersés qui s’alignent (« ne pas s’éparpiller »). | Méthode en N étapes, plan de déploiement, procédure. | `src/kaizen/Kaizen.tsx` | [mp4](assets/six-etapes-progression/preview.mp4) |
 | [Téléphone + bulles de messagerie](assets/telephone-messages/index.md) | Maquette de smartphone (bandeau vert, logo), bulle question puis réponses qui pop une à une, indicateur « … » de frappe. | Accroche-question, interaction avec le spectateur, question finale (skill capsule-recit-illustre). | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/telephone-messages/preview.mp4) |
+| [Temple qui se bâtit pilier par pilier](assets/temple-trois-piliers/index.md) | Toit « politique » qui flotte, piliers colorés qui poussent au mot prononcé (libellé vertical), temple en miniature pendant les détails, puis plein écran : le toit tombe et se verrouille (éclair doré), la fondation s'illumine, un trophée couronne l'ensemble. | « X piliers », fondations d'une politique / d'un système, tout modèle à 3 ou 4 appuis. | `src/piliersPrevMetro/PiliersPrevMetro.tsx` | [mp4](assets/temple-trois-piliers/preview.mp4) |
 | [Morph de texte flou → net + tampon](assets/texte-morph-preuve/index.md) | Une ligne de CV se dissout en flou et se reforme en version chiffrée surlignée, puis tampon « PREUVE » et barres qui montent. | Avant/après d’une formulation (vague → quantifié), reformulation d’un argument. | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/texte-morph-preuve/preview.mp4) |
 | [Tour qui s’effondre sur un sol instable](assets/tour-qui-s-effondre/index.md) | Blocs néo-brutalistes empilés sur un sol « sans standards » qui s’écroulent et s’éparpillent en tournant. | Montrer qu’une méthode échoue sans prérequis (discipline, standards, fondations). | `src/kaizen/Kaizen.tsx` | [mp4](assets/tour-qui-s-effondre/preview.mp4) |
 | [Transition gyrophare](assets/transition-gyrophare/index.md) | Faisceau de gyrophare qui balaie l’écran, bandeau damier qui traverse en biais et carte de partie numérotée. | Transition principale entre parties d’une capsule (≈ 3,7 s). | `src/langageDg/LangageDg.tsx` | [mp4](assets/transition-gyrophare/preview.mp4) |
