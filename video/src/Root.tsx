@@ -188,6 +188,7 @@ import {Amdec, AMDEC_FRAMES} from './amdec/Amdec';
 import {CinqPourquoiMetro, CINQ_POURQUOI_METRO_FRAMES} from './cinqPourquoiMetro/CinqPourquoiMetro';
 import {IshikawaMetro, ISHIKAWA_METRO_FRAMES} from './ishikawaMetro/IshikawaMetro';
 import {QualiteOutilsMetro, QUALITE_OUTILS_METRO_FRAMES} from './qualiteOutilsMetro/QualiteOutilsMetro';
+import {PiliersPrevMetro, PILIERS_PREV_METRO_FRAMES} from './piliersPrevMetro/PiliersPrevMetro';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -391,6 +392,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseCinqPourquoi" component={CinqPourquoiMetro} durationInFrames={CINQ_POURQUOI_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseIshikawaMetro" component={IshikawaMetro} durationInFrames={ISHIKAWA_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseQualiteOutilsMetro" component={QualiteOutilsMetro} durationInFrames={QUALITE_OUTILS_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondensePiliersPrevMetro" component={PiliersPrevMetro} durationInFrames={PILIERS_PREV_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <LibraryDemos />
