@@ -20,7 +20,7 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * wahou : roue de Deming qui se construit puis gravit la pente calée par ISO 9001, cartographie des processus qui
  * s'allume, plan d'action dont les barres d'avancement se remplissent, ligne de contrôle avec tampon « CONFORME »,
  * trois acteurs qui font tourner la roue ensemble. Kits capsule-ui-neo-brutal et capsule-recit-illustre. Couverture :
- * photo + « OUTILS / QUALITÉ » en lettres-photos animées.
+ * photo + « LES OUTILS D’UNE / DÉMARCHE / QUALITÉ » en lettres-photos animées.
  */
 const IMG = {
   cover: 'sysqsse-gen/chef.jpg',
@@ -475,10 +475,11 @@ const Cover: React.FC = () => {
       <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="medaille" w={1080} h={820} pos="50% 35%" /></div>
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 0%, ${PAPER}00 24%, ${PAPER}CC 32%, ${PAPER} 37%)`}} />
       <Abs x={0} y={70} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
-      <Abs x={0} y={560} w={1080} style={{display: 'flex', justifyContent: 'center', gap: 18}}><div style={{...nb(NBK, 5), color: '#fff', fontFamily: MONO, fontWeight: 700, fontSize: 26, letterSpacing: 3, padding: '8px 22px'}}>LA DÉMARCHE QUALITÉ</div><div style={{transform: 'rotate(-8deg)'}}><div style={{...nb(BLUE, 5), color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 26, padding: '6px 16px'}}>4 OUTILS</div></div></Abs>
-      <Abs x={0} y={650} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="OUTILS" src={IMG.cOut} size={170} ls={6} /></Abs>
-      <Abs x={0} y={830} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="QUALITÉ" src={IMG.cQual} size={170} ls={6} seed={3} /></Abs>
-      <Abs x={60} y={1050} w={960} style={{display: 'flex', justifyContent: 'center', gap: 12}}>{TOOLS4.map(([ic, l, c], k) => <div key={l} style={{...nb('#fff', 4), boxShadow: `4px 4px 0 ${c}`, padding: '6px 12px', display: 'flex', alignItems: 'center', gap: 6, fontFamily: sansFont, fontWeight: 900, fontSize: 20, color: c, transform: `translateY(${(1 - Math.min(1, spring(t, 0.3 + k * 0.1))) * 60}px)`}}><F n={ic} size={30} />{l}</div>)}</Abs>
+      <Abs x={0} y={545} w={1080} style={{display: 'flex', justifyContent: 'center', gap: 18}}><div style={{...nb(NBK, 5), color: '#fff', fontFamily: MONO, fontWeight: 700, fontSize: 24, letterSpacing: 3, padding: '6px 20px'}}>AMÉLIORATION CONTINUE</div><div style={{transform: 'rotate(-8deg)'}}><div style={{...nb(BLUE, 5), color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 24, padding: '4px 14px'}}>4 OUTILS</div></div></Abs>
+      <Abs x={0} y={625} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="LES OUTILS D’UNE" src={IMG.cOut} size={92} ls={2} /></Abs>
+      <Abs x={0} y={735} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="DÉMARCHE" src={IMG.cQual} size={150} ls={4} seed={2} /></Abs>
+      <Abs x={0} y={885} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="QUALITÉ" src={IMG.cOut} size={150} ls={6} seed={4} /></Abs>
+      <Abs x={60} y={1070} w={960} style={{display: 'flex', justifyContent: 'center', gap: 12}}>{TOOLS4.map(([ic, l, c], k) => <div key={l} style={{...nb('#fff', 4), boxShadow: `4px 4px 0 ${c}`, padding: '6px 12px', display: 'flex', alignItems: 'center', gap: 6, fontFamily: sansFont, fontWeight: 900, fontSize: 20, color: c, transform: `translateY(${(1 - Math.min(1, spring(t, 0.3 + k * 0.1))) * 60}px)`}}><F n={ic} size={30} />{l}</div>)}</Abs>
       <Abs x={60} y={1480} w={960} h={120} style={{background: '#fff', border: `5px solid ${INK}`, borderRadius: 18, boxShadow: `7px 7px 0 ${BURG}`, overflow: 'hidden'}}>
         <Tube x={30} y={34} w={900} h={24} />
         {SECT.map((x, k) => <div key={k} style={{position: 'absolute', left: 70 + k * 164 - 20, top: 26, width: 40, height: 40, borderRadius: 10, background: x.c, border: '4px solid #fff', boxSizing: 'border-box', color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{x.n}</div>)}
