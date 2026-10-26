@@ -190,6 +190,7 @@ import {IshikawaMetro, ISHIKAWA_METRO_FRAMES} from './ishikawaMetro/IshikawaMetr
 import {QualiteOutilsMetro, QUALITE_OUTILS_METRO_FRAMES} from './qualiteOutilsMetro/QualiteOutilsMetro';
 import {PiliersPrevMetro, PILIERS_PREV_METRO_FRAMES} from './piliersPrevMetro/PiliersPrevMetro';
 import {PiliersTerrainMetro, PILIERS_TERRAIN_METRO_FRAMES} from './piliersTerrainMetro/PiliersTerrainMetro';
+import {SainSaufMetro, SAIN_SAUF_METRO_FRAMES} from './sainSaufMetro/SainSaufMetro';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -395,6 +396,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseQualiteOutilsMetro" component={QualiteOutilsMetro} durationInFrames={QUALITE_OUTILS_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondensePiliersPrevMetro" component={PiliersPrevMetro} durationInFrames={PILIERS_PREV_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondensePiliersTerrainMetro" component={PiliersTerrainMetro} durationInFrames={PILIERS_TERRAIN_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseSainSaufMetro" component={SainSaufMetro} durationInFrames={SAIN_SAUF_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <LibraryDemos />
