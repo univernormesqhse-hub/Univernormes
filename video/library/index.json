@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 44,
+ "count": 45,
  "items": [
   {
    "section": "templates",
@@ -294,6 +294,27 @@
    "hash": "f8abb3c971fb",
    "path": "assets/jauge-compteur-100/index.md",
    "preview": "assets/jauge-compteur-100/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "maison-etapes",
+   "name": "Maison qui se construit étage par étage + tampons",
+   "description": "Maison SVG qui pousse (fondations → murs + fenêtres → toit qui tombe), fiches d'étapes empilées qui glissent depuis la droite, tampon « SMART ✓ » sur chaque étape.",
+   "quand": "Décomposer un projet en étapes, montrer une construction progressive, valider chaque étape d'un plan.",
+   "component": "src/smartMethode/SmartMethode.tsx",
+   "demo": "Demo-MaisonEtapes",
+   "audio": null,
+   "tags": [
+    "projet",
+    "étapes",
+    "maison",
+    "construction",
+    "tampon",
+    "décomposer"
+   ],
+   "hash": "16560243db05",
+   "path": "assets/maison-etapes/index.md",
+   "preview": "assets/maison-etapes/preview.mp4"
   },
   {
    "section": "assets",
