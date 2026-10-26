@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 52,
+ "count": 53,
  "items": [
   {
    "section": "templates",
@@ -300,6 +300,27 @@
    "hash": "04e409ab153e",
    "path": "assets/editeur-code-live/index.md",
    "preview": "assets/editeur-code-live/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "faille-organisationnelle",
+   "name": "De l'individu à la faille organisationnelle",
+   "description": "Carte « l'opérateur » + badge « presque accident », étiquette « SANCTION » barrée, puis mini-organigramme : la loupe quitte l'opérateur et révèle les vraies failles (machine mal protégée, procédure inadaptée) qui tremblent et s'allument en orange.",
+   "quand": "Culture juste, analyse d'événement, retour d'expérience, « chercher la cause, pas le coupable ».",
+   "component": "src/piliersTerrainMetro/PiliersTerrainMetro.tsx",
+   "demo": "Demo-FailleOrganisationnelle",
+   "audio": null,
+   "tags": [
+    "culture juste",
+    "faille",
+    "organisation",
+    "presque accident",
+    "loupe",
+    "REX"
+   ],
+   "hash": "d2ec59dbdb1d",
+   "path": "assets/faille-organisationnelle/index.md",
+   "preview": "assets/faille-organisationnelle/preview.mp4"
   },
   {
    "section": "assets",
