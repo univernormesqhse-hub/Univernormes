@@ -183,6 +183,7 @@ import {EquipeIsac, EQUIPE_ISAC_FRAMES} from './equipeIsac/EquipeIsac';
 import {Kaizen, KAIZEN_FRAMES} from './kaizen/Kaizen';
 import {PlansPrevention, PLANS_PREV_FRAMES} from './plansPrev/PlansPrevention';
 import {OutilsStrat, OUTILS_STRAT_FRAMES} from './outilsStrat/OutilsStrat';
+import {SmartMethode, SMART_FRAMES} from './smartMethode/SmartMethode';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -381,6 +382,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseKaizen" component={Kaizen} durationInFrames={KAIZEN_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondensePlansPrevention" component={PlansPrevention} durationInFrames={PLANS_PREV_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseOutilsStrat" component={OutilsStrat} durationInFrames={OUTILS_STRAT_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseSmart" component={SmartMethode} durationInFrames={SMART_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <LibraryDemos />
