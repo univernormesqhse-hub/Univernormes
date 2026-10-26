@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 55,
+ "count": 56,
  "items": [
   {
    "section": "templates",
@@ -117,6 +117,26 @@
    "hash": "fba9c3dac057",
    "path": "assets/barre-recherche-ouvre/index.md",
    "preview": "assets/barre-recherche-ouvre/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "besoin-outil-flip",
+   "name": "Carte « besoin » → carte outil retournée en 3D",
+   "description": "Carte BESOIN N°k (indice puis question tapée au mot prononcé) à gauche, carte noire « ? » à droite qui se retourne en 3D (rotateY 180°, halo jaune) sur le nom de l'outil en couleur ; le visuel de l'outil se construit dessous.",
+   "quand": "Toute capsule « quel outil pour quel problème », FAQ, problème → solution, quiz.",
+   "component": "src/bonOutilMetro/BonOutilMetro.tsx",
+   "demo": "Demo-BesoinOutilFlip",
+   "audio": null,
+   "tags": [
+    "flip 3d",
+    "carte",
+    "problème solution",
+    "outil",
+    "quiz"
+   ],
+   "hash": "adea88002136",
+   "path": "assets/besoin-outil-flip/index.md",
+   "preview": "assets/besoin-outil-flip/preview.mp4"
   },
   {
    "section": "assets",
