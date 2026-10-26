@@ -585,7 +585,7 @@ export const CinqPourquoiMetro: React.FC = () => (
     <Gate from={0} to={2.8}><Cover /></Gate>
     <Gate from={OUTRO_AT} to={9999}><AbsoluteFill style={{zIndex: 81}}><Outro at={OUTRO_AT} logo={LOGO} /></AbsoluteFill></Gate>
     <AbsoluteFill style={{zIndex: 100}}><Gate from={0.05} to={35.2}><NeoCaptions captions={captions} /></Gate></AbsoluteFill>
-    <Audio src={staticFile('voix-cinq-pourquoi-origine.m4a')} trimAfter={s(OUTRO_AT)} />
+    <Audio src={staticFile('voix-cinq-pourquoi-metro-origine.m4a')} trimAfter={s(OUTRO_AT)} />
     <SoundDesign cues={CUES} />
   </AbsoluteFill>
 );
