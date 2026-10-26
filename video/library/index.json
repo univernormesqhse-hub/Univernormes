@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 53,
+ "count": 55,
  "items": [
   {
    "section": "templates",
@@ -78,6 +78,27 @@
    "hash": "e8b7694ecce8",
    "path": "assets/arete-camera/index.md",
    "preview": "assets/arete-camera/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "atelier-balaye",
+   "name": "Atelier encombré balayé, voies de circulation tracées",
+   "description": "Sol couvert d'objets en vrac (cartons, outils), un opérateur glisse (« GLISSADE ! »), puis tout est balayé vers les rayonnages pendant que deux bandes jaunes tracent l'allée et qu'un opérateur la remonte ; tampon « ABSOLU ».",
+   "quand": "Rangement, 5S, voies de circulation, chutes de plain-pied, avant / après d'un poste.",
+   "component": "src/sainSaufMetro/SainSaufMetro.tsx",
+   "demo": "Demo-AtelierBalaye",
+   "audio": null,
+   "tags": [
+    "rangement",
+    "5s",
+    "chute",
+    "glissade",
+    "allée",
+    "avant après"
+   ],
+   "hash": "5c984652570d",
+   "path": "assets/atelier-balaye/index.md",
+   "preview": "assets/atelier-balaye/preview.mp4"
   },
   {
    "section": "assets",
@@ -417,6 +438,27 @@
    "hash": "16560243db05",
    "path": "assets/maison-etapes/index.md",
    "preview": "assets/maison-etapes/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "maison-retour",
+   "name": "Retour à la maison, le soir (récit illustré)",
+   "description": "Maison SVG en néo-brutal ; le ciel passe au bleu nuit avec étoiles, les fenêtres s'allument, l'opérateur marche jusqu'à la porte qui s'ouvre sur un halo doré.",
+   "quand": "Ouverture / fin d'une capsule sécurité (« rentrer sain et sauf »), enjeu humain, sens de la prévention.",
+   "component": "src/sainSaufMetro/SainSaufMetro.tsx",
+   "demo": "Demo-MaisonRetour",
+   "audio": null,
+   "tags": [
+    "maison",
+    "retour",
+    "sain et sauf",
+    "nuit",
+    "récit",
+    "humain"
+   ],
+   "hash": "5c984652570d",
+   "path": "assets/maison-retour/index.md",
+   "preview": "assets/maison-retour/preview.mp4"
   },
   {
    "section": "assets",
