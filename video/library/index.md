@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-56 motions validés. Galerie visuelle : `library/gallery.html`.
+57 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (52)
+## Assets (53)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -30,6 +30,7 @@
 | [Citation tapée + onde de choc](assets/citation-onde-de-choc/index.md) | Citation qui s’écrit lettre à lettre avec guillemet géant et mot clé surligné, puis la carte tremble, trois ondes concentriques et tampon. | Phrase déclic, verbatim marquant, révélation choc. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/citation-onde-de-choc/preview.mp4) |
 | [Coffre au trésor qui s’ouvre](assets/coffre-tresor/index.md) | Cadenas qui tombe, couvercle qui bascule, pièces d’or lumineuses qui remontent en continu. | Information précieuse, retour d’expérience, presque-accidents, « l’or » d’un sujet. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/coffre-tresor/preview.mp4) |
 | [Couverture en lettres-photos animées](assets/couverture-lettres-photo-animees/index.md) | Titre dont chaque lettre est remplie d’une photo qui dérive, contour marine et reflet blanc qui balaie ; photo en haut fondue dans le papier quadrillé, badge mono, chips, tube des guichets. | Frame 0 / miniature de chaque capsule ; titres courts (≤ 14 caractères par ligne à 104 px). | `src/langageDg/LangageDg.tsx` | [mp4](assets/couverture-lettres-photo-animees/preview.mp4) |
+| [Édifice à piliers et clé de voûte qui s'effondre](assets/edifice-cle-de-voute/index.md) | Socle, trois piliers colorés qui montent un à un, liaisons qui s'allument, toit « SYSTÈME DE MANAGEMENT » qui se pose et clé de voûte qui tombe et se verrouille (anneau doré) ; si on retire un pilier, tout l'édifice bascule et s'effondre (« TOUT S'EFFONDRE »). | Toute capsule « système intégré », piliers interdépendants, normes qui se complètent, « si un maillon manque tout tombe » ; version miniature (scale 0.48) réutilisable comme fil conducteur sous les parties. | `src/edificeIsoMetro/EdificeIsoMetro.tsx` | [mp4](assets/edifice-cle-de-voute/preview.mp4) |
 | [Éditeur de code qui construit le résultat](assets/editeur-code-live/index.md) | Fenêtre `objectif.ts` (3 pastilles, onglet) dont les lignes se tapent avec point d’accent, flèche, puis tuiles-résultats qui se cochent en direct. | Montrer qu’un résultat découle de paramètres (« force de frappe » code), conclusion en 3 points. | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/editeur-code-live/preview.mp4) |
 | [De l'individu à la faille organisationnelle](assets/faille-organisationnelle/index.md) | Carte « l'opérateur » + badge « presque accident », étiquette « SANCTION » barrée, puis mini-organigramme : la loupe quitte l'opérateur et révèle les vraies failles (machine mal protégée, procédure inadaptée) qui tremblent et s'allument en orange. | Culture juste, analyse d'événement, retour d'expérience, « chercher la cause, pas le coupable ». | `src/piliersTerrainMetro/PiliersTerrainMetro.tsx` | [mp4](assets/faille-organisationnelle/preview.mp4) |
 | [Feuille de route sinueuse](assets/feuille-de-route/index.md) | Route grise en S, trait rouge qui avance tout au long de la séquence, jalons qui surgissent sur leurs mots et maison illuminée à l’arrivée. | Conseils, étapes d’un parcours, plan d’action qui mène à une finalité. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/feuille-de-route/preview.mp4) |

@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 56,
+ "count": 57,
  "items": [
   {
    "section": "templates",
@@ -323,6 +323,27 @@
    "hash": "fba9c3dac057",
    "path": "assets/couverture-lettres-photo-animees/index.md",
    "preview": "assets/couverture-lettres-photo-animees/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "edifice-cle-de-voute",
+   "name": "Édifice à piliers et clé de voûte qui s'effondre",
+   "description": "Socle, trois piliers colorés qui montent un à un, liaisons qui s'allument, toit « SYSTÈME DE MANAGEMENT » qui se pose et clé de voûte qui tombe et se verrouille (anneau doré) ; si on retire un pilier, tout l'édifice bascule et s'effondre (« TOUT S'EFFONDRE »).",
+   "quand": "Toute capsule « système intégré », piliers interdépendants, normes qui se complètent, « si un maillon manque tout tombe » ; version miniature (scale 0.48) réutilisable comme fil conducteur sous les parties.",
+   "component": "src/edificeIsoMetro/EdificeIsoMetro.tsx",
+   "demo": "Demo-EdificeCleDeVoute",
+   "audio": null,
+   "tags": [
+    "édifice",
+    "piliers",
+    "clé de voûte",
+    "effondrement",
+    "système",
+    "normes iso"
+   ],
+   "hash": "88489cca30db",
+   "path": "assets/edifice-cle-de-voute/index.md",
+   "preview": "assets/edifice-cle-de-voute/preview.mp4"
   },
   {
    "section": "assets",
