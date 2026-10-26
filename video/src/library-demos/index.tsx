@@ -13,6 +13,7 @@ import {PlansPrevention} from '../plansPrev/PlansPrevention';
 import {OutilsStrat} from '../outilsStrat/OutilsStrat';
 import {SmartMethode} from '../smartMethode/SmartMethode';
 import {Amdec} from '../amdec/Amdec';
+import {CinqPourquoiMetro} from '../cinqPourquoiMetro/CinqPourquoiMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -63,6 +64,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-MaisonEtapes', C: SmartMethode, at: 29.7, dur: 5},
   {id: 'Demo-TriPriorites', C: Amdec, at: 30.8, dur: 5.6},
   {id: 'Demo-AcronymeDeplie', C: Amdec, at: 2.8, dur: 4.1},
+  {id: 'Demo-ForageCouches', C: CinqPourquoiMetro, at: 10.4, dur: 21},
 ];
 
 export const LibraryDemos: React.FC = () => (
