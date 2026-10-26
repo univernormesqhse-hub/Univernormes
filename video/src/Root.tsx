@@ -186,6 +186,7 @@ import {OutilsStrat, OUTILS_STRAT_FRAMES} from './outilsStrat/OutilsStrat';
 import {SmartMethode, SMART_FRAMES} from './smartMethode/SmartMethode';
 import {Amdec, AMDEC_FRAMES} from './amdec/Amdec';
 import {CinqPourquoiMetro, CINQ_POURQUOI_METRO_FRAMES} from './cinqPourquoiMetro/CinqPourquoiMetro';
+import {IshikawaMetro, ISHIKAWA_METRO_FRAMES} from './ishikawaMetro/IshikawaMetro';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -387,6 +388,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseSmart" component={SmartMethode} durationInFrames={SMART_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseAmdec" component={Amdec} durationInFrames={AMDEC_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseCinqPourquoi" component={CinqPourquoiMetro} durationInFrames={CINQ_POURQUOI_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseIshikawaMetro" component={IshikawaMetro} durationInFrames={ISHIKAWA_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <LibraryDemos />
