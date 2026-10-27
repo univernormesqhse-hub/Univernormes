@@ -23,7 +23,11 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * « DANGER / ≠ RISQUE » en lettres-photos animées.
  */
 const IMG = {
-  cover: 'ident/entrepot.jpg',
+  cover: 'dangerrisque-gen/hse-danger-risque.jpg',
+  expo: 'dangerrisque-gen/exposition.jpg',
+  formule: 'dangerrisque-gen/formule.jpg',
+  chute: 'dangerrisque-gen/chute-carton.jpg',
+  neige: 'dangerrisque-gen/neige.jpg',
   c1: 'risquebrut/chantier.jpg',
   c2: 'ident/caisses.jpg',
   caisses: 'ident/caisses.jpg',
@@ -489,7 +493,7 @@ const Cover: React.FC = () => {
   if (out >= 1) return null;
   return (
     <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
-      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="danger" w={1080} h={820} pos="50% 45%" /></div>
+      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="danger" w={1080} h={820} pos="50% 50%" /></div>
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 0%, ${PAPER}00 24%, ${PAPER}CC 32%, ${PAPER} 37%)`}} />
       <Abs x={0} y={70} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
       <Abs x={0} y={560} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{...nb(NBK, 5), color: '#fff', fontFamily: MONO, fontWeight: 700, fontSize: 26, letterSpacing: 3, padding: '8px 22px'}}>SAVEZ-VOUS FAIRE LA DIFFÉRENCE ?</div></Abs>
@@ -584,15 +588,12 @@ const Defs: React.FC = () => {
     <Out end={44.15}>
       <Heads h={[[38.4, ['Danger', '→', 'risque'], [0, 2]], [41.0, ['L’exposition'], [0]], [42.4, ['Donc', 'probabilité'], [1]]]} />
       <Abs x={60} y={440} w={960} h={930}>
-        <div style={{position: 'absolute', left: 520, top: 80, width: 400, height: 400, borderRadius: 200, background: `radial-gradient(circle, ${RED}${inz ? '55' : '22'}, transparent 70%)`, border: `6px dashed ${RED}`, transform: `rotate(${t * 20}deg) scale(${inz ? 1 + 0.04 * Math.sin(t * 12) : 1})`}} />
-        <div style={{position: 'absolute', left: 640, top: 200}}><F n="danger" size={160} /></div>
-        <div style={{position: 'absolute', left: lerp(0, 480, walk), top: 220 + Math.abs(Math.sin(walk * Math.PI * 6)) * -16}}><F n="ouvrier" size={180} /></div>
+        <div style={{...nb('#fff', 8), position: 'absolute', left: 0, top: 0, width: 960, height: 520, overflow: 'hidden', boxShadow: `8px 8px 0 ${RED}`, opacity: pop(t, 38.1)}}><Img src={PH(IMG.expo)} style={{width: 960, height: 640, objectFit: 'cover', transformOrigin: '35% 75%', transform: `translateY(-60px) scale(${lerp(1, 1.3, walk)})`}} />{inz && <div style={{position: 'absolute', inset: 0, boxShadow: `inset 0 0 ${70 + 30 * Math.sin(t * 10)}px ${RED}`}} />}</div>
         <div style={{position: 'absolute', left: 0, right: 0, top: 560, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 20}}>
           <div style={{...nb(RED, 6), padding: '12px 26px', fontFamily: sansFont, fontWeight: 900, fontSize: 44, color: '#fff', opacity: pop(t, 38.4)}}>DANGER</div>
           <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: inz ? NBK : DIM, textAlign: 'center'}}>+ exposition<br />→</div>
           <div style={{...nb(inz ? ORANGE : '#fff', 6), padding: '12px 26px', fontFamily: sansFont, fontWeight: 900, fontSize: 44, color: inz ? '#fff' : '#C9D2DF', transform: `scale(${inz ? Math.min(1.1, spring(t, 41.1)) : 0.9})`}}>RISQUE</div>
         </div>
-        {inz && <div style={{position: 'absolute', left: 480, top: 40}}><NBadge at={41.2} text="EXPOSITION !" bg={RED} rot={6} size={40} /></div>}
         {t > 42.6 && <div style={{position: 'absolute', left: 0, right: 0, top: 720, display: 'flex', justifyContent: 'center'}}><Chip at={42.6} ic="de" l="probabilité de conséquence néfaste" c={ORANGE} /></div>}
       </Abs>
     </Out>
@@ -607,7 +608,8 @@ const Formule: React.FC = () => {
     <Out end={50.85}>
       <Heads h={[[47.0, ['La', 'formule'], [1]]]} />
       <Abs x={60} y={440} w={960} h={930}>
-        <div style={{position: 'absolute', left: 0, right: 0, top: 120, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14}}>{T5.map(([l, a, c, big]) => <div key={l} style={{transform: `scale(${t > a - 0.2 ? Math.min(1, spring(t, a - 0.2)) : 0}) rotate(${big ? (l === 'DANGER' ? 2 : -2) : 0}deg)`}}>{big ? <div style={{...nb(c, 8), padding: '14px 40px', fontFamily: sansFont, fontWeight: 900, fontSize: 80, color: '#fff'}}>{l}</div> : <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 90, color: c}}>{l}</div>}</div>)}</div>
+        <div style={{...nb('#FBF3E2', 8), position: 'absolute', left: 0, top: 20, width: 960, height: 540, overflow: 'hidden', boxShadow: `8px 8px 0 ${VIO}`, opacity: pop(t, 46.9), transform: `scale(${lerp(0.9, 1, pop(t, 46.9, 0.6))})`}}><Img src={PH(IMG.formule)} style={{width: '100%', height: '100%', objectFit: 'contain'}} />{t > 50.0 && <div style={{position: 'absolute', top: 0, bottom: 0, width: 140, left: lerp(-200, 1100, prog(t, 50.0, 50.7)), background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent)', transform: 'skewX(-20deg)'}} />}</div>
+        <div style={{position: 'absolute', left: 0, right: 0, top: 600, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 12}}>{T5.map(([l, a, c, big]) => <div key={l} style={{transform: `scale(${t > a - 0.2 ? Math.min(1, spring(t, a - 0.2)) : 0})`, filter: t > a - 0.1 && t < a + 0.5 ? `drop-shadow(0 0 18px ${c})` : undefined}}>{big ? <div style={{...nb(c, 6), padding: '10px 20px', fontFamily: sansFont, fontWeight: 900, fontSize: 38, color: '#fff'}}>{l}</div> : <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 56, color: c}}>{l}</div>}</div>)}</div>
         {t > 50.1 && <Dust n={20} c={VIO} />}
       </Abs>
     </Out>
@@ -637,7 +639,7 @@ const ExScene: React.FC<{k: number}> = ({k}) => {
         <div style={{...nb(k === 2 ? '#DCE9F7' : '#fff', 8), position: 'absolute', left: 0, top: 0, width: 960, height: 470, overflow: 'hidden', boxShadow: `8px 8px 0 ${ORANGE}`, opacity: pop(t, x.from)}}>
           <div style={{position: 'absolute', left: 20, top: 16, zIndex: 4}}><div style={{...nb(NBK, 4), padding: '4px 14px', color: '#fff', fontFamily: MONO, fontWeight: 700, fontSize: 20}}>EXEMPLE {x.n} / 3</div></div>
           {k === 0 && <>
-            <div style={{position: 'absolute', left: 0, top: 0}}><Pic src={IMG.caisses} ic="colis" w={420} h={470} pos="50% 40%" /></div>
+            <div style={{position: 'absolute', left: 0, top: 0}}><Pic src={IMG.chute} ic="colis" w={420} h={470} pos="40% 50%" /></div>
             <div style={{position: 'absolute', left: 500, top: 120, width: 400, height: 16, background: '#8A96A8', border: `4px solid ${NBK}`}} />
             <div style={{position: 'absolute', left: 500, top: 120, width: 16, height: 340, background: '#8A96A8', border: `4px solid ${NBK}`}} />
             <div style={{position: 'absolute', left: 640 + fall * 60, top: lerp(20, 340, fall), transform: `rotate(${fall * 120}deg)`}}><F n="colis" size={110} /></div>
@@ -651,10 +653,11 @@ const ExScene: React.FC<{k: number}> = ({k}) => {
             {t > 71.7 && <div style={{position: 'absolute', left: 60, top: 180, transform: `scale(${Math.min(1, spring(t, 71.7))})`}}><F n="feu" size={140} /></div>}
           </>}
           {k === 2 && <>
+            <div style={{position: 'absolute', left: 0, top: 0}}><Pic src={IMG.neige} ic="voiture" w={420} h={470} pos="50% 60%" /></div>
             <Snow from={x.from} />
-            <div style={{position: 'absolute', left: 0, right: 0, top: 360, height: 110, background: '#F4F8FC', borderTop: `5px solid ${NBK}`}} />
-            <div style={{position: 'absolute', left: lerp(-200, 380, prog(t, 74.8, 76.5, easeOut)), top: 230, transform: `rotate(${skid}deg)`}}><F n="voiture" size={180} /></div>
-            {t > 81.9 && <div style={{position: 'absolute', left: 620, top: 210, transform: `scale(${Math.min(1.1, spring(t, 81.9))})`}}><F n="collision" size={160} /></div>}
+            <div style={{position: 'absolute', left: 420, right: 0, top: 360, height: 110, background: '#F4F8FC', borderTop: `5px solid ${NBK}`}} />
+            <div style={{position: 'absolute', left: lerp(1000, 560, prog(t, 74.8, 76.5, easeOut)), top: 230, transform: `rotate(${skid}deg)`}}><F n="voiture" size={180} /></div>
+            {t > 81.9 && <div style={{position: 'absolute', left: 760, top: 200, transform: `scale(${Math.min(1.1, spring(t, 81.9))})`}}><F n="collision" size={160} /></div>}
           </>}
         </div>
         <div style={{position: 'absolute', left: 0, top: 520, display: 'flex', gap: 20}}>
