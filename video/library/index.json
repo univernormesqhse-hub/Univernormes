@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 58,
+ "count": 59,
  "items": [
   {
    "section": "templates",
@@ -383,6 +383,27 @@
    "hash": "04e409ab153e",
    "path": "assets/editeur-code-live/index.md",
    "preview": "assets/editeur-code-live/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "etoile-cinq-points",
+   "name": "Étoile à 5 points autour d'un document",
+   "description": "Document central (« PLAN DE PRÉVENTION ») dont les 5 lignes se colorent au fil de la voix ; 5 nœuds numérotés (icône + étiquette) popent sur un pentagone dont les côtés se tracent un à un, puis l'étoile intérieure se dessine en or et le document s'illumine.",
+   "quand": "Toute liste de 5 éléments constitutifs d'un document, d'une norme ou d'une méthode (5 points, 5 piliers, 5 exigences).",
+   "component": "src/planPrevEtapes/PlanPrevEtapes.tsx",
+   "demo": "Demo-EtoileCinqPoints",
+   "audio": null,
+   "tags": [
+    "étoile",
+    "pentagone",
+    "5 points",
+    "document",
+    "liste",
+    "construction"
+   ],
+   "hash": "953414101263",
+   "path": "assets/etoile-cinq-points/index.md",
+   "preview": "assets/etoile-cinq-points/preview.mp4"
   },
   {
    "section": "assets",
