@@ -28,6 +28,7 @@ const IMG = {
   formule: 'dangerrisque-gen/formule.jpg',
   chute: 'dangerrisque-gen/chute-carton.jpg',
   neige: 'dangerrisque-gen/neige.jpg',
+  vapeurs: 'dangerrisque-gen/vapeurs.jpg',
   c1: 'risquebrut/chantier.jpg',
   c2: 'ident/caisses.jpg',
   caisses: 'ident/caisses.jpg',
@@ -647,10 +648,11 @@ const ExScene: React.FC<{k: number}> = ({k}) => {
             {t > 61.5 && t < 62.6 && <div style={{position: 'absolute', left: 600, top: 380, width: 260, height: 60, background: `radial-gradient(ellipse, ${NBK}55, transparent 70%)`}} />}
           </>}
           {k === 1 && <>
-            <div style={{position: 'absolute', left: 360, top: 90, transform: `scale(${pop(t, x.from)})`}}><Img src={PH(IMG.bidon)} style={{width: 300, height: 300, objectFit: 'contain'}} /></div>
-            {t > 69.8 && Array.from({length: 10}, (_, i) => { const p = ((t - 69.8 - i * 0.18) % 1.8) / 1.8; return p > 0 ? <div key={i} style={{position: 'absolute', left: 480 + Math.sin(i * 2 + t * 3) * 60 + p * (i % 2 ? 160 : -160), top: 120 - p * 140, width: 60 + p * 60, height: 60 + p * 60, borderRadius: 100, background: `radial-gradient(circle, #9BE59B88, transparent 70%)`, opacity: 1 - p}} /> : null; })}
+            <div style={{position: 'absolute', left: 0, top: 0, width: 470, height: 470, overflow: 'hidden'}}><Img src={PH(IMG.vapeurs)} style={{width: 470, height: 470, objectFit: 'cover', transformOrigin: '45% 30%', transform: `scale(${lerp(1, 1.35, prog(t, 69.6, 70.8, easeInOut))})`}} /></div>
+            {t > 69.8 && Array.from({length: 10}, (_, i) => { const p = ((t - 69.8 - i * 0.18) % 1.8) / 1.8; return p > 0 ? <div key={i} style={{position: 'absolute', left: 600 + Math.sin(i * 2 + t * 3) * 50 + p * (i % 2 ? 140 : -100), top: 200 - p * 160, width: 60 + p * 60, height: 60 + p * 60, borderRadius: 100, background: `radial-gradient(circle, #9BE59B88, transparent 70%)`, opacity: 1 - p}} /> : null; })}
+            {t > 67.3 && t < 70.3 && <div style={{position: 'absolute', left: 640, top: 120, transform: `scale(${Math.min(1, spring(t, 67.3))}) rotate(${Math.sin(t * 4) * 8}deg)`, opacity: 1 - prog(t, 69.9, 70.3)}}><F n="eprouvette" size={200} /></div>}
             {t > 70.3 && <div style={{position: 'absolute', left: 740, top: 40, transform: `scale(${Math.min(1, spring(t, 70.3))})`}}><F n="poumons" size={150} /></div>}
-            {t > 71.7 && <div style={{position: 'absolute', left: 60, top: 180, transform: `scale(${Math.min(1, spring(t, 71.7))})`}}><F n="feu" size={140} /></div>}
+            {t > 71.7 && <div style={{position: 'absolute', left: 560, top: 260, transform: `scale(${Math.min(1, spring(t, 71.7))})`}}><F n="feu" size={140} /></div>}
           </>}
           {k === 2 && <>
             <div style={{position: 'absolute', left: 0, top: 0}}><Pic src={IMG.neige} ic="voiture" w={420} h={470} pos="50% 60%" /></div>
