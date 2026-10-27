@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-59 motions validés. Galerie visuelle : `library/gallery.html`.
+60 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (55)
+## Assets (56)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -34,6 +34,7 @@
 | [Édifice à piliers et clé de voûte qui s'effondre](assets/edifice-cle-de-voute/index.md) | Socle, trois piliers colorés qui montent un à un, liaisons qui s'allument, toit « SYSTÈME DE MANAGEMENT » qui se pose et clé de voûte qui tombe et se verrouille (anneau doré) ; si on retire un pilier, tout l'édifice bascule et s'effondre (« TOUT S'EFFONDRE »). | Toute capsule « système intégré », piliers interdépendants, normes qui se complètent, « si un maillon manque tout tombe » ; version miniature (scale 0.48) réutilisable comme fil conducteur sous les parties. | `src/edificeIsoMetro/EdificeIsoMetro.tsx` | [mp4](assets/edifice-cle-de-voute/preview.mp4) |
 | [Éditeur de code qui construit le résultat](assets/editeur-code-live/index.md) | Fenêtre `objectif.ts` (3 pastilles, onglet) dont les lignes se tapent avec point d’accent, flèche, puis tuiles-résultats qui se cochent en direct. | Montrer qu’un résultat découle de paramètres (« force de frappe » code), conclusion en 3 points. | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/editeur-code-live/preview.mp4) |
 | [Étoile à 5 points autour d'un document](assets/etoile-cinq-points/index.md) | Document central (« PLAN DE PRÉVENTION ») dont les 5 lignes se colorent au fil de la voix ; 5 nœuds numérotés (icône + étiquette) popent sur un pentagone dont les côtés se tracent un à un, puis l'étoile intérieure se dessine en or et le document s'illumine. | Toute liste de 5 éléments constitutifs d'un document, d'une norme ou d'une méthode (5 points, 5 piliers, 5 exigences). | `src/planPrevEtapes/PlanPrevEtapes.tsx` | [mp4](assets/etoile-cinq-points/preview.mp4) |
+| [Entrée dans la zone de danger (le danger devient risque)](assets/exposition-zone/index.md) | Zone de danger circulaire en pointillés rouges qui tourne autour d'un pictogramme ; un ouvrier marche en sautillant vers elle et y entre au mot « exposition » : la zone pulse, le badge « EXPOSITION ! » tombe et l'équation DANGER + exposition → RISQUE s'allume (la carte RISQUE passe du gris à l'orange). | Toute explication danger / risque / exposition, notion de zone dangereuse, périmètre de sécurité, co-activité. | `src/dangerRisqueMetro/DangerRisqueMetro.tsx` | [mp4](assets/exposition-zone/preview.mp4) |
 | [De l'individu à la faille organisationnelle](assets/faille-organisationnelle/index.md) | Carte « l'opérateur » + badge « presque accident », étiquette « SANCTION » barrée, puis mini-organigramme : la loupe quitte l'opérateur et révèle les vraies failles (machine mal protégée, procédure inadaptée) qui tremblent et s'allument en orange. | Culture juste, analyse d'événement, retour d'expérience, « chercher la cause, pas le coupable ». | `src/piliersTerrainMetro/PiliersTerrainMetro.tsx` | [mp4](assets/faille-organisationnelle/preview.mp4) |
 | [Feuille de route sinueuse](assets/feuille-de-route/index.md) | Route grise en S, trait rouge qui avance tout au long de la séquence, jalons qui surgissent sur leurs mots et maison illuminée à l’arrivée. | Conseils, étapes d’un parcours, plan d’action qui mène à une finalité. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/feuille-de-route/preview.mp4) |
 | [Forage en coupe de terrain (caméra qui descend couche par couche)](assets/forage-couches/index.md) | Coupe géologique (surface + 5 couches de plus en plus sombres) filmée par une caméra qui descend à chaque niveau ; racine qui se dessine, point d'interrogation qui tourne en tête de forage, couche finale qui s'illumine (onde dorée + poussière), puis dézoom sur toute la coupe avec surface barrée, engrenages et pousse. | 5 pourquoi, analyse de cause racine, « aller au fond des choses », iceberg / niveaux de profondeur, toute progression du visible vers l'invisible. | `src/cinqPourquoiMetro/CinqPourquoiMetro.tsx` | [mp4](assets/forage-couches/preview.mp4) |

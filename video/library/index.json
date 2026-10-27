@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 59,
+ "count": 60,
  "items": [
   {
    "section": "templates",
@@ -404,6 +404,27 @@
    "hash": "953414101263",
    "path": "assets/etoile-cinq-points/index.md",
    "preview": "assets/etoile-cinq-points/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "exposition-zone",
+   "name": "Entrée dans la zone de danger (le danger devient risque)",
+   "description": "Zone de danger circulaire en pointillés rouges qui tourne autour d'un pictogramme ; un ouvrier marche en sautillant vers elle et y entre au mot « exposition » : la zone pulse, le badge « EXPOSITION ! » tombe et l'équation DANGER + exposition → RISQUE s'allume (la carte RISQUE passe du gris à l'orange).",
+   "quand": "Toute explication danger / risque / exposition, notion de zone dangereuse, périmètre de sécurité, co-activité.",
+   "component": "src/dangerRisqueMetro/DangerRisqueMetro.tsx",
+   "demo": "Demo-ExpositionZone",
+   "audio": null,
+   "tags": [
+    "danger",
+    "risque",
+    "exposition",
+    "zone",
+    "marche",
+    "équation"
+   ],
+   "hash": "dea56d75060d",
+   "path": "assets/exposition-zone/index.md",
+   "preview": "assets/exposition-zone/preview.mp4"
   },
   {
    "section": "assets",

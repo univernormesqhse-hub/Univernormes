@@ -23,6 +23,7 @@ import {BonOutilMetro} from '../bonOutilMetro/BonOutilMetro';
 import {EdificeIsoMetro} from '../edificeIsoMetro/EdificeIsoMetro';
 import {AnimTerrainMetro} from '../animTerrainMetro/AnimTerrainMetro';
 import {PlanPrevEtapes} from '../planPrevEtapes/PlanPrevEtapes';
+import {DangerRisqueMetro} from '../dangerRisqueMetro/DangerRisqueMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -85,6 +86,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-EdificeCleDeVoute', C: EdificeIsoMetro, at: 52.0, dur: 18},
   {id: 'Demo-CercleCauserie', C: AnimTerrainMetro, at: 227.3, dur: 19.5},
   {id: 'Demo-EtoileCinqPoints', C: PlanPrevEtapes, at: 26.0, dur: 15.2},
+  {id: 'Demo-ExpositionZone', C: DangerRisqueMetro, at: 38.0, dur: 6.0},
 ];
 
 export const LibraryDemos: React.FC = () => (
