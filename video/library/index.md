@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-57 motions validés. Galerie visuelle : `library/gallery.html`.
+58 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (53)
+## Assets (54)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -24,6 +24,7 @@
 | [Cadenas de consignation + jauge d'énergie](assets/cadenas-consignation/index.md) | Photo de la machine qui se désature, cadenas SVG dont l'anse se ferme, étiquette « CONSIGNÉ – ne pas manœuvrer », jauge d'énergie qui tombe à 0 ✓. | Illustrer une consignation / LOTO, une mise en sécurité avant intervention, ou tout « on coupe avant d'agir ». | `src/plansPrev/PlansPrevention.tsx` | [mp4](assets/cadenas-consignation/preview.mp4) |
 | [Carte néo-brutaliste + tuiles cochées](assets/carte-norme-neo-brutal/index.md) | Carte blanche bordure noire / ombre dure, en-tête couleur avec pictogramme, badge incliné « n/9 » qui se colle, puis tuiles grisées qui s’activent une à une avec coche ronde. | Présenter un élément d’une série (norme, outil, étape) et ses bénéfices au fil de la voix. | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/carte-norme-neo-brutal/preview.mp4) |
 | [Carte qui se retourne en 3D](assets/carte-retournee-3d/index.md) | Panneau rouge « PARLER » qui bascule sur l’axe X (rotateX 180°) et révèle au dos le panneau vert « ÉCOUTER ». | Inversion de posture, avant/après, mythe/réalité. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/carte-retournee-3d/preview.mp4) |
+| [Cercle de causerie (participants, écoute, réticences, échanges)](assets/cercle-causerie/index.md) | Animateur en photo détourée au centre d'un cercle pointillé tournant ; 8 participants en pastilles néo-brutales qui popent un à un. Modes pilotés par le temps : bulles d'écoute, barres de niveau, recul grisé des participants (« réticences »), liaisons en pointillés animés vers chacun (« échange »), mains levées (« tout le monde participe »), halo doré final. | Toute capsule sur la causerie / le quart d'heure sécurité, l'animation d'équipe, la communication terrain, la participation, l'écoute active. | `src/animTerrainMetro/AnimTerrainMetro.tsx` | [mp4](assets/cercle-causerie/preview.mp4) |
 | [Cercle vicieux qui éclate](assets/cercle-vicieux-brise/index.md) | Deux flèches tournent en boucle avec le paradoxe au centre, puis éclatent en morceaux et laissent place à la solution (médaille). | Paradoxe, blocage, boucle à casser (« pas d’expérience → pas de job »). | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/cercle-vicieux-brise/preview.mp4) |
 | [Idée reçue barrée puis checklist déchirée](assets/checklist-dechiree/index.md) | Checklist de contraintes cochée mécaniquement + tampon « AMENDE », barre de recherche dont le 1er résultat (l'idée reçue) est barré en rouge, puis la page se déchire en deux moitiés qui s'écartent sur « en réalité ». | Casser un cliché, opposer « ce qu'on croit » et « ce qui est vrai », ouverture d'une capsule. | `src/piliersPrevMetro/PiliersPrevMetro.tsx` | [mp4](assets/checklist-dechiree/preview.mp4) |
 | [Circuit fermé (flux descendants / montants)](assets/circuit-ferme/index.md) | Dézoom sur l’organigramme complet : flèches bleues (directives) et vertes (remontées) passent en pointillés qui défilent, des pastilles circulent dans les deux sens, badge « CIRCUIT FERMÉ ». | Conclure sur une boucle de rétroaction : PDCA, remontée terrain, amélioration continue. | `src/equipeIsac/EquipeIsac.tsx` | [mp4](assets/circuit-ferme/preview.mp4) |

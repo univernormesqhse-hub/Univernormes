@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 57,
+ "count": 58,
  "items": [
   {
    "section": "templates",
@@ -213,6 +213,27 @@
    "hash": "5b103cd3545f",
    "path": "assets/carte-retournee-3d/index.md",
    "preview": "assets/carte-retournee-3d/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "cercle-causerie",
+   "name": "Cercle de causerie (participants, écoute, réticences, échanges)",
+   "description": "Animateur en photo détourée au centre d'un cercle pointillé tournant ; 8 participants en pastilles néo-brutales qui popent un à un. Modes pilotés par le temps : bulles d'écoute, barres de niveau, recul grisé des participants (« réticences »), liaisons en pointillés animés vers chacun (« échange »), mains levées (« tout le monde participe »), halo doré final.",
+   "quand": "Toute capsule sur la causerie / le quart d'heure sécurité, l'animation d'équipe, la communication terrain, la participation, l'écoute active.",
+   "component": "src/animTerrainMetro/AnimTerrainMetro.tsx",
+   "demo": "Demo-CercleCauserie",
+   "audio": null,
+   "tags": [
+    "cercle",
+    "équipe",
+    "causerie",
+    "participation",
+    "écoute",
+    "communication"
+   ],
+   "hash": "5ab4025f2ccd",
+   "path": "assets/cercle-causerie/index.md",
+   "preview": "assets/cercle-causerie/preview.mp4"
   },
   {
    "section": "assets",
