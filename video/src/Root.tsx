@@ -194,6 +194,7 @@ import {SainSaufMetro, SAIN_SAUF_METRO_FRAMES} from './sainSaufMetro/SainSaufMet
 import {BonOutilMetro, BON_OUTIL_METRO_FRAMES} from './bonOutilMetro/BonOutilMetro';
 import {EdificeIsoMetro, EDIFICE_ISO_METRO_FRAMES} from './edificeIsoMetro/EdificeIsoMetro';
 import {AnimTerrainMetro, ANIM_TERRAIN_METRO_FRAMES} from './animTerrainMetro/AnimTerrainMetro';
+import {PlanPrevEtapes, PLAN_PREV_ETAPES_FRAMES} from './planPrevEtapes/PlanPrevEtapes';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -403,6 +404,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseBonOutilMetro" component={BonOutilMetro} durationInFrames={BON_OUTIL_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseEdificeIsoMetro" component={EdificeIsoMetro} durationInFrames={EDIFICE_ISO_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseAnimTerrainMetro" component={AnimTerrainMetro} durationInFrames={ANIM_TERRAIN_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondensePlanPrevEtapes" component={PlanPrevEtapes} durationInFrames={PLAN_PREV_ETAPES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <LibraryDemos />
