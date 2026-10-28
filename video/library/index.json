@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 60,
+ "count": 61,
  "items": [
   {
    "section": "templates",
@@ -503,6 +503,27 @@
    "hash": "4b396a264fb4",
    "path": "assets/grand-chiffre-compteur/index.md",
    "preview": "assets/grand-chiffre-compteur/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "grave-marbre",
+   "name": "Règle gravée dans le marbre + carte hier → demain",
+   "description": "Plaque de marbre veinée (dégradé gris, veines SVG, ombre dure) où un intitulé de procédure se grave lettre par lettre avec des étincelles dorées qui suivent le burin ; dessous, une carte néo-brutale « L'ADAPTATION D'HIER » bascule en rotateX et devient « LA RÈGLE DE DEMAIN » (orange → vert), puis pluie d'or.",
+   "quand": "Toute conclusion « retour d'expérience → nouvelle règle », capitalisation, standardisation, mise à jour de procédure, leçon apprise.",
+   "component": "src/securiteRegleeGeree/SecuriteRegleeGeree.tsx",
+   "demo": "Demo-GraveMarbre",
+   "audio": null,
+   "tags": [
+    "marbre",
+    "gravure",
+    "procédure",
+    "retour d'expérience",
+    "flip",
+    "conclusion"
+   ],
+   "hash": "1d687c3314ac",
+   "path": "assets/grave-marbre/index.md",
+   "preview": "assets/grave-marbre/preview.mp4"
   },
   {
    "section": "assets",

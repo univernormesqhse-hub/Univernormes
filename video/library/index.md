@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-60 motions validés. Galerie visuelle : `library/gallery.html`.
+61 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (56)
+## Assets (57)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -39,6 +39,7 @@
 | [Feuille de route sinueuse](assets/feuille-de-route/index.md) | Route grise en S, trait rouge qui avance tout au long de la séquence, jalons qui surgissent sur leurs mots et maison illuminée à l’arrivée. | Conseils, étapes d’un parcours, plan d’action qui mène à une finalité. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/feuille-de-route/preview.mp4) |
 | [Forage en coupe de terrain (caméra qui descend couche par couche)](assets/forage-couches/index.md) | Coupe géologique (surface + 5 couches de plus en plus sombres) filmée par une caméra qui descend à chaque niveau ; racine qui se dessine, point d'interrogation qui tourne en tête de forage, couche finale qui s'illumine (onde dorée + poussière), puis dézoom sur toute la coupe avec surface barrée, engrenages et pousse. | 5 pourquoi, analyse de cause racine, « aller au fond des choses », iceberg / niveaux de profondeur, toute progression du visible vers l'invisible. | `src/cinqPourquoiMetro/CinqPourquoiMetro.tsx` | [mp4](assets/forage-couches/preview.mp4) |
 | [Grand chiffre-clé compteur](assets/grand-chiffre-compteur/index.md) | Chiffre géant contouré noir qui compte de 0 à la valeur, unité à côté, suivi d’une grille de tuiles (ex. 10 indicateurs) ou d’un anneau de jours. | Faire claquer une règle chiffrée (10 indicateurs, 30 jours, 90 jours…) sans inventer de valeur. | `src/kaizen/Kaizen.tsx` | [mp4](assets/grand-chiffre-compteur/preview.mp4) |
+| [Règle gravée dans le marbre + carte hier → demain](assets/grave-marbre/index.md) | Plaque de marbre veinée (dégradé gris, veines SVG, ombre dure) où un intitulé de procédure se grave lettre par lettre avec des étincelles dorées qui suivent le burin ; dessous, une carte néo-brutale « L'ADAPTATION D'HIER » bascule en rotateX et devient « LA RÈGLE DE DEMAIN » (orange → vert), puis pluie d'or. | Toute conclusion « retour d'expérience → nouvelle règle », capitalisation, standardisation, mise à jour de procédure, leçon apprise. | `src/securiteRegleeGeree/SecuriteRegleeGeree.tsx` | [mp4](assets/grave-marbre/preview.mp4) |
 | [Jauge circulaire + compteur](assets/jauge-compteur-100/index.md) | Anneau conic-gradient qui se remplit en même temps qu’un compteur `Count` (même courbe easeOut), sur voile papier. | Un pourcentage ou un total à faire claquer (« à 100 % », score, taux). | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/jauge-compteur-100/preview.mp4) |
 | [Maison qui se construit étage par étage + tampons](assets/maison-etapes/index.md) | Maison SVG qui pousse (fondations → murs + fenêtres → toit qui tombe), fiches d'étapes empilées qui glissent depuis la droite, tampon « SMART ✓ » sur chaque étape. | Décomposer un projet en étapes, montrer une construction progressive, valider chaque étape d'un plan. | `src/smartMethode/SmartMethode.tsx` | [mp4](assets/maison-etapes/preview.mp4) |
 | [Retour à la maison, le soir (récit illustré)](assets/maison-retour/index.md) | Maison SVG en néo-brutal ; le ciel passe au bleu nuit avec étoiles, les fenêtres s'allument, l'opérateur marche jusqu'à la porte qui s'ouvre sur un halo doré. | Ouverture / fin d'une capsule sécurité (« rentrer sain et sauf »), enjeu humain, sens de la prévention. | `src/sainSaufMetro/SainSaufMetro.tsx` | [mp4](assets/maison-retour/preview.mp4) |
