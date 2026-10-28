@@ -23,7 +23,12 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * capsule-ui-neo-brutal et capsule-recit-illustre. Couverture : photo + « LA JSA / AVANT D'INTERVENIR » en lettres-photos.
  */
 const IMG = {
-  cover: 'promo/hse-machine.jpg',
+  cover: 'jsa-gen/feu-rouge-equipe.jpg',
+  conso: 'jsa-gen/consignation.jpg',
+  tablette: 'jsa-gen/tablette-jsa.jpg',
+  radio: 'jsa-gen/machine-radio.jpg',
+  anticiper: 'jsa-gen/anticiper.jpg',
+  tiktok: 'jsa-gen/tiktok-profil.jpg',
   c1: 'promo/hse-machine.jpg',
   c2: 'tirant/echafaudage.jpg',
   machine: 'promo/hse-machine.jpg',
@@ -39,7 +44,7 @@ const VIO = '#6D4BD8';
 const GOLD = '#E0A100';
 const GLASS = '#BFD7EA';
 const MONO = '"JetBrains Mono", "IBM Plex Mono", "DejaVu Sans Mono", monospace';
-const OUTRO_AT = 56.7;
+const OUTRO_AT = 59.1;
 export const JSA_METRO_FRAMES = s(OUTRO_AT + 3.8);
 type TK = 'tube' | 'gyro' | 'loupe' | 'store' | 'none';
 type SX = {at: number; n: string; title: string; s: string; c: string; g: string; k: TK; lab: string};
@@ -488,7 +493,7 @@ const Cover: React.FC = () => {
   if (out >= 1) return null;
   return (
     <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
-      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="engrenage" w={1080} h={820} pos="50% 45%" /></div>
+      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="engrenage" w={1080} h={820} pos="50% 18%" /></div>
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 0%, ${PAPER}00 24%, ${PAPER}CC 32%, ${PAPER} 37%)`}} />
       <Abs x={0} y={70} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
       <Abs x={0} y={560} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{...nb(NBK, 5), color: '#fff', fontFamily: MONO, fontWeight: 700, fontSize: 26, letterSpacing: 3, padding: '8px 22px'}}>JOB SAFETY ANALYSIS</div></Abs>
@@ -560,8 +565,8 @@ const Jsa: React.FC = () => {
       <Heads h={[[18.0, ['Job', 'Safety', 'Analysis'], [0, 2]], [21.0, ['La', 'méthode'], [1]], [23.4, ['Étape', 'par', 'étape'], [0, 2]]]} />
       <Abs x={60} y={440} w={960} h={930}>
         <div style={{position: 'absolute', left: 0, right: 0, top: 0, display: 'flex', justifyContent: 'center', gap: 18}}>{[['J', 'Job', 18.4], ['S', 'Safety', 18.7], ['A', 'Analysis', 19.2]].map(([L, w, a]) => { const on = t > (a as number); return <div key={L as string} style={{...nb(BLUE, 8), width: 260, height: 200, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transform: `scale(${pop(t, 18.0)})`}}><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: on ? 80 : 130, color: '#fff', lineHeight: 1, transition: undefined}}>{L}</div>{on && <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 34, color: YEL, transform: `scale(${Math.min(1, spring(t, a as number))})`}}>{w}</div>}</div>; })}</div>
-        {STEPS3.map(([l, ic, a, c], k) => { const on = t > a - 0.2; return <div key={l} style={{...nb('#fff', 6), boxShadow: `6px 6px 0 ${c}`, position: 'absolute', left: k * 70, top: 520 - k * 130 + 0, width: 760, height: 110, display: 'flex', alignItems: 'center', gap: 16, padding: '0 20px', opacity: on ? 1 : 0, transform: `translateY(${on ? (1 - Math.min(1, spring(t, a - 0.2))) * 200 : 0}px)`}}><div style={{width: 56, height: 56, borderRadius: 28, background: c, color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 30, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{k + 1}</div><F n={ic} size={64} /><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 30}}>{l}</span></div>; })}
-        {t > 26.8 && <div style={{position: 'absolute', left: 810, top: 400, transform: `scale(${Math.min(1, spring(t, 26.8))})`}}><F n="trophee" size={130} /></div>}
+        {STEPS3.map(([l, ic, a, c], k) => { const on = t > a - 0.2; return <div key={l} style={{...nb('#fff', 6), boxShadow: `6px 6px 0 ${c}`, position: 'absolute', left: k * 40, top: 520 - k * 130 + 0, width: 600, height: 110, display: 'flex', alignItems: 'center', gap: 16, padding: '0 20px', opacity: on ? 1 : 0, transform: `translateY(${on ? (1 - Math.min(1, spring(t, a - 0.2))) * 200 : 0}px)`}}><div style={{width: 56, height: 56, borderRadius: 28, background: c, color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 30, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{k + 1}</div><F n={ic} size={64} /><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 25}}>{l}</span></div>; })}
+        {t > 20.6 && <div style={{...nb('#fff', 7), position: 'absolute', left: 690, top: 230, width: 270, height: 480, overflow: 'hidden', boxShadow: `7px 7px 0 ${BLUE}`, transform: `translateX(${(1 - Math.min(1, spring(t, 20.6))) * 400}px) rotate(3deg)`}}><Img src={PH(IMG.tablette)} style={{width: 270, height: 480, objectFit: 'cover', objectPosition: '50% 40%', transform: `scale(${lerp(1, 1.12, prog(t, 20.6, 27.6))})`}} /></div>}
       </Abs>
     </Out>
   );
@@ -584,12 +589,14 @@ const Exemple: React.FC = () => {
             <div style={{padding: 16, display: 'flex', flexDirection: 'column', gap: 10}}>{[['isolement des énergies', 'cadenas', 36.6], ['absence d’énergie vérifiée', 'check', 39.1], ['protections nécessaires', 'bouclier', 40.8]].map(([l, ic, a]) => <div key={l as string} style={{...nb('#EFFBF4', 3), padding: '8px 10px', display: 'flex', alignItems: 'center', gap: 8, fontFamily: sansFont, fontWeight: 800, fontSize: 21, color: GREEN, opacity: pop(t, a as number)}}><F n={ic as string} size={36} />{l}</div>)}</div>
           </div>
         </div>
-        <div style={{position: 'absolute', left: 120, top: 470, width: 300, height: 340}}>
-          <div style={{...nb('#DDE3EA', 7), position: 'absolute', left: 60, top: 60, width: 180, height: 260, borderRadius: 16}}><div style={{position: 'absolute', left: 60, top: 70, width: 60, height: 110, borderRadius: 12, background: lock > 0.9 ? '#888' : RED, border: `5px solid ${NBK}`, transform: `rotate(${lerp(-20, 20, prog(t, 35.9, 36.4, easeInOut))}deg)`, transformOrigin: '50% 90%'}} /><div style={{position: 'absolute', left: 0, right: 0, bottom: 10, textAlign: 'center', fontFamily: MONO, fontWeight: 700, fontSize: 18}}>{t > 36.4 ? 'O · OFF' : 'I · ON'}</div></div>
-          {t > 36.3 && <div style={{position: 'absolute', left: 170, top: lerp(-120, 110, lock), transform: `scale(${lock >= 1 && t < 37.2 ? 1.15 : 1})`}}><F n="cadenas" size={110} /></div>}
+        <div style={{...nb('#fff', 7), position: 'absolute', left: 0, top: 410, width: 380, height: 500, overflow: 'hidden', boxShadow: `7px 7px 0 ${t < 36.2 ? RED : GREEN}`, opacity: pop(t, 32.4)}}>
+          <Img src={PH(IMG.radio)} style={{position: 'absolute', inset: 0, width: 380, height: 500, objectFit: 'cover', objectPosition: '50% 45%', opacity: 1 - prog(t, 36.0, 36.5), transform: `scale(${lerp(1, 1.15, prog(t, 32.4, 36.2))})`}} />
+          <Img src={PH(IMG.conso)} style={{position: 'absolute', inset: 0, width: 380, height: 500, objectFit: 'cover', objectPosition: '60% 45%', opacity: prog(t, 36.0, 36.5), transformOrigin: '75% 45%', transform: `scale(${lerp(1, 1.5, prog(t, 36.6, 37.4, easeInOut))})`}} />
+          {t > 37.0 && t < 38.6 && <div style={{position: 'absolute', left: 200, top: 150, width: 160, height: 160, borderRadius: 80, border: `8px solid ${GOLD}`, transform: `scale(${1 + (t - 37.0) * 0.6})`, opacity: 1 - prog(t, 37.0, 38.6)}} />}
+          {t > 36.9 && <div style={{position: 'absolute', left: 16, bottom: 16}}><NBadge at={37.0} text="CONSIGNÉ" bg={GREEN} rot={-4} size={30} /></div>}
         </div>
-        {vat && <div style={{position: 'absolute', left: 400, top: 500, display: 'flex', alignItems: 'center', gap: 14, transform: `scale(${Math.min(1, spring(t, 39.1))})`}}><div style={{...nb(NBK, 6), width: 170, height: 110, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: MONO, fontWeight: 700, fontSize: 46, color: t > 39.6 ? '#5BE37D' : YEL}}>{t > 39.6 ? '0 V' : '…'}</div>{t > 39.6 && <NBadge at={39.7} text="ABSENCE D’ÉNERGIE ✓" bg={GREEN} rot={-3} size={26} />}</div>}
-        {t > 40.8 && <div style={{position: 'absolute', left: 480, top: 660, display: 'flex', gap: 10}}>{['casque', 'gants', 'lunettes'].map((ic, k) => <div key={ic} style={{transform: `scale(${Math.min(1, spring(t, 40.8 + k * 0.12))})`}}><F n={ic} size={90} /></div>)}</div>}
+        {vat && <div style={{position: 'absolute', left: 420, top: 470, display: 'flex', alignItems: 'center', gap: 14, transform: `scale(${Math.min(1, spring(t, 39.1))})`}}><div style={{...nb(NBK, 6), width: 170, height: 110, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: MONO, fontWeight: 700, fontSize: 46, color: t > 39.6 ? '#5BE37D' : YEL}}>{t > 39.6 ? '0 V' : '…'}</div>{t > 39.6 && <NBadge at={39.7} text="ABSENCE D’ÉNERGIE ✓" bg={GREEN} rot={-3} size={26} />}</div>}
+        {t > 40.8 && <div style={{position: 'absolute', left: 460, top: 650, display: 'flex', gap: 10}}>{['casque', 'gants', 'lunettes'].map((ic, k) => <div key={ic} style={{transform: `scale(${Math.min(1, spring(t, 40.8 + k * 0.12))})`}}><F n={ic} size={90} /></div>)}</div>}
       </Abs>
     </Out>
   );
@@ -603,15 +610,35 @@ const Anticiper: React.FC = () => {
     <Out end={49.35}>
       <Heads h={[[46.3, ['Anticiper'], [0]], [47.7, ['Des', 'méthodes', 'structurées'], [1, 2]]]} />
       <Abs x={60} y={440} w={960} h={930}>
-        <div style={{position: 'absolute', left: 130, top: 300, width: 700, transform: `rotate(${tilt}deg)`, transformOrigin: '50% 100%'}}>
-          <div style={{height: 16, background: NBK, borderRadius: 8}} />
-          <div style={{position: 'absolute', left: 0, top: -230, width: 260, textAlign: 'center'}}><div style={{position: 'relative', ...nb('#fff', 6), padding: 14}}><F n="ambulance" size={120} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 28, color: DIM}}>réagir</div>{t > 46.5 && <Strk at={46.5} />}</div></div>
-          <div style={{position: 'absolute', right: 0, top: -230, width: 260, textAlign: 'center'}}><div style={{...nb('#fff', 6), padding: 14, boxShadow: `6px 6px 0 ${VIO}`}}><F n="telescope" size={120} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 28, color: VIO}}>anticiper</div></div></div>
-        </div>
-        <div style={{position: 'absolute', left: 440, top: 316, width: 0, height: 0, borderLeft: '40px solid transparent', borderRight: '40px solid transparent', borderBottom: `90px solid ${NBK}`}} />
-        {t > 47.9 && <div style={{position: 'absolute', left: 0, right: 0, top: 500, display: 'flex', justifyContent: 'center', gap: 14}}>{['JSA', 'AMDEC', 'arbre des causes'].map((l, k) => <div key={l} style={{...nb(VIO, 5), padding: '10px 18px', fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: '#fff', transform: `scale(${Math.min(1, spring(t, 47.9 + k * 0.15))})`}}>{l}</div>)}</div>}
+        <div style={{...nb('#fff', 8), position: 'absolute', left: 230, top: 0, width: 500, height: 740, overflow: 'hidden', boxShadow: `8px 8px 0 ${VIO}`, opacity: pop(t, 46.1)}}><Img src={PH(IMG.anticiper)} style={{width: 500, height: 889, objectFit: 'cover', transformOrigin: '50% 75%', transform: `translateY(${lerp(0, -120, prog(t, 46.1, 47.6, easeInOut))}px) rotate(${tilt * 0.05}deg)`}} /></div>
+        {t > 47.9 && <div style={{position: 'absolute', left: 0, right: 0, top: 780, display: 'flex', justifyContent: 'center', gap: 14}}>{['JSA', 'AMDEC', 'arbre des causes'].map((l, k) => <div key={l} style={{...nb(VIO, 5), padding: '10px 18px', fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: '#fff', transform: `scale(${Math.min(1, spring(t, 47.9 + k * 0.15))})`}}>{l}</div>)}</div>}
       </Abs>
     </Out>
+  );
+};
+
+/* ═════════════ Fin : capture du profil TikTok dans un téléphone, zoom + numéro WhatsApp entouré ═════════════ */
+const PH_W = 330, PH_H = 330 * 2712 / 1220;
+const NUM = {x: 0.212 * PH_W, y: 0.32 * PH_H};
+const TikTokPhone: React.FC = () => {
+  const t = useT();
+  if (t < 53.2) return null;
+  const up = Math.min(1, spring(t, 53.2));
+  const z = prog(t, 53.8, 54.6, easeInOut);
+  const Z = lerp(1, 2.2, z);
+  const ring = prog(t, 54.5, 55.2, easeOut);
+  return (
+    <>
+      <div style={{position: 'absolute', left: 303, top: 20, width: PH_W + 24, height: PH_H + 24, borderRadius: 48, background: NBK, boxShadow: `10px 10px 0 #25D366, 0 30px 60px rgba(0,0,0,0.25)`, transform: `translateY(${(1 - up) * 900}px) rotate(${(1 - up) * 8}deg)`, padding: 12, boxSizing: 'border-box'}}>
+        <div style={{position: 'relative', width: PH_W, height: PH_H, borderRadius: 36, overflow: 'hidden', background: '#fff'}}>
+          <Img src={PH(IMG.tiktok)} style={{position: 'absolute', left: 0, top: 0, width: PH_W, height: PH_H, transformOrigin: `${NUM.x}px ${NUM.y}px`, transform: `translate(${(PH_W / 2 - NUM.x) * z}px, ${(PH_H / 2 - NUM.y) * z}px) scale(${Z})`}} />
+          {ring > 0 && <svg style={{position: 'absolute', left: 0, top: 0}} width={PH_W} height={PH_H}><ellipse cx={PH_W / 2} cy={PH_H / 2} rx={150} ry={34} fill="none" stroke={RED} strokeWidth={7} strokeLinecap="round" pathLength={1} style={{strokeDasharray: 1, strokeDashoffset: 1 - ring}} transform={`rotate(-3 ${PH_W / 2} ${PH_H / 2})`} /></svg>}
+          <div style={{position: 'absolute', left: PH_W / 2 - 40, top: 8, width: 80, height: 22, borderRadius: 11, background: NBK}} />
+        </div>
+      </div>
+      {t > 54.8 && <div style={{position: 'absolute', left: 0, top: 20 + 12 + PH_H / 2 - 40, display: 'flex', alignItems: 'center', gap: 6, transform: `translateX(${Math.sin(t * 6) * 8}px) scale(${Math.min(1, spring(t, 54.8))})`}}><div style={{...nb('#25D366', 5), padding: '8px 14px', fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: '#fff'}}>WhatsApp</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 60, color: RED}}>→</div></div>}
+      {t > 55.3 && <div style={{position: 'absolute', left: 0, right: 0, top: 20 + PH_H + 40, display: 'flex', justifyContent: 'center'}}><NBadge at={55.3} text="ÉCRIS-MOI ICI · ACCOMPAGNEMENT PERSONNALISÉ" bg={NBK} rot={-1} size={24} /></div>}
+    </>
   );
 };
 
@@ -622,16 +649,11 @@ const AToi: React.FC = () => {
     <>
       <Heads h={[[49.6, ['Maîtriser', 'les', 'outils'], [0, 2]], [51.9, ['Tes', 'compétences'], [1]], [53.8, ['Un', 'accompagnement'], [1]]]} />
       <Abs x={60} y={440} w={960} h={930}>
-        <div style={{...nb('#fff', 8), position: 'absolute', left: 80, top: 0, width: 800, padding: 26, boxShadow: `8px 8px 0 ${GREEN}`, opacity: pop(t, 49.4)}}>
+        <div style={{...nb('#fff', 8), position: 'absolute', left: 80, top: 0, width: 800, padding: 26, boxShadow: `8px 8px 0 ${GREEN}`, opacity: pop(t, 49.4) * (1 - prog(t, 53.1, 53.5))}}>
           {[['outils d’analyse des risques', 50.5, 0.85, BLUE], ['compétences QHSE', 52.5, 0.9, GREEN]].map(([l, a, v, c]) => <div key={l as string} style={{marginBottom: 22}}><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 30, marginBottom: 8}}>{l}</div><div style={{height: 34, borderRadius: 17, border: `4px solid ${NBK}`, background: '#EEF1F5', overflow: 'hidden'}}><div style={{height: '100%', width: `${(v as number) * 100 * prog(t, a as number, (a as number) + 1.2, easeOut)}%`, background: c as string}} /></div></div>)}
         </div>
-        {t > 53.6 && <div style={{position: 'absolute', left: 230, top: 330, width: 500, transform: `scale(${Math.min(1, spring(t, 53.6))})`}}>
-          <div style={{...nb('#fff', 8), borderRadius: 40, padding: 22, boxShadow: `8px 8px 0 #25D366`}}>
-            <div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16}}><div style={{width: 60, height: 60, borderRadius: 30, background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><F n="telephone" size={40} /></div><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 32}}>WhatsApp</span></div>
-            <div style={{...nb('#DCF8C6', 3), padding: '12px 16px', fontFamily: sansFont, fontWeight: 800, fontSize: 26, opacity: pop(t, 55.2)}}>accompagnement personnalisé ✓✓</div>
-          </div>
-        </div>}
-        {t > 55.9 && <Dust n={22} c={GOLD} />}
+        <TikTokPhone />
+        {t > 56.0 && <Dust n={22} c={GOLD} />}
       </Abs>
     </>
   );
@@ -649,7 +671,7 @@ const CUES: Sfx[] = [
   {at: 18.0, s: 'sfx/pop', v: 0.3}, ...[18.4, 18.7, 19.2].map((a) => ({at: a, s: 'sfx/swish', v: 0.3})), ...STEPS3.map((x) => ({at: x[2] - 0.2, s: 'sfx/thud', v: 0.35})), {at: 26.8, s: 'validation', v: 0.3},
   {at: 31.0, s: 'sfx/pop', v: 0.3}, {at: 33.4, s: 'sfx/pop', v: 0.25}, {at: 34.6, s: 'sfx/pop', v: 0.25}, {at: 36.0, s: 'sfx/click', v: 0.4}, {at: 37.0, s: 'deep-hit', v: 0.5}, {at: 39.6, s: 'validation', v: 0.35}, ...rep(40.8, 3, 0.12, 'sfx/pop', 0.22),
   {at: 46.5, s: 'sfx/swish', v: 0.35}, {at: 47.1, s: 'sfx/thud', v: 0.4}, ...rep(47.9, 3, 0.15, 'sfx/pop', 0.22),
-  {at: 50.5, s: 'sfx/rise', v: 0.25, dur: 1.2}, {at: 52.5, s: 'sfx/rise', v: 0.25, dur: 1.2}, {at: 53.6, s: 'sfx/pop', v: 0.3}, {at: 55.2, s: 'sfx/ding', v: 0.3}, {at: 55.9, s: 'bass-hit', v: 0.3},
+  {at: 50.5, s: 'sfx/rise', v: 0.25, dur: 1.2}, {at: 52.5, s: 'sfx/rise', v: 0.25, dur: 1.2}, {at: 53.2, s: 'soft-whoosh', v: 0.4, dur: 0.8}, {at: 53.8, s: 'sfx/rise', v: 0.3, dur: 0.8}, {at: 54.5, s: 'stylo', v: 0.35, dur: 0.7}, {at: 54.8, s: 'sfx/pop', v: 0.3}, {at: 55.3, s: 'tampon', v: 0.35}, {at: 56.0, s: 'bass-hit', v: 0.3},
   {at: OUTRO_AT + 0.2, s: 'signature-marque', v: 0.6, dur: 3.2},
 ];
 
