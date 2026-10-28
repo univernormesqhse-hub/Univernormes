@@ -196,6 +196,7 @@ import {EdificeIsoMetro, EDIFICE_ISO_METRO_FRAMES} from './edificeIsoMetro/Edifi
 import {AnimTerrainMetro, ANIM_TERRAIN_METRO_FRAMES} from './animTerrainMetro/AnimTerrainMetro';
 import {PlanPrevEtapes, PLAN_PREV_ETAPES_FRAMES} from './planPrevEtapes/PlanPrevEtapes';
 import {DangerRisqueMetro, DANGER_RISQUE_METRO_FRAMES} from './dangerRisqueMetro/DangerRisqueMetro';
+import {SecuriteRegleeGeree, SECURITE_REGLEE_GEREE_FRAMES} from './securiteRegleeGeree/SecuriteRegleeGeree';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -407,6 +408,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseAnimTerrainMetro" component={AnimTerrainMetro} durationInFrames={ANIM_TERRAIN_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondensePlanPrevEtapes" component={PlanPrevEtapes} durationInFrames={PLAN_PREV_ETAPES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseDangerRisqueMetro" component={DangerRisqueMetro} durationInFrames={DANGER_RISQUE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseSecuriteRegleeGeree" component={SecuriteRegleeGeree} durationInFrames={SECURITE_REGLEE_GEREE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <LibraryDemos />
