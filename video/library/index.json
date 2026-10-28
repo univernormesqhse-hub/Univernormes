@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 62,
+ "count": 63,
  "items": [
   {
    "section": "templates",
@@ -57,6 +57,27 @@
    "hash": "4b396a264fb4",
    "path": "assets/affiche-arrachee/index.md",
    "preview": "assets/affiche-arrachee/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "arbre-scenarios",
+   "name": "Arbre des scénarios « ET SI… ? »",
+   "description": "Nœud central (bloc néo-brutal coloré, icône + libellé) d'où poussent des branches en courbes de Bézier qui se tracent une à une, chacune terminée par une carte « ET SI… ? » (icône + scénario) qui grandit depuis son point d'attache au moment où la voix l'énonce.",
+   "quand": "Toute arborescence de scénarios, causes ou conséquences : What if / SWIFT, arbre des causes simplifié, cartographie d'options, « si… alors… ».",
+   "component": "src/swiftMetro/SwiftMetro.tsx",
+   "demo": "Demo-ArbreScenarios",
+   "audio": null,
+   "tags": [
+    "arbre",
+    "branches",
+    "scénarios",
+    "what if",
+    "SWIFT",
+    "mind map"
+   ],
+   "hash": "6d513481bc34",
+   "path": "assets/arbre-scenarios/index.md",
+   "preview": "assets/arbre-scenarios/preview.mp4"
   },
   {
    "section": "assets",
