@@ -22,7 +22,11 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * capsule-ui-neo-brutal et capsule-recit-illustre. Couverture : photo + « ET SI… ? / MÉTHODE SWIFT » en lettres-photos.
  */
 const IMG = {
-  cover: 'smi/raffinerie.jpg',
+  cover: 'swift-gen/et-si-reflexion.jpg',
+  arbre: 'swift-gen/arbre-maintenance.jpg',
+  atelier: 'swift-gen/atelier-swift.jpg',
+  balance: 'swift-gen/balance.jpg',
+  consigne: 'swift-gen/non-consigne.jpg',
   c1: 'promo/hse-machine.jpg',
   c2: 'smi/raffinerie.jpg',
   machine: 'promo/hse-machine.jpg',
@@ -487,7 +491,7 @@ const Cover: React.FC = () => {
   if (out >= 1) return null;
   return (
     <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
-      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="question" w={1080} h={820} pos="50% 45%" /></div>
+      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="question" w={1080} h={820} pos="50% 32%" /></div>
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 0%, ${PAPER}00 24%, ${PAPER}CC 32%, ${PAPER} 37%)`}} />
       <Abs x={0} y={70} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
       <Abs x={0} y={560} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{...nb(NBK, 5), color: '#fff', fontFamily: MONO, fontWeight: 700, fontSize: 26, letterSpacing: 3, padding: '8px 22px'}}>WHAT IF ? · ANALYSE DES RISQUES</div></Abs>
@@ -533,11 +537,12 @@ const Improbable: React.FC = () => {
     <Out end={20.45}>
       <Heads h={[[18.4, ['De', 'vrais', 'scénarios'], [1, 2]]]} />
       <Abs x={60} y={440} w={960} h={930}>
-        <div style={{position: 'absolute', left: 230, top: 30, width: 500, height: 300}}>
+        <div style={{...nb('#fff', 7), position: 'absolute', left: 0, top: 0, width: 400, height: 700, overflow: 'hidden', boxShadow: `7px 7px 0 ${RED}`, opacity: pop(t, 18.3)}}><Img src={PH(IMG.consigne)} style={{width: 400, height: 712, objectFit: 'cover', transform: `scale(${lerp(1, 1.08, prog(t, 18.3, 20.4))})`}} /></div>
+        <div style={{position: 'absolute', left: 440, top: 30, width: 500, height: 300, transform: 'scale(0.95)', transformOrigin: '0 0'}}>
           <svg width={500} height={300} viewBox="-250 -260 500 300"><path d="M -220 0 A 220 220 0 0 1 220 0" fill="none" stroke="#E3E8EF" strokeWidth={40} /><path d="M -220 0 A 220 220 0 0 1 220 0" fill="none" stroke={`url(#gimp)`} strokeWidth={40} /><defs><linearGradient id="gimp"><stop offset="0" stopColor={GREEN} /><stop offset="0.5" stopColor={YEL} /><stop offset="1" stopColor={RED} /></linearGradient></defs><line x1={0} y1={0} x2={0} y2={-190} stroke={NBK} strokeWidth={12} strokeLinecap="round" transform={`rotate(${lerp(-75, 70, sw)})`} /><circle r={22} fill={NBK} /></svg>
         </div>
-        <div style={{position: 'absolute', left: 0, right: 0, top: 350, display: 'flex', justifyContent: 'center'}}><div style={{position: 'relative', ...nb('#fff', 5), padding: '10px 24px', fontFamily: sansFont, fontWeight: 900, fontSize: 40, color: DIM}}>improbable<Strk at={18.4} /></div></div>
-        <Stamp at={19.6} text="SCÉNARIO D’ACCIDENT" c={RED} x={90} y={480} rot={-5} size={46} />
+        <div style={{position: 'absolute', left: 440, width: 500, top: 330, display: 'flex', justifyContent: 'center'}}><div style={{position: 'relative', ...nb('#fff', 5), padding: '10px 24px', fontFamily: sansFont, fontWeight: 900, fontSize: 40, color: DIM}}>improbable<Strk at={18.4} /></div></div>
+        <Stamp at={19.6} text="SCÉNARIO D’ACCIDENT" c={RED} x={430} y={470} rot={-5} size={34} />
       </Abs>
     </Out>
   );
@@ -567,7 +572,7 @@ const Exemple: React.FC = () => {
     <Out end={41.75}>
       <Heads h={[[31.0, ['Une', 'maintenance'], [1]], [32.7, ['Et', 'si', '?'], [0, 1]]]} />
       <Abs x={60} y={440} w={960} h={930}>
-        <div style={{...nb(ORANGE, 8), position: 'absolute', left: 30, top: 300, width: 300, height: 220, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, color: '#fff', opacity: pop(t, 31.0)}}><F n="outils" size={110} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 30}}>MAINTENANCE</div></div>
+        <div style={{...nb('#FBF3E2', 8), position: 'absolute', left: 0, top: 110, width: 330, height: 600, overflow: 'hidden', boxShadow: `8px 8px 0 ${ORANGE}`, opacity: pop(t, 31.0)}}><Img src={PH(IMG.arbre)} style={{width: 330, height: 600, objectFit: 'cover', objectPosition: '50% 20%'}} /></div>
         <svg style={{position: 'absolute', left: 0, top: 0}} width={960} height={930}>{BR.map(([, , a], k) => { const y = 110 + k * 300; return <path key={k} d={`M 330 410 C 420 410, 420 ${y}, 500 ${y}`} fill="none" stroke={NBK} strokeWidth={8} strokeLinecap="round" pathLength={1} style={{strokeDasharray: 1, strokeDashoffset: 1 - prog(t, a - 1.6, a - 1.0)}} />; })}</svg>
         {BR.map(([l, ic, a], k) => { const on = t > a - 1.0; return <div key={l} style={{...nb('#fff', 6), boxShadow: `6px 6px 0 ${ORANGE}`, position: 'absolute', left: 500, top: 30 + k * 300, width: 440, height: 170, display: 'flex', alignItems: 'center', gap: 14, padding: '0 18px', opacity: on ? 1 : 0, transform: `scale(${on ? Math.min(1, spring(t, a - 1.0)) : 0.4})`, transformOrigin: '0 50%'}}><F n={ic} size={90} /><div><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 20, color: ORANGE}}>ET SI… ?</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 28, lineHeight: 1.1}}>{l}</div></div></div>; })}
       </Abs>
@@ -602,11 +607,11 @@ const Anticiper: React.FC = () => {
           <div style={{transform: `scale(${pop(t, 53.6)}) rotate(${Math.sin(t * 10) * (t < 54.6 ? 6 : 0)}deg)`}}><F n="danger" size={220} /></div>
           <div style={{position: 'relative', ...nb('#fff', 7), padding: 24, textAlign: 'center', opacity: pop(t, 54.6)}}><F n="question" size={130} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 30}}>poser des questions</div>{t > 55.6 && <Strk at={55.6} />}</div>
         </div> : <>
-          <div style={{position: 'absolute', left: 0, right: 0, top: 20, display: 'flex', justifyContent: 'center', gap: 10}}>{TEAM.map((ic, k) => <div key={ic} style={{...nb('#fff', 5), width: 150, height: 150, borderRadius: 75, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `translateY(${t > 56.8 + k * 0.1 ? (1 - Math.min(1, spring(t, 56.8 + k * 0.1))) * 300 : 300}px)`, opacity: t > 56.8 + k * 0.1 ? 1 : 0}}><F n={ic} size={100} /></div>)}</div>
-          {t > 57.9 && <div style={{position: 'absolute', left: 0, right: 0, top: 200, display: 'flex', justifyContent: 'center'}}><NBadge at={57.9} text="CEUX QUI CONNAISSENT LE TERRAIN" bg={VIO} rot={-2} size={30} /></div>}
-          <div style={{position: 'absolute', left: 120, top: 320, display: 'flex', flexDirection: 'column', gap: 14}}>{['mesure de maîtrise 1', 'mesure de maîtrise 2', 'mesure de maîtrise 3'].map((l, k) => <div key={l} style={{display: 'flex', alignItems: 'center', gap: 14, opacity: pop(t, 59.1)}}><div style={{...nb('#fff', 4), width: 520, height: 70, display: 'flex', alignItems: 'center', padding: '0 18px', gap: 12}}><F n="bouclier" size={44} /><div style={{flex: 1, height: 12, borderRadius: 6, background: '#E3E8EF'}} /></div><div style={{width: 60, height: 60, borderRadius: 14, border: `4px solid ${NBK}`, background: t > 60.0 + k * 0.35 ? GREEN : '#fff', color: '#fff', fontSize: 40, fontWeight: 900, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{t > 60.0 + k * 0.35 ? '✓' : ''}</div></div>)}</div>
-          {t > 59.4 && <LoupeSweep x0={140} y0={300} x1={560} y1={500} a={59.5} b={61.0} size={150} />}
-          {t > 61.1 && <div style={{position: 'absolute', left: 0, right: 0, top: 600, display: 'flex', justifyContent: 'center'}}><NBadge at={61.1} text="RÉELLEMENT EFFICACES" bg={GREEN} rot={-3} size={34} /></div>}
+          <div style={{...nb('#fff', 7), position: 'absolute', left: 0, top: 0, width: 960, height: 400, overflow: 'hidden', boxShadow: `7px 7px 0 ${VIO}`, opacity: pop(t, 56.7)}}><Img src={PH(IMG.atelier)} style={{width: 960, height: 1708, objectFit: 'cover', transform: `translateY(${lerp(-760, -560, prog(t, 56.7, 59.0))}px)`}} /></div>
+          {t > 57.9 && <div style={{position: 'absolute', left: 0, right: 0, top: 370, display: 'flex', justifyContent: 'center'}}><NBadge at={57.9} text="CEUX QUI CONNAISSENT LE TERRAIN" bg={VIO} rot={-2} size={30} /></div>}
+          <div style={{position: 'absolute', left: 120, top: 470, display: 'flex', flexDirection: 'column', gap: 14}}>{['mesure de maîtrise 1', 'mesure de maîtrise 2', 'mesure de maîtrise 3'].map((l, k) => <div key={l} style={{display: 'flex', alignItems: 'center', gap: 14, opacity: pop(t, 59.1)}}><div style={{...nb('#fff', 4), width: 520, height: 70, display: 'flex', alignItems: 'center', padding: '0 18px', gap: 12}}><F n="bouclier" size={44} /><div style={{flex: 1, height: 12, borderRadius: 6, background: '#E3E8EF'}} /></div><div style={{width: 60, height: 60, borderRadius: 14, border: `4px solid ${NBK}`, background: t > 60.0 + k * 0.35 ? GREEN : '#fff', color: '#fff', fontSize: 40, fontWeight: 900, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{t > 60.0 + k * 0.35 ? '✓' : ''}</div></div>)}</div>
+          {t > 59.4 && <LoupeSweep x0={140} y0={450} x1={560} y1={650} a={59.5} b={61.0} size={150} />}
+          {t > 61.1 && <div style={{position: 'absolute', left: 0, right: 0, top: 740, display: 'flex', justifyContent: 'center'}}><NBadge at={61.1} text="RÉELLEMENT EFFICACES" bg={GREEN} rot={-3} size={34} /></div>}
         </>}
       </Abs>
     </Out>
@@ -622,12 +627,7 @@ const Demain: React.FC = () => {
       <Out end={67.25}>
         <Heads h={[[62.6, ['Mieux', 'vaut'], [1]], [65.2, ['Aujourd’hui'], [0]], [66.1, ['Pas', 'demain'], [1]]]} />
         <Abs x={60} y={440} w={960} h={930}>
-          <div style={{position: 'absolute', left: 130, top: 380, width: 700, transform: `rotate(${-tip}deg)`, transformOrigin: '50% 50%'}}>
-            <div style={{height: 16, background: NBK, borderRadius: 8}} />
-            <div style={{position: 'absolute', left: 0, top: -290, width: 280, textAlign: 'center'}}><div style={{...nb('#fff', 7), padding: 18, boxShadow: `7px 7px 0 ${GREEN}`}}><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 22, color: GREEN}}>AUJOURD’HUI</div><F n="question" size={120} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 30}}>« et si ? »</div></div></div>
-            <div style={{position: 'absolute', right: 0, top: -290, width: 280, textAlign: 'center'}}><div style={{...nb('#fff', 7), padding: 18, boxShadow: `7px 7px 0 ${RED}`, opacity: pop(t, 66.0)}}><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 22, color: RED}}>DEMAIN</div><F n="ambulance" size={120} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 30}}>l’accident</div></div></div>
-          </div>
-          <div style={{position: 'absolute', left: 440, top: 396, width: 0, height: 0, borderLeft: '40px solid transparent', borderRight: '40px solid transparent', borderBottom: `90px solid ${NBK}`}} />
+          <div style={{...nb('#FBF3E2', 8), position: 'absolute', left: 60, top: 0, width: 840, height: 820, overflow: 'hidden', boxShadow: `8px 8px 0 ${GREEN}`, opacity: pop(t, 62.1)}}><Img src={PH(IMG.balance)} style={{width: 840, height: 1494, objectFit: 'cover', transformOrigin: '50% 45%', transform: `translateY(-330px) scale(${lerp(1, 1.08, prog(t, 62.1, 67.2))}) rotate(${-tip * 0.15}deg)`}} /></div>
         </Abs>
       </Out>
     );
