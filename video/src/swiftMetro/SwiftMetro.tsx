@@ -27,6 +27,7 @@ const IMG = {
   atelier: 'swift-gen/atelier-swift.jpg',
   balance: 'swift-gen/balance.jpg',
   consigne: 'swift-gen/non-consigne.jpg',
+  tiktok: 'swift-gen/tiktok-profil.jpg',
   c1: 'promo/hse-machine.jpg',
   c2: 'smi/raffinerie.jpg',
   machine: 'promo/hse-machine.jpg',
@@ -42,7 +43,7 @@ const VIO = '#6D4BD8';
 const GOLD = '#E0A100';
 const GLASS = '#BFD7EA';
 const MONO = '"JetBrains Mono", "IBM Plex Mono", "DejaVu Sans Mono", monospace';
-const OUTRO_AT = 73.6;
+const OUTRO_AT = 76.0;
 export const SWIFT_METRO_FRAMES = s(OUTRO_AT + 3.8);
 type TK = 'tube' | 'gyro' | 'loupe' | 'store' | 'none';
 type SX = {at: number; n: string; title: string; s: string; c: string; g: string; k: TK; lab: string};
@@ -637,9 +638,34 @@ const Demain: React.FC = () => {
       <Heads h={[[67.6, ['Apprendre', 'les', 'outils'], [0, 2]], [71.2, ['Un', 'accompagnement'], [1]]]} />
       <Abs x={60} y={440} w={960} h={930}>
         <div style={{position: 'absolute', left: 0, right: 0, top: 0, display: 'flex', justifyContent: 'center', gap: 14, flexWrap: 'wrap'}}>{[['JSA', BLUE], ['SWIFT', ORANGE], ['analyse des risques', RED]].map(([l, c], k) => <div key={l} style={{...nb(c, 5), padding: '10px 20px', fontFamily: sansFont, fontWeight: 900, fontSize: 32, color: '#fff', transform: `scale(${t > 68.8 + k * 0.15 ? Math.min(1, spring(t, 68.8 + k * 0.15)) : 0})`}}>{l}</div>)}</div>
-        {t > 70.6 && <div style={{position: 'absolute', left: 230, top: 200, width: 500, transform: `scale(${Math.min(1, spring(t, 70.6))})`}}><div style={{...nb('#fff', 8), borderRadius: 40, padding: 22, boxShadow: `8px 8px 0 #25D366`}}><div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16}}><div style={{width: 60, height: 60, borderRadius: 30, background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><F n="telephone" size={40} /></div><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 32}}>WhatsApp</span></div><div style={{...nb('#DCF8C6', 3), padding: '12px 16px', fontFamily: sansFont, fontWeight: 800, fontSize: 26, opacity: pop(t, 72.1)}}>accompagnement personnalisé ✓✓</div></div></div>}
+        <TikTokPhone />
         {t > 72.6 && <Dust n={22} c={GOLD} />}
       </Abs>
+    </>
+  );
+};
+
+/* ═════════════ Fin : capture du profil TikTok dans un téléphone, zoom + numéro WhatsApp entouré ═════════════ */
+const PH_W = 330, PH_H = 330 * 2712 / 1220;
+const NUM = {x: 0.212 * PH_W, y: 0.32 * PH_H};
+const TikTokPhone: React.FC = () => {
+  const t = useT();
+  if (t < 68.4) return null;
+  const up = Math.min(1, spring(t, 68.4));
+  const z = prog(t, 70.9, 71.7, easeInOut);
+  const Z = lerp(1, 2.2, z);
+  const ring = prog(t, 71.6, 72.3, easeOut);
+  return (
+    <>
+      <div style={{position: 'absolute', left: 303, top: 70, width: PH_W + 24, height: PH_H + 24, borderRadius: 48, background: NBK, boxShadow: `10px 10px 0 #25D366, 0 30px 60px rgba(0,0,0,0.25)`, transform: `translateY(${(1 - up) * 900}px) rotate(${(1 - up) * 8}deg)`, padding: 12, boxSizing: 'border-box'}}>
+        <div style={{position: 'relative', width: PH_W, height: PH_H, borderRadius: 36, overflow: 'hidden', background: '#fff'}}>
+          <Img src={PH(IMG.tiktok)} style={{position: 'absolute', left: 0, top: 0, width: PH_W, height: PH_H, transformOrigin: `${NUM.x}px ${NUM.y}px`, transform: `translate(${(PH_W / 2 - NUM.x) * z}px, ${(PH_H / 2 - NUM.y) * z}px) scale(${Z})`}} />
+          {ring > 0 && <svg style={{position: 'absolute', left: 0, top: 0}} width={PH_W} height={PH_H}><ellipse cx={PH_W / 2} cy={PH_H / 2} rx={150} ry={34} fill="none" stroke={RED} strokeWidth={7} strokeLinecap="round" pathLength={1} style={{strokeDasharray: 1, strokeDashoffset: 1 - ring}} transform={`rotate(-3 ${PH_W / 2} ${PH_H / 2})`} /></svg>}
+          <div style={{position: 'absolute', left: PH_W / 2 - 40, top: 8, width: 80, height: 22, borderRadius: 11, background: NBK}} />
+        </div>
+      </div>
+      {t > 71.9 && <div style={{position: 'absolute', left: 0, top: 70 + 12 + PH_H / 2 - 40, display: 'flex', alignItems: 'center', gap: 6, transform: `translateX(${Math.sin(t * 6) * 8}px) scale(${Math.min(1, spring(t, 71.9))})`}}><div style={{...nb('#25D366', 5), padding: '8px 14px', fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: '#fff'}}>WhatsApp</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 60, color: RED}}>→</div></div>}
+      {t > 72.2 && <div style={{position: 'absolute', left: 0, right: 0, top: 70 + PH_H + 40, display: 'flex', justifyContent: 'center'}}><NBadge at={72.2} text="ÉCRIS-MOI ICI · ACCOMPAGNEMENT PERSONNALISÉ" bg={NBK} rot={-1} size={24} /></div>}
     </>
   );
 };
