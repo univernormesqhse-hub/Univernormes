@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 61,
+ "count": 62,
  "items": [
   {
    "section": "templates",
@@ -897,6 +897,27 @@
    "hash": "4b396a264fb4",
    "path": "assets/roue-pdca/index.md",
    "preview": "assets/roue-pdca/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "scan-dangers",
+   "name": "Scan qui révèle les dangers cachés",
+   "description": "Carte « INTERVENTION SIMPLE » avec des cases en pointillés floues et grisées ; un faisceau turquoise balaie la carte de gauche à droite et chaque case se révèle au mot prononcé (icône nette, bord rouge plein, libellé) ; badge final « N DANGERS RÉVÉLÉS ».",
+   "quand": "Toute situation « ce qui paraît simple cache des risques » : analyse de tâche, JSA, visite de chantier, identification des dangers.",
+   "component": "src/jsaMetro/JsaMetro.tsx",
+   "demo": "Demo-ScanDangers",
+   "audio": null,
+   "tags": [
+    "scan",
+    "révélation",
+    "dangers",
+    "flou",
+    "JSA",
+    "identification"
+   ],
+   "hash": "198a1bfdd73a",
+   "path": "assets/scan-dangers/index.md",
+   "preview": "assets/scan-dangers/preview.mp4"
   },
   {
    "section": "assets",
