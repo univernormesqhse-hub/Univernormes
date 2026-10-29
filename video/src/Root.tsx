@@ -208,6 +208,7 @@ import {EvalRisquesMetro, EVAL_RISQUES_METRO_FRAMES} from './evalRisquesMetro/Ev
 import {Audit13Metro, AUDIT13_METRO_FRAMES} from './audit13Metro/Audit13Metro';
 import {CauseriesMetro, CAUSERIES_METRO_FRAMES} from './causeriesMetro/CauseriesMetro';
 import {PartiesMetro, PARTIES_METRO_FRAMES} from './partiesMetro/PartiesMetro';
+import {FlashInfoMetro, FLASH_INFO_METRO_FRAMES} from './flashInfoMetro/FlashInfoMetro';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -431,6 +432,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseAudit13Metro" component={Audit13Metro} durationInFrames={AUDIT13_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseCauseriesMetro" component={CauseriesMetro} durationInFrames={CAUSERIES_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondensePartiesMetro" component={PartiesMetro} durationInFrames={PARTIES_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseFlashInfoMetro" component={FlashInfoMetro} durationInFrames={FLASH_INFO_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <LibraryDemos />
