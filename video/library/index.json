@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 64,
+ "count": 65,
  "items": [
   {
    "section": "templates",
@@ -567,6 +567,27 @@
    "hash": "1d687c3314ac",
    "path": "assets/grave-marbre/index.md",
    "preview": "assets/grave-marbre/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "iceberg-plongee",
+   "name": "Iceberg avec plongée sous l'eau et racines",
+   "description": "Iceberg néo-brutal : pointe blanche « erreur humaine » au-dessus d'une ligne d'eau ondulante, puis la caméra plonge (translation verticale) sous la surface ; la masse immergée s'opacifie avec « cause profonde ? » et des points d'interrogation qui flottent, bulles qui montent, puis des racines brunes qui se tracent sous l'iceberg (causes profondes, facteurs contributifs).",
+   "quand": "Toute notion « partie visible / partie cachée » : erreur humaine vs causes profondes, analyse d'accident, pyramide de Bird, culture sécurité, coûts cachés.",
+   "component": "src/taprootMetro/TaprootMetro.tsx",
+   "demo": "Demo-IcebergPlongee",
+   "audio": null,
+   "tags": [
+    "iceberg",
+    "plongée",
+    "causes profondes",
+    "racines",
+    "enquête",
+    "accident"
+   ],
+   "hash": "728362a8c9ee",
+   "path": "assets/iceberg-plongee/index.md",
+   "preview": "assets/iceberg-plongee/preview.mp4"
   },
   {
    "section": "assets",
