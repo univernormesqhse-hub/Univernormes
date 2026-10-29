@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-69 motions validés. Galerie visuelle : `library/gallery.html`.
+70 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (65)
+## Assets (66)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -28,6 +28,7 @@
 | [Carte qui se retourne en 3D](assets/carte-retournee-3d/index.md) | Panneau rouge « PARLER » qui bascule sur l’axe X (rotateX 180°) et révèle au dos le panneau vert « ÉCOUTER ». | Inversion de posture, avant/après, mythe/réalité. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/carte-retournee-3d/preview.mp4) |
 | [Cercle de causerie (participants, écoute, réticences, échanges)](assets/cercle-causerie/index.md) | Animateur en photo détourée au centre d'un cercle pointillé tournant ; 8 participants en pastilles néo-brutales qui popent un à un. Modes pilotés par le temps : bulles d'écoute, barres de niveau, recul grisé des participants (« réticences »), liaisons en pointillés animés vers chacun (« échange »), mains levées (« tout le monde participe »), halo doré final. | Toute capsule sur la causerie / le quart d'heure sécurité, l'animation d'équipe, la communication terrain, la participation, l'écoute active. | `src/animTerrainMetro/AnimTerrainMetro.tsx` | [mp4](assets/cercle-causerie/preview.mp4) |
 | [Cercle vicieux qui éclate](assets/cercle-vicieux-brise/index.md) | Deux flèches tournent en boucle avec le paradoxe au centre, puis éclatent en morceaux et laissent place à la solution (médaille). | Paradoxe, blocage, boucle à casser (« pas d’expérience → pas de job »). | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/cercle-vicieux-brise/preview.mp4) |
+| [Checklist d'audit sur écritoire (13 lignes cochées en cascade + compteur + tampon)](assets/checklist-audit/index.md) | Écritoire néo-brutale crème avec pince grise : 13 lignes (case, pictogramme, libellé numéroté) dont les cases se cochent en cascade rapide (spring + clic sonore), compteur géant qui passe de 0 à 13 et vire au vert en pulsant, tampon « PRÊT POUR L'AUDIT ? », puces d'accompagnement en dessous ; s'enchaîne avec le téléphone TikTok et le numéro WhatsApp entouré. Va de pair avec le petit compteur « n / 13 » à jauge circulaire affiché dans chaque scène d'élément. | Récapitulatif final d'une liste de contrôle (exigences d'audit, documents à présenter, points de vérification d'une inspection, prérequis d'un permis) ; montrer qu'on est prêt. | `src/audit13Metro/Audit13Metro.tsx` | [mp4](assets/checklist-audit/preview.mp4) |
 | [Idée reçue barrée puis checklist déchirée](assets/checklist-dechiree/index.md) | Checklist de contraintes cochée mécaniquement + tampon « AMENDE », barre de recherche dont le 1er résultat (l'idée reçue) est barré en rouge, puis la page se déchire en deux moitiés qui s'écartent sur « en réalité ». | Casser un cliché, opposer « ce qu'on croit » et « ce qui est vrai », ouverture d'une capsule. | `src/piliersPrevMetro/PiliersPrevMetro.tsx` | [mp4](assets/checklist-dechiree/preview.mp4) |
 | [Circuit fermé (flux descendants / montants)](assets/circuit-ferme/index.md) | Dézoom sur l’organigramme complet : flèches bleues (directives) et vertes (remontées) passent en pointillés qui défilent, des pastilles circulent dans les deux sens, badge « CIRCUIT FERMÉ ». | Conclure sur une boucle de rétroaction : PDCA, remontée terrain, amélioration continue. | `src/equipeIsac/EquipeIsac.tsx` | [mp4](assets/circuit-ferme/preview.mp4) |
 | [Citation tapée + onde de choc](assets/citation-onde-de-choc/index.md) | Citation qui s’écrit lettre à lettre avec guillemet géant et mot clé surligné, puis la carte tremble, trois ondes concentriques et tampon. | Phrase déclic, verbatim marquant, révélation choc. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/citation-onde-de-choc/preview.mp4) |
