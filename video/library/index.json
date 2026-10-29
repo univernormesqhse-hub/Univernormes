@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 66,
+ "count": 67,
  "items": [
   {
    "section": "templates",
@@ -944,6 +944,27 @@
    "hash": "f8abb3c971fb",
    "path": "assets/reseau-graphe/index.md",
    "preview": "assets/reseau-graphe/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "roue-cycle",
+   "name": "Roue du cycle (segments qui volent se souder, puis rotation)",
+   "description": "Roue néo-brutale à 7 segments colorés (secteurs d'anneau SVG à contour noir épais) : chaque segment arrive de l'extérieur dans l'axe de son angle avec un rebond (spring) au moment où la voix le nomme, son pictogramme et son libellé restent droits ; une fois complète, la roue se met à tourner avec une accélération douce, moyeu blanc lumineux (« CYCLE CONTINU ») au halo pulsé et poussière dorée.",
+   "quand": "Tout cycle ou processus bouclé à énumérer : PDCA, 7 missions du responsable QHSE, étapes d'un audit, cycle de vie d'un document, amélioration continue, roue de Deming.",
+   "component": "src/missionsMetro/MissionsMetro.tsx",
+   "demo": "Demo-RoueCycle",
+   "audio": null,
+   "tags": [
+    "roue",
+    "cycle",
+    "amélioration continue",
+    "PDCA",
+    "segments",
+    "neo-brutal"
+   ],
+   "hash": "e4bf5f8c4651",
+   "path": "assets/roue-cycle/index.md",
+   "preview": "assets/roue-cycle/preview.mp4"
   },
   {
    "section": "assets",

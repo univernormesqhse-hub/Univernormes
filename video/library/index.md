@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-66 motions validés. Galerie visuelle : `library/gallery.html`.
+67 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (62)
+## Assets (63)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -62,6 +62,7 @@
 | [4 ingrédients sur plan (silence + hiérarchie qui s’aplatit)](assets/quatre-ingredients-blueprint/index.md) | Grille 2×2 de cases pointillées qui se remplissent ; au « silence » les autres cases floutent et l’égaliseur tombe à zéro ; à la « fiction » l’organigramme pyramidal s’aplatit en ligne. | Liste de 3 à 4 conditions / piliers avec un effet propre à chacun. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/quatre-ingredients-blueprint/preview.mp4) |
 | [Radar qui détecte des cibles](assets/radar-cibles/index.md) | Écran radar vert, balayage conique en rotation, cibles qui apparaissent avec onde de ping à chaque mot clé. | Lister des pistes, des cibles, des zones à prospecter ou à surveiller. | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/radar-cibles/preview.mp4) |
 | [Graphe de réseau qui se tisse](assets/reseau-graphe/index.md) | Bulle « idée reçue » + tampon FAUX, puis nœud central et contacts reliés par des traits pointillés animés qui défilent. | Montrer un réseau, des parties prenantes, des interactions ; démonter une idée reçue. | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/reseau-graphe/preview.mp4) |
+| [Roue du cycle (segments qui volent se souder, puis rotation)](assets/roue-cycle/index.md) | Roue néo-brutale à 7 segments colorés (secteurs d'anneau SVG à contour noir épais) : chaque segment arrive de l'extérieur dans l'axe de son angle avec un rebond (spring) au moment où la voix le nomme, son pictogramme et son libellé restent droits ; une fois complète, la roue se met à tourner avec une accélération douce, moyeu blanc lumineux (« CYCLE CONTINU ») au halo pulsé et poussière dorée. | Tout cycle ou processus bouclé à énumérer : PDCA, 7 missions du responsable QHSE, étapes d'un audit, cycle de vie d'un document, amélioration continue, roue de Deming. | `src/missionsMetro/MissionsMetro.tsx` | [mp4](assets/roue-cycle/preview.mp4) |
 | [Roue de Deming qui se construit puis gravit la pente](assets/roue-deming-pente/index.md) | Roue PDCA en SVG (P D C A, quadrants qui poussent au mot prononcé, libellés autour), qui se met à tourner puis roule en montant une pente marine ; la cale « ISO 9001 » se glisse sous la roue. | PDCA, amélioration continue, progrès qui ne recule pas, base d'un système de management. | `src/qualiteOutilsMetro/QualiteOutilsMetro.tsx` | [mp4](assets/roue-deming-pente/preview.mp4) |
 | [Roue PDCA qui se remplit puis tourne](assets/roue-pdca/index.md) | Quatre quarts colorés (Planifier, Faire, Vérifier, Agir) qui s’allument sur la voix, moyeu « PDCA », puis la roue tourne en continu (lettres contre-rotées pour rester lisibles). | Expliquer un cycle (PDCA, amélioration continue, boucle de rétroaction). | `src/kaizen/Kaizen.tsx` | [mp4](assets/roue-pdca/preview.mp4) |
 | [Scan qui révèle les dangers cachés](assets/scan-dangers/index.md) | Carte « INTERVENTION SIMPLE » avec des cases en pointillés floues et grisées ; un faisceau turquoise balaie la carte de gauche à droite et chaque case se révèle au mot prononcé (icône nette, bord rouge plein, libellé) ; badge final « N DANGERS RÉVÉLÉS ». | Toute situation « ce qui paraît simple cache des risques » : analyse de tâche, JSA, visite de chantier, identification des dangers. | `src/jsaMetro/JsaMetro.tsx` | [mp4](assets/scan-dangers/preview.mp4) |
