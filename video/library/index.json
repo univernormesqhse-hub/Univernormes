@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 74,
+ "count": 75,
  "items": [
   {
    "section": "templates",
@@ -78,6 +78,27 @@
    "hash": "8528336b2437",
    "path": "assets/arbre-scenarios/index.md",
    "preview": "assets/arbre-scenarios/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "arcade-niveaux",
+   "name": "Écran d'arcade à niveaux qui se débloquent",
+   "description": "Écran « SÉLECTION DU CHALLENGE » nuit étoilée avec titre néon jaune et « ▶ APPUIE SUR START » clignotant : grille 4 × 2 de tuiles verrouillées (cadenas, numéro) ; à chaque élément annoncé par la voix, la tuile s'allume dans sa couleur avec halo, pictogramme et « NIV. n », le cadenas saute en tournoyant ; la même grille en miniature (manette) reste dans le coin de chaque scène ; slam « NIVEAU n DÉBLOQUÉ » avec confettis et ondes.",
+   "quand": "Gamification : challenges, concours, quiz, parcours de formation, étapes d'un programme ou d'un plan d'action à débloquer une à une.",
+   "component": "src/challengesMetro/ChallengesMetro.tsx",
+   "demo": "Demo-ArcadeNiveaux",
+   "audio": null,
+   "tags": [
+    "arcade",
+    "gamification",
+    "niveaux",
+    "challenge",
+    "cadenas",
+    "néon"
+   ],
+   "hash": "acb743a00420",
+   "path": "assets/arcade-niveaux/index.md",
+   "preview": "assets/arcade-niveaux/preview.mp4"
   },
   {
    "section": "assets",

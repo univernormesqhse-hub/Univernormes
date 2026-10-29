@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-74 motions validés. Galerie visuelle : `library/gallery.html`.
+75 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,13 +10,14 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (70)
+## Assets (71)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
 | [Acronyme qui se déplie lettre par lettre](assets/acronyme-deplie/index.md) | Colonne de tuiles-lettres qui pivotent et se colorent au mot prononcé, chaque carte se déroule (scaleX) avec le mot complet, dernier mot en couleur. | Expliquer un sigle (AMDEC, SMART, QHSE, PDCA…) en synchronisation avec la voix. | `src/amdec/Amdec.tsx` | [mp4](assets/acronyme-deplie/preview.mp4) |
 | [Affiche de couloir arrachée (récit)](assets/affiche-arrachee/index.md) | Décor de couloir avec affiche « KAIZEN – Amélioration continue ! » punaisée près d’une machine à café, puis l’affiche est arrachée et tombe, laissant sa trace en pointillés. | Démonter un cliché, opposer slogan et réalité (skill capsule-recit-illustre). | `src/kaizen/Kaizen.tsx` | [mp4](assets/affiche-arrachee/preview.mp4) |
 | [Arbre des scénarios « ET SI… ? »](assets/arbre-scenarios/index.md) | Nœud central (bloc néo-brutal coloré, icône + libellé) d'où poussent des branches en courbes de Bézier qui se tracent une à une, chacune terminée par une carte « ET SI… ? » (icône + scénario) qui grandit depuis son point d'attache au moment où la voix l'énonce. | Toute arborescence de scénarios, causes ou conséquences : What if / SWIFT, arbre des causes simplifié, cartographie d'options, « si… alors… ». | `src/swiftMetro/SwiftMetro.tsx` | [mp4](assets/arbre-scenarios/preview.mp4) |
+| [Écran d'arcade à niveaux qui se débloquent](assets/arcade-niveaux/index.md) | Écran « SÉLECTION DU CHALLENGE » nuit étoilée avec titre néon jaune et « ▶ APPUIE SUR START » clignotant : grille 4 × 2 de tuiles verrouillées (cadenas, numéro) ; à chaque élément annoncé par la voix, la tuile s'allume dans sa couleur avec halo, pictogramme et « NIV. n », le cadenas saute en tournoyant ; la même grille en miniature (manette) reste dans le coin de chaque scène ; slam « NIVEAU n DÉBLOQUÉ » avec confettis et ondes. | Gamification : challenges, concours, quiz, parcours de formation, étapes d'un programme ou d'un plan d'action à débloquer une à une. | `src/challengesMetro/ChallengesMetro.tsx` | [mp4](assets/arcade-niveaux/preview.mp4) |
 | [Arête de poisson (Ishikawa) filmée par une caméra](assets/arete-camera/index.md) | Tête « problème », colonne vertébrale qui se trace, 5 arêtes qui poussent, caméra qui plonge sur chaque M avec médaillon polaroïd, causes greffées au mot prononcé, étoiles « causes principales », petites branches secondaires, faisceau qui balaie, tête qui passe au vert « problème résolu ». | Ishikawa / 5 M, analyse de causes, tout schéma hiérarchique à explorer branche par branche. | `src/ishikawaMetro/IshikawaMetro.tsx` | [mp4](assets/arete-camera/preview.mp4) |
 | [Atelier encombré balayé, voies de circulation tracées](assets/atelier-balaye/index.md) | Sol couvert d'objets en vrac (cartons, outils), un opérateur glisse (« GLISSADE ! »), puis tout est balayé vers les rayonnages pendant que deux bandes jaunes tracent l'allée et qu'un opérateur la remonte ; tampon « ABSOLU ». | Rangement, 5S, voies de circulation, chutes de plain-pied, avant / après d'un poste. | `src/sainSaufMetro/SainSaufMetro.tsx` | [mp4](assets/atelier-balaye/preview.mp4) |
 | [Balance vivante (blocs qui tombent, fléau qui s'équilibre, disque au sommet)](assets/balance-vivante/index.md) | Balance néo-brutale à fléau en bois sur un pied triangulaire marine : des blocs étiquetés tombent du haut avec rebond (spring) sur le plateau gauche ou droit ; l'inclinaison est calculée en continu à partir du poids posé de chaque côté (± 13°, légère respiration), les blocs suivent l'angle ; option d'un disque lumineux (« HSE ») qui descend se poser au sommet, remet le fléau à l'horizontale et trace un arc pointillé entre les deux plateaux, avec libellés de plateaux remplaçables (PRÉVENTION / CONTRÔLE → PÉDAGOGIE / AUTORITÉ). | Toute opposition à doser ou à concilier : prévention vs contrôle, pédagogie vs autorité, coûts vs bénéfices, gravité vs probabilité, exigences vs moyens ; montrer qu'un rôle fait tenir les deux côtés. | `src/rhseMetro/RhseMetro.tsx` | [mp4](assets/balance-vivante/preview.mp4) |
