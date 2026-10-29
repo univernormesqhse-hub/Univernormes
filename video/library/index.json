@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 72,
+ "count": 73,
  "items": [
   {
    "section": "templates",
@@ -199,6 +199,27 @@
    "hash": "090b8a844e73",
    "path": "assets/bouton-s-abonner/index.md",
    "preview": "assets/bouton-s-abonner/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "bulletin-flash",
+   "name": "Bulletin « flash info » qui se remplit (vignette + assemblage final)",
+   "description": "Bulletin A4 néo-brutal (bandeau marine « FLASH · INFO QSSE », bande tricolore, 5 blocs-rubriques à liseré coloré, pictogramme et lignes de texte factices) ; en vignette réduite dans le coin de chaque scène, il s'allume rubrique par rubrique au fil de la voix ; au final, les 5 blocs arrivent en cascade, reçoivent des coches vertes, la bande se colore jaune / orange / vert (code couleur qualité, sécurité, environnement) avec étiquettes, puis carte « satisfaction lecteurs » (étoiles qui se remplissent + courbe montante).",
+   "quand": "Présenter un support de communication à construire (flash info, affiche du mois, journal interne, compte rendu type, rapport mensuel) en montrant sa structure qui se remplit.",
+   "component": "src/flashInfoMetro/FlashInfoMetro.tsx",
+   "demo": "Demo-BulletinFlash",
+   "audio": null,
+   "tags": [
+    "bulletin",
+    "flash info",
+    "communication",
+    "rubriques",
+    "code couleur",
+    "satisfaction"
+   ],
+   "hash": "4e6cb8687bf2",
+   "path": "assets/bulletin-flash/index.md",
+   "preview": "assets/bulletin-flash/preview.mp4"
   },
   {
    "section": "assets",

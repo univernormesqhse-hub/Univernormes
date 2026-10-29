@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-72 motions validés. Galerie visuelle : `library/gallery.html`.
+73 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (68)
+## Assets (69)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -23,6 +23,7 @@
 | [Barre de recherche qui trouve et ouvre](assets/barre-recherche-ouvre/index.md) | Requête tapée lettre à lettre, liste de résultats scannée, « TROUVÉ ✓ », curseur qui clique et la fenêtre du résultat s’ouvre en plein cadre. | Introduire une notion clé, une comparaison ou un outil ; une fois par capsule. | `src/langageDg/LangageDg.tsx` | [mp4](assets/barre-recherche-ouvre/preview.mp4) |
 | [Carte « besoin » → carte outil retournée en 3D](assets/besoin-outil-flip/index.md) | Carte BESOIN N°k (indice puis question tapée au mot prononcé) à gauche, carte noire « ? » à droite qui se retourne en 3D (rotateY 180°, halo jaune) sur le nom de l'outil en couleur ; le visuel de l'outil se construit dessous. | Toute capsule « quel outil pour quel problème », FAQ, problème → solution, quiz. | `src/bonOutilMetro/BonOutilMetro.tsx` | [mp4](assets/besoin-outil-flip/preview.mp4) |
 | [Bouton « S'abonner » cliqué (néo-brutal)](assets/bouton-s-abonner/index.md) | Bouton rouge à ombre dure, curseur qui glisse et clique, bouton qui s'enfonce et devient « ✓ Abonné » noir, onde de choc, chips thématiques qui s'allument. | Appel à l'abonnement en fin de capsule (skill capsule-ui-neo-brutal). | `src/plansPrev/PlansPrevention.tsx` | [mp4](assets/bouton-s-abonner/preview.mp4) |
+| [Bulletin « flash info » qui se remplit (vignette + assemblage final)](assets/bulletin-flash/index.md) | Bulletin A4 néo-brutal (bandeau marine « FLASH · INFO QSSE », bande tricolore, 5 blocs-rubriques à liseré coloré, pictogramme et lignes de texte factices) ; en vignette réduite dans le coin de chaque scène, il s'allume rubrique par rubrique au fil de la voix ; au final, les 5 blocs arrivent en cascade, reçoivent des coches vertes, la bande se colore jaune / orange / vert (code couleur qualité, sécurité, environnement) avec étiquettes, puis carte « satisfaction lecteurs » (étoiles qui se remplissent + courbe montante). | Présenter un support de communication à construire (flash info, affiche du mois, journal interne, compte rendu type, rapport mensuel) en montrant sa structure qui se remplit. | `src/flashInfoMetro/FlashInfoMetro.tsx` | [mp4](assets/bulletin-flash/preview.mp4) |
 | [Cadenas de consignation + jauge d'énergie](assets/cadenas-consignation/index.md) | Photo de la machine qui se désature, cadenas SVG dont l'anse se ferme, étiquette « CONSIGNÉ – ne pas manœuvrer », jauge d'énergie qui tombe à 0 ✓. | Illustrer une consignation / LOTO, une mise en sécurité avant intervention, ou tout « on coupe avant d'agir ». | `src/plansPrev/PlansPrevention.tsx` | [mp4](assets/cadenas-consignation/preview.mp4) |
 | [Carte néo-brutaliste + tuiles cochées](assets/carte-norme-neo-brutal/index.md) | Carte blanche bordure noire / ombre dure, en-tête couleur avec pictogramme, badge incliné « n/9 » qui se colle, puis tuiles grisées qui s’activent une à une avec coche ronde. | Présenter un élément d’une série (norme, outil, étape) et ses bénéfices au fil de la voix. | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/carte-norme-neo-brutal/preview.mp4) |
 | [Carte qui se retourne en 3D](assets/carte-retournee-3d/index.md) | Panneau rouge « PARLER » qui bascule sur l’axe X (rotateX 180°) et révèle au dos le panneau vert « ÉCOUTER ». | Inversion de posture, avant/après, mythe/réalité. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/carte-retournee-3d/preview.mp4) |
