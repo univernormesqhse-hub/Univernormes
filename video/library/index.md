@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-71 motions validés. Galerie visuelle : `library/gallery.html`.
+72 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (67)
+## Assets (68)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -64,6 +64,7 @@
 | [Pyramide de priorités + dominos](assets/pyramide-domino/index.md) | Étages néo-brutalistes qui tombent du haut (sécurité → qualité → productivité), tampon « NON NÉGOCIABLE », puis huit dominos qui basculent en cascade (« effet domino »). | Hiérarchiser des priorités, montrer un enchaînement de conséquences. | `src/kaizen/Kaizen.tsx` | [mp4](assets/pyramide-domino/preview.mp4) |
 | [4 ingrédients sur plan (silence + hiérarchie qui s’aplatit)](assets/quatre-ingredients-blueprint/index.md) | Grille 2×2 de cases pointillées qui se remplissent ; au « silence » les autres cases floutent et l’égaliseur tombe à zéro ; à la « fiction » l’organigramme pyramidal s’aplatit en ligne. | Liste de 3 à 4 conditions / piliers avec un effet propre à chacun. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/quatre-ingredients-blueprint/preview.mp4) |
 | [Radar qui détecte des cibles](assets/radar-cibles/index.md) | Écran radar vert, balayage conique en rotation, cibles qui apparaissent avec onde de ping à chaque mot clé. | Lister des pistes, des cibles, des zones à prospecter ou à surveiller. | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/radar-cibles/preview.mp4) |
+| [Radar des parties intéressées (orbite, flux entrants / sortants, badges exigences)](assets/radar-parties/index.md) | Panneau néo-brutal avec trois anneaux pointillés autour d'un moyeu « ton entreprise » au halo doré pulsé ; 9 nœuds colorés (pictogramme + libellé) apparaissent en cascade et orbitent lentement, reliés au centre par des rayons ; des particules bleues filent vers le centre (« qui peut influencer ? ») puis des particules orange partent vers l'extérieur (« qui est affecté ? ») ; chaque nœud reçoit ensuite une coche verte « exigences », avec un libellé barré « remplir un simple tableau » au début ; se replie pour laisser place au téléphone TikTok/WhatsApp. | Cartographie des parties intéressées (ISO 9001/14001/45001 § 4.2), parties prenantes RSE, acteurs d'un projet, interfaces d'un processus ; montrer les influences dans les deux sens. | `src/partiesMetro/PartiesMetro.tsx` | [mp4](assets/radar-parties/preview.mp4) |
 | [Graphe de réseau qui se tisse](assets/reseau-graphe/index.md) | Bulle « idée reçue » + tampon FAUX, puis nœud central et contacts reliés par des traits pointillés animés qui défilent. | Montrer un réseau, des parties prenantes, des interactions ; démonter une idée reçue. | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/reseau-graphe/preview.mp4) |
 | [Roue du cycle (segments qui volent se souder, puis rotation)](assets/roue-cycle/index.md) | Roue néo-brutale à 7 segments colorés (secteurs d'anneau SVG à contour noir épais) : chaque segment arrive de l'extérieur dans l'axe de son angle avec un rebond (spring) au moment où la voix le nomme, son pictogramme et son libellé restent droits ; une fois complète, la roue se met à tourner avec une accélération douce, moyeu blanc lumineux (« CYCLE CONTINU ») au halo pulsé et poussière dorée. | Tout cycle ou processus bouclé à énumérer : PDCA, 7 missions du responsable QHSE, étapes d'un audit, cycle de vie d'un document, amélioration continue, roue de Deming. | `src/missionsMetro/MissionsMetro.tsx` | [mp4](assets/roue-cycle/preview.mp4) |
 | [Roue de Deming qui se construit puis gravit la pente](assets/roue-deming-pente/index.md) | Roue PDCA en SVG (P D C A, quadrants qui poussent au mot prononcé, libellés autour), qui se met à tourner puis roule en montant une pente marine ; la cale « ISO 9001 » se glisse sous la roue. | PDCA, amélioration continue, progrès qui ne recule pas, base d'un système de management. | `src/qualiteOutilsMetro/QualiteOutilsMetro.tsx` | [mp4](assets/roue-deming-pente/preview.mp4) |
