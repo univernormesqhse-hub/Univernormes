@@ -27,6 +27,11 @@ const IMG = {
   c1: 'ident/machine.jpg',
   c2: 'promo/hse-machine.jpg',
   tiktok: 'taproot-gen/tiktok-profil.jpg',
+  iceberg: 'taproot-gen/iceberg.jpg',
+  tableau: 'taproot-gen/tableau-preuves.jpg',
+  accuser: 'taproot-gen/accuser-systeme.jpg',
+  arbre: 'taproot-gen/arbre-incident.jpg',
+  dossier: 'taproot-gen/dossier-cloture.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -506,24 +511,12 @@ const Cover: React.FC = () => {
 };
 
 /* ═════════════ Fil wahou : l'iceberg ═════════════ */
-const Iceberg: React.FC<{dive: number; tipAt: number; roots?: number}> = ({dive, tipAt, roots}) => {
+const Iceberg: React.FC<{dive: number; tipAt: number; roots?: number}> = ({dive, tipAt}) => {
   const t = useT();
-  const WL = 260;
   return (
-    <div style={{position: 'absolute', left: 0, top: 0, width: 960, height: 930, overflow: 'hidden', borderRadius: 24}}>
-      <div style={{position: 'absolute', left: 0, top: -dive * 300, width: 960, height: 1400}}>
-        <div style={{position: 'absolute', left: 0, top: WL, width: 960, height: 1200, background: `linear-gradient(180deg, #4FA3D9, ${NAVY})`}} />
-        <svg style={{position: 'absolute', left: 0, top: 0}} width={960} height={1400}>
-          <path d={`M 0 ${WL} Q 120 ${WL - 12 + Math.sin(t * 2) * 6} 240 ${WL} T 480 ${WL} T 720 ${WL} T 960 ${WL}`} fill="none" stroke="#fff" strokeWidth={6} opacity={0.8} />
-          <polygon points={`380,${WL} 450,${WL - 170} 500,${WL - 210} 560,${WL - 150} 610,${WL}`} fill="#fff" stroke={NBK} strokeWidth={6} opacity={pop(t, tipAt - 0.2)} />
-          <polygon points={`380,${WL} 610,${WL} 760,${WL + 220} 720,${WL + 480} 560,${WL + 620} 360,${WL + 580} 220,${WL + 380} 260,${WL + 160}`} fill="#CFE8F7" stroke={NBK} strokeWidth={6} opacity={0.4 + 0.6 * dive} />
-          {roots !== undefined && t > roots && [0, 1, 2, 3, 4].map((k) => { const x0 = 300 + k * 90; const p = prog(t, roots + k * 0.12, roots + 0.8 + k * 0.12); return <path key={k} d={`M ${x0} ${WL + 560} C ${x0} ${WL + 640}, ${x0 + (k - 2) * 60} ${WL + 700}, ${x0 + (k - 2) * 120} ${WL + 820}`} fill="none" stroke="#8C5A2B" strokeWidth={10} strokeLinecap="round" pathLength={1} style={{strokeDasharray: 1, strokeDashoffset: 1 - p}} />; })}
-        </svg>
-        <div style={{position: 'absolute', left: 385, top: WL - 120, width: 220, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 26, color: RED, opacity: pop(t, tipAt)}}>erreur<br />humaine</div>
-        <div style={{position: 'absolute', left: 300, top: WL + 260, width: 400, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 40, color: NAVY, opacity: dive}}>{t < 25.8 ? 'cause profonde ?' : 'causes profondes'}</div>
-        {dive > 0.5 && t < 25.8 && [0, 1, 2].map((k) => <div key={k} style={{position: 'absolute', left: 320 + k * 130, top: WL + 360 + Math.sin(t * 3 + k) * 10, fontFamily: sansFont, fontWeight: 900, fontSize: 70, color: NAVY, opacity: 0.6}}>?</div>)}
-        {Array.from({length: 10}, (_, i) => { const p = ((t * 0.3 + i * 0.1) % 1); return <div key={i} style={{position: 'absolute', left: 60 + i * 90, top: WL + 900 - p * 640, width: 12 + (i % 3) * 6, height: 12 + (i % 3) * 6, borderRadius: 20, border: '3px solid #ffffff99', opacity: dive * 0.8}} />; })}
-      </div>
+    <div style={{...nb('#FBF3E2', 8), position: 'absolute', left: 0, top: 0, width: 960, height: 930, overflow: 'hidden', borderRadius: 24, opacity: tipAt ? pop(t, tipAt - 0.3) : 1}}>
+      <Img src={PH(IMG.iceberg)} style={{position: 'absolute', left: 0, top: lerp(-60, -760, dive), width: 960, height: 1708, objectFit: 'cover'}} />
+      {Array.from({length: 10}, (_, i) => { const p = ((t * 0.3 + i * 0.1) % 1); return <div key={i} style={{position: 'absolute', left: 60 + i * 90, top: 930 - p * 640, width: 12 + (i % 3) * 6, height: 12 + (i % 3) * 6, borderRadius: 20, border: '3px solid #ffffffaa', opacity: dive * 0.8}} />; })}
     </div>
   );
 };
@@ -535,12 +528,8 @@ const Intro: React.FC = () => {
     <Out end={8.45}>
       <Heads h={[[3.2, ['Accuser', 'l’opérateur', '?'], [0, 1]], [5.2, ['Ou', 'le', 'système', '?'], [2]]]} />
       <SearchOpen x={60} y={440} w={960} h={880} at={2.9} query="erreur humaine" results={['blâmer l’opérateur', 'chercher les causes profondes', 'clôturer l’enquête']} found={1} foundAt={4.4} clickAt={4.8} c={NAVY}>
-        <div style={{position: 'absolute', left: 0, right: 0, top: 40, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 60}}>
-          <div style={{position: 'relative', textAlign: 'center', opacity: lerp(1, 0.45, prog(t, 6.0, 6.6))}}><F n="ouvrier" size={200} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 28}}>l’opérateur</div>{[0, 1, 2].map((k) => <div key={k} style={{position: 'absolute', left: -60 + k * 110, top: -70, transform: `rotate(${150 + (k - 1) * 30}deg) scale(${pop(t, 5.6 + k * 0.1)})`, fontSize: 60}}><F n="main-levee" size={60} /></div>)}</div>
-          <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 60}}>+</div>
-          <div style={{textAlign: 'center', transform: `scale(${t > 6.2 ? Math.min(1.1, spring(t, 6.2)) : 0.8})`}}><div style={{display: 'flex'}}>{[0, 1].map((k) => <div key={k} style={{transform: `rotate(${(k ? -1 : 1) * t * 90}deg)`, marginLeft: k ? -30 : 0}}><F n="engrenage" size={130} /></div>)}</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 28, color: BLUE}}>le système de travail</div></div>
-        </div>
-        {t > 6.8 && <div style={{position: 'absolute', left: 0, right: 0, top: 400, display: 'flex', justifyContent: 'center'}}><NBadge at={6.8} text="À EXAMINER AUSSI" bg={BLUE} rot={-3} size={40} /></div>}
+        <div style={{position: 'absolute', left: 245, top: 0, width: 460, height: 818, overflow: 'hidden', borderRadius: 16}}><Img src={PH(IMG.accuser)} style={{width: 460, height: 818, objectFit: 'cover', transformOrigin: '50% 60%', transform: `scale(${lerp(1, 1.12, prog(t, 5.4, 8.4))})`}} /></div>
+        {t > 6.8 && <div style={{position: 'absolute', left: 0, right: 0, top: 700, display: 'flex', justifyContent: 'center'}}><NBadge at={6.8} text="À EXAMINER AUSSI" bg={BLUE} rot={-3} size={40} /></div>}
       </SearchOpen>
     </Out>
   );
@@ -563,6 +552,7 @@ const Accident: React.FC = () => {
             {crack > 0 && <div style={{position: 'absolute', left: 0, top: 0, border: `8px solid ${GREEN}`, borderRadius: 14, padding: '8px 26px', fontFamily: sansFont, fontWeight: 900, fontSize: 58, color: GREEN, background: 'rgba(255,255,255,0.85)', clipPath: 'polygon(48% 0, 100% 0, 100% 100%, 55% 100%)', transform: `translate(${crack * 40}px, ${crack * 50}px) rotate(${crack * 12}deg)`}}>CLÔTURÉE</div>}
           </div>}
           <Stamp at={15.0} text="ABSOLUMENT PAS" c={RED} x={60} y={180} rot={6} size={56} />
+          {t > 15.5 && <div style={{position: 'absolute', inset: -10, overflow: 'hidden', borderRadius: 18, opacity: prog(t, 15.5, 15.9)}}><Img src={PH(IMG.dossier)} style={{width: 620, height: 1103, objectFit: 'cover', transform: `translateY(${lerp(-200, -320, prog(t, 15.5, 17.4))}px)`}} /></div>}
         </div> : <Iceberg dive={prog(t, 20.4, 21.6, easeInOut)} tipAt={17.9} />}
       </Abs>
     </Out>
@@ -599,9 +589,8 @@ const Pistes: React.FC = () => {
     <Out end={51.25}>
       <Heads h={[[42.3, ['5', 'pistes'], [1]], [43.5, ['Les', 'équipements'], [1]], [45.8, ['Les', 'conditions'], [1]], [48.8, ['Les', 'barrières'], [1]]]} />
       <Abs x={60} y={440} w={960} h={930}>
-        <div style={{...nb(RED, 7), position: 'absolute', left: 330, top: 0, width: 300, height: 110, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 30, opacity: pop(t, 42.2)}}><F n="danger" size={60} />l’incident</div>
-        <svg style={{position: 'absolute', left: 0, top: 0}} width={960} height={930}>{PISTES.map(([, , a], k) => { const y = 200 + k * 140; const p = prog(t, Math.max(42.3, a) - 0.3, Math.max(42.3, a) + 0.2); return <path key={k} d={`M 480 110 C 480 ${y - 40}, ${k % 2 ? 640 : 320} ${y - 20}, ${k % 2 ? 620 : 340} ${y + 40}`} fill="none" stroke="#8C5A2B" strokeWidth={8} strokeLinecap="round" pathLength={1} style={{strokeDasharray: 1, strokeDashoffset: 1 - p}} />; })}</svg>
-        {PISTES.map(([l, ic, a], k) => { const on = t > Math.max(42.3, a); const L = k % 2 === 0; return <div key={l} style={{...nb('#fff', 6), boxShadow: `6px 6px 0 ${ORANGE}`, position: 'absolute', left: L ? 20 : 560, top: 180 + k * 140, width: 380, height: 110, display: 'flex', alignItems: 'center', gap: 12, padding: '0 16px', opacity: on ? 1 : 0, transform: `translateX(${on ? (1 - Math.min(1, spring(t, Math.max(42.3, a)))) * (L ? -300 : 300) : 0}px)`}}><F n={ic} size={70} /><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 26, lineHeight: 1.1, flex: 1}}>{l}</span><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 44, color: ORANGE}}>?</span></div>; })}
+        <div style={{...nb('#FBF3E2', 7), position: 'absolute', left: 232, top: 0, width: 496, height: 882, overflow: 'hidden', opacity: pop(t, 42.2)}}><Img src={PH(IMG.arbre)} style={{width: 496, height: 882, objectFit: 'cover', transformOrigin: '50% 70%', transform: `scale(${lerp(1.15, 1, prog(t, 42.2, 50.5))})`}} /></div>
+        {PISTES.map(([l, ic, a], k) => { const on = t > Math.max(42.3, a); const L = k % 2 === 0; return <div key={l} style={{...nb('#fff', 6), boxShadow: `6px 6px 0 ${ORANGE}`, position: 'absolute', left: L ? 0 : 700, top: 120 + k * 150, width: 260, height: 110, zIndex: 3, display: 'flex', alignItems: 'center', gap: 12, padding: '0 16px', opacity: on ? 1 : 0, transform: `translateX(${on ? (1 - Math.min(1, spring(t, Math.max(42.3, a)))) * (L ? -300 : 300) : 0}px)`}}><F n={ic} size={54} /><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 21, lineHeight: 1.1, flex: 1}}>{l}</span><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 36, color: ORANGE}}>?</span></div>; })}
       </Abs>
     </Out>
   );
@@ -614,10 +603,7 @@ const Faits: React.FC = () => {
     <Out end={66.65}>
       <Heads h={[[55.0, ['Pas', 'de', 'conclusions', 'hâtives'], [2, 3]], [57.6, ['Pas', 'd’excuse'], [1]], [60.3, ['Comprendre', 'les', 'mécanismes'], [0, 2]], [63.9, ['Des', 'actions', 'efficaces'], [1, 2]]]} />
       <Abs x={60} y={440} w={960} h={930}>
-        <div style={{...nb('#C9A26B', 8), position: 'absolute', left: 0, top: 0, width: 960, height: 440, backgroundImage: 'radial-gradient(#0002 2px, transparent 2px)', backgroundSize: '18px 18px', opacity: pop(t, 54.8)}}>
-          {[['fait', 'memo', 60, 40, -4], ['preuve', 'loupe', 330, 60, 3], ['témoin', 'bulle', 600, 30, -2], ['photo', 'carte', 160, 230, 5], ['mesure', 'equerre', 470, 240, -3]].map(([l, ic, x, y, r], k) => <div key={l as string} style={{position: 'absolute', left: x as number, top: y as number, width: 230, height: 150, background: '#fff', border: `4px solid ${NBK}`, boxShadow: '5px 5px 0 #0005', transform: `rotate(${r}deg) scale(${pop(t, 54.9 + k * 0.12)})`, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, fontFamily: sansFont, fontWeight: 900, fontSize: 26}}><div style={{position: 'absolute', top: -14, left: 100, width: 26, height: 26, borderRadius: 13, background: RED, border: `3px solid ${NBK}`}} /><F n={ic as string} size={60} />{l}</div>)}
-          <svg style={{position: 'absolute', left: 0, top: 0}} width={960} height={440}><path d="M 175 110 L 445 130 L 715 100 M 445 130 L 275 300 L 585 310" fill="none" stroke={RED} strokeWidth={4} pathLength={1} style={{strokeDasharray: 1, strokeDashoffset: 1 - prog(t, 55.6, 56.6)}} /></svg>
-        </div>
+        <div style={{...nb('#FBF3E2', 8), position: 'absolute', left: 0, top: 0, width: 960, height: 450, overflow: 'hidden', opacity: pop(t, 54.8)}}><Img src={PH(IMG.tableau)} style={{width: 960, height: 1708, objectFit: 'cover', transform: `translateY(${lerp(-280, -520, prog(t, 54.8, 66.6))}px)`}} /></div>
         <div style={{position: 'absolute', left: 0, top: 480, display: 'flex', flexDirection: 'column', gap: 14, width: 960}}>
           <div style={{position: 'relative', alignSelf: 'flex-start', ...nb('#fff', 5), padding: '10px 18px', fontFamily: sansFont, fontWeight: 900, fontSize: 28, color: DIM, opacity: pop(t, 56.0)}}>conclusions prématurées<Strk at={56.4} /></div>
           <div style={{position: 'relative', alignSelf: 'flex-start', ...nb('#fff', 5), padding: '10px 18px', fontFamily: sansFont, fontWeight: 900, fontSize: 28, color: DIM, opacity: pop(t, 58.2)}}>excuser les comportements dangereux<Strk at={58.9} /></div>
