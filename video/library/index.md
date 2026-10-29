@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-67 motions validés. Galerie visuelle : `library/gallery.html`.
+68 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (63)
+## Assets (64)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -34,6 +34,7 @@
 | [Coffre au trésor qui s’ouvre](assets/coffre-tresor/index.md) | Cadenas qui tombe, couvercle qui bascule, pièces d’or lumineuses qui remontent en continu. | Information précieuse, retour d’expérience, presque-accidents, « l’or » d’un sujet. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/coffre-tresor/preview.mp4) |
 | [Diagramme de Pareto vivant + court-circuit de la barre sécurité](assets/court-circuit-pareto/index.md) | Diagramme de Pareto à 8 barres triées qui poussent une à une avec leur icône, courbe cumulée qui se trace, accolade rouge sur les 2-3 barres dominantes (lueur orange), pansements quand les ressources arrivent (barres qui fondent), zoom sur la dernière barre, puis court-circuit : la minuscule barre de sécurité vire au rouge, grandit et saute en tête au milieu d'éclairs, couronnée « priorité absolue ». | Toute capsule Pareto / 80-20, priorisation, exception de sécurité qui passe avant le coût, hiérarchisation de risques. | `src/paretoMetro/ParetoMetro.tsx` | [mp4](assets/court-circuit-pareto/preview.mp4) |
 | [Couverture en lettres-photos animées](assets/couverture-lettres-photo-animees/index.md) | Titre dont chaque lettre est remplie d’une photo qui dérive, contour marine et reflet blanc qui balaie ; photo en haut fondue dans le papier quadrillé, badge mono, chips, tube des guichets. | Frame 0 / miniature de chaque capsule ; titres courts (≤ 14 caractères par ligne à 104 px). | `src/langageDg/LangageDg.tsx` | [mp4](assets/couverture-lettres-photo-animees/preview.mp4) |
+| [Édifice de briques (récapitulatif bâti de bas en haut + couronnement)](assets/edifice-briques/index.md) | Mur néo-brutal de 20 briques colorées par famille (4 colonnes × 5 rangées) qui tombent une à une avec rebond, de la rangée du bas vers le haut, chacune avec sa pastille de numéro et un libellé court ; un bandeau « seulement les normes et les documents » se barre, puis un fronton doré se trace et 4 pierres de couronnement lumineuses (leadership, participation collective, prévention, amélioration continue) se posent sur le sommet au rythme de la voix, poussière dorée. | Récapitulatif final d'une liste longue (principes, règles d'or, exigences, étapes) ; montrer que chaque élément est une brique et ce qui « couronne » le système. | `src/principesMetro/PrincipesMetro.tsx` | [mp4](assets/edifice-briques/preview.mp4) |
 | [Édifice à piliers et clé de voûte qui s'effondre](assets/edifice-cle-de-voute/index.md) | Socle, trois piliers colorés qui montent un à un, liaisons qui s'allument, toit « SYSTÈME DE MANAGEMENT » qui se pose et clé de voûte qui tombe et se verrouille (anneau doré) ; si on retire un pilier, tout l'édifice bascule et s'effondre (« TOUT S'EFFONDRE »). | Toute capsule « système intégré », piliers interdépendants, normes qui se complètent, « si un maillon manque tout tombe » ; version miniature (scale 0.48) réutilisable comme fil conducteur sous les parties. | `src/edificeIsoMetro/EdificeIsoMetro.tsx` | [mp4](assets/edifice-cle-de-voute/preview.mp4) |
 | [Éditeur de code qui construit le résultat](assets/editeur-code-live/index.md) | Fenêtre `objectif.ts` (3 pastilles, onglet) dont les lignes se tapent avec point d’accent, flèche, puis tuiles-résultats qui se cochent en direct. | Montrer qu’un résultat découle de paramètres (« force de frappe » code), conclusion en 3 points. | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/editeur-code-live/preview.mp4) |
 | [Étoile à 5 points autour d'un document](assets/etoile-cinq-points/index.md) | Document central (« PLAN DE PRÉVENTION ») dont les 5 lignes se colorent au fil de la voix ; 5 nœuds numérotés (icône + étiquette) popent sur un pentagone dont les côtés se tracent un à un, puis l'étoile intérieure se dessine en or et le document s'illumine. | Toute liste de 5 éléments constitutifs d'un document, d'une norme ou d'une méthode (5 points, 5 piliers, 5 exigences). | `src/planPrevEtapes/PlanPrevEtapes.tsx` | [mp4](assets/etoile-cinq-points/preview.mp4) |
