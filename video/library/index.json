@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 75,
+ "count": 76,
  "items": [
   {
    "section": "templates",
@@ -1211,6 +1211,27 @@
    "hash": "f445821d3a17",
    "path": "assets/tableau-camera/index.md",
    "preview": "assets/tableau-camera/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "tableau-periodique",
+   "name": "Afficheur à palettes + fiche 3D + tableau périodique des normes",
+   "description": "Pour chaque élément d'une liste de référentiels : afficheur à palettes façon aéroport (chaque chiffre défile puis se fige avec un claquement, ligne de pli centrale, lueur colorée), fiche photo qui pivote en 3D (rotateY + translateZ + reflet), tuile façon tableau périodique (numéro, symbole court, domaine, marqueur « G » pour les guides) et domaine tapé à la voix, mini tableau 5 × 3 en coin qui se remplit ; final : les 15 tuiles volent depuis des positions 3D dispersées, s'assemblent en « tableau périodique des normes ISO », vague lumineuse diagonale, décompte certifiables / guides.",
+   "quand": "Présenter une famille de référentiels, de normes, de sigles, d'indicateurs ou d'outils ; récapitulatif final spectaculaire d'une longue liste.",
+   "component": "src/isoQuinzeMetro/IsoQuinzeMetro.tsx",
+   "demo": "Demo-TableauPeriodique",
+   "audio": null,
+   "tags": [
+    "normes",
+    "ISO",
+    "split-flap",
+    "tableau périodique",
+    "3D",
+    "récapitulatif"
+   ],
+   "hash": "eeb83364a444",
+   "path": "assets/tableau-periodique/index.md",
+   "preview": "assets/tableau-periodique/preview.mp4"
   },
   {
    "section": "assets",
