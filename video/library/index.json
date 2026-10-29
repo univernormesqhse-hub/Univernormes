@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 65,
+ "count": 66,
  "items": [
   {
    "section": "templates",
@@ -120,6 +120,27 @@
    "hash": "5c984652570d",
    "path": "assets/atelier-balaye/index.md",
    "preview": "assets/atelier-balaye/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "balance-vivante",
+   "name": "Balance vivante (blocs qui tombent, fléau qui s'équilibre, disque au sommet)",
+   "description": "Balance néo-brutale à fléau en bois sur un pied triangulaire marine : des blocs étiquetés tombent du haut avec rebond (spring) sur le plateau gauche ou droit ; l'inclinaison est calculée en continu à partir du poids posé de chaque côté (± 13°, légère respiration), les blocs suivent l'angle ; option d'un disque lumineux (« HSE ») qui descend se poser au sommet, remet le fléau à l'horizontale et trace un arc pointillé entre les deux plateaux, avec libellés de plateaux remplaçables (PRÉVENTION / CONTRÔLE → PÉDAGOGIE / AUTORITÉ).",
+   "quand": "Toute opposition à doser ou à concilier : prévention vs contrôle, pédagogie vs autorité, coûts vs bénéfices, gravité vs probabilité, exigences vs moyens ; montrer qu'un rôle fait tenir les deux côtés.",
+   "component": "src/rhseMetro/RhseMetro.tsx",
+   "demo": "Demo-BalanceVivante",
+   "audio": null,
+   "tags": [
+    "balance",
+    "équilibre",
+    "prévention",
+    "contrôle",
+    "comparaison",
+    "neo-brutal"
+   ],
+   "hash": "c792dccc4378",
+   "path": "assets/balance-vivante/index.md",
+   "preview": "assets/balance-vivante/preview.mp4"
   },
   {
    "section": "assets",
