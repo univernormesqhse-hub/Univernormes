@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 63,
+ "count": 64,
  "items": [
   {
    "section": "templates",
@@ -347,6 +347,28 @@
    "hash": "5b103cd3545f",
    "path": "assets/coffre-tresor/index.md",
    "preview": "assets/coffre-tresor/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "court-circuit-pareto",
+   "name": "Diagramme de Pareto vivant + court-circuit de la barre sécurité",
+   "description": "Diagramme de Pareto à 8 barres triées qui poussent une à une avec leur icône, courbe cumulée qui se trace, accolade rouge sur les 2-3 barres dominantes (lueur orange), pansements quand les ressources arrivent (barres qui fondent), zoom sur la dernière barre, puis court-circuit : la minuscule barre de sécurité vire au rouge, grandit et saute en tête au milieu d'éclairs, couronnée « priorité absolue ».",
+   "quand": "Toute capsule Pareto / 80-20, priorisation, exception de sécurité qui passe avant le coût, hiérarchisation de risques.",
+   "component": "src/paretoMetro/ParetoMetro.tsx",
+   "demo": "Demo-CourtCircuit",
+   "audio": null,
+   "tags": [
+    "pareto",
+    "80/20",
+    "graphique",
+    "barres",
+    "priorité",
+    "sécurité",
+    "court-circuit"
+   ],
+   "hash": "e1ed9698d133",
+   "path": "assets/court-circuit-pareto/index.md",
+   "preview": "assets/court-circuit-pareto/preview.mp4"
   },
   {
    "section": "assets",
