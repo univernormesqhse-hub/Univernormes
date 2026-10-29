@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-70 motions validés. Galerie visuelle : `library/gallery.html`.
+71 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (66)
+## Assets (67)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -70,6 +70,7 @@
 | [Roue PDCA qui se remplit puis tourne](assets/roue-pdca/index.md) | Quatre quarts colorés (Planifier, Faire, Vérifier, Agir) qui s’allument sur la voix, moyeu « PDCA », puis la roue tourne en continu (lettres contre-rotées pour rester lisibles). | Expliquer un cycle (PDCA, amélioration continue, boucle de rétroaction). | `src/kaizen/Kaizen.tsx` | [mp4](assets/roue-pdca/preview.mp4) |
 | [Scan qui révèle les dangers cachés](assets/scan-dangers/index.md) | Carte « INTERVENTION SIMPLE » avec des cases en pointillés floues et grisées ; un faisceau turquoise balaie la carte de gauche à droite et chaque case se révèle au mot prononcé (icône nette, bord rouge plein, libellé) ; badge final « N DANGERS RÉVÉLÉS ». | Toute situation « ce qui paraît simple cache des risques » : analyse de tâche, JSA, visite de chantier, identification des dangers. | `src/jsaMetro/JsaMetro.tsx` | [mp4](assets/scan-dangers/preview.mp4) |
 | [Déploiement en étapes + barre de progression](assets/six-etapes-progression/index.md) | Barre hachurée « DÉPLOIEMENT n/6 » qui avance, grille de 6 cartes qui s’activent et se cochent une à une, puis des points dispersés qui s’alignent (« ne pas s’éparpiller »). | Méthode en N étapes, plan de déploiement, procédure. | `src/kaizen/Kaizen.tsx` | [mp4](assets/six-etapes-progression/preview.mp4) |
+| [Tableau lu à la caméra (zoom ligne → case, dézoom, mini-carte)](assets/tableau-camera/index.md) | Un tableau (ici le planning de causeries, thèmes × 12 mois) reconstruit en grille néo-brutale et parcouru par une caméra pilotée par images clés : zoom moyen sur l'intitulé de la ligne lue (ligne surlignée jaune), zoom serré sur chaque case au moment où la voix la cite (avatar coloré qui tombe avec rebond + onde jaune), dézoom sur la vue d'ensemble entre deux lignes ; bandeau des mois collant en haut quand on est zoomé, mini-carte avec cadre de visée rouge, compteur « THÈME n / 8 », vue finale complète avec décompte par animateur. | Faire lire un tableau dense à l'écran sans perdre le spectateur : planning (causeries, audits, formations), matrice de responsabilités RACI, grille de cotation, tableau de bord ligne par ligne. | `src/causeriesMetro/CauseriesMetro.tsx` | [mp4](assets/tableau-camera/preview.mp4) |
 | [Téléphone + bulles de messagerie](assets/telephone-messages/index.md) | Maquette de smartphone (bandeau vert, logo), bulle question puis réponses qui pop une à une, indicateur « … » de frappe. | Accroche-question, interaction avec le spectateur, question finale (skill capsule-recit-illustre). | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/telephone-messages/preview.mp4) |
 | [Temple qui se bâtit pilier par pilier](assets/temple-trois-piliers/index.md) | Toit « politique » qui flotte, piliers colorés qui poussent au mot prononcé (libellé vertical), temple en miniature pendant les détails, puis plein écran : le toit tombe et se verrouille (éclair doré), la fondation s'illumine, un trophée couronne l'ensemble. | « X piliers », fondations d'une politique / d'un système, tout modèle à 3 ou 4 appuis. | `src/piliersPrevMetro/PiliersPrevMetro.tsx` | [mp4](assets/temple-trois-piliers/preview.mp4) |
 | [Morph de texte flou → net + tampon](assets/texte-morph-preuve/index.md) | Une ligne de CV se dissout en flou et se reforme en version chiffrée surlignée, puis tampon « PREUVE » et barres qui montent. | Avant/après d’une formulation (vague → quantifié), reformulation d’un argument. | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/texte-morph-preuve/preview.mp4) |

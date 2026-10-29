@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 70,
+ "count": 71,
  "items": [
   {
    "section": "templates",
@@ -1106,6 +1106,27 @@
    "hash": "4b396a264fb4",
    "path": "assets/six-etapes-progression/index.md",
    "preview": "assets/six-etapes-progression/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "tableau-camera",
+   "name": "Tableau lu à la caméra (zoom ligne → case, dézoom, mini-carte)",
+   "description": "Un tableau (ici le planning de causeries, thèmes × 12 mois) reconstruit en grille néo-brutale et parcouru par une caméra pilotée par images clés : zoom moyen sur l'intitulé de la ligne lue (ligne surlignée jaune), zoom serré sur chaque case au moment où la voix la cite (avatar coloré qui tombe avec rebond + onde jaune), dézoom sur la vue d'ensemble entre deux lignes ; bandeau des mois collant en haut quand on est zoomé, mini-carte avec cadre de visée rouge, compteur « THÈME n / 8 », vue finale complète avec décompte par animateur.",
+   "quand": "Faire lire un tableau dense à l'écran sans perdre le spectateur : planning (causeries, audits, formations), matrice de responsabilités RACI, grille de cotation, tableau de bord ligne par ligne.",
+   "component": "src/causeriesMetro/CauseriesMetro.tsx",
+   "demo": "Demo-TableauCamera",
+   "audio": null,
+   "tags": [
+    "tableau",
+    "zoom",
+    "caméra",
+    "planning",
+    "mini-carte",
+    "lecture guidée"
+   ],
+   "hash": "f445821d3a17",
+   "path": "assets/tableau-camera/index.md",
+   "preview": "assets/tableau-camera/preview.mp4"
   },
   {
    "section": "assets",
