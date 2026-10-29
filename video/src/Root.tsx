@@ -210,6 +210,7 @@ import {CauseriesMetro, CAUSERIES_METRO_FRAMES} from './causeriesMetro/Causeries
 import {PartiesMetro, PARTIES_METRO_FRAMES} from './partiesMetro/PartiesMetro';
 import {FlashInfoMetro, FLASH_INFO_METRO_FRAMES} from './flashInfoMetro/FlashInfoMetro';
 import {FoudreMetro, FOUDRE_METRO_FRAMES} from './foudreMetro/FoudreMetro';
+import {ChallengesMetro, CHALLENGES_METRO_FRAMES} from './challengesMetro/ChallengesMetro';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -435,6 +436,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondensePartiesMetro" component={PartiesMetro} durationInFrames={PARTIES_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseFlashInfoMetro" component={FlashInfoMetro} durationInFrames={FLASH_INFO_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseFoudreMetro" component={FoudreMetro} durationInFrames={FOUDRE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseChallengesMetro" component={ChallengesMetro} durationInFrames={CHALLENGES_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <LibraryDemos />
