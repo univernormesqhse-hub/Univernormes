@@ -185,12 +185,16 @@
     "render:isoquinzemetro": "remotion render CondenseIsoQuinzeMetro out/capsule-condense-isoquinze-metro-raw.mp4 && remotion still CondenseIsoQuinzeMetro out/couverture-condense-isoquinze-metro.png --frame=0 && ffmpeg -v error -y -i out/capsule-condense-isoquinze-metro-raw.mp4 -i out/couverture-condense-isoquinze-metro.png -map 0:v -map 0:a -map 1 -c:v:0 libx264 -crf 10 -preset slow -c:v:1 png -disposition:v:1 attached_pic -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:a aac -b:a 160k -ar 48000 -movflags +faststart out/capsule-condense-isoquinze-metro.mp4 && rm out/capsule-condense-isoquinze-metro-raw.mp4"
   },
   "dependencies": {
+    "@react-three/fiber": "^9.1.2",
     "@remotion/cli": "^4.0.532",
     "@remotion/fonts": "^4.0.532",
+    "@remotion/three": "^4.0.532",
+    "@types/three": "^0.169.0",
     "lucide-react": "^1.50.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "remotion": "^4.0.532"
+    "remotion": "^4.0.532",
+    "three": "^0.169.0"
   },
   "devDependencies": {
     "@types/react": "^19.3.0",

@@ -40,6 +40,7 @@ import {FlashInfoMetro} from '../flashInfoMetro/FlashInfoMetro';
 import {FoudreMetro} from '../foudreMetro/FoudreMetro';
 import {ChallengesMetro} from '../challengesMetro/ChallengesMetro';
 import {IsoQuinzeMetro} from '../isoQuinzeMetro/IsoQuinzeMetro';
+import {LigneInvisible} from '../ligneInvisible/LigneInvisible';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -119,6 +120,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-EclairSurtension', C: FoudreMetro, at: 46.7, dur: 20.0},
   {id: 'Demo-ArcadeNiveaux', C: ChallengesMetro, at: 7.4, dur: 14.0},
   {id: 'Demo-TableauPeriodique', C: IsoQuinzeMetro, at: 69.0, dur: 9.5},
+  {id: 'Demo-FromageSuisse3D', C: LigneInvisible, at: 33.6, dur: 15.5},
 ];
 
 export const LibraryDemos: React.FC = () => (
