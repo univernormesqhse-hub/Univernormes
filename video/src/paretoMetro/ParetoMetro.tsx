@@ -23,7 +23,11 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * capsule-recit-illustre. Couverture : photo + « PARETO / LA LOI DES 80/20 » en lettres-photos animées.
  */
 const IMG = {
-  cover: 'smi/raffinerie.jpg',
+  cover: 'pareto-gen/gouffre-80-20.jpg',
+  diag: 'pareto-gen/diagramme.jpg',
+  pans: 'pareto-gen/pansements.jpg',
+  couronne: 'pareto-gen/securite-couronne.jpg',
+  split: 'pareto-gen/split-final.jpg',
   c1: 'ident/entrepot.jpg',
   c2: 'promo/raffinerie.jpg',
   usine: 'promo/raffinerie.jpg',
@@ -488,7 +492,7 @@ const Cover: React.FC = () => {
   if (out >= 1) return null;
   return (
     <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
-      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="graphique" w={1080} h={820} pos="50% 45%" /></div>
+      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="graphique" w={1080} h={820} pos="50% 14%" /></div>
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 0%, ${PAPER}00 24%, ${PAPER}CC 32%, ${PAPER} 37%)`}} />
       <Abs x={0} y={70} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
       <Abs x={0} y={560} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{...nb(NBK, 5), color: '#fff', fontFamily: MONO, fontWeight: 700, fontSize: 26, letterSpacing: 3, padding: '8px 22px'}}>OÙ PART VRAIMENT L’ARGENT ?</div></Abs>
@@ -585,6 +589,7 @@ const Graphe: React.FC = () => {
       <Abs x={60} y={440} w={960} h={930}>
         {t < 23.6 && <div style={{position: 'absolute', left: 0, right: 0, top: 40, display: 'flex', justifyContent: 'center', gap: 20}}>{INC.map(([l, ic], k) => <div key={l} style={{...nb('#fff', 6), width: 280, padding: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, transform: `scale(${pop(t, 21.3 + k * 0.1)})`}}><F n={ic} size={90} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 24}}>{l}</div><div style={{display: 'flex', gap: 8}}><div style={{...nb(BLUE, 3), padding: '2px 10px', color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 20, opacity: pop(t, 21.4)}}>€ coût</div><div style={{...nb(ORANGE, 3), padding: '2px 10px', color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 20, opacity: pop(t, 21.8)}}>↻ fréquence</div></div></div>)}</div>}
         {t >= 23.6 && <Chart />}
+        {t > 27.0 && t < 29.3 && <div style={{...nb('#FBF3E2', 8), position: 'absolute', left: 190, top: 0, width: 580, height: 760, overflow: 'hidden', zIndex: 8, opacity: prog(t, 27.0, 27.4) * (1 - prog(t, 28.900000000000002, 29.3)), transform: `scale(${lerp(0.9, 1, prog(t, 27.0, 27.5, easeOut))})`}}><Img src={PH(IMG.diag)} style={{width: 580, height: 1032, objectFit: 'cover', transform: `translateY(${lerp(-60, -200, prog(t, 27.0, 29.3))}px)`}} /></div>}
         {t > 31.6 && t < 39.5 && <div style={{position: 'absolute', left: 40, top: 0}}><NBadge at={31.6} text="LA QUASI-TOTALITÉ DES PERTES" bg={RED} rot={-2} size={26} /></div>}
         {t > 34.2 && <div style={{position: 'absolute', left: 560, top: 140}}><Stamp at={34.3} text="80/20" c={NAVY} x={0} y={0} rot={-8} size={80} /></div>}
         <div style={{position: 'absolute', left: 0, right: 0, top: 640, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 14}}><Chip at={35.7} ic="cible" l="une minorité de causes" c={ORANGE} />{t > 37.5 && <span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 40}}>→</span>}<Chip at={37.5} ic="argent" l="la majorité des conséquences" c={RED} /></div>
@@ -601,7 +606,8 @@ const Agir: React.FC = () => {
       <Heads h={[[43.2, ['Stopper', 'l’hémorragie'], [1]], [45.1, ['Mais', 'regardez…'], [1]], [48.9, ['Une', 'seule', 'fois'], [1, 2]], [50.9, ['L’ignorer', '?'], [0]], [52.7, ['Jamais', '!'], [0]]]} />
       <Abs x={60} y={440} w={960} h={930}>
         <div style={{position: 'absolute', left: 0, top: 0, width: 960, height: 620, overflow: 'hidden'}}><Chart /></div>
-        {t > 43.3 && t < 45.2 && <div style={{position: 'absolute', left: 0, right: 0, top: 650, display: 'flex', justifyContent: 'center'}}><NBadge at={43.3} text="HÉMORRAGIE STOPPÉE" bg={ORANGE} rot={-2} size={34} /></div>}
+        {t > 42.9 && t < 45.3 && <div style={{...nb('#FBF3E2', 8), position: 'absolute', left: 190, top: 0, width: 580, height: 760, overflow: 'hidden', zIndex: 8, opacity: prog(t, 42.9, 43.3) * (1 - prog(t, 44.9, 45.3)), transform: `scale(${lerp(0.9, 1, prog(t, 42.9, 43.4, easeOut))})`}}><Img src={PH(IMG.pans)} style={{width: 580, height: 1032, objectFit: 'cover', transform: `translateY(${lerp(-60, -200, prog(t, 42.9, 45.3))}px)`}} /></div>}
+        {t > 43.3 && t < 45.2 && <div style={{position: 'absolute', left: 0, right: 0, top: 790, zIndex: 9, display: 'flex', justifyContent: 'center'}}><NBadge at={43.3} text="HÉMORRAGIE STOPPÉE" bg={ORANGE} rot={-2} size={34} /></div>}
         {t > 49.9 && <div style={{position: 'absolute', left: 120, top: 650}}><NBadge at={50.0} text="× 1 SEULE FOIS" bg={NBK} rot={-3} size={30} /></div>}
         {t > 51.2 && t < 52.7 && <div style={{position: 'absolute', left: 520, top: 640, transform: `scale(${Math.min(1, spring(t, 51.2))})`}}><F n="question" size={110} /></div>}
         <Stamp at={52.7} text="JAMAIS !" c={RED} x={480} y={640} rot={-8} size={70} />
@@ -620,7 +626,8 @@ const Court: React.FC = () => {
       <Abs x={60} y={440} w={960} h={930}>
         <div style={{position: 'absolute', left: 0, top: 120, width: 960, height: 620}}><Chart /></div>
         {t > 59.6 && t < 61.4 && <div style={{position: 'absolute', inset: 0, background: `${YEL}${Math.sin(t * 40) > 0.6 ? '33' : '00'}`}} />}
-        {t > 62.5 && <div style={{position: 'absolute', left: 0, right: 0, top: 760, display: 'flex', justifyContent: 'center'}}><NBadge at={62.6} text="PRIORITÉ ABSOLUE" bg={RED} rot={-3} size={48} /></div>}
+        {t > 61.3 && t < 64.0 && <div style={{...nb('#FBF3E2', 8), position: 'absolute', left: 190, top: 0, width: 580, height: 760, overflow: 'hidden', zIndex: 8, opacity: prog(t, 61.3, 61.699999999999996) * (1 - prog(t, 63.6, 64.0)), transform: `scale(${lerp(0.9, 1, prog(t, 61.3, 61.8, easeOut))})`}}><Img src={PH(IMG.couronne)} style={{width: 580, height: 1032, objectFit: 'cover', transform: `translateY(${lerp(-60, -200, prog(t, 61.3, 64.0))}px)`}} /></div>}
+        {t > 62.5 && <div style={{position: 'absolute', left: 0, right: 0, top: 790, zIndex: 9, display: 'flex', justifyContent: 'center'}}><NBadge at={62.6} text="PRIORITÉ ABSOLUE" bg={RED} rot={-3} size={48} /></div>}
       </Abs>
     </Out>
   );
@@ -635,18 +642,13 @@ const Final: React.FC = () => {
     <>
       <Heads h={[[64.4, ['Au', 'final'], [1]], [65.6, ['Neutraliser', 'les', 'pertes'], [0, 2]], [68.4, ['Isoler', 'et', 'sécuriser'], [0, 2]]]} />
       <Abs x={60} y={440} w={960} h={930}>
-        <div style={{...nb('#fff', 8), position: 'absolute', left: 0, top: 0, width: 460, height: 560, boxShadow: `8px 8px 0 ${ORANGE}`, opacity: pop(t, 63.6)}}>
-          <div style={{fontFamily: MONO, fontWeight: 700, fontSize: 22, color: DIM, textAlign: 'center', marginTop: 14}}>PERTES FINANCIÈRES</div>
-          <div style={{position: 'absolute', left: 40, right: 40, bottom: 60, height: 360, display: 'flex', alignItems: 'flex-end', gap: 14}}>{[0.95, 0.7, 0.48, 0.16, 0.11].map((v, i) => <div key={i} style={{flex: 1, height: `${v * 100 * (i < 3 ? lerp(1, 0.15, low) : 1)}%`, background: i < 3 ? (low > 0.9 ? GREEN : ORANGE) : '#9FB3CC', border: `4px solid ${NBK}`, borderBottom: 'none', borderRadius: '8px 8px 0 0'}} />)}</div>
-          <div style={{position: 'absolute', left: 40, right: 40, bottom: 56, height: 5, background: NBK}} />
-          {low > 0.9 && <div style={{position: 'absolute', right: 20, top: 60}}><NBadge at={67.6} text="NEUTRALISÉES ✓" bg={GREEN} rot={4} size={24} /></div>}
-        </div>
-        <div style={{...nb('#fff', 8), position: 'absolute', left: 500, top: 0, width: 460, height: 560, boxShadow: `8px 8px 0 ${RED}`, opacity: pop(t, 64.0)}}>
-          <div style={{fontFamily: MONO, fontWeight: 700, fontSize: 22, color: DIM, textAlign: 'center', marginTop: 14}}>ANOMALIE DE SÉCURITÉ</div>
-          <div style={{position: 'absolute', left: 130, top: 140, filter: `drop-shadow(0 0 ${20 * (1 - cage)}px ${RED})`}}><F n="danger" size={200} /></div>
-          <div style={{position: 'absolute', left: 90, top: 100, width: 280, height: 280, borderRadius: 30, border: `8px solid ${NAVY}`, transform: `scale(${lerp(2.2, 1, cage)})`, opacity: cage}}>{[1, 2, 3].map((k) => <div key={k} style={{position: 'absolute', top: 0, bottom: 0, left: k * 70 - 4, width: 8, background: NAVY}} />)}</div>
-          {t > 69.4 && <div style={{position: 'absolute', left: 300, top: 320, transform: `scale(${Math.min(1, spring(t, 69.4))})`}}><F n="cadenas" size={110} /></div>}
-          {t > 71.3 && <div style={{position: 'absolute', left: 0, right: 0, bottom: 30, display: 'flex', justifyContent: 'center'}}><NBadge at={71.4} text="ISOLÉE ET SÉCURISÉE ✓" bg={GREEN} rot={-3} size={26} /></div>}
+        <div style={{...nb('#FBF3E2', 8), position: 'absolute', left: 160, top: 0, width: 640, height: 820, overflow: 'hidden', opacity: pop(t, 63.6)}}>
+          <Img src={PH(IMG.split)} style={{position: 'absolute', left: 0, top: -170, width: 640, height: 1138, objectFit: 'cover', clipPath: `inset(0 ${lerp(100, 50, prog(t, 65.6, 66.6, easeInOut))}% 0 0)`}} />
+          <Img src={PH(IMG.split)} style={{position: 'absolute', left: 0, top: -170, width: 640, height: 1138, objectFit: 'cover', clipPath: `inset(0 0 0 ${lerp(100, 50, prog(t, 68.4, 69.4, easeInOut))}%)`, transformOrigin: '75% 55%', transform: `scale(${lerp(1.4, 1, cage)})`}} />
+          <div style={{position: 'absolute', left: 316, top: 0, bottom: 0, width: 8, background: NBK, opacity: pop(t, 64.2)}} />
+          {t < 65.6 && <div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-around', fontFamily: MONO, fontWeight: 700, fontSize: 22, color: DIM}}><span>PERTES</span><span>SÉCURITÉ</span></div>}
+          {low > 0.9 && <div style={{position: 'absolute', left: 16, bottom: 30}}><NBadge at={67.6} text="NEUTRALISÉES ✓" bg={GREEN} rot={-4} size={24} /></div>}
+          {t > 71.3 && <div style={{position: 'absolute', right: 16, bottom: 30}}><NBadge at={71.4} text="ISOLÉE ✓" bg={GREEN} rot={3} size={24} /></div>}
         </div>
         {t > 71.8 && <Dust n={24} c={GOLD} />}
       </Abs>
