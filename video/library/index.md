@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-68 motions validés. Galerie visuelle : `library/gallery.html`.
+69 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (64)
+## Assets (65)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -48,6 +48,7 @@
 | [Jauge circulaire + compteur](assets/jauge-compteur-100/index.md) | Anneau conic-gradient qui se remplit en même temps qu’un compteur `Count` (même courbe easeOut), sur voile papier. | Un pourcentage ou un total à faire claquer (« à 100 % », score, taux). | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/jauge-compteur-100/preview.mp4) |
 | [Maison qui se construit étage par étage + tampons](assets/maison-etapes/index.md) | Maison SVG qui pousse (fondations → murs + fenêtres → toit qui tombe), fiches d'étapes empilées qui glissent depuis la droite, tampon « SMART ✓ » sur chaque étape. | Décomposer un projet en étapes, montrer une construction progressive, valider chaque étape d'un plan. | `src/smartMethode/SmartMethode.tsx` | [mp4](assets/maison-etapes/preview.mp4) |
 | [Retour à la maison, le soir (récit illustré)](assets/maison-retour/index.md) | Maison SVG en néo-brutal ; le ciel passe au bleu nuit avec étoiles, les fenêtres s'allument, l'opérateur marche jusqu'à la porte qui s'ouvre sur un halo doré. | Ouverture / fin d'une capsule sécurité (« rentrer sain et sauf »), enjeu humain, sens de la prévention. | `src/sainSaufMetro/SainSaufMetro.tsx` | [mp4](assets/maison-retour/preview.mp4) |
+| [Matrice des risques qui se colore + cible vers la zone rouge (sirène)](assets/matrice-cible/index.md) | Matrice néo-brutale 5 × 5 (probabilité → / gravité ↑) dont les cases se colorent en vague diagonale (vert, jaune, orange, rouge selon P × G) ; une cible noire glisse d'abord sur l'axe des probabilités puis monte sur l'axe des gravités jusqu'à la case extrême, qui pulse en rouge avec halo ; tampon « ZONE ROUGE », bordure du panneau qui vire au rouge, balayage de gyrophare rouge (sirène), puis fondu vers une photo d'arrêt de production avec puces « ressources ». | Expliquer la cotation des risques, une matrice de criticité (risques, aspects environnementaux, AMDEC), montrer qu'une combinaison forte probabilité × forte gravité déclenche une action immédiate. | `src/evalRisquesMetro/EvalRisquesMetro.tsx` | [mp4](assets/matrice-cible/preview.mp4) |
 | [Matrices stratégiques qui se construisent (SWOT, PESTEL, Porter, Ansoff, 7S, McKinsey, BCG)](assets/matrices-strategiques/index.md) | Cases néo-brutales (grosse lettre + libellé) qui s'allument au mot prononcé, axes qui se tracent, grille 3×3 en dégradé, bulles BCG, heptagone 7S avec liaisons en pointillés animés et centre « valeurs partagées ». | Présenter un outil d'analyse / une matrice de gestion, une grille de cotation, un modèle à n éléments cités un par un. | `src/outilsStrat/OutilsStrat.tsx` | [mp4](assets/matrices-strategiques/preview.mp4) |
 | [Ligne de métro + bandeau de station](assets/metro-stations/index.md) | Ligne colorée à 8 stations en bas de la zone utile, pastille qui avance, bandeau « LIGNE HSE · STATION x/8 » de 3 s à chaque arrêt. | Fil conducteur de toute capsule « métro » ; stations calées sur les mots clés de la voix. | `src/langageDg/LangageDg.tsx` | [mp4](assets/metro-stations/preview.mp4) |
 | [Nuage de points qui se regroupe en clusters](assets/nuage-groupes/index.md) | 18 pastilles grises dispersées glissent vers 3 groupes, prennent la couleur de leur groupe, puis des ellipses pointillées entourent chaque cluster. | Segmentation, groupes stratégiques, familles de risques, tri / classement d'éléments. | `src/outilsStrat/OutilsStrat.tsx` | [mp4](assets/nuage-groupes/preview.mp4) |

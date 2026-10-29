@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 68,
+ "count": 69,
  "items": [
   {
    "section": "templates",
@@ -690,6 +690,28 @@
    "hash": "5c984652570d",
    "path": "assets/maison-retour/index.md",
    "preview": "assets/maison-retour/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "matrice-cible",
+   "name": "Matrice des risques qui se colore + cible vers la zone rouge (sirène)",
+   "description": "Matrice néo-brutale 5 × 5 (probabilité → / gravité ↑) dont les cases se colorent en vague diagonale (vert, jaune, orange, rouge selon P × G) ; une cible noire glisse d'abord sur l'axe des probabilités puis monte sur l'axe des gravités jusqu'à la case extrême, qui pulse en rouge avec halo ; tampon « ZONE ROUGE », bordure du panneau qui vire au rouge, balayage de gyrophare rouge (sirène), puis fondu vers une photo d'arrêt de production avec puces « ressources ».",
+   "quand": "Expliquer la cotation des risques, une matrice de criticité (risques, aspects environnementaux, AMDEC), montrer qu'une combinaison forte probabilité × forte gravité déclenche une action immédiate.",
+   "component": "src/evalRisquesMetro/EvalRisquesMetro.tsx",
+   "demo": "Demo-MatriceCible",
+   "audio": null,
+   "tags": [
+    "matrice",
+    "criticité",
+    "zone rouge",
+    "probabilité",
+    "gravité",
+    "sirène",
+    "neo-brutal"
+   ],
+   "hash": "56b9f286f430",
+   "path": "assets/matrice-cible/index.md",
+   "preview": "assets/matrice-cible/preview.mp4"
   },
   {
    "section": "assets",
