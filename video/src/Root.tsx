@@ -205,6 +205,7 @@ import {RhseMetro, RHSE_METRO_FRAMES} from './rhseMetro/RhseMetro';
 import {MissionsMetro, MISSIONS_METRO_FRAMES} from './missionsMetro/MissionsMetro';
 import {PrincipesMetro, PRINCIPES_METRO_FRAMES} from './principesMetro/PrincipesMetro';
 import {EvalRisquesMetro, EVAL_RISQUES_METRO_FRAMES} from './evalRisquesMetro/EvalRisquesMetro';
+import {Audit13Metro, AUDIT13_METRO_FRAMES} from './audit13Metro/Audit13Metro';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -425,6 +426,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseMissionsMetro" component={MissionsMetro} durationInFrames={MISSIONS_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondensePrincipesMetro" component={PrincipesMetro} durationInFrames={PRINCIPES_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseEvalRisquesMetro" component={EvalRisquesMetro} durationInFrames={EVAL_RISQUES_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseAudit13Metro" component={Audit13Metro} durationInFrames={AUDIT13_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <LibraryDemos />
