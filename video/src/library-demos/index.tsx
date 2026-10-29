@@ -29,6 +29,7 @@ import {JsaMetro} from '../jsaMetro/JsaMetro';
 import {SwiftMetro} from '../swiftMetro/SwiftMetro';
 import {ParetoMetro} from '../paretoMetro/ParetoMetro';
 import {TaprootMetro} from '../taprootMetro/TaprootMetro';
+import {RhseMetro} from '../rhseMetro/RhseMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -97,6 +98,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-ArbreScenarios', C: SwiftMetro, at: 30.9, dur: 10.8},
   {id: 'Demo-CourtCircuit', C: ParetoMetro, at: 59.4, dur: 4.1},
   {id: 'Demo-IcebergPlongee', C: TaprootMetro, at: 17.6, dur: 13.6},
+  {id: 'Demo-BalanceVivante', C: RhseMetro, at: 19.3, dur: 12.0},
 ];
 
 export const LibraryDemos: React.FC = () => (

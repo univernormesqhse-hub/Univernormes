@@ -201,6 +201,7 @@ import {JsaMetro, JSA_METRO_FRAMES} from './jsaMetro/JsaMetro';
 import {SwiftMetro, SWIFT_METRO_FRAMES} from './swiftMetro/SwiftMetro';
 import {ParetoMetro, PARETO_METRO_FRAMES} from './paretoMetro/ParetoMetro';
 import {TaprootMetro, TAPROOT_METRO_FRAMES} from './taprootMetro/TaprootMetro';
+import {RhseMetro, RHSE_METRO_FRAMES} from './rhseMetro/RhseMetro';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
 
@@ -417,6 +418,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseSwiftMetro" component={SwiftMetro} durationInFrames={SWIFT_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseParetoMetro" component={ParetoMetro} durationInFrames={PARETO_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseTaprootMetro" component={TaprootMetro} durationInFrames={TAPROOT_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseRhseMetro" component={RhseMetro} durationInFrames={RHSE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <LibraryDemos />
