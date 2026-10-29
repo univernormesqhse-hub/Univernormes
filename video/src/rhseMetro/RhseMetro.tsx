@@ -19,19 +19,21 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * capsule pneumatique, store vénitien (qui se rouvre sur la lumière) ; barre de recherche « responsable HSE » qui
  * ouvre la fiche H·S·E. Fil wahou : une lampe torche fouille l'ombre et trouve le responsable, puis une balance
  * vivante — les blocs « prévention » tombent à gauche, les blocs « contrôle » à droite, le fléau s'équilibre et le
- * disque HSE se pose au sommet — enfin l'ombre bascule dans la lumière. Kits capsule-ui-neo-brutal et
+ * disque HSE se pose au sommet, puis la photo se dézoome sur l'illustration « sur tous les fronts » — enfin l'ombre
+ * bascule dans la lumière et deux ellipses tracées désignent le casque et l'extincteur. Illustrations générées par
+ * l'utilisateur dans public/rhse-gen/. Kits capsule-ui-neo-brutal et
  * capsule-recit-illustre. Couverture : photo + « LE RESPONSABLE / HSE » en lettres-photos animées.
  */
 const IMG = {
-  cover: 'iso26/usine-porte.jpg',
+  cover: 'rhse-gen/ombre.jpg',
   c1: 'induction/technicien-hse.jpg',
-  c2: 'diag-gen/responsable.jpg',
-  resp: 'diag-gen/responsable.jpg',
-  formation: 'promo/formation-incendie.jpg',
-  controle: 'influence-gen/controleur.jpg',
-  fronts: 'induction/technicien-hse.jpg',
-  casque: 'epiepc/casque-d.png',
-  extincteur: 'epiepc/extincteur-d.png',
+  c2: 'rhse-gen/responsable.jpg',
+  resp: 'rhse-gen/responsable.jpg',
+  formation: 'rhse-gen/prevention.jpg',
+  controle: 'rhse-gen/controle.jpg',
+  fronts: 'rhse-gen/fronts.jpg',
+  lumiere: 'rhse-gen/lumiere.jpg',
+  casqueExt: 'rhse-gen/casque-extincteur.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -492,7 +494,7 @@ const Cover: React.FC = () => {
   if (out >= 1) return null;
   return (
     <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
-      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="porte" w={1080} h={820} pos="50% 40%" /></div>
+      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="porte" w={1080} h={820} pos="22% 50%" /></div>
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 0%, ${PAPER}00 24%, ${PAPER}CC 32%, ${PAPER} 37%)`}} />
       <Abs x={0} y={70} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
       <Abs x={0} y={560} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{...nb(NBK, 5), color: '#fff', fontFamily: MONO, fontWeight: 700, fontSize: 26, letterSpacing: 3, padding: '8px 22px'}}>ENTRE PRÉVENTION ET CONTRÔLE</div></Abs>
@@ -510,14 +512,14 @@ const Cover: React.FC = () => {
 };
 
 /* ═════════════ Fil wahou n°1 : la lampe torche qui fouille l'ombre ═════════════ */
-const Torch: React.FC<{src: string; a: number; b: number; w: number; h: number}> = ({src, a, b, w, h}) => {
+const Torch: React.FC<{src: string; a: number; b: number; w: number; h: number; tx?: number; ty?: number; pos?: string}> = ({src, a, b, w, h, tx = w * 0.5, ty = h * 0.55, pos = '50% 45%'}) => {
   const t = useT();
   const p = prog(t, a, b, easeInOut);
-  const cx = lerp(w * 0.18, w * 0.5, p) + Math.sin(t * 2.1) * 70 * (1 - p);
-  const cy = lerp(h * 0.3, h * 0.55, p) + Math.cos(t * 1.7) * 60 * (1 - p);
+  const cx = lerp(w * 0.8, tx, p) + Math.sin(t * 2.1) * 70 * (1 - p);
+  const cy = lerp(h * 0.3, ty, p) + Math.cos(t * 1.7) * 60 * (1 - p);
   const r = lerp(140, 280, p);
   const mask = `radial-gradient(circle at ${cx}px ${cy}px, #000 ${r}px, transparent ${r + 90}px)`;
-  const st: React.CSSProperties = {position: 'absolute', left: 0, top: 0, width: w, height: h, objectFit: 'cover', objectPosition: '50% 45%', transform: `scale(${1.08 - 0.04 * p})`};
+  const st: React.CSSProperties = {position: 'absolute', left: 0, top: 0, width: w, height: h, objectFit: 'cover', objectPosition: pos, transform: `scale(${1.08 - 0.04 * p})`};
   return (
     <div style={{position: 'absolute', left: 0, top: 0, width: w, height: h, borderRadius: 30, overflow: 'hidden', border: `5px solid ${NBK}`, boxShadow: `10px 10px 0 ${NAVY}`, background: NIGHT, boxSizing: 'border-box'}}>
       <Img src={PH(src)} style={{...st, filter: 'brightness(0.16) saturate(0.3)'}} />
@@ -579,7 +581,7 @@ const Intro: React.FC = () => {
     <Out end={15.95}>
       <Heads h={[[3.0, ['Une', 'figure', 'dans', 'l’ombre'], [3]], [4.7, ['Un', 'rôle', 'capital'], [2]], [6.6, ['Le', 'responsable', 'HSE'], [1, 2]], [10.3, ['Une', 'mission', 'essentielle'], [1, 2]], [12.8, ['Protéger', 'les', 'humains'], [0, 2]]]} />
       {fade < 1 && <Abs x={60} y={440} w={960} h={880} style={{opacity: 1 - fade, transform: `scale(${1 - 0.06 * fade})`}}>
-        <Torch src={IMG.cover} a={3.0} b={5.4} w={960} h={880} />
+        <Torch src={IMG.cover} a={3.0} b={5.4} w={960} h={880} tx={260} ty={430} pos="20% 50%" />
         <div style={{position: 'absolute', left: 30, top: 30}}><NBadge at={3.5} text="DANS L’OMBRE" bg={NIGHT} rot={-4} size={34} /></div>
         <Stamp at={5.5} text="CAPITAL" c={YEL} x={560} y={700} rot={-8} size={60} />
       </Abs>}
@@ -607,7 +609,7 @@ const Prevention: React.FC = () => {
   return (
     <Out end={32.35}>
       <Heads h={[[19.4, ['D’un', 'côté', 'la', 'prévention'], [3]], [20.8, ['Anticiper', 'le', 'risque'], [0, 2]], [22.0, ['Former', 'les', 'équipes'], [0, 2]], [23.6, ['Que', 'l’accident', 'n’arrive', 'jamais'], [3]], [26.9, ['Le', 'visage', 'humain'], [1, 2]], [28.9, ['Écoute', '·', 'explique', '·', 'accompagne'], [0, 2, 4]]]} />
-      <Shot src={IMG.formation} ic="ecole" x={60} y={440} w={960} h={400} at={19.4} pos="50% 40%" c={GREEN}>
+      <Shot src={IMG.formation} ic="ecole" x={60} y={440} w={960} h={400} at={19.4} pos="50% 30%" c={GREEN}>
         <div style={{position: 'absolute', left: 20, top: 20}}><NBadge at={19.8} text="PRÉVENTION" bg={GREEN} rot={-3} size={32} /></div>
         {t > 26.6 && <div style={{position: 'absolute', right: 20, bottom: 20, display: 'flex', gap: 10}}>{[['écoute', 'bulle', 29.4], ['explique', 'tableau', 30.2], ['accompagne', 'poignee', 30.9]].map(([l, ic, at]) => <div key={l as string} style={{...nb('#fff', 4), display: 'flex', alignItems: 'center', gap: 6, padding: '6px 12px', fontFamily: sansFont, fontWeight: 900, fontSize: 24, transform: `scale(${t > (at as number) ? Math.min(1, spring(t, at as number)) : 0})`}}><F n={ic as string} size={40} />{l}</div>)}</div>}
         {t > 26.9 && t < 29.3 && <div style={{position: 'absolute', right: 20, bottom: 20}}><NBadge at={27.0} text="LE VISAGE HUMAIN" bg={NBK} rot={2} size={30} /></div>}
@@ -624,7 +626,7 @@ const Controle: React.FC = () => {
   return (
     <Out end={47.75}>
       <Heads h={[[35.7, ['Les', 'règles', 'appliquées'], [1, 2]], [37.5, ['Les', 'normes', 'respectées'], [1, 2]], [40.0, ['Une', 'posture', 'plus', 'stricte'], [1, 3]], [41.9, ['Contraignante', '?'], [0]], [43.5, ['Indispensable'], [0]], [45.1, ['La', 'sécurité', 'de', 'tous'], [1, 3]]]} />
-      <Shot src={IMG.controle} ic="auditeur" x={60} y={440} w={960} h={400} at={35.7} pos="50% 30%" c={RED}>
+      <Shot src={IMG.controle} ic="auditeur" x={60} y={440} w={960} h={400} at={35.7} pos="50% 35%" c={RED}>
         <div style={{position: 'absolute', left: 20, top: 20}}><NBadge at={36.0} text="CONTRÔLE" bg={RED} rot={-3} size={32} /></div>
         <div style={{position: 'absolute', right: 20, top: 20, ...nb('#fff', 5), padding: '10px 16px', display: 'flex', flexDirection: 'column', gap: 6, opacity: pop(t, 36.4)}}>
           {[['règles appliquées', 37.0], ['normes respectées', 38.6]].map(([l, at]) => <div key={l as string} style={{display: 'flex', alignItems: 'center', gap: 8, fontFamily: sansFont, fontWeight: 900, fontSize: 24}}><div style={{width: 30, height: 30, border: `4px solid ${NBK}`, borderRadius: 6, background: t > (at as number) ? GREEN : '#fff', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, transform: `scale(${t > (at as number) ? Math.min(1.1, spring(t, at as number)) : 1})`, boxSizing: 'border-box'}}>{t > (at as number) ? '✓' : ''}</div>{l}</div>)}
@@ -644,15 +646,20 @@ const Controle: React.FC = () => {
 /* ═════════════ Guichet 4 : sur tous les fronts ═════════════ */
 const Fronts: React.FC = () => {
   const t = useT();
+  const ex = prog(t, 52.8, 53.6, easeInOut);
   const grow = prog(t, 55.0, 56.6, easeOut);
   return (
     <Out end={57.15}>
       <Heads h={[[51.2, ['Sur', 'tous', 'les', 'fronts'], [2, 3]], [52.9, ['Protéger', 'des', 'vies'], [2]], [54.8, ['Préserver', 'l’avenir'], [1]]]} />
-      <Shot src={IMG.fronts} ic="agent-hse" x={60} y={440} w={960} h={400} at={51.1} pos="50% 30%" c={BLUE}>
-        <div style={{position: 'absolute', left: 20, bottom: 20, display: 'flex', gap: 12}}><Chip at={53.3} ic="coeur" l="des vies" c={RED} /><Chip at={55.0} ic="batiment" l="l’avenir de l’entreprise" c={BLUE} /></div>
-        {t > 55.0 && <svg style={{position: 'absolute', right: 20, top: 20}} width={240} height={150}><rect x={0} y={0} width={240} height={150} rx={14} fill="#fff" stroke={NBK} strokeWidth={5} /><path d="M 20 125 L 80 100 L 130 108 L 220 30" fill="none" stroke={GREEN} strokeWidth={9} strokeLinecap="round" strokeLinejoin="round" pathLength={1} style={{strokeDasharray: 1, strokeDashoffset: 1 - grow}} /></svg>}
-      </Shot>
-      <Abs x={60} y={790} w={960} h={540}><Balance L={LB.map((b) => [b[0], 0, b[2]] as BB)} R={RB.map((b) => [b[0], 0, b[2]] as BB)} hseAt={51.4} labL="PÉDAGOGIE" labR="AUTORITÉ" /></Abs>
+      <Abs x={60} y={440} w={960} h={lerp(400, 640, ex)} style={{borderRadius: 30, overflow: 'hidden', border: `5px solid ${NBK}`, boxShadow: `10px 10px 0 ${BLUE}`, background: '#fff', boxSizing: 'border-box', opacity: pop(t, 51.0, 0.6)}}>
+        <Img src={PH(IMG.fronts)} style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 25%', transform: `scale(${lerp(1.15, 1, ex)})`}} />
+        <Shine at={53.7} />
+      </Abs>
+      {ex < 1 && <Abs x={60} y={790} w={960} h={540} style={{opacity: 1 - ex, transform: `translateY(${ex * 200}px)`}}><Balance L={LB.map((b) => [b[0], 0, b[2]] as BB)} R={RB.map((b) => [b[0], 0, b[2]] as BB)} hseAt={51.4} labL="PÉDAGOGIE" labR="AUTORITÉ" /></Abs>}
+      {t > 53.0 && <Abs x={60} y={1120} w={960} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 14}}>
+        <Chip at={53.3} ic="coeur" l="des vies" c={RED} /><Chip at={55.0} ic="batiment" l="l’avenir de l’entreprise" c={BLUE} />
+        {t > 55.0 && <svg width={170} height={110}><rect x={3} y={3} width={164} height={104} rx={14} fill="#fff" stroke={NBK} strokeWidth={5} /><path d="M 18 90 L 60 72 L 95 78 L 150 24" fill="none" stroke={GREEN} strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" pathLength={1} style={{strokeDasharray: 1, strokeDashoffset: 1 - grow}} /></svg>}
+      </Abs>}
     </Out>
   );
 };
@@ -662,27 +669,22 @@ const Lumiere: React.FC = () => {
   const t = useT();
   const light = prog(t, 59.95, 60.7, easeOut);
   const flash = Math.max(0, 1 - Math.abs(t - 60.15) * 4) * 0.7;
-  const sh = prog(t, 61.8, 62.5, easeInOut);
-  const H = lerp(880, 380, sh);
-  const obj = (src: string, l: string, at: number, x: number, c: string) => (
-    <div style={{position: 'absolute', left: x, top: 420, width: 440, height: 440, ...nb('#fff', 8), boxShadow: `8px 8px 0 ${c}`, opacity: t > at ? 1 : 0, transform: `translateY(${(1 - Math.min(1, spring(t, at))) * 300}px) rotate(${(1 - Math.min(1, spring(t, at))) * (x < 400 ? -12 : 12)}deg)`, overflow: 'hidden'}}>
-      <Img src={PH(src)} style={{position: 'absolute', left: 60, top: 30, width: 320, height: 300, objectFit: 'contain', transform: `rotate(${Math.sin(t * 2) * 3}deg)`}} />
-      <div style={{position: 'absolute', left: 0, right: 0, bottom: 26, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 38, color: c}}>{l}</div>
-      <Shine at={at + 0.4} />
-    </div>
-  );
+  const sw = prog(t, 61.9, 62.5, easeInOut);
+  const ring = (at: number, cx: number, cy: number, rx: number, ry: number, c: string) => t > at ? <ellipse cx={cx} cy={cy} rx={rx} ry={ry} fill="none" stroke={c} strokeWidth={9} strokeLinecap="round" pathLength={1} style={{strokeDasharray: 1, strokeDashoffset: 1 - prog(t, at, at + 0.6, easeOut)}} transform={`rotate(-4 ${cx} ${cy})`} /> : null;
+  const st: React.CSSProperties = {position: 'absolute', left: 0, top: 0, width: 960, height: 880, objectFit: 'cover'};
   return (
     <>
       <Heads h={[[60.0, ['Travailler', 'dans', 'la', 'lumière'], [3]], [62.1, ['Pensez-y'], [0]], [63.5, ['Un', 'casque', 'de', 'chantier'], [1]], [64.6, ['Un', 'extincteur'], [1]]]} />
-      <Abs x={60} y={440} w={960} h={930}>
-        <div style={{position: 'absolute', left: 0, top: 0, width: 960, height: H, borderRadius: 30, overflow: 'hidden', border: `5px solid ${NBK}`, boxShadow: `10px 10px 0 ${GOLD}`, background: NIGHT, boxSizing: 'border-box'}}>
-          <Img src={PH(IMG.cover)} style={{position: 'absolute', left: 0, top: 0, width: 960, height: 880, objectFit: 'cover', objectPosition: '50% 45%', transform: `translateY(${-sh * 250}px) scale(${1.1 - 0.06 * light})`, filter: `brightness(${lerp(0.16, 1.1, light)}) saturate(${lerp(0.3, 1.1, light)})`}} />
-          <div style={{position: 'absolute', inset: 0, background: `conic-gradient(from ${180 + Math.sin(t) * 6}deg at 50% -10%, transparent 0deg, rgba(255,235,170,0.55) 8deg, transparent 16deg, transparent 24deg, rgba(255,235,170,0.45) 30deg, transparent 38deg, transparent 320deg, rgba(255,235,170,0.5) 330deg, transparent 340deg)`, opacity: light, mixBlendMode: 'screen'}} />
-          <div style={{position: 'absolute', inset: 0, background: '#FFF6D8', opacity: flash}} />
-          <div style={{position: 'absolute', left: 24, top: 24}}>{t < 61.8 ? <NBadge at={60.0} text="DANS LA LUMIÈRE" bg={GOLD} rot={-3} size={36} /> : <NBadge at={62.2} text="PENSEZ-Y" bg={ORANGE} rot={-3} size={38} />}</div>
-        </div>
-        {t > 63.4 && obj(IMG.casque, 'casque de chantier', 63.6, 0, YEL)}
-        {t > 64.4 && obj(IMG.extincteur, 'extincteur', 64.6, 520, RED)}
+      <Abs x={60} y={440} w={960} h={880} style={{borderRadius: 30, overflow: 'hidden', border: `5px solid ${NBK}`, boxShadow: `10px 10px 0 ${sw > 0.5 ? ORANGE : GOLD}`, background: NIGHT, boxSizing: 'border-box'}}>
+        <Img src={PH(IMG.lumiere)} style={{...st, objectPosition: '40% 50%', transform: `scale(${1.1 - 0.06 * light})`, filter: `brightness(${lerp(0.16, 1.1, light)}) saturate(${lerp(0.3, 1.1, light)})`, opacity: 1 - sw}} />
+        <div style={{position: 'absolute', inset: 0, background: `conic-gradient(from ${180 + Math.sin(t) * 6}deg at 70% -10%, transparent 0deg, rgba(255,235,170,0.5) 8deg, transparent 16deg, transparent 24deg, rgba(255,235,170,0.4) 30deg, transparent 38deg, transparent 320deg, rgba(255,235,170,0.45) 330deg, transparent 340deg)`, opacity: light * (1 - sw), mixBlendMode: 'screen'}} />
+        <div style={{position: 'absolute', inset: 0, background: '#FFF6D8', opacity: flash}} />
+        {sw > 0 && <Img src={PH(IMG.casqueExt)} style={{...st, objectPosition: '0% 50%', opacity: sw, transformOrigin: '0 50%', transform: `scale(${lerp(1.08, 1, sw)})`}} />}
+        <svg style={{position: 'absolute', left: 0, top: 0}} width={960} height={880}>{ring(63.6, 470, 515, 205, 125, ORANGE)}{ring(64.6, 135, 360, 140, 300, BLUE)}</svg>
+        {t > 63.7 && <div style={{position: 'absolute', left: 420, top: 650}}><NBadge at={63.8} text="CASQUE DE CHANTIER" bg={ORANGE} rot={-3} size={32} /></div>}
+        {t > 64.7 && <div style={{position: 'absolute', left: 30, top: 700}}><NBadge at={64.8} text="EXTINCTEUR" bg={BLUE} rot={3} size={32} /></div>}
+        <div style={{position: 'absolute', left: t < 61.8 ? 24 : undefined, right: t < 61.8 ? undefined : 24, top: 24}}>{t < 61.8 ? <NBadge at={60.0} text="DANS LA LUMIÈRE" bg={GOLD} rot={-3} size={36} /> : <NBadge at={62.2} text="PENSEZ-Y" bg={ORANGE} rot={3} size={38} />}</div>
+        <Shine at={62.5} />
       </Abs>
       {t > 60.0 && t < 61.9 && <Dust n={26} c={GOLD} />}
       {t > 65.0 && <Dust n={22} c={GOLD} />}
