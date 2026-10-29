@@ -38,6 +38,7 @@ import {CauseriesMetro} from '../causeriesMetro/CauseriesMetro';
 import {PartiesMetro} from '../partiesMetro/PartiesMetro';
 import {FlashInfoMetro} from '../flashInfoMetro/FlashInfoMetro';
 import {FoudreMetro} from '../foudreMetro/FoudreMetro';
+import {ChallengesMetro} from '../challengesMetro/ChallengesMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -115,6 +116,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-RadarParties', C: PartiesMetro, at: 77.2, dur: 13.0},
   {id: 'Demo-BulletinFlash', C: FlashInfoMetro, at: 81.8, dur: 18.0},
   {id: 'Demo-EclairSurtension', C: FoudreMetro, at: 46.7, dur: 20.0},
+  {id: 'Demo-ArcadeNiveaux', C: ChallengesMetro, at: 7.4, dur: 14.0},
 ];
 
 export const LibraryDemos: React.FC = () => (
