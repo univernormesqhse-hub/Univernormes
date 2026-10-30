@@ -46,7 +46,7 @@ const VIO = '#6D4BD8';
 const GOLD = '#E0A100';
 const GLASS = '#BFD7EA';
 const MONO = '"JetBrains Mono", "IBM Plex Mono", "DejaVu Sans Mono", monospace';
-const OUTRO_AT = 80.6;
+export const OUTRO_AT = 80.6;
 export const ISO_QUINZE_3D_FRAMES = s(OUTRO_AT + 3.8);
 type TK = 'tube' | 'gyro' | 'loupe' | 'store' | 'none';
 type SX = {at: number; n: string; title: string; s: string; c: string; g: string; k: TK; lab: string};
@@ -520,8 +520,8 @@ const Barred: React.FC<{at: number; strk: number; text: string; fs?: number}> = 
 
 
 /* ═════════════ Les 15 normes ═════════════ */
-type ND = {pre: string; num: string; sym: string; dom: string; desc: string; ic: string; c: string; img: string; pos: string; at: number; da: number; end: number; tag?: string};
-const N: ND[] = [
+export type ND = {pre: string; num: string; sym: string; dom: string; desc: string; ic: string; c: string; img: string; pos: string; at: number; da: number; end: number; tag?: string};
+export const N: ND[] = [
   {pre: 'ISO', num: '9001', sym: 'Qa', dom: 'Qualité', desc: 'management de la qualité', ic: 'medaille', c: BLUE, img: 'metroiso-gen/qualite.jpg', pos: '50% 35%', at: 2.9, da: 4.5, end: 6.95},
   {pre: 'ISO', num: '14001', sym: 'Env', dom: 'Environnement', desc: 'gestion environnementale', ic: 'feuille', c: GREEN, img: 'metroiso-gen/environnement.jpg', pos: '50% 40%', at: 6.9, da: 8.4, end: 10.95},
   {pre: 'ISO', num: '45001', sym: 'Sst', dom: 'Santé-sécurité', desc: 'santé et sécurité au travail', ic: 'casque', c: ORANGE, img: 'metroiso-gen/sst.jpg', pos: '50% 35%', at: 10.9, da: 12.3, end: 15.45},
@@ -538,8 +538,8 @@ const N: ND[] = [
   {pre: 'ISO', num: '22301', sym: 'Ca', dom: 'Continuité', desc: 'continuité d’activité', ic: 'engrenage', c: BLUE, img: 'missions-gen/pilotage.jpg', pos: '50% 40%', at: 65.0, da: 66.9, end: 69.25},
   {pre: 'ISO', num: '10002', sym: 'Cli', dom: 'Clients', desc: 'réclamations et service client', ic: 'bulle', c: VIO, img: 'zones/client.jpg', pos: '50% 45%', at: 69.2, da: 70.8, end: 73.6},
 ];
-const TRANS_AT = SECT.filter((x) => x.k !== 'none').map((x) => x.at);
-const shownAt = (d: ND) => (d.num === '9001' ? 5.0 : TRANS_AT.some((a) => Math.abs(a - d.at) < 0.05) ? d.at + 3.0 : d.at);
+export const TRANS_AT = SECT.filter((x) => x.k !== 'none').map((x) => x.at);
+export const shownAt = (d: ND) => (d.num === '9001' ? 5.0 : TRANS_AT.some((a) => Math.abs(a - d.at) < 0.05) ? d.at + 3.0 : d.at);
 
 /** Tuile façon tableau périodique : numéro de norme, symbole, domaine. */
 const Elem: React.FC<{d: ND; size: number; glow?: number}> = ({d, size, glow = 0}) => (
