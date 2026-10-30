@@ -21,13 +21,14 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * s'arrête sur le mur « mesures de maîtrise », cas pratique (technicien, tampon « avant l'intervention »,
  * responsable QHSE), 4 risques « IDENTIFIÉ » (dont batterie animée pour les énergies résiduelles), 4 mesures
  * animées (levier + cadenas de consignation, voltmètre qui tombe à 0 V, EPI qui tombent, permis tamponné
- * « AUTORISÉ »). Kits capsule-ui-neo-brutal et capsule-recit-illustre ; images de la session réutilisées.
+ * « AUTORISÉ »). Kits capsule-ui-neo-brutal et capsule-recit-illustre ; images de la session réutilisées + image
+ * ChatGPT de l'utilisateur (technicien et responsable QHSE devant l'armoire, cas pratique).
  */
 const IMG = {
   cover: 'permisfeu/technicien.jpg',
   c1: 'permisfeu/technicien.jpg',
   c2: 'evalrisques-gen/operateur.jpg',
-  tech: 'evalrisques-gen/operateur.jpg',
+  tech: 'apr-gen/consignation-apr.jpg',
   resp: 'rhse-gen/responsable.jpg',
 };
 const BLUE = '#1F6FD1';
@@ -654,15 +655,14 @@ const Cas: React.FC = () => {
     <Out end={44.35}>
       <Heads h={[[30.9, ['Un', 'technicien', 'intervient'], [1]], [32.26, ['Avant', "l'intervention"], [1]], [35.86, ['Le', 'responsable', 'QHSE', 'réalise', "l'APR"], [4]], [37.98, ['Les', 'risques', 'identifiés'], [2]]]} />
       {!part2 && <>
-        <Shot src={IMG.tech} ic="engrenage" x={60} y={450} w={960} h={560} at={30.9} pos="50% 40%" c={NAVY} />
-        <Stamp at={32.3} text="AVANT LE DÉBUT DE L'INTERVENTION" c={RED} x={110} y={940} rot={-5} size={38} />
-        {t > 34.0 && <Abs x={60} y={1060} w={960} h={280} style={{display: 'flex', gap: 20, alignItems: 'center', opacity: pop(t, 34.0)}}>
-          <div style={{width: 260, height: 260, borderRadius: 24, overflow: 'hidden', border: `5px solid ${NBK}`, boxShadow: `6px 6px 0 ${GREEN}`, flexShrink: 0, transform: `scale(${Math.min(1, spring(t, 34.0))})`}}><Img src={PH(IMG.resp)} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 25%'}} /></div>
-          <div style={{flex: 1}}>
-            <div style={{fontFamily: MONO, fontWeight: 700, fontSize: 24, color: GREEN, letterSpacing: 2}}>RESPONSABLE QHSE</div>
-            {t > 35.86 && <div style={{marginTop: 12, ...nb(YEL, 6), display: 'inline-block', padding: '10px 18px', fontFamily: sansFont, fontWeight: 900, fontSize: 34, transform: `scale(${Math.min(1, spring(t, 35.86))}) rotate(-2deg)`}}>📋 réalise l'APR</div>}
-          </div>
-        </Abs>}
+        <Shot src={IMG.tech} ic="engrenage" x={60} y={450} w={960} h={780} at={30.9} pos="50% 24%" c={NAVY}>
+          {t > 34.0 && <>
+            <div style={{position: 'absolute', left: 500 - 120, top: 270 - 120, width: 240, height: 240, borderRadius: '50%', border: `8px solid ${GREEN}`, boxShadow: '0 0 0 6px #fff', transform: `scale(${Math.min(1, spring(t, 34.0, 9, 12))})`}} />
+            <div style={{position: 'absolute', left: 560, top: 40, ...nb(GREEN, 5), color: '#fff', fontFamily: MONO, fontWeight: 700, fontSize: 24, padding: '6px 14px', letterSpacing: 2, transform: `scale(${Math.min(1, spring(t, 34.1))})`}}>RESPONSABLE QHSE</div>
+          </>}
+          {t > 35.86 && <div style={{position: 'absolute', left: 520, top: 400, ...nb(YEL, 6), padding: '10px 18px', fontFamily: sansFont, fontWeight: 900, fontSize: 36, transform: `scale(${Math.min(1, spring(t, 35.86))}) rotate(-3deg)`}}>📋 réalise l'APR</div>}
+        </Shot>
+        <Stamp at={32.3} text="AVANT LE DÉBUT DE L'INTERVENTION" c={RED} x={110} y={1170} rot={-4} size={38} />
       </>}
       {part2 && RISKS.map(([l, ic, at, c], i) => {
         const x = 60 + (i % 2) * 490, y = 450 + Math.floor(i / 2) * 420;
