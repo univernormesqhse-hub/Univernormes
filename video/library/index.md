@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-84 motions validés. Galerie visuelle : `library/gallery.html`.
+85 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (80)
+## Assets (81)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -65,6 +65,7 @@
 | [Document qui se décolle sur l’humain](assets/page-qui-se-decolle/index.md) | Une fiche « procédure · KPI » pivote et s’envole par le coin, révélant derrière les personnes et familles qui apparaissent une à une. | Rappeler l’humain derrière les chiffres, les procédures, les indicateurs. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/page-qui-se-decolle/preview.mp4) |
 | [Recherche → certificat « NON » + panneau qui pivote](assets/panneau-indicateur-non/index.md) | Barre de recherche qui ouvre un certificat ; tampon NON incliné qui se colle, panneau en bois dont la flèche « lignes directrices » pivote et s’allume pendant que « certification » s’éteint. | Corriger une idée reçue, opposer deux voies (bonne / mauvaise). | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/panneau-indicateur-non/preview.mp4) |
 | [Pellicule de film qui défile](assets/pellicule-film/index.md) | Bande noire perforée en défilement continu avec vignettes colorées (une par élément), puis badge incliné « 9 NORMES » qui se colle. | Annoncer une série / un sommaire (« découvrons 9 normes »). | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/pellicule-film/preview.mp4) |
+| [P&ID vivant + feuille HAZOP + rouleau de mots-guides + oscilloscope](assets/pid-hazop/index.md) | Schéma de procédé (P&ID) en SVG animé : cuve avec losange de danger, canalisation où le liquide circule en tirets (vitesse liée au débit), débitmètre dont l'aiguille passe dans le rouge avec étiquette « DÉBIT + », boucle de régulation FC qui passe en défaut (✕ clignotant), vanne de régulation qui s'ouvre trop (symbole qui s'élargit, « OUVERTURE EXCESSIVE »), réacteur qui pulse en orange (« ? ») puis reçoit un bouclier de protection ; en dessous, feuille HAZOP 6 colonnes (paramètre, mot-guide, déviation, causes, conséquences, protection) dont la ligne se remplit à la voix (révélation par masque). Aussi : rouleau 3D de machine à sous (rotateX, 5 faces) qui s'arrête sur chaque mot-guide avec cliquetis, courbe d'oscilloscope « en direct » qui sort de sa bande de fonctionnement normal (déviations entourées), sigle déplié ligne par ligne. | HAZOP, procédés industriels, déviations, régulation, P&ID, analyse de causes, toute chaîne paramètre → déviation → cause → conséquence → barrière ; énumérations de mots-clés (rouleau). | `src/hazopMetro/HazopMetro.tsx` | [mp4](assets/pid-hazop/preview.mp4) |
 | [Pile de règles qui s’effondre](assets/pile-regles-qui-tombe/index.md) | Cartes néo-brutalistes « RÈGLE n°1…7 » qui tombent et s’empilent, puis la pile bascule et s’éparpille. | Démonter une idée reçue (« empiler des règles ne suffit pas »), trop de procédures. | `src/equipeIsac/EquipeIsac.tsx` | [mp4](assets/pile-regles-qui-tombe/preview.mp4) |
 | [Plan d’architecte qui se trace](assets/plan-architecte/index.md) | Fond bleu plan quadrillé, cadre d’une maison dessiné en pointillés au rythme de la voix (pathLength + dashoffset). | Construire un cadre, une méthode, une structure « invisible ». | `src/cafeHse/CafeHse.tsx` | [mp4](assets/plan-architecte/preview.mp4) |
 | [Pont qui se construit entre deux mondes](assets/pont-traducteur/index.md) | Deux colonnes (direction / terrain), arche qui se trace, tablier et suspentes qui montent, personnage HSE qui se pose au milieu. | Rôle d’interface, de traducteur, de médiateur entre deux groupes. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/pont-traducteur/preview.mp4) |
