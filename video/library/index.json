@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 77,
+ "count": 80,
  "items": [
   {
    "section": "templates",
@@ -297,6 +297,27 @@
    "hash": "5b103cd3545f",
    "path": "assets/carte-retournee-3d/index.md",
    "preview": "assets/carte-retournee-3d/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "cartes-animees",
+   "name": "Cartes animées (distribution, retournement, éventail, reflet holographique)",
+   "description": "Chaque fiche photo devient une carte à jouer distribuée par un croupier invisible : elle surgit du coin bas-droit en arc avec traînée de 3 échos flous, montre son dos (motif losanges + liseré or + logo), se retourne en vol (rotateY 540° + rotateZ) et se pose avec ombre portée ; une fois posée, elle flotte (inclinaison 3D rotateX/rotateY) avec un reflet holographique arc-en-ciel en « overlay ». À la carte suivante, la précédente glisse derrière en éventail (rotation autour d'un pivot bas, assombrie) : la pile des cartes jouées se lit en un coup d'œil.",
+   "quand": "Énumérations (normes, outils, règles, étapes) où chaque élément a une image ; effet « collection » ou « jeu de cartes » pour une série de capsules.",
+   "component": "src/isoQuinzeCartes/IsoQuinzeCartes.tsx",
+   "demo": "Demo-CartesAnimees",
+   "audio": null,
+   "tags": [
+    "cartes",
+    "card deal",
+    "flip 3D",
+    "éventail",
+    "holographique",
+    "énumération"
+   ],
+   "hash": "e130442178a9",
+   "path": "assets/cartes-animees/index.md",
+   "preview": "assets/cartes-animees/preview.mp4"
   },
   {
    "section": "assets",
@@ -1217,6 +1238,29 @@
   },
   {
    "section": "assets",
+   "slug": "superposition-subliminale",
+   "name": "Couche de post-production « subliminale »",
+   "description": "Couche qui enveloppe n'importe quelle capsule existante sans la modifier : images-éclairs de 3 images à l'entrée de chaque élément (numéro géant découpé dans la photo, sur la couleur de l'élément), double exposition (numéro-photo géant en « multiply » qui dérive en parallaxe pendant la scène), aberration chromatique RVB + secousse aux transitions (filtre SVG feColorMatrix/feOffset/feBlend appliqué à toute l'image, WebGL compris), fuites de lumière chaudes en « screen », rafale de mots-éclairs (3 images par mot, fond alterné noir/blanc), négatif de 2 images sur un temps fort, grain de pellicule animé (feTurbulence), impacts sonores synchronisés.",
+   "quand": "Donner une seconde version « choc » à une capsule déjà montée, rythmer les entrées d'éléments, signature visuelle agressive pour les réseaux sociaux. Garder les éclairs espacés (≥ 3 s) : pas de stroboscope.",
+   "component": "src/isoQuinzeSub/IsoQuinzeSub.tsx",
+   "demo": "Demo-SuperpositionSubliminale",
+   "audio": null,
+   "tags": [
+    "post-production",
+    "flash frames",
+    "double exposition",
+    "aberration chromatique",
+    "glitch",
+    "light leak",
+    "grain",
+    "subliminal"
+   ],
+   "hash": "a970d6a1fffd",
+   "path": "assets/superposition-subliminale/index.md",
+   "preview": "assets/superposition-subliminale/preview.mp4"
+  },
+  {
+   "section": "assets",
    "slug": "tableau-camera",
    "name": "Tableau lu à la caméra (zoom ligne → case, dézoom, mini-carte)",
    "description": "Un tableau (ici le planning de causeries, thèmes × 12 mois) reconstruit en grille néo-brutale et parcouru par une caméra pilotée par images clés : zoom moyen sur l'intitulé de la ligne lue (ligne surlignée jaune), zoom serré sur chaque case au moment où la voix la cite (avatar coloré qui tombe avec rebond + onde jaune), dézoom sur la vue d'ensemble entre deux lignes ; bandeau des mois collant en haut quand on est zoomé, mini-carte avec cadre de visée rouge, compteur « THÈME n / 8 », vue finale complète avec décompte par animateur.",
@@ -1256,6 +1300,28 @@
    "hash": "eeb83364a444",
    "path": "assets/tableau-periodique/index.md",
    "preview": "assets/tableau-periodique/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "tableau-periodique-3d",
+   "name": "Tableau périodique en vraie 3D (WebGL)",
+   "description": "Final récapitulatif en WebGL (@remotion/three) sur fond transparent, par-dessus la mise en page 2D : 15 tuiles extrudées (texture canvas : rang, préfixe, symbole, numéro, domaine, pastille « G » pour les guides) sortent d'un vortex en spirale depuis la profondeur, en tournoyant, et se rangent en grille 5 × 3 ; travelling arrière + orbite caméra puis plan presque frontal ; vague lumineuse diagonale (les tuiles avancent et s'illuminent), reflet spéculaire qui balaie la grille (lumière ponctuelle + bande additive), halo doré, poussière 3D, respiration finale des tuiles.",
+   "quand": "Récapitulatif final d'une liste (normes, indicateurs, outils, sigles) quand on veut un « effet wahou » 3D réel plutôt qu'une perspective CSS.",
+   "component": "src/isoQuinze3D/Periodic3D.tsx",
+   "demo": "Demo-TableauPeriodique3D",
+   "audio": null,
+   "tags": [
+    "3D",
+    "WebGL",
+    "three.js",
+    "tableau périodique",
+    "récapitulatif",
+    "final",
+    "wahou"
+   ],
+   "hash": "31cba6b64257",
+   "path": "assets/tableau-periodique-3d/index.md",
+   "preview": "assets/tableau-periodique-3d/preview.mp4"
   },
   {
    "section": "assets",
