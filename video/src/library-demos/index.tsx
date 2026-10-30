@@ -48,6 +48,7 @@ import {IsoQuinzeCarte} from '../isoQuinzeCarte/IsoQuinzeCarte';
 import {Matrice44Metro} from '../matrice44Metro/Matrice44Metro';
 import {HazidMetro} from '../hazidMetro/HazidMetro';
 import {AprMetro} from '../aprMetro/AprMetro';
+import {HazopMetro} from '../hazopMetro/HazopMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -135,6 +136,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-MatriceRisques3D', C: Matrice44Metro, at: 11.9, dur: 9.0},
   {id: 'Demo-ScannerHazid', C: HazidMetro, at: 19.5, dur: 5.9},
   {id: 'Demo-DominosMesures', C: AprMetro, at: 19.8, dur: 7.4},
+  {id: 'Demo-PidHazop', C: HazopMetro, at: 44.0, dur: 19.0},
 ];
 
 export const LibraryDemos: React.FC = () => (

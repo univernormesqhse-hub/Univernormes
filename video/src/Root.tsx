@@ -219,6 +219,7 @@ import {IsoQuinzeCarte, ISO_QUINZE_CARTE_FRAMES} from './isoQuinzeCarte/IsoQuinz
 import {Matrice44Metro, MATRICE44_METRO_FRAMES} from './matrice44Metro/Matrice44Metro';
 import {HazidMetro, HAZID_METRO_FRAMES} from './hazidMetro/HazidMetro';
 import {AprMetro, APR_METRO_FRAMES} from './aprMetro/AprMetro';
+import {HazopMetro, HAZOP_METRO_FRAMES} from './hazopMetro/HazopMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -454,6 +455,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseMatrice44Metro" component={Matrice44Metro} durationInFrames={MATRICE44_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseHazidMetro" component={HazidMetro} durationInFrames={HAZID_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseAprMetro" component={AprMetro} durationInFrames={APR_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseHazopMetro" component={HazopMetro} durationInFrames={HAZOP_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
