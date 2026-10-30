@@ -29,7 +29,7 @@ import {NeoCaptions} from '../components/NeoCaptions';
 const IMG = {
   cover: 'missions-gen/diagnostic.jpg',
   c1: 'missions-gen/diagnostic.jpg',
-  c2: 'promo/raffinerie.jpg',
+  c2: 'hazid-gen/chantier-chimique.jpg',
   ex: 'hazid-gen/chantier-chimique.jpg',
   concep: 'principes-gen/conception.jpg',
 };
@@ -496,10 +496,10 @@ const Cover: React.FC = () => {
       <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="danger" w={1080} h={820} pos="50% 50%" /></div>
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 0%, ${PAPER}00 24%, ${PAPER}CC 32%, ${PAPER} 37%)`}} />
       <Abs x={0} y={70} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
-      <Abs x={0} y={560} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{...nb(NBK, 5), color: '#fff', fontFamily: MONO, fontWeight: 700, fontSize: 26, letterSpacing: 3, padding: '8px 22px'}}>IDENTIFICATION DES DANGERS · 1 MINUTE</div></Abs>
-      <Abs x={0} y={650} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="HAZID" src={IMG.c1} size={210} ls={6} /></Abs>
-      <Abs x={0} y={840} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="DANGERS" src={IMG.c2} size={140} ls={4} seed={3} /></Abs>
-      <Abs x={40} y={1030} w={1000} style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 10}}>{[['ACTIVITÉ', BLUE], ['→', NBK], ['SOURCES', ORANGE], ['→', NBK], ['SCÉNARIOS', RED], ['→', NBK], ['MESURES', GREEN]].map(([n, c], k) => <div key={n} style={{...nb(c, 4), padding: '6px 14px', fontFamily: sansFont, fontWeight: 900, fontSize: 26, color: '#fff', transform: `translateY(${(1 - Math.min(1, spring(t, 0.3 + k * 0.08))) * 60}px)`}}>{n}</div>)}</Abs>
+      <Abs x={0} y={640} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="OUTIL D'ANALYSE" src={IMG.c2} size={104} ls={2} seed={2} /></Abs>
+      <Abs x={0} y={760} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="DES RISQUES :" src={IMG.c2} size={104} ls={2} seed={5} /></Abs>
+      <Abs x={0} y={880} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="HAZID" src={IMG.c1} size={240} ls={8} /></Abs>
+      <Abs x={40} y={1170} w={1000} style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 10}}>{[['ACTIVITÉ', BLUE], ['→', NBK], ['SOURCES', ORANGE], ['→', NBK], ['SCÉNARIOS', RED], ['→', NBK], ['MESURES', GREEN]].map(([n, c], k) => <div key={n} style={{...nb(c, 4), padding: '6px 14px', fontFamily: sansFont, fontWeight: 900, fontSize: 26, color: '#fff', transform: `translateY(${(1 - Math.min(1, spring(t, 0.3 + k * 0.08))) * 60}px)`}}>{n}</div>)}</Abs>
       <Abs x={60} y={1480} w={960} h={120} style={{background: '#fff', border: `5px solid ${INK}`, borderRadius: 18, boxShadow: `7px 7px 0 ${BURG}`, overflow: 'hidden'}}>
         <Tube x={30} y={34} w={900} h={24} />
         {SECT.map((x, k) => <div key={k} style={{position: 'absolute', left: 70 + k * 164 - 20, top: 26, width: 40, height: 40, borderRadius: 10, background: x.c, border: '4px solid #fff', boxSizing: 'border-box', color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{x.n}</div>)}
