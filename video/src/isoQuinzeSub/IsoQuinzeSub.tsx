@@ -62,7 +62,7 @@ const RgbFilter: React.FC<{amt: number; f: number; wave: number}> = ({amt, f, wa
         <feBlend in="r2" in2="g" mode="screen" result="rg" />
         <feBlend in="rg" in2="b2" mode="screen" result="rgb" />
         <feTurbulence type="fractalNoise" baseFrequency="0.008 0.02" numOctaves={2} seed={f % 50} result="noise" />
-        <feDisplacementMap in="rgb" in2="noise" scale={wave * 90} xChannelSelector="R" yChannelSelector="G" />
+        <feDisplacementMap in="rgb" in2="noise" scale={wave * 45} xChannelSelector="R" yChannelSelector="G" />
       </filter>
     </svg>
   );
@@ -180,7 +180,8 @@ export const IsoQuinzeSub: React.FC = () => {
   const iris = irisF ? (t - irisF.at - FLASH) / 0.35 : 1;
   const lines = Math.max(0, ...FLASHES.map((x) => bump(t, x.at + FLASH - 0.02, 0.4)), bump(t, 75.55, 0.4));
   const tc = remap(t);
-  const zp = Math.max(0, Math.min(1, (t - ZOOM_A) / (OUTRO_AT - ZOOM_A)));
+  const zp = t >= OUTRO_AT ? 0 : Math.max(0, Math.min(1, (t - ZOOM_A) / (OUTRO_AT - ZOOM_A)));
+  const white = t >= OUTRO_AT ? Math.max(0, 1 - (t - OUTRO_AT) / 0.35) : zp > 0.6 ? (zp - 0.6) / 0.4 : 0;
   const zoom = 1 + zp * zp * 7;
   const fx = (amt > 0.05 || wave > 0.02) && t < OUTRO_AT;
   const rew = t > REW_A && t < REW_B;
@@ -193,10 +194,10 @@ export const IsoQuinzeSub: React.FC = () => {
         </Freeze>
         {t < OUTRO_AT && <DoubleExpo t={t} />}
       </AbsoluteFill>
-      {lines > 0 && <SpeedLines a={lines * 0.55} f={f} />}
+      {lines > 0 && <SpeedLines a={lines * 0.35} f={f} />}
       <Rewind t={t} f={f} />
       <SlowTag t={t} />
-      {zp > 0.6 && <AbsoluteFill style={{background: '#fff', opacity: (zp - 0.6) / 0.4}} />}
+      {white > 0 && <AbsoluteFill style={{background: '#fff', opacity: white, zIndex: 150}} />}
       <Leaks t={t} />
       {flash && <AbsoluteFill style={{zIndex: 200}}><FlashFrame d={flash.d} p={(t - flash.at) / FLASH + 0.34} f={f} /></AbsoluteFill>}
       <AbsoluteFill style={{zIndex: 201}}><WordBurst t={t} /></AbsoluteFill>
