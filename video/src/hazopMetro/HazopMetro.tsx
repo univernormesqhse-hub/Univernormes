@@ -21,7 +21,8 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * normal » (déviations entourées), rouleau 3D de machine à sous qui s'arrête sur chaque mot-guide, logique HAZOP en
  * 6 lignes (accolade paramètre + mot-guide = déviation), P&ID vivant (liquide qui circule, débitmètre qui passe au
  * rouge, régulation en défaut, vanne qui s'ouvre trop, réacteur en alerte puis bouclier) et feuille HAZOP dont la
- * ligne se remplit à la voix. Kits capsule-ui-neo-brutal et capsule-recit-illustre ; images de la session réutilisées.
+ * ligne se remplit à la voix. Kits capsule-ui-neo-brutal et capsule-recit-illustre ; images de la session réutilisées
+ * + images ChatGPT de l'utilisateur (secteurs gazier et pharmaceutique).
  */
 const IMG = {
   cover: 'principes-gen/chef-projet.jpg',
@@ -563,21 +564,28 @@ const Intro: React.FC = () => {
 };
 
 /* ═════════════ Guichet 2 : les industries de procédés ═════════════ */
-const SECTORS: [string, string, number, string][] = [['Pétrolier', 'goutte', 12.34, NBK], ['Gazier', 'feu', 13.14, ORANGE], ['Chimique', 'eprouvette', 13.7, VIO], ['Pharmaceutique', 'pilule', 14.4, TEAL]];
+const SECTORS: [string, string, number, string, string, string][] = [
+  ['Pétrolier', 'goutte', 12.34, NBK, 'principes-gen/chef-projet.jpg', '60% 20%'],
+  ['Gazier', 'feu', 13.14, ORANGE, 'hazop-gen/gazier.jpg', '50% 40%'],
+  ['Chimique', 'eprouvette', 13.7, VIO, 'hazid-gen/chantier-chimique.jpg', '50% 22%'],
+  ['Pharmaceutique', 'pilule', 14.4, TEAL, 'hazop-gen/pharmaceutique.jpg', '40% 40%'],
+];
 const Secteurs: React.FC = () => {
   const t = useT();
   return (
     <Out end={16.4}>
       <Heads h={[[11.5, ['Les', 'industries', 'de', 'procédés'], [1, 2, 3]]]} />
-      {SECTORS.map(([l, ic, at, c], i) => {
+      {SECTORS.map(([l, ic, at, c, img, pos], i) => {
         const x = 60 + (i % 2) * 490, y = 450 + Math.floor(i / 2) * 450;
         const a = Math.max(at, 11.6 + i * 0.1);
         const s0 = Math.min(1, spring(t, a, 9, 12));
         return (
           <Abs key={l} x={x} y={y} w={470} h={420} style={{opacity: t > a ? 1 : 0, transform: `scale(${s0}) rotate(${(1 - s0) * (i % 2 ? 10 : -10)}deg)`}}>
-            <div style={{position: 'absolute', inset: 0, ...nb('#fff', 8), borderColor: c, background: `radial-gradient(circle at 50% 38%, ${c}22, #fff 70%)`}} />
-            <div style={{position: 'absolute', left: 0, right: 0, top: 50, display: 'flex', justifyContent: 'center'}}><F n={ic} size={190} float={8} /></div>
-            <div style={{position: 'absolute', left: 0, right: 0, top: 300, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: l.length > 12 ? 40 : 50, color: c}}>{l}</div>
+            <div style={{position: 'absolute', inset: 0, borderRadius: 24, overflow: 'hidden', border: `5px solid ${NBK}`, boxShadow: `8px 8px 0 ${c}`, background: '#fff'}}>
+              <Img src={PH(img)} style={{width: '100%', height: 320, objectFit: 'cover', objectPosition: pos, transform: `scale(${1.18 - prog(t, a, 16.4) * 0.12})`}} />
+              <div style={{position: 'absolute', left: 0, right: 0, bottom: 0, height: 100, background: '#fff', borderTop: `4px solid ${NBK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: l.length > 12 ? 38 : 46, color: c}}>{l}</div>
+              <div style={{position: 'absolute', right: 14, top: 14, width: 84, height: 84, borderRadius: 42, background: '#fff', border: `4px solid ${c}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><F n={ic} size={58} /></div>
+            </div>
             {t > a && t < a + 0.7 && <div style={{position: 'absolute', inset: -8, borderRadius: 26, border: `8px solid ${c}`, opacity: 1 - (t - a) / 0.7, transform: `scale(${1 + (t - a) * 0.35})`}} />}
           </Abs>
         );
@@ -715,7 +723,7 @@ const PID: React.FC = () => {
 };
 const ROW: [string, string, number][] = [
   ['PARAMÈTRE', 'Débit', 47.0], ['MOT-GUIDE', 'PLUS', 48.42], ['DÉVIATION', 'Débit supérieur à la normale', 49.0],
-  ['CAUSES', 'Défaillance de la régulation · Ouverture excessive d’une vanne', 53.42], ['CONSÉQUENCES', 'Conséquences possibles analysées', 58.66], ['PROTECTION', 'Dispositifs de protection vérifiés ✓', 60.98],
+  ['CAUSES', 'Défaillance de la régulation · Ouverture excessive d’une vanne', 53.42], ['CONSÉQUENCES', 'Possibles · analysées', 58.66], ['PROTECTION', 'Dispositifs vérifiés ✓', 60.98],
 ];
 const Exemple: React.FC = () => {
   const t = useT();
