@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 80,
+ "count": 81,
  "items": [
   {
    "section": "templates",
@@ -261,6 +261,29 @@
    "hash": "090b8a844e73",
    "path": "assets/cadenas-consignation/index.md",
    "preview": "assets/cadenas-consignation/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "carte-geographique",
+   "name": "Cartes géographiques animées (globe, épingle, arcs, zoom)",
+   "description": "Vraies cartes (d3-geo + Natural Earth 1:50m dans `public/geo/countries-50m.json`). Globe orthographique sur fond étoilé ouvert en iris : il tourne jusqu'à une ville, épingle qui tombe avec ondes concentriques, pays mis en lumière, arcs de grand cercle (halo + trait + tête lumineuse) qui partent vers 14 villes de tous les continents, puis rotation + zoom sur une région (pays et villes qui s'allument, pastilles de noms). Variante plate (Mercator) dans une fiche photo qui se retourne : zoom de l'Europe jusqu'à une ville, pays surligné, épingle, badges.",
+   "quand": "Montrer où se trouve une organisation, un site, un client, une réglementation ; dire « mondial », « international », « dans votre pays » avec une preuve visuelle ; transition finale vers l'appel à l'action.",
+   "component": "src/isoQuinzeCarte/Carte.tsx",
+   "demo": "Demo-CarteGeographique",
+   "audio": null,
+   "tags": [
+    "carte",
+    "globe",
+    "géographie",
+    "d3-geo",
+    "arcs",
+    "épingle",
+    "zoom",
+    "Afrique"
+   ],
+   "hash": "5053c6c147b2",
+   "path": "assets/carte-geographique/index.md",
+   "preview": "assets/carte-geographique/preview.mp4"
   },
   {
    "section": "assets",
