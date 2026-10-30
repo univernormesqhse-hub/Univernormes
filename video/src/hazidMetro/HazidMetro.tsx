@@ -23,13 +23,14 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * scanner volumétrique 3D WebGL du film « La ligne invisible » qui détecte les dangers d'un site (compteur en
  * direct), schéma en 4 étapes le long d'un tube de verre où descend la capsule, tampon « avant le démarrage des
  * travaux », 5 tuiles de risques « REPÉRÉ », frise conception → construction → exploitation avec épingle HAZID.
- * Kits capsule-ui-neo-brutal et capsule-recit-illustre ; images de la session réutilisées.
+ * Kits capsule-ui-neo-brutal et capsule-recit-illustre ; images de la session réutilisées + image ChatGPT de
+ * l'utilisateur (chantier de l'unité chimique, panoramique vertical de la grue vers l'équipe QHSE).
  */
 const IMG = {
   cover: 'missions-gen/diagnostic.jpg',
   c1: 'missions-gen/diagnostic.jpg',
   c2: 'promo/raffinerie.jpg',
-  ex: 'principes-gen/chef-projet.jpg',
+  ex: 'hazid-gen/chantier-chimique.jpg',
   concep: 'principes-gen/conception.jpg',
 };
 const BLUE = '#1F6FD1';
@@ -674,7 +675,7 @@ const Exemple: React.FC = () => {
     <Out end={57.45}>
       <Heads h={[[41.9, ['Une', 'unité', 'de', 'production', 'chimique'], [3, 4]], [43.62, ['Avant', 'les', 'travaux'], [2]], [46.82, ['Une', 'étude', 'HAZID'], [1, 2]], [48.26, ['Les', 'risques', 'identifiés'], [2]]]} />
       {!part2 && <>
-        <Shot src={IMG.ex} ic="usine" x={60} y={450} w={960} h={620} at={41.9} pos="50% 50%" c={NAVY} />
+        <Shot src={IMG.ex} ic="usine" x={60} y={450} w={960} h={620} at={41.9} pos={`50% ${lerp(30, 72, prog(t, 41.9, 47.5, easeInOut))}%`} c={NAVY} />
         <Stamp at={43.7} text="AVANT LE DÉMARRAGE DES TRAVAUX" c={RED} x={120} y={1000} rot={-5} size={38} />
         {t > 46.82 && <Abs x={60} y={1150} w={960} style={{display: 'flex', justifyContent: 'center', gap: 14}}><Chip at={45.3} ic="equipe" l="ÉQUIPE QHSE" c={GREEN} /><Chip at={46.85} ic="clipboard" l="ÉTUDE HAZID" c={RED} /></Abs>}
       </>}
