@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 81,
+ "count": 82,
  "items": [
   {
    "section": "templates",
@@ -864,6 +864,29 @@
    "hash": "56b9f286f430",
    "path": "assets/matrice-cible/index.md",
    "preview": "assets/matrice-cible/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "matrice-risques-3d",
+   "name": "Matrice des risques 4 × 4 — 3D WebGL + 2D interactive",
+   "description": "Matrice des risques en vraie 3D (WebGL) : 16 colonnes de hauteur P × G, du vert au rouge, qui surgissent en vague diagonale avec leur valeur ; orbite caméra ; « hiérarchiser » = les colonnes s'illuminent dans l'ordre croissant de leur valeur ; la caméra passe en vue de dessus et la 3D redevient un tableau, axes Probabilité ↑ / Gravité → qui se tracent. Variante 2D néo-brutale (Grid2D) : cases qui se construisent en vague, ligne P et colonne G surlignées qui se dessinent, case croisée mise en avant (les autres s'estompent), gyrophare d'alarme sur la case ; dé 3D CSS qui roule ; échelles 1 → 4 à segments ; afficheur à palettes « 3 × 4 = 12 ».",
+   "quand": "Évaluation des risques, cotation P × G (ou F × G), criticité, matrice d'impact, toute grille à deux critères ; démonstrations « cas pratique ».",
+   "component": "src/matrice44Metro/Matrix3D.tsx",
+   "demo": "Demo-MatriceRisques3D",
+   "audio": null,
+   "tags": [
+    "matrice",
+    "risques",
+    "3D",
+    "WebGL",
+    "P × G",
+    "cotation",
+    "criticité",
+    "dé"
+   ],
+   "hash": "3e9bb3381903",
+   "path": "assets/matrice-risques-3d/index.md",
+   "preview": "assets/matrice-risques-3d/preview.mp4"
   },
   {
    "section": "assets",
