@@ -23,7 +23,8 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * les colonnes s'illuminent par ordre de valeur — fiche fromage-suisse-3d / film « La ligne invisible »), axes qui
  * se tracent, dé 3D qui roule, échelles 1 → 4 à segments, matrice 2D qui se construit en vague avec ligne et
  * colonne surlignées et case croisée, afficheur à palettes « 3 × 4 = 12 », gyrophare d'alarme sur la case,
- * escalier identifier / évaluer / prévenir, téléphone avec commentaires et champ entouré. Kits capsule-ui-neo-brutal
+ * escalier identifier / évaluer / prévenir, téléphone avec commentaires et champ entouré. Images ChatGPT de
+ * l'utilisateur : opérateur sur échafaudage (cas pratique) et main qui pose le jeton rouge (écran du téléphone). Kits capsule-ui-neo-brutal
  * et capsule-recit-illustre ; images de la session réutilisées.
  */
 const IMG = {
@@ -32,7 +33,8 @@ const IMG = {
   c2: 'evalrisques-gen/proba-gravite.jpg',
   danger: 'evalrisques-gen/danger.jpg',
   chute: 'causerie/chute-echelle.jpg',
-  scaff: 'tirant/echafaudage.jpg',
+  scaff: 'matrice44-gen/operateur-hauteur.jpg',
+  jeton: 'matrice44-gen/matrice-jeton.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -711,10 +713,10 @@ const Cas: React.FC = () => {
   return (
     <Out end={57.9}>
       <Heads h={[[43.8, ['Sans', 'protection', 'contre', 'les', 'chutes'], [1, 2, 3, 4]], [44.94, ['Probabilité', ':', '3'], [2]], [48.4, ['Gravité', ':', '4'], [2]], [49.7, ['Le', 'calcul'], [1]], [53.54, ['Risque', 'élevé'], [0, 1]], [55.54, ['Prévention', 'prioritaire'], [0, 1]]]} />
-      {!mat && <Shot src={IMG.scaff} ic="casque" x={160} y={460} w={760} h={700} at={43.8} pos="50% 40%" c={ORANGE}>
+      {!mat && <Shot src={IMG.scaff} ic="casque" x={160} y={460} w={760} h={760} at={43.8} pos="50% 2%" c={ORANGE}>
         <div style={{position: 'absolute', right: 26, top: 30}}><NBadge at={44.0} text="TRAVAIL EN HAUTEUR" bg={NBK} rot={4} size={28} /></div>
       </Shot>}
-      {!mat && <Stamp at={44.2} text="SANS PROTECTION" c={RED} x={250} y={1010} rot={-7} size={50} />}
+      {!mat && <Stamp at={44.2} text="SANS PROTECTION" c={RED} x={250} y={1080} rot={-7} size={50} />}
       {mat && <>
         <Grid2D x={190} y={440} at={44.9} scale={0.92} hiP={3} hiPAt={46.6} hiG={4} hiGAt={48.4} pick={[3, 4]} pickAt={52.0} alarm={alarm ? 1 : 0} />
         <Abs x={60} y={1150} w={960} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 14, zIndex: 6, opacity: pop(t, 49.8)}}>
@@ -775,7 +777,7 @@ const Comment: React.FC = () => {
       <Abs x={250} y={430} w={580} h={940} style={{transform: `translateY(${(1 - up) * 900}px) rotate(${(1 - up) * 6}deg)`}}>
         <div style={{position: 'absolute', inset: 0, borderRadius: 60, background: NBK, boxShadow: `12px 12px 0 ${RED}`, padding: 16, boxSizing: 'border-box'}}>
           <div style={{position: 'relative', width: '100%', height: '100%', borderRadius: 46, overflow: 'hidden', background: '#111'}}>
-            <Img src={PH(IMG.cover)} style={{position: 'absolute', inset: 0, width: '100%', height: '62%', objectFit: 'cover', opacity: 0.85}} />
+            <div style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '62%', overflow: 'hidden'}}><Img src={PH(IMG.jeton)} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 55%', transform: `translate(-230px, 40px) scale(${3.8 + prog(t, 67.9, 74.4) * 0.3})`, transformOrigin: '72% 54.5%', opacity: 0.92}} /></div>
             <div style={{position: 'absolute', left: '50%', top: 10, width: 120, height: 30, marginLeft: -60, borderRadius: 15, background: NBK}} />
             <div style={{position: 'absolute', right: 18, top: 210, display: 'flex', flexDirection: 'column', gap: 26, alignItems: 'center'}}>
               {['❤', '💬', '↗'].map((e, i) => <div key={i} style={{width: 70, height: 70, borderRadius: 35, background: 'rgba(255,255,255,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 36, color: '#fff', transform: i === 1 && t > 72.4 ? `scale(${1 + 0.2 * Math.abs(Math.sin(t * 8))})` : undefined, boxShadow: i === 1 && t > 72.4 ? `0 0 0 6px ${YEL}` : undefined}}>{e}</div>)}
