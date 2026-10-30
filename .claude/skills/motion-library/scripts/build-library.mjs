@@ -74,7 +74,7 @@ if (todo.length) {
     for (const x of todo) {
       const composition = await selectComposition({serveUrl, id: x.demo, puppeteerInstance: browser});
       const out = path.join(x.dir, 'preview.mp4');
-      await renderMedia({serveUrl, composition, codec: 'h264', outputLocation: out, scale: 0.5, crf: 28, puppeteerInstance: browser, logLevel: 'error'});
+      await renderMedia({serveUrl, composition, codec: 'h264', outputLocation: out, scale: 0.5, crf: 28, puppeteerInstance: browser, concurrency: 1, logLevel: 'error'});
       console.log('✓ aperçu', `${x.section}/${x.slug}`, `(${(fs.statSync(out).size / 1024).toFixed(0)} Ko)`);
     }
   } finally {

@@ -43,6 +43,7 @@ import {IsoQuinzeMetro} from '../isoQuinzeMetro/IsoQuinzeMetro';
 import {LigneInvisible} from '../ligneInvisible/LigneInvisible';
 import {IsoQuinze3D} from '../isoQuinze3D/IsoQuinze3D';
 import {IsoQuinzeSub} from '../isoQuinzeSub/IsoQuinzeSub';
+import {IsoQuinzeCartes} from '../isoQuinzeCartes/IsoQuinzeCartes';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -125,6 +126,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-FromageSuisse3D', C: LigneInvisible, at: 33.6, dur: 15.5},
   {id: 'Demo-TableauPeriodique3D', C: IsoQuinze3D, at: 73.4, dur: 7.2},
   {id: 'Demo-SuperpositionSubliminale', C: IsoQuinzeSub, at: 1.8, dur: 10.5},
+  {id: 'Demo-CartesAnimees', C: IsoQuinzeCartes, at: 4.6, dur: 7.5},
 ];
 
 export const LibraryDemos: React.FC = () => (

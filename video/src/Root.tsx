@@ -214,6 +214,7 @@ import {ChallengesMetro, CHALLENGES_METRO_FRAMES} from './challengesMetro/Challe
 import {IsoQuinzeMetro, ISO_QUINZE_METRO_FRAMES} from './isoQuinzeMetro/IsoQuinzeMetro';
 import {IsoQuinze3D, ISO_QUINZE_3D_FRAMES} from './isoQuinze3D/IsoQuinze3D';
 import {IsoQuinzeSub, ISO_QUINZE_SUB_FRAMES} from './isoQuinzeSub/IsoQuinzeSub';
+import {IsoQuinzeCartes, ISO_QUINZE_CARTES_FRAMES} from './isoQuinzeCartes/IsoQuinzeCartes';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -444,6 +445,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseIsoQuinzeMetro" component={IsoQuinzeMetro} durationInFrames={ISO_QUINZE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseIsoQuinze3D" component={IsoQuinze3D} durationInFrames={ISO_QUINZE_3D_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseIsoQuinzeSub" component={IsoQuinzeSub} durationInFrames={ISO_QUINZE_SUB_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseIsoQuinzeCartes" component={IsoQuinzeCartes} durationInFrames={ISO_QUINZE_CARTES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
