@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-89 motions validés. Galerie visuelle : `library/gallery.html`.
+90 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (85)
+## Assets (86)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -73,6 +73,7 @@
 | [Plan d’architecte qui se trace](assets/plan-architecte/index.md) | Fond bleu plan quadrillé, cadre d’une maison dessiné en pointillés au rythme de la voix (pathLength + dashoffset). | Construire un cadre, une méthode, une structure « invisible ». | `src/cafeHse/CafeHse.tsx` | [mp4](assets/plan-architecte/preview.mp4) |
 | [Pont qui se construit entre deux mondes](assets/pont-traducteur/index.md) | Deux colonnes (direction / terrain), arche qui se trace, tablier et suspentes qui montent, personnage HSE qui se pose au milieu. | Rôle d’interface, de traducteur, de médiateur entre deux groupes. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/pont-traducteur/preview.mp4) |
 | [Porte 3D qui s’ouvre sur la lumière](assets/porte-lumineuse-3d/index.md) | Porte en arche qui pivote en 3D (rotateY), halo doré et rayons volumétriques derrière, personnage qui franchit le seuil en rapetissant. | Idée de passage, d’accès, de « premier pas » (diplôme → terrain, entrée dans un rôle). | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/porte-lumineuse-3d/preview.mp4) |
+| [Portes logiques ET / OU en circuit + arbre des défaillances + cadenas à combinaison](assets/portes-fta/index.md) | Portes logiques au format arbre des défaillances (ET en dôme, OU en ogive) branchées comme un circuit : deux entrées « événement A / B » qui s'allument, fils où le courant circule (tirets lumineux qui défilent), lampe de sortie qui ne s'allume qu'avec les deux entrées pour ET et avec une seule pour OU ; tampons « SIMULTANÉMENT », « CONJOINTEMENT », « INDÉPENDAMMENT ». Aussi : cartes qui se retournent en 3D (anglais → français), causes « ? » balayées à la loupe qui convergent vers l'événement redouté avec ondes d'alarme, arbre qui pousse du sommet vers les causes (traits qui se tracent, événements de base en cercles, flèche de descente), local électrique en SVG qui s'embrase (flammes, fumée, étincelles, voyants rouges) puis se réduit en nœud sommet de l'arbre (transition d'élément partagé), 4 pictogrammes dessinés (court-circuit, isolant abîmé, multiprise surchargée, protection hors service), cadenas à combinaison dont les molettes alignent les défaillances puis s'ouvre sur l'incendie. | FTA / arbre des défaillances, arbre des causes, logique ET / OU, barrières, analyse de scénarios, risque électrique, incendie, combinaisons de causes, sigles anglais à traduire. | `src/ftaMetro/FtaMetro.tsx` | [mp4](assets/portes-fta/preview.mp4) |
 | [Pyramide de priorités + dominos](assets/pyramide-domino/index.md) | Étages néo-brutalistes qui tombent du haut (sécurité → qualité → productivité), tampon « NON NÉGOCIABLE », puis huit dominos qui basculent en cascade (« effet domino »). | Hiérarchiser des priorités, montrer un enchaînement de conséquences. | `src/kaizen/Kaizen.tsx` | [mp4](assets/pyramide-domino/preview.mp4) |
 | [4 ingrédients sur plan (silence + hiérarchie qui s’aplatit)](assets/quatre-ingredients-blueprint/index.md) | Grille 2×2 de cases pointillées qui se remplissent ; au « silence » les autres cases floutent et l’égaliseur tombe à zéro ; à la « fiction » l’organigramme pyramidal s’aplatit en ligne. | Liste de 3 à 4 conditions / piliers avec un effet propre à chacun. | `src/cafeHse/CafeHse.tsx` | [mp4](assets/quatre-ingredients-blueprint/preview.mp4) |
 | [Radar qui détecte des cibles](assets/radar-cibles/index.md) | Écran radar vert, balayage conique en rotation, cibles qui apparaissent avec onde de ping à chaque mot clé. | Lister des pistes, des cibles, des zones à prospecter ou à surveiller. | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/radar-cibles/preview.mp4) |
