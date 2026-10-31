@@ -22,11 +22,14 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * convergent vers la criticité, pompe industrielle animée (roue qui tourne, fuite qui goutte, moteur qui chauffe,
  * roulement qui vibre, moteur en panne) puis remise en état, 3 actions animées (calendrier qui se coche, clé,
  * pièce usée remplacée par une neuve), défaillances barrées. Kits capsule-ui-neo-brutal et capsule-recit-illustre.
+ * Image ChatGPT de l'utilisateur : l'équipe de maintenance devant la pompe (panoramique, pompe entourée), qui se
+ * transforme en pompe animée.
  */
 const IMG = {
   cover: 'principes-gen/conception.jpg',
   c1: 'principes-gen/conception.jpg',
   c2: 'audit13-gen/metrologie.jpg',
+  pompe: 'amdec-gen/pompe-maintenance.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -713,7 +716,13 @@ const Exemple: React.FC = () => {
   return (
     <Out end={49.3}>
       <Heads h={[[38.9, ['Une', 'pompe', 'industrielle'], [1, 2]], [43.18, ['Les', 'défaillances', 'possibles'], [1, 2]]]} />
-      <Abs x={60} y={440} w={960} h={600} style={{opacity: pop(t, 38.9)}}><Pump t={t} /></Abs>
+      {t < 44.2 && <Abs x={60} y={440} w={960} h={600} style={{opacity: 1 - prog(t, 43.6, 44.2), transform: `scale(${1 - 0.1 * prog(t, 43.6, 44.2, easeIn)})`}}>
+        <div style={{position: 'absolute', inset: 0, borderRadius: 26, overflow: 'hidden', border: `6px solid ${NBK}`, boxShadow: `10px 10px 0 ${NAVY}`}}>
+          <Img src={PH(IMG.pompe)} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: `${lerp(30, 70, prog(t, 38.9, 43.6, easeInOut))}% 45%`, transform: `scale(${1.15 - prog(t, 38.9, 43.6) * 0.1})`}} />
+          {t > 40.82 && <div style={{position: 'absolute', left: 640, top: 330, width: 230, height: 230, borderRadius: '50%', border: `8px solid ${RED}`, boxShadow: '0 0 0 6px #fff', transform: `scale(${Math.min(1, spring(t, 40.82, 9, 12))})`}} />}
+        </div>
+      </Abs>}
+      <Abs x={60} y={440} w={960} h={600} style={{opacity: prog(t, 43.6, 44.2), transform: `scale(${0.9 + 0.1 * prog(t, 43.6, 44.3, easeOut)})`}}><Pump t={t} /></Abs>
       {scan > 0 && scan < 1 && <Abs x={60} y={440 + scan * 600 - 10} w={960} h={20} style={{background: `linear-gradient(180deg, transparent, ${RED}, transparent)`, boxShadow: `0 0 30px ${RED}`}} />}
       {t > 39.0 && t < 44.7 && <Abs x={60} y={1080} w={960} style={{display: 'flex', justifyContent: 'center', gap: 14}}><Chip at={39.0} ic="outils" l="ÉQUIPE MAINTENANCE" c={BLUE} />{t > 40.2 && <Chip at={40.2} ic="clipboard" l="AMDEC" c={RED} />}</Abs>}
       {t > 44.7 && <Abs x={60} y={1070} w={960} h={300}>
