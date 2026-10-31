@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 85,
+ "count": 86,
  "items": [
   {
    "section": "templates",
@@ -620,6 +620,29 @@
    "hash": "04e409ab153e",
    "path": "assets/editeur-code-live/index.md",
    "preview": "assets/editeur-code-live/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "engrenages-pompe",
+   "name": "Train d'engrenages, jauges qui convergent, pompe animée et ses défaillances",
+   "description": "Train de 4 engrenages SVG générés (dents calculées par `gearPath`) placés en zigzag, qui s'engrènent un à un sur la voix (chaque roue démarre, sens alterné, vitesse inverse du rayon) avec libellé et numéro au centre + réglette de « cotation » dont le curseur glisse ; 3 jauges circulaires (G, F, D) qui se remplissent puis envoient trois courbes vers une case « CRITICITÉ » ; barres de risques qui se trient toutes seules (hiérarchisation) avec rang qui apparaît ; pompe industrielle SVG (moteur à ailettes, accouplement, roulement, volute avec roue qui tourne, flux dans les tuyauteries) dont les défaillances s'allument : fuite (gouttes + flaque), surchauffe (moteur rosé + ondes de chaleur), usure des roulements (vibration + roulement orange), panne du moteur (moteur gris, roue arrêtée, ✕), puis remise en état (coche verte) ; 3 actions animées (calendrier qui se coche, clé qui oscille, pièce rouge remplacée par une verte) ; mots barrés à la main.",
+   "quand": "AMDEC, maintenance, fiabilité, analyse de causes, criticité, toute démarche en étapes « qui s'enchaînent » (engrenages), équipements industriels.",
+   "component": "src/amdecMetro/AmdecMetro.tsx",
+   "demo": "Demo-EngrenagesPompe",
+   "audio": null,
+   "tags": [
+    "AMDEC",
+    "engrenages",
+    "criticité",
+    "jauges",
+    "pompe",
+    "maintenance",
+    "défaillances",
+    "hiérarchisation"
+   ],
+   "hash": "a59057a9f8de",
+   "path": "assets/engrenages-pompe/index.md",
+   "preview": "assets/engrenages-pompe/preview.mp4"
   },
   {
    "section": "assets",
