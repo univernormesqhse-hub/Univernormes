@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-91 motions validés. Galerie visuelle : `library/gallery.html`.
+92 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (87)
+## Assets (88)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -95,6 +95,7 @@
 | [Temple qui se bâtit pilier par pilier](assets/temple-trois-piliers/index.md) | Toit « politique » qui flotte, piliers colorés qui poussent au mot prononcé (libellé vertical), temple en miniature pendant les détails, puis plein écran : le toit tombe et se verrouille (éclair doré), la fondation s'illumine, un trophée couronne l'ensemble. | « X piliers », fondations d'une politique / d'un système, tout modèle à 3 ou 4 appuis. | `src/piliersPrevMetro/PiliersPrevMetro.tsx` | [mp4](assets/temple-trois-piliers/preview.mp4) |
 | [Morph de texte flou → net + tampon](assets/texte-morph-preuve/index.md) | Une ligne de CV se dissout en flou et se reforme en version chiffrée surlignée, puis tampon « PREUVE » et barres qui montent. | Avant/après d’une formulation (vague → quantifié), reformulation d’un argument. | `src/premierEmploi/PremierEmploi.tsx` | [mp4](assets/texte-morph-preuve/preview.mp4) |
 | [Tour qui s’effondre sur un sol instable](assets/tour-qui-s-effondre/index.md) | Blocs néo-brutalistes empilés sur un sol « sans standards » qui s’écroulent et s’éparpillent en tournant. | Montrer qu’une méthode échoue sans prérequis (discipline, standards, fondations). | `src/kaizen/Kaizen.tsx` | [mp4](assets/tour-qui-s-effondre/preview.mp4) |
+| [Sigles en série — carte focus + train de wagons, zones concentriques, carte de contrôle, cartes distribuées](assets/train-sigles/index.md) | Boîte à outils pour une longue liste de sigles calée sur la voix (tableau `IT` : sigle, début du sigle, début et fin de l'expansion). Carte focus commune : le sigle en tuiles qui tombent en tournant + l'expansion qui s'écrit mot à mot au rythme de la voix, initiales retrouvées automatiquement et soulignées (`initials`, mots vides ignorés, « d' / l' » gérés, accents normalisés), compteur « SIGLE n / N ». Une technique par famille : tableau des départs en palettes d'aéroport ouvert par une barre de recherche, zones concentriques autour d'un site (anneaux qui se tracent et pulsent), train de marchandises dont chaque wagon porte un sigle sur plaque orange et s'arrête à quai (roues qui tournent, fumée de la locomotive), tuiles qui pivotent façon tableau périodique, carte de contrôle qui se trace avec un point étiqueté par sigle, cartes distribuées en éventail sur une photo de réunion. Transitions qui présentent le premier sigle de chaque famille. | Glossaires, sigles et acronymes, lexique métier, listes longues (20 à 40 éléments) sur voix, quiz de vocabulaire, familles de termes, capsules « à connaître ». | `src/siglesMetro/SiglesMetro.tsx` | [mp4](assets/train-sigles/preview.mp4) |
 | [Transition gyrophare](assets/transition-gyrophare/index.md) | Faisceau de gyrophare qui balaie l’écran, bandeau damier qui traverse en biais et carte de partie numérotée. | Transition principale entre parties d’une capsule (≈ 3,7 s). | `src/langageDg/LangageDg.tsx` | [mp4](assets/transition-gyrophare/preview.mp4) |
 | [Transition loupe](assets/transition-loupe/index.md) | Une loupe balaie l’écran et grossit la carte de partie avant de la révéler. | Partie qui « examine » ou zoome sur un sujet (profil, analyse). | `src/langageDg/LangageDg.tsx` | [mp4](assets/transition-loupe/preview.mp4) |
 | [Transition tube pneumatique](assets/transition-pneumatique/index.md) | Capsule qui file dans le tube de verre et livre la carte de partie au guichet. | Partie qui « livre » une idée clé ou change de posture. | `src/langageDg/LangageDg.tsx` | [mp4](assets/transition-pneumatique/preview.mp4) |

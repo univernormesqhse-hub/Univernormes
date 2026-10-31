@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 91,
+ "count": 92,
  "items": [
   {
    "section": "templates",
@@ -1664,6 +1664,31 @@
    "hash": "4b396a264fb4",
    "path": "assets/tour-qui-s-effondre/index.md",
    "preview": "assets/tour-qui-s-effondre/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "train-sigles",
+   "name": "Sigles en série — carte focus + train de wagons, zones concentriques, carte de contrôle, cartes distribuées",
+   "description": "Boîte à outils pour une longue liste de sigles calée sur la voix (tableau `IT` : sigle, début du sigle, début et fin de l'expansion). Carte focus commune : le sigle en tuiles qui tombent en tournant + l'expansion qui s'écrit mot à mot au rythme de la voix, initiales retrouvées automatiquement et soulignées (`initials`, mots vides ignorés, « d' / l' » gérés, accents normalisés), compteur « SIGLE n / N ». Une technique par famille : tableau des départs en palettes d'aéroport ouvert par une barre de recherche, zones concentriques autour d'un site (anneaux qui se tracent et pulsent), train de marchandises dont chaque wagon porte un sigle sur plaque orange et s'arrête à quai (roues qui tournent, fumée de la locomotive), tuiles qui pivotent façon tableau périodique, carte de contrôle qui se trace avec un point étiqueté par sigle, cartes distribuées en éventail sur une photo de réunion. Transitions qui présentent le premier sigle de chaque famille.",
+   "quand": "Glossaires, sigles et acronymes, lexique métier, listes longues (20 à 40 éléments) sur voix, quiz de vocabulaire, familles de termes, capsules « à connaître ».",
+   "component": "src/siglesMetro/SiglesMetro.tsx",
+   "demo": "Demo-TrainSigles",
+   "audio": null,
+   "tags": [
+    "sigles",
+    "acronymes",
+    "glossaire",
+    "train",
+    "wagon",
+    "tableau des départs",
+    "palettes",
+    "carte de contrôle",
+    "cartes",
+    "liste"
+   ],
+   "hash": "c7e3c77468d8",
+   "path": "assets/train-sigles/index.md",
+   "preview": "assets/train-sigles/preview.mp4"
   },
   {
    "section": "assets",
