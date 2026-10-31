@@ -51,6 +51,7 @@ import {AprMetro} from '../aprMetro/AprMetro';
 import {HazopMetro} from '../hazopMetro/HazopMetro';
 import {AmdecMetro} from '../amdecMetro/AmdecMetro';
 import {WhatIfMetro} from '../whatIfMetro/WhatIfMetro';
+import {SwiftTechMetro} from '../swiftTechMetro/SwiftTechMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -141,6 +142,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-PidHazop', C: HazopMetro, at: 44.0, dur: 19.0},
   {id: 'Demo-EngrenagesPompe', C: AmdecMetro, at: 19.9, dur: 8.5},
   {id: 'Demo-EntrepotWhatIf', C: WhatIfMetro, at: 27.2, dur: 12.4},
+  {id: 'Demo-TapisSwift', C: SwiftTechMetro, at: 17.0, dur: 8.6},
 ];
 
 export const LibraryDemos: React.FC = () => (
