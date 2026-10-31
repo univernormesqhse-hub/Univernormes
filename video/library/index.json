@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 90,
+ "count": 91,
  "items": [
   {
    "section": "templates",
@@ -57,6 +57,32 @@
    "hash": "4b396a264fb4",
    "path": "assets/affiche-arrachee/index.md",
    "preview": "assets/affiche-arrachee/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "arbre-eta",
+   "name": "Arbre des événements (ETA) qui se construit + plans de propagation du feu",
+   "description": "Composant SVG `EventTree` générique : événement initiateur, colonnes de barrières, branches succès (haut, vert) / échec (bas, rouge) qui se tracent colonne par colonne avec pastilles ✓ / ✗, feuilles finales colorées selon le nombre d'échecs (vert → jaune → orange → rouge), libellés optionnels. Exemple incendie : départ de feu animé sur photo (flammes, fumée), puis 3 barrières jouées dans un panneau pendant que l'arbre pousse au-dessus (détecteur qui clignote et émet des ondes, sprinkler qui arrose et fait baisser la flamme, camion de pompiers qui arrive gyrophares allumés, roues qui tournent, route qui défile), boutons « ✓ fonctionne / ✗ défaillance ». Aussi : lettres E · T · A qui déplient leurs mots avec traduction qui glisse, miroir FTA ◀◀ causes / ETA ▶▶ scénarios avec barre de lecture façon magnétoscope, deux plans d'atelier (feu maîtrisé : la case passe au vert ; feu non maîtrisé : propagation case par case selon la distance jusqu'à l'incendie généralisé), zoom arrière qui révèle l'arbre complet + tampon.",
+   "quand": "ETA / arbre des événements, barrières de sécurité, nœud papillon (partie droite), scénarios d'accident, LOPA, incendie, plan d'intervention, succès / échec, propagation.",
+   "component": "src/etaMetro/EtaMetro.tsx",
+   "demo": "Demo-ArbreEta",
+   "audio": null,
+   "tags": [
+    "eta",
+    "arbre",
+    "événements",
+    "barrières",
+    "succès",
+    "échec",
+    "incendie",
+    "détecteur",
+    "sprinkler",
+    "pompiers",
+    "propagation"
+   ],
+   "hash": "251fe631cb44",
+   "path": "assets/arbre-eta/index.md",
+   "preview": "assets/arbre-eta/preview.mp4"
   },
   {
    "section": "assets",
