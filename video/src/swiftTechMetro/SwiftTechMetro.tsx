@@ -22,14 +22,14 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * inauguration du nouvel entrepôt (ruban coupé), atelier SWIFT, questions guidées tapées puis jouées en mini-scènes
  * (ventilateur qui s'arrête, cartons mal empilés qui penchent, départ de feu et fumée dans un rayonnage), touches
  * qui retombent et coches finales. Kits capsule-ui-neo-brutal et capsule-recit-illustre ; images de la session
- * réutilisées.
+ * réutilisées + image ChatGPT de l'utilisateur (atelier SWIFT dans l'entrepôt : couverture et exemple).
  */
 const IMG = {
-  cover: 'principes-gen/reunions.jpg',
+  cover: 'swift-gen/atelier-entrepot.jpg',
   c1: 'zones/entrepot.jpg',
   c2: 'principes-gen/reunions.jpg',
   wh: 'septm/entrepot.jpg',
-  atelier: 'missions-gen/planification.jpg',
+  atelier: 'swift-gen/atelier-entrepot.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -491,7 +491,7 @@ const Cover: React.FC = () => {
   if (out >= 1) return null;
   return (
     <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
-      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="danger" w={1080} h={820} pos="50% 50%" /></div>
+      <div style={{position: 'absolute', left: 0, top: 0, transform: `scale(${1 + t * 0.02})`, transformOrigin: '50% 30%'}}><Pic src={IMG.cover} ic="danger" w={1080} h={820} pos="52% 30%" /></div>
       <AbsoluteFill style={{background: `linear-gradient(180deg, ${PAPER}00 0%, ${PAPER}00 24%, ${PAPER}CC 32%, ${PAPER} 37%)`}} />
       <Abs x={0} y={70} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.2)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
       <Abs x={0} y={590} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="TECHNIQUE" src={IMG.c2} size={96} ls={2} seed={2} /></Abs>
@@ -669,7 +669,7 @@ const Exemple: React.FC = () => {
         {t > 30.4 && <Abs x={60} y={1180} w={960} style={{display: 'flex', justifyContent: 'center'}}><NBadge at={30.4} text="MISE EN SERVICE" bg={GREEN} rot={-2} size={40} /></Abs>}
       </>}
       {atelier && <>
-        <Shot src={IMG.atelier} ic="equipe" x={60} y={450} w={960} h={620} at={31.0} pos="50% 40%" c={VIO}>
+        <Shot src={IMG.atelier} ic="equipe" x={60} y={450} w={960} h={620} at={31.0} pos="55% 35%" c={VIO}>
           <div style={{position: 'absolute', left: 24, top: 24}}><NBadge at={31.4} text="ATELIER SWIFT" bg={VIO} rot={-3} size={34} /></div>
         </Shot>
         {t > 34.2 && <Abs x={60} y={1110} w={960} style={{display: 'flex', justifyContent: 'center', gap: 14}}>
