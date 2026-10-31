@@ -54,6 +54,7 @@ import {WhatIfMetro} from '../whatIfMetro/WhatIfMetro';
 import {SwiftTechMetro} from '../swiftTechMetro/SwiftTechMetro';
 import {JsaAstMetro} from '../jsaAstMetro/JsaAstMetro';
 import {FtaMetro} from '../ftaMetro/FtaMetro';
+import {EtaMetro} from '../etaMetro/EtaMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -147,6 +148,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-TapisSwift', C: SwiftTechMetro, at: 17.0, dur: 8.6},
   {id: 'Demo-MachineJsa', C: JsaAstMetro, at: 35.3, dur: 13.4},
   {id: 'Demo-PortesFta', C: FtaMetro, at: 24.8, dur: 13.9},
+  {id: 'Demo-ArbreEta', C: EtaMetro, at: 35.6, dur: 11.0},
 ];
 
 export const LibraryDemos: React.FC = () => (

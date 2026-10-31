@@ -225,6 +225,7 @@ import {WhatIfMetro, WHATIF_METRO_FRAMES} from './whatIfMetro/WhatIfMetro';
 import {SwiftTechMetro, SWIFT_TECH_METRO_FRAMES} from './swiftTechMetro/SwiftTechMetro';
 import {JsaAstMetro, JSA_AST_METRO_FRAMES} from './jsaAstMetro/JsaAstMetro';
 import {FtaMetro, FTA_METRO_FRAMES} from './ftaMetro/FtaMetro';
+import {EtaMetro, ETA_METRO_FRAMES} from './etaMetro/EtaMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -466,6 +467,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseSwiftTechMetro" component={SwiftTechMetro} durationInFrames={SWIFT_TECH_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseJsaAstMetro" component={JsaAstMetro} durationInFrames={JSA_AST_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseFtaMetro" component={FtaMetro} durationInFrames={FTA_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseEtaMetro" component={EtaMetro} durationInFrames={ETA_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
