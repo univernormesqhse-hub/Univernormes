@@ -21,13 +21,14 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * en 4 temps en escalier, entrepôt animé où chaque question « Que se passerait-il si… » est tapée puis jouée
  * (chariot élévateur sans freins avec traces de dérapage, charge qui tombe des fourches avec impact, piéton qui
  * traverse la zone de circulation face au chariot), matrice de coches conséquences / mesures, bulles « Et si… ? »
- * au-dessus de l'équipe. Kits capsule-ui-neo-brutal et capsule-recit-illustre ; images de la session réutilisées.
+ * au-dessus de l'équipe. Kits capsule-ui-neo-brutal et capsule-recit-illustre ; images de la session réutilisées
+ * + image ChatGPT de l'utilisateur (cariste et responsable QHSE dans l'entrepôt : couverture et exemple).
  */
 const IMG = {
-  cover: 'zones/entrepot.jpg',
+  cover: 'whatif-gen/entrepot-chariot.jpg',
   c1: 'zones/entrepot.jpg',
   c2: 'principes-gen/reunions.jpg',
-  wh: 'zones/entrepot.jpg',
+  wh: 'whatif-gen/entrepot-chariot.jpg',
   team: 'principes-gen/reunions.jpg',
 };
 const BLUE = '#1F6FD1';
@@ -686,9 +687,10 @@ const Exemple: React.FC = () => {
   return (
     <Out end={39.6}>
       <Heads h={[[25.3, ['Un', 'entrepôt', 'logistique'], [1, 2]], [27.34, ['Que', 'se', 'passerait-il', 'si…'], [2, 3]]]} />
-      {t < 27.4 && <Shot src={IMG.wh} ic="colis" x={60} y={450} w={960} h={640} at={25.3} pos="50% 40%" c={NAVY}>
-        <div style={{position: 'absolute', left: 24, top: 24}}>{t > 25.6 && <NBadge at={25.6} text="ÉQUIPE QHSE" bg={GREEN} rot={-3} size={30} />}</div>
-        {t > 26.2 && <div style={{position: 'absolute', right: 30, top: 60, ...nb(YEL, 6), padding: '10px 18px', fontFamily: sansFont, fontWeight: 900, fontSize: 40, transform: `scale(${Math.min(1, spring(t, 26.2))}) rotate(4deg)`}}>Et si… ?</div>}
+      {t < 27.4 && <Shot src={IMG.wh} ic="colis" x={60} y={450} w={960} h={760} at={25.3} pos="50% 45%" c={NAVY}>
+        {t > 25.9 && <div style={{position: 'absolute', left: 720, top: 220, width: 210, height: 210, borderRadius: '50%', border: `8px solid ${GREEN}`, boxShadow: '0 0 0 6px #fff', transform: `scale(${Math.min(1, spring(t, 25.9, 9, 12))})`}} />}
+        <div style={{position: 'absolute', right: 24, top: 24}}>{t > 25.9 && <NBadge at={25.9} text="ÉQUIPE QHSE" bg={GREEN} rot={3} size={30} />}</div>
+        {t > 26.4 && <div style={{position: 'absolute', left: 40, top: 60, ...nb(YEL, 6), padding: '10px 18px', fontFamily: sansFont, fontWeight: 900, fontSize: 44, transform: `scale(${Math.min(1, spring(t, 26.4))}) rotate(-4deg)`}}>Et si… ?</div>}
       </Shot>}
       {t >= 27.3 && <>
         <Abs x={60} y={440} w={960} h={190} style={{...nb('#fff', 7), padding: '18px 24px', boxSizing: 'border-box'}}>
