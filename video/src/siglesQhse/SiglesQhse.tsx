@@ -18,7 +18,9 @@ import {captions} from './captions';
  * signification complète, trouve le résultat et OUVRE la fiche (nom anglais, famille, visuel animé : pyramide des
  * cas, jauge d'indicateur, arête de poisson, arbre des causes, 5 pourquoi, étapes JSA). Voix d'origine (sans musique),
  * sous-titres calés mot à mot, photos générées (ChatGPT) d'après prompts-images-sigles-qhse.md. Fil rouge : tube
- * pneumatique à six guichets adaptés aux familles ; gyrophare express à chaque changement de famille.
+ * pneumatique à six guichets adaptés aux familles ; gyrophare express à chaque changement de famille. Effet wahou :
+ * rouleau 3D de machine à sous (les 20 sigles sur un cylindre) — levier tiré, tour complet avec flou de vitesse, arrêt
+ * mécanique pile sur chaque sigle au rythme de la voix, ampoules qui clignotent, « tic » à chaque sigle qui passe.
  */
 const IMG = {
   cover: 'sigles-gen/couverture.jpg',
@@ -494,18 +496,12 @@ const Station: React.FC = () => {
   const click = te + 0.15;
   const open = prog(t, click, click + 0.35, easeOut);
   const out = prog(t, e - 0.15, e, easeIn);
-  const L = g.s.replace(' ', '').length;
-  const tw = Math.min(170, 820 / L);
   return (
     <AbsoluteFill style={{opacity: 1 - out * 0.6}}>
       {/* compteur + famille */}
       <Abs x={60} y={340} w={960} h={70} style={{display: 'flex', alignItems: 'center', gap: 14}}>
         <div style={{background: c, color: '#fff', fontFamily: MONO, fontWeight: 700, fontSize: 24, padding: '8px 18px', borderRadius: 10, border: `3px solid ${INK}`}}>{SECT[g.f].title.toUpperCase()}</div>
         <div style={{marginLeft: 'auto', fontFamily: sansFont, fontWeight: 900, fontSize: 44, color: c}}>{String(i + 1).padStart(2, '0')}<span style={{color: DIM, fontSize: 28}}> / 20</span></div>
-      </Abs>
-      {/* tuiles du sigle */}
-      <Abs x={0} y={430} w={1080} h={230} style={{display: 'flex', justifyContent: 'center', gap: 14, perspective: 1000}}>
-        {g.s.split('').map((l, k) => { const q = prog(t, g.a + k * 0.07, g.a + k * 0.07 + 0.3, easeOut); return l === ' ' ? <div key={k} style={{width: 20}} /> : <div key={k} style={{width: tw, height: 210, borderRadius: 24, background: `linear-gradient(180deg, ${c}, ${c}CC)`, border: `6px solid ${INK}`, boxShadow: `0 10px 0 ${INK}, 0 0 30px ${c}66`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: Math.min(150, tw * 0.9), color: '#fff', transform: `rotateX(${(1 - q) * -100}deg)`, transformOrigin: '50% 0'}}>{l}</div>; })}
       </Abs>
       {/* barre de recherche (frappe clavier) */}
       <Abs x={60} y={700} w={960} h={110} style={{background: '#fff', border: `5px solid ${INK}`, borderRadius: 55, boxShadow: `6px 6px 0 ${c}`, display: 'flex', alignItems: 'center', gap: 16, padding: '0 30px', boxSizing: 'border-box', opacity: pop(t, g.a + 0.15)}}>
@@ -529,6 +525,63 @@ const Station: React.FC = () => {
       </Abs>
       {open > 0.95 && <LoupeSweep x0={120} y0={720} x1={760} y1={740} a={click + 0.1} b={Math.min(e - 0.2, click + 1.2)} size={120} />}
     </AbsoluteFill>
+  );
+};
+
+/* ═════════════ Rouleau 3D de machine à sous : les 20 sigles sur un cylindre, arrêt calé sur la voix ═════════════ */
+const FACE_H = 150, STEP = 360 / 20, R3D = FACE_H / 2 / Math.tan((STEP / 2) * (Math.PI / 180));
+const SPIN = 0.9;
+const reelTarget = (i: number) => (i < 0 ? 0 : i * STEP + 360 * (i + 1));
+const reelAngle = (t: number) => {
+  const i = SG.reduce((a, x, k) => (t >= x.a - SPIN ? k : a), -1);
+  if (i < 0) return 0;
+  const a = SG[i].a;
+  if (t < a) { const x = prog(t, a - SPIN, a, (v: number) => v); return lerp(reelTarget(i - 1), reelTarget(i), 1 - (1 - x) ** 3); }
+  const tau = t - a;
+  return reelTarget(i) + 4 * Math.exp(-tau * 10) * Math.sin(tau * 34);
+};
+const SlotReel: React.FC = () => {
+  const t = useT();
+  const th = reelAngle(t);
+  const speed = Math.abs(reelAngle(t + 1 / 30) - th);
+  const i = SG.reduce((a, x, k) => (t >= x.a - SPIN ? k : a), 0);
+  const spinning = t < SG[i].a && t > SG[i].a - SPIN;
+  const landed = t >= SG[i].a ? t - SG[i].a : -1;
+  const c = FAMC[SG[i].f];
+  const pull = spinning ? Math.sin(prog(t, SG[i].a - SPIN, SG[i].a - SPIN + 0.35) * Math.PI) : 0;
+  const flash = landed >= 0 ? Math.max(0, 1 - landed * 2.2) : 0;
+  const BULBS = 22;
+  return (
+    <Abs x={60} y={420} w={960} h={270} style={{zIndex: 5}}>
+      <div style={{position: 'absolute', left: 0, top: 0, width: 850, height: 270, borderRadius: 30, background: `linear-gradient(180deg, #2A3346, ${NIGHT})`, border: `6px solid ${INK}`, boxShadow: `8px 8px 0 ${c}, inset 0 0 0 6px ${GOLD}`}} />
+      {Array.from({length: BULBS}, (_, k) => {
+        const per = k < 11 ? [36 + k * 77.8, 14] : [36 + (k - 11) * 77.8, 256];
+        const on = spinning ? (k + Math.floor(t * 14)) % 3 === 0 : landed >= 0 && landed < 0.9 ? Math.floor(landed * 10) % 2 === 0 : k % 2 === 0;
+        return <div key={k} style={{position: 'absolute', left: per[0] - 7, top: per[1] - 7, width: 14, height: 14, borderRadius: 7, background: on ? YEL : '#5B5030', boxShadow: on ? `0 0 12px ${YEL}` : 'none'}} />;
+      })}
+      <div style={{position: 'absolute', left: 40, top: 32, width: 770, height: 206, borderRadius: 18, overflow: 'hidden', background: '#fff', border: `5px solid ${INK}`, filter: speed > 3 ? `blur(${Math.min(7, speed * 0.12)}px)` : 'none'}}>
+        <div style={{position: 'absolute', inset: 0, perspective: 1500, perspectiveOrigin: '50% 50%'}}>
+          <div style={{position: 'absolute', left: 0, right: 0, top: 103 - FACE_H / 2, height: FACE_H, transformStyle: 'preserve-3d', transform: `rotateX(${-th}deg)`}}>
+            {SG.map((g, k) => (
+              <div key={g.s} style={{position: 'absolute', inset: 0, backfaceVisibility: 'hidden', transform: `rotateX(${k * STEP}deg) translateZ(${R3D}px)`, background: k % 2 ? '#F4F6FA' : '#fff', borderTop: '3px solid #D9DEE7', borderBottom: '3px solid #D9DEE7', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24}}>
+                <div style={{width: 18, height: 100, borderRadius: 9, background: FAMC[g.f]}} />
+                <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: g.s.length > 4 ? 104 : 122, color: FAMC[g.f], letterSpacing: 4}}>{g.s}</div>
+                <div style={{width: 18, height: 100, borderRadius: 9, background: FAMC[g.f]}} />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div style={{position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(14,20,34,0.75) 0%, rgba(14,20,34,0) 28%, rgba(14,20,34,0) 72%, rgba(14,20,34,0.75) 100%)'}} />
+        <div style={{position: 'absolute', inset: 0, boxShadow: `inset 0 0 0 ${6 + flash * 10}px ${c}${flash > 0 ? 'CC' : '00'}`}} />
+      </div>
+      {[0, 1].map((side) => <div key={side} style={{position: 'absolute', top: 113, [side ? 'right' : 'left']: side ? 960 - 850 + 6 : 6, width: 0, height: 0, borderTop: '22px solid transparent', borderBottom: '22px solid transparent', [side ? 'borderRight' : 'borderLeft']: `30px solid ${RED}`}} />)}
+      <div style={{position: 'absolute', left: 870, top: 110, width: 70, height: 110, borderRadius: 16, background: `linear-gradient(90deg, #8A93A6, #C9D2DF)`, border: `5px solid ${INK}`}} />
+      <div style={{position: 'absolute', left: 896, top: 165, width: 18, height: 150, marginTop: -150, transformOrigin: '50% 100%', transform: `rotate(${pull * 150}deg)`}}>
+        <div style={{position: 'absolute', left: 3, top: 26, width: 12, height: 124, borderRadius: 6, background: `linear-gradient(90deg, #9AA3B2, #E6EAF0)`, border: `3px solid ${INK}`}} />
+        <div style={{position: 'absolute', left: -14, top: -6, width: 46, height: 46, borderRadius: 23, background: `radial-gradient(circle at 35% 30%, #fff, ${RED} 60%)`, border: `4px solid ${INK}`}} />
+      </div>
+      {flash > 0 && <div style={{position: 'absolute', left: 40, top: 32, width: 770, height: 206, borderRadius: 18, background: `radial-gradient(circle, ${c}55, transparent 70%)`, opacity: flash, pointerEvents: 'none'}} />}
+    </Abs>
   );
 };
 
@@ -565,10 +618,12 @@ const Final: React.FC = () => {
 };
 
 const rep = (a: number, n: number, d: number, s0: string, v: number): Sfx[] => Array.from({length: n}, (_, k) => ({at: a + k * d, s: s0, v, dur: 0.6}));
+/** Un « tic » à chaque sigle qui passe devant la ligne de gain pendant que le rouleau tourne. */
+const reelTicks = (i: number): Sfx[] => { const out: Sfx[] = []; let last = Math.floor(reelTarget(i - 1) / STEP); for (let x = SG[i].a - SPIN; x < SG[i].a; x += 1 / 60) { const f = Math.floor(reelAngle(x) / STEP); if (f !== last) { out.push({at: x, s: 'tick', v: 0.09, dur: 0.15}); last = f; } } return out; };
 const CUES: Sfx[] = [
   {at: 0.05, s: 'sfx/pop', v: 0.35}, ...rep(0.1, 14, 0.06, 'tick', 0.16), {at: 2.0, s: 'soft-whoosh', v: 0.5, dur: 1.5},
   ...SECT.flatMap((x) => [{at: x.at, s: 'sfx/whoosh', v: 0.3}, ...rep(x.at + 0.05, 3, 0.12, 'sfx/ding', 0.08)]),
-  ...SG.flatMap((g, i) => { const e = end(i); const ts = g.a + 0.35; const te = ts + Math.min((e - g.a) * 0.42, Math.max(0.6, Math.min(1.2, g.m.length * 0.028))); const n = Math.max(3, Math.round((te - ts) / 0.07)); return [{at: g.a - 0.35, s: 'soft-whoosh', v: 0.18, dur: 0.4}, ...g.s.replace(' ', '').split('').map((_, k) => ({at: g.a + k * 0.07, s: 'tick', v: 0.2, dur: 0.3})), ...rep(ts, n, (te - ts) / n, 'sfx/click', 0.07), {at: te + 0.05, s: 'validation', v: 0.18}, {at: te + 0.15, s: 'sfx/click', v: 0.35}, {at: te + 0.18, s: 'soft-whoosh', v: 0.25, dur: 0.5}]; }),
+  ...SG.flatMap((g, i) => { const e = end(i); const ts = g.a + 0.35; const te = ts + Math.min((e - g.a) * 0.42, Math.max(0.6, Math.min(1.2, g.m.length * 0.028))); const n = Math.max(3, Math.round((te - ts) / 0.07)); return [{at: g.a - SPIN, s: 'sfx/click', v: 0.3}, {at: g.a - SPIN + 0.02, s: 'sfx/swish', v: 0.25}, ...reelTicks(i), {at: g.a, s: 'sfx/thud', v: 0.35}, {at: g.a + 0.03, s: 'sfx/ding', v: 0.22}, ...rep(ts, n, (te - ts) / n, 'sfx/click', 0.07), {at: te + 0.05, s: 'validation', v: 0.18}, {at: te + 0.15, s: 'sfx/click', v: 0.35}, {at: te + 0.18, s: 'soft-whoosh', v: 0.25, dur: 0.5}]; }),
   {at: 56.2, s: 'sfx/rise', v: 0.25, dur: 0.8}, ...SG.map((_, k) => ({at: 56.2 + k * 0.03, s: 'sfx/pop', v: 0.06})), {at: 56.9, s: 'validation', v: 0.3},
   {at: OUTRO_AT + 0.2, s: 'signature-marque', v: 0.6, dur: 3.2},
 ];
@@ -577,6 +632,7 @@ export const SiglesQhse: React.FC = () => (
   <AbsoluteFill style={{background: PAPER}}>
     <Bg />
     <Gate from={2.5} to={OUTRO_AT}><Station /></Gate>
+    <Gate from={2.5} to={56.3}><SlotReel /></Gate>
     <Gate from={2.5} to={OUTRO_AT}><Metro /></Gate>
     <Gate from={56.1} to={OUTRO_AT}><Final /></Gate>
     {SECT.map((x, i) => <Gate key={x.n} from={x.at} to={x.at + 1.7}><GyroMini i={i} /></Gate>)}

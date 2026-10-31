@@ -56,6 +56,7 @@ import {JsaAstMetro} from '../jsaAstMetro/JsaAstMetro';
 import {FtaMetro} from '../ftaMetro/FtaMetro';
 import {EtaMetro} from '../etaMetro/EtaMetro';
 import {SiglesMetro} from '../siglesMetro/SiglesMetro';
+import {SiglesQhse} from '../siglesQhse/SiglesQhse';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -151,6 +152,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-PortesFta', C: FtaMetro, at: 24.8, dur: 13.9},
   {id: 'Demo-ArbreEta', C: EtaMetro, at: 35.6, dur: 11.0},
   {id: 'Demo-TrainSigles', C: SiglesMetro, at: 39.2, dur: 13.0},
+  {id: 'Demo-RouleauSigles', C: SiglesQhse, at: 4.6, dur: 9.6},
 ];
 
 export const LibraryDemos: React.FC = () => (
