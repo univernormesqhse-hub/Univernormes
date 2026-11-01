@@ -1849,19 +1849,111 @@ const CUES: Sfx[] = [
 
 const TRANS: Record<string, React.FC<{i: number}>> = {gyro: Gyro, loupe: Loupe, tube: Pneumatique, store: Store};
 const SCN: [React.FC, number, number][] = [[Intro1, 2.5, 15.5], [Intro2, 15.3, 24.25], [Intro3, 24.1, 32.8], [Intro4, 32.6, 44.8], [Intro5, 44.6, 51.3], [M1, 54.5, 113.7], [M2, 114.3, 168.7], [M3, 172.0, 242.4], [M4, 242.8, 300.5], [M5, 304.0, 352.7], [M6, 352.9, 404.4], [M7, 404.7, 466.0], [M8, 469.3, 531.5], [M9, 531.8, 591.5], [M10, 591.8, 654.6], [M11, 658.0, 703.1], [M12, 703.3, 762.5], [M13, 762.7, 814.6], [M14, 818.0, 870.6], [M15, 870.8, 936.6], [C1, 936.5, 950.4], [C2, 950.1, 972.8], [C3, 972.5, 981.9], [C4, 981.6, 992.5], [C5, 992.2, 1002.0], [C6, 1001.7, 1013.6], [C7, 1013.3, OUTRO_AT]];
-export const MethodesRisquesMetro: React.FC = () => (
-  <AbsoluteFill style={{background: PAPER}}>
-    <Bg />
+/** Calque commun aux deux formats : scènes + transitions + rame + bandeau de station (coordonnées 1080 × 1920). */
+const MRStage: React.FC = () => (
+  <>
     {SCN.map(([C, a, b], k) => <Gate key={k} from={a} to={b}><C /></Gate>)}
     {SECT.map((x, i) => { const C = TRANS[x.k]; return C ? <Gate key={x.n + i} from={x.at} to={x.at + 3.7}><C i={i} /></Gate> : null; })}
     {RAMES.map(([a, n]) => <Gate key={a} from={a} to={a + 1.5}><RameWipe at={a} n={n} /></Gate>)}
     <Gate from={936.6} to={937.5}><GyroFlash at={936.6} /></Gate>
-    <Gate from={2.8} to={OUTRO_AT}><Metro /></Gate>
     <Gate from={2.8} to={OUTRO_AT}><StationBanner /></Gate>
+  </>
+);
+export const MethodesRisquesMetro: React.FC = () => (
+  <AbsoluteFill style={{background: PAPER}}>
+    <Bg />
+    <MRStage />
+    <Gate from={2.8} to={OUTRO_AT}><Metro /></Gate>
     <Gate from={0} to={OUTRO_AT}><Header /></Gate>
     <Gate from={0} to={2.8}><Cover /></Gate>
     <Gate from={OUTRO_AT} to={9999}><AbsoluteFill style={{zIndex: 81}}><Outro at={OUTRO_AT} logo={LOGO} /></AbsoluteFill></Gate>
     <AbsoluteFill style={{zIndex: 100}}><Gate from={0.05} to={OUTRO_AT - 0.1}><NeoCaptions captions={captions} /></Gate></AbsoluteFill>
+    <Audio src={staticFile('voix-methodes-risques-origine.m4a')} trimAfter={s(OUTRO_AT)} />
+    <SoundDesign cues={CUES} />
+  </AbsoluteFill>
+);
+
+/* ═════════════ VERSION YOUTUBE 16:9 (1920 × 1080) ═════════════ */
+const ST_X = 60, ST_Y = 95, ST_S = 0.8, ST_TOP = 295;
+const LBg: React.FC = () => {
+  const t = useT();
+  return (
+    <AbsoluteFill style={{background: PAPER}}>
+      <AbsoluteFill style={{backgroundImage: 'linear-gradient(rgba(20,33,61,0.045) 2px, transparent 2px), linear-gradient(90deg, rgba(20,33,61,0.045) 2px, transparent 2px)', backgroundSize: '60px 60px', backgroundPosition: `${(t * 5) % 60}px 0`}} />
+      <div style={{position: 'absolute', right: -160, top: 120 + Math.sin(t * 0.3) * 30, width: 420, height: 420, borderRadius: 210, background: `${YEL}22`}} />
+      <div style={{position: 'absolute', left: 820, top: 820 + Math.cos(t * 0.25) * 30, width: 360, height: 360, borderRadius: 180, background: `${BLUE}10`}} />
+    </AbsoluteFill>
+  );
+};
+/** Plan de ligne vertical : les 15 méthodes comme 15 stations (équivalent visuel des chapitres YouTube). */
+const LMetro: React.FC = () => {
+  const t = useT();
+  const cur = STATIONS.reduce((a, x, k) => (t >= x.at ? k : a), -1);
+  const fin = t >= 936.6;
+  const RH = 46, Y0 = 318, X = 1046;
+  const mv = cur <= 0 ? 1 : prog(t, STATIONS[cur].at - 0.8, STATIONS[cur].at, easeInOut);
+  const ty = cur < 0 ? Y0 - 34 : lerp(Y0 + Math.max(0, cur - 1) * RH, Y0 + cur * RH, cur === 0 ? 1 : mv);
+  return (
+    <>
+      <Abs x={990} y={244} w={880} h={772} style={{background: 'rgba(255,255,255,0.94)', border: `5px solid ${INK}`, borderRadius: 24, boxShadow: `8px 8px 0 ${NAVY}`}} />
+      <Abs x={1020} y={256} w={820} style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontFamily: MONO, fontWeight: 700, fontSize: 22, color: DIM, letterSpacing: 3}}><span>LIGNE · 15 MÉTHODES</span><span style={{color: fin ? GREEN : NAVY}}>{fin ? 'TERMINUS ✓' : cur < 0 ? 'DÉPART' : `STATION ${String(cur + 1).padStart(2, '0')} / 15`}</span></Abs>
+      <div style={{position: 'absolute', left: X - 6, top: Y0, width: 12, height: 14 * RH, borderRadius: 6, background: `linear-gradient(180deg, ${ORANGE}, ${BLUE}, ${VIO}, ${TEAL}, ${NAVY}, ${GREEN})`}} />
+      {STATIONS.map((x, k) => {
+        const [acr, name] = x.l.split(' — ');
+        const here = k === cur && !fin;
+        const past = k < cur || fin;
+        const y = Y0 + k * RH;
+        return (
+          <React.Fragment key={k}>
+            {here && <div style={{position: 'absolute', left: X + 26, top: y - 21, width: 790, height: 42, borderRadius: 12, background: MC[k], border: `3px solid ${INK}`, boxShadow: `4px 4px 0 ${INK}`, transform: `scaleX(${Math.min(1, sp(t, x.at))})`, transformOrigin: '0 50%'}} />}
+            <div style={{position: 'absolute', left: X - 15, top: y - 15, width: 30, height: 30, borderRadius: 15, background: past ? GREEN : here ? '#fff' : '#fff', border: `4px solid ${past ? INK : here ? MC[k] : '#9FB3CC'}`, boxSizing: 'border-box', color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 15, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: here ? `0 0 16px ${MC[k]}` : 'none'}}>{past ? '✓' : ''}</div>
+            <div style={{position: 'absolute', left: X + 40, top: y - 17, display: 'flex', alignItems: 'baseline', gap: 12, whiteSpace: 'nowrap'}}>
+              <span style={{fontFamily: MONO, fontWeight: 700, fontSize: 18, color: here ? '#fff' : past ? GREEN : '#A9B1BE'}}>{String(k + 1).padStart(2, '0')}</span>
+              <span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 26, color: here ? '#fff' : past ? INK : '#8A94A6'}}>{acr}</span>
+              <span style={{fontFamily: sansFont, fontWeight: 700, fontSize: 19, color: here ? '#fff' : '#8A94A6'}}>{name}</span>
+            </div>
+          </React.Fragment>
+        );
+      })}
+      {!fin && <Img src={staticFile('metroiso-gen/metro/rame-dessus.png')} style={{position: 'absolute', left: X - 50, top: ty - 17, width: 100, height: 34, transform: 'rotate(90deg)', filter: 'drop-shadow(0 0 8px rgba(120,180,255,0.9))'}} />}
+    </>
+  );
+};
+/** Couverture paysage = miniature YouTube : photo en diagonale + « 15 MÉTHODES » en lettres-photos animées. */
+const LCover: React.FC = () => {
+  const t = useT();
+  const out = prog(t, 2.0, 2.7, easeIn);
+  if (out >= 1) return null;
+  return (
+    <AbsoluteFill style={{zIndex: 90, background: PAPER, opacity: 1 - out}}>
+      <div style={{position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, overflow: 'hidden', clipPath: 'polygon(0 0, 46% 0, 34% 100%, 0 100%)'}}><Img src={PH(IMG.c2)} style={{width: 1100, height: 1080, objectFit: 'cover', objectPosition: '50% 50%', transform: `scale(${1.04 + t * 0.02})`}} /></div>
+      <div style={{position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, clipPath: 'polygon(46% 0, 47.2% 0, 35.2% 100%, 34% 100%)', background: YEL}} />
+      <Abs x={1470} y={40} w={400} style={{display: 'flex', justifyContent: 'flex-end'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 26px', boxShadow: '0 10px 30px rgba(0,0,0,0.15)'}}><Img src={staticFile(LOGO)} style={{height: 80, display: 'block'}} /></div></Abs>
+      <Abs x={790} y={150} w={1100} style={{display: 'flex', alignItems: 'flex-end', gap: 26}}>
+        <PhotoLetterAnim ch="15" src={IMG.c2} size={330} ls={4} seed={3} />
+        <div style={{paddingBottom: 36}}><PhotoLetterAnim ch="MÉTHODES" src={IMG.c1} size={112} ls={2} seed={6} /></div>
+      </Abs>
+      <Abs x={800} y={540} w={1100}><div style={{display: 'inline-block', ...nb(NBK, 7), color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 70, padding: '8px 34px', transform: `rotate(-2deg) scale(${1 + 0.02 * Math.sin(t * 4)})`}}>d'analyse des <span style={{color: YEL}}>risques</span></div></Abs>
+      <Abs x={800} y={720} w={1080} style={{display: 'flex', flexWrap: 'wrap', gap: 12}}>{ACR.map((a, k) => <div key={k} style={{...nb(MC[k], 4), color: '#fff', padding: '6px 14px', fontFamily: sansFont, fontWeight: 900, fontSize: 28, transform: `translateY(${Math.sin(t * 3 + k * 0.6) * 4}px)`}}>{a}</div>)}</Abs>
+      <Abs x={800} y={930} w={1080} style={{fontFamily: MONO, fontWeight: 700, fontSize: 28, letterSpacing: 4, color: DIM}}>PRINCIPE · SCHÉMA · EXEMPLE CONCRET</Abs>
+    </AbsoluteFill>
+  );
+};
+export const MethodesRisquesYoutube: React.FC = () => (
+  <AbsoluteFill style={{background: PAPER, overflow: 'hidden'}}>
+    <LBg />
+    <div style={{position: 'absolute', left: ST_X - 10, top: ST_Y - 10, width: 1080 * ST_S + 20, height: 1100 * ST_S + 20, border: `5px solid ${INK}`, borderRadius: 26, boxShadow: `9px 9px 0 ${BURG}`, background: PAPER, boxSizing: 'border-box'}} />
+    <div style={{position: 'absolute', left: ST_X, top: ST_Y, width: 1080 * ST_S, height: 1100 * ST_S, overflow: 'hidden', borderRadius: 18}}>
+      <div style={{position: 'absolute', left: 0, top: -ST_TOP * ST_S, width: 1080, height: 1920, transform: `scale(${ST_S})`, transformOrigin: '0 0'}}>
+        <Bg />
+        <MRStage />
+      </div>
+    </div>
+    <Gate from={2.6} to={OUTRO_AT}><LMetro /></Gate>
+    <div style={{position: 'absolute', left: 968, top: -26, width: 1080, height: 320, transform: 'scale(0.84)', transformOrigin: '0 0'}}><Gate from={0} to={OUTRO_AT}><Header /></Gate></div>
+    <div style={{position: 'absolute', left: ST_X + 540 * ST_S - 540, top: 0, width: 1080, height: 1080, zIndex: 100}}><Gate from={0.05} to={OUTRO_AT - 0.1}><NeoCaptions captions={captions} top={990} /></Gate></div>
+    <Gate from={0} to={2.8}><LCover /></Gate>
+    <Gate from={OUTRO_AT} to={9999}><AbsoluteFill style={{zIndex: 95, background: PAPER}}><LBg /><div style={{position: 'absolute', left: 960 - 540 * 0.75, top: 540 - 920 * 0.75, width: 1080, height: 1920, transform: 'scale(0.75)', transformOrigin: '0 0'}}><Outro at={OUTRO_AT} logo={LOGO} /></div></AbsoluteFill></Gate>
     <Audio src={staticFile('voix-methodes-risques-origine.m4a')} trimAfter={s(OUTRO_AT)} />
     <SoundDesign cues={CUES} />
   </AbsoluteFill>
