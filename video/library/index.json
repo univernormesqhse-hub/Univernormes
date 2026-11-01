@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 95,
+ "count": 96,
  "items": [
   {
    "section": "templates",
@@ -1438,6 +1438,33 @@
    "hash": "abe471a7b4bf",
    "path": "assets/rouleau-machine-a-sous/index.md",
    "preview": "assets/rouleau-machine-a-sous/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "rouleau-methodes",
+   "name": "Catalogue de méthodes en métro — rouleau-prisme des sigles, rame plein cadre, schémas-stations, exemples animés",
+   "description": "Boîte à outils pour une voix très longue (15 à 20 min) qui présente une série de méthodes (définition → schéma → exemple). Chaque élément est une station de la ligne (plan de métro à 15 arrêts, bandeau « station n / 15 ») ; les familles d'éléments sont les six guichets du tube de verre. Annonce d'une méthode : rouleau-prisme des 15 sigles (cadre noir, triangles jaunes) qui défile en flou de bougé puis s'arrête net avec rebond et halo, « MÉTHODE n / 15 », sigle déployé mot à mot avec initiales soulignées (`[Haz]ard`), traduction manuscrite surlignée, puis repli en badge permanent. Entre deux méthodes d'une même famille : « rame plein cadre » (la rame sort du tunnel en traits de vitesse et fonce vers la caméra, flash blanc). Schémas : ligne de métro verticale où une capsule descend de station en station, escalier où un casque saute de marche en marche, cartes en zigzag reliées par des flèches qui se tracent. Exemples : radar qui balaie et fait rougir les sources de danger, points chauds pulsants sur photo, cartes risque → mesure qui se retournent, roue des mots-guides qui s'arrête sur chaque mot, oscilloscope qui sort de la bande normale, P&ID où le débit s'emballe, criticité G × F × D en cartes qui tombent, pompe à défaillances animées, bulles « Et si ? » tapées + vue du dessus avec chariot élévateur dessiné, post-it en chaos qui s'alignent en grille, tâche découpée par une lame, portes logiques ET / OU qui s'allument, carte FTA qui se retourne en ETA, arbre d'événements oui / non à 8 issues, nœud papillon vertical, système éclaté, chaîne HACCP sur tapis avec contrôle et bouteille éjectée, couches de protection autour d'un réservoir qui se remplit, panache gaussien avec contours, facteurs humains en orbite. Intro : barre de recherche qui ouvre la grille des 15 méthodes ; conclusion : terminus, familles mises en avant dans la grille, sélecteur de méthode, coches du spectateur, commentaire tapé, Partager / S'abonner, Q-H-S-E.",
+   "quand": "Formations longues qui passent en revue une liste d'outils, de méthodes, de normes ou de procédures (une fiche par élément), panoramas « les N méthodes / outils à connaître », vidéos pédagogiques de 10 à 20 min sur voix d'origine.",
+   "component": "src/methodesRisquesMetro/MethodesRisquesMetro.tsx",
+   "demo": "Demo-RouleauMethodes",
+   "audio": null,
+   "tags": [
+    "méthodes",
+    "analyse des risques",
+    "HAZOP",
+    "AMDEC",
+    "bow-tie",
+    "arbre",
+    "rouleau",
+    "prisme",
+    "métro",
+    "stations",
+    "catalogue",
+    "formation longue"
+   ],
+   "hash": "7da951b75542",
+   "path": "assets/rouleau-methodes/index.md",
+   "preview": "assets/rouleau-methodes/preview.mp4"
   },
   {
    "section": "assets",
