@@ -59,6 +59,7 @@ import {SiglesMetro} from '../siglesMetro/SiglesMetro';
 import {SiglesQhse} from '../siglesQhse/SiglesQhse';
 import {IsoQuinzeRouleau} from '../isoQuinzeRouleau/IsoQuinzeRouleau';
 import {AiprAtexMetro} from '../aiprAtexMetro/AiprAtexMetro';
+import {MethodesRisquesMetro} from '../methodesRisquesMetro/MethodesRisquesMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -157,6 +158,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-RouleauSigles', C: SiglesQhse, at: 4.6, dur: 9.6},
   {id: 'Demo-RouleauIso', C: IsoQuinzeRouleau, at: 9.6, dur: 9.0},
   {id: 'Demo-ZonesAtex', C: AiprAtexMetro, at: 193.2, dur: 14.0},
+  {id: 'Demo-RouleauMethodes', C: MethodesRisquesMetro, at: 195.2, dur: 16.0},
 ];
 
 export const LibraryDemos: React.FC = () => (

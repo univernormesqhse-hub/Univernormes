@@ -232,6 +232,7 @@ import {Recit14001, RECIT14001_FRAMES} from './recit14001/Recit14001';
 import {Pub14001Carre, Pub14001Vertical, PUB14001_FRAMES} from './pub14001/Pub14001';
 import {Negligences, NEGLIGENCES_FRAMES} from './negligences/Negligences';
 import {AiprAtexMetro, AIPR_ATEX_METRO_FRAMES} from './aiprAtexMetro/AiprAtexMetro';
+import {MethodesRisquesMetro, METHODES_RISQUES_METRO_FRAMES} from './methodesRisquesMetro/MethodesRisquesMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -481,6 +482,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="PubIso14001Carre" component={Pub14001Carre} durationInFrames={PUB14001_FRAMES} fps={FPS} width={1080} height={1080} />
   <Composition id="DecryptageNegligences" component={Negligences} durationInFrames={NEGLIGENCES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseAiprAtexMetro" component={AiprAtexMetro} durationInFrames={AIPR_ATEX_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseMethodesRisquesMetro" component={MethodesRisquesMetro} durationInFrames={METHODES_RISQUES_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
