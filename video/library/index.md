@@ -2,7 +2,7 @@
 
 > Généré par `build-library.mjs` — ne pas éditer à la main. Source de vérité : `library/<section>/<slug>/index.md`.
 
-94 motions validés. Galerie visuelle : `library/gallery.html`.
+95 motions validés. Galerie visuelle : `library/gallery.html`.
 
 ## Templates (1)
 
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | [Capsule condensé « métro »](templates/capsule-metro-condense/index.md) | Vidéo verticale complète : couverture lettres-photos, tube de verre à 6 guichets, ligne de métro à 8 stations, scènes par partie, voix d’origine + sous-titres + SFX, outro. | Toute capsule pédagogique QHSE de 2 à 6 min à partir d’un dérush voix ; adapter les 6 guichets aux vraies parties de la vidéo. | `src/langageDg/LangageDg.tsx` | [mp4](templates/capsule-metro-condense/preview.mp4) |
 
-## Assets (90)
+## Assets (91)
 
 | Motion | Ce que ça fait | Quand l’utiliser | Code | Aperçu |
 |---|---|---|---|---|
@@ -104,6 +104,7 @@
 | [Transition store vénitien](assets/transition-store-venitien/index.md) | Lames de store qui pivotent pour révéler la partie suivante. | Révélation d’un contenu ou d’une photo ; aussi `<Shot blinds />` pour découvrir une image. | `src/accueilSecu/AccueilSecu.tsx` | [mp4](assets/transition-store-venitien/preview.mp4) |
 | [Formule G × F × D = C puis tri animé des priorités](assets/tri-priorites/index.md) | Trois tuiles (G, F, D) tombent au mot prononcé, résultat « = C » qui s'allume, puis barres de criticité qui se remplissent et se réordonnent (la plus critique monte en tête avec le badge « PRIORITÉ 1 »). | Cotation / criticité (AMDEC, évaluation des risques, matrice), classement par priorité, tout calcul produit de facteurs. | `src/amdec/Amdec.tsx` | [mp4](assets/tri-priorites/preview.mp4) |
 | [Triangle qui se trace + menaces repoussées](assets/triangle-cid/index.md) | Triangle tracé (pathLength) avec trois sommets en médaillons qui surgissent, puis éclairs qui rebondissent autour d’un bouclier pulsant. | Trois piliers indissociables (C-I-D, qualité-coût-délai…), protection contre des menaces. | `src/normesIsac/NormesIsac.tsx` | [mp4](assets/triangle-cid/preview.mp4) |
+| [Comparatif « terre / air » — coupe de terrain à réseaux, nuage de gaz, zones ATEX, bonneteau, compteur d'années](assets/zones-aipr-atex/index.md) | Boîte à outils pour opposer deux dispositifs voisins sur une voix longue (5 à 6 min). Coupe de terrain `Ground` (strates, réseaux gaz / électricité / eau / télécom en couleurs, option aérienne) face au nuage `GasCloud` (bulles qui dérivent, densité réglable) en écran partagé, signe « ≠ » qui frappe, fissures et secousse. Bonneteau de deux gobelets AIPR / ATEX qui s'échangent sur la voix puis se révèlent, barre de recherche ouverte sur les deux sigles, pièces de puzzle et personas à point d'interrogation. Compteur mécanique `Odo` à retenue (1999 → 2014 → 2013 → 2018) puis frise, godet stoppé par un panneau STOP. Trois profils en cartes avec témoin et chaîne, zones 0 · 1 · 2 en halos concentriques, plan des réseaux qui se déroule avec détecteur balayant et pioche arrêtée par une main, triangle du feu qui se trace, boîtier « Ex » qui confine l'étincelle, volets « 7 H » / « 5 ANS » et réglette élastique 1 heure → plusieurs jours. Carrefour final TERRE → AIPR / AIR → ATEX, tracé cardiaque et cœur battant. | Comparer deux formations, deux normes ou deux habilitations souvent confondues, risques enfouis contre risques ambiants, capsules « quelle différence ? », vidéos réglementaires longues découpées en parties annoncées par la voix. | `src/aiprAtexMetro/AiprAtexMetro.tsx` | [mp4](assets/zones-aipr-atex/preview.mp4) |
 
 ## Sous-titres (2)
 
