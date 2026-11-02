@@ -1158,10 +1158,10 @@ const Prog: React.FC = () => {
   const fin = t >= 253.8;
   return (
     <AbsoluteFill style={{opacity: prog(t, 33.0, 33.6)}}>
-      {!fin && <LTitle a={36.5} t1="Formation Responsable QHSE" t2="Programme en 8 semaines · management intégré" y={296} />}
+      {!fin && <LTitle a={36.5} t1="Formation en management QHSE" t2="Programme en 8 semaines · management intégré" y={296} />}
       {t > 41.5 && <div style={{position: 'absolute', left: 0, top: 418, width: 1080, height: 975, overflow: 'hidden', opacity: prog(t, 41.5, 41.9), WebkitMaskImage: 'linear-gradient(180deg, transparent 0, #000 22px, #000 calc(100% - 26px), transparent)', maskImage: 'linear-gradient(180deg, transparent 0, #000 22px, #000 calc(100% - 26px), transparent)'}}><div style={{position: 'absolute', left: 0, top: -418, width: 1080, height: 1920}}><PBoard /></div></div>}
       {t < 42.2 && <div style={{opacity: 1 - prog(t, 41.7, 42.2)}}>
-        <SearchOpen x={60} y={460} w={960} h={880} at={36.6} query="formation responsable QHSE" results={['Normes ISO · fiches pratiques', 'Programme · 8 semaines · management intégré', 'Audit interne · guide']} found={1} foundAt={39.38} clickAt={39.8} c={'#E8B931'}>
+        <SearchOpen x={60} y={460} w={960} h={880} at={36.6} query="formation en management QHSE" results={['Normes ISO · fiches pratiques', 'Programme · 8 semaines · management intégré', 'Audit interne · guide']} found={1} foundAt={39.38} clickAt={39.8} c={'#E8B931'}>
           <div style={{padding: '20px 30px'}}>{WEEKS.map((w, k) => <div key={k} style={{display: 'flex', alignItems: 'center', gap: 14, marginBottom: 12, opacity: pop(t, 40.6 + k * 0.08)}}><div style={{width: 110, height: 62, borderRadius: 10, background: w.c, color: '#fff', fontFamily: sansFont, fontWeight: 800, fontSize: 24, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>S{w.n}</div><div style={{fontFamily: sansFont, fontWeight: 700, fontSize: 27, color: INK}}>{w.th}</div></div>)}</div>
         </SearchOpen>
       </div>}
