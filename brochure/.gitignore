@@ -2,3 +2,4 @@
 build/
 assets/photos/print/
 assets/photos/web/
+__pycache__/
