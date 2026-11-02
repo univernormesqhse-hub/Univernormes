@@ -1,0 +1,148 @@
+/* ═══════════ Brochure « Formation en management QHSE » — styles propres (s'ajoutent à styles.css) ═══════════ */
+
+/* ═════ 01 Couverture ═════ */
+.fcv .photo { position: absolute; inset: 0; }
+.fcv .veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,71,0.6) 0%, rgba(6,26,71,0.12) 14%, rgba(6,26,71,0) 28%, rgba(6,26,71,0) 46%, rgba(6,26,71,0.55) 60%, rgba(6,26,71,0.9) 72%, #061A47 84%, #061A47 100%); }
+.fcv .logo { position: absolute; left: var(--m); top: 15mm; background: #fff; padding: 3.4mm 5mm; border-radius: 1.4mm; box-shadow: 0 2mm 8mm rgba(6,26,71,0.28); }
+.fcv .logo img { height: 16mm; }
+.fcv .badge { position: absolute; right: var(--m); top: 152mm; width: 32mm; height: 32mm; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 1.4mm rgba(255,255,255,0.9), 0 3mm 10mm rgba(6,26,71,0.35); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; }
+.fcv .badge .num { font-weight: 600; font-size: 38pt; line-height: 0.95; }
+.fcv .badge small { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7pt; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 0.6mm; }
+.fcv .kick { position: absolute; left: var(--m); top: 190mm; font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.8pt; letter-spacing: 0.26em; text-transform: uppercase; color: #fff; display: flex; align-items: center; gap: 3mm; }
+.fcv .kick::before { content: ''; width: 8mm; height: 0.6mm; background: var(--green-light); }
+.fcv h1 { position: absolute; left: var(--m); right: var(--m); top: 199mm; font-weight: 800; font-size: 41pt; line-height: 1.05; color: #fff; letter-spacing: -0.028em; }
+.fcv h1 span { display: block; }
+.fcv h1 span:nth-child(2) { color: var(--green-light); }
+.fcv .rule { position: absolute; left: var(--m); top: 236mm; width: 26mm; height: 0.8mm; background: var(--green); }
+.fcv .sub { position: absolute; left: var(--m); width: 150mm; top: 242mm; font-family: 'Source Sans 3'; font-style: italic; font-size: 13.5pt; line-height: 1.4; color: #E3EAF5; }
+.fcv .base { position: absolute; left: var(--m); right: var(--m); bottom: 14mm; display: flex; justify-content: space-between; border-top: 0.3mm solid rgba(255,255,255,0.22); padding-top: 4.4mm; font-family: 'IBM Plex Sans'; font-size: 6.9pt; letter-spacing: 0.16em; text-transform: uppercase; color: #AFC0DD; }
+
+/* ═════ 02 Contexte et ambition ═════ */
+.fct .photo { position: absolute; right: 0; top: 0; width: calc(var(--b) + 88mm); height: calc(var(--b) + 160mm); }
+.fct .photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,71,0.5), rgba(6,26,71,0) 20%); }
+.fct .band { position: absolute; left: 0; right: 0; top: calc(var(--b) + 172mm); height: 56mm; background: var(--navy-deep); }
+.fct .col { position: absolute; left: var(--m); width: 96mm; top: 26mm; }
+.fct h2 { font-size: 24pt; margin: 6mm 0 6mm; }
+.fct .col .lead-s { font-size: 10.8pt; }
+.fct blockquote { position: absolute; left: var(--m); right: var(--m); top: 184mm; display: grid; grid-template-columns: 12mm 1fr; gap: 4mm; font-family: 'Manrope'; font-weight: 600; font-size: 13.6pt; line-height: 1.45; color: #fff; text-wrap: pretty; }
+.fct blockquote .ico { width: 10mm; height: 10mm; color: var(--green-light); margin-top: 1mm; }
+.fct .needs { position: absolute; left: var(--m); right: var(--m); top: 240mm; }
+.fct .nds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; margin-top: 5mm; }
+.fct .nd { display: flex; align-items: center; gap: 3.5mm; font-family: 'Manrope'; font-weight: 700; font-size: 12pt; color: var(--navy); }
+.fct .nd .ico { width: 11mm; height: 11mm; border-radius: 50%; background: var(--green-soft); color: var(--green); padding: 2.4mm; }
+
+/* ═════ 03 La formation en bref ═════ */
+.fbr .head { position: absolute; left: var(--m); right: var(--m); top: 26mm; }
+.fbr h2 { font-size: 28pt; margin-top: 6mm; max-width: 150mm; }
+.fbr .facts { position: absolute; left: var(--m); right: var(--m); top: 74mm; display: grid; grid-template-columns: 50mm 1fr 1fr; gap: 5mm; }
+.fbr .fk { background: #fff; border-radius: 1.6mm; padding: 6mm; box-shadow: 0 0.8mm 3mm rgba(10,38,105,0.06); }
+.fbr .fk.dark { background: var(--navy-deep); display: flex; flex-direction: column; justify-content: flex-end; }
+.fbr .fk .big { font-weight: 600; font-size: 64pt; line-height: 0.9; color: #fff; }
+.fbr .fk .bl { font-family: 'Manrope'; font-weight: 600; font-size: 10.6pt; line-height: 1.35; color: #CFE0F2; margin-top: 3mm; }
+.fbr .fk p { font-size: 9.8pt; line-height: 1.5; margin-top: 2.5mm; color: var(--ink); }
+.fbr .items-k.sp { margin-top: 5mm; }
+.chips2 { display: flex; flex-wrap: wrap; gap: 2mm; margin-top: 4mm; }
+.chips2 .chip { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 9pt; color: var(--navy); background: var(--green-soft); border-radius: 1mm; padding: 1.6mm 3mm; }
+.fbr .band { position: absolute; left: 0; right: 0; top: calc(var(--b) + 148mm); height: 66mm; }
+.fbr .skills { position: absolute; left: var(--m); right: var(--m); top: 224mm; }
+.fbr .sks { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5mm; margin-top: 5mm; }
+.fbr .sk { border-top: 0.4mm solid var(--navy); padding-top: 3.5mm; }
+.fbr .sk .n { font-weight: 600; font-size: 8pt; color: var(--green); letter-spacing: 0.1em; }
+.fbr .sk h4 { font-size: 12.6pt; margin-top: 2mm; }
+.fbr .sk p { font-size: 9pt; line-height: 1.42; color: var(--slate); margin-top: 1.4mm; }
+
+/* ═════ 04 Feuille de route (page foncée) ═════ */
+.frm { background: radial-gradient(130% 90% at 100% 0%, #0C2E78 0%, #061A47 55%, #04122F 100%); }
+.frm .arcs { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.16; }
+.frm .head { position: absolute; left: var(--m); right: var(--m); top: 26mm; }
+.frm h2 { font-size: 26pt; margin-top: 6mm; max-width: 160mm; }
+.frm .tl { position: absolute; left: var(--m); right: var(--m); top: 84mm; display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; }
+.frm .tc { position: relative; }
+.frm .tc::before { content: ''; position: absolute; left: 6.8mm; top: 7mm; bottom: 34mm; width: 0.4mm; background: linear-gradient(180deg, var(--green-light), rgba(111,211,179,0.25)); }
+.frm .rw { display: grid; grid-template-columns: 14mm 1fr; gap: 5mm; height: 46mm; }
+.frm .node { width: 14mm; height: 14mm; border-radius: 50%; background: var(--navy-deep); border: 0.5mm solid var(--green-light); color: #fff; font-weight: 600; font-size: 10pt; display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; }
+.frm .rw:nth-child(4) .node { background: var(--green); border-color: var(--green); }
+.frm .tc:last-child .rw:nth-child(4) .node { background: var(--green-light); color: var(--navy-deep); border-color: var(--green-light); }
+.frm .wl { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.2pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green-light); margin-top: 1mm; }
+.frm h4 { font-size: 12.6pt; margin-top: 1.6mm; }
+.frm .rw p { font-size: 9.6pt; line-height: 1.45; color: #C9D3E6; margin-top: 1.6mm; }
+.frm .mt { font-size: 7.6pt; letter-spacing: 0.08em; color: #8FA3C6; margin-top: 2mm; text-transform: uppercase; }
+
+/* ═════ 05–08 Programme détaillé ═════ */
+.fpg .ptop { position: absolute; left: var(--m); right: var(--m); top: 22mm; display: flex; justify-content: space-between; align-items: center; }
+.mini { display: flex; gap: 1.2mm; }
+.mini span { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 6.8pt; letter-spacing: 0.06em; color: var(--mute); width: 9mm; padding-top: 1.6mm; border-top: 0.8mm solid var(--line); text-align: center; }
+.mini span.past { color: var(--navy); border-top-color: var(--navy); }
+.mini span.on { color: var(--green); border-top-color: var(--green); }
+.fpg .wk { position: absolute; left: var(--m); right: var(--m); height: 114mm; display: grid; gap: 8mm; }
+.fpg .wk.side-l { top: 34mm; grid-template-columns: 66mm 1fr; }
+.fpg .wk.side-r { top: 159mm; grid-template-columns: 1fr 66mm; }
+.fpg .wk.side-r .wph { order: 2; }
+.fpg .sep { position: absolute; left: var(--m); right: var(--m); top: 153mm; height: 0.3mm; background: var(--line); }
+.fpg .wph { border-radius: 1.2mm; height: 100%; }
+.fpg .wh { display: flex; align-items: flex-end; gap: 4.5mm; }
+.fpg .wl { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.4pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); }
+.fpg h3 { font-size: 16pt; line-height: 1.16; margin-top: 1.4mm; font-weight: 800; letter-spacing: -0.02em; }
+.fpg .obj { margin-top: 4.4mm; padding: 3.4mm 4mm; background: var(--green-soft); border-left: 0.9mm solid var(--green); border-radius: 0 1.2mm 1.2mm 0; font-family: 'Manrope'; font-weight: 600; font-size: 10.4pt; line-height: 1.4; color: var(--navy); }
+.fpg.sand .obj { background: #fff; }
+.fpg .obj span { display: block; font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 6.8pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 1mm; }
+.fpg .items { margin-top: 3mm; }
+.fpg .items li { font-size: 10pt; padding: 2.05mm 0; }
+.fpg .tags { display: flex; flex-wrap: wrap; gap: 1.6mm; margin-top: 3.6mm; }
+.fpg .tag { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.8pt; color: var(--navy); border: 0.3mm solid var(--navy); border-radius: 0.9mm; padding: 0.9mm 2.2mm; }
+
+/* ═════ 09 Pédagogie ═════ */
+.fpd .photo { position: absolute; left: 0; right: 0; top: 0; height: calc(var(--b) + 136mm); }
+.fpd .photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,71,0.6) 0%, rgba(6,26,71,0) 18%, rgba(6,26,71,0) 70%, rgba(6,26,71,0.25) 100%); }
+.fpd .head { position: absolute; left: var(--m); right: var(--m); top: 146mm; }
+.fpd h2 { font-size: 28pt; margin-top: 5mm; }
+.fpd .trio { position: absolute; left: var(--m); right: var(--m); top: 180mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 7mm; }
+.fpd .tr { border-top: 0.4mm solid var(--navy); padding-top: 5mm; position: relative; }
+.fpd .tr .ico { width: 10mm; height: 10mm; color: var(--green); }
+.fpd .tr .ln { position: absolute; right: 0; top: 5mm; font-weight: 600; font-size: 20pt; line-height: 1; color: var(--line); }
+.fpd .tr h3 { font-size: 13pt; margin-top: 4mm; }
+.fpd .tr p { font-size: 9.8pt; line-height: 1.5; color: var(--slate); margin-top: 2mm; }
+.fpd .out { position: absolute; left: var(--m); right: var(--m); top: 240mm; background: var(--navy-deep); border-radius: 1.6mm; padding: 6mm 7mm; display: grid; grid-template-columns: 10mm 1fr; gap: 5mm; align-items: center; }
+.fpd .out .ico { width: 10mm; height: 10mm; color: var(--green-light); }
+.fpd .out p { font-family: 'Manrope'; font-weight: 600; font-size: 12pt; line-height: 1.42; color: #fff; }
+
+/* ═════ 10 Publics concernés ═════ */
+.fpu .head { position: absolute; left: var(--m); right: var(--m); top: 26mm; }
+.fpu h2 { font-size: 28pt; margin-top: 6mm; }
+.fpu .cards { position: absolute; left: var(--m); right: var(--m); top: 70mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; }
+.fpu .pc { background: var(--sand); border-radius: 1.6mm; overflow: hidden; }
+.fpu .pp { height: 92mm; }
+.fpu .pt { padding: 5mm 5mm 6mm; }
+.fpu .pt .n { font-weight: 600; font-size: 8pt; color: var(--green); letter-spacing: 0.1em; }
+.fpu .pt h3 { font-size: 14pt; margin-top: 2mm; }
+.fpu .pt p { font-size: 10pt; line-height: 1.45; color: var(--slate); margin-top: 1.6mm; }
+.fpu .recap { position: absolute; left: var(--m); right: var(--m); top: 212mm; }
+.fpu .rcs { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10mm; margin-top: 2mm; }
+.fpu .rc { display: grid; grid-template-columns: 6mm 1fr; padding: 2.6mm 0; border-bottom: 0.25mm solid var(--line); font-size: 10pt; line-height: 1.35; }
+.fpu .rc .ico { width: 4mm; height: 4mm; color: var(--green); margin-top: 0.6mm; }
+.fpu .rc b { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 8pt; color: var(--navy); margin-right: 2.5mm; }
+
+/* ═════ 11 Informations et inscription ═════ */
+.fin .photo { position: absolute; left: 0; right: 0; top: 0; height: calc(var(--b) + 104mm); }
+.fin .photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,71,0.6) 0%, rgba(6,26,71,0) 22%, rgba(6,26,71,0) 70%, rgba(6,26,71,0.3) 100%); }
+.fin .col { position: absolute; left: var(--m); width: 98mm; top: 116mm; }
+.fin h2 { font-size: 27pt; margin: 6mm 0 5mm; }
+.fin .col .lead-s { font-size: 11pt; }
+.fin .steps { margin-top: 7mm; }
+.fin .stp { display: grid; grid-template-columns: 10mm 1fr; padding: 3.6mm 0; border-bottom: 0.25mm solid var(--line); font-size: 11pt; }
+.fin .stp b { font-weight: 600; font-size: 8pt; color: var(--green); padding-top: 0.6mm; }
+.fin .wa { position: absolute; right: var(--m); width: 62mm; top: 92mm; background: var(--navy-deep); border-radius: 1.8mm; padding: 7mm 6mm 6mm; color: #fff; box-shadow: 0 3mm 10mm rgba(6,26,71,0.25); }
+.fin .wa .k { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.2pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green-light); }
+.fin .wa .nm { font-family: 'Manrope'; font-weight: 800; font-size: 12.5pt; margin-top: 2.5mm; letter-spacing: 0.01em; }
+.fin .wa .tel { display: flex; align-items: center; gap: 2.4mm; margin-top: 3.5mm; font-weight: 600; font-size: 14pt; }
+.fin .wa .tel .ico { width: 5.5mm; height: 5.5mm; color: var(--green-light); }
+.fin .wa .qr { background: #fff; border-radius: 1.2mm; padding: 3mm; margin-top: 6mm; }
+.fin .wa .qr svg { width: 100%; height: auto; display: block; }
+.fin .wa .qrc { font-family: 'IBM Plex Sans'; font-size: 6.6pt; letter-spacing: 0.04em; color: #B9C5DA; text-align: center; margin-top: 2.4mm; }
+.fin .sig { position: absolute; left: var(--m); right: var(--m); top: 246mm; display: flex; align-items: center; gap: 6mm; padding-top: 6mm; border-top: 0.3mm solid var(--line); }
+.fin .sig img { height: 14mm; }
+.fin .sig .t { font-family: 'Source Sans 3'; font-style: italic; font-size: 11pt; color: var(--navy); }
+
+/* ═════ 12 Quatrième de couverture ═════ */
+.bk .doc { margin-top: 15mm; font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 8.4pt; letter-spacing: 0.3em; text-transform: uppercase; color: var(--green-light); }
+.bk .doc + .slogan { margin-top: 5mm; }

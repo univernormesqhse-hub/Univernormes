@@ -26,3 +26,23 @@ résolution maximale.*
 | engagements-partenariat.jpg | 13 | paysage 16:9 | Deux mains qui se rejoignent pour une poignée de main professionnelle, costumes sombres, fond bleu nuit flou. |
 | pourquoi-usine.jpg | 14 | carré | Silhouette d'un responsable debout face à une grande porte lumineuse au bout d'une usine automatisée, brume légère, tons bleus. |
 | contact-responsable.jpg | 15 | portrait 9:16 | Responsable QHSE africain souriant, lunettes, chemise bleue et gilet jaune, tablette en main, devant un mur d'écrans de suivi. |
+
+## Brochure « Formation en management QHSE »
+
+La couverture reprend `contact-responsable.jpg`, et les semaines 1, 3 et 5 réutilisent `expertise-salle-pilotage.jpg`,
+`securite-briefing.jpg` et `environnement-prelevement.jpg` (voir plus haut).
+
+| Fichier | Page | Format | Prompt |
+|---|---|---|---|
+| fqhse-contexte.jpg | 2 | paysage 16:9 | Responsable QHSE africain en gilet jaune présente un tableau de suivi à son équipe sur un site industriel, un collègue tient un chronomètre au premier plan. |
+| fqhse-bref.jpg | 3 | paysage 16:9 | Équipe africaine en tenue de sécurité penchée sur une maquette d'usine et des plans, ambiance de travail collaborative. |
+| fqhse-s2-qualite.jpg | 5 | paysage 16:9 | Technicienne qualité africaine en blouse blanche et charlotte examine une pièce à la loupe, bacs de pièces métalliques au premier plan. |
+| fqhse-s4-urgences.jpg | 6 | paysage 3:2 | Casque de chantier jaune et extincteur rouge posés dans un atelier moderne, pictogrammes EPI au mur, lumière naturelle. |
+| fqhse-s6-conformite.jpg | 7 | paysage 3:2 | Responsable HSE africaine en gilet jaune remplit un registre de conformité à son bureau, classeurs et extincteur en arrière-plan. |
+| fqhse-s7-audit.jpg | 8 | portrait 2:3 | Auditrice africaine en gilet jaune analyse un tableau de bord d'indicateurs sur un grand écran, site industriel visible par la fenêtre. |
+| fqhse-s8-leadership.jpg | 8 | paysage 3:2 | Cheffe de projet QHSE africaine guide son équipe sur un site industriel au lever du soleil, tablette en main. |
+| fqhse-pedagogie.jpg | 9 | paysage 3:2 | Formatrice HSE africaine anime une causerie sécurité devant des opérateurs casqués, tableau blanc avec les consignes de sécurité. |
+| fqhse-public-professionnels.jpg | 10 | portrait | Responsable HSE africaine souriante, gilet jaune, tablette en main, raffinerie en arrière-plan. |
+| fqhse-public-techniciens.jpg | 10 | portrait | Technicien africain en gilet jaune et casque blanc, plans roulés et tablette, maquette d'installation industrielle. |
+| fqhse-public-etudiants.jpg | 10 | portrait | Étudiante africaine travaillant sur un classeur de cours QHSE et un ordinateur portable, casque de sécurité posé sur le bureau. |
+| fqhse-inscription.jpg | 11 | paysage 16:9 | Réunion de planification QHSE : une responsable africaine présente un planning mural à des collègues en tenue de sécurité. |

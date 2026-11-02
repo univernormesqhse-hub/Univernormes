@@ -15,12 +15,17 @@ for f in assets/photos/source/*.jpg; do
   fi
 done
 
-# 2. HTML puis PDF
+# 2. HTML puis PDF, pour chaque document
 mkdir -p build dist
-declare -A NAME=([print]=universnormes-brochure-impression.pdf [web]=universnormes-brochure-numerique.pdf)
+declare -A SUFFIX=([print]=impression [web]=numerique)
 for v in print web; do
+  # Brochure institutionnelle (16 pages)
   python3 src/build.py --variant "$v" > /dev/null
-  node scripts/render.mjs "build/brochure-$v.html" "build/brut-$v.pdf" "$v" > /dev/null
-  python3 scripts/finalize.py "build/brut-$v.pdf" "dist/${NAME[$v]}" "$v"
+  node scripts/render.mjs "build/brochure-$v.html" "build/brut-brochure-$v.pdf" "$v" > /dev/null
+  python3 scripts/finalize.py "build/brut-brochure-$v.pdf" "dist/universnormes-brochure-${SUFFIX[$v]}.pdf" "$v" institutionnelle
+  # Brochure de la formation en management QHSE (12 pages)
+  python3 src/formation.py --variant "$v" > /dev/null
+  node scripts/render.mjs "build/formation-$v.html" "build/brut-formation-$v.pdf" "$v" > /dev/null
+  python3 scripts/finalize.py "build/brut-formation-$v.pdf" "dist/universnormes-formation-management-qhse-${SUFFIX[$v]}.pdf" "$v" formation
 done
 ls -lh dist

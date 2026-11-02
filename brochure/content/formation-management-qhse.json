@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "title": "Formation en management QHSE — UNIVERSNORMES QHSE",
+    "org": "UNIVERSNORMES QHSE",
+    "doc": "Formation en management QHSE",
+    "kicker": "Programme professionnel · 8 semaines",
+    "domains": "Qualité · Santé et sécurité au travail · Environnement",
+    "slogan": "Des normes aujourd'hui, un avenir durable demain",
+    "metiers": "Formations · Audits · Accompagnement · Conseil",
+    "whatsapp": "+226 67 96 74 19",
+    "whatsapp_link": "https://wa.me/22667967419"
+  },
+  "cover": {
+    "photo": "contact-responsable",
+    "title": ["Formation en", "management QHSE"],
+    "subtitle": "Huit semaines pour apprendre à piloter un système de management intégré"
+  },
+  "contexte": {
+    "photo": "fqhse-contexte",
+    "label": "Contexte et ambition",
+    "title": "Des exigences croissantes, des compétences à la hauteur",
+    "body": [
+      "Dans un environnement professionnel où les exigences en matière de qualité, de santé, de sécurité et de protection de l'environnement deviennent de plus en plus importantes, les entreprises ont besoin de professionnels capables de maîtriser les risques, de piloter la performance et de garantir la conformité de leurs activités.",
+      "C'est dans cette perspective qu'UNIVERSNORMES QHSE propose une formation professionnelle structurée autour de huit semaines d'apprentissage progressif."
+    ],
+    "quote": "Devenir responsable QHSE ne consiste pas simplement à connaître les normes. C'est savoir les interpréter, les déployer sur le terrain, conduire des audits, maîtriser les risques et piloter efficacement un système de management intégré.",
+    "needs": [
+      {"icon": "ShieldCheck", "name": "Maîtriser les risques"},
+      {"icon": "Gauge", "name": "Piloter la performance"},
+      {"icon": "BadgeCheck", "name": "Garantir la conformité"}
+    ]
+  },
+  "bref": {
+    "photo": "fqhse-bref",
+    "label": "La formation en bref",
+    "title": "Un parcours progressif en huit semaines",
+    "norms": ["ISO 9001", "ISO 14001", "ISO 45001", "ISO 31000", "ISO 19011", "GHG Protocol"],
+    "pedagogy": "Enseignements techniques, exercices pratiques et études de cas.",
+    "validation": "Évaluation finale en semaine 8, après une étude de cas de conception d'un système de management intégré.",
+    "skills": [
+      {"name": "Interpréter", "text": "les exigences des normes de référence"},
+      {"name": "Déployer", "text": "les dispositifs sur le terrain"},
+      {"name": "Auditer", "text": "l'efficacité des systèmes de management"},
+      {"name": "Maîtriser", "text": "les risques professionnels et environnementaux"},
+      {"name": "Piloter", "text": "un système de management intégré"}
+    ]
+  },
+  "roadmap": {
+    "label": "Feuille de route",
+    "title": "Huit semaines, des fondamentaux à la mise en situation professionnelle"
+  },
+  "weeks": [
+    {"n": 1, "photo": "expertise-salle-pilotage", "pos": "40% 50%", "title": "Fondamentaux du management QHSE", "objective": "Comprendre la fonction et les systèmes de management.",
+     "modules": ["Introduction au métier de responsable QHSE et à ses responsabilités", "Fondamentaux du management intégré QHSE", "Présentation des normes ISO 9001, ISO 14001 et ISO 45001", "Approche processus et cartographie des processus"], "tags": ["ISO 9001", "ISO 14001", "ISO 45001"]},
+    {"n": 2, "photo": "fqhse-s2-qualite", "pos": "38% 40%", "title": "Management de la qualité", "objective": "Déployer et améliorer un système de management de la qualité.",
+     "modules": ["ISO 9001 : interprétation des exigences", "Gestion documentaire et maîtrise des informations documentées", "Gestion des non-conformités et actions correctives (CAPA)", "Outils de résolution de problèmes : 5 pourquoi, Ishikawa et Pareto", "Étude de cas : mise en place d'un système de management de la qualité"], "tags": ["ISO 9001", "CAPA"]},
+    {"n": 3, "photo": "securite-briefing", "pos": "30% 50%", "title": "Santé et sécurité au travail", "objective": "Prévenir les accidents et maîtriser les risques professionnels.",
+     "modules": ["ISO 45001 : interprétation des exigences", "Identification des dangers et évaluation des risques professionnels", "Analyse des risques : APR, AMDEC et HAZOP", "DUERP et plan d'action de prévention"], "tags": ["ISO 45001", "APR", "AMDEC", "HAZOP"]},
+    {"n": 4, "photo": "fqhse-s4-urgences", "pos": "28% 50%", "title": "Maîtrise opérationnelle et gestion des urgences", "objective": "Déployer les mesures de prévention sur le terrain.",
+     "modules": ["Permis de travail", "Consignation LOTO et gestion des EPI", "Gestion des accidents et enquêtes : arbre des causes, ICAM", "Plan d'opération interne (POI), incendie et organisation des secours", "Exercice pratique d'analyse des risques et de prévention"], "tags": ["LOTO", "ICAM", "POI"]},
+    {"n": 5, "photo": "environnement-prelevement", "pos": "40% 50%", "title": "Management environnemental", "objective": "Identifier et maîtriser les impacts environnementaux.",
+     "modules": ["ISO 14001 : interprétation des exigences", "Identification des aspects et impacts environnementaux", "Évaluation des aspects environnementaux significatifs", "Gestion des déchets, effluents et rejets industriels"], "tags": ["ISO 14001"]},
+    {"n": 6, "photo": "fqhse-s6-conformite", "pos": "30% 45%", "title": "Conformité réglementaire et management des risques", "objective": "Approfondir la maîtrise des obligations réglementaires et l'anticipation des risques.",
+     "modules": ["Veille réglementaire et évaluation de la conformité", "Management des risques selon ISO 31000", "Introduction au bilan carbone et au GHG Protocol", "Compréhension des scopes 1, 2 et 3", "Étude de cas environnemental"], "tags": ["ISO 31000", "GHG Protocol"]},
+    {"n": 7, "photo": "fqhse-s7-audit", "pos": "50% 45%", "title": "Audit et pilotage de la performance QHSE", "objective": "Évaluer l'efficacité des systèmes de management.",
+     "modules": ["ISO 19011 : principes et méthode d'audit", "Préparation et planification d'un audit interne", "Réalisation d'un audit et rédaction des constats", "Indicateurs QHSE et tableau de bord", "Revues de direction et amélioration continue"], "tags": ["ISO 19011"]},
+    {"n": 8, "photo": "fqhse-s8-leadership", "pos": "62% 40%", "title": "Leadership QHSE et mise en situation professionnelle", "objective": "Développer les capacités de pilotage d'une fonction QHSE.",
+     "modules": ["Construction d'un programme QHSE annuel", "Élaboration d'un plan d'action et allocation des ressources", "Étude de cas : conception d'un système de management intégré", "Évaluation finale"], "tags": ["Étude de cas", "Évaluation finale"]}
+  ],
+  "pedagogie": {
+    "photo": "fqhse-pedagogie",
+    "label": "Pédagogie",
+    "title": "Une formation orientée terrain",
+    "trio": [
+      {"icon": "BookOpen", "name": "Enseignements techniques", "text": "Les exigences des référentiels et les méthodes du métier."},
+      {"icon": "HardHat", "name": "Exercices pratiques", "text": "Analyse des risques et prévention mises en œuvre en situation."},
+      {"icon": "ClipboardCheck", "name": "Études de cas", "text": "Système de management de la qualité, cas environnemental, conception d'un système de management intégré."}
+    ],
+    "outcome": "Au terme des huit semaines, vous aurez parcouru les principaux domaines de compétences nécessaires au pilotage d'une fonction QHSE."
+  },
+  "publics": {
+    "label": "Publics concernés",
+    "title": "À qui s'adresse la formation ?",
+    "items": [
+      {"photo": "fqhse-public-professionnels", "pos": "62% 30%", "name": "Professionnels QHSE", "text": "souhaitant renforcer leurs compétences"},
+      {"photo": "fqhse-public-techniciens", "pos": "50% 30%", "name": "Techniciens", "text": "désireux d'évoluer vers des fonctions de responsabilité"},
+      {"photo": "fqhse-public-etudiants", "pos": "35% 40%", "name": "Étudiants", "text": "et personnes souhaitant construire une expertise dans ce domaine"}
+    ],
+    "recap_title": "Les domaines de compétences parcourus"
+  },
+  "inscription": {
+    "photo": "fqhse-inscription",
+    "label": "Informations et inscription",
+    "title": "Rejoindre la prochaine session",
+    "body": "Pour obtenir les informations relatives aux prochaines sessions, aux modalités de participation et aux inscriptions, contactez directement UNIVERSNORMES QHSE.",
+    "items": ["Calendrier des prochaines sessions", "Modalités de participation", "Inscriptions"],
+    "qr_caption": "Scannez pour nous écrire sur WhatsApp"
+  }
+}

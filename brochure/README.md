@@ -1,20 +1,25 @@
-# UNIVERSNORMES — Brochure institutionnelle
+# UNIVERSNORMES — Brochures
 
-Brochure corporate A4 portrait de 16 pages, produite à partir de fichiers sources modifiables (texte JSON, HTML/CSS)
-et convertie en PDF par Chromium.
+Deux brochures A4 portrait partagent le même système graphique et la même chaîne de production (texte JSON,
+HTML/CSS, conversion PDF par Chromium) :
 
-| Livrable | Fichier |
-|---|---|
-| PDF impression (210 × 297 mm + 3 mm de fond perdu, TrimBox/BleedBox, photos 2 400 px) | `dist/universnormes-brochure-impression.pdf` |
-| PDF numérique (A4, photos allégées, lien WhatsApp et QR code cliquables) | `dist/universnormes-brochure-numerique.pdf` |
+| Document | PDF impression (fond perdu 3 mm, TrimBox/BleedBox) | PDF numérique (A4, liens et QR code cliquables) |
+|---|---|---|
+| Brochure institutionnelle, 16 pages | `dist/universnormes-brochure-impression.pdf` | `dist/universnormes-brochure-numerique.pdf` |
+| Formation en management QHSE, 12 pages | `dist/universnormes-formation-management-qhse-impression.pdf` | `dist/universnormes-formation-management-qhse-numerique.pdf` |
+
+Le programme de la formation reprend mot pour mot la voix de la vidéo de présentation de la formation.
 
 ## Arborescence
 
 ```
-content/brochure.json       tous les textes de la brochure (un bloc par page)
+content/brochure.json       textes de la brochure institutionnelle (un bloc par page)
+content/formation-management-qhse.json  textes de la brochure formation (programme semaine par semaine)
 content/prompts-photos-hd.md prompts pour régénérer les photos en haute définition
 src/styles.css              système graphique : couleurs, typographies, grilles, mise en page de chaque page
-src/build.py                assemble le HTML à partir du JSON (une fonction par page)
+src/build.py                brochure institutionnelle : assemble le HTML à partir du JSON (une fonction par page)
+src/formation.py            brochure formation (réutilise les fonctions de build.py)
+src/formation.css           styles propres à la brochure formation
 scripts/render.mjs          conversion HTML → PDF (Playwright / Chromium) + contrôle de débordement
 scripts/finalize.py         métadonnées PDF, TrimBox et BleedBox de la version impression
 scripts/build.sh            chaîne complète : déclinaisons photo → HTML → 2 PDF
@@ -27,11 +32,12 @@ assets/photos/source/       photos d'origine (les dossiers print/ et web/ sont r
 
 ## Modifier la brochure
 
-- **Un texte** : éditer `content/brochure.json`, puis relancer `bash scripts/build.sh`.
+- **Un texte** : éditer `content/brochure.json` ou `content/formation-management-qhse.json`, puis relancer
+  `bash scripts/build.sh` (les deux brochures sont régénérées).
 - **Une photo** : remplacer le fichier dans `assets/photos/source/` en gardant le même nom (ou changer le nom dans le
   JSON), puis relancer le script. Le cadrage se règle dans `src/build.py` (deuxième argument de `c.bg(...)`, en %).
 - **Une couleur ou une taille** : variables `--navy`, `--green`, etc. en tête de `src/styles.css`.
-- **Prévisualiser** : ouvrir `build/brochure-web.html` dans Chrome après un premier build.
+- **Prévisualiser** : ouvrir `build/brochure-web.html` ou `build/formation-web.html` dans Chrome après un premier build.
 
 ## Prérequis
 
