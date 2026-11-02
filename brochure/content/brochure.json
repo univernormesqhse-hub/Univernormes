@@ -1,0 +1,188 @@
+{
+  "meta": {
+    "title": "UNIVERSNORMES — Brochure institutionnelle",
+    "company": "UNIVERSNORMES",
+    "baseline": "Qualité · Sécurité · Environnement",
+    "slogan": "Des normes aujourd'hui, un avenir durable demain",
+    "metiers": "Formations · Audits · Accompagnement · Conseil",
+    "whatsapp": "+226 67 96 74 19",
+    "whatsapp_link": "https://wa.me/22667967419",
+    "footer": "Brochure institutionnelle"
+  },
+  "cover": {
+    "photo": "couverture-site-gazier",
+    "kicker": "Brochure institutionnelle",
+    "title": ["Maîtriser les normes.", "Piloter la performance.", "Préserver l'avenir."]
+  },
+  "direction": {
+    "photo": "direction-equipe",
+    "label": "Mot de la direction",
+    "lead": "Faire de la conformité un levier de performance.",
+    "body": [
+      "Les exigences en matière de qualité, de santé, de sécurité et d'environnement n'ont jamais été aussi fortes. Pour les organisations, elles ne sont plus seulement une obligation : elles conditionnent la confiance des clients, la protection des équipes et la durabilité des activités.",
+      "Notre conviction est simple : une norme internationale ne vaut que par la manière dont elle est comprise, déployée et vécue sur le terrain. Notre rôle est d'accompagner les entreprises et les professionnels dans cette transformation, avec rigueur, pédagogie et pragmatisme.",
+      "Formation, audit, accompagnement, conseil : chacune de nos interventions poursuit le même objectif, des systèmes de management QHSE solides, utiles et durables. C'est tout le sens de notre signature."
+    ],
+    "quote": "Des normes aujourd'hui, un avenir durable demain.",
+    "signature": "La Direction d'UNIVERSNORMES"
+  },
+  "presentation": {
+    "photo": "presentation-equipe-site",
+    "label": "UNIVERSNORMES en bref",
+    "title": "Un partenaire QHSE pour structurer, sécuriser et faire progresser les organisations.",
+    "body": [
+      "UNIVERSNORMES intervient dans les domaines de la qualité, de la santé et de la sécurité au travail et de l'environnement. Nous accompagnons les entreprises, les équipes QHSE et les professionnels dans la compréhension et la mise en œuvre des normes internationales, de l'analyse des risques jusqu'à l'amélioration continue.",
+      "Notre approche réunit la rigueur des référentiels et la réalité du terrain : chaque recommandation doit pouvoir être appliquée, mesurée et maintenue dans le temps."
+    ],
+    "facts": [
+      {"value": "3", "label": "piliers", "detail": "Qualité · Sécurité · Environnement"},
+      {"value": "4", "label": "métiers", "detail": "Formations · Audits · Accompagnement · Conseil"},
+      {"value": "5", "label": "référentiels ISO de référence", "detail": "9001 · 14001 · 45001 · 31000 · 19011"},
+      {"value": "1", "label": "approche intégrée", "detail": "Un système de management unique, cohérent et piloté"}
+    ]
+  },
+  "vision": {
+    "photo": "vision-equipe-en-marche",
+    "label": "Vision, mission et valeurs",
+    "title": "Ce qui nous guide",
+    "vision": "Faire des normes QHSE un moteur de performance durable, au service des femmes et des hommes qui font vivre les organisations.",
+    "mission": "Accompagner les entreprises et les professionnels dans la compréhension, le déploiement et l'amélioration de leurs systèmes de management qualité, santé-sécurité et environnement.",
+    "values": [
+      {"name": "Rigueur", "text": "Une exigence de méthode et de conformité dans chaque intervention."},
+      {"name": "Pédagogie", "text": "Transmettre pour rendre les équipes autonomes."},
+      {"name": "Terrain", "text": "Des solutions applicables, pensées pour la réalité opérationnelle."},
+      {"name": "Intégrité", "text": "Indépendance, transparence et confidentialité."},
+      {"name": "Durabilité", "text": "Protéger les personnes, préserver l'environnement."}
+    ]
+  },
+  "expertise": {
+    "photo": "expertise-salle-pilotage",
+    "label": "Nos domaines d'expertise",
+    "title": "Cinq domaines, une vision intégrée",
+    "intro": "Qualité, santé-sécurité et environnement ne sont pas des silos : ils forment un même système de management, piloté par des objectifs communs.",
+    "domains": [
+      {"icon": "BadgeCheck", "name": "Qualité", "text": "Systèmes de management de la qualité, approche processus, ISO 9001 et amélioration continue."},
+      {"icon": "HardHat", "name": "Santé et sécurité au travail", "text": "Prévention, évaluation et analyse des risques professionnels, ISO 45001."},
+      {"icon": "Leaf", "name": "Environnement", "text": "Management environnemental, aspects et impacts, ISO 14001."},
+      {"icon": "ClipboardCheck", "name": "Audit et conformité", "text": "Audits internes selon ISO 19011, veille et évaluation de la conformité réglementaire."},
+      {"icon": "GraduationCap", "name": "Formation et compétences", "text": "Parcours professionnels, formations thématiques et contenus pédagogiques."}
+    ]
+  },
+  "services": {
+    "label": "Nos prestations et services QHSE",
+    "title": "Quatre métiers complémentaires",
+    "intro": "Selon vos enjeux, nous intervenons de manière ponctuelle ou dans le cadre d'un accompagnement complet, du diagnostic initial jusqu'à l'audit de suivi.",
+    "groups": [
+      {"icon": "GraduationCap", "name": "Formations", "items": ["Formation en management QHSE, programme en 8 semaines", "Analyse des risques : APR, HAZID, HAZOP, AMDEC, Bow-tie", "Sécurité opérationnelle : permis de travail, consignation LOTO, EPI", "Sensibilisations et causeries sécurité"]},
+      {"icon": "ClipboardCheck", "name": "Audits", "items": ["Diagnostic QHSE et analyse des écarts", "Audits internes selon ISO 19011", "Évaluation de la conformité réglementaire", "Préparation aux audits de certification"]},
+      {"icon": "Workflow", "name": "Accompagnement", "items": ["Mise en place de systèmes de management ISO 9001, 14001, 45001", "Système de management intégré QHSE", "Évaluation des risques et DUERP", "Plans d'urgence et POI"]},
+      {"icon": "Compass", "name": "Conseil", "items": ["Veille réglementaire", "Indicateurs et tableaux de bord QHSE", "Management des risques selon ISO 31000", "Bilan carbone et GHG Protocol"]}
+    ]
+  },
+  "qualite": {
+    "num": "01",
+    "photo": "qualite-controle-production",
+    "photo2": "qualite-manuel",
+    "label": "Qualité",
+    "norm": "ISO 9001",
+    "normName": "Système de management de la qualité",
+    "title": "Des systèmes de management qui créent de la valeur",
+    "body": "La qualité ne se décrète pas : elle se construit, processus après processus. Nous aidons les organisations à structurer leur système de management, à maîtriser leurs activités et à placer la satisfaction des parties intéressées au cœur de leur pilotage.",
+    "items": ["Diagnostic de maturité et analyse des écarts", "Approche processus et cartographie", "Gestion documentaire et informations documentées", "Non-conformités et actions correctives (CAPA)", "Outils de résolution de problèmes : 5 pourquoi, Ishikawa, Pareto", "Revue de direction et amélioration continue"]
+  },
+  "securite": {
+    "num": "02",
+    "photo": "securite-consignation",
+    "photo2": "securite-maintenance",
+    "label": "Santé et sécurité au travail",
+    "norm": "ISO 45001",
+    "normName": "Système de management de la santé et de la sécurité au travail",
+    "title": "Prévenir les risques, protéger les personnes",
+    "body": "Chaque accident évité est le résultat d'une prévention organisée. Nous accompagnons l'identification des dangers, l'évaluation des risques et la mise en place de mesures de prévention réellement appliquées sur le terrain.",
+    "items": ["Identification des dangers et évaluation des risques professionnels", "DUERP et plans d'action de prévention", "Permis de travail, consignation LOTO et gestion des EPI", "Enquêtes accidents : arbre des causes, ICAM", "Plans d'urgence, POI et organisation des secours"],
+    "methods": ["APR", "HAZID", "HAZOP", "AMDEC", "What if", "SWIFT", "JSA", "FTA", "ETA", "Bow-tie", "MOSAR", "LOPA"]
+  },
+  "environnement": {
+    "num": "03",
+    "photo": "environnement-prelevement",
+    "label": "Environnement",
+    "norm": "ISO 14001",
+    "normName": "Système de management environnemental",
+    "title": "Maîtriser son empreinte, anticiper ses obligations",
+    "body": "La performance environnementale est devenue une condition de la confiance. Nous aidons les organisations à identifier leurs aspects environnementaux, à maîtriser leurs impacts et à anticiper leurs obligations réglementaires.",
+    "items": ["Identification des aspects et impacts environnementaux", "Évaluation des aspects environnementaux significatifs", "Gestion des déchets, effluents et rejets industriels", "Veille et conformité réglementaire environnementale", "Bilan carbone et GHG Protocol : scopes 1, 2 et 3"]
+  },
+  "audit": {
+    "num": "04",
+    "photo": "audit-rapport",
+    "photo2": "audit-inspection",
+    "label": "Audit, accompagnement et conseil",
+    "title": "Voir clair, décider juste, progresser durablement",
+    "quote": "Un audit n'a de valeur que s'il conduit à l'action.",
+    "cols": [
+      {"icon": "Search", "name": "Audit", "text": "Diagnostics QHSE, audits internes selon ISO 19011 et évaluations de conformité : des constats factuels, hiérarchisés et directement exploitables."},
+      {"icon": "Workflow", "name": "Accompagnement", "text": "Un appui méthodologique dans la durée pour concevoir, déployer et faire vivre votre système de management, aux côtés de vos équipes."},
+      {"icon": "Compass", "name": "Conseil", "text": "Un regard expert sur vos enjeux : veille réglementaire, management des risques, indicateurs de performance et pilotage QHSE."}
+    ]
+  },
+  "formation": {
+    "num": "05",
+    "photo": "formation-salle",
+    "photo2": "formation-participants",
+    "label": "Formation professionnelle",
+    "title": "Développer les compétences qui font la différence",
+    "body": "Former, c'est donner aux équipes les moyens d'agir. Nos formations allient enseignements techniques, exercices pratiques et études de cas pour que chaque participant reparte avec des acquis directement applicables.",
+    "flagship": {"name": "Formation en management QHSE", "detail": "Un parcours progressif de 8 semaines", "weeks": ["Fondamentaux du management QHSE", "Management de la qualité", "Santé et sécurité au travail", "Maîtrise opérationnelle et urgences", "Management environnemental", "Conformité réglementaire et risques", "Audit et pilotage de la performance", "Leadership QHSE et mise en situation"]},
+    "formats": [
+      {"icon": "Presentation", "name": "Formations thématiques", "text": "Analyse des risques, sécurité opérationnelle, référentiels ISO."},
+      {"icon": "Users", "name": "Sensibilisations", "text": "Causeries sécurité et sessions courtes adaptées aux équipes terrain."},
+      {"icon": "Sparkles", "name": "Contenus pédagogiques", "text": "Capsules vidéo pour comprendre les normes et les méthodes QHSE."}
+    ]
+  },
+  "methodologie": {
+    "photo": "methodologie-atelier",
+    "label": "Notre méthodologie d'intervention",
+    "title": "Une démarche structurée, de l'écoute à l'amélioration continue",
+    "steps": [
+      {"icon": "MessageSquare", "name": "Écouter et diagnostiquer", "text": "Comprendre votre contexte, vos enjeux et l'état de vos pratiques au regard des référentiels."},
+      {"icon": "Target", "name": "Prioriser et planifier", "text": "Hiérarchiser les écarts et les risques, puis bâtir un plan d'action réaliste et partagé."},
+      {"icon": "Settings2", "name": "Déployer et former", "text": "Mettre en œuvre les dispositifs et transmettre les compétences aux équipes concernées."},
+      {"icon": "Gauge", "name": "Auditer et mesurer", "text": "Vérifier l'efficacité des actions grâce à des audits et à des indicateurs de performance."},
+      {"icon": "RefreshCw", "name": "Améliorer en continu", "text": "Ancrer les progrès dans la durée selon la logique Planifier, Faire, Vérifier, Agir."}
+    ]
+  },
+  "engagements": {
+    "photo": "engagements-partenariat",
+    "label": "Nos engagements et notre valeur ajoutée",
+    "title": "Une relation fondée sur la confiance",
+    "quote": "Notre réussite se mesure à l'autonomie et à la performance des équipes que nous accompagnons.",
+    "items": [
+      {"icon": "Layers", "name": "Une approche intégrée", "text": "Qualité, santé-sécurité et environnement traités comme un seul système."},
+      {"icon": "Scale", "name": "L'exigence normative", "text": "Des interventions fondées sur les référentiels internationaux."},
+      {"icon": "HardHat", "name": "Le pragmatisme terrain", "text": "Des solutions applicables et proportionnées à votre réalité."},
+      {"icon": "GraduationCap", "name": "La transmission", "text": "Des équipes formées, autonomes et impliquées."},
+      {"icon": "Lock", "name": "La confidentialité", "text": "Discrétion et intégrité sur toutes les informations confiées."},
+      {"icon": "HeartHandshake", "name": "La proximité", "text": "Une écoute attentive et un interlocuteur disponible."}
+    ]
+  },
+  "pourquoi": {
+    "photo": "pourquoi-usine",
+    "label": "Pourquoi choisir UNIVERSNORMES ?",
+    "title": "Cinq raisons de nous confier vos enjeux QHSE",
+    "reasons": [
+      {"name": "Une vision intégrée", "text": "Qualité, sécurité et environnement pilotés ensemble, pour plus de cohérence et d'efficacité."},
+      {"name": "La maîtrise des référentiels", "text": "ISO 9001, 14001, 45001, 31000 et 19011 au cœur de nos interventions."},
+      {"name": "Une pédagogie opérationnelle", "text": "Des contenus clairs, structurés et immédiatement applicables."},
+      {"name": "Des solutions sur mesure", "text": "Chaque démarche part de votre contexte, de vos risques et de vos priorités."},
+      {"name": "Un partenaire dans la durée", "text": "Du diagnostic à l'amélioration continue, nous restons à vos côtés."}
+    ]
+  },
+  "contact": {
+    "photo": "contact-responsable",
+    "label": "Nos coordonnées",
+    "title": "Parlons de vos enjeux QHSE",
+    "body": "Pour toute demande de formation, d'audit, d'accompagnement ou de conseil, notre équipe vous répond directement sur WhatsApp.",
+    "steps": ["Présentez-nous votre organisation et vos enjeux", "Nous définissons ensemble le format le plus adapté", "Nous vous adressons une proposition d'intervention"],
+    "qr_caption": "Scannez pour nous écrire sur WhatsApp"
+  }
+}

@@ -1,0 +1,328 @@
+/* ═══════════════ UNIVERSNORMES — système graphique de la brochure institutionnelle ═══════════════
+   Couleurs relevées sur le logo officiel (marine #00236A, vert #00A078), déclinées en palette institutionnelle.
+   Typographies : Manrope (titres), Source Sans 3 (texte courant), IBM Plex Sans (chiffres, étiquettes, folios).
+   Convention de coordonnées : les éléments placés directement dans .page débordent dans le fond perdu
+   (ils intègrent var(--b)) ; les éléments placés dans .trim sont positionnés sur le format fini 210 × 297 mm. */
+@font-face { font-family: 'Manrope'; font-weight: 400; src: url('../assets/fonts/Manrope-Regular.ttf'); }
+@font-face { font-family: 'Manrope'; font-weight: 500; src: url('../assets/fonts/Manrope-Medium.ttf'); }
+@font-face { font-family: 'Manrope'; font-weight: 600; src: url('../assets/fonts/Manrope-SemiBold.ttf'); }
+@font-face { font-family: 'Manrope'; font-weight: 700; src: url('../assets/fonts/Manrope-Bold.ttf'); }
+@font-face { font-family: 'Manrope'; font-weight: 800; src: url('../assets/fonts/Manrope-ExtraBold.ttf'); }
+@font-face { font-family: 'Source Sans 3'; font-weight: 400; src: url('../assets/fonts/SourceSans3-Regular.ttf'); }
+@font-face { font-family: 'Source Sans 3'; font-weight: 400; font-style: italic; src: url('../assets/fonts/SourceSans3-Italic.ttf'); }
+@font-face { font-family: 'Source Sans 3'; font-weight: 600; src: url('../assets/fonts/SourceSans3-SemiBold.ttf'); }
+@font-face { font-family: 'Source Sans 3'; font-weight: 700; src: url('../assets/fonts/SourceSans3-Bold.ttf'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 400; src: url('../assets/fonts/IBMPlexSans-Regular.ttf'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 500; src: url('../assets/fonts/IBMPlexSans-Medium.ttf'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 600; src: url('../assets/fonts/IBMPlexSans-SemiBold.ttf'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 700; src: url('../assets/fonts/IBMPlexSans-Bold.ttf'); }
+
+:root {
+  --b: 0mm;
+  --navy: #0A2669; --navy-deep: #061A47;
+  --green: #00A078; --green-light: #6FD3B3; --green-soft: #E8F5F0;
+  --sand: #F4F2ED; --ink: #18233A; --slate: #55617A; --mute: #8A94A7; --line: #DCE1E8;
+  --m: 18mm;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #fff; }
+body { font-family: 'Source Sans 3', sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; font-kerning: normal; }
+img { display: block; }
+a { color: inherit; text-decoration: none; }
+
+.page { width: calc(210mm + 2 * var(--b)); height: calc(297mm + 2 * var(--b)); position: relative; overflow: hidden; break-after: page; background: #fff; }
+.page:last-child { break-after: auto; }
+.trim { position: absolute; left: var(--b); top: var(--b); width: 210mm; height: 297mm; }
+.bleed { position: absolute; inset: 0; }
+.ph { background-size: cover; background-repeat: no-repeat; background-position: center; }
+.dark { background: var(--navy-deep); color: #fff; }
+.sand { background: var(--sand); }
+
+/* ───── Typographie ───── */
+.label { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.6pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); display: flex; align-items: center; gap: 3mm; }
+.label::before { content: ''; width: 9mm; height: 0.6mm; background: currentColor; flex: none; }
+.dark .label, .label.light { color: var(--green-light); }
+h1, h2, h3, h4 { font-family: 'Manrope'; color: var(--navy); letter-spacing: -0.015em; text-wrap: balance; }
+.dark h1, .dark h2, .dark h3, .dark h4 { color: #fff; }
+h2 { font-weight: 800; font-size: 28pt; line-height: 1.08; letter-spacing: -0.02em; }
+h3 { font-weight: 700; font-size: 14pt; line-height: 1.2; }
+h4 { font-weight: 700; font-size: 11.5pt; line-height: 1.25; }
+p { font-size: 10.4pt; line-height: 1.56; color: var(--ink); text-wrap: pretty; }
+.dark p { color: #D3DCEB; }
+p + p { margin-top: 3mm; }
+.lead-s { font-family: 'Manrope'; font-weight: 500; font-size: 11.2pt; line-height: 1.55; color: var(--navy); }
+.small { font-size: 9.6pt; line-height: 1.52; color: var(--slate); }
+.num { font-family: 'IBM Plex Sans'; font-feature-settings: 'tnum'; }
+
+/* ───── En-tête courant et folio ───── */
+.runhead, .folio { position: absolute; left: var(--m); right: var(--m); display: flex; justify-content: space-between; align-items: center; font-family: 'IBM Plex Sans'; font-size: 6.6pt; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); z-index: 5; }
+.runhead { top: 11mm; }
+.folio { bottom: 10mm; }
+.runhead b { color: var(--navy); font-weight: 700; letter-spacing: 0.16em; }
+.folio .pn { font-size: 8pt; font-weight: 600; letter-spacing: 0.06em; color: var(--navy); }
+.folio .pn span { color: var(--mute); font-weight: 400; }
+.runhead .inv, .folio .inv { color: rgba(255,255,255,0.72); }
+.runhead .inv b, .folio .pn.inv { color: #fff; }
+.folio .pn.inv span { color: rgba(255,255,255,0.6); }
+
+/* ───── Icônes ───── */
+.ico { display: inline-flex; align-items: center; justify-content: center; color: var(--navy); flex: none; }
+.ico svg { width: 100%; height: 100%; display: block; }
+.ico-ring { width: 13mm; height: 13mm; border-radius: 50%; border: 0.3mm solid var(--line); padding: 3mm; color: var(--green); background: #fff; }
+
+/* ───── Éléments de chapitre ───── */
+.cn { display: flex; align-items: flex-end; gap: 5mm; }
+.cn .label { margin-bottom: 1.6mm; }
+.chapnum { display: block; overflow: visible; flex: none; }
+.chapnum path { fill: none; stroke: rgba(255,255,255,0.92); stroke-linejoin: round; }
+.chapnum.ink path { stroke: var(--green); }
+.norm { display: inline-flex; align-items: stretch; border-radius: 1.2mm; overflow: hidden; max-width: 100%; }
+.norm .a { background: var(--navy); color: #fff; font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 9.6pt; letter-spacing: 0.05em; padding: 2.2mm 3.4mm; display: flex; align-items: center; white-space: nowrap; }
+.norm .b { background: var(--green-soft); color: var(--navy); font-family: 'Source Sans 3'; font-weight: 600; font-size: 9pt; line-height: 1.25; padding: 2.2mm 3.4mm; display: flex; align-items: center; }
+.dark .norm .a { background: var(--green); }
+.dark .norm .b { background: rgba(255,255,255,0.1); color: #fff; }
+.items { list-style: none; counter-reset: it; }
+.items li { counter-increment: it; display: grid; grid-template-columns: 9mm 1fr; font-size: 10.2pt; line-height: 1.4; padding: 2.5mm 0; border-bottom: 0.25mm solid var(--line); }
+.items li::before { content: counter(it, decimal-leading-zero); font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 8pt; color: var(--green); padding-top: 0.5mm; }
+.dark .items li { border-bottom-color: rgba(255,255,255,0.14); color: #E4EAF4; }
+.dark .items li::before { color: var(--green-light); }
+.items-k { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.4pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--slate); padding-bottom: 2mm; border-bottom: 0.4mm solid var(--navy); }
+.dark .items-k { color: #9FB0CF; border-bottom-color: var(--green-light); }
+
+/* ═════ 01 Couverture ═════ */
+.cover .photo { position: absolute; left: 0; right: 0; top: 0; height: calc(var(--b) + 218mm); }
+.cover .veil { position: absolute; left: 0; right: 0; top: 0; height: calc(var(--b) + 218mm);
+  background: linear-gradient(180deg, rgba(6,26,71,0.62) 0%, rgba(6,26,71,0.18) 16%, rgba(6,26,71,0) 30%, rgba(6,26,71,0) 50%, rgba(6,26,71,0.55) 70%, rgba(6,26,71,0.92) 86%, #061A47 100%); }
+.cover .logo { position: absolute; left: var(--m); top: 15mm; background: #fff; padding: 3.4mm 5mm; border-radius: 1.4mm; box-shadow: 0 2mm 8mm rgba(6,26,71,0.28); }
+.cover .logo img { height: 16mm; }
+.cover .kick { position: absolute; left: var(--m); top: 181mm; font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.6pt; letter-spacing: 0.28em; text-transform: uppercase; color: #fff; display: flex; align-items: center; gap: 3mm; }
+.cover .kick::before { content: ''; width: 8mm; height: 0.6mm; background: var(--green-light); }
+.cover h1 { position: absolute; left: var(--m); right: var(--m); top: 192mm; font-weight: 800; font-size: 36pt; line-height: 1.07; color: #fff; letter-spacing: -0.025em; }
+.cover h1 span { display: block; }
+.cover h1 span:nth-child(2) { color: var(--green-light); }
+.cover .rule { position: absolute; left: var(--m); top: 241mm; width: 26mm; height: 0.8mm; background: var(--green); }
+.cover .slogan { position: absolute; left: var(--m); right: var(--m); top: 247mm; font-family: 'Source Sans 3'; font-style: italic; font-size: 14pt; color: #E3EAF5; }
+.cover .base { position: absolute; left: var(--m); right: var(--m); bottom: 14mm; display: flex; justify-content: space-between; border-top: 0.3mm solid rgba(255,255,255,0.22); padding-top: 4.4mm; font-family: 'IBM Plex Sans'; font-size: 6.9pt; letter-spacing: 0.16em; text-transform: uppercase; color: #AFC0DD; }
+
+/* ═════ 02 Mot de la direction ═════ */
+.dir .photo { position: absolute; right: 0; top: 0; width: calc(var(--b) + 100mm); height: calc(var(--b) + 172mm); background-size: auto 122% !important; }
+.dir .photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,71,0.45) 0%, rgba(6,26,71,0) 22%, rgba(6,26,71,0) 70%, rgba(6,26,71,0.35) 100%); }
+.dir .col { position: absolute; left: var(--m); width: 82mm; top: 28mm; }
+.dir .lead { font-family: 'Manrope'; font-weight: 800; font-size: 29pt; line-height: 1.12; color: var(--navy); letter-spacing: -0.02em; margin: 7mm 0 0; text-wrap: balance; }
+.dir blockquote { position: absolute; left: var(--m); width: 82mm; top: 134mm; padding-top: 7mm; border-top: 0.3mm solid var(--line); font-family: 'Manrope'; font-weight: 600; font-size: 14pt; line-height: 1.38; color: var(--green); display: grid; grid-template-columns: 10mm 1fr; gap: 3mm; }
+.dir blockquote .ico { width: 8mm; height: 8mm; color: var(--green); margin-top: 1mm; }
+.dir .body { position: absolute; left: var(--m); right: var(--m); top: 188mm; column-count: 2; column-gap: 10mm; }
+.dir .body p { font-size: 10.2pt; }
+.dir .body p:first-child::first-letter { font-family: 'Manrope'; font-weight: 800; float: left; font-size: 34pt; line-height: 0.9; color: var(--navy); margin: 1mm 1.4mm 0 0; }
+.dir .sign { position: absolute; left: var(--m); bottom: 22mm; font-family: 'IBM Plex Sans'; font-size: 7.8pt; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy); display: flex; align-items: center; gap: 4mm; }
+.dir .sign span { display: block; width: 14mm; height: 0.5mm; background: var(--green); }
+
+/* ═════ 03 Présentation ═════ */
+.pres .top { position: absolute; left: var(--m); right: var(--m); top: 26mm; }
+.pres h2 { font-size: 23pt; max-width: 168mm; margin-top: 6mm; }
+.pres .cols { position: absolute; left: var(--m); right: var(--m); top: 76mm; column-count: 2; column-gap: 10mm; }
+.pres .cols p { font-family: 'Manrope'; font-weight: 500; font-size: 10.4pt; line-height: 1.6; color: var(--navy); }
+.pres .band { position: absolute; left: 0; right: 0; top: calc(var(--b) + 134mm); height: 80mm; }
+.pres .facts { position: absolute; left: var(--m); right: var(--m); top: 226mm; display: grid; grid-template-columns: repeat(4, 1fr); }
+.fact { padding: 0 4.5mm; border-left: 0.3mm solid var(--line); }
+.fact:first-child { padding-left: 0; border-left: none; }
+.fact .v { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 40pt; line-height: 1; color: var(--navy); }
+.fact .l { font-family: 'Manrope'; font-weight: 700; font-size: 10pt; line-height: 1.25; color: var(--green); margin-top: 2.4mm; }
+.fact .d { font-size: 8.8pt; line-height: 1.42; color: var(--slate); margin-top: 1.4mm; }
+
+/* ═════ 04 Vision, mission, valeurs ═════ */
+.vis .veil { background: linear-gradient(180deg, rgba(6,26,71,0.5) 0%, rgba(6,26,71,0.78) 34%, rgba(6,26,71,0.95) 58%, #061A47 100%); }
+.vis .head { position: absolute; left: var(--m); right: var(--m); top: 28mm; }
+.vis h2 { font-size: 42pt; margin-top: 6mm; }
+.vis .vm { position: absolute; left: var(--m); right: var(--m); top: 86mm; display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; }
+.vm-b { border-top: 0.6mm solid var(--green); padding-top: 6mm; }
+.vm-b .vm-i { width: 9mm; height: 9mm; color: var(--green-light); margin-bottom: 4mm; }
+.vm-b .k { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.8pt; letter-spacing: 0.24em; text-transform: uppercase; color: var(--green-light); }
+.vm-b .t { font-family: 'Manrope'; font-weight: 600; font-size: 13.2pt; line-height: 1.44; color: #fff; margin-top: 3mm; }
+.vis .vals-k { position: absolute; left: var(--m); top: 172mm; }
+.vis .vals { position: absolute; left: var(--m); right: var(--m); top: 182mm; display: grid; grid-template-columns: repeat(5, 1fr); gap: 3.5mm; }
+.val { border: 0.3mm solid rgba(255,255,255,0.18); border-radius: 1.4mm; padding: 5mm 4mm 6mm; height: 70mm; background: rgba(255,255,255,0.04); display: flex; flex-direction: column; }
+.val .n { margin-bottom: auto; }
+.val .n { font-family: 'IBM Plex Sans'; font-size: 8pt; font-weight: 600; color: var(--green-light); letter-spacing: 0.12em; }
+.val h4 { color: #fff; font-size: 12.4pt; }
+.val h4::after { content: ''; display: block; width: 7mm; height: 0.5mm; background: var(--green); margin-top: 3mm; }
+.val p { font-size: 9.4pt; line-height: 1.45; margin-top: 3mm; color: #C9D3E6; min-height: 22mm; }
+
+/* ═════ 05 Domaines d'expertise ═════ */
+.exp .left { position: absolute; left: var(--m); top: 28mm; width: 66mm; }
+.exp h2 { font-size: 25pt; margin: 6mm 0 6mm; }
+.exp .photo { position: absolute; left: var(--m); top: 124mm; width: 66mm; height: 146mm; border-radius: 1.2mm; }
+.exp .list { position: absolute; left: 96mm; right: var(--m); top: 34mm; }
+.dom { display: grid; grid-template-columns: 13mm 14mm 1fr; gap: 0 4mm; align-items: start; padding: 10.6mm 0; border-bottom: 0.3mm solid var(--line); }
+.dom:first-child { border-top: 0.4mm solid var(--navy); }
+.dom .n { font-family: 'IBM Plex Sans'; font-weight: 500; font-size: 22pt; line-height: 1; color: var(--green); }
+.dom h3 { font-size: 13.5pt; margin-top: 0.4mm; }
+.dom p { font-size: 10pt; line-height: 1.5; color: var(--slate); margin-top: 1.8mm; }
+
+/* ═════ 06 Prestations ═════ */
+.srv .head { position: absolute; left: var(--m); right: var(--m); top: 26mm; display: grid; grid-template-columns: 1fr 1fr; gap: 12mm; align-items: end; }
+.srv h2 { font-size: 27pt; margin-top: 6mm; }
+.srv .head p { font-size: 10.2pt; color: var(--slate); }
+.srv .grid { position: absolute; left: var(--m); right: var(--m); top: 82mm; display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+.card { background: #fff; border-radius: 1.6mm; padding: 7mm 7mm 5mm; border-top: 1.1mm solid var(--navy); box-shadow: 0 0.8mm 3mm rgba(10,38,105,0.06); }
+.card:nth-child(2), .card:nth-child(3) { border-top-color: var(--green); }
+.card .ch { display: flex; align-items: center; gap: 4mm; margin-bottom: 4.5mm; }
+.card .ch .ico { width: 11mm; height: 11mm; color: var(--navy); }
+.card .cn { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.4pt; letter-spacing: 0.18em; color: var(--green); display: block; }
+.card h3 { font-size: 15pt; margin-top: 0.6mm; }
+.card ul { list-style: none; }
+.card li { display: grid; grid-template-columns: 5.5mm 1fr; font-size: 10.4pt; line-height: 1.42; padding: 3mm 0; border-top: 0.25mm solid #E8EBF0; }
+.card li .ico { width: 3.6mm; height: 3.6mm; color: var(--green); margin-top: 0.9mm; }
+.srv .note { position: absolute; left: var(--m); right: var(--m); bottom: 21mm; display: flex; align-items: center; gap: 3.5mm; font-family: 'Manrope'; font-weight: 600; font-size: 10.2pt; color: var(--navy); }
+.srv .note .ico { width: 5.5mm; height: 5.5mm; color: var(--green); }
+
+/* ═════ 07 Qualité ═════ */
+.q .photo { position: absolute; left: 0; right: 0; top: 0; height: calc(var(--b) + 132mm); }
+.q .photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,71,0.72) 0%, rgba(6,26,71,0.3) 12%, rgba(6,26,71,0.05) 26%, rgba(6,26,71,0.1) 55%, rgba(6,26,71,0.78) 100%); }
+.q .cn { position: absolute; left: var(--m); top: 98mm; }
+.q .inset { position: absolute; right: var(--m); top: 108mm; width: 56mm; height: 44mm; border: 1.6mm solid #fff; box-shadow: 0 2mm 6mm rgba(6,26,71,0.22); }
+.q .colL { position: absolute; left: var(--m); top: 146mm; width: 88mm; }
+.q .colL h2 { font-size: 22pt; margin: 6mm 0 5mm; }
+.q .colR { position: absolute; left: 118mm; right: var(--m); top: 162mm; }
+
+/* ═════ 08 Santé-sécurité (page foncée) ═════ */
+.s .photo { position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--b) + 86mm); }
+.s .photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,26,71,0) 60%, rgba(6,26,71,0.85)), linear-gradient(180deg, rgba(6,26,71,0.5), rgba(6,26,71,0) 20%, rgba(6,26,71,0) 82%, rgba(6,26,71,0.7)); }
+.s .col { position: absolute; left: 98mm; right: var(--m); top: 26mm; }
+.s .nwrap { margin-top: 7mm; }
+.s h2 { font-size: 23pt; margin: 7mm 0 5mm; }
+.s .col p { font-size: 10.6pt; margin-bottom: 8mm; }
+.s .items li { font-size: 10.4pt; padding: 3mm 0; }
+.s .meth { margin-top: 14mm; }
+.chips { display: flex; flex-wrap: wrap; gap: 1.8mm; margin-top: 3.4mm; }
+.chips { gap: 2.2mm; }
+.chips span { font-family: 'IBM Plex Sans'; font-weight: 500; font-size: 9.2pt; color: #fff; border: 0.3mm solid rgba(111,211,179,0.6); border-radius: 0.9mm; padding: 1.6mm 3.2mm; }
+
+/* ═════ 09 Environnement ═════ */
+.e .photo { position: absolute; left: 0; right: 0; bottom: 0; height: calc(var(--b) + 108mm); }
+.e .photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,71,0) 55%, rgba(6,26,71,0.6) 100%); }
+.e .top { position: absolute; left: var(--m); width: 100mm; top: 26mm; }
+.e .nwrap { margin-top: 7mm; }
+.e .norm .a { background: var(--green); }
+.e h2 { font-size: 22pt; margin-top: 6mm; }
+.e .intro { position: absolute; left: 128mm; right: var(--m); top: 52mm; }
+.e .intro .lead-s { font-size: 10.8pt; }
+.e .list { position: absolute; left: var(--m); width: 100mm; top: 112mm; }
+.e .ghg { position: absolute; left: 128mm; right: var(--m); top: 124mm; background: var(--green-soft); border-radius: 1.6mm; padding: 5.5mm 5mm; display: grid; grid-template-columns: 8mm 1fr; gap: 3.5mm; border-left: 1mm solid var(--green); }
+.e .ghg .gi { width: 8mm; height: 8mm; color: var(--green); }
+.e .ghg .gk { font-family: 'Manrope'; font-weight: 700; font-size: 10.2pt; color: var(--navy); }
+.e .scs { margin-top: 2.5mm; }
+.e .sc { display: grid; grid-template-columns: 15mm 1fr; font-size: 9pt; padding: 1.4mm 0; border-top: 0.25mm solid rgba(0,160,120,0.25); }
+.e .sc b { font-family: 'IBM Plex Sans'; font-weight: 600; color: var(--green); font-size: 8.4pt; }
+.e .sc span { color: var(--ink); }
+
+/* ═════ 10 Audit, accompagnement, conseil ═════ */
+.au .head { position: absolute; left: var(--m); right: var(--m); top: 26mm; }
+.au h2 { font-size: 25pt; margin-top: 7mm; max-width: 160mm; }
+.au .big { position: absolute; left: 0; top: calc(var(--b) + 88mm); width: calc(var(--b) + 126mm); height: 100mm; }
+.au .big .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,71,0) 35%, rgba(6,26,71,0.88) 100%); }
+.au .big .q { position: absolute; left: calc(var(--b) + var(--m)); right: 12mm; bottom: 9mm; font-family: 'Manrope'; font-weight: 700; font-size: 16pt; line-height: 1.28; color: #fff; text-wrap: balance; }
+.au .big .q::before { content: ''; display: block; width: 14mm; height: 0.8mm; background: var(--green-light); margin-bottom: 4mm; }
+.au .side { position: absolute; right: 0; top: calc(var(--b) + 88mm); width: calc(var(--b) + 82mm); height: 100mm; }
+.au .cols { position: absolute; left: var(--m); right: var(--m); top: 200mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8mm; }
+.au .c { border-top: 0.4mm solid var(--navy); padding-top: 5mm; }
+.au .c .ico { width: 9mm; height: 9mm; color: var(--green); }
+.au .c h3 { margin: 3.5mm 0 2mm; font-size: 13.5pt; }
+.au .c p { font-size: 9.6pt; line-height: 1.5; color: var(--slate); }
+
+/* ═════ 11 Formation ═════ */
+.f .head { position: absolute; left: var(--m); right: var(--m); top: 96mm; display: grid; grid-template-columns: 98mm 1fr; gap: 10mm; align-items: end; }
+.f h2 { font-size: 23pt; margin-top: 7mm; }
+.f .head p { font-size: 10.2pt; }
+.f .photo { position: absolute; left: 0; right: 0; top: 0; height: calc(var(--b) + 84mm); }
+.f .photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,71,0.6) 0%, rgba(6,26,71,0) 26%, rgba(6,26,71,0) 70%, rgba(6,26,71,0.25) 100%); }
+.f .flag { position: absolute; left: var(--m); right: var(--m); top: 156mm; background: var(--navy-deep); color: #fff; border-radius: 1.8mm; padding: 8mm; display: grid; grid-template-columns: 52mm 1fr; gap: 8mm; }
+.f .flag .k { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.4pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green-light); }
+.f .flag h3 { color: #fff; font-size: 16pt; margin-top: 3mm; line-height: 1.18; }
+.f .flag .eight { font-weight: 600; font-size: 44pt; line-height: 1; color: #fff; margin-top: 7mm; }
+.f .flag .eight small { display: block; font-family: 'Source Sans 3'; font-weight: 400; font-size: 9.6pt; line-height: 1.35; color: #B9C5DA; margin-top: 1.5mm; }
+.f .weeks { display: grid; grid-template-columns: 1fr 1fr; gap: 0 7mm; align-content: start; }
+.f .wk { display: grid; grid-template-columns: 8mm 1fr; padding: 2.3mm 0; border-bottom: 0.25mm solid rgba(255,255,255,0.14); font-size: 9.6pt; line-height: 1.35; color: #E4EAF4; }
+.f .wk b { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 8pt; color: var(--green-light); padding-top: 0.3mm; }
+.f .formats { position: absolute; left: var(--m); right: var(--m); top: 238mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 7mm; }
+.f .fm { border-top: 0.3mm solid var(--line); padding-top: 4.5mm; display: grid; grid-template-columns: 11mm 1fr; gap: 2mm; }
+.f .fm .ico { width: 8.5mm; height: 8.5mm; color: var(--green); }
+.f .fm h4 { font-size: 10.8pt; }
+.f .fm p { font-size: 9.2pt; line-height: 1.45; color: var(--slate); margin-top: 1.2mm; }
+
+/* ═════ 12 Méthodologie ═════ */
+.m .head { position: absolute; left: var(--m); right: var(--m); top: 26mm; }
+.m h2 { font-size: 25pt; margin-top: 6mm; max-width: 165mm; }
+.m .proc { position: absolute; left: var(--m); right: var(--m); top: 84mm; display: grid; grid-template-columns: repeat(5, 1fr); gap: 5mm; }
+.m .line { position: absolute; left: calc(var(--m) + 7mm); right: calc(var(--m) + 28mm); top: 91mm; height: 0.4mm; background: linear-gradient(90deg, var(--navy), var(--green)); }
+.st .node { width: 14mm; height: 14mm; border-radius: 50%; background: var(--navy); color: #fff; font-weight: 600; font-size: 10pt; display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; box-shadow: 0 0 0 1.6mm #fff; }
+.st:nth-child(n+4) .node { background: var(--green); }
+.st .ico { width: 8mm; height: 8mm; color: var(--navy); margin-top: 7mm; }
+.st h4 { font-size: 11.2pt; margin-top: 3mm; min-height: 9mm; }
+.st p { font-size: 9.2pt; line-height: 1.46; color: var(--slate); margin-top: 2mm; }
+.m .pdca { position: absolute; left: var(--m); right: var(--m); top: 170mm; display: flex; align-items: center; gap: 5mm; padding: 6mm 7mm; background: var(--sand); border-radius: 1.6mm; }
+.m .pdca .ico { width: 10mm; height: 10mm; color: var(--green); }
+.m .pdca .t { font-family: 'Manrope'; font-weight: 700; font-size: 11.5pt; color: var(--navy); }
+.m .pdca .pp { display: flex; gap: 2mm; margin-left: auto; }
+.m .pdca .pp span { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.8pt; letter-spacing: 0.06em; color: var(--navy); background: #fff; border: 0.3mm solid var(--line); border-radius: 0.9mm; padding: 1.4mm 2.4mm; }
+.m .band { position: absolute; left: 0; right: 0; bottom: 0; height: calc(var(--b) + 87mm); }
+.m .band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,26,71,0.9) 0%, rgba(6,26,71,0.62) 45%, rgba(6,26,71,0.1) 75%, rgba(6,26,71,0) 100%), linear-gradient(180deg, rgba(6,26,71,0) 50%, rgba(6,26,71,0.55) 100%); }
+.m .cap { position: absolute; left: var(--m); bottom: 30mm; z-index: 3; color: #fff; font-family: 'Manrope'; font-weight: 700; font-size: 14pt; line-height: 1.32; max-width: 100mm; text-wrap: balance; }
+
+/* ═════ 13 Engagements ═════ */
+.g .photo { position: absolute; left: 0; right: 0; top: 0; height: calc(var(--b) + 128mm); }
+.g .photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,71,0.55), rgba(6,26,71,0.9)); }
+.g .over { position: absolute; left: var(--m); right: var(--m); top: 32mm; z-index: 2; }
+.g .over h2 { color: #fff; margin-top: 6mm; font-size: 30pt; }
+.g .over .q { margin-top: 10mm; max-width: 140mm; font-family: 'Manrope'; font-weight: 600; font-size: 15pt; line-height: 1.4; color: #E3EAF5; padding-left: 6mm; border-left: 0.9mm solid var(--green); }
+.g .grid { position: absolute; left: var(--m); right: var(--m); top: 148mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14mm 8mm; }
+.eng { border-top: 0.4mm solid var(--navy); padding-top: 6mm; }
+.eng .ico { width: 11mm; height: 11mm; color: var(--green); }
+.eng h4 { font-size: 12.8pt; margin-top: 5mm; }
+.eng p { font-size: 10.2pt; line-height: 1.5; color: var(--slate); margin-top: 2.4mm; }
+
+/* ═════ 14 Pourquoi nous ═════ */
+.w .veil { background: linear-gradient(180deg, rgba(6,26,71,0.66), rgba(6,26,71,0.9) 34%, rgba(6,26,71,0.97)); }
+.w .head { position: absolute; left: var(--m); right: var(--m); top: 28mm; }
+.w h2 { font-size: 30pt; margin-top: 6mm; max-width: 150mm; }
+.w .rs { position: absolute; left: var(--m); right: var(--m); top: 96mm; }
+.r { display: grid; grid-template-columns: 24mm 62mm 1fr; align-items: baseline; gap: 6mm; padding: 9mm 0; border-top: 0.3mm solid rgba(255,255,255,0.16); }
+.r:last-child { border-bottom: 0.3mm solid rgba(255,255,255,0.16); }
+.r .n { font-weight: 500; font-size: 28pt; line-height: 1; color: var(--green-light); }
+.r h3 { color: #fff; font-size: 14.5pt; }
+.r p { font-size: 10.2pt; color: #C9D3E6; }
+
+/* ═════ 15 Coordonnées ═════ */
+.c .photo { position: absolute; right: 0; top: 0; bottom: 0; width: calc(var(--b) + 74mm); }
+.c .photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,71,0.45), rgba(6,26,71,0) 20%, rgba(6,26,71,0) 80%, rgba(6,26,71,0.5)); }
+.c .col { position: absolute; left: var(--m); width: 106mm; top: 28mm; }
+.c .col > p { font-family: 'Manrope'; font-weight: 500; font-size: 11.4pt; line-height: 1.55; color: var(--navy); }
+.c h2 { font-size: 30pt; margin: 6mm 0 5mm; }
+.c .steps { margin-top: 9mm; }
+.c .stp { display: grid; grid-template-columns: 10mm 1fr; padding: 4.2mm 0; border-bottom: 0.25mm solid var(--line); font-size: 11pt; }
+.c .stp b { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 8pt; color: var(--green); padding-top: 0.6mm; }
+.c .card2 { position: absolute; left: var(--m); width: 106mm; top: 160mm; background: var(--navy-deep); border-radius: 1.8mm; padding: 8mm; color: #fff; display: grid; grid-template-columns: 1fr 33mm; gap: 6mm; align-items: center; }
+.c .card2 .k { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.4pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green-light); }
+.c .card2 .nm { font-family: 'Manrope'; font-weight: 800; font-size: 14pt; margin-top: 3mm; color: #fff; letter-spacing: 0.02em; }
+.c .card2 .tel { display: flex; align-items: center; gap: 2.6mm; margin-top: 4.5mm; font-weight: 600; font-size: 16pt; color: #fff; }
+.c .card2 .tel .ico { width: 6.5mm; height: 6.5mm; color: var(--green-light); }
+.c .card2 .lab { font-size: 8.8pt; color: #B9C5DA; margin-top: 2mm; }
+.c .qr { background: #fff; border-radius: 1.2mm; padding: 2.6mm; }
+.c .qr svg { width: 100%; height: auto; display: block; }
+.c .qrc { font-family: 'IBM Plex Sans'; font-size: 6.2pt; letter-spacing: 0.04em; color: #B9C5DA; text-align: center; margin-top: 2mm; line-height: 1.3; }
+.c .sig { position: absolute; left: var(--m); width: 106mm; top: 240mm; display: flex; align-items: center; gap: 6mm; padding-top: 6mm; border-top: 0.3mm solid var(--line); }
+.c .sig img { height: 14mm; }
+.c .sig .t { font-family: 'Source Sans 3'; font-style: italic; font-size: 10.8pt; color: var(--navy); text-wrap: balance; }
+
+/* ═════ 16 Quatrième de couverture ═════ */
+.bk { background: radial-gradient(120% 80% at 50% 36%, #0C2E78 0%, #061A47 58%, #04122F 100%); }
+.bk .arcs { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.22; }
+.bk .center { position: absolute; left: 0; right: 0; top: 96mm; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.bk .plate { background: #fff; border-radius: 1.8mm; padding: 7mm 10mm; box-shadow: 0 3mm 12mm rgba(0,0,0,0.35); }
+.bk .plate img { height: 32mm; }
+.bk .slogan { margin-top: 15mm; font-family: 'Manrope'; font-weight: 700; font-size: 16pt; color: #fff; letter-spacing: -0.01em; }
+.bk .rule { width: 24mm; height: 0.7mm; background: var(--green); margin: 8mm 0; }
+.bk .met { font-family: 'IBM Plex Sans'; font-size: 7.8pt; letter-spacing: 0.26em; text-transform: uppercase; color: #C9D5EA; }
+.bk .met.s2 { margin-top: 3mm; color: #8FA3C6; letter-spacing: 0.2em; }
+.bk .foot { position: absolute; left: var(--m); right: var(--m); bottom: 16mm; display: flex; justify-content: space-between; border-top: 0.3mm solid rgba(255,255,255,0.18); padding-top: 4.5mm; font-family: 'IBM Plex Sans'; font-size: 7.2pt; letter-spacing: 0.16em; color: #AFC0DD; text-transform: uppercase; }
+.bk .foot b { color: #fff; font-weight: 600; letter-spacing: 0.06em; }
