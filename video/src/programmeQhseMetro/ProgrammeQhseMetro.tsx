@@ -1206,6 +1206,31 @@ const Concl3: React.FC = () => {
   );
 };
 
+
+/** Couverture : photo fournie (responsable QHSE devant le mur de pilotage) + titre « FORMATION EN MANAGEMENT QHSE » en lettres-photos animées. */
+const COVER_PHOTO = 'programme-qhse/couverture-responsable.jpg';
+const QCover: React.FC = () => {
+  const t = useT();
+  const out = prog(t, 2.0, 2.7, easeIn);
+  if (out >= 1) return null;
+  return (
+    <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
+      <div style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 1120, overflow: 'hidden'}}><Img src={PH(COVER_PHOTO)} style={{width: 1080, height: 1920, objectFit: 'cover', objectPosition: '50% 0%', transform: `scale(${1.02 + t * 0.015})`, transformOrigin: '50% 20%'}} /></div>
+      <div style={{position: 'absolute', left: 0, top: 760, width: 1080, height: 380, background: `linear-gradient(180deg, ${PAPER}00 0%, ${PAPER}D9 55%, ${PAPER} 100%)`}} />
+      <Abs x={0} y={70} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.18)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
+      <Abs x={0} y={985} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="FORMATION EN" src={COVER_PHOTO} size={86} ls={6} seed={1} /></Abs>
+      <Abs x={0} y={1082} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="MANAGEMENT" src={COVER_PHOTO} size={118} ls={2} seed={4} /></Abs>
+      <Abs x={0} y={1205} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="QHSE" src={COVER_PHOTO} size={232} ls={10} seed={7} /></Abs>
+      <Abs x={60} y={1480} w={960} h={120} style={{background: '#fff', border: `5px solid ${INK}`, borderRadius: 18, boxShadow: `7px 7px 0 ${BURG}`, overflow: 'hidden'}}>
+        <Tube x={30} y={34} w={900} h={24} />
+        {SECT.map((x, k) => <div key={k} style={{position: 'absolute', left: 70 + k * 164 - 20, top: 26, width: 40, height: 40, borderRadius: 10, background: x.c, border: '4px solid #fff', boxSizing: 'border-box', color: '#fff', fontFamily: sansFont, fontWeight: 800, fontSize: 18, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{x.n}</div>)}
+        <div style={{position: 'absolute', left: 140, top: 36}}><Capsule w={56} c={NAVY} /></div>
+        {SECT.map((x, k) => <div key={`l${k}`} style={{position: 'absolute', left: 70 + k * 164 - 75, width: 150, top: 74, textAlign: 'center', fontFamily: sansFont, fontWeight: 700, fontSize: 15, color: x.c}}>{x.g}</div>)}
+      </Abs>
+    </AbsoluteFill>
+  );
+};
+
 /* ═════════════ Montage, bruitage ═════════════ */
 const rep = (a: number, n: number, d: number, s0: string, v: number): Sfx[] => Array.from({length: n}, (_, k) => ({at: a + k * d, s: s0, v, dur: 0.6}));
 const trans = (x: {at: number}): Sfx[] => [{at: x.at, s: 'sfx/whoosh', v: 0.4}, ...rep(x.at + 0.1, 4, 0.18, 'sfx/ding', 0.12), {at: x.at + 0.45, s: 'soft-whoosh', v: 0.45, dur: 1}, {at: x.at + 0.95, s: 'sfx/thud', v: 0.4}, {at: x.at + 1.6, s: 'sfx/pop', v: 0.2}];
@@ -1238,7 +1263,7 @@ export const ProgrammeQhseMetro: React.FC = () => (
     <Gate from={2.8} to={OUTRO_AT}><Metro /></Gate>
     <Gate from={2.8} to={OUTRO_AT}><StationBanner /></Gate>
     <Gate from={0} to={OUTRO_AT}><Header /></Gate>
-    <Gate from={0} to={2.8}><Cover /></Gate>
+    <Gate from={0} to={2.8}><QCover /></Gate>
     <Gate from={OUTRO_AT} to={9999}><AbsoluteFill style={{zIndex: 81}}><Outro at={OUTRO_AT} logo={LOGO} /></AbsoluteFill></Gate>
     <AbsoluteFill style={{zIndex: 100}}><Gate from={0.05} to={OUTRO_AT - 0.1}><NeoCaptions captions={captions} /></Gate></AbsoluteFill>
     <Audio src={staticFile('voix-programme-qhse-origine.m4a')} trimAfter={s(OUTRO_AT)} />
