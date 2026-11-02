@@ -1,4 +1,6 @@
 import React from 'react';
+import type {LucideIcon} from 'lucide-react';
+import {ArrowRight, Award, BadgeCheck, BookOpen, Briefcase, CalendarClock, CalendarDays, ChartColumn, ChartNoAxesCombined, Check as LCheck, CircleCheckBig, CircleX, ClipboardCheck, ClipboardList, Factory, FileText, FireExtinguisher, FolderOpen, Footprints, Gauge, Gavel, Glasses, Globe, GraduationCap, Hand, HardHat, Layers, Leaf, ListChecks, Lock, Network, PenLine, Recycle, RefreshCw, Scale, ScrollText, Search, Settings2, ShieldAlert, ShieldCheck, Target, TriangleAlert, UserCheck, Users, Workflow, Wrench} from 'lucide-react';
 import {AbsoluteFill, Audio, Img, random, staticFile} from 'remotion';
 import {Gate} from '../anim';
 import {Captions} from '../components/Captions';
@@ -546,6 +548,11 @@ const Flap: React.FC<{text: string; at: number; size: number; c: string}> = ({te
 
 
 
+/* Icônes au trait (lucide, esprit iconoir) pour une écriture « cabinet international » ; repli sur Fluent si absent. */
+const LUC: Record<string, LucideIcon> = {UserCheck, Network, BookOpen, Workflow, Search, FileText, CircleX, ChartColumn, FolderOpen, HardHat, TriangleAlert, Target, ClipboardList, ScrollText, Lock, ShieldAlert, FireExtinguisher, Wrench, Leaf, Factory, Scale, Recycle, Gavel, ShieldCheck, Globe, Layers, BadgeCheck, CalendarDays, PenLine, Gauge, RefreshCw, CalendarClock, ListChecks, Settings2, Award, GraduationCap, Briefcase, Users, ClipboardCheck, ChartNoAxesCombined, Glasses, Hand, Footprints, Check: LCheck, CircleCheckBig,
+  'agent-hse': UserCheck, danger: TriangleAlert, graphique: ChartNoAxesCombined, check: BadgeCheck, loupe: Search, chantier: HardHat, auditeur: ClipboardCheck, engrenage: Settings2, livres: BookOpen, outils: Wrench, dossier: FolderOpen};
+const Ico: React.FC<{n: string; size: number; c?: string}> = ({n, size, c = INK}) => { const L = LUC[n]; return L ? <L size={size} color={c} strokeWidth={1.9} /> : <F n={n} size={size} />; };
+
 /* ═════════════ Outils propres à la capsule « 15 méthodes » ═════════════ */
 const cl = (v: number) => Math.max(0, Math.min(1, v));
 const sp = (t: number, a: number, k = 8, w = 13) => (t < a ? 0 : Math.max(0, spring(t, a, k, w)));
@@ -672,8 +679,8 @@ const RailSteps: React.FC<{items: ST[]; c: string; y: number; h: number; at: num
           <div key={k} style={{position: 'absolute', left: 0, top: k * gap, height: gap, width: 960, display: 'flex', alignItems: 'center'}}>
             <div style={{position: 'absolute', left: 48, width: 46, height: 46, borderRadius: 23, background: on ? (here ? c : GREEN) : '#fff', border: `5px solid ${NBK}`, boxSizing: 'border-box', color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 22, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: here ? `0 0 0 8px ${c}44` : 'none'}}>{on && !here ? '✓' : k + 1}</div>
             <div style={{position: 'absolute', left: 130, right: 10, height: Math.min(gap - 18, 110), ...nb(here ? '#fff' : on ? '#F7FAF7' : '#fff', here ? 7 : 4), borderColor: here ? c : NBK, display: 'flex', alignItems: 'center', gap: 18, padding: '0 22px', opacity: q, transform: `translateX(${(1 - q) * 120}px) scale(${here ? 1.03 : 1})`, transformOrigin: '0 50%'}}>
-              {ic && <F n={ic} size={Math.min(76, gap - 40)} />}
-              <span style={{fontFamily: sansFont, fontWeight: 900, fontSize: l.length > 34 ? fs - 6 : fs, color: here ? c : INK, lineHeight: 1.1}}>{l}</span>
+              {ic && <Ico n={ic} c={here ? c : INK} size={Math.min(64, gap - 46)} />}
+              <span style={{fontFamily: sansFont, fontWeight: 800, fontSize: l.length > 34 ? fs - 6 : fs, color: here ? c : INK, lineHeight: 1.1, letterSpacing: -0.3}}>{l}</span>
             </div>
           </div>
         );
@@ -703,7 +710,7 @@ const StairSteps: React.FC<{items: ST[]; c: string; y: number; h: number; fs?: n
         return (
           <Abs key={k} x={60 + k * step} y={y + k * gh} w={560} h={gh - 14} style={{...nb(on ? (k === cur ? c : '#fff') : '#fff', 6), borderColor: NBK, display: 'flex', alignItems: 'center', gap: 14, padding: '0 18px', opacity: q, transform: `translateY(${(1 - q) * -80}px)`}}>
             <div style={{fontFamily: MONO, fontWeight: 700, fontSize: 28, color: k === cur ? '#fff' : c}}>{String(k + 1).padStart(2, '0')}</div>
-            {ic && <F n={ic} size={Math.min(64, gh - 34)} />}
+            {ic && <Ico n={ic} c={k === cur ? '#fff' : c} size={Math.min(56, gh - 40)} />}
             <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: l.length > 26 ? fs - 5 : fs, color: k === cur ? '#fff' : INK, lineHeight: 1.05}}>{l}</div>
           </Abs>
         );
@@ -728,7 +735,7 @@ const ZigSteps: React.FC<{items: ST[]; c: string; y: number; h: number; fs?: num
         const q = sp(t, a - 0.1);
         return (
           <Abs key={k} x={L ? 60 : 520} y={y + k * gh + 6} w={500} h={gh - 12} style={{...nb('#fff', 7), borderColor: c, display: 'flex', alignItems: 'center', gap: 16, padding: '0 20px', opacity: q, transform: `translateX(${(1 - q) * (L ? -200 : 200)}px) rotate(${(1 - q) * (L ? -8 : 8)}deg)`}}>
-            {ic && <F n={ic} size={Math.min(80, gh - 40)} />}
+            {ic && <Ico n={ic} c={c} size={Math.min(66, gh - 46)} />}
             <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: l.length > 22 ? fs - 6 : fs, color: INK, lineHeight: 1.05}}>{l}</div>
           </Abs>
         );
@@ -848,49 +855,51 @@ const GyroFlash: React.FC<{at: number}> = ({at}) => {
 };
 
 const wn = (t: number, a: number, b: number, f = 0.35) => prog(t, a, a + f) * (1 - prog(t, b - f, b));
-const GH = (props: {x: number; y: number; w: number; h: number; at: number; ic: string; l: string; c: string; fs?: number; dark?: boolean}) => {
+/* Typographie « cabinet » : titres Montserrat 800, corps 600-700, étiquettes en petites capitales espacées. */
+const CAP: React.CSSProperties = {fontFamily: MONO, fontWeight: 700, letterSpacing: 3, textTransform: 'uppercase'};
+const GH = (props: {x: number; y: number; w: number; h: number; at: number; ic: string; l: string; c: string; fs?: number; sub?: string}) => {
   const t = useT();
-  const {x, y, w, h, at, ic, l, c, fs = 34, dark} = props;
+  const {x, y, w, h, at, ic, l, c, fs = 32, sub} = props;
   if (t < at - 0.05) return null;
   const q = sp(t, at);
   return (
-    <Abs x={x} y={y} w={w} h={h} style={{...(dark ? {background: 'rgba(255,255,255,0.08)', border: `3px solid ${c}`, borderRadius: 18, boxShadow: `0 0 24px ${c}55`} : {...nb('#fff', 6), borderColor: c}), display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 10, transform: `scale(${0.6 + 0.4 * q}) translateY(${(1 - q) * 40}px)`, opacity: cl(q * 1.4), textAlign: 'center', padding: 10, boxSizing: 'border-box'}}>
-      <F n={ic} size={Math.min(110, h * 0.45)} />
-      <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: fs, color: dark ? '#fff' : INK, lineHeight: 1.05}}>{l}</div>
+    <Abs x={x} y={y} w={w} h={h} style={{...nb('#fff', 6), borderColor: NBK, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, transform: `scale(${0.7 + 0.3 * q}) translateY(${(1 - q) * 30}px)`, opacity: cl(q * 1.4), textAlign: 'center', padding: 14, boxSizing: 'border-box'}}>
+      <div style={{width: Math.min(110, h * 0.36), height: Math.min(110, h * 0.36), borderRadius: 18, background: `${c}18`, border: `2px solid ${c}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Ico n={ic} size={Math.min(64, h * 0.22)} c={c} /></div>
+      <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: fs, color: INK, lineHeight: 1.08, letterSpacing: -0.3}}>{l}</div>
+      {sub && <div style={{fontFamily: sansFont, fontWeight: 600, fontSize: fs * 0.66, color: DIM, lineHeight: 1.2}}>{sub}</div>}
     </Abs>
   );
 };
 
-/* ═════════════ Tableau du programme (motion design de la vidéo de référence AQOUB : calendrier sombre, surbrillance qui voyage et remplit) ═════════════ */
+/* ═════════════ Tableau du programme — motion design de la vidéo de référence (calendrier : surbrillance qui voyage et remplit), décliné dans le thème clair des premières pages ═════════════ */
 type MOD = [string, number, string];
 type WK = {n: number; at: number; th: string; c: string; obj: string; img: string; m: MOD[]};
 const WEEKS: WK[] = [
-  {n: 1, at: 41.72, th: 'Fondamentaux du management QHSE', c: '#E8B931', obj: 'Comprendre la fonction et les systèmes de management', img: 'sysqsse-gen/couverture.jpg', m: [['Métier de responsable QHSE', 50.37, 'agent-hse'], ['Fondamentaux du management intégré', 55.29, 'engrenage'], ['Normes ISO 9001 · 14001 · 45001', 58.62, 'livres'], ['Approche processus & cartographie', 62.21, 'carte']]},
-  {n: 2, at: 67.0, th: 'Management de la qualité', c: '#21A69A', obj: "Déployer et améliorer un système de management de la qualité", img: 'sysqsse-gen/qualite.jpg', m: [['ISO 9001 · interprétation des exigences', 76.45, 'loupe'], ['Gestion documentaire', 78.42, 'classeur'], ['Non-conformités & actions correctives', 83.55, 'croix'], ['5 pourquoi · Ishikawa · Pareto', 87.24, 'graphique'], ['Étude de cas : système qualité', 91.66, 'dossier']]},
-  {n: 3, at: 95.74, th: 'Santé et sécurité au travail', c: '#E07A5F', obj: 'Prévenir les accidents et maîtriser les risques professionnels', img: 'sysqsse-gen/sante.jpg', m: [['ISO 45001 · interprétation des exigences', 106.42, 'casque'], ['Dangers & évaluation des risques', 108.86, 'danger'], ['Analyse des risques : APR · AMDEC · HAZOP', 114.01, 'cible'], ["DUERP & plan d'action de prévention", 117.23, 'clipboard']]},
-  {n: 4, at: 120.13, th: 'Maîtrise opérationnelle & urgences', c: '#E2574C', obj: 'Déployer les mesures de prévention sur le terrain', img: 'rhse-gen/casque-extincteur.jpg', m: [['Permis de travail', 130.7, 'parchemin'], ['Consignation LOTO & gestion des EPI', 132.6, 'cadenas'], ['Accidents & enquêtes : arbre des causes · ICAM', 135.47, 'loupe2'], ['POI · incendie & secours', 139.53, 'extincteur'], ['Exercice pratique : analyse & prévention', 145.45, 'outils']]},
-  {n: 5, at: 149.42, th: 'Management environnemental', c: '#3BAF5C', obj: 'Identifier et maîtriser les impacts environnementaux', img: 'sysqsse-gen/environnement.jpg', m: [['ISO 14001 · interprétation des exigences', 159.51, 'arbre'], ['Aspects & impacts environnementaux', 162.6, 'feuille'], ['Aspects environnementaux significatifs', 166.85, 'balance'], ['Déchets, effluents & rejets industriels', 169.93, 'dechets']]},
-  {n: 6, at: 172.34, th: 'Conformité réglementaire & risques', c: '#3D8BEB', obj: 'Maîtriser les obligations réglementaires et anticiper les risques', img: 'principes-gen/conformite.jpg', m: [['Veille réglementaire & conformité', 185.17, 'juge'], ['Management des risques · ISO 31000', 188.7, 'bouclier'], ['Bilan carbone & GHG Protocol', 190.6, 'globe'], ['Scopes 1 · 2 · 3', 194.2, 'cible'], ['Étude de cas environnemental', 196.74, 'dossier']]},
-  {n: 7, at: 200.48, th: 'Audit & pilotage de la performance', c: '#8B6CF0', obj: "Évaluer l'efficacité des systèmes de management", img: 'audit13-gen/tableau-bord.jpg', m: [["ISO 19011 · principes & méthode d'audit", 211.37, 'auditeur'], ["Préparer & planifier l'audit interne", 213.81, 'calendrier'], ['Réaliser l\'audit & rédiger les constats', 217.94, 'ecrit'], ['Indicateurs QHSE & tableau de bord', 221.3, 'graphique'], ['Revue de direction · amélioration continue', 223.96, 'repeter']]},
-  {n: 8, at: 226.99, th: 'Leadership QHSE & mise en situation', c: '#F2C230', obj: "Développer les capacités de pilotage d'une fonction QHSE", img: 'premier-gen/certification.jpg', m: [['Programme QHSE annuel', 238.64, 'calendrier'], ["Plan d'action & allocation des ressources", 241.1, 'cible'], ["Étude de cas : conception d'un SMI", 244.68, 'engrenage'], ['Évaluation finale', 249.35, 'diplome']]},
+  {n: 1, at: 41.72, th: 'Fondamentaux du management QHSE', c: '#C8930A', obj: 'Comprendre la fonction et les systèmes de management', img: 'sysqsse-gen/couverture.jpg', m: [['Métier de responsable QHSE', 50.37, 'UserCheck'], ['Fondamentaux du management intégré', 55.29, 'Network'], ['Normes ISO 9001 · 14001 · 45001', 58.62, 'BookOpen'], ['Approche processus et cartographie', 62.21, 'Workflow']]},
+  {n: 2, at: 67.0, th: 'Management de la qualité', c: '#138A80', obj: 'Déployer et améliorer un système de management de la qualité', img: 'sysqsse-gen/qualite.jpg', m: [['ISO 9001 : interprétation des exigences', 76.45, 'Search'], ['Gestion documentaire', 78.42, 'FileText'], ['Non-conformités et actions correctives', 83.55, 'CircleX'], ['5 pourquoi, Ishikawa, Pareto', 87.24, 'ChartColumn'], ['Étude de cas : système qualité', 91.66, 'FolderOpen']]},
+  {n: 3, at: 95.74, th: 'Santé et sécurité au travail', c: '#C9543B', obj: 'Prévenir les accidents et maîtriser les risques professionnels', img: 'sysqsse-gen/sante.jpg', m: [['ISO 45001 : interprétation des exigences', 106.42, 'HardHat'], ['Identification des dangers et évaluation des risques', 108.86, 'TriangleAlert'], ['Analyse des risques : APR, AMDEC, HAZOP', 114.01, 'Target'], ["DUERP et plan d'action de prévention", 117.23, 'ClipboardList']]},
+  {n: 4, at: 120.13, th: 'Maîtrise opérationnelle et gestion des urgences', c: '#B83A30', obj: 'Déployer les mesures de prévention sur le terrain', img: 'rhse-gen/casque-extincteur.jpg', m: [['Permis de travail', 130.7, 'ScrollText'], ['Consignation LOTO et gestion des EPI', 132.6, 'Lock'], ['Accidents et enquêtes : arbre des causes, ICAM', 135.47, 'ShieldAlert'], ['POI, incendie et organisation des secours', 139.53, 'FireExtinguisher'], ['Exercice pratique : analyse et prévention', 145.45, 'Wrench']]},
+  {n: 5, at: 149.42, th: 'Management environnemental', c: '#2E8B4A', obj: 'Identifier et maîtriser les impacts environnementaux', img: 'sysqsse-gen/environnement.jpg', m: [['ISO 14001 : interprétation des exigences', 159.51, 'Leaf'], ['Aspects et impacts environnementaux', 162.6, 'Factory'], ['Aspects environnementaux significatifs', 166.85, 'Scale'], ['Déchets, effluents et rejets industriels', 169.93, 'Recycle']]},
+  {n: 6, at: 172.34, th: 'Conformité réglementaire et management des risques', c: '#2C6FD1', obj: 'Maîtriser les obligations réglementaires et anticiper les risques', img: 'principes-gen/conformite.jpg', m: [['Veille réglementaire et évaluation de la conformité', 185.17, 'Gavel'], ['Management des risques selon ISO 31000', 188.7, 'ShieldCheck'], ['Bilan carbone et GHG Protocol', 190.6, 'Globe'], ['Scopes 1, 2 et 3', 194.2, 'Layers'], ['Étude de cas environnemental', 196.74, 'FolderOpen']]},
+  {n: 7, at: 200.48, th: 'Audit et pilotage de la performance QHSE', c: '#6A4FD0', obj: "Évaluer l'efficacité des systèmes de management", img: 'audit13-gen/tableau-bord.jpg', m: [["ISO 19011 : principes et méthode d'audit", 211.37, 'BadgeCheck'], ["Préparation et planification de l'audit interne", 213.81, 'CalendarDays'], ['Réalisation et rédaction des constats', 217.94, 'PenLine'], ['Indicateurs QHSE et tableau de bord', 221.3, 'Gauge'], ['Revue de direction et amélioration continue', 223.96, 'RefreshCw']]},
+  {n: 8, at: 226.99, th: 'Leadership QHSE et mise en situation', c: '#1F3A68', obj: "Développer les capacités de pilotage d'une fonction QHSE", img: 'premier-gen/certification.jpg', m: [['Programme QHSE annuel', 238.64, 'CalendarClock'], ["Plan d'action et allocation des ressources", 241.1, 'ListChecks'], ["Étude de cas : conception d'un SMI", 244.68, 'Settings2'], ['Évaluation finale', 249.35, 'Award']]},
 ];
 const NUM0 = WEEKS.map((_, k) => WEEKS.slice(0, k).reduce((a, w) => a + w.m.length, 0));
 const SEC = 464, CW = 230, CH = 170, GAPC = 13.3, HH = 64;
 const cardRect = (k: number, j: number) => ({x: (j % 4) * (CW + GAPC), y: k * SEC + HH + 12 + Math.floor(j / 4) * (CH + 14)});
 const wkAt = (t: number) => WEEKS.reduce((a, w, k) => (t >= w.at - 0.05 ? k : a), 0);
 const SCROLL: [number, number][] = [[42.0, 0], [69.5, 1], [99.2, 2], [123.0, 3], [152.9, 4], [175.2, 5], [204.0, 6], [229.6, 7]];
-/** Position caméra du tableau : vue d'ensemble → plongée dans la semaine 1 → défilement de semaine en semaine (flou de bougé) → recul final. */
+const rgba = (hex: string, a: number) => `rgba(${parseInt(hex.slice(1, 3), 16)},${parseInt(hex.slice(3, 5), 16)},${parseInt(hex.slice(5, 7), 16)},${a})`;
+/** Caméra : vue d'ensemble → plongée dans la semaine 1 → défilement de semaine en semaine (flou de bougé) → recul final. */
 const boardCam = (t: number) => {
   const OV = {x: 420, y: 430, s: 0.25};
-  const foc = (k: number) => ({x: 60, y: 430 - k * SEC, s: 1});
-  let cur = OV;
-  let blur = 0;
   if (t < 41.9) return {...OV, blur: 0};
   const zi = prog(t, 41.9, 43.2, easeInOut);
-  if (t < 43.2) { const f = foc(0); return {x: lerp(OV.x, f.x, zi), y: lerp(OV.y, f.y, zi), s: lerp(OV.s, 1, zi), blur: 0}; }
+  if (t < 43.2) return {x: lerp(OV.x, 60, zi), y: lerp(OV.y, 430, zi), s: lerp(OV.s, 1, zi), blur: 0};
   let pos = 0;
-  for (const [a, k] of SCROLL) { if (k === 0) continue; const p = prog(t, a, a + 1.1, easeInOut); if (p > 0) { pos = k - 1 + p; blur = Math.sin(p * Math.PI) * 6; } }
-  cur = {x: 60, y: 430 - pos * SEC, s: 1};
+  let blur = 0;
+  for (const [a, k] of SCROLL) { if (k === 0) continue; const p = prog(t, a, a + 1.1, easeInOut); if (p > 0) { pos = k - 1 + p; blur = Math.sin(p * Math.PI) * 5; } }
+  const cur = {x: 60, y: 430 - pos * SEC, s: 1};
   const zo = prog(t, 253.8, 255.4, easeInOut);
   if (zo > 0) return {x: lerp(cur.x, OV.x, zo), y: lerp(cur.y, OV.y, zo), s: lerp(1, OV.s, zo), blur: 0};
   return {...cur, blur};
@@ -913,58 +922,53 @@ const PBoard: React.FC = () => {
         const passedW = t >= (WEEKS[k + 1]?.at ?? 253.8) || done;
         return (
           <React.Fragment key={k}>
-            <div style={{position: 'absolute', left: 0, top: y0, width: 960, height: HH, borderRadius: 14, background: 'rgba(255,255,255,0.06)', borderLeft: `8px solid ${wk.c}`, display: 'flex', alignItems: 'center', gap: 14, padding: '0 20px', boxSizing: 'border-box'}}>
-              <div style={{width: 40, height: 40, borderRadius: 10, background: `${wk.c}33`, border: `2px solid ${wk.c}`, color: wk.c, fontFamily: sansFont, fontWeight: 900, fontSize: 22, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{passedW ? '✓' : wk.n}</div>
-              <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 32, color: '#fff'}}>Semaine {wk.n}</div>
-              <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 25, color: wk.c, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1}}>{wk.th}</div>
-              <div style={{fontFamily: MONO, fontWeight: 700, fontSize: 18, color: '#9FB0CC', background: 'rgba(255,255,255,0.08)', padding: '4px 10px', borderRadius: 8}}>S{wk.n} / 8</div>
+            <div style={{position: 'absolute', left: 0, top: y0, width: 960, height: HH, borderRadius: 14, background: '#fff', border: `3px solid ${NBK}`, boxShadow: `5px 5px 0 ${wk.c}`, display: 'flex', alignItems: 'center', gap: 14, padding: '0 18px', boxSizing: 'border-box', overflow: 'hidden'}}>
+              <div style={{position: 'absolute', left: 0, top: 0, bottom: 0, width: 10, background: wk.c}} />
+              <div style={{marginLeft: 8, width: 38, height: 38, borderRadius: 10, background: passedW ? wk.c : '#fff', border: `2px solid ${wk.c}`, color: passedW ? '#fff' : wk.c, fontFamily: sansFont, fontWeight: 800, fontSize: 20, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{passedW ? <LCheck size={22} color="#fff" strokeWidth={3} /> : wk.n}</div>
+              <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 28, color: INK, letterSpacing: -0.3, whiteSpace: 'nowrap'}}>Semaine {wk.n}</div>
+              <div style={{width: 2, height: 30, background: '#D5DAE3'}} />
+              <div style={{fontFamily: sansFont, fontWeight: 700, fontSize: 22, color: wk.c, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1}}>{wk.th}</div>
+              <div style={{...CAP, fontSize: 15, color: DIM, background: '#F1F3F7', padding: '4px 10px', borderRadius: 8}}>S{wk.n} / 8</div>
             </div>
             {wk.m.map(([l, a, ic], j) => {
               const r = cardRect(k, j);
               const on = t >= a - 0.05 || done;
               const fill = done ? 1 : prog(t, a, a + 0.6, easeOut);
               const fin = k === 7 && j === wk.m.length - 1;
-              const col = fin ? '#3BAF5C' : wk.c;
+              const col = fin ? '#2E8B4A' : wk.c;
               const active = k === ck && j === mi && !done && t < (WEEKS[k + 1]?.at ?? 253.8);
               return (
-                <div key={j} style={{position: 'absolute', left: r.x, top: r.y, width: CW, height: CH, borderRadius: 16, background: on ? `rgba(${parseInt(col.slice(1, 3), 16)},${parseInt(col.slice(3, 5), 16)},${parseInt(col.slice(5, 7), 16)},${0.12 + 0.5 * fill})` : 'rgba(255,255,255,0.05)', border: `2px solid ${on ? col : `${col}88`}`, boxSizing: 'border-box', padding: '14px 14px 10px', display: 'flex', flexDirection: 'column', gap: 8, transform: active ? `scale(${1 + 0.03 * Math.sin(t * 6)})` : undefined}}>
-                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}><div style={{transform: active ? `translateY(${-Math.abs(Math.sin(t * 7)) * 6}px)` : undefined}}><F n={ic} size={44} /></div><span style={{fontFamily: MONO, fontWeight: 700, fontSize: 18, color: on ? '#fff' : '#7F8DA6'}}>{NUM0[k] + j + 1}</span></div>
-                  <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: l.length > 34 ? 19 : 21, color: on ? '#fff' : '#C9D3E3', lineHeight: 1.12}}>{l}</div>
+                <div key={j} style={{position: 'absolute', left: r.x, top: r.y, width: CW, height: CH, borderRadius: 14, background: on ? rgba(col, 0.06 + 0.16 * fill) : '#fff', border: `3px solid ${on ? NBK : '#C9CFD9'}`, boxShadow: on ? `4px 4px 0 ${NBK}` : '3px 3px 0 #D5DAE3', boxSizing: 'border-box', padding: '12px 14px 10px', display: 'flex', flexDirection: 'column', gap: 8, overflow: 'hidden', transform: active ? `translateY(${-3 * Math.abs(Math.sin(t * 3))}px)` : undefined}}>
+                  <div style={{position: 'absolute', left: 0, top: 0, height: 6, width: `${fill * 100}%`, background: col}} />
+                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 2}}>
+                    <div style={{width: 46, height: 46, borderRadius: 12, background: on ? '#fff' : '#F4F6FA', border: `2px solid ${on ? col : '#D5DAE3'}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Ico n={ic} size={26} c={on ? col : '#9AA3B2'} /></div>
+                    <span style={{...CAP, letterSpacing: 1, fontSize: 16, color: on ? col : '#A9B1BE'}}>{String(NUM0[k] + j + 1).padStart(2, '0')}</span>
+                  </div>
+                  <div style={{fontFamily: sansFont, fontWeight: 700, fontSize: l.length > 40 ? 18 : l.length > 30 ? 19.5 : 21, color: on ? INK : '#8A94A6', lineHeight: 1.15, letterSpacing: -0.2}}>{l}</div>
                 </div>
               );
             })}
             {(() => {
-              const n = wk.m.length;
-              const j0 = n;
+              const j0 = wk.m.length;
               const span = 8 - j0;
               const r = cardRect(k, j0);
               const wdt = span * CW + (span - 1) * GAPC;
               const show = t > wk.at + 2.6 || done;
               return (
-                <div style={{position: 'absolute', left: r.x, top: r.y, width: wdt, height: CH, borderRadius: 16, overflow: 'hidden', border: `2px solid ${wk.c}`, boxSizing: 'border-box', background: '#0B1426'}}>
-                  <Img src={PH(wk.img)} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.55, transform: `scale(${1.05 + 0.03 * Math.sin(t * 0.3 + k)})`}} />
-                  <div style={{position: 'absolute', inset: 0, background: `linear-gradient(90deg, rgba(11,20,38,0.92) 0%, rgba(11,20,38,0.55) 60%, transparent)`}} />
-                  <div style={{position: 'absolute', left: 18, top: 16, right: 18, fontFamily: MONO, fontWeight: 700, fontSize: 16, color: wk.c, letterSpacing: 2}}>OBJECTIF · SEMAINE {wk.n}</div>
-                  <div style={{position: 'absolute', left: 18, top: 46, width: Math.min(wdt - 36, 560), fontFamily: sansFont, fontWeight: 900, fontSize: span > 2 ? 28 : 22, color: '#fff', lineHeight: 1.12, opacity: show ? 1 : 0.15, clipPath: `inset(0 ${show && !done ? (1 - prog(t, wk.at + 2.6, wk.at + 3.6, easeOut)) * 100 : 0}% 0 0)`}}>{wk.obj}</div>
-                  {passedW && <div style={{position: 'absolute', right: 14, bottom: 12, background: wk.c, color: '#0B1426', fontFamily: sansFont, fontWeight: 900, fontSize: 20, padding: '4px 12px', borderRadius: 8}}>✓ semaine {wk.n}</div>}
+                <div style={{position: 'absolute', left: r.x, top: r.y, width: wdt, height: CH, borderRadius: 14, overflow: 'hidden', border: `3px solid ${NBK}`, boxShadow: `4px 4px 0 ${NBK}`, boxSizing: 'border-box', background: '#fff'}}>
+                  <Img src={PH(wk.img)} style={{position: 'absolute', right: 0, top: 0, width: '70%', height: '100%', objectFit: 'cover', transform: `scale(${1.05 + 0.03 * Math.sin(t * 0.3 + k)})`}} />
+                  <div style={{position: 'absolute', inset: 0, background: 'linear-gradient(90deg, #fff 0%, #fff 38%, rgba(255,255,255,0.86) 55%, rgba(255,255,255,0) 82%)'}} />
+                  <div style={{position: 'absolute', left: 20, top: 16, ...CAP, fontSize: 14, color: wk.c}}>Objectif · semaine {wk.n}</div>
+                  <div style={{position: 'absolute', left: 20, top: 44, width: Math.min(wdt * 0.62, 520), fontFamily: sansFont, fontWeight: 800, fontSize: span > 2 ? 26 : 20, color: INK, lineHeight: 1.15, letterSpacing: -0.3, opacity: show ? 1 : 0.12, clipPath: `inset(0 ${show && !done ? (1 - prog(t, wk.at + 2.6, wk.at + 3.6, easeOut)) * 100 : 0}% 0 0)`}}>{wk.obj}</div>
+                  {passedW && <div style={{position: 'absolute', right: 14, bottom: 12, display: 'flex', alignItems: 'center', gap: 6, background: wk.c, color: '#fff', fontFamily: sansFont, fontWeight: 700, fontSize: 18, padding: '4px 12px', borderRadius: 8}}><LCheck size={18} color="#fff" strokeWidth={3} />Semaine {wk.n} validée</div>}
                 </div>
               );
             })()}
           </React.Fragment>
         );
       })}
-      {!done && mi >= 0 && <div style={{position: 'absolute', left: hl.x - 6, top: hl.y - 6, width: CW + 12, height: CH + 12, borderRadius: 20, border: `4px solid ${w.c}`, boxShadow: `0 0 26px ${w.c}, inset 0 0 18px ${w.c}66`, pointerEvents: 'none'}} />}
+      {!done && mi >= 0 && <div style={{position: 'absolute', left: hl.x - 7, top: hl.y - 7, width: CW + 14, height: CH + 14, borderRadius: 18, border: `5px solid ${w.c}`, boxShadow: `0 0 0 7px ${rgba(w.c, 0.18)}, 0 10px 30px ${rgba(w.c, 0.35)}`, pointerEvents: 'none'}} />}
     </div>
-  );
-};
-/** Fond sombre du programme (photo floutée + vignettage), comme la vidéo de référence. */
-const DarkBg: React.FC<{img?: string}> = ({img = 'sysqsse-gen/couverture.jpg'}) => {
-  const t = useT();
-  return (
-    <AbsoluteFill style={{background: '#0E1A33'}}>
-      <Img src={PH(img)} style={{position: 'absolute', inset: -40, width: 'calc(100% + 80px)', height: 'calc(100% + 80px)', objectFit: 'cover', filter: 'blur(18px) saturate(0.7)', opacity: 0.32, transform: `scale(${1.05 + 0.02 * Math.sin(t * 0.2)})`}} />
-      <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 40%, rgba(14,26,51,0.2), rgba(8,14,28,0.9) 75%)'}} />
-    </AbsoluteFill>
   );
 };
 /** Carte-loupe : la carte du module grandit depuis sa place dans la grille (FLIP), montre un détail animé, puis y retourne. */
@@ -979,72 +983,76 @@ const PopOut: React.FC<{k: number; j: number; a: number; b: number; children: Re
   const col = WEEKS[k].c;
   return (
     <>
-      <AbsoluteFill style={{background: `rgba(6,10,20,${0.55 * p})`}} />
-      <div style={{position: 'absolute', left: lerp(src.x, dst.x, p), top: lerp(src.y, dst.y, p), width: lerp(src.w, dst.w, p), height: lerp(src.h, dst.h, p), borderRadius: 22, border: `4px solid ${col}`, background: 'rgba(14,26,51,0.96)', boxShadow: `0 0 50px ${col}88`, overflow: 'hidden'}}>
+      <AbsoluteFill style={{background: `rgba(248,245,236,${0.8 * p})`}} />
+      <div style={{position: 'absolute', left: lerp(src.x, dst.x, p), top: lerp(src.y, dst.y, p), width: lerp(src.w, dst.w, p), height: lerp(src.h, dst.h, p), borderRadius: 22, border: `4px solid ${NBK}`, background: '#fff', boxShadow: `${10 * p}px ${10 * p}px 0 ${col}`, overflow: 'hidden'}}>
+        <div style={{position: 'absolute', left: 0, top: 0, right: 0, height: 8, background: col}} />
         <div style={{position: 'absolute', left: 0, top: 0, width: w, height: h, transform: `scale(${lerp(src.w / w, 1, p)})`, transformOrigin: '0 0', opacity: prog(t, a + 0.25, a + 0.5)}}>{children}</div>
       </div>
     </>
   );
 };
 const PopTitle: React.FC<{c: string; text: string; num: number}> = ({c, text, num}) => (
-  <div style={{position: 'absolute', left: 30, top: 24, right: 30, display: 'flex', alignItems: 'center', gap: 14}}><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 24, color: '#0E1A33', background: c, padding: '4px 12px', borderRadius: 8}}>MODULE {num}</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 34, color: '#fff'}}>{text}</div></div>
+  <div style={{position: 'absolute', left: 34, top: 34, right: 34, display: 'flex', alignItems: 'center', gap: 16}}><div style={{...CAP, fontSize: 18, color: '#fff', background: c, padding: '6px 12px', borderRadius: 8}}>Module {String(num).padStart(2, '0')}</div><div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 32, color: INK, letterSpacing: -0.4}}>{text}</div></div>
 );
 const IsoPop: React.FC = () => {
   const t = useT();
   return (
     <>
-      <PopTitle c={WEEKS[0].c} text="Les normes du système intégré" num={3} />
-      {[['9001', 'Qualité', 60.3, '#21A69A'], ['14001', 'Environnement', 60.9, '#3BAF5C'], ['45001', 'Santé-sécurité', 61.74, '#E07A5F']].map(([n, l, a, c], k) => <div key={k} style={{position: 'absolute', left: 40 + k * 265, top: 150, width: 245, height: 420, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, transform: `scale(${Math.min(1, sp(t, a as number))}) rotateY(${(1 - Math.min(1, prog(t, a as number, (a as number) + 0.5, easeOut))) * 90}deg)`}}>
-        <div style={{width: 220, height: 220, borderRadius: 110, background: `radial-gradient(circle at 35% 30%, #fff, ${c} 70%)`, border: '6px solid #fff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 30px ${c}`}}><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 30, color: '#0E1A33'}}>ISO</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 56, color: '#0E1A33', lineHeight: 1}}>{n as string}</div></div>
-        <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 32, color: c as string}}>{l as string}</div>
+      <PopTitle c={WEEKS[0].c} text="Les référentiels du système intégré" num={3} />
+      {[['9001', 'Qualité', 60.3, '#138A80'], ['14001', 'Environnement', 60.9, '#2E8B4A'], ['45001', 'Santé et sécurité', 61.74, '#C9543B']].map(([n, l, a, c], k) => <div key={k} style={{position: 'absolute', left: 40 + k * 265, top: 150, width: 245, height: 420, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, transform: `scale(${Math.min(1, sp(t, a as number))}) rotateY(${(1 - Math.min(1, prog(t, a as number, (a as number) + 0.5, easeOut))) * 90}deg)`}}>
+        <div style={{width: 220, height: 220, borderRadius: 110, background: '#fff', border: `6px solid ${c}`, boxShadow: `6px 6px 0 ${NBK}`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}><div style={{...CAP, fontSize: 24, color: c as string}}>ISO</div><div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 54, color: INK, lineHeight: 1}}>{n as string}</div></div>
+        <div style={{fontFamily: sansFont, fontWeight: 700, fontSize: 28, color: c as string}}>{l as string}</div>
       </div>)}
     </>
   );
 };
 const ToolsPop: React.FC = () => {
   const t = useT();
+  const c = WEEKS[1].c;
   return (
     <>
-      <PopTitle c={WEEKS[1].c} text="Résoudre les problèmes" num={8} />
-      <div style={{position: 'absolute', left: 30, top: 130, width: 250, opacity: pop(t, 89.27)}}>
-        <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: '#fff', marginBottom: 12}}>5 pourquoi</div>
-        {[0, 1, 2, 3, 4].map((k) => <div key={k} style={{marginBottom: 10, marginLeft: k * 14, background: `rgba(33,166,154,${0.3 + k * 0.14})`, border: '2px solid #21A69A', borderRadius: 10, padding: '6px 12px', fontFamily: sansFont, fontWeight: 800, fontSize: 22, color: '#fff', opacity: prog(t, 89.3 + k * 0.12, 89.5 + k * 0.12)}}>pourquoi ?</div>)}
+      <PopTitle c={c} text="Outils de résolution de problèmes" num={8} />
+      <div style={{position: 'absolute', left: 34, top: 130, width: 250, opacity: pop(t, 89.27)}}>
+        <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 28, color: INK, marginBottom: 12}}>5 pourquoi</div>
+        {[0, 1, 2, 3, 4].map((k) => <div key={k} style={{marginBottom: 10, marginLeft: k * 14, background: rgba(c, 0.08 + k * 0.05), border: `2px solid ${c}`, borderRadius: 10, padding: '6px 12px', fontFamily: sansFont, fontWeight: 700, fontSize: 21, color: INK, opacity: prog(t, 89.3 + k * 0.12, 89.5 + k * 0.12)}}>Pourquoi ?</div>)}
       </div>
-      <svg width={300} height={300} style={{position: 'absolute', left: 290, top: 190, opacity: pop(t, 89.76)}}>
-        <line x1={10} y1={150} x2={270} y2={150} stroke="#fff" strokeWidth={6} /><path d="M 270 120 L 296 150 L 270 180 Z" fill="#E07A5F" />
-        {[50, 120, 190].map((x, k) => <g key={k}><line x1={x} y1={60} x2={x + 50} y2={150} stroke="#21A69A" strokeWidth={5} pathLength={1} strokeDasharray={`${prog(t, 89.8 + k * 0.1, 90.2 + k * 0.1)} 1`} /><line x1={x} y1={240} x2={x + 50} y2={150} stroke="#21A69A" strokeWidth={5} pathLength={1} strokeDasharray={`${prog(t, 89.9 + k * 0.1, 90.3 + k * 0.1)} 1`} /></g>)}
-        <text x={150} y={290} textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight={900} fontSize={30} fill="#fff">Ishikawa</text>
+      <svg width={300} height={320} style={{position: 'absolute', left: 290, top: 170, opacity: pop(t, 89.76)}}>
+        <line x1={10} y1={150} x2={270} y2={150} stroke={INK} strokeWidth={5} /><path d="M 270 124 L 296 150 L 270 176 Z" fill="#C9543B" />
+        {[50, 120, 190].map((x, k) => <g key={k}><line x1={x} y1={60} x2={x + 50} y2={150} stroke={c} strokeWidth={4} pathLength={1} strokeDasharray={`${prog(t, 89.8 + k * 0.1, 90.2 + k * 0.1)} 1`} /><line x1={x} y1={240} x2={x + 50} y2={150} stroke={c} strokeWidth={4} pathLength={1} strokeDasharray={`${prog(t, 89.9 + k * 0.1, 90.3 + k * 0.1)} 1`} /></g>)}
+        <text x={150} y={300} textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight={800} fontSize={28} fill={INK}>Ishikawa</text>
       </svg>
-      <svg width={250} height={330} style={{position: 'absolute', left: 600, top: 170, opacity: pop(t, 90.31)}}>
-        {[0.95, 0.6, 0.38, 0.22, 0.12].map((v, k) => <rect key={k} x={10 + k * 46} y={260 - 230 * v * prog(t, 90.35 + k * 0.08, 90.7 + k * 0.08, easeOut)} width={38} height={230 * v * prog(t, 90.35 + k * 0.08, 90.7 + k * 0.08, easeOut)} fill="#E8B931" />)}
-        <polyline fill="none" stroke="#E07A5F" strokeWidth={5} points="29,150 75,90 121,62 167,44 213,34" opacity={prog(t, 90.8, 91.1)} />
-        <text x={125} y={310} textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight={900} fontSize={30} fill="#fff">Pareto</text>
+      <svg width={250} height={340} style={{position: 'absolute', left: 600, top: 150, opacity: pop(t, 90.31)}}>
+        <line x1={6} y1={262} x2={244} y2={262} stroke={INK} strokeWidth={3} />
+        {[0.95, 0.6, 0.38, 0.22, 0.12].map((v, k) => <rect key={k} x={12 + k * 46} y={260 - 230 * v * prog(t, 90.35 + k * 0.08, 90.7 + k * 0.08, easeOut)} width={38} height={230 * v * prog(t, 90.35 + k * 0.08, 90.7 + k * 0.08, easeOut)} fill={rgba(c, 0.85 - k * 0.12)} />)}
+        <polyline fill="none" stroke="#C9543B" strokeWidth={4} points="31,150 77,90 123,62 169,44 215,34" opacity={prog(t, 90.8, 91.1)} />
+        <text x={125} y={318} textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight={800} fontSize={28} fill={INK}>Pareto</text>
       </svg>
     </>
   );
 };
 const MethodsPop: React.FC = () => (
   <>
-    <PopTitle c={WEEKS[2].c} text="Les méthodes d'analyse" num={12} />
-    {[[2, 113.96, 0], [4, 114.33, 1], [3, 115.0, 2]].map(([n, a, k]) => <div key={k} style={{position: 'absolute', left: 30 + k * 270, top: 160, width: 1080, height: 400, transform: 'scale(0.29)', transformOrigin: '0 0'}}><Drum n={n} at={a} y={0} /></div>)}
-    <div style={{position: 'absolute', left: 0, right: 0, top: 300, textAlign: 'center', fontFamily: handFont, fontSize: 44, color: '#F2C230'}}>méthodes déjà vues dans la capsule « 15 méthodes »</div>
-    <div style={{position: 'absolute', left: 0, right: 0, top: 400, display: 'flex', justifyContent: 'center', gap: 16}}>{[['APR', ORANGE], ['AMDEC', BLUE], ['HAZOP', BLUE]].map(([l, c]) => <div key={l} style={{background: c, color: '#fff', border: '3px solid #fff', borderRadius: 12, padding: '8px 20px', fontFamily: sansFont, fontWeight: 900, fontSize: 36}}>{l}</div>)}</div>
+    <PopTitle c={WEEKS[2].c} text="Méthodes d'analyse des risques" num={12} />
+    {[[2, 113.96, 0], [4, 114.33, 1], [3, 115.0, 2]].map(([n, a, k]) => <div key={k} style={{position: 'absolute', left: 30 + k * 270, top: 150, width: 1080, height: 400, transform: 'scale(0.29)', transformOrigin: '0 0'}}><Drum n={n} at={a} y={0} /></div>)}
+    <div style={{position: 'absolute', left: 0, right: 0, top: 290, textAlign: 'center', ...CAP, fontSize: 18, color: DIM}}>Méthodes détaillées dans la capsule « 15 méthodes d'analyse des risques »</div>
+    <div style={{position: 'absolute', left: 0, right: 0, top: 360, display: 'flex', justifyContent: 'center', gap: 18}}>{[['APR', 'analyse préliminaire'], ['AMDEC', 'défaillances et criticité'], ['HAZOP', 'dangers et opérabilité']].map(([l, s0]) => <div key={l} style={{...nb('#fff', 5), padding: '14px 20px', textAlign: 'center', width: 230}}><div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 36, color: WEEKS[2].c}}>{l}</div><div style={{fontFamily: sansFont, fontWeight: 600, fontSize: 18, color: DIM}}>{s0}</div></div>)}</div>
   </>
 );
 const LotoPop: React.FC = () => {
   const t = useT();
   const sh = prog(t, 133.4, 134.0, easeIn);
+  const c = WEEKS[3].c;
   return (
     <>
-      <PopTitle c={WEEKS[3].c} text="Consignation LOTO & EPI" num={15} />
-      <svg width={360} height={420} style={{position: 'absolute', left: 60, top: 140}}>
-        <path d={`M 110 ${200 - 60 * (1 - sh)} L 110 ${120 - 60 * (1 - sh)} A 70 70 0 0 1 250 ${120 - 60 * (1 - sh)} L 250 ${200 - 60 * (1 - sh)}`} fill="none" stroke="#C9D2DF" strokeWidth={26} strokeLinecap="round" />
-        <rect x={70} y={180} width={220} height={190} rx={30} fill="#E2574C" stroke="#fff" strokeWidth={6} />
-        <circle cx={180} cy={260} r={22} fill="#0E1A33" /><rect x={172} y={270} width={16} height={50} rx={6} fill="#0E1A33" />
+      <PopTitle c={c} text="Consignation LOTO et EPI" num={15} />
+      <svg width={360} height={420} style={{position: 'absolute', left: 60, top: 130}}>
+        <path d={`M 110 ${200 - 60 * (1 - sh)} L 110 ${120 - 60 * (1 - sh)} A 70 70 0 0 1 250 ${120 - 60 * (1 - sh)} L 250 ${200 - 60 * (1 - sh)}`} fill="none" stroke="#9AA3B2" strokeWidth={24} strokeLinecap="round" />
+        <rect x={70} y={180} width={220} height={190} rx={28} fill={c} stroke={NBK} strokeWidth={6} />
+        <circle cx={180} cy={262} r={22} fill="#fff" /><rect x={172} y={272} width={16} height={48} rx={6} fill="#fff" />
       </svg>
-      {sh >= 1 && <div style={{position: 'absolute', left: 70, top: 560, width: 340, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: '#fff'}}>énergie consignée ✓</div>}
-      <div style={{position: 'absolute', left: 470, top: 160, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18}}>{['casque', 'gants', 'lunettes', 'chaussure'].map((ic, k) => <div key={ic} style={{width: 160, height: 160, borderRadius: 20, background: 'rgba(255,255,255,0.08)', border: `3px solid ${WEEKS[3].c}`, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `scale(${Math.min(1, sp(t, 134.1 + k * 0.12))})`}}><F n={ic} size={100} /></div>)}</div>
-      {t > 134.1 && <div style={{position: 'absolute', left: 470, top: 530, width: 340, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: WEEKS[3].c}}>gestion des EPI</div>}
+      {sh >= 1 && <div style={{position: 'absolute', left: 60, top: 560, width: 360, textAlign: 'center', fontFamily: sansFont, fontWeight: 700, fontSize: 26, color: INK}}>Énergie consignée</div>}
+      <div style={{position: 'absolute', left: 470, top: 150, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18}}>{[['HardHat', 'Casque'], ['Hand', 'Gants'], ['Glasses', 'Lunettes'], ['Footprints', 'Chaussures']].map(([ic, l], k) => <div key={ic} style={{width: 160, height: 160, ...nb('#fff', 5), display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, transform: `scale(${Math.min(1, sp(t, 134.1 + k * 0.12))})`}}><Ico n={ic} size={60} c={c} /><span style={{fontFamily: sansFont, fontWeight: 700, fontSize: 20, color: INK}}>{l}</span></div>)}</div>
+      {t > 134.1 && <div style={{position: 'absolute', left: 470, top: 530, width: 340, textAlign: 'center', ...CAP, fontSize: 18, color: c}}>Gestion des EPI</div>}
     </>
   );
 };
@@ -1052,26 +1060,26 @@ const ScopesPop: React.FC = () => {
   const t = useT();
   return (
     <>
-      <PopTitle c={WEEKS[5].c} text="Bilan carbone · scopes" num={26} />
+      <PopTitle c={WEEKS[5].c} text="Bilan carbone : les trois scopes" num={26} />
       <div style={{position: 'absolute', left: 230, top: 120, width: 400, height: 400}}>
-        {[3, 2, 1].map((n, k) => { const r = 70 + (n - 1) * 65; const a = [196.5, 196.3, 195.86][k]; return <div key={n} style={{position: 'absolute', left: 200 - r, top: 200 - r, width: r * 2, height: r * 2, borderRadius: '50%', border: `6px solid ${['#3D8BEB', '#21A69A', '#3BAF5C'][n - 1]}`, background: `${['#3D8BEB', '#21A69A', '#3BAF5C'][n - 1]}22`, transform: `scale(${Math.min(1, sp(t, a))})`}}><div style={{position: 'absolute', left: '50%', top: 4, transform: 'translateX(-50%)', fontFamily: sansFont, fontWeight: 900, fontSize: 26, color: '#fff'}}>{n === 1 ? '' : `Scope ${n}`}</div></div>; })}
-        <div style={{position: 'absolute', left: 140, top: 160, width: 120, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 26, color: '#fff', opacity: pop(t, 195.86)}}>Scope 1</div>
+        {[3, 2, 1].map((n, k) => { const r = 70 + (n - 1) * 65; const a = [196.5, 196.3, 195.86][k]; const c = ['#2C6FD1', '#138A80', '#2E8B4A'][n - 1]; return <div key={n} style={{position: 'absolute', left: 200 - r, top: 200 - r, width: r * 2, height: r * 2, borderRadius: '50%', border: `5px solid ${c}`, background: rgba(c, 0.08), transform: `scale(${Math.min(1, sp(t, a))})`}}><div style={{position: 'absolute', left: '50%', top: 6, transform: 'translateX(-50%)', fontFamily: sansFont, fontWeight: 800, fontSize: 24, color: c}}>{n === 1 ? '' : `Scope ${n}`}</div></div>; })}
+        <div style={{position: 'absolute', left: 140, top: 162, width: 120, textAlign: 'center', fontFamily: sansFont, fontWeight: 800, fontSize: 24, color: '#2E8B4A', opacity: pop(t, 195.86)}}>Scope 1</div>
       </div>
-      <div style={{position: 'absolute', left: 0, right: 0, top: 540, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 34, color: '#fff', opacity: pop(t, 194.3)}}>GHG Protocol</div>
+      <div style={{position: 'absolute', left: 0, right: 0, top: 545, textAlign: 'center', ...CAP, fontSize: 20, color: DIM, opacity: pop(t, 194.3)}}>Référentiel GHG Protocol</div>
     </>
   );
 };
 const PdcaPop: React.FC = () => {
   const t = useT();
-  const rot = (t - 224.0) * 60;
+  const rot = (t - 224.0) * 50;
   return (
     <>
       <PopTitle c={WEEKS[6].c} text="Amélioration continue" num={32} />
-      <div style={{position: 'absolute', left: 250, top: 120, width: 360, height: 360, borderRadius: '50%', transform: `rotate(${rot}deg)`, background: `conic-gradient(#3D8BEB 0 90deg, #3BAF5C 90deg 180deg, #E8B931 180deg 270deg, #E07A5F 270deg 360deg)`, border: '6px solid #fff'}}>
-        {['PLAN', 'DO', 'CHECK', 'ACT'].map((l, k) => <div key={l} style={{position: 'absolute', left: 180, top: 180, transform: `rotate(${k * 90 + 45}deg) translateY(-120px) rotate(${-(k * 90 + 45) - rot}deg)`, transformOrigin: '0 0'}}><div style={{transform: 'translate(-50%, -50%)', fontFamily: sansFont, fontWeight: 900, fontSize: 34, color: '#fff', textShadow: '2px 2px 0 #0E1A33'}}>{l}</div></div>)}
+      <div style={{position: 'absolute', left: 250, top: 130, width: 360, height: 360, borderRadius: '50%', transform: `rotate(${rot}deg)`, background: 'conic-gradient(#2C6FD1 0 90deg, #2E8B4A 90deg 180deg, #C8930A 180deg 270deg, #C9543B 270deg 360deg)', border: `5px solid ${NBK}`, boxShadow: `6px 6px 0 ${NBK}`}}>
+        {['PLAN', 'DO', 'CHECK', 'ACT'].map((l, k) => <div key={l} style={{position: 'absolute', left: 180, top: 180, transform: `rotate(${k * 90 + 45}deg) translateY(-122px) rotate(${-(k * 90 + 45) - rot}deg)`, transformOrigin: '0 0'}}><div style={{transform: 'translate(-50%, -50%)', fontFamily: sansFont, fontWeight: 800, fontSize: 30, color: '#fff', letterSpacing: 1}}>{l}</div></div>)}
       </div>
-      <div style={{position: 'absolute', left: 380, top: 250, width: 100, height: 100, borderRadius: 50, background: '#0E1A33', border: '5px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><F n="repeter" size={60} /></div>
-      <div style={{position: 'absolute', left: 0, right: 0, top: 520, textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 32, color: WEEKS[6].c, opacity: pop(t, 225.0)}}>revue de direction → amélioration continue</div>
+      <div style={{position: 'absolute', left: 380, top: 260, width: 100, height: 100, borderRadius: 50, background: '#fff', border: `4px solid ${NBK}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Ico n="RefreshCw" size={48} c={WEEKS[6].c} /></div>
+      <div style={{position: 'absolute', left: 0, right: 0, top: 540, textAlign: 'center', ...CAP, fontSize: 20, color: WEEKS[6].c, opacity: pop(t, 225.0)}}>Revue de direction · amélioration continue</div>
     </>
   );
 };
@@ -1079,12 +1087,13 @@ const FinalPop: React.FC = () => {
   const t = useT();
   return (
     <>
-      <PopTitle c="#3BAF5C" text="Évaluation finale" num={36} />
-      <div style={{position: 'absolute', left: 230, top: 130, transform: `scale(${Math.min(1, sp(t, 249.5))}) rotate(${(1 - Math.min(1, prog(t, 249.5, 250.1, easeOut))) * -20}deg)`}}><F n="diplome" size={400} /></div>
+      <PopTitle c="#2E8B4A" text="Évaluation finale" num={36} />
+      <div style={{position: 'absolute', left: 280, top: 150, width: 300, height: 300, borderRadius: 150, background: rgba('#2E8B4A', 0.1), border: '6px solid #2E8B4A', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `scale(${Math.min(1, sp(t, 249.5))})`}}><Ico n="GraduationCap" size={170} c="#1F3A68" /></div>
+      <div style={{position: 'absolute', left: 0, right: 0, top: 500, textAlign: 'center', ...CAP, fontSize: 20, color: DIM, opacity: pop(t, 249.9)}}>Validation des acquis</div>
     </>
   );
 };
-/** Grand volet « SEMAINE N » en palettes (semaines 2, 4, 6, 8, sans guichet). */
+/** Volet « SEMAINE N » en palettes (semaines 2, 4, 6, 8, sans changement de guichet). */
 const WeekFlap: React.FC<{k: number}> = ({k}) => {
   const t = useT();
   const wk = WEEKS[k];
@@ -1093,19 +1102,20 @@ const WeekFlap: React.FC<{k: number}> = ({k}) => {
   if (p <= 0) return null;
   return (
     <AbsoluteFill style={{zIndex: 34, opacity: p}}>
-      <AbsoluteFill style={{background: 'rgba(6,10,20,0.78)'}} />
-      <Abs x={0} y={620} w={1080} style={{display: 'flex', justifyContent: 'center'}}><Flap text={`SEMAINE ${wk.n}`} at={a + 0.1} size={96} c={wk.c} /></Abs>
-      <Abs x={60} y={800} w={960} style={{textAlign: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 52, color: '#fff', opacity: pop(t, a + 0.6)}}>{wk.th}</Abs>
-      <Abs x={60} y={900} w={960} style={{display: 'flex', justifyContent: 'center', gap: 10, opacity: pop(t, a + 0.9)}}>{WEEKS.map((w, j) => <div key={j} style={{width: 70, height: 12, borderRadius: 6, background: j <= k ? w.c : 'rgba(255,255,255,0.15)'}} />)}</Abs>
+      <AbsoluteFill style={{background: 'rgba(248,245,236,0.92)'}} />
+      <Abs x={0} y={610} w={1080} style={{display: 'flex', justifyContent: 'center'}}><Flap text={`SEMAINE ${wk.n}`} at={a + 0.1} size={96} c={wk.c} /></Abs>
+      <Abs x={60} y={800} w={960} style={{textAlign: 'center', fontFamily: sansFont, fontWeight: 800, fontSize: 46, color: INK, letterSpacing: -0.5, opacity: pop(t, a + 0.6)}}>{wk.th}</Abs>
+      <Abs x={60} y={900} w={960} style={{display: 'flex', justifyContent: 'center', gap: 10, opacity: pop(t, a + 0.9)}}>{WEEKS.map((w, j) => <div key={j} style={{width: 70, height: 10, borderRadius: 5, background: j <= k ? w.c : '#DDE2EA'}} />)}</Abs>
     </AbsoluteFill>
   );
 };
-const DarkTitle: React.FC<{a: number; t1: string; t2: string; y?: number}> = ({a, t1, t2, y = 330}) => {
+/** Titre de section sobre (thème clair). */
+const LTitle: React.FC<{a: number; t1: string; t2: string; y?: number}> = ({a, t1, t2, y = 300}) => {
   const t = useT();
   return (
     <Abs x={60} y={y} w={960} style={{textAlign: 'center', opacity: pop(t, a)}}>
-      <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 50, color: '#fff', lineHeight: 1.05}}>{t1}</div>
-      <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 34, color: '#F2C230', marginTop: 6}}>{t2}</div>
+      <div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 46, color: INK, lineHeight: 1.05, letterSpacing: -0.6}}>{t1}</div>
+      <div style={{...CAP, fontSize: 19, color: DIM, marginTop: 10}}>{t2}</div>
     </Abs>
   );
 };
@@ -1117,10 +1127,10 @@ const Intro1: React.FC = () => {
   return (
     <Out end={17.4}>
       <Heads h={[[2.9, ['Qualité', '·', 'santé', '·', 'sécurité', '·', 'environnement'], [0, 2, 4, 6]], [7.1, ['De plus en plus', 'importantes'], [1]], [8.3, ['Les entreprises', 'ont besoin'], [1]], [11.4, ['Risques', '·', 'performance', '·', 'conformité'], [0, 2, 4]]]} />
-      {t < 11.0 && [['Q', 'Qualité', 3.29, '#21A69A'], ['S', 'Santé', 4.25, '#E07A5F'], ['S', 'Sécurité', 4.67, ORANGE], ['E', 'Environnement', 5.91, '#3BAF5C']].map(([L, l, a, c], k) => { const q = sp(t, a as number); const h = 300 + grow * [80, 140, 200, 260][k]; return t > (a as number) - 0.05 && <Abs key={k} x={60 + k * 245} y={1300 - h} w={225} h={h} style={{...nb(c as string, 7), color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', paddingTop: 24, transform: `scaleY(${Math.min(1, q)})`, transformOrigin: '50% 100%', opacity: 1 - prog(t, 10.6, 11.0)}}><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 130, lineHeight: 1}}>{L as string}</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: (l as string).length > 10 ? 24 : 30}}>{l as string}</div></Abs>; })}
-      {t > 7.1 && t < 11.0 && <Abs x={60} y={480} w={960} style={{display: 'flex', justifyContent: 'center', opacity: wn(t, 7.1, 11.0)}}><NBadge at={7.2} text="DE PLUS EN PLUS IMPORTANTES" bg={NBK} rot={-2} size={32} /></Abs>}
+      {t < 11.0 && [['Q', 'Qualité', 3.29, '#21A69A'], ['S', 'Santé', 4.25, '#E07A5F'], ['S', 'Sécurité', 4.67, ORANGE], ['E', 'Environnement', 5.91, '#3BAF5C']].map(([L, l, a, c], k) => { const q = sp(t, a as number); const h = 300 + grow * [80, 140, 200, 260][k]; return t > (a as number) - 0.05 && <Abs key={k} x={60 + k * 245} y={1300 - h} w={225} h={h} style={{...nb(c as string, 7), color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', paddingTop: 24, transform: `scaleY(${Math.min(1, q)})`, transformOrigin: '50% 100%', opacity: 1 - prog(t, 10.6, 11.0)}}><div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 124, lineHeight: 1}}>{L as string}</div><div style={{fontFamily: sansFont, fontWeight: 700, fontSize: (l as string).length > 10 ? 23 : 28}}>{l as string}</div></Abs>; })}
+      {t > 7.1 && t < 11.0 && <Abs x={60} y={480} w={960} style={{display: 'flex', justifyContent: 'center', opacity: wn(t, 7.1, 11.0)}}><NBadge at={7.2} text="Des exigences croissantes" bg={NBK} rot={0} size={32} /></Abs>}
       {t > 10.8 && <>
-        <Abs x={60} y={480} w={960} style={{display: 'flex', justifyContent: 'center', opacity: pop(t, 10.8)}}><div style={{...nb('#fff', 7), display: 'flex', alignItems: 'center', gap: 16, padding: '14px 26px'}}><F n="agent-hse" size={110} /><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 44}}>des <span style={{color: ORANGE}}>professionnels</span> capables de…</span></div></Abs>
+        <Abs x={60} y={480} w={960} style={{display: 'flex', justifyContent: 'center', opacity: pop(t, 10.8)}}><div style={{...nb('#fff', 7), display: 'flex', alignItems: 'center', gap: 18, padding: '16px 28px'}}><div style={{width: 84, height: 84, borderRadius: 16, background: `${ORANGE}18`, border: `2px solid ${ORANGE}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Ico n="UserCheck" size={48} c={ORANGE} /></div><span style={{fontFamily: sansFont, fontWeight: 800, fontSize: 40, letterSpacing: -0.4}}>Des <span style={{color: ORANGE}}>professionnels</span> capables de</span></div></Abs>
         {[['danger', 'Maîtriser les risques', 11.53], ['graphique', 'Piloter la performance', 13.12], ['check', 'Garantir la conformité', 14.75]].map(([ic, l, a], k) => <GH key={k} x={60 + k * 330} y={760} w={300} h={380} at={a as number} ic={ic as string} l={l as string} c={ORANGE} fs={34} />)}
       </>}
     </Out>
@@ -1132,10 +1142,10 @@ const Intro2: React.FC = () => {
     <Out end={33.1}>
       <Heads h={[[17.4, ['Devenir', 'responsable QHSE'], [1]], [19.9, ['Pas seulement', 'les normes'], [1]], [21.6, ['Interpréter', '·', 'déployer'], [0, 2]], [25.9, ['Auditer', '·', 'maîtriser', '·', 'piloter'], [0, 2, 4]]]} />
       {t < 21.8 && <Abs x={190} y={520} w={700} h={640} style={{...nb('#fff', 8), display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 20, opacity: pop(t, 17.5) * (1 - prog(t, 21.4, 21.8))}}>
-        <F n="livres" size={240} />
-        <div style={{display: 'flex', gap: 10}}>{['ISO 9001', 'ISO 14001', 'ISO 45001'].map((l, k) => <div key={l} style={{...nb(['#21A69A', '#3BAF5C', '#E07A5F'][k], 4), color: '#fff', padding: '6px 14px', fontFamily: sansFont, fontWeight: 900, fontSize: 28, transform: `scale(${Math.min(1, sp(t, 18.6 + k * 0.2))})`}}>{l}</div>)}</div>
+        <div style={{width: 200, height: 200, borderRadius: 30, background: `${ORANGE}14`, border: `3px solid ${ORANGE}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Ico n="BookOpen" size={120} c={ORANGE} /></div>
+        <div style={{display: 'flex', gap: 10}}>{['ISO 9001', 'ISO 14001', 'ISO 45001'].map((l, k) => <div key={l} style={{...nb(['#21A69A', '#3BAF5C', '#E07A5F'][k], 4), color: '#fff', padding: '6px 14px', fontFamily: sansFont, fontWeight: 800, fontSize: 26, transform: `scale(${Math.min(1, sp(t, 18.6 + k * 0.2))})`}}>{l}</div>)}</div>
         {t > 20.46 && <div style={{position: 'absolute', left: 20, right: 20, top: '48%', height: 16, background: RED, transform: `scaleX(${prog(t, 20.5, 21.0, easeOut)}) rotate(-6deg)`, transformOrigin: '0 50%'}} />}
-        {t > 20.46 && <div style={{position: 'absolute', bottom: -26}}><NBadge at={20.5} text="PAS SIMPLEMENT CONNAÎTRE" bg={NBK} rot={-3} size={30} /></div>}
+        {t > 20.46 && <div style={{position: 'absolute', bottom: -26}}><NBadge at={20.5} text="Connaître les normes ne suffit pas" bg={NBK} rot={0} size={30} /></div>}
       </Abs>}
       {t > 21.6 && <RailSteps c={ORANGE} y={470} h={880} at={21.7} items={[['Interpréter les normes', 23.33, 'loupe'], ['Les déployer sur le terrain', 24.13, 'chantier'], ['Conduire des audits', 25.9, 'auditeur'], ['Maîtriser les risques', 27.51, 'danger'], ['Piloter un système de management intégré', 29.27, 'engrenage']]} />}
     </Out>
@@ -1148,12 +1158,11 @@ const Prog: React.FC = () => {
   const fin = t >= 253.8;
   return (
     <AbsoluteFill style={{opacity: prog(t, 33.0, 33.6)}}>
-      <DarkBg />
-      {!fin && <DarkTitle a={36.5} t1="Formation responsable QHSE" t2="8 semaines · management intégré" y={300} />}
+      {!fin && <LTitle a={36.5} t1="Formation Responsable QHSE" t2="Programme en 8 semaines · management intégré" y={296} />}
       {t > 41.5 && <div style={{position: 'absolute', left: 0, top: 418, width: 1080, height: 975, overflow: 'hidden', opacity: prog(t, 41.5, 41.9), WebkitMaskImage: 'linear-gradient(180deg, transparent 0, #000 22px, #000 calc(100% - 26px), transparent)', maskImage: 'linear-gradient(180deg, transparent 0, #000 22px, #000 calc(100% - 26px), transparent)'}}><div style={{position: 'absolute', left: 0, top: -418, width: 1080, height: 1920}}><PBoard /></div></div>}
       {t < 42.2 && <div style={{opacity: 1 - prog(t, 41.7, 42.2)}}>
         <SearchOpen x={60} y={460} w={960} h={880} at={36.6} query="formation responsable QHSE" results={['Normes ISO · fiches pratiques', 'Programme · 8 semaines · management intégré', 'Audit interne · guide']} found={1} foundAt={39.38} clickAt={39.8} c={'#E8B931'}>
-          <div style={{padding: '20px 30px'}}>{WEEKS.map((w, k) => <div key={k} style={{display: 'flex', alignItems: 'center', gap: 14, marginBottom: 12, opacity: pop(t, 40.6 + k * 0.08)}}><div style={{width: 120, height: 66, borderRadius: 10, background: w.c, color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 26, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>S{w.n}</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: INK}}>{w.th}</div></div>)}</div>
+          <div style={{padding: '20px 30px'}}>{WEEKS.map((w, k) => <div key={k} style={{display: 'flex', alignItems: 'center', gap: 14, marginBottom: 12, opacity: pop(t, 40.6 + k * 0.08)}}><div style={{width: 110, height: 62, borderRadius: 10, background: w.c, color: '#fff', fontFamily: sansFont, fontWeight: 800, fontSize: 24, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>S{w.n}</div><div style={{fontFamily: sansFont, fontWeight: 700, fontSize: 27, color: INK}}>{w.th}</div></div>)}</div>
         </SearchOpen>
       </div>}
       {WEEKS.map((w, k) => (k % 2 === 1 ? <WeekFlap key={k} k={k} /> : null))}
@@ -1165,8 +1174,8 @@ const Prog: React.FC = () => {
       <PopOut k={6} j={4} a={224.1} b={226.9}><PdcaPop /></PopOut>
       <PopOut k={7} j={3} a={249.4} b={250.4}><FinalPop /></PopOut>
       {fin && <>
-        <Abs x={60} y={560} w={330} style={{textAlign: 'center', opacity: pop(t, 254.3)}}><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 230, color: '#F2C230', lineHeight: 1, textShadow: '0 0 30px #F2C23088'}}>8</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 44, color: '#fff'}}>semaines ✓</div><div style={{fontFamily: sansFont, fontWeight: 700, fontSize: 28, color: '#C9D3E3', marginTop: 16, lineHeight: 1.2, opacity: pop(t, 256.4)}}>les principaux domaines de compétences</div></Abs>
-        {[['livres', 'Enseignements techniques', 260.93], ['outils', 'Exercices pratiques', 262.64], ['dossier', 'Études de cas', 264.17]].map(([ic, l, a], k) => <GH key={k} x={700} y={560 + k * 230} w={320} h={200} at={a as number} ic={ic as string} l={l as string} c={WEEKS[k * 3].c} fs={28} dark />)}
+        <Abs x={60} y={560} w={330} style={{textAlign: 'center', opacity: pop(t, 254.3)}}><div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 220, color: '#1F3A68', lineHeight: 1}}>8</div><div style={{fontFamily: sansFont, fontWeight: 800, fontSize: 40, color: INK}}>semaines</div><div style={{...CAP, fontSize: 18, color: DIM, marginTop: 18, lineHeight: 1.5, opacity: pop(t, 256.4)}}>Les principaux domaines de compétences du pilotage QHSE</div></Abs>
+        {[['BookOpen', 'Enseignements techniques', 260.93], ['Wrench', 'Exercices pratiques', 262.64], ['FolderOpen', 'Études de cas', 264.17]].map(([ic, l, a], k) => <GH key={k} x={700} y={560 + k * 230} w={320} h={205} at={a as number} ic={ic as string} l={l as string} c={WEEKS[k * 3].c} fs={26} />)}
       </>}
     </AbsoluteFill>
   );
@@ -1174,11 +1183,11 @@ const Prog: React.FC = () => {
 const Concl2: React.FC = () => {
   const t = useT();
   return (
-  <Out end={276.9}>
-    <DarkBg img="sysqsse-gen/reunion.jpg" />
-    <DarkTitle a={265.6} t1="À qui s'adresse la formation ?" t2="profils visés" />
-    {[['agent-hse', 'Professionnels QHSE', 266.77, '#E8B931', 'renforcer leurs compétences'], ['ouvrier', 'Techniciens', 269.42, '#21A69A', 'évoluer vers des responsabilités'], ['ecole', 'Étudiants', 273.66, '#8B6CF0', 'construire une expertise']].map(([ic, l, a, c, sub], k) => <React.Fragment key={k}><GH x={60 + k * 330} y={560} w={300} h={420} at={a as number} ic={ic as string} l={l as string} c={c as string} fs={32} dark /><Abs x={60 + k * 330} y={1000} w={300} style={{textAlign: 'center', fontFamily: handFont, fontSize: 36, color: c as string, opacity: pop(t, (a as number) + 0.6)}}>{sub as string}</Abs></React.Fragment>)}
-  </Out>
+    <Out end={276.9}>
+      <LTitle a={265.6} t1="Publics concernés" t2="La formation s'adresse aux" />
+      {[['Briefcase', 'Professionnels QHSE', 266.77, '#C8930A', 'Renforcer leurs compétences'], ['HardHat', 'Techniciens', 269.42, '#138A80', 'Évoluer vers des fonctions de responsabilité'], ['GraduationCap', 'Étudiants', 273.66, '#6A4FD0', 'Construire une expertise QHSE']].map(([ic, l, a, c, sub], k) => <GH key={k} x={60 + k * 330} y={560} w={300} h={470} at={a as number} ic={ic as string} l={l as string} c={c as string} fs={30} sub={sub as string} />)}
+      {t > 266.77 && <Abs x={60} y={1110} w={960} style={{textAlign: 'center', ...CAP, fontSize: 18, color: DIM, opacity: pop(t, 267.6)}}>Professionnels · techniciens · étudiants</Abs>}
+    </Out>
   );
 };
 const Concl3: React.FC = () => {
@@ -1186,14 +1195,13 @@ const Concl3: React.FC = () => {
   const click = t > 284.9 && t < 285.2;
   return (
     <Out end={OUTRO_AT}>
-      <DarkBg img="sysqsse-gen/couverture.jpg" />
-      <DarkTitle a={276.9} t1="Prochaine session ?" t2="informations · modalités · inscriptions" />
-      {[['calendrier', 'Prochaines sessions', 279.49], ['clipboard', 'Modalités de participation', 281.07], ['ecrit', 'Inscriptions', 282.48]].map(([ic, l, a], k) => t > (a as number) - 0.05 && <Abs key={k} x={140} y={540 + k * 150} w={800} h={120} style={{background: 'rgba(255,255,255,0.08)', border: `2px solid ${WEEKS[k * 2].c}`, borderRadius: 18, display: 'flex', alignItems: 'center', gap: 20, padding: '0 26px', transform: `translateX(${(1 - Math.min(1, sp(t, a as number))) * -200}px)`, boxSizing: 'border-box'}}><F n={ic as string} size={70} /><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 38, color: '#fff'}}>{l as string}</span><span style={{marginLeft: 'auto', color: WEEKS[k * 2].c, fontSize: 40, fontWeight: 900}}>✓</span></Abs>)}
-      {t > 283.4 && <Abs x={140} y={1030} w={800} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16}}>
-        <div style={{background: '#F2C230', borderRadius: 18, padding: '24px 34px', fontFamily: sansFont, fontWeight: 900, fontSize: 40, whiteSpace: 'nowrap', color: '#0E1A33', boxShadow: `0 0 ${30 + 14 * Math.sin(t * 6)}px #F2C23099`, transform: `scale(${click ? 0.94 : Math.min(1, sp(t, 283.54))})`}}>Contactez UNIVERSNORMES QHSE</div>
-        <div style={{fontFamily: sansFont, fontWeight: 700, fontSize: 26, color: '#C9D3E3', opacity: pop(t, 284.0)}}>8 semaines · enseignements techniques · exercices pratiques · études de cas</div>
+      <LTitle a={276.9} t1="Prochaines sessions" t2="Informations · modalités · inscriptions" />
+      {[['CalendarDays', 'Calendrier des prochaines sessions', 279.49], ['ClipboardList', 'Modalités de participation', 281.07], ['PenLine', 'Inscriptions', 282.48]].map(([ic, l, a], k) => t > (a as number) - 0.05 && <Abs key={k} x={120} y={520 + k * 150} w={840} h={122} style={{...nb('#fff', 6), display: 'flex', alignItems: 'center', gap: 22, padding: '0 28px', transform: `translateX(${(1 - Math.min(1, sp(t, a as number))) * -200}px)`}}><div style={{width: 74, height: 74, borderRadius: 16, background: `${WEEKS[k * 3].c}18`, border: `2px solid ${WEEKS[k * 3].c}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Ico n={ic as string} size={40} c={WEEKS[k * 3].c} /></div><span style={{fontFamily: sansFont, fontWeight: 800, fontSize: 34, color: INK, letterSpacing: -0.3}}>{l as string}</span><span style={{marginLeft: 'auto'}}><Ico n="CircleCheckBig" size={40} c="#2E8B4A" /></span></Abs>)}
+      {t > 283.4 && <Abs x={100} y={1010} w={880} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18}}>
+        <div style={{...nb('#1F3A68', 8), padding: '24px 40px', fontFamily: sansFont, fontWeight: 800, fontSize: 38, whiteSpace: 'nowrap', color: '#fff', letterSpacing: -0.2, display: 'flex', alignItems: 'center', gap: 16, transform: `scale(${click ? 0.95 : Math.min(1, sp(t, 283.54))})`}}>Contactez UNIVERSNORMES QHSE<ArrowRight size={40} color="#fff" strokeWidth={2.5} /></div>
+        <div style={{...CAP, fontSize: 17, color: DIM, opacity: pop(t, 284.0)}}>8 semaines · enseignements · exercices pratiques · études de cas</div>
       </Abs>}
-      {t > 283.8 && t < 285.6 && <div style={{position: 'absolute', left: lerp(980, 640, prog(t, 283.9, 284.8, easeInOut)), top: lerp(1400, 1090, prog(t, 283.9, 284.8, easeInOut)), zIndex: 20}}><svg width={60} height={72} viewBox="0 0 24 30"><path d="M2 2 L2 24 L8 18 L12 28 L16 26 L12 17 L20 17 Z" fill="#fff" stroke={INK} strokeWidth={2} strokeLinejoin="round" /></svg></div>}
+      {t > 283.8 && t < 285.6 && <div style={{position: 'absolute', left: lerp(980, 660, prog(t, 283.9, 284.8, easeInOut)), top: lerp(1400, 1065, prog(t, 283.9, 284.8, easeInOut)), zIndex: 20}}><svg width={60} height={72} viewBox="0 0 24 30"><path d="M2 2 L2 24 L8 18 L12 28 L16 26 L12 17 L20 17 Z" fill="#fff" stroke={INK} strokeWidth={2} strokeLinejoin="round" /></svg></div>}
     </Out>
   );
 };
