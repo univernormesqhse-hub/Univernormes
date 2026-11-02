@@ -51,9 +51,14 @@ Node.js avec Playwright (réutilisé depuis le dossier voisin `video/`).
 - Titres : Manrope ExtraBold ; sous-titres : Manrope SemiBold ; texte courant : Source Sans 3 ; chiffres, étiquettes
   et folios : IBM Plex Sans. Toutes les polices sont incorporées (TrueType), aucune police Type 3.
 - Sur fond foncé, le logo est posé sur un cartouche blanc pour rester intact.
+- Brochure formation : tout le texte est en **Cambria** (titres en gras, objectifs et citations en italique).
+  Cambria est une police Microsoft livrée avec Windows et Office : si elle est installée sur le poste qui lance
+  `scripts/build.sh`, elle est utilisée telle quelle. Sinon, c'est **Caladea**, son équivalent libre aux métriques
+  identiques (même largeur et même hauteur de caractères, donc même mise en page), qui est incorporée au PDF. Pour
+  les grands numéros de semaine vectoriels, déposer `assets/fonts/Cambria-Bold.ttf` suffit à basculer sur Cambria.
 
 ## Crédits et licences
 
-- Polices Manrope, Source Sans 3 et IBM Plex Sans : SIL Open Font License 1.1 (fichiers `assets/fonts/*-OFL.txt`).
+- Polices Manrope, Source Sans 3, IBM Plex Sans et Caladea : SIL Open Font License 1.1 (fichiers `assets/fonts/*-OFL.txt`).
 - Pictogrammes : Lucide (licence ISC).
 - Photos et logo : propriété d'UNIVERSNORMES.

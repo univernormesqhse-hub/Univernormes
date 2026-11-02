@@ -1,5 +1,28 @@
 /* ═══════════ Brochure « Formation en management QHSE » — styles propres (s'ajoutent à styles.css) ═══════════ */
 
+/* ───── Police du document : Cambria ─────
+   Cambria est une police Microsoft (Windows, Office). Si elle est installée sur le poste qui génère la brochure,
+   elle est utilisée telle quelle ; sinon, Caladea — son équivalent libre aux métriques identiques (licence OFL,
+   assets/fonts/Caladea-*) — prend le relais avec exactement la même mise en page. */
+@font-face { font-family: 'Cambria Doc'; font-weight: 400; font-style: normal; src: local('Cambria'), url('../assets/fonts/Caladea-Regular.ttf'); }
+@font-face { font-family: 'Cambria Doc'; font-weight: 700; font-style: normal; src: local('Cambria Bold'), local('Cambria-Bold'), url('../assets/fonts/Caladea-Bold.ttf'); }
+@font-face { font-family: 'Cambria Doc'; font-weight: 400; font-style: italic; src: local('Cambria Italic'), local('Cambria-Italic'), url('../assets/fonts/Caladea-Italic.ttf'); }
+@font-face { font-family: 'Cambria Doc'; font-weight: 700; font-style: italic; src: local('Cambria Bold Italic'), local('Cambria-BoldItalic'), url('../assets/fonts/Caladea-BoldItalic.ttf'); }
+body.fx, body.fx *, body.fx *::before, body.fx *::after { font-family: 'Cambria Doc', Cambria, Caladea, Georgia, serif !important; }
+.fx { font-kerning: normal; font-variant-ligatures: common-ligatures; }
+.fx h1, .fx h2, .fx h3, .fx h4 { font-weight: 700; letter-spacing: -0.006em; }
+.fx h2 { line-height: 1.1; }
+.fx p { font-size: 10.8pt; line-height: 1.5; }
+.fx .lead-s { font-weight: 400; font-size: 11.6pt; line-height: 1.5; }
+.fx .label, .fx .items-k, .fx .runhead, .fx .folio, .fx .wl, .fx .k, .fx .kick, .fx .base, .fx .mt, .fx .doc, .fx .met,
+.fx .bk .foot, .fx .mini span, .fx .obj span, .fx .badge small, .fx .qrc { font-weight: 700; letter-spacing: 0.15em; }
+.fx .runhead, .fx .folio { font-size: 6.9pt; }
+.fx .folio .pn { font-size: 8.4pt; letter-spacing: 0.04em; }
+.fx .label { font-size: 8pt; }
+.fx .items li { font-size: 10.6pt; }
+.fx .items li::before, .fx .num { font-weight: 700; font-feature-settings: 'lnum', 'tnum'; }
+
+
 /* ═════ 01 Couverture ═════ */
 .fcv .photo { position: absolute; inset: 0; }
 .fcv .veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,26,71,0.6) 0%, rgba(6,26,71,0.12) 14%, rgba(6,26,71,0) 28%, rgba(6,26,71,0) 46%, rgba(6,26,71,0.55) 60%, rgba(6,26,71,0.9) 72%, #061A47 84%, #061A47 100%); }
@@ -10,11 +33,11 @@
 .fcv .badge small { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7pt; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 0.6mm; }
 .fcv .kick { position: absolute; left: var(--m); top: 190mm; font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.8pt; letter-spacing: 0.26em; text-transform: uppercase; color: #fff; display: flex; align-items: center; gap: 3mm; }
 .fcv .kick::before { content: ''; width: 8mm; height: 0.6mm; background: var(--green-light); }
-.fcv h1 { position: absolute; left: var(--m); right: var(--m); top: 199mm; font-weight: 800; font-size: 41pt; line-height: 1.05; color: #fff; letter-spacing: -0.028em; }
+.fcv h1 { position: absolute; left: var(--m); right: var(--m); top: 198mm; font-weight: 700; font-size: 44pt; line-height: 1.02; color: #fff; letter-spacing: -0.01em; }
 .fcv h1 span { display: block; }
 .fcv h1 span:nth-child(2) { color: var(--green-light); }
 .fcv .rule { position: absolute; left: var(--m); top: 236mm; width: 26mm; height: 0.8mm; background: var(--green); }
-.fcv .sub { position: absolute; left: var(--m); width: 150mm; top: 242mm; font-family: 'Source Sans 3'; font-style: italic; font-size: 13.5pt; line-height: 1.4; color: #E3EAF5; }
+.fcv .sub { position: absolute; left: var(--m); width: 174mm; text-wrap: balance; top: 242mm; font-family: 'Source Sans 3'; font-style: italic; font-size: 14.5pt; line-height: 1.4; color: #E3EAF5; }
 .fcv .base { position: absolute; left: var(--m); right: var(--m); bottom: 14mm; display: flex; justify-content: space-between; border-top: 0.3mm solid rgba(255,255,255,0.22); padding-top: 4.4mm; font-family: 'IBM Plex Sans'; font-size: 6.9pt; letter-spacing: 0.16em; text-transform: uppercase; color: #AFC0DD; }
 
 /* ═════ 02 Contexte et ambition ═════ */
@@ -24,7 +47,7 @@
 .fct .col { position: absolute; left: var(--m); width: 96mm; top: 26mm; }
 .fct h2 { font-size: 24pt; margin: 6mm 0 6mm; }
 .fct .col .lead-s { font-size: 10.8pt; }
-.fct blockquote { position: absolute; left: var(--m); right: var(--m); top: 184mm; display: grid; grid-template-columns: 12mm 1fr; gap: 4mm; font-family: 'Manrope'; font-weight: 600; font-size: 13.6pt; line-height: 1.45; color: #fff; text-wrap: pretty; }
+.fct blockquote { position: absolute; left: var(--m); right: var(--m); top: 184mm; display: grid; grid-template-columns: 12mm 1fr; gap: 4mm; font-family: 'Manrope'; font-style: italic; font-weight: 400; font-size: 15pt; line-height: 1.42; color: #fff; text-wrap: pretty; }
 .fct blockquote .ico { width: 10mm; height: 10mm; color: var(--green-light); margin-top: 1mm; }
 .fct .needs { position: absolute; left: var(--m); right: var(--m); top: 240mm; }
 .fct .nds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; margin-top: 5mm; }
@@ -83,9 +106,9 @@
 .fpg .wh { display: flex; align-items: flex-end; gap: 4.5mm; }
 .fpg .wl { font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 7.4pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); }
 .fpg h3 { font-size: 16pt; line-height: 1.16; margin-top: 1.4mm; font-weight: 800; letter-spacing: -0.02em; }
-.fpg .obj { margin-top: 4.4mm; padding: 3.4mm 4mm; background: var(--green-soft); border-left: 0.9mm solid var(--green); border-radius: 0 1.2mm 1.2mm 0; font-family: 'Manrope'; font-weight: 600; font-size: 10.4pt; line-height: 1.4; color: var(--navy); }
+.fpg .obj { margin-top: 4.4mm; padding: 3.4mm 4mm; background: var(--green-soft); border-left: 0.9mm solid var(--green); border-radius: 0 1.2mm 1.2mm 0; font-family: 'Manrope'; font-style: italic; font-weight: 400; font-size: 11.2pt; line-height: 1.4; color: var(--navy); }
 .fpg.sand .obj { background: #fff; }
-.fpg .obj span { display: block; font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 6.8pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 1mm; }
+.fpg .obj span { display: block; font-style: normal; font-family: 'IBM Plex Sans'; font-weight: 600; font-size: 6.8pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 1mm; }
 .fpg .items { margin-top: 3mm; }
 .fpg .items li { font-size: 10pt; padding: 2.05mm 0; }
 .fpg .tags { display: flex; flex-wrap: wrap; gap: 1.6mm; margin-top: 3.6mm; }
@@ -104,7 +127,7 @@
 .fpd .tr p { font-size: 9.8pt; line-height: 1.5; color: var(--slate); margin-top: 2mm; }
 .fpd .out { position: absolute; left: var(--m); right: var(--m); top: 240mm; background: var(--navy-deep); border-radius: 1.6mm; padding: 6mm 7mm; display: grid; grid-template-columns: 10mm 1fr; gap: 5mm; align-items: center; }
 .fpd .out .ico { width: 10mm; height: 10mm; color: var(--green-light); }
-.fpd .out p { font-family: 'Manrope'; font-weight: 600; font-size: 12pt; line-height: 1.42; color: #fff; }
+.fpd .out p { font-family: 'Manrope'; font-style: italic; font-weight: 400; font-size: 13pt; line-height: 1.42; color: #fff; }
 
 /* ═════ 10 Publics concernés ═════ */
 .fpu .head { position: absolute; left: var(--m); right: var(--m); top: 26mm; }

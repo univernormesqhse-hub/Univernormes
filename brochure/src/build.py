@@ -69,16 +69,16 @@ def paras(lst) -> str:
     return "".join(f"<p>{t(p)}</p>" for p in lst)
 
 
-_CHAP_FONT = None
+_CHAP_FONTS = {}
 
 
-def chapnum(num: str, ink: bool = False, size_pt: float = 80, stroke_mm: float = 0.4) -> str:
+def chapnum(num: str, ink: bool = False, size_pt: float = 80, stroke_mm: float = 0.4,
+            font: str = "assets/fonts/Manrope-ExtraBold.ttf") -> str:
     """Grand numéro de chapitre en contour, converti en tracés vectoriels (Manrope ExtraBold).
     Les tracés évitent les polices Type 3 que produit un texte détouré dans le PDF."""
-    global _CHAP_FONT
-    if _CHAP_FONT is None:
-        _CHAP_FONT = TTFont(ROOT / "assets/fonts/Manrope-ExtraBold.ttf")
-    f = _CHAP_FONT
+    if font not in _CHAP_FONTS:
+        _CHAP_FONTS[font] = TTFont(ROOT / font)
+    f = _CHAP_FONTS[font]
     gs, cmap, upm = f.getGlyphSet(), f.getBestCmap(), f["head"].unitsPerEm
     top = f["OS/2"].sCapHeight
     track = -0.04 * upm

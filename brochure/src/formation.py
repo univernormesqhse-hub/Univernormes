@@ -12,6 +12,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build import LOGO, ROOT, Ctx, chapnum, label, qr_svg, t  # noqa: E402
 
 TOTAL = 12
+# Police du document : Cambria. Si un fichier Cambria-Bold.ttf est déposé dans assets/fonts, il sert aux grands
+# numéros vectoriels ; sinon Caladea, l'équivalent libre de Cambria aux métriques identiques.
+SERIF_BOLD = ("assets/fonts/Cambria-Bold.ttf" if (ROOT / "assets/fonts/Cambria-Bold.ttf").exists()
+              else "assets/fonts/Caladea-Bold.ttf")
 
 
 def runhead(m, section: str, inv_left=False, inv_right=False) -> str:
@@ -122,7 +126,7 @@ def week_block(c, w, side: str) -> str:
     <article class="wk {side}">
       <div class="ph wph" style="{c.bg(w['photo'], w['pos'])}"></div>
       <div class="wtx">
-        <div class="wh">{chapnum(f"{w['n']:02d}", True, size_pt=54, stroke_mm=0.35)}<div><div class="wl">Semaine {w['n']}</div><h3>{t(w['title'])}</h3></div></div>
+        <div class="wh">{chapnum(f"{w['n']:02d}", True, size_pt=58, stroke_mm=0.32, font=SERIF_BOLD)}<div><div class="wl">Semaine {w['n']}</div><h3>{t(w['title'])}</h3></div></div>
         <div class="obj"><span>Objectif</span>{t(w['objective'])}</div>
         <ul class="items">{mods}</ul>
         <div class="tags">{tags}</div>
@@ -235,15 +239,18 @@ def build(variant: str) -> str:
     pages += [p_program(c, d, m, 5 + i, i) for i in range(4)]
     pages += [p_pedagogie(c, d, m, 9), p_publics(c, d, m, 10), p_inscription(c, d, m, 11), p_back(c, d, m)]
     bleed = "3mm" if variant == "print" else "0mm"
-    return f'''<!doctype html>
+    html_doc = f'''<!doctype html>
 <html lang="fr"><head><meta charset="utf-8">
 <title>{t(m['title'])}</title>
 <meta name="author" content="UNIVERSNORMES">
 <link rel="stylesheet" href="../src/styles.css">
 <link rel="stylesheet" href="../src/formation.css">
 <style>:root {{ --b: {bleed}; }} @page {{ size: calc(210mm + 2 * {bleed}) calc(297mm + 2 * {bleed}); margin: 0; }}</style>
-</head><body class="v-{variant}">{''.join(pages)}
+</head><body class="fx v-{variant}">{''.join(pages)}
 </body></html>'''
+    # Caladea n’a pas d’espace fine : on la remplace par une espace insécable standard,
+    # pour que le PDF n'embarque aucune police de substitution.
+    return html_doc.replace("\u202f", "\u00a0").replace("&thinsp;", "\u00a0").replace("&ensp;", "\u00a0\u00a0")
 
 
 if __name__ == "__main__":
