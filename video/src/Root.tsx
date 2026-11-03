@@ -235,6 +235,7 @@ import {AiprAtexMetro, AIPR_ATEX_METRO_FRAMES} from './aiprAtexMetro/AiprAtexMet
 import {MethodesRisquesMetro, MethodesRisquesYoutube, METHODES_RISQUES_METRO_FRAMES} from './methodesRisquesMetro/MethodesRisquesMetro';
 import {ProgrammeQhseMetro, PROGRAMME_QHSE_METRO_FRAMES} from './programmeQhseMetro/ProgrammeQhseMetro';
 import {Iso45001Metro, ISO45001_METRO_FRAMES} from './iso45001Metro/Iso45001Metro';
+import {InductionSensibilisationMetro, INDUCTION_SENSIB_METRO_FRAMES} from './inductionSensibilisationMetro/InductionSensibilisationMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -488,6 +489,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="YoutubeMethodesRisques" component={MethodesRisquesYoutube} durationInFrames={METHODES_RISQUES_METRO_FRAMES} fps={FPS} width={1920} height={1080} />
   <Composition id="CondenseProgrammeQhseMetro" component={ProgrammeQhseMetro} durationInFrames={PROGRAMME_QHSE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseIso45001Metro" component={Iso45001Metro} durationInFrames={ISO45001_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseInductionSensibilisationMetro" component={InductionSensibilisationMetro} durationInFrames={INDUCTION_SENSIB_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
