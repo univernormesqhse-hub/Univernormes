@@ -1,2 +1,4 @@
 node_modules
 out
+# Configuration temporaire copiée par le script de rendu segmenté, puis supprimée
+remotion.audio.config.ts
