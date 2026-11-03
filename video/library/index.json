@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 100,
+ "count": 101,
  "items": [
   {
    "section": "templates",
@@ -1642,6 +1642,33 @@
    "hash": "81831656051a",
    "path": "assets/scanner-hazid/index.md",
    "preview": "assets/scanner-hazid/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "scission-laser-risques-opportunites",
+   "name": "Scission au laser — un bloc « Risques & opportunités » découpé en deux cartes qui s'écartent",
+   "description": "Une carte néo-brutale blanche portant deux notions mêlées (« Risques & opportunités ») est enveloppée d'un brouillard de « ? » gris qui flottent (ambiguïté). Un faisceau laser rouge lumineux descend verticalement au milieu de la carte, avec une pointe incandescente blanc-jaune et une gerbe d'étincelles qui suit la découpe. Au bout du trait, la carte se scinde en deux cartes pleines qui s'écartent et pivotent légèrement — rouge « Risques » (triangle d'alerte) et verte « Opportunités » (ampoule) —, un anneau d'étincelles jaunes s'ouvre, le brouillard de « ? » se dissipe et une pastille « Fin de l'ambiguïté technique » se pose. Tout en CSS (aucune image), synchronisé sur le mot « scindées » de la voix.",
+   "quand": "Séparer deux notions confondues (risques / opportunités, danger / risque, incident / accident, correction / action corrective, vérification / validation), lever une ambiguïté, montrer un découpage d'exigence, une réorganisation de clause ou d'article, « avant c'était mélangé, maintenant c'est distinct ».",
+   "component": "src/iso9001EvolMetro/Iso9001EvolMetro.tsx",
+   "demo": "Demo-ScissionLaser",
+   "audio": null,
+   "tags": [
+    "laser",
+    "découpe",
+    "scission",
+    "séparation",
+    "ambiguïté",
+    "risques",
+    "opportunités",
+    "ISO 9001",
+    "étincelles",
+    "brouillard",
+    "néo-brutal",
+    "CSS"
+   ],
+   "hash": "05bfa7c729e1",
+   "path": "assets/scission-laser-risques-opportunites/index.md",
+   "preview": "assets/scission-laser-risques-opportunites/preview.mp4"
   },
   {
    "section": "assets",
