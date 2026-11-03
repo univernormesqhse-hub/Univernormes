@@ -64,6 +64,7 @@ import {ProgrammeQhseMetro} from '../programmeQhseMetro/ProgrammeQhseMetro';
 import {Iso45001Metro} from '../iso45001Metro/Iso45001Metro';
 import {InductionSensibilisationMetro} from '../inductionSensibilisationMetro/InductionSensibilisationMetro';
 import {RefresherHseMetro} from '../refresherHseMetro/RefresherHseMetro';
+import {Iso9001EvolMetro} from '../iso9001EvolMetro/Iso9001EvolMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -167,6 +168,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-CarrouselCylindrique', C: Iso45001Metro, at: 52.9, dur: 3.1},
   {id: 'Demo-ComparateurVolet', C: InductionSensibilisationMetro, at: 119.5, dur: 17.0},
   {id: 'Demo-CourbeOubli', C: RefresherHseMetro, at: 139.6, dur: 11.0},
+  {id: 'Demo-ScissionLaser', C: Iso9001EvolMetro, at: 34.2, dur: 4.6},
 ];
 
 export const LibraryDemos: React.FC = () => (

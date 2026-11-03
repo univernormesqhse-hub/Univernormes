@@ -237,6 +237,7 @@ import {ProgrammeQhseMetro, PROGRAMME_QHSE_METRO_FRAMES} from './programmeQhseMe
 import {Iso45001Metro, ISO45001_METRO_FRAMES} from './iso45001Metro/Iso45001Metro';
 import {InductionSensibilisationMetro, INDUCTION_SENSIB_METRO_FRAMES} from './inductionSensibilisationMetro/InductionSensibilisationMetro';
 import {RefresherHseMetro, REFRESHER_HSE_METRO_FRAMES} from './refresherHseMetro/RefresherHseMetro';
+import {Iso9001EvolMetro, ISO9001_EVOL_METRO_FRAMES} from './iso9001EvolMetro/Iso9001EvolMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -492,6 +493,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseIso45001Metro" component={Iso45001Metro} durationInFrames={ISO45001_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseInductionSensibilisationMetro" component={InductionSensibilisationMetro} durationInFrames={INDUCTION_SENSIB_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseRefresherHseMetro" component={RefresherHseMetro} durationInFrames={REFRESHER_HSE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseIso9001EvolMetro" component={Iso9001EvolMetro} durationInFrames={ISO9001_EVOL_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
