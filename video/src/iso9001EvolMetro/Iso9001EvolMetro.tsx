@@ -963,7 +963,7 @@ const V26 = '#1F6FD1';
 const OKG = '#1E9E5A';
 const KOR = '#D9363E';
 /* Images haute définition uniquement (≥ 1 080 px sur le côté affiché). */
-const RING_Q = ['hazop-gen/pharmaceutique.jpg', 'iso26/audit-checklist.jpg', 'sysqsse-gen/qualite.jpg', 'promo/audit-reunion.jpg', 'iso26/analyste-kpi.jpg', 'sysqsse-gen/reunion.jpg', 'iso26/mains-casques.jpg', 'promo/terrain-controle.jpg'];
+const RING_Q = ['iso9001-gen/qualiticien-tablette.jpg', 'iso26/audit-checklist.jpg', 'sysqsse-gen/qualite.jpg', 'iso9001-gen/reunion-plan-transition.jpg', 'iso26/analyste-kpi.jpg', 'hazop-gen/pharmaceutique.jpg', 'iso9001-gen/poignee-main-climat.jpg', 'sysqsse-gen/reunion.jpg'];
 
 /** Carte de version « ISO 9001 · année » (2015 sobre, 2026 en couleur). */
 const VerCard: React.FC<{y: string; c: string; fill?: boolean; at: number; x: number}> = ({y, c, fill, at, x}) => {
@@ -1056,7 +1056,7 @@ const PhotoGlobe: React.FC<{t: number; d: number; src?: string}> = ({t, d, src =
 
 const Climat: React.FC = () => {
   const t = useT();
-  const C3: [string, number, string, string, string][] = [['Changement climatique', 22.8, 'sysqsse-gen/environnement.jpg', 'Thermometer', '40% 40%'], ['Comportement éthique', 24.0, 'iso26/mains-casques.jpg', 'Handshake', '50% 50%'], ['Culture qualité', 25.2, 'sysqsse-gen/reunion.jpg', 'Users', '55% 40%']];
+  const C3: [string, number, string, string, string][] = [['Changement climatique', 22.8, 'sysqsse-gen/environnement.jpg', 'Thermometer', '40% 40%'], ['Comportement éthique', 24.0, 'iso9001-gen/poignee-main-climat.jpg', 'Handshake', '47% 50%'], ['Culture qualité', 25.2, 'sysqsse-gen/reunion.jpg', 'Users', '55% 40%']];
   const glob = 1 - prog(t, 22.3, 22.8);
   return (
     <Out end={28.9}>
@@ -1138,11 +1138,14 @@ const Transition: React.FC = () => {
       </Abs>
       <LoupeSweep x0={160} y0={760} x1={720} y1={480} a={42.9} b={43.8} size={170} />
       <Abs x={60} y={760} w={960} h={560} style={{...nb('#fff', 7), borderColor: NBK, padding: '20px 26px', opacity: pop(t, 44.2)}}>
-        <div style={{display: 'flex', alignItems: 'center', gap: 12, ...CAP, fontSize: 20, color: DIM, marginBottom: 14}}><Ico n="ChartGantt" size={30} c={ORANGE} />Plan de transition</div>
+        <div style={{position: 'relative', height: 150, borderRadius: 12, border: `3px solid ${NBK}`, overflow: 'hidden', marginBottom: 10}}>
+          <Img src={PH('iso9001-gen/reunion-plan-transition.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 22%', transform: `scale(${1.12 - 0.1 * prog(t, 44.2, 51.4)})`, transformOrigin: '60% 30%'}} />
+          <div style={{position: 'absolute', left: 14, bottom: 12, display: 'flex', alignItems: 'center', gap: 10, background: '#fff', border: `3px solid ${NBK}`, borderRadius: 10, padding: '5px 14px', boxShadow: `4px 4px 0 ${ORANGE}`, ...CAP, fontSize: 19, color: INK}}><Ico n="ChartGantt" size={26} c={ORANGE} />Plan de transition</div>
+        </div>
         {G4.map(([l, a, ic], k) => {
           const f = prog(t, Math.max(a, 44.3), Math.max(a, 44.3) + 0.9, easeOut);
           return (
-            <div key={l} style={{display: 'grid', gridTemplateColumns: '330px 1fr', alignItems: 'center', gap: 14, height: 112, borderTop: k ? '2px solid #EEF1F5' : 'none'}}>
+            <div key={l} style={{display: 'grid', gridTemplateColumns: '330px 1fr', alignItems: 'center', gap: 14, height: 88, borderTop: k ? '2px solid #EEF1F5' : 'none'}}>
               <div style={{display: 'flex', alignItems: 'center', gap: 12}}><Ico n={ic} size={40} c={f > 0.98 ? OKG : ORANGE} /><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 27, color: INK, lineHeight: 1.1}}>{l}</span></div>
               <div style={{position: 'relative', height: 40}}><div style={{position: 'absolute', left: `${k * 18}%`, top: 0, height: 40, width: `${34 * f}%`, borderRadius: 10, background: f > 0.98 ? OKG : ORANGE, border: `3px solid ${NBK}`}} />{f > 0.98 && <span style={{position: 'absolute', left: `calc(${k * 18 + 34}% + 12px)`, top: 2, fontSize: 30, fontWeight: 900, color: OKG}}>✓</span>}</div>
             </div>
@@ -1170,15 +1173,15 @@ const Final: React.FC = () => {
   );
 };
 
-/** Couverture : laboratoire qualité (photo haute définition) + titre « ISO 9001 · 2015 → 2026 » en lettres-photos animées. */
-const COVER_PHOTO = 'hazop-gen/pharmaceutique.jpg';
+/** Couverture : responsable qualité à la tablette (photo haute définition) + titre « ISO 9001 · 2015 → 2026 » en lettres-photos animées. */
+const COVER_PHOTO = 'iso9001-gen/qualiticien-tablette.jpg';
 const ICover: React.FC = () => {
   const t = useT();
   const out = prog(t, 2.0, 2.7, easeIn);
   if (out >= 1) return null;
   return (
     <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
-      <div style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 1040, overflow: 'hidden'}}><Img src={PH(COVER_PHOTO)} style={{width: 1080, height: 1040, objectFit: 'cover', objectPosition: '40% 40%', transform: `scale(${1.0 + t * 0.012})`, transformOrigin: '40% 35%'}} /></div>
+      <div style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 1040, overflow: 'hidden'}}><Img src={PH(COVER_PHOTO)} style={{width: 1080, height: 1040, objectFit: 'cover', objectPosition: '50% 18%', transform: `scale(${1.0 + t * 0.012})`, transformOrigin: '45% 30%'}} /></div>
       <div style={{position: 'absolute', left: 0, top: 680, width: 1080, height: 360, background: `linear-gradient(180deg, ${PAPER}00 0%, ${PAPER}D9 55%, ${PAPER} 100%)`}} />
       <Abs x={0} y={70} w={1080} style={{display: 'flex', justifyContent: 'flex-end', paddingRight: 50, boxSizing: 'border-box'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.18)'}}><Img src={staticFile(LOGO)} style={{height: 84, display: 'block'}} /></div></Abs>
       <Abs x={0} y={900} w={1080} style={{display: 'flex', justifyContent: 'center'}}><PhotoLetterAnim ch="ISO 9001" src={IMG.c1} size={190} ls={8} seed={3} /></Abs>
