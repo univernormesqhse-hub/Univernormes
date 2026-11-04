@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 101,
+ "count": 102,
  "items": [
   {
    "section": "templates",
@@ -1251,6 +1251,33 @@
   },
   {
    "section": "assets",
+   "slug": "permis-travail-cadenas-signature",
+   "name": "Permis de travail verrouillé — trois activités cadenassées, feu rouge, signature en direct et tampon « validé » qui déverrouille tout",
+   "description": "Trois tuiles néo-brutales d'activités critiques (soudure, levage, espace confiné) tombent du haut l'une après l'autre au rythme de la voix, bordées de rouge avec une pastille cadenas fermé. Un feu tricolore sombre s'allume au rouge (« rien ne démarre »). Le document « Permis de travail » glisse depuis la droite en pivotant (lignes de texte grisées, ligne de signature pointillée « Validation du superviseur ») ; la signature manuscrite se trace en direct (SVG `pathLength` + `strokeDashoffset`), puis le tampon « VALIDÉ » s'abat (échelle 2,4 → 1, rebond). Aussitôt les cadenas tournent et s'ouvrent l'un après l'autre (rouge → vert, bordures des tuiles qui passent au vert) et le feu passe au vert. Précédé dans le film par le maillet du « dernier mot » qui frappe avec onde de choc sur une photo ronde du superviseur.",
+   "quand": "Permis de travail, autorisation de démarrage, consignation / déconsignation, validation hiérarchique, levée de réserve, « rien ne démarre sans… », toute séquence « verrouillé → signé → autorisé » (permis de feu, travaux en hauteur, espace confiné, levage, habilitations).",
+   "component": "src/superviseurHseMetro/SuperviseurHseMetro.tsx",
+   "demo": "Demo-PermisCadenas",
+   "audio": null,
+   "tags": [
+    "permis de travail",
+    "cadenas",
+    "feu tricolore",
+    "signature",
+    "tampon",
+    "validation",
+    "soudure",
+    "levage",
+    "espace confiné",
+    "consignation",
+    "déverrouillage",
+    "néo-brutal"
+   ],
+   "hash": "32f3532de058",
+   "path": "assets/permis-travail-cadenas-signature/index.md",
+   "preview": "assets/permis-travail-cadenas-signature/preview.mp4"
+  },
+  {
+   "section": "assets",
    "slug": "pid-hazop",
    "name": "P&ID vivant + feuille HAZOP + rouleau de mots-guides + oscilloscope",
    "description": "Schéma de procédé (P&ID) en SVG animé : cuve avec losange de danger, canalisation où le liquide circule en tirets (vitesse liée au débit), débitmètre dont l'aiguille passe dans le rouge avec étiquette « DÉBIT + », boucle de régulation FC qui passe en défaut (✕ clignotant), vanne de régulation qui s'ouvre trop (symbole qui s'élargit, « OUVERTURE EXCESSIVE »), réacteur qui pulse en orange (« ? ») puis reçoit un bouclier de protection ; en dessous, feuille HAZOP 6 colonnes (paramètre, mot-guide, déviation, causes, conséquences, protection) dont la ligne se remplit à la voix (révélation par masque). Aussi : rouleau 3D de machine à sous (rotateX, 5 faces) qui s'arrête sur chaque mot-guide avec cliquetis, courbe d'oscilloscope « en direct » qui sort de sa bande de fonctionnement normal (déviations entourées), sigle déplié ligne par ligne.",
@@ -1666,7 +1693,7 @@
     "néo-brutal",
     "CSS"
    ],
-   "hash": "05bfa7c729e1",
+   "hash": "37036f01ba8a",
    "path": "assets/scission-laser-risques-opportunites/index.md",
    "preview": "assets/scission-laser-risques-opportunites/preview.mp4"
   },
