@@ -1091,7 +1091,7 @@ const Sig5S: React.FC = () => {
   const W5: [string, number][] = [['Débarrasser', 23.3], ['Ranger', 24.5], ['Nettoyer', 25.2], ['Standardiser', 25.9], ['Maintenir', 26.9]];
   return (
     <>
-      <Abs x={60} y={1000} w={960} style={{display: 'flex', justifyContent: 'space-between'}}>
+      <Abs x={60} y={1000} w={960} style={{display: 'flex', justifyContent: 'space-between', opacity: 1 - prog(t, 28.0, 28.4)}}>
         {W5.map(([l, a], k) => { const q = t > a ? Math.min(1, sp(t, a, 9, 12)) : 0; return (
           <div key={l} style={{width: 180, height: 130, ...nb('#fff', 6), borderColor: NBK, boxShadow: `6px 6px 0 ${F2}`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6, transform: `translateY(${(1 - q) * 60}px)`, opacity: t > a ? 1 : 0}}>
             <div style={{width: 46, height: 46, borderRadius: 12, background: F2, color: '#fff', fontFamily: sansFont, fontWeight: 900, fontSize: 28, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{k + 1}</div>
@@ -1099,7 +1099,8 @@ const Sig5S: React.FC = () => {
           </div>
         ); })}
       </Abs>
-      <Row3 y={1180}><TChip at={30.4} l="Efficacité" c={F2} ic="Zap" /><TChip at={31.6} l="Propreté" c={F2} ic="Sparkles" /><TChip at={32.3} l="Sécurité" c={F2} ic="ShieldCheck" /></Row3>
+      {t > 28.1 && <Photo src="amelioration-gen/atelier-5s.jpg" x={60} y={995} w={960} h={215} at={28.2} c={F2} pos="55% 30%" tag="5S AU POSTE" />}
+      <Row3 y={1228}><TChip at={30.4} l="Efficacité" c={F2} ic="Zap" /><TChip at={31.6} l="Propreté" c={F2} ic="Sparkles" /><TChip at={32.3} l="Sécurité" c={F2} ic="ShieldCheck" /></Row3>
     </>
   );
 };
@@ -1203,7 +1204,7 @@ const SigHoshin: React.FC = () => {
 };
 const SigQrqc: React.FC = () => (
   <>
-    <Photo src="kaizen-gen/audit.jpg" x={60} y={1000} w={960} h={205} at={121.6} c={F4} pos="50% 40%" tag="SUR LE TERRAIN" />
+    <Photo src="amelioration-gen/qrqc-reunion.jpg" x={60} y={1000} w={960} h={205} at={121.6} c={F4} pos="50% 25%" tag="SUR LE TERRAIN" />
     <Row3 y={1225} gap={14}><TChip at={125.3} l="Réactivité" c={F4} fs={25} ic="Zap" /><TChip at={125.9} l="Analyse des faits" c={F4} fs={25} ic="Search" /><TChip at={127.1} l="Actions correctives immédiates" c={F4} fs={25} ic="Wrench" /></Row3>
   </>
 );
