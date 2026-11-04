@@ -1152,7 +1152,6 @@ const Jerrican: React.FC<{lab: number}> = ({lab}) => (
 const Intro: React.FC = () => {
   const t = useT();
   const D5: [string, number, string, number][] = [['Inflammables', 7.1, 'feu', -90], ['Brûlures', 9.6, 'chaud', -18], ['Intoxications', 10.2, 'crane', 54], ['Santé', 12.0, 'coeur', 126], ['Environnement', 12.4, 'globe', 198]];
-  const lab = prog(t, 16.9, 17.4);
   const SGHW: [string, string, number][] = [['S', 'Système', 27.0], ['G', 'Général', 27.6], ['H', 'Harmonisé', 27.9]];
   const ST3: [string, string, number, string][] = [['Découvrir', 'les 9 pictogrammes', 36.0, 'loupe2'], ['Comprendre', 'leurs significations', 38.5, 'cerveau'], ['Identifier', 'les bons réflexes', 40.9, 'bouclier']];
   return (
@@ -1167,12 +1166,8 @@ const Intro: React.FC = () => {
       </Ph>
       <Ph a={13.4} b={18.7}>
         <QBubble at={13.7} text="Comment reconnaître ces dangers ?" x={110} y={470} w={860} c={NAVY} fs={40} dur={1.4} />
-        {t > 16.7 && <div style={{position: 'absolute', left: 540 - 210, top: 700, transform: `scale(${Math.min(1, sp(t, 16.8))})`}}>
-          <Jerrican lab={lab} />
-          {lab > 0 && ['SGH02', 'SGH06', 'SGH07'].map((id, k) => <div key={id} style={{position: 'absolute', left: 95 + k * 80, top: 190}}><Picto id={id} size={74} draw={prog(t, 17.0 + k * 0.15, 17.9 + k * 0.15, (v: number) => v)} /></div>)}
-          {lab > 0 && [0, 1, 2, 3].map((k) => <div key={k} style={{position: 'absolute', left: 100, top: 290 + k * 26, width: 220 - (k % 2) * 60, height: 10, borderRadius: 5, background: '#C9D2DF', opacity: lab}} />)}
-        </div>}
-        <LoupeSweep x0={360} y0={980} x1={560} y1={940} a={17.4} b={18.4} size={170} />
+        {t > 16.7 && <Photo src="sgh-gen/lecture-etiquette.jpg" x={110} y={640} w={860} h={573} at={16.8} c={NAVY} pos="50% 50%" />}
+        <LoupeSweep x0={420} y0={1150} x1={673} y1={920} a={17.4} b={18.4} size={170} />
         {t > 18.1 && <Abs x={0} y={1230} w={1080} style={{display: 'flex', justifyContent: 'center'}}><NBadge at={18.2} text="Son étiquette" bg={NAVY} rot={-2} size={34} /></Abs>}
       </Ph>
       <Ph a={18.7} b={24.85}>
@@ -1415,7 +1410,12 @@ const Sgh05: React.FC = () => {
         <div style={{position: 'absolute', left: 730, top: 760, width: 260, height: 260, borderRadius: '50%', ...nb('#fff', 7), borderColor: NBK, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: hit > 0 ? `0 0 0 ${30 * hit}px ${KOR}55, 7px 7px 0 ${NBK}` : `7px 7px 0 ${NBK}`}}><Ico n="yeux" size={180} /></div>
         {t > 240.6 && <Abs x={0} y={1160} w={1080} style={{display: 'flex', justifyContent: 'center'}}><NBadge at={240.7} text="Conséquences très graves" bg={KOR} rot={-2} size={38} /></Abs>}
       </Ph>
-      <Ph a={242.45} b={263.35}><Refl at={242.7} fs={29} items={[['Gants et protection oculaire ou faciale', 246.5, 'gants'], ['Jamais de mélange sans autorisation', 248.9, 'sens-interdit'], ["Projection : rinçage abondant à l'eau", 255.3, 'goutte'], ['Suivre la fiche de données de sécurité', 258.8, 'memo'], ['Secours ou service médical sans délai', 260.9, 'ambulance']]} /></Ph>
+      <Ph a={242.45} b={252.6}><Refl at={242.7} fs={29} items={[['Gants et protection oculaire ou faciale', 246.5, 'gants'], ['Jamais de mélange sans autorisation', 248.9, 'sens-interdit'], ["Projection : rinçage abondant à l'eau", 255.3, 'goutte'], ['Suivre la fiche de données de sécurité', 258.8, 'memo'], ['Secours ou service médical sans délai', 260.9, 'ambulance']]} /></Ph>
+      <Ph a={252.6} b={258.1}>
+        <Photo src="sgh-gen/rince-oeil.jpg" x={60} y={620} w={960} h={640} at={252.7} c={C05} pos="40% 45%" tag="RINÇAGE ABONDANT À L'EAU" />
+        {t > 255.2 && <Abs x={0} y={1290} w={1080} style={{display: 'flex', justifyContent: 'center'}}><NBadge at={255.3} text="Immédiatement" bg={KOR} rot={-2} size={36} /></Abs>}
+      </Ph>
+      <Ph a={258.1} b={263.35}><Refl at={242.7} fs={29} items={[['Gants et protection oculaire ou faciale', 246.5, 'gants'], ['Jamais de mélange sans autorisation', 248.9, 'sens-interdit'], ["Projection : rinçage abondant à l'eau", 255.3, 'goutte'], ['Suivre la fiche de données de sécurité', 258.8, 'memo'], ['Secours ou service médical sans délai', 260.9, 'ambulance']]} /></Ph>
       <Ph a={263.35} b={267.4}>
         <Punch at={265.2} lines={['CHAQUE SECONDE', 'COMPTE']} c={C05} size={64} y={1000} pre={<div style={{position: 'absolute', left: 540 - 150, top: 610, width: 300, height: 300, borderRadius: '50%', ...nb('#fff', 8), borderColor: NBK}}><svg width={300} height={300} viewBox="0 0 300 300" style={{position: 'absolute', left: -8, top: -8}}><circle cx={150} cy={150} r={118} fill="none" stroke={C05} strokeWidth={14} strokeDasharray={`${(sw / 360) * 741} 741`} transform="rotate(-90 150 150)" /><line x1={150} y1={150} x2={150 + 100 * Math.sin((sw * Math.PI) / 180)} y2={150 - 100 * Math.cos((sw * Math.PI) / 180)} stroke={NBK} strokeWidth={9} strokeLinecap="round" /><circle cx={150} cy={150} r={14} fill={NBK} /></svg></div>} />
       </Ph>
@@ -1597,7 +1597,6 @@ const NAMES: [number, string][] = [[485.1, 'Bombe'], [486.6, 'Flamme'], [488.0, 
 const Conclusion: React.FC = () => {
   const t = useT();
   const lit = NAMES.reduce((a, [at], k) => (t >= at ? k : a), -1);
-  const lab = prog(t, 512.5, 513.2);
   const fds = Math.min(1, sp(t, 526.6, 7, 13));
   const MT: [string, number, string][] = [["Je lis l'étiquette", 551.6, 'loupe2'], ['Je comprends le danger', 553.7, 'cerveau'], ["J'applique les consignes", 555.3, 'clipboard'], ['Je me protège', 558.4, 'bouclier']];
   return (
@@ -1617,12 +1616,8 @@ const Conclusion: React.FC = () => {
         {t > 504.3 && <Abs x={0} y={600} w={1080} style={{display: 'flex', justifyContent: 'center', zIndex: 10}}><NBadge at={504.4} text="Un seul objectif : prévenir" bg={GREEN} rot={-2} size={34} /></Abs>}
       </Ph>
       <Ph a={508.45} b={530.25}>
-        <div style={{position: 'absolute', left: 60, top: 640, transform: `scale(${Math.min(1, sp(t, 508.6))}) scale(0.95)`, transformOrigin: '0 0'}}>
-          <Jerrican lab={lab} />
-          {lab > 0 && ['SGH02', 'SGH05', 'SGH07'].map((id, k) => <div key={id} style={{position: 'absolute', left: 95 + k * 80, top: 190}}><Picto id={id} size={74} /></div>)}
-          {lab > 0 && [0, 1, 2, 3].map((k) => <div key={k} style={{position: 'absolute', left: 100, top: 290 + k * 26, width: 220 - (k % 2) * 60, height: 10, borderRadius: 5, background: '#C9D2DF', opacity: lab}} />)}
-        </div>
-        <LoupeSweep x0={150} y0={1000} x1={330} y1={940} a={516.2} b={518.0} size={160} />
+        <Photo src="sgh-gen/armoire-stockage.jpg" x={60} y={640} w={420} h={560} at={508.6} c={NAVY} pos="22% 50%" />
+        <LoupeSweep x0={160} y0={1120} x1={200} y1={780} a={516.2} b={518.0} size={160} />
         <Abs x={500} y={680} w={520} style={{display: 'flex', flexDirection: 'column', gap: 18, opacity: 1 - prog(t, 525.4, 525.9)}}>
           {([['Pictogrammes', 511.8, 'danger'], ['Mentions de danger', 519.2, 'memo'], ['Conseils de prudence', 521.0, 'clipboard'], ['Équipements de protection', 522.5, 'gants']] as [string, number, string][]).map(([l, a, ic]) => <Row key={l} at={a} ic={ic} l={l} c={NAVY} fs={28} />)}
         </Abs>
