@@ -66,6 +66,7 @@ import {InductionSensibilisationMetro} from '../inductionSensibilisationMetro/In
 import {RefresherHseMetro} from '../refresherHseMetro/RefresherHseMetro';
 import {Iso9001EvolMetro} from '../iso9001EvolMetro/Iso9001EvolMetro';
 import {SuperviseurHseMetro} from '../superviseurHseMetro/SuperviseurHseMetro';
+import {SiglesPreventionCylindre} from '../siglesPreventionCylindre/SiglesPreventionCylindre';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -171,6 +172,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-CourbeOubli', C: RefresherHseMetro, at: 139.6, dur: 11.0},
   {id: 'Demo-ScissionLaser', C: Iso9001EvolMetro, at: 34.2, dur: 4.6},
   {id: 'Demo-PermisCadenas', C: SuperviseurHseMetro, at: 19.8, dur: 4.4},
+  {id: 'Demo-CylindreVertical', C: SiglesPreventionCylindre, at: 13.0, dur: 7.6},
 ];
 
 export const LibraryDemos: React.FC = () => (
