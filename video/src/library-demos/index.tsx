@@ -69,6 +69,7 @@ import {SuperviseurHseMetro} from '../superviseurHseMetro/SuperviseurHseMetro';
 import {SiglesPreventionCylindre} from '../siglesPreventionCylindre/SiglesPreventionCylindre';
 import {PictogrammesSghMetro} from '../pictogrammesSghMetro/PictogrammesSghMetro';
 import {SeptPrincipesMetro} from '../septPrincipesMetro/SeptPrincipesMetro';
+import {OutilsAmeliorationMetro} from '../outilsAmeliorationMetro/OutilsAmeliorationMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -177,6 +178,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-CylindreVertical', C: SiglesPreventionCylindre, at: 13.0, dur: 7.6},
   {id: 'Demo-PictogrammesSgh', C: PictogrammesSghMetro, at: 0.0, dur: 7.2},
   {id: 'Demo-SeptPrincipesFlux', C: SeptPrincipesMetro, at: 51.9, dur: 5.3},
+  {id: 'Demo-OutilsAmelioration', C: OutilsAmeliorationMetro, at: 149.0, dur: 12.0},
 ];
 
 export const LibraryDemos: React.FC = () => (

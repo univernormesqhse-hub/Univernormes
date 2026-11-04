@@ -1,0 +1,13 @@
+---
+name: Les 19 outils de l'amélioration continue — pictogrammes dessinés, définitions écrites en direct, signatures animées
+section: assets
+slug: outils-amelioration-continue
+description: Dix-neuf outils de l'amélioration continue (5S, Kaizen, Kaikaku, Kakushin, SIPOC, SMED, benchmarking, Heijunka, Hoshin Kanri, QRQC, 8D, Pareto, Ishikawa, 5 pourquoi, VSM, Kanban, PPM, Lean Six Sigma, 5G), chacun avec un pictogramme rond qui se dessine en direct (`<TPicto>`, éléments `p/c/r/l` + texte `t`), regroupés en cinq familles de couleur. Gabarit `<ToolSeq>` : pictogramme dessiné à gauche, rang « Outil n / 19 · famille », nom qui glisse, trait de couleur, accroche ; définition écrite mot à mot au rythme de la voix (répartie selon la longueur des mots, comme le cylindre des sigles) ; puis une signature animée propre à l'outil : cinq tuiles numérotées (5S), trois courbes petits pas / marche / rupture (Kaizen, Kaikaku, Kakushin), cinq lettres SIPOC qui s'allument, barres avant / après et chronomètre (SMED), barres comparées et écart « axes de progrès » (benchmarking), barres irrégulières qui se nivellent (Heijunka), cascade direction → services (Hoshin Kanri), photo terrain + pastilles (QRQC), disciplines D1 → D8 qui s'allument, histogramme décroissant + courbe cumulée (Pareto), arête de poisson 5M dont les arêtes se tracent (Ishikawa), escalier de « Pourquoi ? » vers la cause racine, flux matière / information + gaspillages (VSM), carte « besoin réel » qui traverse le tableau (Kanban), fraction non conformes / million (PPM), Lean + Six Sigma qui fusionnent puis DMAIC, termes japonais → sens français (5G). `<TRing>` : carrousel des 19 qui converge.
+quand: Formations lean, amélioration continue, résolution de problèmes, excellence opérationnelle, présentation d'une boîte à outils qualité / production / maintenance, tout catalogue d'outils ou de méthodes à présenter un par un avec définition et illustration.
+component: src/outilsAmeliorationMetro/OutilsAmeliorationMetro.tsx
+demo: Demo-OutilsAmelioration
+tags: [amélioration continue, lean, kaizen, 5S, SMED, Pareto, Ishikawa, 5 pourquoi, VSM, kanban, DMAIC, pictogrammes, dessin animé, définition, catalogue]
+---
+
+## Utilisation
+Données `TOOLS: TS[]` (`id`, `name`, `tag`, `fam`, `c`, `a` / `b` fenêtre, `da` / `de` segment de parole de la définition, `def`, `Sig`). `famScene(ids, end)` assemble une famille (titres `Heads` générés depuis les outils). Signatures réutilisables : `Sig5S`, `SigK3(h, a)`, `SigSipoc`, `SigSmed`, `SigBench`, `SigHeij`, `SigHoshin`, `SigQrqc`, `Sig8D`, `SigPareto`, `SigFish`, `SigWhy`, `SigVsm`, `SigKanban`, `SigPpm`, `SigDmaic`, `Sig5G`. Métro à 19 stations (libellés courts, police 10).
