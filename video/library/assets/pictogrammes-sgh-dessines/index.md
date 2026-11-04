@@ -1,0 +1,13 @@
+---
+name: Les 9 pictogrammes SGH dessinés en direct (SVG conforme) + carrousel rotatif convergent
+section: assets
+slug: pictogrammes-sgh-dessines
+description: Les 9 pictogrammes de danger SGH (SGH01 bombe explosant, SGH02 flamme, SGH03 flamme sur un cercle, SGH04 bouteille de gaz, SGH05 corrosion, SGH06 tête de mort sur deux tibias, SGH07 point d'exclamation, SGH08 danger grave pour la santé, SGH09 environnement) redessinés en SVG d'après les modèles officiels : losange à bord rouge, fond blanc, symbole noir. Composant `<Picto id draw glow />` : avec `draw` de 0 à 1, le losange rouge se trace (stroke-dashoffset), puis le symbole élément par élément (traits et contours en `pathLength = 1`, tracé décalé), puis les formes se remplissent ; `draw = 1` donne le pictogramme statique ; `glow` ajoute un halo rouge. `<PictoRing>` dispose les 9 pictogrammes sur une orbite inclinée (projection par élément : x = R·sinθ, profondeur → échelle et assombrissement), qui tourne puis se referme : le rayon tend vers zéro, la rotation accélère et tout converge au centre avec un éclair blanc ; `conv={false}` le laisse tourner. Dans la capsule : couverture où les 9 pictogrammes se dessinent en grille sous un titre en lettres-photos, héros dessiné en grand qui file en badge dans le coin, comparaisons (flamme ≠ flamme sur un cercle, loupe sur le cercle), grille de conclusion qui s'allume pictogramme par pictogramme au fil de la voix.
+quand: Tout contenu sur l'étiquetage CLP / SGH, les produits chimiques, les fiches de données de sécurité, le stockage ou la manipulation de produits dangereux ; quiz « reconnaître le pictogramme » ; tout moment où il faut afficher un pictogramme de danger exact plutôt qu'une icône approximative.
+component: src/pictogrammesSghMetro/PictogrammesSghMetro.tsx
+demo: Demo-PictogrammesSgh
+tags: [SGH, CLP, pictogrammes, danger, produits chimiques, étiquette, SVG, dessin animé, carrousel, convergent, losange rouge, FDS]
+---
+
+## Utilisation
+`<Picto id="SGH06" size={500} draw={prog(t, a, a + 2.6, (v) => v)} />` ; `SGH_IDS` liste les 9 codes, `PICTOS[id]` donne `name`, `cls` et les éléments SVG (viewBox 200 × 200 : `p` chemin, `c` cercle, `e` ellipse, `r` rectangle, `l` ligne, `g` groupe transformé). `<PictoRing a b cy conv size R0 />` pour le carrousel. Blocs de la même capsule : `Hero` (dessin + vol vers le coin), `Chips` (exemples cités), `Refl` (réflexe QHSE coché), `SlamCard` / `Punch` (tampon multiligne + gyrophare), `NTile`, `PDraw`, silhouette `Body` (points sensibles, voies d'exposition), bouteille `Cyl` (chauffe + manomètre + givre), aquarium pollué, interdits de déversement, `PhotoGlobe`. En-tête à 11 guichets : `sx` réparti sur `SECT.length`.

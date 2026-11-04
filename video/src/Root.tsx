@@ -240,6 +240,7 @@ import {RefresherHseMetro, REFRESHER_HSE_METRO_FRAMES} from './refresherHseMetro
 import {Iso9001EvolMetro, ISO9001_EVOL_METRO_FRAMES} from './iso9001EvolMetro/Iso9001EvolMetro';
 import {SuperviseurHseMetro, SUPERVISEUR_HSE_METRO_FRAMES} from './superviseurHseMetro/SuperviseurHseMetro';
 import {SiglesPreventionCylindre, SIGLES_CYLINDRE_FRAMES} from './siglesPreventionCylindre/SiglesPreventionCylindre';
+import {PictogrammesSghMetro, PICTOGRAMMES_SGH_METRO_FRAMES} from './pictogrammesSghMetro/PictogrammesSghMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -498,6 +499,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseIso9001EvolMetro" component={Iso9001EvolMetro} durationInFrames={ISO9001_EVOL_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseSuperviseurHseMetro" component={SuperviseurHseMetro} durationInFrames={SUPERVISEUR_HSE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CylindreSiglesPrevention" component={SiglesPreventionCylindre} durationInFrames={SIGLES_CYLINDRE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondensePictogrammesSghMetro" component={PictogrammesSghMetro} durationInFrames={PICTOGRAMMES_SGH_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
