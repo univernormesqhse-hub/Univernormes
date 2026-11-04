@@ -1,3 +1,4 @@
+import {createContext, useContext} from 'react';
 import {Easing, interpolate, spring, useCurrentFrame} from 'remotion';
 import {colors, FPS, s, sansFont} from './theme';
 
@@ -8,8 +9,15 @@ export const easeInOut = Easing.bezier(0.65, 0, 0.35, 1);
 
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
 
-/** Temps absolu en secondes. */
-export const useT = () => useCurrentFrame() / FPS;
+/** Accélération locale du temps (ex. transitions resserrées sur une voix courte) : t' = at + (t − at) × k. Sans fournisseur, le temps est inchangé. */
+export const TimeWarp = createContext<{at: number; k: number} | null>(null);
+
+/** Temps absolu en secondes (éventuellement accéléré par un TimeWarp parent). */
+export const useT = () => {
+  const f = useCurrentFrame() / FPS;
+  const w = useContext(TimeWarp);
+  return w ? w.at + (f - w.at) * w.k : f;
+};
 
 /** Progression 0 → 1 entre a et b (secondes) avec easing. */
 export const prog = (t: number, a: number, b: number, easing = easeOut) =>
