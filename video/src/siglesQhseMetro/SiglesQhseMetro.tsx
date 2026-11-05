@@ -1,4 +1,5 @@
 import React from 'react';
+import {loadFont} from '@remotion/fonts';
 import type {LucideIcon} from 'lucide-react';
 import {Activity, ArrowRight, Award, BadgeCheck, Ban, Bell, BellRing, BookOpen, Briefcase, BriefcaseMedical, CalendarClock, CalendarDays, ChartColumn, ChartNoAxesCombined, Check as LCheck, CircleCheckBig, CircleX, ClipboardCheck, ClipboardList, Clock, DoorOpen, Droplets, Ear, Eye, Factory, Fan, FileText, FireExtinguisher, Flag, FlaskConical, FolderOpen, Footprints, Gauge, Gavel, Glasses, Globe, GraduationCap, Hand, HandHeart, HardHat, IdCard, Image as ImageIcon, Infinity as InfinityIcon, TrendingUp, TrendingDown, Dumbbell, CalendarSync, Cog, MessageCircle, Send, Phone, MousePointerClick, FileCheck, Stamp as StampIcon, Mic, History as HistoryIcon, Timer, RotateCcw, Brain, Hourglass, Repeat2, Sparkles, Calendar, Quote, Signpost, Heart, House, Video, Shield, Flame, Landmark, Scissors, Handshake, Thermometer, ChartGantt, CloudSun, ScanSearch, Unlink, Layers, Leaf, Lightbulb, Link, ListChecks, Lock, LockOpen, Mail, MapPin, Megaphone, MessageCircleOff, MessageSquareText, Network, Newspaper, OctagonAlert, PenLine, Power, Presentation, Puzzle, Recycle, RefreshCw, Repeat, Route, Scale, ScrollText, Search, Settings2, ShieldAlert, ShieldCheck, Siren, Split, Sprout, Target, ThumbsUp, TriangleAlert, User, UserCheck, UserPlus, Users, VolumeX, Workflow, Wrench, Zap} from 'lucide-react';
 import {AbsoluteFill, Audio, Img, random, staticFile} from 'remotion';
@@ -1947,6 +1948,13 @@ const GBilan: React.FC = () => {
   );
 };
 
+/* ═════════════ Police de la vidéo : Cambria (repli Caladea, équivalent libre aux métriques identiques, embarqué) ═════════════ */
+loadFont({family: 'Caladea', url: staticFile('fonts/Caladea-Regular.ttf'), weight: '400'});
+loadFont({family: 'Caladea', url: staticFile('fonts/Caladea-Bold.ttf'), weight: '700'});
+loadFont({family: 'Caladea', url: staticFile('fonts/Caladea-Italic.ttf'), weight: '400', style: 'italic'});
+loadFont({family: 'Caladea', url: staticFile('fonts/Caladea-BoldItalic.ttf'), weight: '700', style: 'italic'});
+const CAMBRIA_CSS = ".cambria, .cambria * { font-family: Cambria, 'Caladea', Georgia, serif !important; }";
+
 /* ═════════════ Couverture : les cinq sigles en carrousel 3D de lettres-photos + titre en lettres-photos animées ═════════════ */
 const SCover: React.FC = () => {
   const t = useT();
@@ -2005,7 +2013,8 @@ const CUES: Sfx[] = [
 const TRANS: Record<string, React.FC<{i: number}>> = {gyro: Gyro, loupe: Loupe, tube: Pneumatique, store: Store};
 const SCN: [React.FC, number, number][] = [[Intro, 2.6, 40.65], [GQse, 42.4, 95.8], [GQsste, 97.4, 145.75], [GQhse, 147.6, 181.4], [GHse, 183.2, 225.75], [GRse, 227.6, 285.0], [GBilan, 286.8, OUTRO_AT]];
 export const SiglesQhseMetro: React.FC = () => (
-  <AbsoluteFill style={{background: PAPER}}>
+  <AbsoluteFill className="cambria" style={{background: PAPER}}>
+    <style>{CAMBRIA_CSS}</style>
     <Bg />
     {SCN.map(([C, a, b], k) => <Gate key={k} from={a} to={b}><C /></Gate>)}
     {SECT.map((x, i) => { const C = TRANS[x.k]; return C ? <Gate key={x.n + i} from={x.at} to={x.at + 3.7 / TK}><TimeWarp.Provider value={{at: x.at, k: TK}}><C i={i} /></TimeWarp.Provider></Gate> : null; })}
