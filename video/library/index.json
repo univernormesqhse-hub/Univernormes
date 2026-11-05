@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 106,
+ "count": 107,
  "items": [
   {
    "section": "templates",
@@ -1247,7 +1247,7 @@
     "définition",
     "catalogue"
    ],
-   "hash": "cec28e77e847",
+   "hash": "6a0be651c54f",
    "path": "assets/outils-amelioration-continue/index.md",
    "preview": "assets/outils-amelioration-continue/preview.mp4"
   },
@@ -1806,6 +1806,41 @@
    "hash": "f5c60d6df877",
    "path": "assets/sept-principes-flux/index.md",
    "preview": "assets/sept-principes-flux/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "sigles-qse-qsste-qhse-hse-rse",
+   "name": "Les sigles QSE, QSSTE, QHSE, HSE, RSE — morphing de sigles, git diff, matrice comparative et 20 techniques nouvelles",
+   "description": "Capsule métro (tube de verre à sept guichets, gyrophare, recherche) qui compare cinq sigles du management. Couverture en carrousel 3D de sigles en lettres-photos (`<ZSigRing photo>`). Boîte à outils nouvelle, toutes paramétrées par le temps de la voix — `<ZMorph>` morphing FLIP d'un sigle à l'autre (lettres communes qui glissent, nouvelles qui tombent avec un « + », retirées qui éclatent en quatre éclats) ; `<ZDiff>` « git diff » des sigles dans un terminal Claude Code (+ vert / − rouge barré, frappe au curseur) ; `<ZTelescope>` le sigle en ligne dont chaque initiale déroule son mot ; `<ZBlocks>` cubes en bois qui chutent, rebondissent et s'écrasent ; `<ZGlitchSwap>` tuiles qui permutent en glitch RGB puis se verrouillent (≠, cibles) ; `<ZInk>` révélation de photo par tache d'encre ; `<ZSeal>` sceau de norme à texte en orbite + `<ZOdo>` odomètre à rouleaux (ISO 9001 / 14001 / 45001) ; `<ZHexShield>` bouclier en cellules hexagonales ; `<ZVenn>` trois cercles qui convergent, cœur qui s'allume, pulsations à la voix ; `<ZEcg>` électrocardiogramme dont chaque pic fait naître un élément ; `<ZTicker>` bandeau de chantier défilant ; `<ZSpot>` projecteur de théâtre qui balaie et se pose sur une lettre ; `<ZPrism>` prismes pivotants (trivision) ; `<ZSqueegee>` raclette qui nettoie l'écran ; `<ZWordCubes>` cubes-mots 3D français → anglais ; `<ZReticle>` réticule de visée ; `<ZTri>` écran en trois bandes diagonales ; `<ZSlider>` curseur de comparaison avant / après ; `<ZTemple>` temple qui se bâtit (piliers qui montent, fronton qui s'abat) ; `<ZDezoom>` dézoom concentrique vers les parties prenantes ; `<ZOrbit>` planète et orbite 3D d'étiquettes ; `<ZTerm>` + `<ZMatrix>` terminal Claude Code qui génère une matrice remplie en vague, lignes / colonnes surlignables à la voix.",
+   "quand": "Comparer des sigles, normes, référentiels ou démarches proches (QSE / QHSE / HSE / RSE, ISO 9001 / 14001 / 45001 / 26000, SST, management intégré) ; montrer ce qu'une démarche ajoute ou retire à une autre (morph + diff) ; présenter les dimensions ou piliers d'un concept (Venn, temple, orbite) ; conclure par un tableau comparatif.",
+   "component": "src/siglesQhseMetro/SiglesQhseMetro.tsx",
+   "demo": "Demo-SiglesQhse",
+   "audio": null,
+   "tags": [
+    "sigles",
+    "QSE",
+    "QSSTE",
+    "QHSE",
+    "HSE",
+    "RSE",
+    "ISO 9001",
+    "ISO 14001",
+    "ISO 45001",
+    "ISO 26000",
+    "morphing",
+    "git diff",
+    "terminal",
+    "matrice",
+    "Venn",
+    "temple",
+    "odomètre",
+    "sceau",
+    "trivision",
+    "comparaison"
+   ],
+   "hash": "c0b01b506ff4",
+   "path": "assets/sigles-qse-qsste-qhse-hse-rse/index.md",
+   "preview": "assets/sigles-qse-qsste-qhse-hse-rse/preview.mp4"
   },
   {
    "section": "assets",
