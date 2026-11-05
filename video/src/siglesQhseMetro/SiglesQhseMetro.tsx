@@ -1333,7 +1333,7 @@ const ZEcg: React.FC<{x: number; y: number; w: number; h: number; a: number; ite
         {pts.length > 1 && <polyline points={pts.join(' ')} fill="none" stroke="#3CFF96" strokeWidth={5} strokeLinejoin="round" style={{filter: 'drop-shadow(0 0 6px #3CFF96)'}} />}
         {xh > 0 && xh < w && <circle cx={xh} cy={ecgY(xh)} r={9} fill="#fff" style={{filter: 'drop-shadow(0 0 10px #3CFF96)'}} />}
       </svg>
-      <div style={{position: 'absolute', right: 20, top: 14, fontFamily: MONO, fontWeight: 700, fontSize: 22, color: '#3CFF96', opacity: 0.8}}>♥ SANTÉ AU TRAVAIL</div>
+      <div style={{position: 'absolute', right: 20, bottom: 14, fontFamily: MONO, fontWeight: 700, fontSize: 22, color: '#3CFF96', opacity: 0.8}}>♥ SANTÉ AU TRAVAIL</div>
       {items.map(([l, at, ic], k) => { const q = t > at ? Math.min(1, sp(t, at, 9, 13)) : 0; return (
         <div key={k} style={{position: 'absolute', left: pkx[k] - 130, width: 260, top: base - 300, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, opacity: t > at ? 1 : 0, transform: `translateY(${(1 - q) * 30}px) scale(${0.7 + 0.3 * q})`}}>
           <div style={{width: 74, height: 74, borderRadius: 37, background: '#fff', border: `4px solid #3CFF96`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Ico n={ic} size={44} c={c} /></div>
@@ -1757,7 +1757,7 @@ const GQsste: React.FC = () => {
       <Ph a={106.9} b={119.1}>
         <ZAxis l="A" name="Santé" c={CSA} at={107.0} />
         <ZEcg x={60} y={575} w={960} h={470} a={107.4} end={118.8} c={CSA} items={[['Maladies professionnelles', 111.1, 'Activity'], ['Risques psychosociaux', 114.1, 'Brain'], ['Bien-être au travail', 116.6, 'Heart']]} />
-        <ZDef text="La santé inclut la prévention, les risques psychosociaux et le bien-être" a={108.0} e={117.0} y={1090} fs={36} c={DIM} />
+        <ZInk src="siglesqse-gen/bien-etre.jpg" x={60} y={1070} w={960} h={290} at={114.2} c={CSA} pos="50% 30%" tag="BIEN-ÊTRE AU TRAVAIL" />
       </Ph>
       <Ph a={119.1} b={124.95}>
         <ZAxis l="B" name="Sécurité au travail" c={CSE} at={119.2} />
@@ -1800,7 +1800,7 @@ const GQhse: React.FC = () => {
         </Abs>
       </Ph>
       <Ph a={159.2} b={164.8}>
-        <ZPrism x={60} y={480} w={960} h={600} at={159.3} c={CH} imgs={['sysqsse-gen/qualite.jpg', 'iso9001-gen/qualiticien-tablette.jpg', 'sgh-gen/lecture-etiquette.jpg']} times={[161.4, 162.6, 163.6]} labels={['Agroalimentaire', 'Santé', 'Chimie']} />
+        <ZPrism x={60} y={480} w={960} h={600} at={159.3} c={CH} imgs={['siglesqse-gen/agroalimentaire.jpg', 'siglesqse-gen/sante-hopital.jpg', 'sgh-gen/lecture-etiquette.jpg']} times={[161.4, 162.6, 163.6]} labels={['Agroalimentaire', 'Santé', 'Chimie']} />
       </Ph>
       <Ph a={164.8} b={178.3}>
         {t < 171.4 && <Abs x={0} y={600} w={1080} style={{display: 'flex', justifyContent: 'center'}}><Avatar ic="FlaskConical" c={CH} size={220} label="Industries" /></Abs>}
@@ -1862,7 +1862,7 @@ const GHse: React.FC = () => {
       </Ph>
       <Ph a={210.5} b={219.7}>
         <ZTicker y={740} at={210.6} text="INDUSTRIES À RISQUES" out={213.7} c={YEL} />
-        <ZTri x={60} y={480} w={960} h={620} c={S_HSE} items={[['smi/raffinerie.jpg', 'Pétrochimie', 'Factory', 213.6, '50% 40%'], ['iso9001-gen/poignee-main-climat.jpg', 'Énergie', 'Zap', 214.3, '85% 30%'], ['metroiso-gen/couverture.jpg', 'Transport', 'Route', 215.0, '60% 40%']]} />
+        <ZTri x={60} y={480} w={960} h={620} c={S_HSE} items={[['smi/raffinerie.jpg', 'Pétrochimie', 'Factory', 213.6, '50% 40%'], ['siglesqse-gen/energie.jpg', 'Énergie', 'Zap', 214.3, '45% 35%'], ['siglesqse-gen/transport.jpg', 'Transport', 'Route', 215.0, '35% 35%']]} />
         {t > 218.3 && <Abs x={0} y={1140} w={1080} style={{display: 'flex', justifyContent: 'center', zIndex: 8}}><SlamCard at={218.5} lines={['PRIORITÉ ABSOLUE']} c={RED} size={56} /></Abs>}
       </Ph>
       <Ph a={219.7} b={225.7}>
