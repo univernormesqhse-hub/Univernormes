@@ -71,6 +71,7 @@ import {PictogrammesSghMetro} from '../pictogrammesSghMetro/PictogrammesSghMetro
 import {SeptPrincipesMetro} from '../septPrincipesMetro/SeptPrincipesMetro';
 import {OutilsAmeliorationMetro} from '../outilsAmeliorationMetro/OutilsAmeliorationMetro';
 import {SiglesQhseMetro} from '../siglesQhseMetro/SiglesQhseMetro';
+import {SwotMatriceMetro} from '../swotMatriceMetro/SwotMatriceMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -181,6 +182,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-SeptPrincipesFlux', C: SeptPrincipesMetro, at: 51.9, dur: 5.3},
   {id: 'Demo-OutilsAmelioration', C: OutilsAmeliorationMetro, at: 149.0, dur: 12.0},
   {id: 'Demo-SiglesQhse', C: SiglesQhseMetro, at: 97.4, dur: 9.5},
+  {id: 'Demo-SwotMatrice', C: SwotMatriceMetro, at: 129.8, dur: 13.0},
 ];
 
 export const LibraryDemos: React.FC = () => (

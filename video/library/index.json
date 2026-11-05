@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 107,
+ "count": 108,
  "items": [
   {
    "section": "templates",
@@ -1882,6 +1882,40 @@
    "hash": "a970d6a1fffd",
    "path": "assets/superposition-subliminale/index.md",
    "preview": "assets/superposition-subliminale/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "swot-matrice-strategies",
+   "name": "Analyse et matrice SWOT — 25 techniques nouvelles (particules, rayons X, membrane, tissage, échiquier, Droste…)",
+   "description": "Capsule métro (tube de verre à sept guichets, gyrophare, recherche qui ouvre deux enseignes néon) sur l'analyse SWOT et sa matrice, police Cambria (repli Caladea). Boîte à outils nouvelle, entièrement pilotée par le temps de la voix — `<WParticles>` points qui s'envolent et forment un mot en matrice de points ; `<WExtrude>` relief 3D en text-shadow qui suit la lumière, face en lettres-photos ; `<WNeon>` enseigne néon qui grésille puis s'allume ; `<WXray>` scanner à rayons X qui révèle l'intérieur d'un bâtiment (facteurs internes) puis les facteurs externes autour ; `<WCell>` cellule à membrane vivante (noyaux internes, particules externes qui orbitent ou rebondissent) ; `<WPuzzle>` quatre pièces de puzzle à tenons (chemins SVG générés) qui s'emboîtent ; `<WOrigami>` feuille qui se déplie en quadrants (rotateY puis rotateX) ; `<WWeave>` tissage de fils verticaux (interne) et horizontaux (externe) avec nœuds aux croisements ; `<WTreasure>` carte au trésor, chemin pointillé, empreintes et croix « décision » ; `<WQuad>` écran éclaté en quatre quadrants venus des coins ; `<WGauge>` jauge de puissance à liquide ondulant ; `<WCracks>` fissures qui se propagent puis réparation en or (kintsugi) ; `<WScope>` longue-vue qui balaie une photo et révèle des étoiles ; `<WStorm>` orage, pluie et éclairs avec flash ; `<WDomino>` effet domino ; `<WCurtain>` rideau de théâtre ; `<WMatrix>` matrice 2 × 2 (en-têtes internes / externes, cases révélées et surlignées à la voix) + `<WLiquid>` remplissage liquide des cases + `<WChess>` pièces d'échecs qui tombent puis se rangent ; `<WRocket>` fusée et fumée ; `<WRampart>` remparts qui montent, flèches qui ricochent ; `<WBlob>` morphing de forme SVG (cercle → étoile → carré, couleur qui vire) ; `<WBuoy>` bouée lancée en arc sur des vagues ; `<WDroste>` zoom infini ; `<WSwotRing>` carrousel rotatif de lettres-photos ; `<WCompass>` boussole dont l'aiguille hésite puis se fixe ; `<WLeak>` fuites de lumière entre deux idées.",
+   "quand": "Méthodes d'analyse stratégique (SWOT / AFOM, PESTEL, matrices de décision), présentation d'un diagnostic interne / externe, construction d'une matrice 2 × 2 et de ses quatre stratégies, toute capsule qui doit opposer forces et fragilités, opportunités et menaces.",
+   "component": "src/swotMatriceMetro/SwotMatriceMetro.tsx",
+   "demo": "Demo-SwotMatrice",
+   "audio": null,
+   "tags": [
+    "SWOT",
+    "AFOM",
+    "matrice",
+    "stratégie",
+    "forces",
+    "faiblesses",
+    "opportunités",
+    "menaces",
+    "particules",
+    "néon",
+    "rayons X",
+    "puzzle",
+    "origami",
+    "tissage",
+    "échiquier",
+    "kintsugi",
+    "Droste",
+    "boussole",
+    "Cambria"
+   ],
+   "hash": "4c62185f53ef",
+   "path": "assets/swot-matrice-strategies/index.md",
+   "preview": "assets/swot-matrice-strategies/preview.mp4"
   },
   {
    "section": "assets",

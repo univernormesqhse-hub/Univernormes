@@ -244,6 +244,7 @@ import {PictogrammesSghMetro, PICTOGRAMMES_SGH_METRO_FRAMES} from './pictogramme
 import {SeptPrincipesMetro, SEPT_PRINCIPES_METRO_FRAMES} from './septPrincipesMetro/SeptPrincipesMetro';
 import {OutilsAmeliorationMetro, OUTILS_AMELIORATION_METRO_FRAMES} from './outilsAmeliorationMetro/OutilsAmeliorationMetro';
 import {SiglesQhseMetro, SIGLES_QHSE_METRO_FRAMES} from './siglesQhseMetro/SiglesQhseMetro';
+import {SwotMatriceMetro, SWOT_MATRICE_METRO_FRAMES} from './swotMatriceMetro/SwotMatriceMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -506,6 +507,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseSeptPrincipesMetro" component={SeptPrincipesMetro} durationInFrames={SEPT_PRINCIPES_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseOutilsAmeliorationMetro" component={OutilsAmeliorationMetro} durationInFrames={OUTILS_AMELIORATION_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseSiglesQhseMetro" component={SiglesQhseMetro} durationInFrames={SIGLES_QHSE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseSwotMatriceMetro" component={SwotMatriceMetro} durationInFrames={SWOT_MATRICE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
