@@ -4,6 +4,8 @@ Versions allégées des capsules (720 × 1280, H.264, voix d'origine, couverture
 
 Sur GitHub : ouvrir le fichier, puis le bouton de téléchargement (« Download raw file »).
 
+Les versions « compatible » n'ont qu'une piste vidéo et une piste son (pas d'image de couverture intégrée) : à utiliser si un téléphone ou une application refuse un fichier.
+
 | Capsule | Fichier | Durée | Taille |
 |---|---|---|---|
 | Les 19 outils de l'amélioration continue | [19-outils-amelioration-continue-leger.mp4](https://github.com/univernormesqhse-hub/Univernormes/blob/claude/prompt-montage-video-d1vce4/video/livraisons/19-outils-amelioration-continue-leger.mp4) | 4 min 24 s | 10,5 Mo |
@@ -14,6 +16,8 @@ Sur GitHub : ouvrir le fichier, puis le bouton de téléchargement (« Download 
 | Cylindre : 10 sigles de la prévention | [cylindre-10-sigles-prevention-leger.mp4](https://github.com/univernormesqhse-hub/Univernormes/blob/claude/prompt-montage-video-d1vce4/video/livraisons/cylindre-10-sigles-prevention-leger.mp4) | 43 s | 1,9 Mo |
 | Condensé Superviseur HSE | [superviseur-hse-leger.mp4](https://github.com/univernormesqhse-hub/Univernormes/blob/claude/prompt-montage-video-d1vce4/video/livraisons/superviseur-hse-leger.mp4) | 56 s | 3,0 Mo |
 | ISO 9001 : de 2015 à 2026 | [iso9001-2015-2026-leger.mp4](https://github.com/univernormesqhse-hub/Univernormes/blob/claude/prompt-montage-video-d1vce4/video/livraisons/iso9001-2015-2026-leger.mp4) | 1 min 03 s | 3,1 Mo |
+| ISO 9001 : de 2015 à 2026 — version compatible (sans couverture intégrée) | [iso9001-2015-2026-compatible.mp4](https://github.com/univernormesqhse-hub/Univernormes/blob/claude/prompt-montage-video-d1vce4/video/livraisons/iso9001-2015-2026-compatible.mp4) | 1 min 03 s | 4,1 Mo |
+| ISO 9001 : de 2015 à 2026 — version compatible HD 1080 × 1920 | [iso9001-2015-2026-HD.mp4](https://github.com/univernormesqhse-hub/Univernormes/blob/claude/prompt-montage-video-d1vce4/video/livraisons/iso9001-2015-2026-HD.mp4) | 1 min 03 s | 8,3 Mo |
 | Refresher HSE | [refresher-hse-leger.mp4](https://github.com/univernormesqhse-hub/Univernormes/blob/claude/prompt-montage-video-d1vce4/video/livraisons/refresher-hse-leger.mp4) | 2 min 55 s | 6,9 Mo |
 | Induction vs sensibilisation HSE | [induction-sensibilisation-hse-leger.mp4](https://github.com/univernormesqhse-hub/Univernormes/blob/claude/prompt-montage-video-d1vce4/video/livraisons/induction-sensibilisation-hse-leger.mp4) | 3 min 47 s | 8,8 Mo |
 | ISO 45001 | [iso45001-leger.mp4](https://github.com/univernormesqhse-hub/Univernormes/blob/claude/prompt-montage-video-d1vce4/video/livraisons/iso45001-leger.mp4) | 1 min 00 s | 3,3 Mo |
