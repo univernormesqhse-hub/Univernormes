@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 120,
+ "count": 121,
  "items": [
   {
    "section": "templates",
@@ -224,6 +224,35 @@
    "hash": "5c984652570d",
    "path": "assets/atelier-balaye/index.md",
    "preview": "assets/atelier-balaye/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "audit-interne-bonnes-pratiques",
+   "name": "Les bonnes pratiques de l'audit interne — lampe d'interrogatoire, tribunal, dialogue de sourds, rembobinage, fouille jusqu'à l'humain, tatouage, cube méfiance → partenariat, entonnoir, ondes en phase, roue QQOQCCP, « pourquoi » explosif, funambule, marqueurs de preuve, foreuse, vitre qui éclate, aiguillage",
+   "description": "Capsule métro à six guichets (gyrophare, recherche qui ouvre « audit interne », carrousels 3D de photos) sur les quatre piliers de l'audit interne, police Cambria (repli Caladea), palette `AuM` vert menthe / `AuK` encre / `AuY` jaune + `AuR` `AuB` `AuO` `AuN`, seuls les chiffres prononcés sont affichés. Techniques nouvelles — `<AuGrimace>` visage qui grince des dents ; `<AuLamp>` lampe d'interrogatoire qui se balance, mots dans le faisceau ; `<AuCourt>` tribunal : inquisiteur au marteau, audité dans le box ; `<AuWall>` éclair, mur qui monte, câble coupé, brouillard de méfiance, oreilles fermées ; `<AuRebuild>` briques qui remontent le temps (rembobinage) ; `<AuKeyHolder>` la clé descend dans la main ; `<AuDig>` fouille par couches jusqu'au noyau ; `<AuLink>` électrocardiogramme qui relie deux personnes puis se rompt ; `<AuPosture>` l'expert bras croisés devient curieux à la loupe ; `<AuEar>` oreille qui capte les mots de l'entreprise ; `<AuTrap>` tapette barrée puis « comprendre » contre « confondre » ; `<AuTattoo>` aiguille qui tatoue une devise ; `<AuPointer>` doigt accusateur qui devient loupe sur un processus ; `<AuCube>` cube 3D qui pivote d'une face à l'autre ; `<AuGears2>` deux engrenages qui s'entraînent et sortent des fiches validées ; `<AuFunnel>` entonnoir en quatre étages avec particules ; `<AuWaveSync>` deux ondes déphasées qui se synchronisent ; `<AuWheel7>` roue de lettres (QQOQCCP) puis aiguille de boussole ; `<AuWhy>` bombe « pourquoi ? », bouclier défensif, justification, plaque « confiance » qui se fissure ; `<AuViewfinder>` viseur REC et flash du constat ; `<AuTightrope>` funambule et balancier ; `<AuEyeContact>` regard rompu puis maintenu pendant l'écriture des mots-clés ; `<AuEvidence>` chevalets de preuve numérotés ; `<AuNoteRewrite>` note vague barrée, version précise tapée, tampon ; `<AuBlurChain>` le flou se propage le long d'une chaîne de cartes ; `<AuRoomUnfold>` les portes de la salle de réunion s'ouvrent sur l'atelier ; `<AuDrill>` foreuse : eau limpide, panneau STOP, surchauffe ; `<AuShatter>` vitre qui éclate en éclats ; `<AuMines>` dalles qui se retournent sur des pièges ; `<AuRoles>` cartes de rôle tamponnées « NI » ; `<AuTrash>` phrases froissées en boulettes jetées à la corbeille ; `<AuSwitch>` levier d'aiguillage entre deux options ; `<AuFaceMorph>` visage sévère qui se détend ; `<AuTemple>` temple à quatre piliers sous fronton ; `<AuSalleTerrain>` volet « En salle » / « Sur le terrain ». `AuChip`, `AuPerson` : utilitaires. Réutilise `SearchOpen`, `Ring3D`, `VMorph`, `LJenga`, `LBalance`, `VFour`, `ZInk`, `JCrtOff`.",
+   "quand": "Audit interne, posture de l'auditeur, techniques d'entretien d'audit, questionnement (entonnoir, reformulation, QQOQCCP), prise de notes d'audit, observation terrain, constats factuels, erreurs de l'auditeur, culture de la confiance, ISO 19011, préparation des auditeurs internes QHSE.",
+   "component": "src/auditInterneMetro/AuditInterneMetro.tsx",
+   "demo": "Demo-AuditInterne",
+   "audio": null,
+   "tags": [
+    "audit interne",
+    "auditeur",
+    "ISO 19011",
+    "entretien d'audit",
+    "entonnoir",
+    "QQOQCCP",
+    "reformulation",
+    "prise de notes",
+    "constat factuel",
+    "terrain",
+    "confiance",
+    "posture",
+    "pièges de l'audit",
+    "Cambria"
+   ],
+   "hash": "f8ffcbbc7f8e",
+   "path": "assets/audit-interne-bonnes-pratiques/index.md",
+   "preview": "assets/audit-interne-bonnes-pratiques/preview.mp4"
   },
   {
    "section": "assets",
