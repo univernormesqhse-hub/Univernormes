@@ -34,11 +34,15 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * oreille à ondes. Sous-titres NeoCaptions sur la voix d'origine, sans musique.
  */
 const IMG = {
-  cover: 'rhse-gen/lumiere.jpg',
+  cover: 'lois-gen/couverture.jpg',
   c1: 'evacuation-gen/guide-file.jpg',
   c2: 'evacuation-gen/bilan.jpg',
   accuse: 'taproot-gen/accuser-systeme.jpg',
-  fatigue: 'alerte-gen/silence.jpg',
+  fatigue: 'lois-gen/fatigue.jpg',
+  swiss: 'lois-gen/fromage-suisse.jpg',
+  leader: 'lois-gen/leadership.jpg',
+  routine: 'lois-gen/routine.jpg',
+  weak: 'lois-gen/signal-faible.jpg',
   direction: 'alerte-gen/direction.jpg',
   torch: 'rhse-gen/ombre.jpg',
 };
@@ -2829,7 +2833,8 @@ const G1: React.FC = () => (
     </Ph>
     <Ph a={98.25} b={104.95}><LSlide cy={900} at={98.4} slide={99.8} /></Ph>
     <Ph a={104.9} b={124.35}>
-      <LSwiss cy={880} at={106.0} align={120.8} shoot={122.3} />
+      <Ph a={104.9} b={109.0}><ZInk src={IMG.swiss} x={60} y={470} w={960} h={760} at={105.1} c={LR} tag="LE FROMAGE SUISSE" pos="50% 50%" /></Ph>
+      <LSwiss cy={880} at={109.0} align={120.8} shoot={122.3} />
       <Ph a={116.4} b={120.8}><Center y={480}><NBadge at={116.6} text="DES TROUS, DES FAILLES" bg={LR} rot={-2} size={30} /></Center></Ph>
       <Center y={480}><SlamTag at={123.4} text="ACCIDENT" c={LR} rot={-4} size={56} /></Center>
       <Ph a={112.5} b={120.8}><Row3 y={1230} gap={14}><TChip at={112.8} l="Procédure" c={LN} fs={28} /><TChip at={113.5} l="Équipement" c={LN} fs={28} /><TChip at={114.5} l="Formation" c={LN} fs={28} /></Row3></Ph>
@@ -2861,7 +2866,8 @@ const G2: React.FC = () => (
     </Ph>
     <Ph a={158.85} b={166.95}>
       <LLaw n={5} title="Un danger totalement paradoxal" at={159.9} c={LR} />
-      <Bubble at={163.6} text="« L'inconnu est le plus dangereux »" c={DIM} y={900} strike={166.0} fs={40} />
+      <ZInk src={IMG.routine} x={60} y={800} w={960} h={410} at={160.8} c={LR} tag="LA ROUTINE" pos="50% 30%" />
+      <Bubble at={163.6} text="« L'inconnu est le plus dangereux »" c={DIM} y={1250} strike={166.0} fs={34} />
     </Ph>
     <Ph a={166.9} b={175.85}>
       <LRoutine cx={460} cy={860} at={167.0} danger={174.2} />
@@ -2899,8 +2905,9 @@ const G3: React.FC = () => {
       <Ph a={231.3} b={236.45}><LLaw n={1} title="L'engagement de la direction" at={232.0} c={LY} /><LArch cx={540} cy={1080} at={233.2} key0={234.8} /></Ph>
       <Ph a={236.4} b={240.15}><LSign cx={540} cy={880} at={236.6} ban={239.4} /></Ph>
       <Ph a={240.1} b={247.35}>
-        <Center y={480}><div style={{transform: `scale(${1 + 0.05 * Math.sin(t * 4)})`}}><Ico n="Eye" size={280} c={LN} /></div></Center>
-        <Col y={860} gap={26}><TChip at={242.5} l="Les choix" c={LN} ic="Signpost" /><TChip at={244.0} l="Les budgets accordés" c={LN} ic="ChartColumn" /><TChip at={245.6} l="Le temps des managers" c={LN} ic="Clock" /></Col>
+        <ZInk src={IMG.leader} x={60} y={470} w={960} h={560} at={240.3} c={LY} tag="L'EXEMPLE D'EN HAUT" pos="50% 25%" />
+        <div style={{position: 'absolute', left: 880, top: 500, transform: `scale(${1 + 0.06 * Math.sin(t * 4)})`, zIndex: 5}}><div style={{width: 120, height: 120, borderRadius: 60, background: '#fff', border: `5px solid ${NBK}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Ico n="Eye" size={80} c={LN} /></div></div>
+        <Col y={1060} gap={16}><TChip at={242.5} l="Les choix" c={LN} ic="Signpost" fs={28} /><TChip at={244.0} l="Les budgets accordés" c={LN} ic="ChartColumn" fs={28} /><TChip at={245.6} l="Le temps des managers" c={LN} ic="Clock" fs={28} /></Col>
       </Ph>
       <Ph a={247.3} b={254.75}>
         <LSteps y={1000} at={247.6} follow={250.6} />
@@ -2958,8 +2965,8 @@ const G5: React.FC = () => (
     </Ph>
     <Ph a={334.4} b={338.65}><LWeak cy={900} at={334.5} amp={337.1} /></Ph>
     <Ph a={338.6} b={OUTRO_AT}>
-      <LEar cx={640} cy={720} at={338.7} />
-      <Col y={1020} gap={20}><TChip at={342.4} l="Le petit détail" c={LN} ic="Search" /><TChip at={343.4} l="La remarque anodine" c={LN} ic="MessageCircle" /><TChip at={345.2} l="Le presque-accident" c={LR} ic="TriangleAlert" fill /></Col>
+      <ZInk src={IMG.weak} x={60} y={470} w={960} h={540} at={338.8} c={LY} tag="LE SIGNAL FAIBLE" pos="50% 60%" />
+      <Col y={1050} gap={18}><TChip at={342.4} l="Le petit détail" c={LN} ic="Search" /><TChip at={343.4} l="La remarque anodine" c={LN} ic="MessageCircle" /><TChip at={345.2} l="Le presque-accident" c={LR} ic="TriangleAlert" fill /></Col>
     </Ph>
   </Out>
 );
@@ -3072,6 +3079,6 @@ export const LoisInvisiblesMetro: React.FC = () => (
   </AbsoluteFill>
 );
 
-export const _u2 = [wn, Avatar, Ring3D, SlamTag, Arrow, slamK, CAP, STAGE, SCAN, RING_ISO, Drum, Marked, Announce, MBadge, RailSteps, StairSteps, ZigSteps, QBubble, Grid15, RameWipe, Forklift, ICO, MC, ACR, lin, hexMix, cl, GyroFlash, Hot, Photo, Pill2, Ph, TChip, Row3, SlamCard, ZInk, ZTicker, ZAxis, ZDef, CI, CD, METH, JCirText, JMirror, JNewton, JFuse, JShock, JTree, JAccordion, JRing, JButterfly, JAmdec, JHazop, JHourglass, JRewind, JFlipArrow, JBoard, JYarn, JPrint, JFault, JGears, JYinYang, JConstellation, CONST, ESiren, ECompass, ENeonExit, EFloorPlan, EBlackout, EVestDrop, EQueue, EDoor, ESonar, ERadio, EHub, EConfusion, EDice, ETape, EChess, EFunnel, ETally, EGavel, EBaton, EFiretruck, EGauge, EDomino, ECycle, EMonths, EChecklist, ESpiral, EFeather, EOdometer, ECrack, ENail, ETarget, EUnity, ExitRunner, AssemblyIcon, Vest, CG, CR, CY, CO, LGearsTol, JCrtOff];
+export const _u2 = [wn, Avatar, Ring3D, SlamTag, Arrow, slamK, CAP, STAGE, SCAN, RING_ISO, Drum, Marked, Announce, MBadge, RailSteps, StairSteps, ZigSteps, QBubble, Grid15, RameWipe, Forklift, ICO, MC, ACR, lin, hexMix, cl, GyroFlash, Hot, Photo, Pill2, Ph, TChip, Row3, SlamCard, ZInk, ZTicker, ZAxis, ZDef, CI, CD, METH, JCirText, JMirror, JNewton, JFuse, JShock, JTree, JAccordion, JRing, JButterfly, JAmdec, JHazop, JHourglass, JRewind, JFlipArrow, JBoard, JYarn, JPrint, JFault, JGears, JYinYang, JConstellation, CONST, ESiren, ECompass, ENeonExit, EFloorPlan, EBlackout, EVestDrop, EQueue, EDoor, ESonar, ERadio, EHub, EConfusion, EDice, ETape, EChess, EFunnel, ETally, EGavel, EBaton, EFiretruck, EGauge, EDomino, ECycle, EMonths, EChecklist, ESpiral, EFeather, EOdometer, ECrack, ENail, ETarget, EUnity, ExitRunner, AssemblyIcon, Vest, CG, CR, CY, CO, LGearsTol, JCrtOff, LEar];
 
 export const _u = [Kin, Brut, T, TitleBlock, Win, GLASS, Check, Card, Num, GlassCard, IcoLab, Mono, sectIdx, Blinds, Deep, LoupeSweep, PneuDeliver, Shine, YEL, Board, random, PhotoLetter, Watermark, Captions, Pill, Strike, Count, handFont, TEAL, GOLD, Tile, BURG, NAVY, VIO, Stamp, StationBanner, NIGHT, BLUE, Shot, Chip, SECTX, Dust, Row, Strk, arcP, ACC, fmt, ORANGE, IMG, easeIn, Barred, Flap];
