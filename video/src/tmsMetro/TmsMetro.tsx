@@ -31,11 +31,15 @@ import {NeoCaptions} from '../components/NeoCaptions';
  * Sous-titres NeoCaptions sur la voix d'origine, sans musique.
  */
 const IMG = {
-  cover: 'ishikawa-gen/dos.jpg',
-  c1: 'lois-gen/fatigue.jpg',
-  c2: 'lois-gen/routine.jpg',
-  routine: 'lois-gen/routine.jpg',
-  bienetre: 'heures-gen/equipe-chantier.jpg',
+  cover: 'tms-gen/couverture.jpg',
+  c1: 'tms-gen/douleur-bureau.jpg',
+  c2: 'tms-gen/port-charge.jpg',
+  couv: 'tms-gen/couverture.jpg',
+  douleur: 'tms-gen/douleur-bureau.jpg',
+  gestes: 'tms-gen/gestes-repetitifs.jpg',
+  charge: 'tms-gen/port-charge.jpg',
+  ergonomie: 'tms-gen/ergonomie.jpg',
+  formation: 'tms-gen/formation-gestes.jpg',
 };
 const BLUE = '#1F6FD1';
 const NAVY = '#0E2A5C';
@@ -4293,7 +4297,7 @@ const Bubble: React.FC<{at: number; text: string; c: string; y: number; strike?:
     </Center>
   );
 };
-const RING = ['ishikawa-gen/dos.jpg', 'lois-gen/fatigue.jpg', 'lois-gen/routine.jpg', 'evalrisques-gen/operateur.jpg', 'influence-gen/bureau.jpg', 'heures-gen/equipe-chantier.jpg', 'rhse-gen/controle.jpg', 'kaizen-gen/gemba.jpg'];
+const RING = ['tms-gen/couverture.jpg', 'tms-gen/douleur-bureau.jpg', 'tms-gen/gestes-repetitifs.jpg', 'tms-gen/port-charge.jpg', 'tms-gen/ergonomie.jpg', 'tms-gen/formation-gestes.jpg', 'evalrisques-gen/operateur.jpg', 'lois-gen/fatigue.jpg'];
 const Healthy: React.FC<{at: number; cy: number}> = ({at, cy}) => {
   const t = useT();
   const k = Math.max(0, t - at);
@@ -4310,16 +4314,21 @@ const Healthy: React.FC<{at: number; cy: number}> = ({at, cy}) => {
 const Intro: React.FC = () => (
   <Out end={37.9}>
     <Heads h={[[2.9, ['Un mal', 'un peu silencieux'], [1]], [4.12, ['Des millions', 'de travailleurs'], [0]], [6.18, ['Les troubles', 'musculosquelettiques'], [1]], [10.48, ['Un nom', 'compliqué'], [1]], [13.45, ['Une réalité', 'très concrète'], [1]], [16.21, ['Juste', 'de la fatigue ?'], [1]], [18.48, ['Une douleur', 'tenace'], [1]], [21.45, ['Ce poignet', 'qui tire'], [0]], [25.58, ['Beaucoup de gens', 'connaissent ça'], [1]], [28.03, ['La fatigue', 'le stress ?'], [0, 1]], [30.93, ["Et si c'était", 'plus que ça ?'], [1]], [34.29, ['Le signe', 'avant-coureur'], [1]]]} />
-    <Ph a={2.65} b={10.45}>
+    <Ph a={2.65} b={6.2}>
       <QCrowd cy={830} at={2.8} light={4.2} />
+    </Ph>
+    <Ph a={6.15} b={10.45}>
+      <ZInk src={IMG.couv} x={60} y={470} w={960} h={800} at={6.25} c={QR} tag="LES TROUBLES MUSCULOSQUELETTIQUES" pos="50% 52%" />
     </Ph>
     <Ph a={10.4} b={18.45}>
       <Abs x={0} y={440} w={1080} h={860}><Ring3D imgs={RING} at={10.5} w={1080} h={860} cw={380} ch={480} R={600} cy={0.45} /></Abs>
       <Bubble at={16.9} text="Juste de la fatigue ?" c={QO} y={1220} />
     </Ph>
-    <Ph a={18.4} b={28.0}>
+    <Ph a={18.4} b={25.6}>
       <QDesk cy={860} at={18.5} pain={21.5} back={20.1} />
-      <Center y={1300} z={6}><TChip at={26.0} l="Beaucoup de gens connaissent" c={QN} ic="Users" fs={28} /></Center>
+    </Ph>
+    <Ph a={25.55} b={28.0}>
+      <ZInk src={IMG.douleur} x={60} y={470} w={960} h={760} at={25.65} c={QR} tag="BEAUCOUP DE GENS CONNAISSENT" pos="50% 58%" />
     </Ph>
     <Ph a={27.95} b={34.3}>
       <Bubble at={29.2} text="Un coup de fatigue ?" c={QO} y={560} strike={33.0} />
@@ -4377,7 +4386,7 @@ const S2: React.FC = () => (
   <Out end={169.6}>
     <Heads h={[[91.45, ["D'où ça", 'vient ?'], [1]], [93.85, ["Qu'est-ce qui", 'provoque les TMS ?'], [1]], [97.85, ['Les facteurs', 'de risque'], [1]], [100.9, ['Des coupables', 'bien identifiés'], [1]], [103.64, ['Les gestes', 'répétitifs'], [1]], [111.83, ['Les postures', 'contraignantes'], [1]], [117.28, ['Charges, efforts', 'vibrations'], [0]], [123.74, ['Dans un nombre', 'incroyable de métiers'], [1]], [128.02, ['Où ça se manifeste', 'sur le corps ?'], [1]], [131.25, ['Les zones', 'qui trinquent'], [1]], [147.54, ['Des noms', 'médicaux'], [1]], [164.1, ['Ce sont', 'des formes de TMS'], [1]]]} />
     <Ph a={91.45} b={100.85}>
-      <ZInk src={IMG.routine} x={60} y={470} w={960} h={780} at={91.55} c={QR} tag="D'OÙ ÇA VIENT ?" pos="50% 30%" />
+      <ZInk src={IMG.gestes} x={60} y={470} w={960} h={780} at={91.55} c={QR} tag="D'OÙ ÇA VIENT ?" pos="50% 35%" />
       <Center y={1290} z={6}><TChip at={98.8} l="Les facteurs de risque" c={QR} ic="TriangleAlert" fill /></Center>
     </Ph>
     <Ph a={100.8} b={128.0}>
@@ -4426,19 +4435,28 @@ const S4: React.FC = () => (
     <Ph a={237.15} b={245.85}>
       <QKeys cy={860} at={237.3} keys={[['Ergonomie', 'User', 243.0], ['Rotation', 'RefreshCw', 243.25], ['Formation', 'GraduationCap', 243.5], ['Aides mécaniques', 'Wrench', 243.75]]} />
     </Ph>
-    <Ph a={245.8} b={252.95}>
+    <Ph a={245.8} b={250.3}>
       <QWorkstation cy={860} at={245.9} seat={247.94} screen={249.08} />
-      <Center y={1310} z={6}><TChip at={251.3} l="Ça change tout" c={QG} ic="Sparkles" fill /></Center>
+    </Ph>
+    <Ph a={250.25} b={252.95}>
+      <ZInk src={IMG.ergonomie} x={60} y={470} w={960} h={760} at={250.35} c={QG} tag="UN DÉTAIL QUI CHANGE TOUT" pos="50% 45%" />
+      <Center y={1270} z={6}><TChip at={251.3} l="Ça change tout" c={QG} ic="Sparkles" fill /></Center>
     </Ph>
     <Ph a={252.9} b={258.7}>
       <QRotate cx={540} cy={880} at={253.0} stations={[['Bras', 'Hand'], ['Dos', 'User'], ['Jambes', 'Footprints']]} />
     </Ph>
-    <Ph a={258.65} b={264.1}>
-      <QLift cy={800} at={258.7} bad={258.9} good={261.45} />
-      <Center y={1290} z={6}><TChip at={262.0} l="Les bons gestes, les bonnes postures" c={QG} ic="GraduationCap" fill fs={28} /></Center>
+    <Ph a={258.65} b={261.45}>
+      <ZInk src={IMG.formation} x={60} y={470} w={960} h={800} at={258.75} c={QG} tag="TROISIÈME PILIER : LA FORMATION" pos="50% 62%" />
     </Ph>
-    <Ph a={264.05} b={270.85}>
-      <QHoist cy={860} at={264.1} lift={266.0} />
+    <Ph a={261.4} b={264.1}>
+      <QLift cy={800} at={261.45} bad={261.5} good={262.3} />
+      <Center y={1290} z={6}><TChip at={262.66} l="Les bons gestes, les bonnes postures" c={QG} ic="GraduationCap" fill fs={28} /></Center>
+    </Ph>
+    <Ph a={264.05} b={267.6}>
+      <ZInk src={IMG.charge} x={60} y={470} w={960} h={800} at={264.15} c={QO} tag="QUATRIÈMEMENT : LES AIDES MÉCANIQUES" pos="50% 40%" />
+    </Ph>
+    <Ph a={267.55} b={270.85}>
+      <QHoist cy={860} at={267.6} lift={267.8} />
       <Center y={1300} z={6}><TChip at={268.7} l="Éviter de porter des charges lourdes" c={QG} ic="ShieldCheck" fill fs={28} /></Center>
     </Ph>
     <Ph a={270.8} b={277.05}>
@@ -4467,7 +4485,7 @@ const S5: React.FC = () => (
   <Out end={OUTRO_AT}>
     <Heads h={[[299.55, ['Une question', 'une réflexion'], [1]], [301.24, ['Le bien-être', 'au travail'], [0]], [306.24, ['Le bon', 'geste'], [1]], [306.92, ['Le potentiel', 'de tout changer'], [1]], [311.27, ['Prenez soin', 'de vous'], [1]]]} />
     <Ph a={299.55} b={306.2}>
-      <ZInk src={IMG.bienetre} x={60} y={470} w={960} h={780} at={299.65} c={QG} tag="LE BIEN-ÊTRE AU TRAVAIL" pos="50% 35%" />
+      <ZInk src={IMG.ergonomie} x={60} y={470} w={960} h={780} at={299.65} c={QG} tag="LE BIEN-ÊTRE AU TRAVAIL" pos="50% 30%" />
     </Ph>
     <Ph a={306.15} b={311.25}>
       <QGesture cy={840} at={306.2} heart={308.4} />
@@ -4529,7 +4547,7 @@ const CUES: Sfx[] = [
   // guichet 1 : un mal silencieux
   {at: 2.8, s: 'soft-whoosh', v: 0.3, dur: 2}, ...rep(4.3, 10, 0.2, 'sfx/click', 0.05),
   {at: 10.5, s: 'soft-whoosh', v: 0.35, dur: 2}, {at: 16.9, s: 'sfx/pop', v: 0.22},
-  {at: 18.5, s: 'soft-whoosh', v: 0.25, dur: 1}, ...rep(18.8, 30, 0.12, 'sfx/click', 0.04), {at: 20.1, s: 'sfx/thud', v: 0.25}, {at: 21.5, s: 'sfx/rise', v: 0.15, dur: 2}, {at: 26.0, s: 'sfx/pop', v: 0.2},
+  {at: 18.5, s: 'soft-whoosh', v: 0.25, dur: 1}, ...rep(18.8, 30, 0.12, 'sfx/click', 0.04), {at: 20.1, s: 'sfx/thud', v: 0.25}, {at: 21.5, s: 'sfx/rise', v: 0.15, dur: 2}, {at: 25.65, s: 'soft-whoosh', v: 0.3, dur: 1}, {at: 6.25, s: 'soft-whoosh', v: 0.3, dur: 1},
   ...pops([29.2, 30.2], 0.22), {at: 33.0, s: 'sfx/swish', v: 0.4}, {at: 33.3, s: 'tampon', v: 0.38},
   {at: 34.3, s: 'sfx/pop', v: 0.2}, ...rep(35.7, 6, 0.33, 'sfx/ding', 0.12), {at: 35.75, s: 'tampon', v: 0.3},
   // guichet 2 : de quoi parle-t-on ?
@@ -4552,10 +4570,10 @@ const CUES: Sfx[] = [
   // guichet 5 : la prévention
   {at: 229.35, s: 'sfx/pop', v: 0.22}, {at: 236.28, s: 'sfx/swish', v: 0.4}, {at: 236.9, s: 'validation', v: 0.3},
   {at: 237.3, s: 'soft-whoosh', v: 0.3, dur: 1}, ...[243.0, 243.25, 243.5, 243.75].map((at) => ({at, s: 'sfx/ding', v: 0.2})),
-  {at: 245.9, s: 'soft-whoosh', v: 0.25, dur: 1}, {at: 247.94, s: 'sfx/rise', v: 0.18, dur: 0.9}, {at: 249.08, s: 'sfx/rise', v: 0.18, dur: 0.9}, {at: 250.1, s: 'validation', v: 0.28}, {at: 251.3, s: 'sfx/pop', v: 0.2},
+  {at: 245.9, s: 'soft-whoosh', v: 0.25, dur: 1}, {at: 247.94, s: 'sfx/rise', v: 0.18, dur: 0.9}, {at: 249.08, s: 'sfx/rise', v: 0.18, dur: 0.9}, {at: 250.1, s: 'validation', v: 0.28}, {at: 250.35, s: 'soft-whoosh', v: 0.25, dur: 1}, {at: 251.3, s: 'sfx/pop', v: 0.2},
   {at: 253.0, s: 'sfx/pop', v: 0.2}, ...rep(253.5, 3, 2.2, 'sfx/swish', 0.2),
-  {at: 258.9, s: 'sfx/thud', v: 0.25}, {at: 259.5, s: 'sfx/swish', v: 0.3}, {at: 261.45, s: 'sfx/thud', v: 0.25}, {at: 262.05, s: 'validation', v: 0.28},
-  {at: 264.1, s: 'sfx/pop', v: 0.2}, ...rep(266.0, 12, 0.13, 'sfx/click', 0.1), {at: 268.7, s: 'sfx/pop', v: 0.2},
+  {at: 258.75, s: 'soft-whoosh', v: 0.3, dur: 1}, {at: 261.5, s: 'sfx/thud', v: 0.25}, {at: 262.1, s: 'sfx/swish', v: 0.3}, {at: 262.9, s: 'validation', v: 0.28},
+  {at: 264.15, s: 'soft-whoosh', v: 0.3, dur: 1}, {at: 267.6, s: 'sfx/pop', v: 0.2}, ...rep(267.8, 12, 0.13, 'sfx/click', 0.1), {at: 268.7, s: 'sfx/pop', v: 0.2},
   ...pops([270.9, 271.2, 271.5, 271.8], 0.22), {at: 272.0, s: 'tampon', v: 0.38},
   ...pops([278.2, 280.34]), {at: 281.6, s: 'sfx/swish', v: 0.4}, {at: 281.7, s: 'sfx/pop', v: 0.22},
   {at: 282.9, s: 'soft-whoosh', v: 0.3, dur: 1.5}, {at: 283.0, s: 'tampon', v: 0.3},
