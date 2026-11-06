@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 112,
+ "count": 113,
  "items": [
   {
    "section": "templates",
@@ -2019,6 +2019,40 @@
    "hash": "a970d6a1fffd",
    "path": "assets/superposition-subliminale/index.md",
    "preview": "assets/superposition-subliminale/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "superviseur-qhse-architecte",
+   "name": "Le superviseur QHSE, architecte — champ de force, sigle qui se déplie, roue des missions, piliers du SMI, rétroviseur et phares, compteurs de salaires, QHSE 4.0",
+   "description": "Capsule métro (tube de verre à six guichets, gyrophare, recherche qui ouvre « devenir superviseur QHSE », carrousel 3D de photos de terrain) sur le métier de superviseur QHSE, police Cambria (repli Caladea), palette `VT` turquoise / `VN` marine / `VY` jaune / `VR` rouge / `VB` bleu / `VG` vert, aucun mot de marque d'outil à l'écran ; seuls les chiffres prononcés sont affichés. Techniques nouvelles — `<KOrbitSig>` orbite 3D des sigles du métier (couverture) ; `<VForce>` champ de force (bulle à arcs lumineux et ondes) qui protège trois éléments ; `<VAcro>` sigle dont chaque lettre se déplie en son mot au moment où la voix le dit ; `<VFour>` cartes qui se retournent en mosaïque (ici les trois normes ISO) ; `<VWheel>` roue des missions qui tourne pour amener la mission citée sous l'index ; `<VGauge>` jauge circulaire de pourcentage ; `<VPillars>` trois piliers qui glissent et fusionnent par des tuyaux dans l'engrenage du SMI ; `<VMirror>` rétroviseur (indicateurs réactifs) puis phares qui éclairent la route (indicateurs proactifs) ; `<VMorph>` badge qui se retourne (contrôleur → partenaire) ; `<VStairs>` escalier de carrière gravi par un personnage, drapeau au sommet ; `<VSkills>` anneau des compétences techniques / humaines ; `<VIoT>` QHSE 4.0 : capteurs connectés dont les impulsions remontent vers une IA centrale ; `<VBlueprint>` plan d'architecte qui se trace trait par trait. Réutilise `EOdometer` (salaires), `ECycle` (boucle d'amélioration), `LArch` (pierre angulaire), `LPyramid`, `LTorn`, `EBaton`, `EUnity`, `EConfusion`.",
+   "quand": "Présentation d'un métier ou d'une fonction (missions, systèmes, pilotage, carrière, salaires, compétences, évolution), fiche de poste animée, capsule d'orientation, opposition indicateurs réactifs / proactifs, système de management intégré, transformation numérique de la prévention.",
+   "component": "src/superviseurQhseMetro/SuperviseurQhseMetro.tsx",
+   "demo": "Demo-SuperviseurQhse",
+   "audio": null,
+   "tags": [
+    "superviseur QHSE",
+    "métier",
+    "missions",
+    "causeries sécurité",
+    "SMI",
+    "ISO 9001",
+    "ISO 14001",
+    "ISO 45001",
+    "DUERP",
+    "indicateurs réactifs",
+    "indicateurs proactifs",
+    "culture sécurité",
+    "carrière",
+    "salaires",
+    "compétences",
+    "QHSE 4.0",
+    "IoT",
+    "IA prédictive",
+    "Cambria"
+   ],
+   "hash": "282ea1be4f6b",
+   "path": "assets/superviseur-qhse-architecte/index.md",
+   "preview": "assets/superviseur-qhse-architecte/preview.mp4"
   },
   {
    "section": "assets",
