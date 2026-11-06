@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 117,
+ "count": 118,
  "items": [
   {
    "section": "templates",
@@ -1611,6 +1611,36 @@
    "hash": "60e3f37275b1",
    "path": "assets/plan-evacuation-guide/index.md",
    "preview": "assets/plan-evacuation-guide/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "politique-sst-contenu-legal",
+   "name": "Politique SST, contenu légal — plume qui signe, panneau d'affichage signé-daté-épinglé, chaîne identifier-évaluer-planifier, parapluie collectif, cutter de sécurité, terrain d'équipe, noyau CSE, Polaroïd qui devient film, cadran annuel, archives cadenassées",
+   "description": "Capsule métro (tube de verre à six guichets, gyrophare, recherche qui ouvre « SST », carrousel 3D de photos, route du programme) sur le contenu légal d'une politique santé et sécurité au travail, police Cambria (repli Caladea), palette `WB` bleu / `WN` marine / `WR` rouge / `WG` vert / `WO` orange / `WY` jaune, seuls les chiffres prononcés sont affichés (4 piliers, 12 mois, 5 ans). Techniques nouvelles — `<WSign>` la plume trace la signature au bas du document ; `<WCopies>` le document se démultiplie et file vers chaque poste ; `<WAliveDoc>` document vivant qui respire (pouls) et bourgeonne ; `<WCorner>` pierre angulaire isométrique qui tombe, les murs s'élèvent ; `<WCode>` le Code du travail s'ouvre, l'article s'illumine, le marteau frappe ; `<WMindBody>` bouclier sécurité, cœur (santé physique), cerveau (santé mentale) ; `<WGoldRule>` règle d'or qui se dépose en scintillant ; `<WCascade>` le sommet s'allume, l'impulsion descend niveau par niveau ; `<WSenses>` se voir, s'entendre, palpable ; `<WShock>` bannière choc à ondes concentriques ; `<WFork>` diapason qui donne le « la » ; `<WNoticeBoard>` panneau de liège : signature, tampon daté, punaise, éclat de transparence ; `<WPipeline>` chaîne en trois temps à particules ; `<WEye>` l'œil qui s'ouvre et balaie ; `<WTodo>` liste d'actions cochée (sans libellés inventés) ; `<WUmbrella>` parapluie collectif sous la pluie de dangers, l'EPI arrive en dernier ; `<WCutter>` gants proposés puis barrés, l'outil devient cutter de sécurité, tampon « RISQUE SUPPRIMÉ » ; `<WPitch>` terrain : coach (direction), capitaines (managers), joueurs (salariés) ; `<WPowers>` noyau et missions qui s'allument, sceau « consultation obligatoire » ; `<WPhotoFilm>` Polaroïd figé au flash puis pellicule qui défile ; `<WAnnual>` cadran à douze segments et cloche ; `<WArchive>` étagère d'archives et cadenas de conservation. `EGavel` et `EGauge` acceptent désormais un `label`, `YEngine` un `fuelLabel`, et `VMorph` replie les libellés longs sur deux lignes. Réutilise `Ring3D`, `SearchOpen`, `YRoad`, `YDust`, `IPile`, `LJenga`, `VFour`, `ETarget`, `EUnity`, `EBaton`, `IBroadcast`, `YDeming`, `IPrism`, `IOpenQ`, `YMagic`, `ZInk`, `JCrtOff`.",
+   "quand": "Politique santé et sécurité au travail, politique SST / QHSE, engagement de la direction, obligations légales de l'employeur, DUERP, PAPRIPACT, hiérarchie de la prévention, protection collective et EPI, rôle du CSE, culture sécurité, amélioration continue PDCA, revue annuelle, traçabilité et archivage, ISO 45001.",
+   "component": "src/politiqueSstMetro/PolitiqueSstMetro.tsx",
+   "demo": "Demo-PolitiqueSst",
+   "audio": null,
+   "tags": [
+    "politique SST",
+    "santé et sécurité au travail",
+    "engagement de la direction",
+    "Code du travail",
+    "DUERP",
+    "PAPRIPACT",
+    "hiérarchie de la prévention",
+    "protection collective",
+    "EPI",
+    "CSE",
+    "culture sécurité",
+    "PDCA",
+    "roue de Deming",
+    "traçabilité",
+    "Cambria"
+   ],
+   "hash": "f4c458acdbd7",
+   "path": "assets/politique-sst-contenu-legal/index.md",
+   "preview": "assets/politique-sst-contenu-legal/preview.mp4"
   },
   {
    "section": "assets",
