@@ -1063,7 +1063,7 @@ const DOMS: DOM[] = [
     {num: '39001', name: 'Sécurité routière', at: 83.0, desc: 'Sécurité routière', ic: 'Route', sig: 'light'},
     {num: '18788', name: 'Opérations de sécurité', at: 88.4, desc: 'Opérations de sécurité', ic: 'ShieldCheck'},
     {num: '35001', name: 'Biorisques', at: 93.6, desc: 'Biorisques', ic: 'Dna', sig: 'dna'}]},
-  {n: 3, name: 'Gouvernance', short: 'gouvern.', c: '#6D4BD8', img: 'principes-gen/conformite.jpg', ic: 'Landmark', gyro: 98.25, a: 100.0, b: 124.95, cntAt: 103.5, cnt: '4 normes', stds: [
+  {n: 3, name: 'Gouvernance', short: 'gouvern.', c: '#6D4BD8', img: 'climat-gen/gouvernance.jpg', ic: 'Landmark', gyro: 98.25, a: 100.0, b: 124.95, cntAt: 103.5, cnt: '4 normes', stds: [
     {num: '37301', name: 'Conformité', at: 105.1, desc: 'Management de la conformité', ic: 'ClipboardCheck'},
     {num: '37001', name: 'Anti-corruption', at: 109.8, desc: 'Management anti-corruption', ic: 'Ban'},
     {num: '30401', name: 'Gestion des connaissances', at: 115.4, desc: 'Management des connaissances', ic: 'Lightbulb'},
@@ -1078,11 +1078,11 @@ const DOMS: DOM[] = [
     {num: '28000', name: 'Sécurité logistique', at: 163.5, desc: 'Management de la sécurité logistique', ic: 'Truck'},
     {num: '41001', name: 'Facility management', at: 168.6, desc: 'Facility management', ic: 'Building2'},
     {num: '21401', name: 'Hôtellerie durable', at: 173.9, desc: 'Management hôtelier durable', ic: 'BedDouble'}]},
-  {n: 6, name: "Sécurité de l'information", short: 'info', c: '#0F9D8F', img: 'sysqsse-gen/couverture.jpg', ic: 'Lock', gyro: 179.0, a: 180.8, b: 202.35, cntAt: 183.8, cnt: '3 normes', stds: [
+  {n: 6, name: "Sécurité de l'information", short: 'info', c: '#0F9D8F', img: 'climat-gen/cybersecurite.jpg', ic: 'Lock', gyro: 179.0, a: 180.8, b: 202.35, cntAt: 183.8, cnt: '3 normes', stds: [
     {num: '27001', name: "Sécurité de l'information", at: 186.2, desc: "Management de la sécurité de l'information", ic: 'Lock', sig: 'holo'},
     {num: '20000-1', name: 'Services IT', at: 191.2, desc: 'Management des services IT', ic: 'Server'},
     {num: '19770-1', name: 'Actifs logiciels', at: 196.7, desc: 'Management des actifs logiciels', ic: 'Cpu'}]},
-  {n: 7, name: 'Autres systèmes de management', short: 'autres', c: '#C0398B', img: 'promo/participants.jpg', ic: 'Layers', gyro: 202.3, a: 204.1, b: 231.35, cntAt: 208.2, cnt: '4 normes', stds: [
+  {n: 7, name: 'Autres systèmes de management', short: 'autres', c: '#C0398B', img: 'climat-gen/formation.jpg', ic: 'Layers', gyro: 202.3, a: 204.1, b: 231.35, cntAt: 208.2, cnt: '4 normes', stds: [
     {num: '21001', name: 'Organismes de formation', at: 209.4, desc: 'Management des organismes de formation', ic: 'GraduationCap', sig: 'cap'},
     {num: '21101', name: "Tourisme d'aventure", at: 214.6, desc: "Management du tourisme d'aventure", ic: 'Mountain', sig: 'plane'},
     {num: '14298', name: 'Impression sécurisée', at: 220.0, desc: "Management de l'impression sécurisée", ic: 'Printer', sig: 'guilloche'},
@@ -1420,7 +1420,7 @@ const KCover: React.FC = () => {
       <Abs x={0} y={175} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{...nb(NAVY, 6), borderColor: NBK, padding: '8px 22px', ...CAP, fontSize: 26, color: '#fff'}}>Amendement A1:2024 · action climatique</div></Abs>
       <KGlobe cx={540} cy={570} R={290} a={-5} fs={30} />
       <Abs x={0} y={905} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap'}}><PhotoLetterAnim ch="LES 31 NORMES ISO" src="iso9001-gen/qualiticien-tablette.jpg" size={104} ls={2} seed={2} /></Abs>
-      <Abs x={0} y={1025} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap'}}><PhotoLetterAnim ch="ET LE CLIMAT" src="swotmetro-gen/orage-menaces.jpg" size={130} ls={3} seed={5} /></Abs>
+      <Abs x={0} y={1025} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap'}}><PhotoLetterAnim ch="ET LE CLIMAT" src="climat-gen/auditeur-climat.jpg" size={130} ls={3} seed={5} /></Abs>
       <Abs x={40} y={1200} w={1000} style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 10}}>{DOMS.map((d) => <div key={d.n} style={{...nb(d.c, 4), borderColor: NBK, padding: '5px 12px', fontFamily: sansFont, fontWeight: 900, fontSize: 22, color: '#fff'}}>{d.n}. {d.name}</div>)}</Abs>
       <Abs x={60} y={1400} w={960} h={120} style={{background: '#fff', border: `5px solid ${INK}`, borderRadius: 18, boxShadow: `7px 7px 0 ${BURG}`, overflow: 'hidden'}}>
         <Tube x={30} y={34} w={900} h={24} />
