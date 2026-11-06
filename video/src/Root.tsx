@@ -246,6 +246,7 @@ import {OutilsAmeliorationMetro, OUTILS_AMELIORATION_METRO_FRAMES} from './outil
 import {SiglesQhseMetro, SIGLES_QHSE_METRO_FRAMES} from './siglesQhseMetro/SiglesQhseMetro';
 import {SwotMatriceMetro, SWOT_MATRICE_METRO_FRAMES} from './swotMatriceMetro/SwotMatriceMetro';
 import {NormesClimatMetro, NORMES_CLIMAT_METRO_FRAMES} from './normesClimatMetro/NormesClimatMetro';
+import {InducDeducMetro, INDUC_DEDUC_METRO_FRAMES} from './inducDeducMetro/InducDeducMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -510,6 +511,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseSiglesQhseMetro" component={SiglesQhseMetro} durationInFrames={SIGLES_QHSE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseSwotMatriceMetro" component={SwotMatriceMetro} durationInFrames={SWOT_MATRICE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseNormesClimatMetro" component={NormesClimatMetro} durationInFrames={NORMES_CLIMAT_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseInducDeducMetro" component={InducDeducMetro} durationInFrames={INDUC_DEDUC_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
