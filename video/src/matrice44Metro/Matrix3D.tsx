@@ -1,7 +1,8 @@
 /**
  * Matrice des risques 4 × 4 en vraie 3D (WebGL) : 16 colonnes dont la hauteur vaut P × G, couleur du vert au rouge,
  * qui surgissent en vague ; caméra en orbite puis vue de dessus (la matrice redevient un tableau) ; « hiérarchiser » :
- * les colonnes s'illuminent dans l'ordre de leur valeur. `u` = temps local (s).
+ * les colonnes s'illuminent dans l'ordre de leur valeur. `u` = temps local (s) ; `labels={false}` masque les
+ * valeurs P × G au-dessus des colonnes (quand la voix ne les prononce pas).
  */
 import React, {useLayoutEffect, useMemo} from 'react';
 import {useThree} from '@react-three/fiber';
@@ -57,7 +58,7 @@ const Cam: React.FC<{u: number}> = ({u}) => {
 };
 
 /** P = ligne (1 en bas → 4 en haut de l'écran en vue de dessus), G = colonne (1 à gauche → 4 à droite). */
-const Bar: React.FC<{p: number; g: number; u: number; rank: number}> = ({p, g, u, rank}) => {
+const Bar: React.FC<{p: number; g: number; u: number; rank: number; labels: boolean}> = ({p, g, u, rank, labels}) => {
   const v = p * g;
   const a = 0.2 + (p + g) * 0.09;
   const grow = outE(pg(u, a, a + 0.9));
@@ -70,12 +71,12 @@ const Bar: React.FC<{p: number; g: number; u: number; rank: number}> = ({p, g, u
   return (
     <group position={[x, 0, z]}>
       <mesh position={[0, h / 2, 0]} material={mat}><boxGeometry args={[1.05, h, 1.05]} /></mesh>
-      <sprite position={[0, h + 0.45, 0]} scale={[0.75 * grow, 0.75 * grow, 1]}><spriteMaterial map={numTex(String(v))} transparent depthWrite={false} /></sprite>
+      {labels && <sprite position={[0, h + 0.45, 0]} scale={[0.75 * grow, 0.75 * grow, 1]}><spriteMaterial map={numTex(String(v))} transparent depthWrite={false} /></sprite>}
     </group>
   );
 };
 
-export const Matrix3DScene: React.FC<{u: number}> = ({u}) => {
+export const Matrix3DScene: React.FC<{u: number; labels?: boolean}> = ({u, labels = true}) => {
   const cells = useMemo(() => {
     const l: {p: number; g: number; v: number}[] = [];
     for (let p = 1; p <= 4; p++) for (let g = 1; g <= 4; g++) l.push({p, g, v: p * g});
@@ -92,7 +93,7 @@ export const Matrix3DScene: React.FC<{u: number}> = ({u}) => {
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]}><planeGeometry args={[5.4, 5.4]} /><meshStandardMaterial color="#14213D" roughness={0.8} /></mesh>
       <gridHelper args={[5, 4, '#5B6B8C', '#5B6B8C']} position={[0, 0.005, 0]} />
       <sprite position={[0, 0.2, 0]} scale={[11 * clamp01(u / 1.2), 11 * clamp01(u / 1.2), 1]}><spriteMaterial map={gl} color="#F07A12" transparent opacity={0.22} depthWrite={false} blending={THREE.AdditiveBlending} /></sprite>
-      {cells.map((c) => <Bar key={`${c.p}-${c.g}`} p={c.p} g={c.g} u={u} rank={c.rank} />)}
+      {cells.map((c) => <Bar key={`${c.p}-${c.g}`} p={c.p} g={c.g} u={u} rank={c.rank} labels={labels} />)}
     </>
   );
 };

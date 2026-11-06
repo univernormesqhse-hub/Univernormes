@@ -10,4 +10,4 @@ tags: [matrice, risques, 3D, WebGL, P × G, cotation, criticité, dé]
 ---
 
 ## Utilisation
-3D : `<ThreeCanvas … gl={{alpha: true}}><Matrix3DScene u={t - début} /></ThreeCanvas>` (caméra : `KEYS`). 2D : `<Grid2D x y at scale hiP hiPAt hiG hiGAt pick pickAt alarm />`, `<Scale14 />`, `<Dice stop land />` dans `Matrice44Metro.tsx`. Couleur d'une valeur : `riskColor(v)`.
+3D : `<ThreeCanvas … gl={{alpha: true}}><Matrix3DScene u={t - début} /></ThreeCanvas>` (caméra : `KEYS`). 2D : `<Grid2D x y at scale hiP hiPAt hiG hiGAt pick pickAt alarm />`, `<Scale14 />`, `<Dice stop land />` dans `Matrice44Metro.tsx`. Couleur d'une valeur : `riskColor(v)`. `labels={false}` masque les valeurs au-dessus des colonnes (à utiliser quand la voix ne prononce pas les produits P × G).
