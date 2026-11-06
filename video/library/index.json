@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 114,
+ "count": 115,
  "items": [
   {
    "section": "templates",
@@ -2413,6 +2413,39 @@
    "hash": "04e409ab153e",
    "path": "assets/triangle-cid/index.md",
    "preview": "assets/triangle-cid/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "vingt-etapes-iso9001",
+   "name": "Les 20 étapes de la certification ISO 9001 — route de la feuille de route, moteur SMQ, boussole, bingo, radar 360°, moniteur médical, réacteur, meuble en kit, lever de rideau, certificat, roue de Deming",
+   "description": "Capsule métro (tube de verre à six guichets, gyrophare, recherche qui ouvre « SMQ », carrousel 3D de photos de terrain) sur les vingt étapes de la certification ISO 9001, police Cambria (repli Caladea), palette `YB` bleu / `YN` marine / `YT` turquoise / `YO` orange / `YR` rouge / `YG` vert / `YY` jaune, seuls les chiffres prononcés sont affichés. Techniques nouvelles — `<YRoad>` route sinueuse qui se trace, la capsule roule de jalon en jalon (feuille de route, chronologie d'audit) ; `<YHouse>` plan bleu qui se dessine puis maison qui s'élève ; `<YEngine>` moteur à engrenages et piston, le réservoir « 7 principes » fait monter le régime ; `<YDust>` classeurs poussiéreux barrés d'un grand X ; `<YCubes>` cubes 3D qui pivotent du « ? » à la réponse ; `<YCompass>` boussole dont l'aiguille pointe chaque principe cité ; `<YBingo>` boules qui tombent dans le rail puis BINGO ! ; `<YBricks>` briques des premières étapes posées sur le socle ; `<YWave>` ola de l'adhésion (la foule passe du gris à la couleur) ; `<YRadar>` radar 360° : internes au centre, PESTEL d'un côté, parties intéressées de l'autre ; `<YFlatline>` moniteur médical qui s'aplatit en alerte puis repart sous un bouclier ; `<YReactor>` cœur du réacteur et satellites qui s'allument ; `<YDials>` cadrans d'indicateurs sans valeurs ; `<YFlatpack>` notice (connaissance) / meuble qui se monte (compétence), trois vis barrées ; `<YVault>` immeuble sous dôme protecteur, clé qui tourne dans le cadenas ; `<YCurtain>` lever de rideau de théâtre sur une photo (répétition générale) ; `<YLights>` voyants qui passent au vert puis BOUM ! ; `<YMagnify>` loupe de l'auditeur qui coche les critères ; `<YCert>` certificat qui se déroule, sceau d'or et confettis ; `<YTriad>` cycle de trois ans (surveillance, surveillance, renouvellement) ; `<YToolbox>` boîte à outils dont jaillissent quatre cartes animées (5 Pourquoi, DMAIC, Gantt, PDCA) ; `<YDeming>` roue PDCA qui gravit la pente, retenue par sa cale ; `<YMagic>` insigne entouré d'étoiles scintillantes. Réutilise `VMorph`, `Ring3D`, `SearchOpen`, `LBalance`, `ZInk`, `JCrtOff`.",
+   "quand": "Démarche de certification (ISO 9001 ou autre norme), feuille de route d'un projet en phases, système de management de la qualité, principes de management, analyse du contexte (PESTEL, parties intéressées), risques et opportunités, indicateurs, compétences, chronologie d'audit, cycle de certification, outils d'amélioration continue.",
+   "component": "src/vingtEtapesIsoMetro/VingtEtapesIsoMetro.tsx",
+   "demo": "Demo-VingtEtapesIso",
+   "audio": null,
+   "tags": [
+    "ISO 9001",
+    "certification",
+    "vingt étapes",
+    "SMQ",
+    "7 principes",
+    "PESTEL",
+    "parties intéressées",
+    "risques",
+    "indicateurs",
+    "compétences",
+    "audit",
+    "revue de direction",
+    "cycle de 3 ans",
+    "PDCA",
+    "DMAIC",
+    "Gantt",
+    "5 Pourquoi",
+    "Cambria"
+   ],
+   "hash": "0f5ed7b0d885",
+   "path": "assets/vingt-etapes-iso9001/index.md",
+   "preview": "assets/vingt-etapes-iso9001/preview.mp4"
   },
   {
    "section": "assets",
