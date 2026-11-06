@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 118,
+ "count": 119,
  "items": [
   {
    "section": "templates",
@@ -57,6 +57,34 @@
    "hash": "4b396a264fb4",
    "path": "assets/affiche-arrachee/index.md",
    "preview": "assets/affiche-arrachee/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "analyse-pestel",
+   "name": "L'analyse PESTEL — radar à balayage, acrostiche P-E-S-T-E-L, tableau à palettes, pièce à deux faces, photomaton, circuit imprimé, hologrammes, fusée, planète en orbite, rolodex juridique, hexagone verrouillé, boussole stratégique",
+   "description": "Capsule métro à huit guichets (tube de verre qui s'adapte au nombre de guichets, gyrophare, recherche qui ouvre « PESTEL », carrousel 3D de photos) sur l'analyse PESTEL, police Cambria (repli Caladea), palette par lettre `XP` politique / `XE` économique / `XS` socioculturel / `XT` technologique / `XV` environnemental / `XL` légal + `XO` entreprise, seul le chiffre prononcé est affiché (six dimensions). Techniques nouvelles — `<XRadar>` radar à balayage conique (dégradé `conic-gradient`) : les signaux s'allument au passage du faisceau, les items reliés à l'entreprise ; `<XAcro>` acrostiche : tuiles-lettres qui tombent, chaque mot glisse sous sa lettre, reflet final ; `<XDecree>` palais des pouvoirs publics, décret qui se déroule, flèche animée vers l'entreprise ; `<XDeal>` donne de cartes en arc depuis le paquet ; `<XCoin>` pièce 3D à deux faces qui tourne puis bascule (faces `backfaceVisibility`, sans `filter` sur le conteneur `preserve-3d`) ; `<XSolari>` tableau des départs à palettes : chaque lettre claque avant de se fixer ; `<XRipple>` goutte, ondes concentriques et bouées qui oscillent ; `<XStrip>` bande de photomaton : chaque cliché se développe au flash ; `<XFunnel3>` entonnoir à trois sources de particules vers une cible ; `<XCircuit>` circuit imprimé : pistes qui s'allument, impulsions le long des pistes, l'entreprise se transforme avec un glitch RVB ; `<XHolo>` projecteur et cartes hologrammes à lignes de balayage ; `<XRocket>` fusée qui décolle, propulseurs étiquetés, réservoir qui se vide ; `<XEarth>` globe qui tourne et carrousel d'enjeux en orbite 3D (avant / arrière-plan) ; `<XTree>` arbre qui pousse, trois fruits étiquetés ; `<XLawStack>` livres qui tombent et rebondissent, tampon ; `<XRolodex>` tambour 3D vertical qui présente chaque carte ; `<XConform>` sceau vert contre carte de risque barrée qui rétrécit ; `<XHexLock>` six tuiles hexagonales qui volent en tournoyant, s'emboîtent puis s'allument une à une ; `<XStar>` étoile qui s'élève, six influences qui convergent ; `<XCompass>` boussole dont l'aiguille hésite puis se verrouille sur le cap. `XBox` : boîte « L'entreprise » commune. Réutilise `SearchOpen`, `Ring3D`, `ZInk`, `NBadge`, `TChip`, `JCrtOff`.",
+   "quand": "Analyse PESTEL / PESTLE, environnement externe, veille stratégique, diagnostic stratégique, management stratégique, facteurs politiques / économiques / socioculturels / technologiques / environnementaux / légaux, préparation d'une analyse SWOT, contexte de l'organisme (ISO 9001 / 14001 / 45001 § 4.1).",
+   "component": "src/pestelMetro/PestelMetro.tsx",
+   "demo": "Demo-Pestel",
+   "audio": null,
+   "tags": [
+    "PESTEL",
+    "PESTLE",
+    "environnement externe",
+    "management stratégique",
+    "veille",
+    "diagnostic stratégique",
+    "contexte de l'organisme",
+    "tableau à palettes",
+    "radar",
+    "rolodex",
+    "hologramme",
+    "boussole",
+    "Cambria"
+   ],
+   "hash": "a4ae987f76fc",
+   "path": "assets/analyse-pestel/index.md",
+   "preview": "assets/analyse-pestel/preview.mp4"
   },
   {
    "section": "assets",
