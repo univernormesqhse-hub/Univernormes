@@ -1054,7 +1054,7 @@ const CF = '#1F5FAF', CW = '#E8912D', CO = '#1E9E5A', CM = '#C0392B';
 const C_OFF = '#2E86DE', C_DEF = '#6C4BD8', C_ADA = '#16A085', C_SUR = '#B03A2E';
 type S4 = [string, string, string, string, string];
 const SW4: S4[] = [['S', 'Forces', 'Strengths', CF, 'Dumbbell'], ['W', 'Faiblesses', 'Weaknesses', CW, 'Unlink'], ['O', 'Opportunités', 'Opportunities', CO, 'TrendingUp'], ['T', 'Menaces', 'Threats', CM, 'TriangleAlert']];
-const SW_IMG = ['isoperf-gen/trophee.jpg', 'isoperf-gen/fracture.jpg', 'iso26/courbe-strategie.jpg', 'isoperf-gen/panique.jpg'];
+const SW_IMG = ['swotmetro-gen/equipe-forces.jpg', 'isoperf-gen/fracture.jpg', 'swotmetro-gen/horizon-croissance.jpg', 'swotmetro-gen/orage-menaces.jpg'];
 
 /* ═════════════ 1. Particules qui s'assemblent en lettres (matrice de points) ═════════════ */
 const DOTF: Record<string, string[]> = {
@@ -1342,12 +1342,13 @@ const WScope: React.FC<{x: number; y: number; w: number; h: number; at: number; 
 };
 
 /* ═════════════ 14. Orage des menaces : nuages, pluie et éclairs ═════════════ */
-const WStorm: React.FC<{at: number; bolts: [number, number, string][]; y?: number; h?: number}> = ({at, bolts, y = 450, h = 900}) => {
+const WStorm: React.FC<{at: number; bolts: [number, number, string][]; y?: number; h?: number; src?: string}> = ({at, bolts, y = 450, h = 900, src}) => {
   const t = useT();
   const app = prog(t, at, at + 1.0, easeOut);
   const flash = bolts.reduce((m, [a]) => Math.max(m, t > a && t < a + 0.35 ? 1 - (t - a) / 0.35 : 0), 0);
   return (
     <Abs x={0} y={y} w={1080} h={h} style={{overflow: 'hidden'}}>
+      {src && <Img src={PH(src)} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 40%', opacity: pop(t, at, 0.6), transform: `scale(${1.05 + (t - at) * 0.01})`}} />}
       <div style={{position: 'absolute', inset: 0, background: `linear-gradient(180deg, rgba(40,48,66,${0.75 * app}), rgba(40,48,66,0))`}} />
       {Array.from({length: 9}, (_, k) => <div key={k} style={{position: 'absolute', left: -200 + k * 150 + Math.sin(t * 0.6 + k) * 20, top: -60 + (k % 3) * 40 - (1 - app) * 300, width: 340, height: 170, borderRadius: '50%', background: k % 2 ? '#4A5368' : '#5C667C', filter: 'blur(6px)', opacity: 0.95}} />)}
       {app > 0.3 && Array.from({length: 46}, (_, k) => { const yy = ((t * 900 + random(`rn${k}`) * h) % h); return <div key={`r${k}`} style={{position: 'absolute', left: random(`rx${k}`) * 1080, top: yy, width: 3, height: 34, background: 'rgba(170,190,220,0.55)', transform: 'rotate(12deg)'}} />; })}
@@ -1595,7 +1596,7 @@ const WSwotRing: React.FC<{a: number; cy: number; lit?: number[]; R?: number; cw
 };
 
 /* ═════════════ Guichet 1 : introduction ═════════════ */
-const RING_STRAT = ['principes-gen/reunions.jpg', 'sysqsse-gen/reunion.jpg', 'iso9001-gen/reunion-plan-transition.jpg', 'iso26/direction-equipe.jpg', 'iso26/tablette-matrice.jpg', 'iso26/analyste-kpi.jpg', 'iso26/courbe-strategie.jpg', 'sysqsse-gen/architecte.jpg'];
+const RING_STRAT = ['swotmetro-gen/atelier-swot.jpg', 'principes-gen/reunions.jpg', 'sysqsse-gen/reunion.jpg', 'iso9001-gen/reunion-plan-transition.jpg', 'iso26/direction-equipe.jpg', 'iso26/tablette-matrice.jpg', 'iso26/analyste-kpi.jpg', 'iso26/courbe-strategie.jpg', 'sysqsse-gen/architecte.jpg'];
 const Intro: React.FC = () => {
   const t = useT();
   return (
@@ -1689,12 +1690,12 @@ const GExterne: React.FC = () => (
     <Heads h={[[94.5, ['O · Opportunités', 'des facteurs positifs'], [0]], [104.2, ['T · Menaces', 'risques et obstacles'], [0]]]} />
     <Ph a={94.4} b={104.15}>
       <ZAxis l="O" name="Opportunités" c={CO} at={94.5} />
-      <WScope x={60} y={565} w={960} h={560} at={94.8} src="principes-gen/base.jpg" c={CO} finds={[['Croissance', 100.5, 0.25, 0.42, 'TrendingUp'], ['Développement', 101.5, 0.55, 0.66, 'Sprout'], ['Succès', 102.4, 0.8, 0.36, 'Award']]} />
+      <WScope x={60} y={565} w={960} h={560} at={94.8} src="swotmetro-gen/horizon-croissance.jpg" c={CO} finds={[['Croissance', 100.5, 0.25, 0.42, 'TrendingUp'], ['Développement', 101.5, 0.55, 0.66, 'Sprout'], ['Succès', 102.4, 0.8, 0.36, 'Award']]} />
       <ZDef text="Des facteurs externes positifs, à exploiter" a={96.6} e={99.3} y={1160} fs={40} />
     </Ph>
     <Ph a={104.15} b={114.65}>
       <ZAxis l="T" name="Menaces" c={CM} at={104.2} />
-      <WStorm at={104.4} y={540} h={470} bolts={[[107.5, 0.28, 'RISQUES'], [108.2, 0.72, 'OBSTACLES']]} />
+      <WStorm at={104.4} y={540} h={470} src="swotmetro-gen/orage-menaces.jpg" bolts={[[107.5, 0.28, 'RISQUES'], [108.2, 0.72, 'OBSTACLES']]} />
       <WDomino x={216} y={1040} at={109.0} fall={111.6} c={CM} labels={['Menace', 'Objectifs', 'Fonctionnement', 'Organisation']} />
     </Ph>
   </Out>
@@ -1763,9 +1764,9 @@ const WCover: React.FC = () => {
     <AbsoluteFill style={{zIndex: 60, background: PAPER, opacity: 1 - out}}>
       <Bg />
       <Abs x={0} y={40} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.14)'}}><Img src={staticFile(LOGO)} style={{height: 76, display: 'block'}} /></div></Abs>
-      <Abs x={0} y={190} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap'}}><PhotoLetterAnim ch="L'ANALYSE ET" src="iso26/courbe-strategie.jpg" size={104} ls={3} seed={2} /></Abs>
+      <Abs x={0} y={190} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap'}}><PhotoLetterAnim ch="L'ANALYSE ET" src="swotmetro-gen/atelier-swot.jpg" size={104} ls={3} seed={2} /></Abs>
       <Abs x={0} y={300} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap'}}><PhotoLetterAnim ch="LA MATRICE" src="sysqsse-gen/reunion.jpg" size={104} ls={3} seed={4} /></Abs>
-      <Abs x={0} y={450} w={1080} style={{display: 'flex', justifyContent: 'center'}}><WExtrude text="SWOT" src="swot/postits.jpg" size={300} depth={18} c={NAVY} /></Abs>
+      <Abs x={0} y={450} w={1080} style={{display: 'flex', justifyContent: 'center'}}><WExtrude text="SWOT" src="swotmetro-gen/atelier-swot.jpg" size={300} depth={18} c={NAVY} /></Abs>
       <Abs x={50} y={840} w={980} style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18}}>
         {SW4.map(([l, n, en, c, ic]) => (
           <div key={l} style={{height: 150, ...nb('#fff', 7), borderColor: NBK, boxShadow: `7px 7px 0 ${c}`, display: 'flex', alignItems: 'center', gap: 16, padding: '0 20px'}}>
