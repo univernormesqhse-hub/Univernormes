@@ -80,6 +80,7 @@ import {SuperviseurQhseMetro} from '../superviseurQhseMetro/SuperviseurQhseMetro
 import {GestionMatriceMetro} from '../gestionMatriceMetro/GestionMatriceMetro';
 import {VingtEtapesIsoMetro} from '../vingtEtapesIsoMetro/VingtEtapesIsoMetro';
 import {IntegrationQseMetro} from '../integrationQseMetro/IntegrationQseMetro';
+import {TmsMetro} from '../tmsMetro/TmsMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -199,6 +200,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-GestionMatrice', C: GestionMatriceMetro, at: 126.0, dur: 24.0},
   {id: 'Demo-VingtEtapesIso', C: VingtEtapesIsoMetro, at: 325.9, dur: 16.0},
   {id: 'Demo-IntegrationQse', C: IntegrationQseMetro, at: 141.5, dur: 16.0},
+  {id: 'Demo-Tms', C: TmsMetro, at: 128.0, dur: 16.0},
 ];
 
 export const LibraryDemos: React.FC = () => (

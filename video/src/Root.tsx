@@ -253,6 +253,7 @@ import {SuperviseurQhseMetro, SUPERVISEUR_QHSE_METRO_FRAMES} from './superviseur
 import {GestionMatriceMetro, GESTION_MATRICE_METRO_FRAMES} from './gestionMatriceMetro/GestionMatriceMetro';
 import {VingtEtapesIsoMetro, VINGT_ETAPES_ISO_METRO_FRAMES} from './vingtEtapesIsoMetro/VingtEtapesIsoMetro';
 import {IntegrationQseMetro, INTEGRATION_QSE_METRO_FRAMES} from './integrationQseMetro/IntegrationQseMetro';
+import {TmsMetro, TMS_METRO_FRAMES} from './tmsMetro/TmsMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -524,6 +525,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseGestionMatriceMetro" component={GestionMatriceMetro} durationInFrames={GESTION_MATRICE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseVingtEtapesIsoMetro" component={VingtEtapesIsoMetro} durationInFrames={VINGT_ETAPES_ISO_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseIntegrationQseMetro" component={IntegrationQseMetro} durationInFrames={INTEGRATION_QSE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseTmsMetro" component={TmsMetro} durationInFrames={TMS_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
