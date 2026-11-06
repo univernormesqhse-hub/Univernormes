@@ -248,6 +248,7 @@ import {SwotMatriceMetro, SWOT_MATRICE_METRO_FRAMES} from './swotMatriceMetro/Sw
 import {NormesClimatMetro, NORMES_CLIMAT_METRO_FRAMES} from './normesClimatMetro/NormesClimatMetro';
 import {InducDeducMetro, INDUC_DEDUC_METRO_FRAMES} from './inducDeducMetro/InducDeducMetro';
 import {PlanEvacuationMetro, PLAN_EVACUATION_METRO_FRAMES} from './planEvacuationMetro/PlanEvacuationMetro';
+import {LoisInvisiblesMetro, LOIS_INVISIBLES_METRO_FRAMES} from './loisInvisiblesMetro/LoisInvisiblesMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -514,6 +515,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseNormesClimatMetro" component={NormesClimatMetro} durationInFrames={NORMES_CLIMAT_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseInducDeducMetro" component={InducDeducMetro} durationInFrames={INDUC_DEDUC_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondensePlanEvacuationMetro" component={PlanEvacuationMetro} durationInFrames={PLAN_EVACUATION_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseLoisInvisiblesMetro" component={LoisInvisiblesMetro} durationInFrames={LOIS_INVISIBLES_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />

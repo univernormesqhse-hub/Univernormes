@@ -75,6 +75,7 @@ import {SwotMatriceMetro} from '../swotMatriceMetro/SwotMatriceMetro';
 import {NormesClimatMetro} from '../normesClimatMetro/NormesClimatMetro';
 import {InducDeducMetro} from '../inducDeducMetro/InducDeducMetro';
 import {PlanEvacuationMetro} from '../planEvacuationMetro/PlanEvacuationMetro';
+import {LoisInvisiblesMetro} from '../loisInvisiblesMetro/LoisInvisiblesMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -189,6 +190,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-NormesClimat', C: NormesClimatMetro, at: 48.5, dur: 12.0},
   {id: 'Demo-InducDeduc', C: InducDeducMetro, at: 42.0, dur: 14.0},
   {id: 'Demo-PlanEvacuation', C: PlanEvacuationMetro, at: 113.0, dur: 18.0},
+  {id: 'Demo-LoisInvisibles', C: LoisInvisiblesMetro, at: 104.9, dur: 20.0},
 ];
 
 export const LibraryDemos: React.FC = () => (

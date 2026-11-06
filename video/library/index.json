@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 111,
+ "count": 112,
  "items": [
   {
    "section": "templates",
@@ -1030,6 +1030,40 @@
    "hash": "f8abb3c971fb",
    "path": "assets/jauge-compteur-100/index.md",
    "preview": "assets/jauge-compteur-100/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "lois-invisibles-qhse",
+   "name": "Les 25 lois invisibles QHSE — fromage suisse 3D, iceberg plongeant, plaques de gare des lois, dire / faire, tricot de la culture, tour de blocs fragile",
+   "description": "Capsule métro (tube de verre à six guichets, gyrophare, recherche qui ouvre la grille des 25 lois, carrousel 3D de photos de terrain) sur les lois non écrites de la QHSE, police Cambria (repli Caladea), palette `LY` jaune / `LN` marine / `LR` rouge / `LG` vert / `LB` bleu, aucun mot de marque d'outil à l'écran, seuls les numéros de lois cités par la voix sont affichés. Techniques nouvelles — `<KOrbitLaws>` orbite 3D des lois citées (couverture) ; `<LBook>` manuel qui s'ouvre et laisse échapper la lumière ; `<LSeal>` sceau de cire « secret » qui se fend, rabat qui s'ouvre sur « 25 » ; `<LEngrave>` gravure laser d'un mot dans une tête de profil ; `<LBinders>` classeurs qui s'empilent, coches d'audit, puis incidents qui éclatent avec secousse ; `<LGap>` deux rails qui divergent (écrit / réel) avec flèche de décalage ; `<L25>` grille de 25 tuiles qui se retournent en vague, lois citées surlignées ; `<LPuppet>` croix de marionnettiste qui tire les fils de Q, S, E ; `<LOrg>` organigramme à impulsions ; `<LOrbit>` chips en orbite autour d'une silhouette, triés en profondeur ; `<LLaw>` plaque de gare dont les chiffres du numéro de loi se retournent ; `<LPlane>` avion de papier (l'erreur) rattrapé par un filet (le système) ; `<LSlide>` jeton « responsabilité » qui glisse sur un rail basculant ; `<LSwiss>` modèle du fromage suisse en 3D, trous qui s'alignent, flèche du danger qui traverse ; `<LBalance>` balance qui penche ; `<LBattery>` batterie qui se vide ; `<LTri>` trois engrenages étiquetés ; `<LRoutine>` boucle « routine » avec compteur de tours et jauge de vigilance qui se vide ; `<LTorn>` papier déchiré terrain / procédures, chaque ligne à son instant ; `<LNine>` jauge 9 sur 10 ; `<LPlant>` arbre à pièces ; `<LPyramid>` pyramide à sommet lumineux ; `<LArch>` arche dont la clé de voûte tombe ; `<LSign>` signature qui se trace puis se barre ; `<LSayDo>` écran partagé « ce qu'ils disent / ce qu'ils font » avec glitch et « ≠ » ; `<LSteps>` empreintes du leader suivies ; `<LKnit>` tricot rang après rang ; `<LDaily>` calendrier qui s'effeuille sur une pellicule ; `<LAnchor>` ancre qui se plante ; `<LDistill>` entonnoir qui condense une goutte d'or ; `<LJuggle>` jonglage ; `<LIceberg>` iceberg avec plongée de caméra sous l'eau ; `<LTrophy>` trophée qui se fend ; `<LJenga>` tour de blocs dont un bloc est retiré ; `<LToggle>` interrupteur connaître → appliquer ; `<LWeak>` oscilloscope dont un pic faible est amplifié ; `<LEar>` oreille à ondes ; `<LGearsTol>` engrenages tolérants (une dent casse, le système continue).",
+   "quand": "Culture sécurité, facteur humain, leadership, principes « non écrits » ou retours d'expérience, toute liste de lois / règles / principes numérotés dont seuls certains sont développés, opposition « prescrit / réel » ou « dire / faire », conclusion sur la vigilance et les signaux faibles.",
+   "component": "src/loisInvisiblesMetro/LoisInvisiblesMetro.tsx",
+   "demo": "Demo-LoisInvisibles",
+   "audio": null,
+   "tags": [
+    "QHSE",
+    "culture sécurité",
+    "facteur humain",
+    "leadership",
+    "fromage suisse",
+    "Reason",
+    "iceberg",
+    "erreur humaine",
+    "routine",
+    "fatigue",
+    "travail prescrit",
+    "travail réel",
+    "coût de la prévention",
+    "exemplarité",
+    "signaux faibles",
+    "plaque de gare",
+    "tricot",
+    "Jenga",
+    "Cambria"
+   ],
+   "hash": "fc95bd95d90f",
+   "path": "assets/lois-invisibles-qhse/index.md",
+   "preview": "assets/lois-invisibles-qhse/preview.mp4"
   },
   {
    "section": "assets",
