@@ -261,6 +261,7 @@ import {AuditInterneMetro, AUDIT_INTERNE_METRO_FRAMES} from './auditInterneMetro
 import {PolitiqueSmiMetro, POLITIQUE_SMI_METRO_FRAMES} from './politiqueSmiMetro/PolitiqueSmiMetro';
 import {DuerpMetro, DUERP_METRO_FRAMES} from './duerpMetro/DuerpMetro';
 import {Iso26000Metro, ISO26000_METRO_FRAMES} from './iso26000Metro/Iso26000Metro';
+import {AuditCertifMetro, AUDIT_CERTIF_METRO_FRAMES} from './auditCertifMetro/AuditCertifMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -540,6 +541,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondensePolitiqueSmiMetro" component={PolitiqueSmiMetro} durationInFrames={POLITIQUE_SMI_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseDuerpMetro" component={DuerpMetro} durationInFrames={DUERP_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseIso26000Metro" component={Iso26000Metro} durationInFrames={ISO26000_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseAuditCertifMetro" component={AuditCertifMetro} durationInFrames={AUDIT_CERTIF_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />

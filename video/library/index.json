@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 124,
+ "count": 125,
  "items": [
   {
    "section": "templates",
@@ -224,6 +224,35 @@
    "hash": "5c984652570d",
    "path": "assets/atelier-balaye/index.md",
    "preview": "assets/atelier-balaye/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "audit-certification-metro",
+   "name": "L'audit de certification ISO — examen sur la table, projecteur et carte du monde en points, inspecteur venu de l'extérieur, repérage d'impression, piste du programme, machine à sous, machine à écrire, appariement point par point, imprimante et sceau, tableau d'identification, clé de l'impartialité, monolithes, routes aériennes, cloche, planche de BD, empreintes, lampe torche, écran VS, onglets PDCA, page repliée, enveloppe, aiguillage, feu tricolore, ligne d'arrivée devenue départ, « 3 » extrudé, circuit, polaroïds, starting-blocks",
+   "description": "Capsule métro à sept guichets (gyrophare, recherche qui ouvre « audit de certification », trois carrousels 3D, nombreux inserts photo tirés des images du dépôt) sur l'audit de certification ISO, police Cambria (repli Caladea), palette `AcO` orange / `AcN` bleu nuit / `AcG` vert + `AcB` `AcR` `AcY` `AcK` `AcP` `AcT`, seuls les chiffres prononcés sont affichés (ISO 9001, 4 phases, 3 ans, parties 1 à 5). Techniques nouvelles — `<AcExamDesk>` l'entreprise passe l'examen à sa table, horloge qui s'emballe ; `<AcSpotlightMap>` projecteur qui balaie une carte du monde en points (`AC_DOTS`) puis l'allume en onde ; `<AcInspector>` porte qui s'ouvre, inspecteur gris, empreintes, tableau noir des règles coché ; `<AcRegister>` calques cyan / magenta / jaune et croix de repérage qui s'alignent ; `<AcRace>` piste sinueuse, pion-coureur et cinq drapeaux ; `<AcSlot>` machine à sous, rouleaux flous qui s'arrêtent sur la coche, ampoules en chenillard ; `<AcTypewriter>` bulle « dire » barrée, machine à écrire et chariot ; `<AcMatchLines>` exigences reliées au quotidien, sceau pointillé devenu sceau doré ; `<AcPrinterSeal>` imprimante grand format, certificat, sceau de cire, yeux qui s'ouvrent ; `<AcLineup>` tableau d'identification à graduations ; `<AcSelfGrade>` auto-évaluation barrée, tiers de confiance qui entre ; `<AcKeyLock>` balance à l'équilibre, rosette d'accréditation, clé qui ouvre le cadenas ; `<AcGiants>` monolithes qui s'élèvent avec leurs plaques, arbitre au drapeau ; `<AcFlightArcs>` arcs aériens animés sur la carte en points ; `<AcCloche>` cloche argentée qui se soulève, vapeur ; `<AcComic>` planche de BD : cases qui s'encrent, photos en trame de points ; `<AcFootsteps>` plan vu de dessus et empreintes du bureau aux postes ; `<AcFlashlight>` faisceau de lampe torche dans le noir, preuves cochées ; `<AcVersus>` écran « VS » en diagonale, éclair et secousse ; `<AcTabs>` onglets de la norme, cases cochées puis roue PDCA ; `<AcFoldMatch>` la page de l'écrit se replie (rotateY) sur la scène du fait ; `<AcEnvelope>` enveloppe qui tremble, rabat, rapport qui sort ; `<AcSorter>` aiguillage des constats vers deux bacs, étiquette qui se retourne ; `<AcTriState>` interrupteur oui / non devenu curseur à trois positions et feu tricolore ; `<AcFinishLoop>` ruban d'arrivée cassé, zoom arrière sur une piste en boucle ; `<AcExtrude3>` « 3 » extrudé en couches, lemniscate infinie ; `<AcCarTrack>` circuit circulaire, bolide qui s'arrête aux audits ; `<AcPolaroids>` polaroïds qui tombent sur le liège et se développent ; `<AcStartBlocks>` athlète dans les starting-blocks, cœur qui bat. `AcChip` (option `strike`), `AcStamp` : utilitaires. Réutilise `SearchOpen`, `Ring3D`, `ZInk`, `NBadge`, `TChip`, `JCrtOff`.",
+   "quand": "Audit de certification ISO (ISO 9001, 14001, 45001…), préparation à la certification, organisme certificateur et impartialité, étapes de l'audit (revue documentaire, audit terrain, rapport, décision), conformités et non-conformités, corrections mineures / majeures, cycle de trois ans (surveillance, recertification), sensibilisation des équipes avant l'audit.",
+   "component": "src/auditCertifMetro/AuditCertifMetro.tsx",
+   "demo": "Demo-AuditCertif",
+   "audio": null,
+   "tags": [
+    "audit de certification",
+    "ISO 9001",
+    "organisme certificateur",
+    "impartialité",
+    "revue documentaire",
+    "audit terrain",
+    "preuves",
+    "rapport d'audit",
+    "non-conformité",
+    "corrections",
+    "surveillance",
+    "recertification",
+    "PDCA",
+    "Cambria"
+   ],
+   "hash": "3bb0b61922b9",
+   "path": "assets/audit-certification-metro/index.md",
+   "preview": "assets/audit-certification-metro/preview.mp4"
   },
   {
    "section": "assets",
