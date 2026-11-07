@@ -258,6 +258,7 @@ import {PolitiqueSstMetro, POLITIQUE_SST_METRO_FRAMES} from './politiqueSstMetro
 import {PestelMetro, PESTEL_METRO_FRAMES} from './pestelMetro/PestelMetro';
 import {BenchmarkingMetro, BENCHMARKING_METRO_FRAMES} from './benchmarkingMetro/BenchmarkingMetro';
 import {AuditInterneMetro, AUDIT_INTERNE_METRO_FRAMES} from './auditInterneMetro/AuditInterneMetro';
+import {PolitiqueSmiMetro, POLITIQUE_SMI_METRO_FRAMES} from './politiqueSmiMetro/PolitiqueSmiMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -534,6 +535,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondensePestelMetro" component={PestelMetro} durationInFrames={PESTEL_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseBenchmarkingMetro" component={BenchmarkingMetro} durationInFrames={BENCHMARKING_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseAuditInterneMetro" component={AuditInterneMetro} durationInFrames={AUDIT_INTERNE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondensePolitiqueSmiMetro" component={PolitiqueSmiMetro} durationInFrames={POLITIQUE_SMI_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
