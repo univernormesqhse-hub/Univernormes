@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 122,
+ "count": 123,
  "items": [
   {
    "section": "templates",
@@ -785,6 +785,33 @@
    "hash": "d136ba3c31f2",
    "path": "assets/dominos-mesures/index.md",
    "preview": "assets/dominos-mesures/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "duerp-metro",
+   "name": "Le guide complet du DUERP — mise au point caméra, chiffre 1 en particules, réaction en chaîne du premier salarié, carte en accordéon, tableau à palettes, plume qui consigne, tiroir → tableau de bord, tri hiérarchique, cadran à neuf crans, travelling jusqu'à la source, fil de fer → réel, anneaux d'activité, donne de cartes, zoom infini, caméra thermique, bonneteau, vitrine de musée, pelure d'oignon, table de mixage, isotype, coche → boucle, tremplin",
+   "description": "Capsule métro à six guichets (gyrophare, recherche qui ouvre « DUERP », deux carrousels 3D de photos) sur le document unique d'évaluation des risques professionnels, police Cambria (repli Caladea), palette `DuR` rouge danger / `DuB` bleu / `DuG` vert + `DuO` `DuY` `DuK` `DuN` `DuP`, seuls les chiffres prononcés sont affichés (1, 10e, 50e, 9 piliers, 4 étapes, 3e principe, 50 salariés). Techniques nouvelles — `<DuRackFocus>` viseur REC, bague de mise au point, sigle net qui devient flou et dédoublé en aberration chromatique, tampon ; `<DuParticleOne>` essaim de particules qui se rassemble en un « 1 » géant ; `<DuFirstHire>` porte qui s'ouvre sur le premier salarié, tickets barrés, dominos → bille → engrenage → gyrophare (réaction en chaîne) ; `<DuSmallBig>` dalle commune, petite échoppe et grande tour, loupe qui grossit l'échoppe et révèle son bouclier ; `<DuMapFold>` carte pliée en accordéon qui se déplie, itinéraire en pointillés entre quatre épingles ; `<DuSplitFlap>` tableau d'affichage à palettes, chaque lettre claque jusqu'à son mot ; `<DuInkPen>` registre ligné, verbe écrit à la plume (write-on), actions cochées ; `<DuBodyMind>` silhouette balayée par un scanner, bouclier sur le corps, cerveau qui irradie ; `<DuDrawerFlip>` le document plonge dans le tiroir puis jaillit en tableau de bord à deux jauges ; `<DuSortBars>` neuf barres en désordre qui se trient d'elles-mêmes ; `<DuNineDial>` cadran de coffre à neuf crans et liste qui s'éclaire dans l'ordre ; `<DuSource>` travelling le long d'une canalisation qui fuit jusqu'à la vanne fermée à la source ; `<DuWireframe>` plan filaire bleu nuit qui se remplit en réel ; `<DuRings4>` quatre anneaux d'activité qui se remplissent l'un après l'autre ; `<DuCardDeal>` cartes distribuées face cachée qui se retournent, la dernière s'envole, les autres deviennent creuses ; `<DuInfiniteZoom>` zoom infini établissement → unité → poste ; `<DuThermal>` caméra thermique en fausses couleurs, froid à gauche, chaud à droite ; `<DuShellGame>` bonneteau « danger / risque », mur de briques, = devient ≠ ; `<DuVitrine>` socles de musée sous cloche et projecteur, objets qui tournent ; `<DuOnionSkin>` silhouettes en pelure d'oignon : exposition, étincelles, chute ; `<DuFaders>` table de mixage, curseurs probabilité / gravité et vumètre ; `<DuIsotype50>` pictogrammes de part et d'autre du seuil, barrière qui se lève ; `<DuDust>` calendrier qui s'effeuille, poussière, toile, nuage soufflé ; `<DuCheckLoop>` la coche se transforme en boucle fléchée avec un œil vigilant ; `<DuSpringboard>` tremplin qui propulse le bouclier, ville qui s'élève et se sécurise. `DuChip` : utilitaire (option `strike`). Réutilise `SearchOpen`, `Ring3D`, `SlamTag`, `NBadge`, `TChip`, `JCrtOff`.",
+   "quand": "Document unique d'évaluation des risques professionnels (DUERP), obligation de l'employeur dès le premier salarié, neuf principes généraux de prévention, démarche d'évaluation des risques en quatre étapes, unités de travail, ambiances thermiques, distinction danger / risque, seuil des 50 salariés, mise à jour du document unique, culture de prévention.",
+   "component": "src/duerpMetro/DuerpMetro.tsx",
+   "demo": "Demo-Duerp",
+   "audio": null,
+   "tags": [
+    "DUERP",
+    "document unique",
+    "évaluation des risques",
+    "principes généraux de prévention",
+    "danger",
+    "risque",
+    "unité de travail",
+    "ambiance thermique",
+    "50 salariés",
+    "prévention",
+    "obligation de l'employeur",
+    "Cambria"
+   ],
+   "hash": "e2a43dfead91",
+   "path": "assets/duerp-metro/index.md",
+   "preview": "assets/duerp-metro/preview.mp4"
   },
   {
    "section": "assets",
