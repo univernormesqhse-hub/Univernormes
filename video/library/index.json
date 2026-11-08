@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 125,
+ "count": 126,
  "items": [
   {
    "section": "templates",
@@ -1900,6 +1900,32 @@
    "hash": "7571685b03fe",
    "path": "assets/portes-fta/index.md",
    "preview": "assets/portes-fta/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "processus-procedure-instruction-metro",
+   "name": "Processus, procédure, instruction — étiquettes qui s'échangent, correcteur et fissure, poupées gigognes, château de cartes, pyramide isométrique, zoom de détail, sommet, tuiles qui s'alignent, cible, moulinette, hélicoptère, chaîne du service, brouillard, échafaudage, silos, ascenseur, presse, plateau de jeu, fiche réflexe, monstre de paperasse, interrupteurs, notice en accordéon, loupe, plan du casque, mise au point, test du débutant, gravure, tableau tapé, cuisine, ruban de chantier, trappes, prisme, pince, point de départ",
+   "description": "Capsule métro à sept guichets (gyrophare, recherche qui ouvre « le cœur du problème », deux carrousels 3D, inserts photo et polaroïds tirés des images du dépôt) sur la pyramide documentaire processus / procédure / instruction de travail, police Cambria (repli Caladea), palette `PpB` bleu processus / `PpO` orange procédure / `PpG` vert instruction + `PpY` `PpK` `PpR` `PpN` `PpP` `PpT`, seuls les chiffres prononcés sont affichés (ISO 9001, 4 pièges, parties 1 à 5). Techniques nouvelles — `<PpNameTags>` trois étiquettes se décollent et se recollent sur les mauvaises boîtes ; `<PpSpellCrack>` trait ondulé du correcteur puis fissure du système ; `<PpNesting>` poupées gigognes qui s'emboîtent ; `<PpCardHouse>` château de cartes monté carte par carte, base fausse, coup de vent ; `<PpPyramid>` pyramide isométrique qui monte du sol, étage actif surligné (`active`, `subs`) ; `<PpLOD>` zoom continent → ville → maison avec curseur de niveau ; `<PpSummit>` grimpeur, drapeau au sommet, longue-vue qui balaie ; `<PpSnapOrder>` tuiles en vrac qui s'alignent en pyramide ; `<PpBullseye>` flèche dans la cible, onde ; `<PpTransformer>` trémie, engrenages, tapis de sortie (inputs / outputs) ; `<PpHeli>` hélicoptère, ombre et projecteur sur la carte qui se dessine ; `<PpServiceChain>` entrée, étapes, sortie et accolade « un seul processus » ; `<PpFogMap>` nuages flous « abstrait ? » qui se dissipent sur la cartographie ; `<PpScaffold>` poutres qui se posent, feuilles rangées dans les cases ; `<PpWhoWhat>` personnes reliées aux tâches, jauge, flèche ; `<PpSilos>` silos qui s'abaissent, flux de valeur jusqu'au client ; `<PpElevator>` afficheur d'étage, « ding », portes qui s'ouvrent ; `<PpPress>` presse qui frappe des fiches identiques ; `<PpBoardGame>` pions qui suivent le même chemin dans le même ordre ; `<PpReflexCard>` fiche « en cas de pépin », gyrophare, consignes cochées, feuille de route ; `<PpPaperMonster>` pile de papiers qui ouvre les yeux et vacille ; `<PpSwitchPanel>` interrupteurs des critères et voyant « procédure écrite » ; `<PpAccordion>` notice qui se déplie volet par volet ; `<PpLoupe>` loupe grossissante sur une photo du dépôt, repères (geste, outil, réglage) ; `<PpHelmetPlan>` consigne courte à gauche, plan technique du casque pas à pas à droite ; `<PpRackFocus>` lingot « règle d'or » et texte flou mis au point ; `<PpRookie>` apprenti, fiche cochée, « sans danger », « objectif atteint » ; `<PpEngrave>` trois colonnes côte à côte, gravure au laser avec étincelles ; `<PpTable>` tableau dont les cellules se tapent, bon de commande coché case par case ; `<PpKitchen>` marmite, fiche recette, couteau qui émince l'oignon ; `<PpBookToTool>` livre « théorie » qui se referme en clé à molette ; `<PpCautionTape>` rubans de chantier en croix ; `<PpTrapDoors>` dalles qui s'ouvrent sur les pièges, la dernière en rouge ; `<PpTopDown>` curseur qui descend la pyramide étage par étage jusqu'au terrain ; `<PpPrism>` prisme 3D à trois faces ; `<PpPolaroids>` polaroïds du terrain qui se révèlent ; `<PpAliveDust>` document vivant qui bourgeonne contre classeur poussiéreux ; `<PpClaw>` pince de fête foraine qui choisit une seule carte et la pose en fondation ; `<PpStartPoint>` point de départ et réseau qui rayonne. `PpChip` (option `strike`) : utilitaire. Réutilise `SearchOpen`, `Ring3D`, `ZInk`, `NBadge`, `JCrtOff`.",
+   "quand": "Système documentaire QHSE, différence processus / procédure / instruction de travail, cartographie des processus, approche processus ISO 9001, quand écrire une procédure, rédaction d'instructions de travail et de modes opératoires, formation des opérateurs, erreurs courantes de documentation.",
+   "component": "src/processusMetro/ProcessusMetro.tsx",
+   "demo": "Demo-Processus",
+   "audio": null,
+   "tags": [
+    "processus",
+    "procédure",
+    "instruction de travail",
+    "pyramide documentaire",
+    "cartographie des processus",
+    "approche processus",
+    "ISO 9001",
+    "mode opératoire",
+    "système documentaire",
+    "QHSE",
+    "Cambria"
+   ],
+   "hash": "73b8cba9fe32",
+   "path": "assets/processus-procedure-instruction-metro/index.md",
+   "preview": "assets/processus-procedure-instruction-metro/preview.mp4"
   },
   {
    "section": "assets",
