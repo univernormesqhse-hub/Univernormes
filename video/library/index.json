@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 126,
+ "count": 127,
  "items": [
   {
    "section": "templates",
@@ -2001,6 +2001,35 @@
    "hash": "5bd137846d25",
    "path": "assets/radar-parties/index.md",
    "preview": "assets/radar-parties/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "rapport-hebdo-qhse-metro",
+   "name": "Le rapport hebdomadaire QHSE chantier — tour de contrôle et radar, flux de données, tourniquet de pointage, cadran des heures, panneau à volets, spectre de gravité, division AAA / ASA, habillage EPI aimanté, quart d'heure et ondes, radar et tri des écarts, dominos, moniteur ECG, tableau rempli colonne par colonne puis ligne par ligne, formulaire déchiré, cockpit",
+   "description": "Capsule métro courte à huit guichets (gyrophare, recherche qui ouvre « la tour de contrôle », deux carrousels 3D, inserts photo tirés des images du dépôt) sur le rapport hebdomadaire QHSE de chantier, police Cambria (repli Caladea), palette `RhO` orange chantier / `RhN` bleu nuit / `RhG` vert + `RhR` `RhY` `RhB` `RhK` `RhP` `RhT`. La voix ne cite aucun chiffre : le tableau des indicateurs se remplit en barres liquides, sans valeurs. Techniques nouvelles — `<RhTower>` tour de contrôle, faisceau conique qui tourne, paquets de données qui convergent vers la vigie ; `<RhTurnstile>` tourniquet, silhouettes qui passent, grille des présents qui se remplit, cadran des heures qui se colore ; `<RhSpectrum>` panneau à volets qui affiche « FAIT MARQUANT » lettre à lettre, curseur qui glisse sur un spectre vert → rouge ; `<RhMitosis>` carte « accidents » qui s'étire et se divise en AAA / ASA ; `<RhDressUp>` porte d'accueil qui s'ouvre, EPI qui volent et se clipsent sur le travailleur avec un éclair ; `<RhQuarterClock>` quart de cadran qui se remplit sur une photo de causerie, ondes qui allument l'équipe ; `<RhRadarSort>` radar à balayage qui révèle des points, tri aimanté vers deux bacs ; `<RhDominoes>` bouton d'alerte pressé, dominos qui tombent et bifurquent vers correctives / préventives ; `<RhVitals>` moniteur médical sur photo, ECG qui défile, cœur qui bat ; `<RhTableFill>` en-têtes colonne par colonne, lignes qui se tracent, cellules qui n'apparaissent qu'une fois leur colonne et leur ligne posées puis se remplissent en barres liquides, surlignage au marqueur ; `<RhPaperTear>` formulaire gris déchiré en deux qui révèle le tableau de pilotage ; `<RhCockpit>` pare-brise sur le chantier avec viseur, volant, deux jauges. `RhChip` (option `strike`) : utilitaire. Réutilise `SearchOpen`, `Ring3D`, `NBadge`, `JCrtOff`.",
+   "quand": "Rapport hebdomadaire QHSE, reporting chantier, tableau de bord sécurité, effectifs et heures travaillées, faits marquants et accidents (AAA / ASA), accueils sécurité, EPI, quarts d'heure QHSE / TBM, JSA, écarts et non-conformités, actions correctives et préventives, suivi médical, indicateurs de performance.",
+   "component": "src/rapportHebdoMetro/RapportHebdoMetro.tsx",
+   "demo": "Demo-RapportHebdo",
+   "audio": null,
+   "tags": [
+    "rapport hebdomadaire",
+    "reporting QHSE",
+    "chantier",
+    "tableau de bord",
+    "AAA",
+    "ASA",
+    "EPI",
+    "TBM",
+    "JSA",
+    "écarts",
+    "actions correctives",
+    "suivi médical",
+    "indicateurs",
+    "Cambria"
+   ],
+   "hash": "8d7ccac7a09e",
+   "path": "assets/rapport-hebdo-qhse-metro/index.md",
+   "preview": "assets/rapport-hebdo-qhse-metro/preview.mp4"
   },
   {
    "section": "assets",
