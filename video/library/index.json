@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 131,
+ "count": 132,
  "items": [
   {
    "section": "templates",
@@ -1358,6 +1358,31 @@
    "hash": "5c984652570d",
    "path": "assets/maison-retour/index.md",
    "preview": "assets/maison-retour/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "matrice-ansoff-metro",
+   "name": "La matrice d'Ansoff — particules qui écrivent « ANSOFF », balance amortie, axes qui se percutent, interrupteurs, tissage, foreuse, globe en points, imprimante 3D, fusée, matrice 3D et boussole",
+   "description": "Capsule métro à sept guichets (gyrophare, recherche qui ouvre « la matrice d'Ansoff », carrousel 3D d'images, images du dépôt) sur la matrice d'Ansoff, police Cambria (repli Caladea), palette `AnB` pénétration / `AnG` développement de marché / `AnO` développement de produits / `AnR` diversification + `AnT` `AnY` `AnN` `AnK`, seuls les chiffres prononcés sont affichés (deux dimensions, 4 stratégies). Techniques nouvelles — `<AnParticles>` neuf cent vingt particules aux quatre couleurs des stratégies qui tourbillonnent et écrivent « ANSOFF » (cibles `AN_PTS` échantillonnées hors ligne), onde lumineuse ; `<AnScale>` balance « ce qu'elle maîtrise / les nouveautés » à oscillation amortie (cosinus × exponentielle), étoile qui tourne, étiquette « Explorer » ; `<AnAxes>` barre PRODUITS qui glisse et barre MARCHÉS qui tombe, impact avec étincelles, onde et secousse, cadre rogné sur la zone utile ; `<AnToggles>` deux interrupteurs Existant / Nouveau qui basculent en décalé ; `<AnWeave>` fils ondulés dessus-dessous qui se croisent, nœuds pulsants, quatre tuiles qui pivotent en 3D puis s'écartent ; `<AnDrill>` foreuse qui perce les couches du marché, éclats, histogramme et courbe des ventes, rempart de briques qui tombe ; `<AnGlobe>` sphère de Fibonacci (420 points) en rotation inclinée, arcs de Bézier parcourus par le produit vers les nouveaux acheteurs et les zones géographiques, balises pulsantes ; `<AnPrinter>` imprimante 3D avec écran de progression, buse qui dépose l'étoile couche par couche (clipPath), bulle de besoin, vol jusqu'à la clientèle ; `<AnRocket>` champ d'étoiles en vitesse lumière, onde « la plus radicale », décollage avec fumée et trajectoire vers une planète inconnue qui s'allume ; `<AnMatrixFinale>` matrice 2 × 2 inclinée en perspective, tuiles qui tombent en profondeur, boussole centrale qui pointe chaque stratégie, tampon « Choix stratégiques ». `AnChip` : utilitaire. Réutilise `SearchOpen`, `Ring3D`, `NBadge`, `ZInk`, `JCrtOff`.",
+   "quand": "Matrice d'Ansoff, stratégie de croissance, couple produits / marchés, pénétration de marché, développement de marché, développement de produits, diversification, plan marketing, toute matrice 2 × 2 à quatre options.",
+   "component": "src/ansoffMetro/AnsoffMetro.tsx",
+   "demo": "Demo-Ansoff",
+   "audio": null,
+   "tags": [
+    "Ansoff",
+    "stratégie de croissance",
+    "produits",
+    "marchés",
+    "pénétration",
+    "développement de marché",
+    "développement de produits",
+    "diversification",
+    "particules",
+    "Cambria"
+   ],
+   "hash": "08ab022d3438",
+   "path": "assets/matrice-ansoff-metro/index.md",
+   "preview": "assets/matrice-ansoff-metro/preview.mp4"
   },
   {
    "section": "assets",
