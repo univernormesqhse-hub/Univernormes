@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 132,
+ "count": 133,
  "items": [
   {
    "section": "templates",
@@ -790,6 +790,31 @@
    "hash": "78f6f48b1e12",
    "path": "assets/cylindre-vertical-sigles/index.md",
    "preview": "assets/cylindre-vertical-sigles/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "danger-ou-risque-metro",
+   "name": "Danger ou risque ? — particules interchangeables DANGER ↔ RISQUE, « ≠ » frappé, musée des dangers, sceau de cire, radar d'exposition, polaroïds qui se développent, réticule sur carte de chaleur, tableau à palettes",
+   "description": "Capsule métro courte à quatre guichets (gyrophare, recherche qui ouvre « la propriété intrinsèque », carrousel 3D d'images, images du dépôt) sur la différence entre danger et risque en santé au travail, police Cambria (repli Caladea), palette `DkR` danger / `DkB` risque + `DkY` `DkO` `DkG` `DkN` `DkK` `DkT`, aucun chiffre affiché hors « deux concepts ». Techniques nouvelles — `<DkParticles>` nuage de neuf cent vingt-quatre points qui écrit « DANGER », se recompose en « RISQUE » et revient (morphing point à point trié par abscisse, tourbillon perpendiculaire, fondu rouge ↔ bleu via `hexMix`), puis mode `split` qui sépare les deux mots ; `<DkNotEqual>` « ≠ » frappé avec onde de choc ; `<DkMuseum>` deux vitrines sous cloche de verre, projecteurs qui grésillent puis s'allument, plateaux tournants (scaleX cosinus), étiquettes « DANGER » pendulaires amorties ; `<DkSeal>` certificat qui se déroule, lignes qui s'écrivent, sceau de cire qui tombe et s'écrase avec éclaboussures, bandeau « UN FAIT INDÉNIABLE » ; `<DkRadar>` radar à balayage, zone de danger en dégradé radial, trajectoire de l'opérateur qui entre dans le rayon et passe au rouge, trajectoires potentielles en pointillés ; `<DkPolaroid>` flash blanc puis développement chimique de la photo (sépia → couleur), éclair animé sur l'électrocution, légende manuscrite ; `<DkReticle>` carte de chaleur probabilité × gravité, interdit sur « l'escalier en soi », lignes de visée bleue et rouge, réticule qui tourne puis se verrouille sur « cet escalier », mise au point ; `<DkSplitFlap>` tableau à palettes dont les lettres défilent puis claquent « DANGER ≠ RISQUE ». `DkChip` : utilitaire. Réutilise `SearchOpen`, `Ring3D`, `NBadge`, `JCrtOff`.",
+   "quand": "Danger et risque, santé et sécurité au travail, évaluation des risques, DUERP, exposition au danger, probabilité et gravité, toute paire de notions souvent confondues à distinguer.",
+   "component": "src/dangerOuRisqueMetro/DangerOuRisqueMetro.tsx",
+   "demo": "Demo-DangerOuRisque",
+   "audio": null,
+   "tags": [
+    "danger",
+    "risque",
+    "santé au travail",
+    "exposition",
+    "probabilité",
+    "gravité",
+    "évaluation des risques",
+    "particules",
+    "morphing",
+    "Cambria"
+   ],
+   "hash": "83d56f62b400",
+   "path": "assets/danger-ou-risque-metro/index.md",
+   "preview": "assets/danger-ou-risque-metro/preview.mp4"
   },
   {
    "section": "assets",

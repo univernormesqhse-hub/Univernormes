@@ -96,6 +96,7 @@ import {PorterMetro} from '../porterMetro/PorterMetro';
 import {PdcaMetro} from '../pdcaMetro/PdcaMetro';
 import {SevenSMetro} from '../sevenSMetro/SevenSMetro';
 import {AnsoffMetro} from '../ansoffMetro/AnsoffMetro';
+import {DangerOuRisqueMetro} from '../dangerOuRisqueMetro/DangerOuRisqueMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -231,6 +232,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-Pdca', C: PdcaMetro, at: 2.7, dur: 9.0},
   {id: 'Demo-SevenS', C: SevenSMetro, at: 2.7, dur: 9.0},
   {id: 'Demo-Ansoff', C: AnsoffMetro, at: 2.7, dur: 9.0},
+  {id: 'Demo-DangerOuRisque', C: DangerOuRisqueMetro, at: 2.7, dur: 9.0},
 ];
 
 export const LibraryDemos: React.FC = () => (
