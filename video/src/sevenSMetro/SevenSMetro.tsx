@@ -4351,7 +4351,7 @@ const SvHexWeb: React.FC<{cy: number; at: number; land: number; links: number; p
       <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, opacity: pop(t, at)}}>
         {lq > 0.01 && pts.flatMap((a, i) => pts.slice(i + 1).map((b, j) => { const idx = i * 7 + j; const q = Math.max(0, Math.min(1, lq * 2 - (idx % 21) * 0.04)); return q > 0.01 && <line key={`${i}-${j}`} x1={a[0]} y1={a[1]} x2={lerp(a[0], b[0], q)} y2={lerp(a[1], b[1], q)} stroke="#9AA7B8" strokeWidth={4} />; }))}
         {pq >= 0 && <circle cx={cx} cy={cy} r={60 + pq * 420} fill="none" stroke={SvY} strokeWidth={14 * (1 - pq)} />}
-        {pts.map(([x, y], i) => { const a = land + i * 0.1; const q = prog(t, a - 0.4, a + 0.2, easeOut); const fx = lerp(x + (x - cx) * 2.2, x, q), fy = lerp(y + (y - cy) * 2.2 - 300, y, q); return q > 0 && <g key={i} transform={`translate(${fx} ${fy}) rotate(${(1 - q) * 180}) scale(${i === 6 ? 1.15 : 1})`}><polygon points={hex(92)} fill={SV7[i][2]} stroke={NBK} strokeWidth={7} /></g>; })}
+        {pts.map(([x, y], i) => { const a = land + i * 0.1; const q = prog(t, a - 0.4, a + 0.2, easeOut); const fx = lerp(cx, x, q), fy = lerp(cy, y, q); return q > 0 && <g key={i} transform={`translate(${fx} ${fy}) rotate(${(1 - q) * 180}) scale(${(i === 6 ? 1.15 : 1) * (0.2 + 0.8 * q)})`}><polygon points={hex(92)} fill={SV7[i][2]} stroke={NBK} strokeWidth={7} /></g>; })}
       </svg>
       {pts.map(([x, y], i) => { const a = land + i * 0.1; const q = prog(t, a, a + 0.3, easeOut); return <div key={i} style={{position: 'absolute', left: x - 80, top: y - 50, width: 160, height: 100, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, opacity: q, zIndex: 5}}><Ico n={SV7[i][3]} size={40} c={i === 6 ? NBK : '#fff'} /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: i === 6 ? 19 : 22, color: i === 6 ? NBK : '#fff', textAlign: 'center', lineHeight: 1}}>{SV7[i][0]}</div></div>; })}
       <SvChip x={300} y={cy + 430} w={420} at={perf} l="Performance" c={SvG} ic="TrendingUp" fs={32} fill />
@@ -4508,19 +4508,19 @@ const SvSkillTree: React.FC<{cy: number; at: number; cap: number; sf: number; ex
   const k = Math.max(0, t - at);
   const tq = prog(t, at + 0.1, cap, easeOut);
   const base: [number, number] = [540, cy + 330];
-  const B: [number, number, number, string, string][] = [[250, cy - 120, cap, 'Capacités', 'Dumbbell'], [540, cy - 280, sf, 'Savoir-faire', 'Wrench'], [830, cy - 120, exp, 'Expertises', 'GraduationCap']];
+  const B: [number, number, number, string, string][] = [[250, cy - 120, cap, 'Capacités', 'Dumbbell'], [540, cy - 250, sf, 'Savoir-faire', 'Wrench'], [830, cy - 120, exp, 'Expertises', 'GraduationCap']];
   const mq = prog(t, mob, mob + 1.0, easeInOut);
   const oq = t > obj ? Math.min(1, sp(t, obj, 8, 10)) : 0;
-  const T: [number, number] = [540, cy - 440];
+  const T: [number, number] = [540, cy - 420];
   return (
     <>
       <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, opacity: pop(t, at)}}>
         <ellipse cx={540} cy={cy + 340} rx={300} ry={36} fill="#7A5A3A" opacity={0.5} />
         {tq > 0.01 && <path d={`M 540 ${cy + 330} L 540 ${cy + 330 - 330 * tq}`} stroke="#6B4A2B" strokeWidth={46} strokeLinecap="round" />}
         {B.map(([x, y, a], i) => { const q = prog(t, a - 0.4, a + 0.3, easeOut); return q > 0.01 && <path key={i} d={`M 540 ${cy + 20} Q ${lerp(540, x, 0.4)} ${lerp(cy + 20, y, 0.1)} ${lerp(540, x, q)} ${lerp(cy + 20, y + 70, q)}`} stroke="#6B4A2B" strokeWidth={22} fill="none" strokeLinecap="round" />; })}
-        {B.map(([x, y, a], i) => { const q = t > a ? Math.min(1, sp(t, a, 9, 12)) : 0; return <circle key={`f${i}`} cx={x} cy={y} r={150 * q} fill={['#3E9B4F', '#2F8A41', '#4FAE5F'][i]} stroke={NBK} strokeWidth={6} opacity={0.95} />; })}
+        {B.map(([x, y, a], i) => { const q = t > a ? Math.min(1, sp(t, a, 9, 12)) : 0; return <circle key={`f${i}`} cx={x} cy={y} r={135 * q} fill={['#3E9B4F', '#2F8A41', '#4FAE5F'][i]} stroke={NBK} strokeWidth={6} opacity={0.95} />; })}
         {mq > 0.01 && B.map(([x, y], i) => [0, 1, 2, 3].map((j) => { const p = Math.max(0, Math.min(1, mq * 1.4 - j * 0.12)); return p > 0 && p < 1 && <circle key={`m${i}${j}`} cx={lerp(x, T[0], p)} cy={lerp(y, T[1], p) - Math.sin(p * Math.PI) * 60} r={10} fill={SvR} stroke="#fff" strokeWidth={3} />; }))}
-        <g transform={`translate(${T[0]} ${T[1]}) scale(${0.6 + 0.4 * oq})`}>{[78, 56, 34, 14].map((r, i) => <circle key={r} r={r} fill={i % 2 ? '#fff' : SvR} stroke={NBK} strokeWidth={5} />)}{oq > 0 && <circle r={100 + Math.sin(k * 5) * 8} fill="none" stroke={SvY} strokeWidth={6} />}</g>
+        <g transform={`translate(${T[0]} ${T[1]}) scale(${0.6 + 0.4 * oq})`}>{[64, 46, 28, 12].map((r, i) => <circle key={r} r={r} fill={i % 2 ? '#fff' : SvR} stroke={NBK} strokeWidth={5} />)}{oq > 0 && <circle r={80 + Math.sin(k * 4) * 4} fill="none" stroke={SvY} strokeWidth={6} />}</g>
       </svg>
       {B.map(([x, y, a, l, ic], i) => { const q = t > a ? Math.min(1, sp(t, a, 9, 12)) : 0; return <div key={i} style={{position: 'absolute', left: x - 130, top: y - 60, width: 260, height: 120, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 4, transform: `scale(${q})`, zIndex: 5}}><Ico n={ic} size={50} c="#fff" /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: '#fff'}}>{l}</div></div>; })}
       <SvChip x={540} y={cy + 400} w={600} at={mob} l="Mobilisés par l'organisation" c={SvR} ic="Zap" fs={30} fill />
@@ -4591,7 +4591,7 @@ const RING_A = [IMG.jamaisSeul, IMG.direction, IMG.personnel, IMG.reunions, IMG.
 /* ═════════════ Guichet 1 : le modèle des 7S ═════════════ */
 const Intro: React.FC = () => (
   <Out end={24.39}>
-    <Heads h={[[2.9, ['Le management stratégique', 'le modèle des 7S'], [1]], [5.0, ["Un outil d'analyse", 'organisationnel'], [0]], [7.5, ['Évaluer la cohérence', 'entre les éléments'], [0]], [10.0, ['Qui composent', 'une entreprise'], [1]], [12.3, ['Développé par des consultants', 'du cabinet McKinsey'], [1]], [15.1, ['Sept éléments', 'interdépendants'], [0, 1]], [17.6, ['Leur alignement', 'performance et efficacité'], [0, 1]], [22.8, ['Examinons ensemble', 'ces 7 éléments'], [1]]]} />
+    <Heads h={[[2.9, ['Dans le management stratégique,', 'le modèle des 7S'], [1]], [5.0, ["Un outil d'analyse", 'organisationnel'], [0]], [7.5, ['Évaluer la cohérence', 'entre les éléments'], [0]], [10.0, ['Qui composent', 'une entreprise'], [1]], [12.3, ['Développé par des consultants', 'du cabinet McKinsey'], [1]], [15.1, ['Sept éléments', 'interdépendants'], [0, 1]], [17.6, ['Leur alignement contribue', "à la performance et à l'efficacité"], [0, 1]], [22.8, ['Examinons ensemble', 'ces 7 éléments'], [1]]]} />
     <Ph a={2.65} b={7.35}>
       <SvParticles cy={850} at={2.7} form={2.9} />
       <SvChip x={540} y={1150} w={760} at={5.3} l="Un outil d'analyse organisationnel" c={SvN} ic="ScanSearch" fs={34} fill />
@@ -4672,7 +4672,7 @@ const S4: React.FC = () => (
 /* ═════════════ Guichet 6 : le personnel ═════════════ */
 const S5: React.FC = () => (
   <Out end={84.06}>
-    <Heads h={[[74.43, ['Le cinquième élément', 'le personnel, ou Staff'], [1]], [77.9, ["L'ensemble des collaborateurs", "de l'entreprise"], [0]], [80.5, ['Leurs effectifs', 'leur répartition'], [0, 1]], [82.5, ['Ainsi que', 'leur gestion'], [1]]]} />
+    <Heads h={[[74.43, ['Le cinquième élément', 'le personnel, ou Staff'], [1]], [77.9, ["L'ensemble des collaborateurs", "de l'entreprise"], [0]], [80.5, ['Leurs effectifs,', 'leur répartition'], [0, 1]], [82.5, ['Ainsi que', 'leur gestion'], [1]]]} />
     <Ph a={74.43} b={77.95}>
       <ZInk src={IMG.adhesion} x={60} y={470} w={960} h={780} at={74.49} c={SvG} tag="LE PERSONNEL · STAFF" pos="50% 40%" />
     </Ph>
@@ -4711,7 +4711,7 @@ const S7: React.FC = () => (
 /* ═════════════ Guichet 9 : en résumé ═════════════ */
 const S8: React.FC = () => (
   <Out end={OUTRO_AT}>
-    <Heads h={[[109.53, ['Le modèle des 7S', 'repose sur sept éléments'], [0, 1]], [112.7, ['Stratégie, structure', 'systèmes, style'], [0, 1]], [119.0, ['Personnel, compétences', 'valeurs partagées'], [0, 1]], [123.1, ['Ces 7 éléments', 'sont interdépendants'], [1]], [125.6, ['Leur cohérence', 'et leur alignement'], [0, 1]], [127.9, ['Renforcer', 'son organisation'], [0]], [130.1, ["Améliorer", 'sa performance globale'], [1]]]} />
+    <Heads h={[[109.53, ['Le modèle des 7S', 'repose sur sept éléments'], [0, 1]], [112.7, ['Stratégie, structure,', 'systèmes, style'], [0, 1]], [119.0, ['Personnel, compétences,', 'valeurs partagées'], [0, 1]], [123.1, ['Ces 7 éléments', 'sont interdépendants'], [1]], [125.6, ['Leur cohérence', 'et leur alignement'], [0, 1]], [127.9, ['Renforcer', 'son organisation'], [0]], [130.1, ["Améliorer", 'sa performance globale'], [1]]]} />
     <Ph a={109.53} b={OUTRO_AT}>
       <SvHexFinale cy={835} at={109.6} lands={[112.8, 113.6, 115.2, 117.4, 119.2, 120.6, 121.6]} links={124.2} jitter={124.2} align={126.8} reinf={128.7} perf={130.9} />
     </Ph>
