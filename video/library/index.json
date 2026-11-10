@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 129,
+ "count": 130,
  "items": [
   {
    "section": "templates",
@@ -1639,6 +1639,32 @@
    "hash": "04e409ab153e",
    "path": "assets/panneau-indicateur-non/index.md",
    "preview": "assets/panneau-indicateur-non/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "pdca-metro",
+   "name": "Le cycle PDCA — particules qui écrivent « PDCA », engrenages, roue de Deming en puzzle, lettres qui frappent, cubes de traduction, plan d'architecte, kanban devenu planning, chaîne de montage, putt de golf, niveau laser, scanner à rayons X, levier, tuyaux de décision, roue sur la pente, système solaire, spirale ascendante",
+   "description": "Capsule métro à sept guichets (gyrophare, recherche qui ouvre « la roue de Deming », carrousel 3D d'images, images du dépôt) sur le cycle PDCA, police Cambria (repli Caladea), palette `PdP` Planifier / `PdD` Déployer / `PdC` Contrôler / `PdA` Agir + `PdN` `PdY` `PdK` `PdO` `PdV`, seul le chiffre prononcé est affiché (4 étapes). Techniques nouvelles — `<PdParticles>` mille cent particules qui tourbillonnent et écrivent « PDCA », chaque lettre à la couleur de son étape (cibles `PD_PTS` échantillonnées hors ligne), onde lumineuse et respiration ; `<PdGears>` trois engrenages qui s'entraînent (processus, activités, performance) et flèche de progrès ; `<PdPuzzleWheel>` quatre quartiers qui volent et s'emboîtent en roue de Deming ; `<PdLetterSlam>` P, D, C, A qui frappent vers la caméra avec écrasement et poussière, mot anglais dessous ; `<PdCubeTranslate>` cubes qui pivotent d'un quart de tour de l'anglais au français ; `<PdBlueprint>` plan d'architecte, lignes de construction, compas qui trace la cible, punaises et loupe ; `<PdKanbanGantt>` cartes kanban qui se réordonnent en barres de planning ; `<PdAssemblyLine>` tapis roulant et bras robotisé qui tamponne chaque action ; `<PdGolfPutt>` putt sur le green jusqu'au trou de l'objectif ; `<PdLaserLevel>` barres objectif / résultat, faisceau laser et bulle de niveau, écart surligné ; `<PdXray>` scanner à rayons X qui révèle la fissure d'un écart ; `<PdLever>` tableau des résultats, câble animé, grand levier abaissé avec éclats ; `<PdDecisionPipes>` losange « Écart ? » et liquide qui part vers standardisation ou correction ; `<PdRollingWheel>` roue PDCA qui gravit la pente, cale de standardisation ; `<PdOrbit>` quatre planètes en orbite autour du soleil PDCA ; `<PdHelix>` hélice 3D gravie par un curseur jusqu'à la performance. `PdChip` : utilitaire. Réutilise `SearchOpen`, `Ring3D`, `NBadge`, `JCrtOff`.",
+   "quand": "Cycle PDCA, roue de Deming, amélioration continue, management de la qualité, ISO 9001, conduite de projet d'amélioration, résolution de problèmes, standardisation des bonnes pratiques, actions correctives.",
+   "component": "src/pdcaMetro/PdcaMetro.tsx",
+   "demo": "Demo-Pdca",
+   "audio": null,
+   "tags": [
+    "PDCA",
+    "roue de Deming",
+    "amélioration continue",
+    "Planifier",
+    "Déployer",
+    "Contrôler",
+    "Agir",
+    "qualité",
+    "standardisation",
+    "particules",
+    "Cambria"
+   ],
+   "hash": "954ebdcc4e60",
+   "path": "assets/pdca-metro/index.md",
+   "preview": "assets/pdca-metro/preview.mp4"
   },
   {
    "section": "assets",
