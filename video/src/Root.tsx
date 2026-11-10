@@ -265,6 +265,7 @@ import {AuditCertifMetro, AUDIT_CERTIF_METRO_FRAMES} from './auditCertifMetro/Au
 import {ProcessusMetro, PROCESSUS_METRO_FRAMES} from './processusMetro/ProcessusMetro';
 import {RapportHebdoMetro, RAPPORT_HEBDO_METRO_FRAMES} from './rapportHebdoMetro/RapportHebdoMetro';
 import {NormesIsoMetro, NORMES_ISO_METRO_FRAMES} from './normesIsoMetro/NormesIsoMetro';
+import {PorterMetro, PORTER_METRO_FRAMES} from './porterMetro/PorterMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -548,6 +549,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseProcessusMetro" component={ProcessusMetro} durationInFrames={PROCESSUS_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseRapportHebdoMetro" component={RapportHebdoMetro} durationInFrames={RAPPORT_HEBDO_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseNormesIsoMetro" component={NormesIsoMetro} durationInFrames={NORMES_ISO_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondensePorterMetro" component={PorterMetro} durationInFrames={PORTER_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
