@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 133,
+ "count": 134,
  "items": [
   {
    "section": "templates",
@@ -1185,6 +1185,31 @@
    "hash": "1d687c3314ac",
    "path": "assets/grave-marbre/index.md",
    "preview": "assets/grave-marbre/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "huit-permis-metro",
+   "name": "Les 8 permis de travail — particules « 8 PERMIS », mythe qui vole en éclats, ziggourat des cinq étapes, tiers derrière la vitre, temple des trois piliers, carrousel des huit permis, gerbe d'étincelles, espace confiné en coupe, bouton pause, matrice remplie ligne par ligne, moraillon LOTO, formulaire qui brûle, cœur battant",
+   "description": "Capsule métro longue (7 min 47) à onze guichets (gyrophare, recherche qui ouvre « une garantie formelle », carrousels 3D d'images, images du dépôt) sur les huit permis de travail, police Cambria (repli Caladea), palette `HpN` `HpR` `HpB` `HpO` `HpG` `HpV` `HpT` `HpY` `HpK` `HpS`, seuls les chiffres prononcés sont affichés. Techniques nouvelles — `<HpParticles>` « 8 PERMIS » en spirale ; `<HpPaperwork>` pile de feuilles et cases cochées à la chaîne, tampon « BUREAUCRATIE » ; `<HpMythShatter>` panneau « MYTHE » fissuré puis découpé en quarante-huit éclats triangulaires (clip-path) projetés avec gravité ; `<HpLifebuoy>` frein barré, bouée pendulaire amortie, structure en treillis tracée ; `<HpFlipWord>` carte qui bascule en 3D (rotateX) de « corvée » à « paradigme » ; `<HpTalkChain>` direction → opérateurs, bulles qui montent et descendent sur des courbes de Bézier, validations ; `<HpChaosOrder>` seize outils en désordre rangés en grille puis cadenassés ; `<HpAgenda>` programme en plan de ligne vertical avec rame ; `<HpZiggurat>` cinq marches fantômes, chaque étape tombe et s'écrase, clé, couronne sur la 4e ; `<HpPermitDoc>` permis qui s'écrit à la plume, tampon, trois cadenas de conditions ; `<HpPassVoid>` laissez-passer doré tamponné « PAS DU TOUT » puis déchiré, tuiles cible / alerte / minuteur ; `<HpThirdParty>` paroi vitrée entre travaux et validation, permis qui franchit la vitre, signature tracée ; `<HpEyes>` rôles écartés, œil qui tente de se fermer puis se rouvre, excuses barrées ; `<HpTemple>` colonnes qui montent une à une, fronton ; `<HpGoNoGo>` deux vérifications libèrent le marteau ; `<HpSpotlight>` projecteur qui balaie puis plus aucune zone d'ombre ; `<HpGoldMine>` trémie, pépites, loupe, racines, bouclier ; `<HpEightWheel>` cylindre 3D des huit permis puis rangement en familles ; `<HpColdWork>` équipes qui se croisent dans le givre puis se coordonnent ; `<HpHotWork>` jauge, gerbe d'étincelles balistiques, flamme étouffée par l'extincteur ; `<HpConfined>` cuve en coupe, gaz, ventilation, surveillant, descente au treuil ; `<HpHeight>` bouton pause, balayage d'inspection, garde-corps, ligne de vie, lecture ; `<HpMatrix>` matrice remplie ligne par ligne, cellule par cellule, vignette animée du risque en cours ; `<HpLotoIntro>` lettres LOTO dont les « O » sont des cadenas, tolérance zéro frappée ; `<HpLotoHasp>` moraillon multi-cadenas, moteur qui ralentit, équipement neutre, redémarrage refusé ; `<HpPaperLimits>` papier percé par trois dangers ; `<HpQuote>` citation mot à mot calée sur la voix ; `<HpPaperFall>` formulaire parfait, chute, feu qui dévore la feuille (clipPath animé) ; `<HpFacilitator>` le permis déclenche harnais et cadenas ; `<HpBuiltBySeconds>` dalle de la culture, mur bâti à chaque tic d'horloge ; `<HpQuestion>` point d'interrogation géant ; `<HpEightFinale>` orbite des huit permis, papier seul barré, « Nos actes sauvent des vies » ; `<HpSkeletonHeart>` cage thoracique tracée côte par côte, cœur qui bat, tracé cardiaque défilant. `HpChip` : utilitaire. Réutilise `SearchOpen`, `Ring3D`, `NBadge`, `ZInk`, `JCrtOff`.",
+   "quand": "Permis de travail, permis de feu, travail à chaud / à froid, espaces confinés, travail en hauteur, excavation, électricité, consignation LOTO, radiographie, hiérarchie des mesures de prévention, contrôle administratif, culture sécurité.",
+   "component": "src/huitPermisMetro/HuitPermisMetro.tsx",
+   "demo": "Demo-HuitPermis",
+   "audio": null,
+   "tags": [
+    "permis de travail",
+    "permis de feu",
+    "espaces confinés",
+    "travail en hauteur",
+    "LOTO",
+    "consignation",
+    "hiérarchie des risques",
+    "culture sécurité",
+    "particules",
+    "Cambria"
+   ],
+   "hash": "4babf04fca51",
+   "path": "assets/huit-permis-metro/index.md",
+   "preview": "assets/huit-permis-metro/preview.mp4"
   },
   {
    "section": "assets",
