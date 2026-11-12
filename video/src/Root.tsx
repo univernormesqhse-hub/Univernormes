@@ -273,6 +273,7 @@ import {DangerOuRisqueMetro, DANGER_OU_RISQUE_METRO_FRAMES} from './dangerOuRisq
 import {HuitPermisMetro, HUIT_PERMIS_METRO_FRAMES} from './huitPermisMetro/HuitPermisMetro';
 import {TortueMetro, TORTUE_METRO_FRAMES} from './tortueMetro/TortueMetro';
 import {RseMethodesMetro, RSE_METHODES_METRO_FRAMES} from './rseMethodesMetro/RseMethodesMetro';
+import {CharteQualiteMetro, CHARTE_QUALITE_METRO_FRAMES} from './charteQualiteMetro/CharteQualiteMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -564,6 +565,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseHuitPermisMetro" component={HuitPermisMetro} durationInFrames={HUIT_PERMIS_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseTortueMetro" component={TortueMetro} durationInFrames={TORTUE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseRseMethodesMetro" component={RseMethodesMetro} durationInFrames={RSE_METHODES_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseCharteQualiteMetro" component={CharteQualiteMetro} durationInFrames={CHARTE_QUALITE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
