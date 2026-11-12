@@ -4305,7 +4305,7 @@ const CqChip: React.FC<{x: number; y: number; w?: number; at: number; l: string;
   const t = useT();
   const q = (t > at ? Math.min(1, sp(t, at, 9, 12)) : 0) * (out ? 1 - prog(t, out - 0.2, out, easeIn) : 1);
   const fg = fill ? (c === CqY ? NBK : '#fff') : INK;
-  return <div style={{position: 'absolute', left: x - w / 2, top: y, width: w, display: 'flex', justifyContent: 'center', transform: `scale(${q})`, zIndex: 6}}><div style={{...nb(fill ? c : '#fff', 6), borderColor: NBK, boxShadow: `6px 6px 0 ${fill ? NBK : c}`, padding: '8px 18px', display: 'flex', alignItems: 'center', gap: 12, fontFamily: sansFont, fontWeight: 900, fontSize: fs, color: fg, textAlign: 'center', lineHeight: 1.1}}>{ic && <Ico n={ic} size={fs + 8} c={fill ? fg : c} />}{l}</div></div>;
+  return <div style={{position: 'absolute', left: x - w / 2, top: Math.max(448, y), width: w, display: 'flex', justifyContent: 'center', transform: `scale(${q})`, zIndex: 6}}><div style={{...nb(fill ? c : '#fff', 6), borderColor: NBK, boxShadow: `6px 6px 0 ${fill ? NBK : c}`, padding: '8px 18px', display: 'flex', alignItems: 'center', gap: 12, fontFamily: sansFont, fontWeight: 900, fontSize: fs, color: fg, textAlign: 'center', lineHeight: 1.1}}>{ic && <Ico n={ic} size={fs + 8} c={fill ? fg : c} />}{l}</div></div>;
 };
 /* Silhouette de personne réutilisable (tête + buste) */
 const CqPerson: React.FC<{x: number; y: number; c: string; s?: number; skin?: string; hair?: boolean; helmet?: string}> = ({x, y, c, s = 1, skin = '#8B5E3C', hair, helmet}) => <g transform={`translate(${x} ${y}) scale(${s})`}><circle cy={-58} r={26} fill={skin} stroke={NBK} strokeWidth={5} />{hair && <path d="M -28 -60 Q -30 -92 0 -90 Q 30 -92 28 -60 Q 30 -30 34 -20 L 20 -40 Q 0 -52 -20 -40 L -34 -20 Q -30 -30 -28 -60 Z" fill="#2B1B10" stroke={NBK} strokeWidth={4} />}{helmet && <path d="M -32 -64 Q -32 -96 0 -96 Q 32 -96 32 -64 L 40 -62 L -40 -62 Z" fill={helmet} stroke={NBK} strokeWidth={4} />}<path d="M -40 46 Q -40 -24 0 -24 Q 40 -24 40 46 Z" fill={c} stroke={NBK} strokeWidth={5} /></g>;
@@ -4353,8 +4353,8 @@ const CqRoadmap: React.FC<{cy: number; at: number; theo: number; road: number; e
   return (
     <>
       <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, opacity: pop(t, at)}}>
-        <path d={path} stroke="#C6CDD8" strokeWidth={70} fill="none" strokeLinecap="round" pathLength={1} strokeDasharray={`${rq} 1`} />
-        <path d={path} stroke={CqN} strokeWidth={56} fill="none" strokeLinecap="round" pathLength={1} strokeDasharray={`${rq} 1`} />
+        {rq > 0.01 && <path d={path} stroke="#C6CDD8" strokeWidth={70} fill="none" strokeLinecap="round" pathLength={1} strokeDasharray={`${rq} 1`} />}
+        {rq > 0.01 && <path d={path} stroke={CqN} strokeWidth={56} fill="none" strokeLinecap="round" pathLength={1} strokeDasharray={`${rq} 1`} />}
         <path d={path} stroke={CqY} strokeWidth={5} fill="none" strokeDasharray="20 18" strokeDashoffset={-k * 60} opacity={rq > 0.98 ? 1 : 0} />
         <rect x={940} y={cy - 360} width={70} height={560} rx={16} fill="#fff" stroke={NBK} strokeWidth={6} />
         <rect x={948} y={cy + 192 - 540 * (0.25 + lv * 0.7)} width={54} height={540 * (0.25 + lv * 0.7)} rx={12} fill={CqG} />
@@ -4375,19 +4375,19 @@ const CQ_QMARK: [number, number][] = [[-2, -4], [-1, -5], [0, -5], [1, -5], [2, 
 const CqBigQuestion: React.FC<{cy: number; at: number; bout: number}> = ({cy, at, bout}) => {
   const t = useT();
   const k = Math.max(0, t - at);
-  const S = 96;
+  const S = 90;
   const lq = prog(t, bout - 0.3, bout + 0.8, easeInOut);
   return (
     <>
       <div style={{position: 'absolute', left: 0, top: 440, width: 1080, height: 960, overflow: 'hidden'}}>
-        {CQ_QMARK.map(([gx, gy], i) => { const a = at + 0.1 + i * 0.13; const q = prog(t, a, a + 0.45, easeIn); const land = t > a + 0.45 ? 1 : 0; const x = 540 + gx * S, y = cy + 60 + gy * S - 440; const bounce = land ? Math.max(0, Math.sin((t - a - 0.45) * 18) * 10 * Math.exp(-(t - a - 0.45) * 6)) : 0; return <div key={i} style={{position: 'absolute', left: x - S / 2 + 3, top: lerp(-200, y - S / 2, q) - bounce, width: S - 6, height: S - 6, borderRadius: 16, background: i === CQ_QMARK.length - 1 ? CqO : i % 2 ? CqN : '#24488F', border: `5px solid ${NBK}`, boxShadow: `5px 5px 0 ${NBK}`, transform: `rotate(${(1 - q) * (i % 2 ? 25 : -25)}deg)`, opacity: q > 0 ? 1 : 0}}><div style={{position: 'absolute', left: 8, top: 6, width: 30, height: 10, borderRadius: 5, background: 'rgba(255,255,255,0.35)'}} /></div>; })}
+        {CQ_QMARK.map(([gx, gy], i) => { const a = at + 0.1 + i * 0.13; const q = prog(t, a, a + 0.45, easeIn); const land = t > a + 0.45 ? 1 : 0; const x = 540 + gx * S, y = cy + 150 + gy * S - 440; const bounce = land ? Math.max(0, Math.sin((t - a - 0.45) * 18) * 10 * Math.exp(-(t - a - 0.45) * 6)) : 0; return <div key={i} style={{position: 'absolute', left: x - S / 2 + 3, top: lerp(-200, y - S / 2, q) - bounce, width: S - 6, height: S - 6, borderRadius: 16, background: i === CQ_QMARK.length - 1 ? CqO : i % 2 ? CqN : '#24488F', border: `5px solid ${NBK}`, boxShadow: `5px 5px 0 ${NBK}`, transform: `rotate(${(1 - q) * (i % 2 ? 25 : -25)}deg)`, opacity: q > 0 ? 1 : 0}}><div style={{position: 'absolute', left: 8, top: 6, width: 30, height: 10, borderRadius: 5, background: 'rgba(255,255,255,0.35)'}} /></div>; })}
       </div>
       <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 5}}>
-        <line x1={40} y1={cy + 330} x2={40 + 1000 * lq} y2={cy + 330} stroke={CqG} strokeWidth={14} strokeLinecap="round" />
-        {lq > 0 && [0, 1].map((m) => <circle key={m} cx={m ? 40 + 1000 * lq : 40} cy={cy + 330} r={22} fill="#fff" stroke={CqG} strokeWidth={8} />)}
-        {lq > 0 && <circle cx={40 + 1000 * lq} cy={cy + 330} r={30 + ((k * 40) % 30)} fill="none" stroke={CqG} strokeWidth={4} opacity={1 - ((k * 40) % 30) / 30} />}
+        <line x1={40} y1={cy + 430} x2={40 + 1000 * lq} y2={cy + 430} stroke={CqG} strokeWidth={14} strokeLinecap="round" />
+        {lq > 0 && [0, 1].map((m) => <circle key={m} cx={m ? 40 + 1000 * lq : 40} cy={cy + 430} r={22} fill="#fff" stroke={CqG} strokeWidth={8} />)}
+        {lq > 0 && <circle cx={40 + 1000 * lq} cy={cy + 430} r={30 + ((k * 40) % 30)} fill="none" stroke={CqG} strokeWidth={4} opacity={1 - ((k * 40) % 30) / 30} />}
       </svg>
-      <CqChip x={540} y={cy + 380} w={460} at={bout} l="De bout en bout" c={CqG} ic="Route" fs={32} fill />
+      <CqChip x={830} y={cy + 250} w={400} at={bout} l="De bout en bout" c={CqG} ic="Route" fs={30} fill />
     </>
   );
 };
@@ -4404,11 +4404,11 @@ const CqMenuLine: React.FC<{cy: number; at: number; go: number; items: number[]}
   return (
     <>
       {gq > 0 && <div style={{position: 'absolute', left: 390, top: cy - 300, width: 300, height: 560, ...nb('#22282F', 8), borderColor: NBK, opacity: gq, transform: `scale(${0.8 + gq * 0.2})`, zIndex: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly'}}>{[CqR, CqY, CqG].map((c, i) => <div key={i} style={{width: 130, height: 130, borderRadius: 65, background: i === 2 ? c : '#3A424D', boxShadow: i === 2 ? `0 0 60px 20px ${c}` : 'inset 0 6px 12px rgba(0,0,0,0.5)', border: `5px solid ${NBK}`}} />)}</div>}
-      <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, opacity: prog(t, go + 0.8, go + 1.2)}}>
+      <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, opacity: prog(t, go + 1.3, go + 1.6)}}>
         <line x1={170} y1={y0 - 60} x2={170} y2={y0 + 4 * dy + 40} stroke="#C6CDD8" strokeWidth={26} strokeLinecap="round" />
         <line x1={170} y1={y0 - 60} x2={170} y2={Math.max(y0 - 60, ty)} stroke={CqN} strokeWidth={26} strokeLinecap="round" />
       </svg>
-      {CQ_MENU.map(([l, ic, c], i) => { const on = t > items[i]; const q = t > go + 0.9 + i * 0.08 ? Math.min(1, sp(t, go + 0.9 + i * 0.08, 9, 12)) : 0; const hq = on ? Math.min(1, sp(t, items[i], 8, 10)) : 0; return <div key={i} style={{position: 'absolute', left: 120, top: y0 + i * dy - 50, width: 900, height: 100, transform: `translateX(${(1 - q) * 300}px)`, opacity: q, zIndex: 5}}><div style={{position: 'absolute', left: 14, top: 14, width: 72, height: 72, borderRadius: 36, background: on ? c : '#fff', border: `7px solid ${NBK}`, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 32, color: on ? '#fff' : INK, boxShadow: on ? `0 0 ${24 * hq}px ${c}` : 'none'}}>{i + 1}</div><div style={{position: 'absolute', left: 120, top: 4, width: 760, height: 92, ...nb(on ? '#fff' : '#F1F3F6', 6), borderColor: on ? NBK : '#C6CDD8', boxShadow: on ? `6px 6px 0 ${c}` : 'none', display: 'flex', alignItems: 'center', gap: 18, padding: '0 22px', transform: `scale(${1 + 0.05 * Math.sin(hq * Math.PI)})`}}><div style={{width: 60, height: 60, borderRadius: 14, background: on ? c : '#DDE2EA', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Ico n={ic} size={40} c="#fff" /></div><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 36, color: on ? INK : '#9AA7B8'}}>{l}</span>{on && <span style={{marginLeft: 'auto', fontSize: 34, fontWeight: 900, color: c}}>●</span>}</div></div>; })}
+      {CQ_MENU.map(([l, ic, c], i) => { const on = t > items[i]; const q = t > go + 1.4 + i * 0.08 ? Math.min(1, sp(t, go + 1.4 + i * 0.08, 9, 12)) : 0; const hq = on ? Math.min(1, sp(t, items[i], 8, 10)) : 0; return <div key={i} style={{position: 'absolute', left: 120, top: y0 + i * dy - 50, width: 900, height: 100, transform: `translateX(${(1 - q) * 300}px)`, opacity: q, zIndex: 5}}><div style={{position: 'absolute', left: 14, top: 14, width: 72, height: 72, borderRadius: 36, background: on ? c : '#fff', border: `7px solid ${NBK}`, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 32, color: on ? '#fff' : INK, boxShadow: on ? `0 0 ${24 * hq}px ${c}` : 'none'}}>{i + 1}</div><div style={{position: 'absolute', left: 120, top: 4, width: 760, height: 92, ...nb(on ? '#fff' : '#F1F3F6', 6), borderColor: on ? NBK : '#C6CDD8', boxShadow: on ? `6px 6px 0 ${c}` : 'none', display: 'flex', alignItems: 'center', gap: 18, padding: '0 22px', transform: `scale(${1 + 0.05 * Math.sin(hq * Math.PI)})`}}><div style={{width: 60, height: 60, borderRadius: 14, background: on ? c : '#DDE2EA', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Ico n={ic} size={40} c="#fff" /></div><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 36, color: on ? INK : '#9AA7B8'}}>{l}</span>{on && <span style={{marginLeft: 'auto', fontSize: 34, fontWeight: 900, color: c}}>●</span>}</div></div>; })}
       {cur >= 0 && <div style={{position: 'absolute', left: 170 - 40, top: ty - 40, width: 80, height: 80, zIndex: 7, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 40, background: CqY, border: `6px solid ${NBK}`, boxShadow: `0 0 30px ${CqY}`}}><Ico n="TrainFront" size={46} c={NBK} /></div>}
       <CqChip x={540} y={cy - 440} w={420} at={go} l="On y va !" c={CqG} ic="Play" fs={34} fill out={go + 1.3} />
     </>
@@ -4434,7 +4434,7 @@ const CqFoundation: React.FC<{cy: number; at: number; found: number; std: number
         {Array.from({length: 4}, (_, f) => <rect key={f} x={200} y={G - 90 - (f + 1) * 120} width={680} height={110} rx={6} fill={sq > f / 4 ? 'rgba(34,181,115,0.16)' : 'none'} stroke={sq > f / 4 ? CqG : '#9AA7B8'} strokeWidth={5} strokeDasharray={sq > (f + 0.6) / 4 ? undefined : '16 12'} opacity={t > at + 0.4 ? 1 : 0} />)}
         {imp > 0 && Array.from({length: 12}, (_, i) => { const a = (i / 11) * Math.PI; return <circle key={i} cx={540 + Math.cos(a) * (120 + imp * 220)} cy={G - 90 - Math.sin(a) * (30 + imp * 90)} r={14 * (1 - imp)} fill="#AEB6C2" />; })}
       </svg>
-      <CqDoc x={540} y={lerp(cy - 700, G - 150, dq)} w={200} rot={(1 - dq) * -20} lines={1} seal={prog(t, found + 0.4, found + 0.8, easeOut)} z={6} />
+      <CqDoc x={540} y={lerp(cy - 320, G - 150, dq)} w={200} rot={(1 - dq) * -20} lines={1} seal={prog(t, found + 0.4, found + 0.8, easeOut)} z={6} op={prog(t, found - 0.35, found - 0.15)} />
       <CqChip x={540} y={G + 30} w={480} at={found} l="La fondation" c={CqN} ic="Landmark" fs={34} fill />
       <CqChip x={540} y={cy - 440} w={460} at={std} l="Nos standards" c={CqG} ic="Layers" fs={32} fill />
     </>
@@ -4479,9 +4479,8 @@ const CqApproval: React.FC<{cy: number; at: number; off: number; climb: number; 
         {[0, 1, 2, 3, 4].map((j) => <CqPerson key={j} x={420 + j * 60} y={lv[3] - 6} c="#fff" s={0.48} skin={SKINS[(j + 1) % 4]} />)}
       </svg>
       <CqDoc x={540 + Math.sin(step * Math.PI) * 60} y={cq > 0 ? dy : lv[0] + 40} w={150} rot={Math.sin(k * 3) * 4} seal={bq} z={7} />
-      {bq > 0 && <div style={{position: 'absolute', left: 0, top: lv[3] - 200, width: 1080, display: 'flex', justifyContent: 'center', transform: `scale(${lerp(2, 1, bq)}) rotate(-6deg)`, opacity: Math.min(1, bq * 2), zIndex: 8}}><div style={{border: `9px solid ${CqG}`, borderRadius: 18, padding: '6px 28px', fontFamily: sansFont, fontWeight: 900, fontSize: 54, color: CqG, background: 'rgba(255,255,255,0.9)', letterSpacing: 4}}>APPROUVÉ</div></div>}
+      {bq > 0 && <div style={{position: 'absolute', left: 0, top: lv[3] - 150, width: 1080, display: 'flex', justifyContent: 'center', transform: `scale(${lerp(2, 1, bq)}) rotate(-6deg)`, opacity: Math.min(1, bq * 2), zIndex: 8}}><div style={{border: `9px solid ${CqG}`, borderRadius: 18, padding: '6px 28px', fontFamily: sansFont, fontWeight: 900, fontSize: 54, color: CqG, background: 'rgba(255,255,255,0.9)', letterSpacing: 4}}>APPROUVÉ</div></div>}
       <CqChip x={540} y={lv[0] + 110} w={460} at={off} l="Document officiel" c={CqN} ic="FileCheck" fs={32} fill />
-      <CqChip x={540} y={cy - 440} w={600} at={board} l="Conseil d'administration" c={CqG} ic="Landmark" fs={30} fill />
     </>
   );
 };
@@ -4540,9 +4539,9 @@ const CqSieve: React.FC<{cy: number; at: number; warn: number; eng: number; simp
         {Array.from({length: 14}, (_, i) => <line key={i} x1={190 + i * 52} y1={cy - 116} x2={415 + i * 19} y2={cy + 116} stroke="#9AA7B8" strokeWidth={3} />)}
         <rect x={400} y={cy + 120} width={280} height={60} fill="#E9EDF2" stroke={NBK} strokeWidth={7} />
       </svg>
-      {W.map((w, i) => { const strong = w === 'Engagement fort'; const a = warn + 2.6 + i * 0.32; const q = prog(t, a, a + 0.6, easeIn); if (q <= 0) return null; const x0 = 180 + (i % 3) * 300; const yStop = cy - 160; const y = strong ? (q < 1 ? lerp(cy - 520, yStop, q) : yStop + prog(t, a + 0.6, a + 1.2, easeIn) * 420) : lerp(cy - 520, yStop, q); const xs = strong && q >= 1 ? lerp(x0, 540, prog(t, a + 0.6, a + 1.0, easeInOut)) : x0; const rej = !strong && q >= 1 ? prog(t, a + 0.6, a + 1.1, easeIn) : 0; return <div key={i} style={{position: 'absolute', left: xs - 140 + rej * (i % 2 ? 500 : -500), top: y - 34 - rej * 120, width: 280, height: 68, ...nb(strong ? CqG : '#fff', 5), borderColor: NBK, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontFamily: sansFont, fontWeight: 900, fontSize: 25, color: strong ? '#fff' : '#7A8698', transform: `rotate(${rej * (i % 2 ? 40 : -40)}deg)`, opacity: 1 - rej, zIndex: 5}}>{strong && <Ico n="ShieldCheck" size={30} c="#fff" />}{w}</div>; })}
-      <CqChip x={540} y={cy + 400} w={520} at={eng} l="Des engagements forts" c={CqG} ic="ShieldCheck" fs={32} fill />
-      <CqChip x={540} y={cy + 480} w={400} at={simple} l="Des mots simples" c={CqN} ic="MessageCircle" fs={30} fill />
+      {W.map((w, i) => { const strong = w === 'Engagement fort'; const a = warn + 2.6 + i * 0.32; const q = prog(t, a, a + 0.6, easeIn); if (q <= 0) return null; const x0 = 180 + (i % 3) * 300; const yStop = cy - 160; if (q < 1 && lerp(cy - 520, yStop, q) < 470) return null; const y = strong ? (q < 1 ? lerp(cy - 520, yStop, q) : yStop + prog(t, a + 0.6, a + 1.2, easeIn) * 420) : lerp(cy - 520, yStop, q); const xs = strong && q >= 1 ? lerp(x0, 540, prog(t, a + 0.6, a + 1.0, easeInOut)) : x0; const rej = !strong && q >= 1 ? prog(t, a + 0.6, a + 1.1, easeIn) : 0; return <div key={i} style={{position: 'absolute', left: xs - 140 + rej * (i % 2 ? 500 : -500), top: y - 34 - rej * 120, width: 280, height: 68, ...nb(strong ? CqG : '#fff', 5), borderColor: NBK, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontFamily: sansFont, fontWeight: 900, fontSize: 25, color: strong ? '#fff' : '#7A8698', transform: `rotate(${rej * (i % 2 ? 40 : -40)}deg)`, opacity: 1 - rej, zIndex: 5}}>{strong && <Ico n="ShieldCheck" size={30} c="#fff" />}{w}</div>; })}
+      <CqChip x={540} y={cy + 360} w={520} at={eng} l="Des engagements forts" c={CqG} ic="ShieldCheck" fs={32} fill />
+      <CqChip x={540} y={cy + 440} w={400} at={simple} l="Des mots simples" c={CqN} ic="MessageCircle" fs={30} fill />
     </>
   );
 };
@@ -4580,7 +4579,7 @@ const CqPrinciple: React.FC<{cy: number; at: number; decl: number; frame: number
         <g transform={`translate(540 ${fy}) scale(${prog(t, frame + 0.2, frame + 0.8, easeOut)})`}><path d="M -230 30 L -90 -40 L 10 -10 L 90 -60 L 230 20 L 150 90 L 40 30 L -60 100 Z" fill="#E9C9A8" stroke={NBK} strokeWidth={7} strokeLinejoin="round" /><path d="M -230 30 l -40 -60 l 60 -40 l 40 70 Z" fill={CqN} stroke={NBK} strokeWidth={6} /><path d="M 230 20 l 40 -60 l -60 -40 l -40 70 Z" fill={CqB} stroke={NBK} strokeWidth={6} /></g>
       </svg>
       <div style={{position: 'absolute', left: 300, top: cy + 230, width: 480, height: 170, zIndex: 5, opacity: prog(t, force - 0.4, force), transform: `scale(${0.9 + 0.1 * prog(t, force - 0.4, force)})`}}><div style={{position: 'absolute', inset: 0, ...nb('#fff', 6), borderColor: NBK, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, fontFamily: sansFont, fontWeight: 900, fontSize: 32, color: '#7A8698'}}><Ico n="CreditCard" size={60} c={CqS} />Forcer une transaction</div>{xq > 0 && <svg width={480} height={170} style={{position: 'absolute', left: 0, top: 0}}><line x1={10} y1={160} x2={10 + 460 * xq} y2={160 - 150 * xq} stroke={CqR} strokeWidth={14} strokeLinecap="round" /></svg>}</div>
-      <CqChip x={540} y={cy - 440} w={520} at={frame} l="Un cadre de confiance" c={CqG} ic="Handshake" fs={32} fill />
+      <CqChip x={540} y={cy + 150} w={520} at={frame + 0.6} l="Un cadre de confiance" c={CqG} ic="Handshake" fs={32} fill />
     </>
   );
 };
@@ -4592,15 +4591,16 @@ const CqVault: React.FC<{cy: number; at: number; val: number}> = ({cy, at, val})
   const spin = prog(t, at + 0.3, val - 0.3, easeInOut) * 540;
   const op = prog(t, val - 0.3, val + 0.6, easeOut);
   const lq = prog(t, val, val + 1.0, easeOut);
-  const vy = cy - 60;
+  const vy = cy - 10;
   return (
     <>
       <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, opacity: pop(t, at)}}>
-        <rect x={150} y={vy - 390} width={780} height={780} rx={40} fill="#5B6577" stroke={NBK} strokeWidth={8} />
-        <circle cx={540} cy={vy} r={330} fill="#1B2330" stroke={NBK} strokeWidth={8} />
-        {lq > 0 && Array.from({length: 16}, (_, i) => { const a = (i / 16) * Math.PI * 2 + k * 0.3; const L = 340 + lq * 500; return <path key={i} d={`M 540 ${vy} L ${540 + Math.cos(a - 0.06) * L} ${vy + Math.sin(a - 0.06) * L} L ${540 + Math.cos(a + 0.06) * L} ${vy + Math.sin(a + 0.06) * L} Z`} fill={CqY} opacity={0.35 * lq} />; })}
+        <rect x={170} y={vy - 360} width={740} height={720} rx={40} fill="#5B6577" stroke={NBK} strokeWidth={8} />
+        <circle cx={540} cy={vy} r={318} fill="#1B2330" stroke={NBK} strokeWidth={8} />
+        <defs><clipPath id="cqvc"><rect x={0} y={448} width={1080} height={940} /></clipPath></defs>
+        {lq > 0 && <g clipPath="url(#cqvc)">{Array.from({length: 16}, (_, i) => { const a = (i / 16) * Math.PI * 2 + k * 0.3; const L = 340 + lq * 500; return <path key={i} d={`M 540 ${vy} L ${540 + Math.cos(a - 0.06) * L} ${vy + Math.sin(a - 0.06) * L} L ${540 + Math.cos(a + 0.06) * L} ${vy + Math.sin(a + 0.06) * L} Z`} fill={CqY} opacity={0.35 * lq} />; })}</g>}
         {lq > 0 && <circle cx={540} cy={vy} r={120 + lq * 80} fill={CqY} opacity={0.9} />}
-        <g transform={`translate(540 ${vy}) translate(${-op * 300} 0) scale(${1 - op * 0.25} 1)`}>
+        <g transform={`translate(540 ${vy}) translate(${-op * 300} 0) scale(${(1 - op * 0.25) * 0.96} 0.96)`}>
           <circle r={320} fill="#9AA5B4" stroke={NBK} strokeWidth={8} />
           <circle r={250} fill="#B5BFCC" stroke={NBK} strokeWidth={6} />
           {Array.from({length: 12}, (_, i) => { const a = (i / 12) * Math.PI * 2; return <circle key={i} cx={Math.cos(a) * 285} cy={Math.sin(a) * 285} r={14} fill="#7C8796" stroke={NBK} strokeWidth={4} />; })}
@@ -4716,31 +4716,31 @@ const CqPromise: React.FC<{cy: number; at: number; pub: number; prom: number}> =
 const CqGlass: React.FC<{cy: number; at: number; tr: number; dem: number; conc: number; lien: number; imb: number}> = ({cy, at, tr, dem, conc, lien, imb}) => {
   const t = useT();
   const k = Math.max(0, t - at);
-  const G = cy + 230;
+  const G = cy + 150;
   const gq = prog(t, tr - 0.2, tr + 0.8, easeOut);
-  const rise = prog(t, dem, dem + 0.8, easeOut) * 120;
+  const rise = prog(t, dem, dem + 0.8, easeOut) * 70;
   const fade = prog(t, conc, conc + 0.6);
   const lq = prog(t, lien, lien + 1.0, easeInOut);
   const iq = t > imb ? Math.min(1, sp(t, imb, 9, 10)) : 0;
   return (
     <>
       <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, opacity: pop(t, at)}}>
-        {[[110, 160, 380], [290, 140, 300], [800, 150, 340], [950, 120, 260]].map(([x, w, h], i) => <rect key={i} x={x - w / 2} y={G - h} width={w} height={h} rx={8} fill={hexMix('#5B6577', '#C6CDD8', fade)} stroke={NBK} strokeWidth={6} opacity={1 - fade * 0.55} />)}
+        {[[110, 160, 340], [290, 140, 270], [800, 150, 310], [950, 120, 240]].map(([x, w, h], i) => <rect key={i} x={x - w / 2} y={G - h} width={w} height={h} rx={8} fill={hexMix('#5B6577', '#C6CDD8', fade)} stroke={NBK} strokeWidth={6} opacity={1 - fade * 0.55} />)}
         <g transform={`translate(0 ${-rise})`}>
-          <rect x={410} y={G - 520} width={260} height={520} rx={10} fill={`rgba(160,215,255,${0.25 + 0.35 * (1 - gq)})`} stroke={NBK} strokeWidth={7} />
-          {[0, 1, 2, 3].map((f) => <line key={f} x1={410} y1={G - 130 * (f + 1)} x2={670} y2={G - 130 * (f + 1)} stroke={NBK} strokeWidth={5} />)}
-          {gq > 0 && [0, 1, 2, 3].flatMap((f) => [0, 1].map((m) => <CqPerson key={`${f}${m}`} x={470 + m * 130 + Math.sin(k * 2 + f + m) * 8} y={G - 130 * f - 40} c={[CqG, CqB, CqO, CqT][(f + m) % 4]} s={0.5 * gq} skin={SKINS[(f + m) % 4]} />))}
-          <path d={`M 410 ${G - 520} L 470 ${G - 520} L 410 ${G - 400} Z`} fill="rgba(255,255,255,0.55)" />
-          {rise > 0 && <circle cx={540} cy={G - 560} r={30 + Math.sin(k * 5) * 6} fill={CqY} stroke={NBK} strokeWidth={5} />}
+          <rect x={410} y={G - 440} width={260} height={440} rx={10} fill={`rgba(160,215,255,${0.25 + 0.35 * (1 - gq)})`} stroke={NBK} strokeWidth={7} />
+          {[0, 1, 2].map((f) => <line key={f} x1={410} y1={G - 110 * (f + 1)} x2={670} y2={G - 110 * (f + 1)} stroke={NBK} strokeWidth={5} />)}
+          {gq > 0 && [0, 1, 2, 3].flatMap((f) => [0, 1].map((m) => <CqPerson key={`${f}${m}`} x={470 + m * 130 + Math.sin(k * 2 + f + m) * 8} y={G - 110 * f - 35} c={[CqG, CqB, CqO, CqT][(f + m) % 4]} s={0.5 * gq} skin={SKINS[(f + m) % 4]} />))}
+          <path d={`M 410 ${G - 440} L 470 ${G - 440} L 410 ${G - 330} Z`} fill="rgba(255,255,255,0.55)" />
+          {rise > 0 && <rect x={404} y={G - 446} width={272} height={452} rx={14} fill="none" stroke={CqY} strokeWidth={8 + Math.sin(k * 5) * 3} />}
         </g>
         <line x1={60} y1={G} x2={1020} y2={G} stroke={NBK} strokeWidth={8} />
-        {lq > 0 && Array.from({length: 7}, (_, i) => { const x = 160 + i * 127; const ok = lq * 7 > i; return ok ? <g key={i}><ellipse cx={lerp(540, x, cl(lq * 7 - i))} cy={G + 120} rx={36} ry={22} fill="none" stroke={CqG} strokeWidth={10} /><CqPerson x={x} y={G + 300} c={[CqB, CqT, CqO, CqG, CqV, CqP, CqN][i]} s={0.7} skin={SKINS[i % 4]} hair={i % 2 === 0} /></g> : null; })}
-        {lq > 0 && <path d={`M 540 ${G - rise + 10} L 540 ${G + 120}`} stroke={CqG} strokeWidth={10} strokeDasharray="20 14" />}
+        {lq > 0 && Array.from({length: 7}, (_, i) => { const x = 160 + i * 127; const ok = lq * 7 > i; return ok ? <g key={i}><ellipse cx={lerp(540, x, cl(lq * 7 - i))} cy={G + 100} rx={36} ry={22} fill="none" stroke={CqG} strokeWidth={10} /><CqPerson x={x} y={G + 215} c={[CqB, CqT, CqO, CqG, CqV, CqP, CqN][i]} s={0.7} skin={SKINS[i % 4]} hair={i % 2 === 0} /></g> : null; })}
+        {lq > 0 && <path d={`M 540 ${G - rise + 10} L 540 ${G + 100}`} stroke={CqG} strokeWidth={10} strokeDasharray="20 14" />}
       </svg>
-      {iq > 0 && <div style={{position: 'absolute', left: 540 - 80, top: G - 760 - rise, width: 160, height: 160, transform: `scale(${iq})`, zIndex: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 80, background: CqG, border: `7px solid ${NBK}`}}><Ico n="ShieldCheck" size={100} c="#fff" /></div>}
+      {iq > 0 && <div style={{position: 'absolute', left: 540 - 80, top: G - 300 - rise, width: 160, height: 160, transform: `scale(${iq})`, zIndex: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 80, background: CqG, border: `7px solid ${NBK}`}}><Ico n="ShieldCheck" size={100} c="#fff" /></div>}
       <CqChip x={540} y={cy - 440} w={480} at={tr} l="Transparence totale" c={CqT} ic="Eye" fs={32} fill out={imb} />
-      <CqChip x={250} y={G + 30} w={380} at={conc} l="Les concurrents" c={CqS} fs={28} fill />
-      <CqChip x={540} y={G + 400} w={540} at={imb} l="Une confiance imbattable" c={CqG} ic="Link" fs={30} fill />
+      <CqChip x={870} y={G + 20} w={340} at={conc} l="Les concurrents" c={CqS} fs={26} fill />
+      <CqChip x={540} y={G + 290} w={540} at={imb} l="Une confiance imbattable" c={CqG} ic="Link" fs={30} fill />
     </>
   );
 };
@@ -4778,7 +4778,7 @@ const CqInternal: React.FC<{cy: number; at: number; audit: number; cons: number;
     <>
       <div style={{position: 'absolute', left: 90, top: cy - 420, width: 900, height: 230, ...nb('#000', 8), borderColor: NBK, overflow: 'hidden', opacity: pop(t, at), zIndex: 3}}><Img src={staticFile(IMG.audit)} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${1.05 + k * 0.01})`}} /><div style={{position: 'absolute', left: 20, bottom: 16, ...nb(CqT, 5), borderColor: NBK, padding: '4px 16px', fontFamily: sansFont, fontWeight: 900, fontSize: 28, color: '#fff'}}>Les équipes dirigeantes</div></div>
       {C.map(([l, ic, c, a], i) => { const q = t > a ? Math.min(1, sp(t, a, 9, 11)) : 0; const y = cy - 140 + i * 190; const on = q > 0.5; return <div key={i} style={{position: 'absolute', left: 90, top: y, width: 900, height: 160, transform: `translateX(${(1 - q) * 1100}px)`, zIndex: 5}}><div style={{position: 'absolute', inset: 0, ...nb('#fff', 7), borderColor: NBK, boxShadow: `7px 7px 0 ${c}`, display: 'flex', alignItems: 'center', gap: 24, padding: '0 26px'}}><div style={{width: 110, height: 110, borderRadius: 22, background: c, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `rotate(${i === 2 && on ? (t - a) * 200 : 0}deg)`}}><Ico n={ic} size={72} c="#fff" /></div><span style={{fontFamily: sansFont, fontWeight: 900, fontSize: 38, color: INK, lineHeight: 1.1, flex: 1}}>{l}</span>{on && <div style={{width: 64, height: 64, borderRadius: 32, background: CqG, border: `5px solid ${NBK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `scale(${Math.min(1, sp(t, a + 0.35, 9, 9))})`}}><Ico n="Check" size={40} c="#fff" /></div>}</div></div>; })}
-      <CqChip x={540} y={cy + 440} w={360} at={at + 0.4} l="En interne" c={CqT} ic="Building2" fs={32} fill />
+      <CqChip x={540} y={cy + 410} w={360} at={at + 0.4} l="En interne" c={CqT} ic="Building2" fs={32} fill />
     </>
   );
 };
@@ -4795,7 +4795,7 @@ const CqPriceShift: React.FC<{cy: number; at: number; det: number; prix: number;
     <>
       <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, opacity: pop(t, at)}}>
         <defs><radialGradient id="cqspot"><stop offset="0%" stopColor="#FFF4C2" stopOpacity={0.95} /><stop offset="100%" stopColor="#FFF4C2" stopOpacity={0} /></radialGradient></defs>
-        <rect x={0} y={440} width={1080} height={960} fill="rgba(11,46,107,0.12)" />
+        <rect x={0} y={440} width={1080} height={945} fill="rgba(11,46,107,0.12)" />
         <path d={`M 540 ${cy + 360} L ${tx - 170} ${ty + 40} L ${tx + 170} ${ty + 40} Z`} fill="url(#cqspot)" opacity={0.75} />
         <ellipse cx={tx} cy={ty + 40} rx={210} ry={70} fill="url(#cqspot)" />
         <g transform={`translate(250 ${cy - 120}) rotate(-12) scale(${1 - sw * 0.3})`} opacity={1 - sw * 0.6}><path d="M -120 -70 L 90 -70 L 150 0 L 90 70 L -120 70 Z" fill="#fff" stroke={NBK} strokeWidth={7} strokeLinejoin="round" /><circle cx={95} cy={0} r={14} fill="none" stroke={NBK} strokeWidth={5} /><text x={-20} y={22} textAnchor="middle" fontFamily={sansFont} fontWeight={900} fontSize={66} fill={CqR}>€</text></g>
@@ -4843,8 +4843,8 @@ const CqReveal: React.FC<{cy: number; at: number; inv: number; conc: number; web
     <>
       <div style={{opacity: 1 - move, transform: `translateY(${-move * 120}px)`}}>
         <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, opacity: pop(t, at)}}>
-          <rect x={160} y={cy - 360} width={760} height={560} rx={24} fill="#E9EDF2" stroke={NBK} strokeWidth={7} />
-          <path d={`M 140 ${cy - 360} L 540 ${cy - 520} L 940 ${cy - 360} Z`} fill={CqN} stroke={NBK} strokeWidth={7} strokeLinejoin="round" />
+          <rect x={160} y={cy - 330} width={760} height={530} rx={24} fill="#E9EDF2" stroke={NBK} strokeWidth={7} />
+          <path d={`M 140 ${cy - 330} L 540 ${cy - 430} L 940 ${cy - 330} Z`} fill={CqN} stroke={NBK} strokeWidth={7} strokeLinejoin="round" />
         </svg>
         {P.map((p, i) => { const vis = prog(t, inv - 0.3 + i * 0.1, inv + 0.2 + i * 0.1); const x = 220 + (i % 2) * 340, y = cy - 300 + Math.floor(i / 2) * 240; return <div key={i} style={{position: 'absolute', left: x, top: y, width: 300, height: 190, borderRadius: 18, border: `5px ${cq > 0.5 ? 'solid' : 'dashed'} ${cq > 0.5 ? NBK : '#9AA7B8'}`, background: cq > 0.5 ? '#fff' : 'transparent', boxShadow: cq > 0.5 ? `6px 6px 0 ${[CqG, CqB, CqO, CqT][i]}` : 'none', opacity: 0.25 + 0.75 * Math.max(cq, vis * 0.5), filter: `blur(${(1 - cq) * 3}px)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 38, color: cq > 0.5 ? INK : '#9AA7B8', zIndex: 4, transform: `scale(${1 + 0.06 * Math.sin(cq * Math.PI)})`, boxSizing: 'border-box'}}>{p}</div>; })}
         <CqChip x={540} y={cy + 230} w={540} at={inv} l="Souvent invisibles" c="#9AA7B8" ic="EyeOff" fs={30} fill out={conc} />
@@ -4905,9 +4905,9 @@ const CqGarage: React.FC<{cy: number; at: number; mains: number; meth: number; c
         {[0, 1, 2, 3, 4].map((m) => { const q = cl(bp * 6 - 5 + m * 0.15); return <line key={m} x1={420} y1={cy - 170 + m * 60} x2={420 + 240 * q} y2={cy - 170 + m * 60} stroke="#BFE0FF" strokeWidth={8} strokeLinecap="round" strokeDasharray="1 14" />; })}
         {bp > 0.05 && <g transform={`translate(${380 + 320 * cl(bp * 1.2)} ${cy - 330 + 470 * cl(bp * 1.2 - 0.4)})`}><path d="M 0 0 L 20 -60 L 34 -54 L 14 6 Z" fill={CqY} stroke={NBK} strokeWidth={4} /></g>}
       </svg>
-      <div style={{position: 'absolute', left: 60, top: cy + 150, width: 300, height: 300, transform: `scale(${gq}) rotate(${wr * 0.2}deg)`, zIndex: 5, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><div style={{width: 220, height: 220, borderRadius: 110, background: CqO, border: `7px solid ${NBK}`, boxShadow: `7px 7px 0 ${NBK}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><div style={{transform: `rotate(${wr}deg)`}}><Ico n="Wrench" size={130} c="#fff" /></div></div></div>
-      <div style={{position: 'absolute', left: 730, top: cy + 150, width: 300, height: 300, transform: `scale(${gq})`, zIndex: 5, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><div style={{width: 220, height: 220, borderRadius: 110, background: '#3A424D', border: `7px solid ${NBK}`, boxShadow: `7px 7px 0 ${NBK}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Ico n="Hand" size={130} c={CqY} /></div></div>
-      <CqChip x={540} y={cy + 470} w={600} at={meth} l="La méthodologie de rédaction" c={CqT} ic="PenLine" fs={30} fill />
+      <div style={{position: 'absolute', left: 60, top: cy + 110, width: 300, height: 300, transform: `scale(${gq}) rotate(${wr * 0.2}deg)`, zIndex: 5, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><div style={{width: 220, height: 220, borderRadius: 110, background: CqO, border: `7px solid ${NBK}`, boxShadow: `7px 7px 0 ${NBK}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><div style={{transform: `rotate(${wr}deg)`}}><Ico n="Wrench" size={130} c="#fff" /></div></div></div>
+      <div style={{position: 'absolute', left: 730, top: cy + 110, width: 300, height: 300, transform: `scale(${gq})`, zIndex: 5, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><div style={{width: 220, height: 220, borderRadius: 110, background: '#3A424D', border: `7px solid ${NBK}`, boxShadow: `7px 7px 0 ${NBK}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><Ico n="Hand" size={130} c={CqY} /></div></div>
+      <CqChip x={540} y={cy + 430} w={600} at={meth} l="La méthodologie de rédaction" c={CqT} ic="PenLine" fs={30} fill />
     </>
   );
 };
@@ -4931,8 +4931,8 @@ const CqTeams: React.FC<{cy: number; at: number; collab: number; groups: number;
         {t > collab && [0, 1].map((m) => { const r = ((t - collab) * 300 + m * 200) % 400; return <ellipse key={m} cx={540} cy={cy + 40} rx={260 + r} ry={150 + r * 0.6} fill="none" stroke={CqG} strokeWidth={6 * (1 - r / 400)} opacity={1 - r / 400} />; })}
       </svg>
       {dq > 0 && <div style={{position: 'absolute', left: 540 - 170, top: cy - 420, width: 340, height: 200, transform: `scale(${dq})`, zIndex: 7}}><div style={{position: 'absolute', inset: 0, ...nb(CqN, 7), borderColor: NBK, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6, fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: '#fff'}}><Ico n="Crown" size={60} c={CqY} />Les dirigeants seuls</div><svg width={340} height={200} style={{position: 'absolute', left: 0, top: 0}}><line x1={10} y1={190} x2={10 + 320 * xq} y2={190 - 180 * xq} stroke={CqR} strokeWidth={14} strokeLinecap="round" /></svg></div>}
-      <CqChip x={540} y={cy + 400} w={460} at={collab} l="La collaboration" c={CqG} ic="Handshake" fs={34} fill />
-      <CqChip x={540} y={cy + 480} w={480} at={groups} l="Des groupes de travail" c={CqT} ic="Users" fs={30} fill />
+      <CqChip x={540} y={cy + 360} w={460} at={collab} l="La collaboration" c={CqG} ic="Handshake" fs={34} fill />
+      <CqChip x={540} y={cy + 438} w={480} at={groups} l="Des groupes de travail" c={CqT} ic="Users" fs={30} fill />
       <CqChip x={540} y={cy - 440} w={520} at={mix + 0.4} l="On mélange les métiers" c={CqO} ic="Shuffle" fs={30} fill />
     </>
   );
@@ -4962,7 +4962,7 @@ const CqAlign: React.FC<{cy: number; at: number; obj: number; strat: number; qui
       </>}
       {!phase2 && <CqChip x={540} y={cy + 380} w={560} at={strat} l="La stratégie globale" c={CqY} ic="Compass" fs={32} fill />}
       {phase2 && <CqChip x={540} y={cy - 440} w={400} at={qui} l="Qui fait quoi" c={CqN} ic="Users" fs={32} fill />}
-      {phase2 && <CqChip x={540} y={cy + 130} w={460} at={ind} l="Des indicateurs" c={CqG} ic="Gauge" fs={32} fill />}
+      {phase2 && <CqChip x={540} y={cy + 360} w={460} at={ind} l="Des indicateurs" c={CqG} ic="Gauge" fs={32} fill />}
     </>
   );
 };
@@ -5035,12 +5035,12 @@ const CqLiving: React.FC<{cy: number; at: number; viv: number; mot: number; amel
         {wq > 0 && <g transform={`translate(540 ${cy + 120}) scale(${wq}) rotate(${rot})`}>{[CqB, CqG, CqO, CqT].map((c, i) => <path key={i} d={`M 0 0 L ${Math.cos((i * Math.PI) / 2) * 260} ${Math.sin((i * Math.PI) / 2) * 260} A 260 260 0 0 1 ${Math.cos(((i + 1) * Math.PI) / 2) * 260} ${Math.sin(((i + 1) * Math.PI) / 2) * 260} Z`} fill={c} stroke={NBK} strokeWidth={6} />)}<circle r={90} fill="#fff" stroke={NBK} strokeWidth={6} /></g>}
         {wq > 0 && [['P', -1, -1], ['D', 1, -1], ['C', 1, 1], ['A', -1, 1]].map(([l, sx, sy], i) => { const a = (rot * Math.PI) / 180 + Math.atan2(sy as number, sx as number); return <text key={i} x={540 + Math.cos(a) * 175} y={cy + 120 + Math.sin(a) * 175 + 22} textAnchor="middle" fontFamily={sansFont} fontWeight={900} fontSize={64} fill="#fff">{l}</text>; })}
         {fq > 0 && cq < 1 && <path d={`M ${780} ${cy - 30} l 20 40 l -16 30 l 22 40`} stroke={CqR} strokeWidth={8} fill="none" opacity={1 - cq} />}
-        {aq > 0 && <g><line x1={140} y1={cy + 450} x2={140 + 800 * aq} y2={cy + 450} stroke={CqG} strokeWidth={18} strokeLinecap="round" /><path d={`M ${160 + 800 * aq} ${cy + 450} l -50 -32 l 0 64 Z`} fill={CqG} stroke={NBK} strokeWidth={5} /></g>}
+        {aq > 0 && <g><line x1={140} y1={cy + 475} x2={140 + 800 * aq} y2={cy + 475} stroke={CqG} strokeWidth={18} strokeLinecap="round" /><path d={`M ${160 + 800 * aq} ${cy + 475} l -50 -32 l 0 64 Z`} fill={CqG} stroke={NBK} strokeWidth={5} /></g>}
       </svg>
       <div style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 1920, transform: `scale(${1 - wq * 0.45}) translate(${wq * -430}px, ${wq * -380}px)`, transformOrigin: '540px 880px', zIndex: 5}}><CqDoc x={540} y={cy - 40} w={260} lines={1} seal={1} rot={0} glow={beat} z={5} /></div>
       {fq > 0 && <div style={{position: 'absolute', left: lerp(1000, 720, fq), top: cy - 110, width: 170, height: 170, zIndex: 7, transform: `rotate(${-20 + cq * 40}deg)`}}><Ico n={cq > 0.3 ? 'Crosshair' : 'Search'} size={150} c={cq > 0.3 ? CqG : NBK} /></div>}
       <CqChip x={540} y={cy - 440} w={420} at={viv} l="C'est vivant" c={CqG} ic="HeartPulse" fs={32} fill />
-      <CqChip x={540} y={cy + 360} w={560} at={amel} l="Amélioration continue" c={CqB} ic="RefreshCw" fs={30} fill />
+      <CqChip x={540} y={cy + 392} w={560} at={amel} l="Amélioration continue" c={CqB} ic="RefreshCw" fs={30} fill />
     </>
   );
 };
@@ -5099,7 +5099,7 @@ const CqTen: React.FC<{cy: number; at: number; ten: number; mag: number; plus: n
       </div>
       {t > ten && <div style={{position: 'absolute', left: 0, top: cy + 60, width: 1080, display: 'flex', justifyContent: 'center', zIndex: 6, opacity: 1 - dq * 0.7}}><div style={{position: 'relative', fontFamily: sansFont, fontWeight: 900, fontSize: 300, lineHeight: 1, color: CqN, transform: `scale(${Math.min(1, sp(t, ten, 8, 10)) * (1 + 0.08 * mq * Math.sin(k * 6))})`, textShadow: mq > 0 ? `0 0 ${50 * mq}px ${CqY}, 8px 8px 0 ${CqY}` : `8px 8px 0 ${NBK}`, WebkitTextStroke: `6px ${NBK}`}}>10{mq > 0 && Array.from({length: 6}, (_, i) => { const a = (i / 6) * Math.PI * 2 + k * 1.5; return <div key={i} style={{position: 'absolute', left: 230 + Math.cos(a) * 260, top: 140 + Math.sin(a) * 170, transform: `scale(${mq})`}}><Ico n="Sparkles" size={56} c={CqY} /></div>; })}</div></div>}
       <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 5}}>
-        {lq > 0 && Array.from({length: 6}, (_, i) => <CqPerson key={i} x={180 + i * 145 + (i % 2 ? 1 : -1) * lq * 500} y={cy + 470} c={[CqB, CqT, CqO, CqG, CqV, CqP][i]} s={0.75} skin={SKINS[i % 4]} hair={i % 2 === 0} />)}
+        {lq > 0 && Array.from({length: 6}, (_, i) => <CqPerson key={i} x={180 + i * 145 + (i % 2 ? 1 : -1) * lq * 500} y={cy + 430} c={[CqB, CqT, CqO, CqG, CqV, CqP][i]} s={0.75} skin={SKINS[i % 4]} hair={i % 2 === 0} />)}
       </svg>
       <CqChip x={540} y={cy - 440} w={600} at={ten} l="Un maximum de 10 engagements" c={CqN} ic="ListChecks" fs={30} fill out={plus} />
       <CqChip x={540} y={cy - 440} w={420} at={mag} l="Le chiffre magique" c={CqY} ic="Sparkles" fs={32} fill out={plus} />
@@ -5205,7 +5205,7 @@ const CqArena: React.FC<{cy: number; at: number; monde: number; prouv: number; p
       </svg>
       {pq > 0 && <div style={{position: 'absolute', left: 0, top: G + 40, width: 1080, display: 'flex', justifyContent: 'center', transform: `scale(${pq})`, zIndex: 6}}><div style={{...nb('#fff', 7), borderColor: NBK, boxShadow: `7px 7px 0 ${CqG}`, padding: '10px 26px', fontFamily: sansFont, fontWeight: 900, fontSize: 40, color: INK}}>Prouver ce qu'elle vaut ?</div></div>}
       <CqChip x={540} y={cy - 440} w={560} at={monde} l="Un monde concurrentiel" c={CqR} ic="Swords" fs={30} fill out={pub} />
-      <CqChip x={540} y={cy - 440} w={560} at={pub} l="S'engager publiquement" c={CqG} ic="Flag" fs={30} fill />
+      <CqChip x={540} y={G + 140} w={560} at={pub} l="S'engager publiquement" c={CqG} ic="Flag" fs={30} fill />
     </>
   );
 };
@@ -5253,7 +5253,7 @@ const CqKeystone: React.FC<{cy: number; at: number; key0: number; perf: number; 
       {nq > 0 && <div style={{position: 'absolute', left: 0, top: cy - 420, width: 1080, display: 'flex', justifyContent: 'center', transform: `scale(${nq})`, zIndex: 6}}><div style={{...nb('#fff', 7), borderColor: NBK, boxShadow: `7px 7px 0 ${CqB}`, borderRadius: 60, padding: '12px 30px', display: 'flex', alignItems: 'center', gap: 12, fontFamily: sansFont, fontWeight: 900, fontSize: 34, color: INK}}><Ico n="Brain" size={44} c={CqB} />De quoi nourrir la réflexion</div></div>}
       <CqChip x={540} y={ccy + 230} w={620} at={perf} l="La performance moderne" c={CqG} ic="TrendingUp" fs={32} fill />
       <CqChip x={540} y={ccy - R1 + 60} w={360} at={key0} l="La clé de voûte" c={CqN} ic="KeyRound" fs={30} fill />
-      <CqChip x={540} y={ccy + 320} w={360} at={merci} l="Merci !" c={CqY} ic="Heart" fs={34} fill />
+      <CqChip x={540} y={ccy - 90} w={320} at={merci} l="Merci !" c={CqY} ic="Heart" fs={34} fill />
     </>
   );
 };
@@ -5367,7 +5367,7 @@ const S3: React.FC = () => (
       <CqSpotlight cy={900} at={166.45} lum={167.4} pro={168.0} solid={169.8} conf={170.8} />
     </Ph>
     <Ph a={172.05} b={182.45}>
-      <CqReveal cy={860} at={172.1} inv={175.8} conc={177.6} web={179.3} med={180.2} pack={181.9} />
+      <CqReveal cy={900} at={172.1} inv={175.8} conc={177.6} web={179.3} med={180.2} pack={181.9} />
     </Ph>
     <Ph a={182.4} b={193.85}>
       <CqLeap cy={880} at={182.45} bond={184.1} rep={185.5} lev={189.4} vis={192.4} />
