@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 136,
+ "count": 137,
  "items": [
   {
    "section": "templates",
@@ -575,6 +575,29 @@
    "hash": "f8abb3c971fb",
    "path": "assets/cercle-vicieux-brise/index.md",
    "preview": "assets/cercle-vicieux-brise/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "charte-qualite-metro",
+   "name": "La Charte Qualité — particules « CHARTE », document-charte fil rouge, plan de ligne du menu, dalle et première pierre, classeur « NON », échelle jusqu'au conseil, cible à trois flèches, diapason, tamis des engagements, coffre de la valeur, contrat replié en bulle, immeuble de verre, pièce qui se dédouble, projecteur prix → qualité, roue PDCA vivante, dix cases, lingots des règles d'or, arche et clé de voûte",
+   "description": "Capsule métro à sept guichets (gyrophare, recherche qui ouvre « concrètement, à l'organisation ? », carrousel 3D d'images, images du dépôt) sur la charte qualité (voix d'origine complète, 5 min 08), palette `CqN` `CqG` `CqO` `CqR` `CqB` `CqT` `CqY` `CqV` `CqP` `CqK` `CqS`, seuls les chiffres prononcés sont affichés (2 minutes, 10 engagements). Le document « charte qualité » (`<CqDoc>` : bandeau marine, lignes qui s'écrivent, sceau vert, poussière, halo) sert de fil rouge. Techniques nouvelles — `<CqParticles>` particules qui s'assemblent en « CHARTE » (une couleur par lettre) ; `<CqRoadmap>` bulles de concepts floues qui se figent en jalons d'une route, jauge des standards ; `<CqBigQuestion>` point d'interrogation en briques qui tombent, ligne « de bout en bout » ; `<CqMenuLine>` feu de départ puis plan de ligne à cinq stations avec rame ; `<CqFoundation>` dalle coulée, charte posée comme première pierre, étages des standards ; `<CqDrawer>` feuille rangée, tiroir qui claque, tampon « NON » ; `<CqApproval>` document qui gravit l'échelle de l'organisation jusqu'au conseil d'administration, tampon « APPROUVÉ » ; `<CqTarget>` cible et trois flèches (normes, interne, clients) ; `<CqTone>` diapason dont les ondes accordent l'équipe ; `<CqSieve>` alerte puis tamis qui ne laisse passer que les engagements forts ; `<CqExclude>` exclusions barrées et éjectées ; `<CqPrinciple>` parchemin, cadre de confiance autour d'une poignée de main ; `<CqVault>` porte de coffre qui libère la valeur ; `<CqPaperwork>` avalanche de paperasse figée en pause ; `<CqWinners>` course des tours, trophée, moteur stratégique ; `<CqContract>` ampoule, contrat barré replié en bulle « l'expression d'un contrat » ; `<CqPromise>` mégaphone et promesse signée en direct ; `<CqGlass>` immeuble de verre transparent, concurrents opaques, chaîne de confiance ; `<CqSplit>` pièce d'or qui se dédouble interne / externe ; `<CqInternal>` trois cartes vivantes ; `<CqPriceShift>` projecteur qui glisse du prix vers le sceau qualité ; `<CqSpotlight>` photo sous le projecteur et mur de confiance ; `<CqReveal>` principes fantômes matérialisés puis affichés (navigateur, journal, emballage) ; `<CqLeap>` bond de géant, « ? » qui devient « ✓ », levier de croissance, œil de l'excellence ; `<CqGarage>` plan d'architecte ; `<CqTeams>` table ronde des métiers ; `<CqAlign>` flèches alignées sur l'étoile, rôles distribués, jauge ; `<CqMeans>` mains empilées, balance moyens / ambitions ; `<CqShelf>` poussière et toile d'araignée ; `<CqLiving>` électrocardiogramme, roue PDCA, loupe et viseur ; `<CqConcision>` marteau et ciseaux ; `<CqTen>` dix cases, « 10 » magique, engagement de trop, message dilué ; `<CqGolden>` lingots des règles d'or ; `<CqOneLine>` verre d'eau limpide, égalité « 1 engagement = 1 phrase », public qui comprend ; `<CqPunch>` pelote ignorée puis flèche qui frappe la cible ; `<CqArena>` arène de tours et drapeau qualité ; `<CqUnmute>` haut-parleur barré qui éclate en mégaphone ; `<CqKeystone>` arche montée pierre à pierre, charte en clé de voûte. `CqChip`, `CqPerson`, `CqDocMini` : utilitaires. Réutilise `SearchOpen`, `Ring3D`, `NBadge`, `JCrtOff`.",
+   "quand": "Charte qualité, politique qualité, engagements qualité, démarche qualité, ISO 9001, communication de la qualité, confiance client, méthodologie de rédaction, critères de réussite, amélioration continue, gouvernance.",
+   "component": "src/charteQualiteMetro/CharteQualiteMetro.tsx",
+   "demo": "Demo-CharteQualite",
+   "audio": null,
+   "tags": [
+    "charte qualité",
+    "démarche qualité",
+    "ISO 9001",
+    "engagements",
+    "confiance",
+    "amélioration continue",
+    "particules",
+    "métro"
+   ],
+   "hash": "804fab1566d4",
+   "path": "assets/charte-qualite-metro/index.md",
+   "preview": "assets/charte-qualite-metro/preview.mp4"
   },
   {
    "section": "assets",
