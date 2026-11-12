@@ -91,6 +91,7 @@
     "@remotion/fonts": "^4.0.532",
     "@remotion/three": "^4.0.532",
     "d3-geo": "^3.1.1",
+    "i18n-iso-countries": "^7.14.0",
     "lucide-react": "^1.50.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
