@@ -276,6 +276,7 @@ import {RseMethodesMetro, RSE_METHODES_METRO_FRAMES} from './rseMethodesMetro/Rs
 import {CharteQualiteMetro, CHARTE_QUALITE_METRO_FRAMES} from './charteQualiteMetro/CharteQualiteMetro';
 import {CinqSMetro, CINQ_S_METRO_FRAMES} from './cinqSMetro/CinqSMetro';
 import {ProcedureQhseMetro, PROCEDURE_QHSE_METRO_FRAMES} from './procedureQhseMetro/ProcedureQhseMetro';
+import {PrincipesPreventionMetro, PRINCIPES_PREVENTION_METRO_FRAMES} from './principesPreventionMetro/PrincipesPreventionMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -570,6 +571,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseCharteQualiteMetro" component={CharteQualiteMetro} durationInFrames={CHARTE_QUALITE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseCinqSMetro" component={CinqSMetro} durationInFrames={CINQ_S_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseProcedureQhseMetro" component={ProcedureQhseMetro} durationInFrames={PROCEDURE_QHSE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondensePrincipesPreventionMetro" component={PrincipesPreventionMetro} durationInFrames={PRINCIPES_PREVENTION_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />

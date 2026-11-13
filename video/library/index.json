@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 139,
+ "count": 140,
  "items": [
   {
    "section": "templates",
@@ -2153,6 +2153,31 @@
    "hash": "7571685b03fe",
    "path": "assets/portes-fta/index.md",
    "preview": "assets/portes-fta/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "principes-prevention-metro",
+   "name": "Les 9 principes généraux de prévention — particules « 9 », détour qui évite le danger, matrice et réticule, aspiration à la source, poste ergonomique qui s'adapte, escalier de la technique, substitution du dangereux, calendrier qui s'effeuille, parapluie de la protection collective, pyramide finale + pack de 25 techniques et 15 effets de plus (caméra, lumière, texture, typographie, transitions)",
+   "description": "Capsule métro à dix guichets (gyrophare accéléré par TimeWarp `TK = 3.4` pour suivre une voix rapide, recherche qui ouvre « protection collective », carrousel 3D, images du dépôt) sur les 9 principes généraux de prévention (voix d'origine, 40 s, refonte d'un ancien montage), cadre de marquage au sol jaune / noir (`<GpHazardFrame>`), palette `GpN` `GpG` `GpR` `GpO` `GpT` `GpB` `GpY` `GpV` `GpP` `GpK` `GpS` `GpGold`, une couleur par principe (`GP_C`, `GP_L`, `GP_IC`), seuls les chiffres prononcés sont affichés (1 à 9). Scènes — `<GpParticles>` particules qui forment un « 9 » dégradé puis neuf tuiles en orbite ; `<GpAvoid>` chemin droit barré, détour vert suivi par le travailleur avec traînée de comète ; `<GpMatrix>` matrice probabilité × gravité en vague, réticule qui verrouille une case ; `<GpSource>` fût qui fume, bras d'aspiration qui avale les fumées ; `<GpErgo>` plan de travail qui monte à hauteur de coude, dos qui se redresse, angle et cote qui passent au vert ; `<GpTech>` escalier des époques de la technique et barre « mise à jour » ; `<GpSwap>` / `<GpHaz>` carte « dangereux » barrée remplacée par « pas dangereux » OU « moins dangereux » ; `<GpPlan>` calendrier mural qui s'effeuille et planning barre par barre ; `<GpUmbrella>` pluie des risques arrêtée par le parapluie collectif, casque individuel ; `<GpPyramid>` pyramide hiérarchisée avec échos de mouvement, reflet miroir, faisceaux et « PRÉVENTION » qui se décode ; `<GpGhost>` chiffre fantôme géant en parallaxe. Pack de 25 techniques globales (`partGp3`) — `GpCam` secousse amortie sur impact, travelling avant continu, punch-in ciblé ; `GpShock` onde de choc ; `GpFlash` flash blanc de coupe ; `GpLeak` fuite de lumière ; `GpVignette` vignette qui rougit sur le danger ; `GpGrain` grain argentique animé ; `GpSlam` mot-choc cinétique plein écran ; `GpRing9` anneau de progression à neuf segments ; `GpSpot` projecteur ; `GpGlitch` glitch en tranches ; `GpSparkle` étincelles étoilées ; `GpFlare` flare anamorphique ; `GpSpeed` lignes de vitesse ; `GpBlob` volet liquide ; `GpRipple` ondulation de la grille ; `GpBokeh` bokeh de fond ; `GpScramble` texte qui se décode ; `GpRays` faisceaux volumétriques ; `GpColorImg` colorisation progressive ; `GpHolo` reflet holographique. Pack de 15 effets de plus (`partGp4` et retouches) — `GpBlinds` rideau de lamelles à la sortie de couverture ; `GpNeon` contour néon qui se trace autour de chaque scène ; `GpDust` paillettes dorées ; `GpLaser` balayage laser sur la matrice ; `GpShatter` éclatement de la carte « dangereux » en éclats ; `GpSonar` ondes sonar sous les pastilles ; `GpConfetti` confettis 3D qui retournent leur face ; `GpChecker` révélation en damier ; `GpInk` tache d'encre qui se diffuse derrière la scène ; `GpFireflies` lucioles sur des courbes de Lissajous ; `GpProgress` barre de progression de lecture aux neuf couleurs ; rémanence en contour du mot-choc (`GpSlam`) ; zoom de traversée flou vers le final et bascule 3D d'entrée de scène (`GpCam`) ; anneau de progression qui tourne une fois complet (`GpRing9`). Réutilise `SearchOpen`, `Ring3D`, `NBadge`, `JCrtOff`.",
+   "quand": "9 principes généraux de prévention, article L4121-2 du Code du travail, hiérarchie des mesures de prévention, évaluation des risques, substitution, protection collective, ergonomie, planification de la prévention, instructions aux travailleurs, capsule courte à voix rapide.",
+   "component": "src/principesPreventionMetro/PrincipesPreventionMetro.tsx",
+   "demo": "Demo-PrincipesPrevention",
+   "audio": null,
+   "tags": [
+    "prévention",
+    "9 principes",
+    "sécurité au travail",
+    "protection collective",
+    "ergonomie",
+    "substitution",
+    "matrice des risques",
+    "particules",
+    "métro",
+    "techniques globales"
+   ],
+   "hash": "5ac5d4d7f7c6",
+   "path": "assets/principes-prevention-metro/index.md",
+   "preview": "assets/principes-prevention-metro/preview.mp4"
   },
   {
    "section": "assets",
