@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 138,
+ "count": 139,
  "items": [
   {
    "section": "templates",
@@ -2153,6 +2153,33 @@
    "hash": "7571685b03fe",
    "path": "assets/portes-fta/index.md",
    "preview": "assets/portes-fta/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "procedure-qhse-metro",
+   "name": "La procédure QHSE / SMI — cadre de marquage au sol, particules « QHSE », tuiles qui s'emboîtent dans les exigences, plan de ligne des sept étapes, révélation circulaire du responsable, cible floue et flèche, cartes des contraintes qui se retournent, Gantt et barre du navire, feuilles qui tourbillonnent dans la charte, diagramme de Venn qui fusionne en SMI, plan bleu qui pivote en terrain, éventail d'ICP verrouillé, radar d'amélioration, certificat et sceau d'or",
+   "description": "Capsule métro à neuf guichets (gyrophare, recherche qui ouvre « surveiller l'efficacité », deux carrousels 3D d'images, images du dépôt) sur la procédure de mise en œuvre des critères QHSE et du système de management intégré (voix d'origine, 1 min 46), encadrée de bandes de marquage au sol jaune / noir (`<PqHazardFrame>`, `PQ_BORDER`), palette `PqN` `PqG` `PqR` `PqO` `PqT` `PqB` `PqY` `PqV` `PqP` `PqK` `PqS` `PqGold`, une couleur par lettre (`PQ_C`, `PQ_LT`), seuls les chiffres prononcés sont affichés (numéros des sept étapes, étape 3). Techniques nouvelles — `<PqParticles>` treize cents particules qui s'assemblent en « QHSE », chaque lettre dans sa couleur ; `<PqConform>` tuiles Q H S E qui flottent puis s'emboîtent en arc dans le cadre des exigences, fiche « Procédure » qui se déroule et se coche, réticule de précision ; `<PqSteps>` plan de ligne en serpentin, sept stations numérotées qui s'allument et capsule qui file jusqu'à l'étoile ; `<PqHire>` silhouette en pointillés, révélation circulaire de la photo, badge tamponné, deux filières reliées par des flux de pastilles ; `<PqTarget>` cible floue qui devient nette, flèche qui s'y plante avec onde de choc, lettres en orbite elliptique ; `<PqConstraints>` entreprise entourée de cinq cartes face cachée, loupe qui les inspecte, flèches de pression qui la font vaciller, retournement des cartes au mot ; `<PqPlan>` Gantt dont la grille se trace, barres qui poussent, ligne « aujourd'hui », barre du navire du pilotage ; `<PqBinder>` feuilles qui tourbillonnent dans le livre ouvert, qui se referme en « Charte QHSE » avec reflet ; `<PqSMI>` cercles Q H S E qui se recouvrent en diagramme de Venn puis fusionnent en disque « SMI » rayonnant ; `<PqApply>` plan bleu qui pivote en 3D et devient le terrain où se plantent quatre épingles, rappel de l'étape 3 ; `<PqAnalyze>` schéma du système balayé par un faisceau, loupe qui visite chaque échéance du calendrier ; `<PqKPI>` photo des dirigeants, éventail de cartes d'indicateurs (jauge, barres, courbe), carte élue « ICP » verrouillée par le réticule ; `<PqRadar>` radar qui balaie, échos ciblés transformés en flèches d'amélioration ; `<PqCertificate>` enveloppe de demande, certificat à bordure dorée, sceau d'or tamponné avec onde et confettis. `PqChip`, `PqTile`, `pqPolyAt`, `PqSwap` : utilitaires. Réutilise `SearchOpen`, `Ring3D`, `NBadge`, `JCrtOff`.",
+   "quand": "Mise en œuvre d'un système QHSE, procédure SMI, système de management intégré, responsable QHSE, objectifs et contraintes, plan d'action, charte QHSE, indicateurs de performance (ICP / KPI), amélioration continue, certification QHSE.",
+   "component": "src/procedureQhseMetro/ProcedureQhseMetro.tsx",
+   "demo": "Demo-ProcedureQhse",
+   "audio": null,
+   "tags": [
+    "QHSE",
+    "SMI",
+    "système de management intégré",
+    "procédure",
+    "responsable QHSE",
+    "charte",
+    "ICP",
+    "KPI",
+    "certification",
+    "marquage au sol",
+    "particules",
+    "métro"
+   ],
+   "hash": "1e0629f008fc",
+   "path": "assets/procedure-qhse-metro/index.md",
+   "preview": "assets/procedure-qhse-metro/preview.mp4"
   },
   {
    "section": "assets",
