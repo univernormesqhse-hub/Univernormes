@@ -279,6 +279,7 @@ import {ProcedureQhseMetro, PROCEDURE_QHSE_METRO_FRAMES} from './procedureQhseMe
 import {PrincipesPreventionMetro, PRINCIPES_PREVENTION_METRO_FRAMES} from './principesPreventionMetro/PrincipesPreventionMetro';
 import {IsoMoteurMetro, ISO_MOTEUR_METRO_FRAMES} from './isoMoteurMetro/IsoMoteurMetro';
 import {RisqueBrutNetMetro, RISQUE_BRUT_NET_METRO_FRAMES} from './risqueBrutNetMetro/RisqueBrutNetMetro';
+import {SwotRecordMetro, SWOT_RECORD_METRO_FRAMES} from './swotRecordMetro/SwotRecordMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -576,6 +577,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondensePrincipesPreventionMetro" component={PrincipesPreventionMetro} durationInFrames={PRINCIPES_PREVENTION_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseIsoMoteurMetro" component={IsoMoteurMetro} durationInFrames={ISO_MOTEUR_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseRisqueBrutNetMetro" component={RisqueBrutNetMetro} durationInFrames={RISQUE_BRUT_NET_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseSwotRecordMetro" component={SwotRecordMetro} durationInFrames={SWOT_RECORD_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
