@@ -1,0 +1,4 @@
+# Clé API locale : ne jamais la versionner.
+.env
+__pycache__/
+*.part
