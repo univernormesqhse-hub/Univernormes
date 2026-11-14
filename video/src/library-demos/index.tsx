@@ -109,6 +109,7 @@ import {RisqueBrutNetMetro} from '../risqueBrutNetMetro/RisqueBrutNetMetro';
 import {SwotRecordMetro} from '../swotRecordMetro/SwotRecordMetro';
 import {DangerRecordMetro} from '../dangerRecordMetro/DangerRecordMetro';
 import {IshikawaRecordMetro} from '../ishikawaRecordMetro/IshikawaRecordMetro';
+import {TroisBRecordMetro} from '../troisBRecordMetro/TroisBRecordMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -257,6 +258,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-SwotRecord', C: SwotRecordMetro, at: 2.9, dur: 9.0},
   {id: 'Demo-DangerRecord', C: DangerRecordMetro, at: 19.2, dur: 7.0},
   {id: 'Demo-IshikawaRecord', C: IshikawaRecordMetro, at: 21.0, dur: 9.0},
+  {id: 'Demo-TroisBRecord', C: TroisBRecordMetro, at: 28.6, dur: 9.0},
 ];
 
 export const LibraryDemos: React.FC = () => (
