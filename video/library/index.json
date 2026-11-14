@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 146,
+ "count": 147,
  "items": [
   {
    "section": "templates",
@@ -2429,6 +2429,29 @@
    "hash": "f8abb3c971fb",
    "path": "assets/reseau-graphe/index.md",
    "preview": "assets/reseau-graphe/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "resp-qhse-record-metro",
+   "name": "Le responsable QHSE « record de motion design » — organigramme 3D, tambour des intitulés, réseau à impulsions lumineuses, plateau multi-sites, radar de compétences extrudé, anneau d'audit, éventail de onze cartes de mission",
+   "description": "Capsule métro (3 min 08, voix fournie) à six guichets et onze stations (gyrophare `TK = 3.4`, cadre de marquage au sol jaune / noir, NeoCaptions, aucune musique) qui ajoute un pack WebGL réutilisable, `src/respQhseRecordMetro/RqGL.tsx` — `labelTex` / `Tag` (étiquettes en texture canvas posées en volume), `Hub` (réseau en étoile, tubes courbes, impulsions lumineuses), `OrgTree` (organigramme dont les liens poussent), `TitleDrum` (tambour à facettes qui fait défiler des intitulés), `Radar3D` (radar extrudé qui se gonfle axe par axe), `Bars3D` (histogramme 3D + flèche de croissance), `LoopTrack` (anneau parcouru par un jeton, stations qui s'allument), `CardFan` (cartes qui arrivent et se rangent en éventail), `Sites` (plateau multi-sites, trajet en arc). Réutilise `HardHat` du pack `SafeGL`. Scènes — `RqHero` (casque et lettres Q H S E qui s'illuminent au mot), `RqPolicy` (cinq verbes en marches puis particules « POLITIQUE » → « QHSE »), `RqTeam`, `RqNames`, `RqLinks`, `RqSkills`, `RqPerf`, `RqDaily`, `RqLoop`, `RqCards`. Caméra : dans un cadre vertical, prévoir une distance d'environ 15 à 17 unités pour une largeur de 5 à 6 unités.",
+   "quand": "Métier de responsable QHSE, fiche de poste, missions, organigramme, interlocuteurs, compétences, amélioration continue, liste de missions ; toute scène 3D d'organigramme, de réseau, de radar ou de liste de cartes.",
+   "component": "src/respQhseRecordMetro/RespQhseRecordMetro.tsx",
+   "demo": "Demo-RespQhseRecord",
+   "audio": null,
+   "tags": [
+    "responsable QHSE",
+    "métier",
+    "missions",
+    "organigramme",
+    "radar",
+    "réseau",
+    "WebGL",
+    "métro"
+   ],
+   "hash": "cf89ed630973",
+   "path": "assets/resp-qhse-record-metro/index.md",
+   "preview": "assets/resp-qhse-record-metro/preview.mp4"
   },
   {
    "section": "assets",
