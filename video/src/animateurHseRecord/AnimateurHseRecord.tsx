@@ -4942,8 +4942,8 @@ const HsTree: React.FC = () => {
     <>
       <GLStageS z={4}>
         <HsWorld k={0.9} />
-        <Cam p={[Math.sin(t * 0.3) * 1.5, 2.6, 12.5]} at={[0, 2.3, 0]} />
-        <CauseTree u={t} nodes={nodes} edges={[['e', 'a'], ['e', 'b'], ['e', 'c'], ['a', 'r'], ['b', 'r'], ['c', 'r'], ['r', 'x']]} pulse={prog(t, 233.5, 233.9)} />
+        <Cam p={[Math.sin(t * 0.3) * 1.5, 2.8, 17.0]} at={[0, 2.4, 0]} />
+        <CauseTree u={t} nodes={nodes} edges={[['e', 'a'], ['e', 'b'], ['e', 'c'], ['a', 'r'], ['b', 'r'], ['c', 'r'], ['r', 'x']]} pulse={0.35 * prog(t, 233.5, 233.9)} />
       </GLStageS>
       <SwChip x={540} y={480} w={380} at={228.0} out={229.3} l="Méthodes rigoureuses" c={SwN} ic="Microscope" fs={26} fill />
       <SwChip x={540} y={480} w={360} at={229.5} l="Arbre des causes" c={HS_G} ic="Network" fs={30} fill />
@@ -4990,8 +4990,8 @@ const HsData: React.FC = () => {
       <GLStageS z={4}>
         <HsWorld />
         <Cam p={[Math.sin(t * 0.3) * 1.5, 2.8, 13.0]} at={[0, 1.8, 0]} />
-        {p1 && <ParticleMorph u={t} shapes={shapes} stage={prog(t, 255.6, 257.2, easeInOut) + prog(t, 258.8, 259.4, easeIn)} size={6} swirl={1.0} pos={[0, 2.0, 0]} op={prog(t, 254.6, 255.2)} />}
-        {p1 && <Bars3D k={prog(t, 256.3, 258.0, easeOut)} pos={[0, 0, 1.6]} n={6} c={HS_B} />}
+        {p1 && <ParticleMorph u={t} shapes={shapes} stage={prog(t, 257.8, 258.9, easeInOut) + prog(t, 259.0, 259.4, easeIn)} size={6} swirl={1.0} pos={[0, 2.0, 0]} op={prog(t, 257.6, 258.0)} />}
+        {p1 && <Bars3D k={prog(t, 258.0, 259.2, easeOut)} pos={[0, 0, 1.6]} n={6} c={HS_B} />}
         {!p1 && <SignalScope u={t} pos={[0, 2.0, 0]} w={5.2} h={2.6} k={prog(t, 259.6, 263.6, (v: number) => v)} spikes={[0.32, 0.58, 0.81]} pred={prog(t, 264.2, 266.4, easeInOut)} />}
       </GLStageS>
       <SwChip x={540} y={480} w={420} at={255.1} out={259.2} l="Rapports d'enquête" c={SwN} ic="FileText" fs={28} fill />
@@ -5011,7 +5011,7 @@ const HsPredict: React.FC = () => {
     <>
       <GLStageS z={4}>
         <HsWorld />
-        <Cam p={[Math.sin(t * 0.25) * 1.5, 2.8, 13.5]} at={[0, 1.8, 0]} />
+        <Cam p={[Math.sin(t * 0.25) * 1.5, 2.8, 16.5]} at={[0, 1.9, 0]} />
         {p1 && <>
           <mesh position={[lerp(-2.2, 0, conv), 2.0, 0]} castShadow><sphereGeometry args={[0.45 * (1 - conv) + 0.001, 32, 24]} /><meshPhysicalMaterial color={HS_R} emissive={HS_R} emissiveIntensity={0.4} clearcoat={1} /></mesh>
           {conv > 0.6 && <Padlock pos={[0, 2.0, 0]} lock={prog(t, 269.8, 270.3)} s={0.7 * prog(t, 269.6, 270.0)} />}
@@ -5022,7 +5022,7 @@ const HsPredict: React.FC = () => {
         </>}
         {!p1 && <>
           <SignalScope u={t} pos={[0, 2.3, 0]} w={5.2} h={2.6} k={1} spikes={[0.32, 0.58, 0.81]} pred={prog(t, 275.4, 277.0, easeInOut)} />
-          {t > 280.0 && <Letter3D ch="JAMAIS" c={HS_R} k="black" pos={[0, 0.5, 1.4]} s={0.55 * gback(prog(t, 280.8, 281.4, (v: number) => v))} glow={0.3} />}
+          {t > 280.0 && <Letter3D ch="JAMAIS" c={HS_R} k="black" pos={[0, 1.0, 2.0]} s={0.45 * gback(prog(t, 280.8, 281.4, (v: number) => v))} glow={0.3} />}
         </>}
       </GLStageS>
       <SwChip x={540} y={480} w={360} at={267.7} out={269.3} l="Chaque anomalie" c={HS_R} ic="TriangleAlert" fs={28} fill />
@@ -5039,7 +5039,7 @@ const HsPredict: React.FC = () => {
 
 /* ═════════════ Pack « 25 techniques » : caméra, lumière, texture, typographie et transitions posées sur toute la capsule ═════════════ */
 const SW_IMPACT = [2.85, 8.75, 22.0, 31.6, 38.8, 49.9, 56.2, 99.72, 113.6, 129.91, 131.9, 157.1, 169.3, 203.8, 224.8, 233.5, 245.12, 253.3, 269.4, 280.8];
-const SW_SCENE = [2.0, 12.0, 27.0, 44.8, 56.2, 77.3, 82.6, 93.0, 101.5, 116.6, 126.5, 138.2, 155.0, 171.0, 179.6, 194.0, 209.0, 227.0, 235.6, 246.0, 254.2, 266.7];
+const SW_SCENE = [2.0, 12.0, 27.0, 44.8, 56.2, 77.3, 82.6, 93.0, 101.5, 116.6, 126.5, 138.2, 155.0, 171.0, 179.6, 194.0, 209.0, 227.0, 235.6, 246.0, 257.5, 266.7];
 const SW_GYRO = [26.2, 55.4, 100.9, 137.6, 178.9, 208.4, 245.3];
 const swDecay = (t: number, a: number, d = 0.35) => (t >= a && t < a + d ? 1 - (t - a) / d : 0);
 
@@ -5166,7 +5166,7 @@ const SwSpeed: React.FC = () => {
 /* T16 — volet liquide : une goutte marine aux bords ondulants avale la recherche et révèle la scène suivante */
 const SwBlob: React.FC = () => {
   const t = useT();
-  const a = 254.0;
+  const a = 257.4;
   const u = t - a;
   if (u < 0 || u > 0.55) return null;
   const grow = prog(t, a, a + 0.23, easeIn), fade = prog(t, a + 0.25, a + 0.55, easeOut);
@@ -5298,7 +5298,7 @@ const SwChecker: React.FC = () => {
 /* E9 — tache d'encre qui se diffuse derrière la scène */
 const SwInk: React.FC = () => {
   const t = useT();
-  const W: [number, string][] = [[12.0, SwN], [77.3, SwB], [138.2, SwR], [194.0, SwG], [254.2, SwB]];
+  const W: [number, string][] = [[12.0, SwN], [77.3, SwB], [138.2, SwR], [194.0, SwG], [257.5, SwB]];
   return <>{W.map(([a, c], j) => { const u = t - a; if (u < 0 || u > 2.2) return null; const q = prog(t, a, a + 0.9, easeOut); const R = 80 + q * 620; const d = Array.from({length: 61}, (_, i) => { const th = (i / 60) * Math.PI * 2; const r = R * (1 + 0.12 * Math.sin(th * 7 + j) + 0.06 * Math.sin(th * 13 + u * 2)); return `${i ? 'L' : 'M'} ${540 + Math.cos(th) * r} ${900 + Math.sin(th) * r * 0.9}`; }).join(' ') + ' Z'; return <svg key={j} width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, pointerEvents: 'none', opacity: 0.1 * (1 - prog(t, a + 1.4, a + 2.2))}}><path d={d} fill={c} /></svg>; })}</>;
 };
 
@@ -5383,8 +5383,8 @@ const S6: React.FC = () => (
 const S7: React.FC = () => (
   <Out end={OUTRO_AT}>
     <Heads h={[[246.0, ['Comment la documentation', 'garantit-elle la prévention ?'], [1]], [254.3, ['Une mine de', 'données analytiques'], [1]], [259.5, ['Capter les', 'signaux faibles'], [1]], [266.9, ["L'anomalie d'aujourd'hui,", 'contrôle de demain'], [1]], [274.6, ["L'outil de", 'prédiction ultime'], [1]], [278.4, ['La sécurité', "ne s'improvise jamais"], [1]], [282.1, ["Elle s'analyse", 'avec précision'], [1]]]} />
-    <Ph a={246.0} b={254.25}><HsAsk /></Ph>
-    <Ph a={254.2} b={266.75}><HsData /></Ph>
+    <Ph a={246.0} b={257.65}><HsAsk /></Ph>
+    <Ph a={257.5} b={266.75}><HsData /></Ph>
     <Ph a={266.7} b={OUTRO_AT}><HsPredict /></Ph>
   </Out>
 );
