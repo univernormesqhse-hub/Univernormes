@@ -284,6 +284,7 @@ import {DangerRecordMetro, DANGER_RECORD_METRO_FRAMES} from './dangerRecordMetro
 import {IshikawaRecordMetro, ISHIKAWA_RECORD_METRO_FRAMES} from './ishikawaRecordMetro/IshikawaRecordMetro';
 import {TroisBRecordMetro, TROIS_B_RECORD_METRO_FRAMES} from './troisBRecordMetro/TroisBRecordMetro';
 import {RespQhseRecordMetro, RESP_QHSE_RECORD_METRO_FRAMES} from './respQhseRecordMetro/RespQhseRecordMetro';
+import {MatriceRecordMetro, MATRICE_RECORD_METRO_FRAMES} from './matriceRecordMetro/MatriceRecordMetro';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
 import {RoleNormes, ROLENORMES_FRAMES} from './rolenormes/RoleNormes';
 import {RoleNormesCouverture} from './rolenormes/Couverture';
@@ -586,6 +587,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseIshikawaRecordMetro" component={IshikawaRecordMetro} durationInFrames={ISHIKAWA_RECORD_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseTroisBRecordMetro" component={TroisBRecordMetro} durationInFrames={TROIS_B_RECORD_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseRespQhseRecordMetro" component={RespQhseRecordMetro} durationInFrames={RESP_QHSE_RECORD_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseMatriceRecordMetro" component={MatriceRecordMetro} durationInFrames={MATRICE_RECORD_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
