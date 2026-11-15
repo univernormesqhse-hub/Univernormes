@@ -127,7 +127,7 @@ export const QhseBg: React.FC<{dim?: number}> = ({dim = 1}) => {
         <rect x={0} y={FLOOR} width={1080} height={1920 - FLOOR} fill="url(#qfloor)" />
         {Array.from({length: 13}, (_, i) => <path key={i} d={edge(-600 + i * 190)} stroke="rgba(20,33,61,0.07)" strokeWidth={2} />)}
         {Array.from({length: 7}, (_, i) => { const p = Math.pow((i + 1) / 8, 1.9); const y = FLOOR + p * (1920 - FLOOR); return <line key={i} x1={0} y1={y} x2={1080} y2={y} stroke="rgba(20,33,61,0.06)" strokeWidth={2} />; })}
-        <path d={`M ${540 - 14} ${FLOOR} L ${540 + 14} ${FLOOR} L 900 1920 L 180 1920 Z`} fill="url(#qlane)" opacity={0.85} />
+        <path d={`M ${540 - 14} ${FLOOR} L ${540 + 14} ${FLOOR} L 900 1920 L 180 1920 Z`} fill="url(#qlane)" opacity={0.6} />
         <path d={`M ${540 - 16} ${FLOOR} L 160 1920`} stroke="#fff" strokeWidth={14} strokeDasharray="60 34" strokeDashoffset={-t * 40} />
         <path d={`M ${540 + 16} ${FLOOR} L 920 1920`} stroke="#fff" strokeWidth={14} strokeDasharray="60 34" strokeDashoffset={-t * 40} />
         <path d={`M ${540 - 24} ${FLOOR} L 60 1920`} stroke="#F5C400" strokeWidth={10} />

@@ -4499,7 +4499,7 @@ const HsGarant: React.FC = () => {
       <SwChip x={540} y={480} w={380} at={13.4} out={17.2} l="Le garant" c={HS_B} ic="ShieldCheck" fs={32} fill />
       <SwChip x={300} y={1240} w={420} at={14.1} out={17.2} l="Conformité réglementaire" c={SwN} ic="Scale" fs={24} fill />
       <SwChip x={780} y={1240} w={360} at={15.8} out={17.2} l="Intégrité physique" c={HS_G} ic="HeartPulse" fs={26} fill />
-      <SwWhipWord y={560} at={22.0} word="TERRAIN" c={HS_O} fs={140} />
+      <Gate from={22.0} to={24.6}><SwWhipWord y={560} at={22.0} word="TERRAIN" c={HS_O} fs={140} /></Gate>
       <SwChip x={300} y={1240} w={320} at={23.9} l="Coactivité" c={HS_O} ic="Users" fs={28} fill />
       <SwChip x={780} y={1240} w={340} at={25.6} l="Vulnérabilité" c={HS_R} ic="TriangleAlert" fs={28} fill />
     </>
@@ -4509,7 +4509,7 @@ const HsGarant: React.FC = () => {
 /* Partie 1 — le mandat : H, S, E en volume, l'intransigence, la balance verrouillée */
 const HsMandate: React.FC = () => {
   const t = useT();
-  const L = [['H', HS_B, 29.2, 'Hygiène'], ['S', HS_R, 29.6, 'Sécurité'], ['E', HS_G, 30.1, 'Environnement']] as const;
+  const L = [['H', HS_B, 27.4, 'Hygiène', 29.2], ['S', HS_R, 27.7, 'Sécurité', 29.6], ['E', HS_G, 28.0, 'Environnement', 30.1]] as const;
   const p1 = t < 32.6;
   const lock = prog(t, 38.3, 38.8, easeOut);
   const press = (a: number) => eo((t - a) / 0.5);
@@ -4518,7 +4518,7 @@ const HsMandate: React.FC = () => {
       <GLStageS z={4}>
         <HsWorld />
         <Cam p={p1 ? [Math.sin(t * 0.5) * 1.2, 2.2, 13.5] : [Math.sin(t * 0.25) * 1.5, 3.6, 15.5]} at={p1 ? [0, 1.4, 0] : [0, 2.0, 0]} />
-        {p1 && L.map(([ch, c, a, w], i) => { const k = gback(prog(t, a, a + 0.6, (v: number) => v)); return <group key={ch}><Letter3D ch={ch} c={c} k="black" pos={[(i - 1) * 1.7, 1.2 + (1 - k) * 3, 0]} rot={[0, (1 - k) * 4, 0]} s={1.05 * Math.min(1, k + 0.001)} glow={swDecay(t, 31.6, 0.6) * 0.6} /><Tag txt={w} bg={c} pos={[(i - 1) * 1.7, 0.2, 0.6]} w={1.55} s={prog(t, a + 0.2, a + 0.6)} /></group>; })}
+        {p1 && L.map(([ch, c, a, w, b], i) => { const k = gback(prog(t, a, a + 0.6, (v: number) => v)); return <group key={ch}><Letter3D ch={ch} c={c} k="black" pos={[(i - 1) * 1.7, 1.2 + (1 - k) * 3, 0]} rot={[0, (1 - k) * 4, 0]} s={1.05 * Math.min(1, k + 0.001)} glow={swDecay(t, 31.6, 0.6) * 0.6} /><Tag txt={w} bg={c} pos={[(i - 1) * 1.7, 0.2, 0.6]} w={1.55} s={prog(t, b, b + 0.4)} /></group>; })}
         {!p1 && <>
           <Balance pos={[0, 0, 0]} tilt={0.02 * Math.sin(t * 2) * (1 - lock)} left={<Tag txt="Normes" bg={HS_B} pos={[0, 0.4, 0]} w={1.3} s={prog(t, 34.9, 35.4)} />} right={<group>
             <Tag txt="Urgences" bg={HS_O} pos={[0, 0.35 + (1 - press(39.9)) * 4, 0]} w={1.2} s={press(39.9)} />
@@ -4529,7 +4529,7 @@ const HsMandate: React.FC = () => {
           {t > 38.6 && <Ring r={0.8 + swDecay(t, 38.8, 0.6) * 1.2} c={HS_R} rot={[0, 0, 0]} tube={0.03} glow={0.8} op={swDecay(t, 38.8, 0.6)} />}
         </>}
       </GLStageS>
-      <SwWhipWord y={560} at={31.6} word="INTRANSIGEANCE" c={HS_R} fs={96} />
+      <Gate from={31.6} to={34.2}><SwWhipWord y={560} at={31.6} word="INTRANSIGEANCE" c={HS_R} fs={96} /></Gate>
       <SwChip x={540} y={480} w={330} at={32.9} out={38.0} l="Imposer" c={SwN} ic="Gavel" fs={32} fill />
       <SwChip x={300} y={1240} w={380} at={35.1} out={38.0} l="Normes de sécurité" c={HS_B} ic="ShieldCheck" fs={26} fill />
       <SwChip x={780} y={1240} w={420} at={36.5} out={38.0} l="Réglementations environnementales" c={HS_G} ic="Leaf" fs={20} fill />
@@ -4538,7 +4538,7 @@ const HsMandate: React.FC = () => {
   );
 };
 /* L'autorité suprême : la grue tourne, le STOP tombe, l'arrêt d'urgence gèle tout */
-const HS_K2: CK[] = [[44.8, [6.5, 5.5, 15.5], [0, 2.4, 0], 38], [49.6, [3.0, 3.6, 14.5], [0, 2.0, 0], 36], [52.0, [0, 2.6, 13.0], [0, 1.8, 0], 36], [55.4, [-1.0, 2.6, 12.5], [0, 1.8, 0], 36]];
+const HS_K2: CK[] = [[44.8, [6.5, 4.0, 19.5], [0, 2.6, 0], 38], [49.6, [3.0, 3.0, 18.0], [0, 2.4, 0], 36], [52.0, [0, 2.4, 16.5], [0, 2.2, 0], 36], [55.4, [-1.0, 2.4, 16.0], [0, 2.2, 0], 36]];
 const HsStop: React.FC = () => {
   const t = useT();
   const cam = camKF(t, HS_K2);
@@ -4573,9 +4573,9 @@ const HsDawn: React.FC = () => {
   return (
     <>
       <GLStageS z={4}>
-        <NightRain u={t} day={day} rain={rain} sun={t < 72.4 ? prog(t, 66.3, 70.5, easeOut) : 1 - prog(t, 72.4, 73.6)} />
+        <NightRain u={t} day={day} rain={rain} a={prog(t, 65.3, 66.1) * (1 - prog(t, 76.6, 77.3))} sun={t < 72.4 ? prog(t, 66.3, 70.5, easeOut) : 1 - prog(t, 72.4, 73.6)} />
         <ambientLight intensity={0.35 + 0.3 * day} /><KeyLight pos={[4, 9, 7]} k={0.6 + 1.4 * day} /><ShadowFloor y={0} op={0.25} />
-        <Cam p={[Math.sin(t * 0.2) * 1.5, 2.8, 16.0]} at={[0, 2.0, 0]} />
+        <Cam p={[Math.sin(t * 0.2) * 1.5, t > 66 && t < 71.5 ? 2.2 : 2.8, 16.0]} at={[0, t > 66 && t < 71.5 ? 1.3 : 2.0, 0]} />
         {t < 65.4 && <group position={[0, 0.0, 0]}>
           <Letter3D ch="1" c={HS_B} k="black" pos={[0, 1.9, 0]} rot={[0, Math.sin(t) * 0.3, 0]} s={2.0 * gback(prog(t, 56.1, 56.8, (v: number) => v))} glow={0.2} />
           <Tag txt="Prévention" bg={HS_G} pos={[-1.2, 0.5, 1]} w={1.9} s={prog(t, 57.4, 57.9)} />
@@ -4637,7 +4637,7 @@ const HsBrief: React.FC = () => {
         <Cam p={[Math.sin(t * 0.25) * 2.0, 4.6, 14.0]} at={[0, 1.2, 0]} />
         <HsWorker u={t} pos={[0, 0, -1.3]} rot={[0, 0, 0]} s={1.15} c="#14213D" hat="#FFFFFF" />
         {Array.from({length: 7}, (_, i) => { const a = Math.PI * (0.15 + (i / 6) * 0.7); const k = prog(t, 83.3 + i * 0.12, 83.8 + i * 0.12); return <HsWorker key={i} u={t} pos={[Math.cos(a) * 2.6, 0, 1.3 - Math.sin(a) * -0.6 + (1 - k) * 3]} rot={[0, Math.PI + (Math.cos(a) * 0.5), 0]} s={0.9 * Math.max(0.01, k)} c={['#2B4A7A', '#3A3F4B', '#14213D'][i % 3]} hat={[HS_Y, HS_O, '#FFFFFF'][i % 3]} />; })}
-        <group position={[0, 3.3, -1.3]} scale={prog(t, 84.9, 85.4)}>
+        <group position={[2.7, 2.3, -1.3]} scale={0.8 * prog(t, 84.9, 85.4)}>
           <mesh rotation={[Math.PI / 2, 0, 0]}><cylinderGeometry args={[0.85, 0.85, 0.12, 48]} /><meshPhysicalMaterial color="#FFFFFF" clearcoat={1} /></mesh>
           <mesh position={[0, 0, 0.07]}><circleGeometry args={[0.78, 48, Math.PI / 2 - clock * Math.PI / 2, clock * Math.PI / 2]} /><meshBasicMaterial color={HS_G} /></mesh>
           <mesh position={[0, 0, 0.09]} rotation={[0, 0, -clock * Math.PI / 2]}><boxGeometry args={[0.05, 0.7, 0.02]} /><meshStandardMaterial color="#14213D" /></mesh>
@@ -4697,7 +4697,7 @@ const HsEpi: React.FC = () => {
       <SwChip x={540} y={1240} w={220} at={108.9} out={112.6} l="Gants" c="#5B6577" ic="Hand" fs={28} fill />
       <SwChip x={860} y={1240} w={260} at={109.3} out={112.6} l="Lunettes" c={HS_B} ic="Glasses" fs={28} fill />
       <SwChip x={540} y={1240} w={420} at={111.0} out={112.6} l="✕ Simples accessoires" c={HS_R} fs={26} fill />
-      <SwWhipWord y={560} at={113.6} word="DERNIER REMPART" c={HS_B} fs={100} />
+      <Gate from={113.6} to={116.2}><SwWhipWord y={560} at={113.6} word="DERNIER REMPART" c={HS_B} fs={100} /></Gate>
       <SwChip x={540} y={1240} w={420} at={114.4} l="Intégrité physique" c={HS_G} ic="HeartPulse" fs={28} fill />
     </>
   );
@@ -4811,7 +4811,7 @@ const HsCritical: React.FC = () => {
       <SwChip x={300} y={1240} w={360} at={158.3} l="Levage par grue" c={HS_Y} ic="Construction" fs={26} fill />
       <SwChip x={780} y={1240} w={340} at={160.3} l="Grande hauteur" c={HS_O} ic="Layers" fs={26} fill />
       <SwChip x={540} y={480} w={420} at={163.7} l="Supervision de près" c={HS_G} ic="Eye" fs={28} fill />
-      <SwWhipWord y={600} at={169.3} word="LISIÈRE" c={HS_R} fs={130} />
+      <Gate from={169.3} to={171.9}><SwWhipWord y={600} at={169.3} word="LISIÈRE" c={HS_R} fs={130} /></Gate>
     </>
   );
 };

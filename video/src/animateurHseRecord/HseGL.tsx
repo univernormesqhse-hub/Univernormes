@@ -128,22 +128,22 @@ export const CauseTree: React.FC<{u: number; nodes: {id: string; p: V3; t: strin
 };
 
 /* ═════════════ Nuit → jour, pluie ═════════════ */
-export const NightRain: React.FC<{u: number; day: number; rain: number; sun?: number}> = ({u, day, rain, sun = 0}) => {
-  const dome = useMemo(() => new THREE.ShaderMaterial({side: THREE.BackSide, depthWrite: false, uniforms: {d: {value: 0}}, vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }', fragmentShader: 'uniform float d; varying vec3 vP; void main(){ float h = clamp(vP.y*0.5+0.5,0.0,1.0); vec3 nTop = vec3(0.03,0.06,0.16), nBot = vec3(0.12,0.16,0.32); vec3 dTop = vec3(0.55,0.75,0.98), dBot = vec3(1.0,0.82,0.6); vec3 n = mix(nBot,nTop,h), dd = mix(dBot,dTop,pow(h,0.7)); gl_FragColor = vec4(mix(n,dd,d),1.0); }'}), []);
-  dome.uniforms.d.value = day;
+export const NightRain: React.FC<{u: number; day: number; rain: number; sun?: number; a?: number}> = ({u, day, rain, sun = 0, a = 1}) => {
+  const dome = useMemo(() => new THREE.ShaderMaterial({side: THREE.BackSide, depthWrite: false, transparent: true, uniforms: {d: {value: 0}, a: {value: 1}}, vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }', fragmentShader: 'uniform float d; uniform float a; varying vec3 vP; void main(){ float h = clamp(vP.y*0.5+0.5,0.0,1.0); vec3 nTop = vec3(0.03,0.06,0.16), nBot = vec3(0.12,0.16,0.32); vec3 dTop = vec3(0.55,0.75,0.98), dBot = vec3(1.0,0.82,0.6); vec3 n = mix(nBot,nTop,h), dd = mix(dBot,dTop,pow(h,0.7)); gl_FragColor = vec4(mix(n,dd,d),a); }'}), []);
+  dome.uniforms.d.value = day; dome.uniforms.a.value = a;
   const stars = useMemo(() => { const g = new THREE.BufferGeometry(); const p = new Float32Array(600 * 3); for (let i = 0; i < 600; i++) { const th = random(`st${i}`) * Math.PI * 2, ph = 0.1 + random(`sp${i}`) * 1.2; p[i * 3] = Math.cos(th) * Math.cos(ph) * 40; p[i * 3 + 1] = Math.sin(ph) * 40; p[i * 3 + 2] = Math.sin(th) * Math.cos(ph) * 40; } g.setAttribute('position', new THREE.BufferAttribute(p, 3)); return g; }, []);
   const N = 700;
   const drops = useMemo(() => Array.from({length: N}, (_, i) => [random(`rx${i}`) * 14 - 7, random(`ry${i}`), random(`rz${i}`) * 10 - 6] as V3), []);
   const tmp = useMemo(() => new THREE.Object3D(), []);
   const inst = useMemo(() => { const m = new THREE.InstancedMesh(new THREE.BoxGeometry(0.015, 0.45, 0.015), new THREE.MeshBasicMaterial({color: '#BFD8FF', transparent: true, opacity: 0.5}), N); m.frustumCulled = false; return m; }, []);
-  (inst.material as THREE.MeshBasicMaterial).opacity = 0.55 * rain;
+  (inst.material as THREE.MeshBasicMaterial).opacity = 0.55 * rain * a;
   drops.forEach(([x, y0, z], i) => { const y = 9 - ((y0 * 10 + u * 9) % 10); tmp.position.set(x + (9 - y) * 0.12, y, z); tmp.rotation.set(0, 0, 0.12); tmp.scale.set(1, rain > 0.01 ? 1 : 0.0001, 1); tmp.updateMatrix(); inst.setMatrixAt(i, tmp.matrix); });
   inst.instanceMatrix.needsUpdate = true;
   return (
     <group>
       <mesh material={dome}><sphereGeometry args={[60, 32, 16]} /></mesh>
-      <points geometry={stars}><pointsMaterial color="#ffffff" size={0.18} transparent opacity={(1 - day) * 0.9} /></points>
-      <mesh position={[-4, -2 + sun * 9, -30]}><sphereGeometry args={[2.4, 32, 16]} /><meshBasicMaterial color="#FFD27A" transparent opacity={cl(sun * 1.4)} /></mesh>
+      <points geometry={stars}><pointsMaterial color="#ffffff" size={0.18} transparent opacity={(1 - day) * 0.9 * a} /></points>
+      <mesh position={[-4, -2 + sun * 9, -30]}><sphereGeometry args={[2.4, 32, 16]} /><meshBasicMaterial color="#FFD27A" transparent opacity={cl(sun * 1.4) * a} /></mesh>
       <primitive object={inst} />
     </group>
   );
