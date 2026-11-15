@@ -4689,6 +4689,8 @@ const HsEpi: React.FC = () => {
             {i === 2 && <group position={[0, 0.65, 0]}><Visor u={0} pos={[0, 0, 0]} at={999} s={0.45} /></group>}
           </group>; })}
         </group>
+        {t < 108.6 && <Letter3D ch="EPI" c={HS_O} k="black" pos={[0, 1.6 + Math.sin(t * 1.5) * 0.1, 0]} rot={[0, Math.sin(t * 0.8) * 0.5, 0]} s={0.9 * gback(prog(t, 101.8, 102.5, (v: number) => v)) * (1 - prog(t, 108.0, 108.5))} glow={0.2} />}
+        {t < 108.6 && <Tag txt="Validation rigoureuse" bg={HS_B} pos={[0, 0.55, 2.0]} w={2.4} s={prog(t, 104.6, 105.0) * (1 - prog(t, 108.0, 108.5))} />}
         {wall > 0 && <group position={[0, 0, 3.2]}>{Array.from({length: 7}, (_, i) => <mesh key={i} position={[(i - 3) * 0.9, 1.0 * wall, 0]} castShadow><boxGeometry args={[0.85, 2.0 * wall, 0.2]} /><meshPhysicalMaterial color={HS_B} transmission={0.5} roughness={0.15} transparent opacity={0.55} clearcoat={1} /></mesh>)}</group>}
       </GLStageS>
       <SwChip x={540} y={480} w={560} at={105.2} out={108.3} l="Équipements de protection individuelle" c={HS_B} ic="HardHat" fs={22} fill />
@@ -4724,7 +4726,7 @@ const HsAudit: React.FC = () => {
   );
 };
 /* Les homologations : trois bancs d'essai — choc EN 397, coupure, projections */
-const HS_K3: CK[] = [[126.5, [0, 4.0, 15.0], [0, 1.2, 0], 36], [129.0, [-3.4, 2.4, 8.0], [-3.4, 1.0, 0], 36], [131.3, [0, 2.4, 8.0], [0, 1.0, 0], 36], [133.9, [3.4, 2.4, 8.0], [3.4, 1.2, 0], 36], [137.0, [3.4, 2.6, 8.8], [3.4, 1.2, 0], 36]];
+const HS_K3: CK[] = [[126.5, [0, 4.0, 19.0], [0, 1.3, 0], 36], [129.0, [-3.0, 2.6, 12.0], [-3.0, 1.2, 0], 36], [131.3, [0, 2.6, 12.0], [0, 1.2, 0], 36], [133.9, [3.0, 2.6, 12.0], [3.0, 1.3, 0], 36], [137.0, [3.0, 2.8, 12.5], [3.0, 1.3, 0], 36]];
 const HsTests: React.FC = () => {
   const t = useT();
   const cam = camKF(t, HS_K3);
@@ -4771,7 +4773,7 @@ const HsTarget: React.FC = () => {
     <>
       <GLStageS z={4}>
         <HsWorld />
-        <Cam p={[Math.sin(t * 0.2) * 2, 9.0 - nar * 1.5, 13.0 - nar * 1.5]} at={[0, 0.8, 0]} />
+        <Cam p={[Math.sin(t * 0.2) * 2, 10.5 - nar * 2, 19.0 - nar * 2]} at={[0, 1.4, 0]} />
         <TowerCrane u={t} pos={[-2.6, 0, -1.6]} slew={t * 0.35} trolley={0.5 + 0.4 * Math.sin(t * 0.6)} drop={0.4 + 0.2 * Math.sin(t * 0.4)} swing={0.06} s={0.7} />
         <Conveyor pos={[0.2, 0, 1.6]} len={3.2} u={t} speed={1.2} />
         <Scaffold pos={[2.2, 0, -1.2]} levels={4} grow={1} />
@@ -4788,7 +4790,7 @@ const HsTarget: React.FC = () => {
   );
 };
 /* Très forte criticité : levage par grue, travail en hauteur, supervision de près à la lisière */
-const HS_K4: CK[] = [[155.0, [0, 7.0, 16.0], [0, 2.0, 0], 38], [158.2, [-2.0, 5.0, 13.0], [-1.0, 2.5, 0], 36], [160.2, [3.0, 4.6, 12.0], [2.4, 2.8, 0], 36], [162.6, [0, 6.0, 14.0], [0, 1.0, 0], 36], [166.0, [1.5, 3.2, 10.0], [0.5, 0.9, 0], 36], [171.0, [1.5, 3.2, 10.0], [0.5, 0.9, 0], 36]];
+const HS_K4: CK[] = [[155.0, [0, 6.5, 20.0], [0, 2.4, 0], 38], [158.2, [-2.0, 5.0, 17.0], [-0.8, 2.6, 0], 36], [160.2, [3.0, 4.6, 16.0], [2.2, 2.8, 0], 36], [162.6, [0, 6.0, 17.0], [0, 1.4, 0], 36], [166.0, [1.5, 3.6, 13.5], [0.5, 1.2, 0], 36], [171.0, [1.5, 3.6, 13.5], [0.5, 1.2, 0], 36]];
 const HsCritical: React.FC = () => {
   const t = useT();
   const cam = camKF(t, HS_K4);
@@ -4823,7 +4825,7 @@ const HsRigging: React.FC = () => {
     <>
       <GLStageS z={4}>
         <HsWorld />
-        <Cam p={[Math.sin(t * 0.3) * 1.5, 3.6, 12.5]} at={[0, 2.2, 0]} />
+        <Cam p={[Math.sin(t * 0.3) * 1.5, 3.8, 16.0]} at={[0.5, 2.4, 0]} />
         <TowerCrane u={t} pos={[-2.2, -3.2, -1.0]} slew={0.95} trolley={0.25} drop={0.35} swing={0.05} s={1.0} />
         <Scaffold pos={[2.0, 0, -0.6]} levels={3} grow={1} />
         <HsWorker u={t} pos={[2.0, 3.06, -0.6]} rot={[0, -0.9, 0]} s={0.9} hat={HS_O} />
@@ -4848,8 +4850,8 @@ const HsEducate: React.FC = () => {
     <>
       <GLStageS z={4}>
         <HsWorld />
-        <Cam p={[Math.sin(t * 0.25) * 2.0, p1 ? 2.6 : 5.0, p1 ? 13.0 : 15.0]} at={[0, p1 ? 1.2 : 1.8, 0]} />
-        {p1 && <><HsWorker u={t} pos={[0, -0.6, 0]} s={1.2} c="#14213D" hat="#FFFFFF" /><group position={[0, 0.6, 0]}><Hub u={t} nodes={nodes} center={[0, 0.6, 0]} grow={(i) => prog(t, nodes[i][3], nodes[i][3] + 0.6)} /></group></>}
+        <Cam p={[Math.sin(t * 0.25) * 2.0, p1 ? 2.8 : 5.0, p1 ? 17.5 : 19.5]} at={[0, p1 ? 1.0 : 2.0, 0]} />
+        {p1 && <><HsWorker u={t} pos={[0, -0.2, 1.8]} s={0.9} c="#14213D" hat="#FFFFFF" /><group position={[0, 0.6, 0]}><Hub u={t} nodes={nodes} center={[0, 0.6, 0]} grow={(i) => prog(t, nodes[i][3], nodes[i][3] + 0.6)} /></group></>}
         {!p1 && <>
           <Scaffold pos={[-1.6, 0, -1.0]} levels={5} grow={1 + prog(t, 190.9, 192.2) * 0 + Math.min(5, 2 + (t - 187.6) * 0.8) - 1} />
           <TowerCrane u={t} pos={[2.2, 0, -2.0]} slew={-2.4 + Math.sin(t * 0.3) * 0.4} trolley={0.5} drop={0.4} swing={0.06} s={0.75} />
