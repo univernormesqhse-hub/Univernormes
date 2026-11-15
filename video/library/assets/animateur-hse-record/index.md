@@ -1,0 +1,14 @@
+---
+name: L'animateur HSE sur chantier BTP « record » — nouveau décor QHSE (site industriel en parallaxe, sol béton à allée piétonne, pictogrammes de sécurité) et pack 3D chantier (grue à tour, zone d'exclusion, STOP, arbre des causes, essais EPI, signaux faibles)
+section: assets
+slug: animateur-hse-record
+description: Capsule métro (4 min 45, voix d'origine) à huit guichets et douze stations (gyrophare / tube / loupe `TK = 3.4`, cadre de marquage jaune / noir, recherche qui ouvre un carrousel 3D d'images du dépôt, NeoCaptions, aucune musique). Remplace le papier quadrillé par `src/animateurHseRecord/QhseDecor.tsx` — `QhseBg` (mur technique + trame de plan, papier peint de pictogrammes ISO 7010 obligation / avertissement / condition sûre / environnement qui dérive, silhouette de site — grue qui pivote, immeuble sous échafaudage, silos, cheminée qui fume, hangar, pylône — en deux plans de parallaxe, sol béton en perspective avec allée piétonne verte, liserés pointillés qui défilent, chevrons de circulation, plinthe de marquage jaune / noir, reflets de gyrophare, poussières), `QHSE_WALL`. Nouveau pack `src/animateurHseRecord/HseGL.tsx` — `TowerCrane` (treillis généré, orientation, chariot, câble, charge en pendule amorti), `ExclusionRing` (hachures défilantes, alarme), `StopSign` (octogone extrudé biseauté), `CauseTree` (liens tubulaires qui poussent, cause racine), `NightRain` (dôme nuit → jour en shader, étoiles, pluie instanciée, soleil levant, fondu), `DropBall` + `dropY` + `ShockRing` (essai de choc à rebonds amortis), `Visor` (écran facial en verre physique, projections qui ricochent), `Glove` + `Blade` (gant en volume, disque de coupe), `LifeLine` (chaînette caténaire), `SignalScope` (oscilloscope, pics cerclés, courbe de prédiction), `ReportStack` (feuilles imprimées en texture, tampon « VALIDÉ »). Les polices 3D `montserrat-black` et `caladea-bold` gagnent les majuscules accentuées É È Ê À Â Ç Ô Ù Î.
+quand: Rôle de l'animateur / du préposé HSE, chantier BTP, quart d'heure sécurité, permis de travail, EPI et homologations (EN 397), levage et travail en hauteur, zone d'exclusion, arrêt de travail, arbre des causes, rapport d'incident, signaux faibles ; tout montage qui veut un décor « QHSE » au lieu du papier.
+component: src/animateurHseRecord/AnimateurHseRecord.tsx
+demo: Demo-AnimateurHseRecord
+tags: [animateur HSE, chantier, BTP, EPI, grue, arbre des causes, décor QHSE, WebGL, condensé, métro]
+---
+
+## Utilisation
+Décor : `<QhseBg />` (en fond, à la place de `Bg`), couleur de base `QHSE_WALL`.
+`TowerCrane u pos slew trolley drop swing s load` ; `ExclusionRing u r pos k alarm` ; `StopSign pos rot s` ; `CauseTree u nodes edges pulse` ; `NightRain u day rain sun a` ; `DropBall pos r` + `dropY(u, at, h0, sol)` + `ShockRing u at pos` ; `Visor u pos at s` ; `Glove pos rot s` ; `Blade u pos s` ; `LifeLine a b sag k` ; `SignalScope u pos w h k spikes pred` ; `ReportStack u pos titles at stampAt`.

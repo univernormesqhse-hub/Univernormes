@@ -4932,9 +4932,9 @@ const HsTree: React.FC = () => {
   const t = useT();
   const nodes = [
     {id: 'e', p: [0, 4.4, 0] as V3, t: 'Presque accident', c: HS_O, at: 229.5},
-    {id: 'a', p: [-2.3, 3.0, 0] as V3, t: 'Fait 1', c: '#5B6577', at: 231.4},
+    {id: 'a', p: [-1.9, 3.0, 0] as V3, t: 'Fait 1', c: '#5B6577', at: 231.4},
     {id: 'b', p: [0, 3.0, 0] as V3, t: 'Fait 2', c: '#5B6577', at: 231.8},
-    {id: 'c', p: [2.3, 3.0, 0] as V3, t: 'Fait 3', c: '#5B6577', at: 232.2},
+    {id: 'c', p: [1.9, 3.0, 0] as V3, t: 'Fait 3', c: '#5B6577', at: 232.2},
     {id: 'r', p: [0, 1.5, 0] as V3, t: 'Défaillance racine', c: HS_R, at: 233.5, root: true},
     {id: 'x', p: [0, 0.2, 0.6] as V3, t: 'Actions correctives', c: HS_G, at: 234.6},
   ];
@@ -4943,7 +4943,7 @@ const HsTree: React.FC = () => {
       <GLStageS z={4}>
         <HsWorld k={0.9} />
         <Cam p={[Math.sin(t * 0.3) * 1.5, 2.8, 17.0]} at={[0, 2.4, 0]} />
-        <CauseTree u={t} nodes={nodes} edges={[['e', 'a'], ['e', 'b'], ['e', 'c'], ['a', 'r'], ['b', 'r'], ['c', 'r'], ['r', 'x']]} pulse={0.35 * prog(t, 233.5, 233.9)} />
+        <CauseTree u={t} nodes={nodes} edges={[['e', 'a'], ['e', 'b'], ['e', 'c'], ['a', 'r'], ['b', 'r'], ['c', 'r'], ['r', 'x']]} pulse={0} />
       </GLStageS>
       <SwChip x={540} y={480} w={380} at={228.0} out={229.3} l="Méthodes rigoureuses" c={SwN} ic="Microscope" fs={26} fill />
       <SwChip x={540} y={480} w={360} at={229.5} l="Arbre des causes" c={HS_G} ic="Network" fs={30} fill />
@@ -5013,11 +5013,11 @@ const HsPredict: React.FC = () => {
         <HsWorld />
         <Cam p={[Math.sin(t * 0.25) * 1.5, 2.8, 16.5]} at={[0, 1.9, 0]} />
         {p1 && <>
-          <mesh position={[lerp(-2.2, 0, conv), 2.0, 0]} castShadow><sphereGeometry args={[0.45 * (1 - conv) + 0.001, 32, 24]} /><meshPhysicalMaterial color={HS_R} emissive={HS_R} emissiveIntensity={0.4} clearcoat={1} /></mesh>
+          <mesh position={[lerp(-1.5, 0, conv), 2.0, 0]} castShadow><sphereGeometry args={[0.45 * (1 - conv) + 0.001, 32, 24]} /><meshPhysicalMaterial color={HS_R} emissive={HS_R} emissiveIntensity={0.4} clearcoat={1} /></mesh>
           {conv > 0.6 && <Padlock pos={[0, 2.0, 0]} lock={prog(t, 269.8, 270.3)} s={0.7 * prog(t, 269.6, 270.0)} />}
-          <Tag txt="Aujourd'hui" bg="#5B6577" pos={[-2.2, 0.8, 0]} w={1.6} s={prog(t, 268.4, 268.8)} />
-          <Tag txt="Demain" bg={HS_G} pos={[2.2, 0.8, 0]} w={1.4} s={prog(t, 271.3, 271.7)} />
-          {t > 271.3 && <GrowTube pts={[[-2.2, 1.4, 0], [0, 2.6, 0.4], [2.2, 1.4, 0]]} k={prog(t, 271.3, 272.0)} r={0.04} c={HS_G} glow={0.5} />}
+          <Tag txt="Aujourd'hui" bg="#5B6577" pos={[-1.5, 0.8, 0]} w={1.6} s={prog(t, 268.4, 268.8)} />
+          <Tag txt="Demain" bg={HS_G} pos={[1.5, 0.8, 0]} w={1.4} s={prog(t, 271.3, 271.7)} />
+          {t > 271.3 && <GrowTube pts={[[-1.5, 1.4, 0], [0, 2.6, 0.4], [1.5, 1.4, 0]]} k={prog(t, 271.3, 272.0)} r={0.04} c={HS_G} glow={0.5} />}
           {t > 272.6 && <CurlCard src={IMG.rapport} k={prog(t, 273.4, 274.3, easeIn)} pos={[0, 2.0, 1.5]} w={2.2} h={1.6} />}
         </>}
         {!p1 && <>
