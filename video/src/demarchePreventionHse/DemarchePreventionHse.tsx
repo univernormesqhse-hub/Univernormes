@@ -4765,7 +4765,7 @@ const DpLoop: React.FC = () => {
   const tok = bend >= 1 ? (t - 301.4) * 0.35 : 0;
   return (
     <>
-      {t < 292.4 && <div style={{position: 'absolute', left: 290, top: 620, width: 500, height: 330, zIndex: 6}}>
+      {t < 292.4 && <div style={{position: 'absolute', left: 290, top: 620, width: 500, height: 330, zIndex: 6, clipPath: 'inset(0 -60px -20px -60px)'}}>
         <div style={{...nb('#E8EDF3', 7), borderColor: NBK, width: '100%', height: '100%'}} />
         <div style={{position: 'absolute', left: 40, top: lerp(-260, 40, prog(t, 290.6, 291.6, easeIn)), width: 420, height: 240, background: '#fff', border: `5px solid ${NBK}`, borderRadius: 10}}><div style={{margin: '20px auto', width: 120, height: 18, borderRadius: 9, background: INK}} /></div>
         <DpStrike x={-30} y={150} w={560} at={291.6} />
