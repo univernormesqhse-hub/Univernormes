@@ -32,8 +32,8 @@ import {NeoCaptions} from '../components/NeoCaptions';
 
 /**
  * « La démarche prévention HSE » (voix d'origine, 6 min 02) — capsule métro en 2D (aucun objet 3D, aucune particule)
- * sur l'habillage du 16/11 : fond totalement blanc à deux cercles colorés, bordure en roue de Deming (segments P D C A
- * qui tournent le long du cadre) et roue PDCA « QHSE » sur sa pente à l'extrémité haute droite. Couverture : triptyque
+ * sur l'habillage du 16/11 : fond totalement blanc à deux cercles colorés, bordure de marquage au sol jaune / noir
+ * et roue PDCA « QHSE » sur sa pente à l'extrémité haute droite. Couverture : triptyque
  * éditorial (trois panneaux photo en biais qui se dévoilent) au lieu du carrousel. Huit guichets, douze stations,
  * gyrophare / tube / loupe, recherche qui ouvre un film photo 2D, NeoCaptions, aucune musique.
  *
@@ -5314,7 +5314,7 @@ export const DemarchePreventionHse: React.FC = () => (
     <SwFireflies />
     <SwProgress />
     <SwGrain />
-    <AbsoluteFill style={{zIndex: 120}}><DemingFrame /></AbsoluteFill>
+    <AbsoluteFill style={{zIndex: 120}}><SwHazardFrame /></AbsoluteFill>
     <Audio src={staticFile('voix-demarche-prevention-hse-origine.m4a')} trimAfter={s(OUTRO_AT)} />
     <SoundDesign cues={CUES} />
   </AbsoluteFill>
