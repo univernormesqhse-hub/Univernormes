@@ -113,6 +113,7 @@ import {TroisBRecordMetro} from '../troisBRecordMetro/TroisBRecordMetro';
 import {RespQhseRecordMetro} from '../respQhseRecordMetro/RespQhseRecordMetro';
 import {MatriceRecordMetro} from '../matriceRecordMetro/MatriceRecordMetro';
 import {AnimateurHseRecord} from '../animateurHseRecord/AnimateurHseRecord';
+import {DemarchePreventionHse} from '../demarchePreventionHse/DemarchePreventionHse';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -265,6 +266,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-RespQhseRecord', C: RespQhseRecordMetro, at: 43.0, dur: 9.0},
   {id: 'Demo-MatriceRecord', C: MatriceRecordMetro, at: 41.5, dur: 7.0},
   {id: 'Demo-AnimateurHseRecord', C: AnimateurHseRecord, at: 47.5, dur: 7.0},
+  {id: 'Demo-DemarchePreventionHse', C: DemarchePreventionHse, at: 40.0, dur: 7.0},
 ];
 
 export const LibraryDemos: React.FC = () => (
