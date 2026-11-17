@@ -4780,7 +4780,7 @@ const SwCam: React.FC<{children: React.ReactNode}> = ({children}) => {
   const si = SW_SCENE.reduce((acc, a, k) => (t >= a ? k : acc), -1);
   const s0 = si >= 0 ? SW_SCENE[si] : 0, s1 = si >= 0 && si + 1 < SW_SCENE.length ? SW_SCENE[si + 1] : OUTRO_AT;
   const dolly = si >= 0 ? 1 + 0.028 * prog(t, s0, s1, (v: number) => v) : 1;
-  const pin = prog(t, 160.7, 161.0, easeOut) * (1 - prog(t, 162.0, 162.3, easeIn));
+  const pin = 0;
   const thru = prog(t, 94.2, 94.38, easeIn) * (1 - prog(t, 94.38, 94.55, easeOut));
   const tilt = si >= 0 ? (1 - prog(t, s0, s0 + 0.5, easeOut)) * 10 : 0;
   return <AbsoluteFill style={{transformOrigin: pin > 0 ? '540px 900px' : '540px 900px', transform: `perspective(1800px) rotateX(${tilt}deg) translate(${sx}px, ${sy}px) scale(${dolly * (1 + 0.1 * pin) * (1 + 0.7 * thru)})`, filter: thru > 0.02 ? `blur(${thru * 9}px)` : undefined, opacity: 1 - 0.5 * thru}}>{children}</AbsoluteFill>;
