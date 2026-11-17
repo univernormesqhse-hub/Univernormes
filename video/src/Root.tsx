@@ -287,6 +287,7 @@ import {RespQhseRecordMetro, RESP_QHSE_RECORD_METRO_FRAMES} from './respQhseReco
 import {MatriceRecordMetro, MATRICE_RECORD_METRO_FRAMES} from './matriceRecordMetro/MatriceRecordMetro';
 import {AnimateurHseRecord, ANIMATEUR_HSE_RECORD_FRAMES} from './animateurHseRecord/AnimateurHseRecord';
 import {DemarchePreventionHse, DEMARCHE_PREVENTION_HSE_FRAMES} from './demarchePreventionHse/DemarchePreventionHse';
+import {ActeursPreventionHse, ACTEURS_PREVENTION_HSE_FRAMES} from './acteursPreventionHse/ActeursPreventionHse';
 import {BanniereFacebook, BANNIERE_FB_FRAMES} from './banniereFacebook/BanniereFacebook';
 import {CouvertureFacebook} from './couvertureFacebook/CouvertureFacebook';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
@@ -594,6 +595,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="CondenseMatriceRecordMetro" component={MatriceRecordMetro} durationInFrames={MATRICE_RECORD_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseAnimateurHseRecord" component={AnimateurHseRecord} durationInFrames={ANIMATEUR_HSE_RECORD_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CondenseDemarchePreventionHse" component={DemarchePreventionHse} durationInFrames={DEMARCHE_PREVENTION_HSE_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="CondenseActeursPreventionHse" component={ActeursPreventionHse} durationInFrames={ACTEURS_PREVENTION_HSE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="BanniereFacebook" component={BanniereFacebook} durationInFrames={BANNIERE_FB_FRAMES} fps={30} width={1640} height={720} />
   <Composition id="BanniereFacebook820" component={BanniereFacebook} durationInFrames={BANNIERE_FB_FRAMES} fps={30} width={820} height={360} />
   <Composition id="CouvertureFacebook" component={CouvertureFacebook} durationInFrames={1} fps={30} width={1640} height={856} defaultProps={{variant: 'A' as const, control: false, t: 1.3}} />
