@@ -597,6 +597,8 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="BanniereFacebook" component={BanniereFacebook} durationInFrames={BANNIERE_FB_FRAMES} fps={30} width={1640} height={720} />
   <Composition id="BanniereFacebook820" component={BanniereFacebook} durationInFrames={BANNIERE_FB_FRAMES} fps={30} width={820} height={360} />
   <Composition id="CouvertureFacebook" component={CouvertureFacebook} durationInFrames={1} fps={30} width={1640} height={856} defaultProps={{variant: 'A' as const, control: false, t: 1.3}} />
+  <Composition id="CouvertureFacebookAnimee" component={CouvertureFacebook} durationInFrames={360} fps={30} width={1640} height={856} defaultProps={{variant: 'C' as const, control: false}} />
+  <Composition id="CouvertureFacebookCarree" component={CouvertureFacebook} durationInFrames={360} fps={30} width={1080} height={1080} defaultProps={{variant: 'S' as const, control: false}} />
   <Composition id="LigneInvisible" component={LigneInvisible} durationInFrames={LIGNE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesIso" component={RoleNormes} durationInFrames={ROLENORMES_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="RoleNormesCouverture" component={RoleNormesCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
