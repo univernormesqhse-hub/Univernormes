@@ -4614,7 +4614,7 @@ const AcPilot: React.FC = () => {
       </>}
       {t >= 103.6 && t < 113.9 && <>
         <Acronym x={250} y={490} w={580} title={t > 105.3 ? 'DUERP' : 'DOCUMENT'} c={DP_B} at={103.8} rows={[['D', 'ocument', 105.8], ['U', 'nique', 106.7], ['É', 'valuation', 107.0], ['R', 'isques', 107.7], ['P', 'rofessionnels', 108.0]]} />
-        {t > 109.6 && <div style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 1920, zIndex: 8, background: `rgba(255,255,255,${0.9 * prog(t, 109.6, 110.0)})`}} />}
+        {t > 109.6 && <div style={{position: 'absolute', left: 0, top: 450, width: 1080, height: 940, zIndex: 8, background: `rgba(255,255,255,${0.9 * prog(t, 109.6, 110.0)})`}} />}
         {t > 109.8 && <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 9}}>
           <rect x={170} y={620} width={740} height={460} rx={24} fill="#EEF4FA" stroke={NBK} strokeWidth={6} />
           {Array.from({length: 8}, (_, i) => <line key={`v${i}`} x1={170 + i * 92} y1={620} x2={170 + i * 92} y2={1080} stroke="#C9D6E6" strokeWidth={2} />)}
