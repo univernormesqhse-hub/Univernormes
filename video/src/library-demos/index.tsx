@@ -117,6 +117,7 @@ import {DemarchePreventionHse} from '../demarchePreventionHse/DemarchePrevention
 import {ActeursPreventionHse} from '../acteursPreventionHse/ActeursPreventionHse';
 import {ManutentionMetro} from '../manutentionMetro/ManutentionMetro';
 import {PresqueAccidentMetro} from '../presqueAccidentMetro/PresqueAccidentMetro';
+import {ResponsabilitePenaleMetro} from '../responsabilitePenaleMetro/ResponsabilitePenaleMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -273,6 +274,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-ActeursPreventionHse', C: ActeursPreventionHse, at: 336.0, dur: 7.0},
   {id: 'Demo-ManutentionMetro', C: ManutentionMetro, at: 192.6, dur: 9.0},
   {id: 'Demo-PresqueAccidentMetro', C: PresqueAccidentMetro, at: 126.4, dur: 9.0},
+  {id: 'Demo-ResponsabilitePenaleMetro', C: ResponsabilitePenaleMetro, at: 102.6, dur: 9.0},
 ];
 
 export const LibraryDemos: React.FC = () => (
