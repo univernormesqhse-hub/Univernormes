@@ -5060,7 +5060,7 @@ const AmIdent: React.FC = () => {
         <VerbCard x={70} y={580} w={290} at={124.2} c={DP_R} ic="TriangleAlert" l="Gravité" sub="À QUEL POINT ?" />
         <VerbCard x={395} y={580} w={290} at={127.4} c={DP_O} ic="Repeat" l="Fréquence" sub="RARE OU RÉCURRENT ?" />
         <VerbCard x={720} y={580} w={290} at={132.3} c={DP_B} ic="Eye" l="Détectabilité" sub="REPÉRABLE ?" />
-        <PicFX src={IMG.gravite} x={240} y={880} w={600} h={300} at={118.0} mode="shutter" c={DP_R} out={123.8} />
+        <PicFX src={IMG.gravite} x={190} y={880} w={700} h={320} at={118.0} mode="shutter" c={DP_R} out={136.3} />
       </>}
       {t >= 136.8 && <>
         <Formula y={540} at={136.9} eq={139.0} />
