@@ -5089,8 +5089,8 @@ const SmPerf: React.FC = () => {
       {t >= 201.5 && t < 220.6 && <>
         <PopChip x={540} y={470} at={202.2} l="Un cap décisif" c={INK} ic="Flag" fs={28} />
         <PicFX src={IMG.auditCert} x={140} y={560} w={800} h={460} at={205.4} mode="blinds" tag="Certification QHSE" c={DP_G} />
-        {t > 211.6 && t < 216.6 && <Stamp2 x={540} y={1090} at={211.7} l="ORGANISME AGRÉÉ" c={DP_G} fs={48} />}
-        <Medal x={540} y={1200} r={80} at={213.2} c={TO_GOLD} ic="Award" glow />
+        {t > 211.6 && t < 216.6 && <Stamp2 x={540} y={1065} at={211.7} l="ORGANISME AGRÉÉ" c={DP_G} fs={48} />}
+        <Medal x={540} y={1240} r={80} at={213.2} c={TO_GOLD} ic="Award" glow />
         {t > 216.6 && <PopChip x={540} y={1090} at={216.7} l="Une vraie interrogation" c={DP_R} ic="CircleHelp" fs={28} />}
       </>}
       {t >= 220.6 && t < 231.6 && <>
