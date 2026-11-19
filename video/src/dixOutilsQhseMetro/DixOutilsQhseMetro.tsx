@@ -4758,7 +4758,7 @@ const PhotoDeck: React.FC<{srcs: string[]; at: number; y: number}> = ({srcs, at,
   const t = useT();
   if (t < at) return null;
   const u = t - at;
-  return <>{srcs.map((s0, i) => { const k = eo3((u - i * 0.25) / 0.7); const dx = (i - 1) * 300 + Math.sin(u * 0.6 + i) * (20 + i * 10); return <div key={i} style={{position: 'absolute', left: 540 - 220 + dx * k, top: y + i * 40 - (1 - k) * 200, width: 440, height: 300, zIndex: 6 + i, transform: `rotate(${(i - 1) * 6 * k}deg)`, opacity: k, borderRadius: 18, overflow: 'hidden', border: `6px solid ${NBK}`, boxShadow: '10px 14px 0 rgba(0,0,0,0.25)'}}><Img src={PH(s0)} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${1.15 - 0.08 * Math.min(1, u / 6)})`}} /></div>; })}</>;
+  return <>{srcs.map((s0, i) => { const k = eo3((u - i * 0.25) / 0.7); const dx = (i - 1) * 260 + Math.sin(u * 0.6 + i) * (20 + i * 10); return <div key={i} style={{position: 'absolute', left: 540 - 220 + dx * k, top: y + i * 40 - (1 - k) * 200, width: 440, height: 300, zIndex: 6 + i, transform: `rotate(${(i - 1) * 6 * k}deg)`, opacity: k, borderRadius: 18, overflow: 'hidden', border: `6px solid ${NBK}`, boxShadow: '10px 14px 0 rgba(0,0,0,0.25)'}}><Img src={PH(s0)} style={{width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${1.15 - 0.08 * Math.min(1, u / 6)})`}} /></div>; })}</>;
 };
 /* bandeau « OUTIL n / 10 » */
 const ToolBanner: React.FC<{n: number; l: string; at: number; y?: number; out?: number; c?: string}> = ({n, l, at, y = 1200, out, c = DP_B}) => {
@@ -4941,7 +4941,7 @@ const ToAct: React.FC = () => {
         {t > 184.0 && <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 9}}><text x={540} y={900} textAnchor="middle" fontFamily="Montserrat, sans-serif" fontWeight={900} fontSize={54} fill={t < 185.9 ? '#8A93A3' : DP_G} stroke={NBK} strokeWidth={2} opacity={prog(t, 184.0, 184.3)}>{t < 185.9 ? 'CONSTATS' : 'ACTIONS CORRECTIVES'}</text></svg>}
         {t > 190.8 && <div style={{position: 'absolute', left: 120, top: 1240 - 260 * eo3((t - 190.9) / 0.6), width: 380, height: 260, zIndex: 8}}><div style={{...nb(DP_B, 7), borderColor: NBK, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8}}><Ico n="UserCheck" size={70} c="#fff" /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: '#fff', textAlign: 'center'}}>Un responsable unique</div></div></div>}
         {t > 192.9 && <div style={{position: 'absolute', left: 580, top: 1240 - 260 * eo3((t - 193.0) / 0.6), width: 380, height: 260, zIndex: 8}}><div style={{...nb(DP_O, 7), borderColor: NBK, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8}}><Ico n="CalendarClock" size={70} c="#fff" /><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: '#fff', textAlign: 'center'}}>Une échéance ferme</div></div></div>}
-        {t > 197.3 && <Stamp2 x={540} y={960} at={197.4} l="SINON : UNE BONNE INTENTION" c={DP_R} fs={30} />}
+        {t > 197.3 && <Stamp2 x={540} y={1320} at={197.4} l="SINON : UNE BONNE INTENTION" c={DP_R} fs={30} />}
       </>}
       {t >= 199.9 && <>
         <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 6}}><Gear cx={540} cy={760} r={190} n={16} a={t * 1.2} c={DP_G} /><Gear cx={790} cy={600} r={90} n={9} a={-t * 2.5} c={TO_GOLD} /><Gear cx={300} cy={940} r={100} n={10} a={-t * 2.3} c={DP_B} /></svg>
@@ -4960,7 +4960,7 @@ const ToCheck: React.FC = () => {
       {t < 227.6 && <>
         <ToolBanner n={7} l="L'audit interne" at={208.6} y={470} c={DP_V} />
         <PhotoCompare a={IMG.rapport} b={IMG.terrainA} la="Les manuels" lb="La réalité" x={90} y={640} w={900} h={540} at={209.7} slide={[217.3, 222.4]} />
-        {t > 216.3 && t < 223.4 && <Stamp2 x={540} y={1240} at={216.4} l="L'ÉPREUVE DE VÉRITÉ" c={DP_V} fs={40} />}
+        {t > 216.3 && t < 223.4 && <Stamp2 x={540} y={1275} at={216.4} l="L'ÉPREUVE DE VÉRITÉ" c={DP_V} fs={40} />}
         {t > 223.4 && <Medal x={540} y={1260} r={80} at={223.5} c={DP_V} ic="ShieldCheck" glow />}
       </>}
       {t >= 227.6 && t < 245.2 && <>
