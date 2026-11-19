@@ -5007,7 +5007,7 @@ const CoReport: React.FC = () => {
       </>}
       {t >= 169.7 && t < 180.0 && <>
         <PopChip x={540} y={470} at={169.8} l="Étape 1 · Actions correctives et préventives" c={DP_B} ic="Wrench" fs={24} />
-        <PhotoCompare a={IMG.danger} b={IMG.gardeCorps} la="L'anomalie" lb="La correction" x={90} y={560} w={900} h={560} at={173.5} slide={[176.6, 179.0]} />
+        <PhotoCompare a={IMG.danger} b={IMG.gardeCorps} la="L'anomalie" lb="La correction" x={90} y={600} w={900} h={540} at={173.5} slide={[176.6, 179.0]} />
       </>}
       {t >= 180.0 && t < 192.2 && <>
         <PopChip x={540} y={470} at={180.1} l="Étape 2 · Les indicateurs HSE" c={DP_O} ic="ChartColumn" fs={26} />
@@ -5019,8 +5019,8 @@ const CoReport: React.FC = () => {
       {t >= 192.2 && <>
         <PopChip x={540} y={470} at={192.3} l="Étape 3 · Les rapports HSE" c={DP_V} ic="FileText" fs={26} />
         {t < 198.4 && <PhotoTilt src={IMG.rapport} x={190} y={570} w={700} h={460} at={193.4} tag="Des rapports bien formels" c={DP_V} />}
-        {t >= 198.4 && <Cycle3 cx={540} cy={840} r={250} at={198.5} nodes={[['Actions', 'Wrench', DP_B], ['Indicateurs', 'ChartColumn', DP_O], ['Rapports', 'FileText', DP_V]]} />}
-        {t >= 198.4 && <div style={{position: 'absolute', left: 390, top: 800, width: 300, textAlign: 'center', zIndex: 9, fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: INK, opacity: prog(t, 198.6, 198.9)}}>CYCLE<br />ININTERROMPU</div>}
+        {t >= 198.4 && <Cycle3 cx={540} cy={880} r={220} at={198.5} nodes={[['Actions', 'Wrench', DP_B], ['Indicateurs', 'ChartColumn', DP_O], ['Rapports', 'FileText', DP_V]]} />}
+        {t >= 198.4 && <div style={{position: 'absolute', left: 390, top: 840, width: 300, textAlign: 'center', zIndex: 9, fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: INK, opacity: prog(t, 198.6, 198.9)}}>CYCLE<br />ININTERROMPU</div>}
         <PopChip x={230} y={1230} at={200.5} l="Mesurable" c={DP_B} fs={24} />
         <PopChip x={540} y={1230} at={201.1} l="Transparente" c={DP_T} fs={24} />
         <PopChip x={850} y={1230} at={202.2} l="Auditable" c={DP_G} ic="ShieldCheck" fs={24} />
