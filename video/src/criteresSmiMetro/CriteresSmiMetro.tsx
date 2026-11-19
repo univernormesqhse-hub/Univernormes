@@ -5047,8 +5047,8 @@ const SmDeploy: React.FC = () => {
       <StepTrack y={1250} at={133.0} end={153.9} steps={SM_STEPS} />
       {t < 142.0 && <>
         <PopChip x={540} y={470} at={133.9} l="Place au terrain" c={DP_G} ic="Footprints" fs={28} />
-        <PicFX src={IMG.terrain} x={140} y={560} w={800} h={440} at={134.6} mode="ink" tag="Étape 6 · Application concrète" c={DP_G} />
-        {t > 139.5 && <Crossed x={170} y={1060} w={740} at={139.6} strike={141.3} l="L'exécution fait tout" fs={30} />}
+        <PicFX src={IMG.terrain} x={140} y={600} w={800} h={420} at={134.6} mode="ink" tag="Étape 6 · Application concrète" c={DP_G} />
+        {t > 139.5 && <Crossed x={170} y={1080} w={740} at={139.6} strike={141.3} l="L'exécution fait tout" fs={30} />}
       </>}
       {t >= 142.0 && <>
         <PopChip x={540} y={470} at={142.1} l="Étape 7 · Analyse régulière et méthodique" c={DP_V} ic="ScanSearch" fs={24} />
@@ -5068,7 +5068,7 @@ const SmPerf: React.FC = () => {
       </>}
       {t >= 164.6 && t < 179.8 && <>
         <PopChip x={540} y={470} at={165.2} l="Des métriques chirurgicales" c={INK} ic="Crosshair" fs={28} />
-        <PhotoScan src={IMG.analyste} x={140} y={560} w={800} h={440} at={166.0} dur={2.4} tag="AUSCULTER · MONITORER" c={DP_B} target={[600, 220, 172.2]} />
+        <PhotoScan src={IMG.analyste} x={140} y={600} w={800} h={420} at={166.0} dur={2.4} tag="AUSCULTER · MONITORER" c={DP_B} target={[600, 220, 172.2]} />
         {[['Qualité', 176.0, DP_B], ['Santé', 176.9, DP_T], ['Sécurité', 177.8, DP_R], ['Environnement', 178.2, DP_G]].map(([l, a, c], i) => <PopChip key={l as string} x={180 + i * 240} y={1100} at={a as number} l={l as string} c={c as string} fs={22} />)}
       </>}
       {t >= 179.8 && t < 187.0 && <>
