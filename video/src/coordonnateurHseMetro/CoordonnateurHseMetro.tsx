@@ -4981,8 +4981,8 @@ const CoRisk: React.FC = () => {
       </>}
       {t >= 140.5 && t < 150.7 && <>
         <PopChip x={540} y={470} at={140.6} l="Une composante réactive" c={DP_R} ic="Siren" fs={28} />
-        <PicFX src={IMG.incident} x={140} y={560} w={800} h={420} at={143.5} mode="ink" tag="Enquêtes accident et incident" c={DP_R} />
-        {t > 147.8 && <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 8}}><Trace d="M 540 1000 L 540 1130" at={147.9} dur={0.5} c={DP_R} w={10} head /></svg>}
+        <PicFX src={IMG.incident} x={140} y={600} w={800} h={400} at={143.5} mode="ink" tag="Enquêtes accident et incident" c={DP_R} />
+        {t > 147.8 && <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 8}}><Trace d="M 540 1010 L 540 1140" at={147.9} dur={0.5} c={DP_R} w={10} head /></svg>}
         <Medal x={540} y={1240} r={80} at={149.4} c={DP_R} ic="Target" glow />
         {t > 149.4 && <div style={{position: 'absolute', left: 640, top: 1220, zIndex: 8, fontFamily: sansFont, fontWeight: 900, fontSize: 30, color: DP_R}}>Causes profondes</div>}
       </>}
