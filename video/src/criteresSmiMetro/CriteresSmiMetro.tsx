@@ -5481,8 +5481,8 @@ const KCover: React.FC = () => {
       <Abs x={0} y={40} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.14)'}}><Img src={staticFile(LOGO)} style={{height: 76, display: 'block'}} /></div></Abs>
       <Abs x={0} y={180} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{...nb(SwN, 6), borderColor: NBK, padding: '12px 30px', ...CAP, fontSize: 40, color: '#fff'}}>CRITÈRES QHSE VIA LE</div></Abs>
       <KTriptych y={300} h={540} />
-      <Abs x={0} y={890} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap', zIndex: 40}}><PhotoLetterAnim ch="SMI" src={IMG.cover} size={230} ls={14} seed={8} /></Abs>
-      <Abs x={0} y={1060} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap', zIndex: 40}}><PhotoLetterAnim ch="INTÉGRÉ" src={IMG.smiHub} size={130} ls={6} seed={13} /></Abs>
+      <Abs x={0} y={890} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap', zIndex: 40}}><PhotoLetterAnim ch="SMI" src={IMG.cover} size={200} ls={14} seed={8} /></Abs>
+      <Abs x={0} y={1150} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap', zIndex: 40}}><PhotoLetterAnim ch="INTÉGRÉ" src={IMG.smiHub} size={130} ls={6} seed={13} /></Abs>
       <Abs x={60} y={1400} w={960} h={120} style={{background: '#fff', border: `5px solid ${INK}`, borderRadius: 18, boxShadow: `7px 7px 0 ${BURG}`, overflow: 'hidden', zIndex: 40}}>
         <Tube x={30} y={34} w={900} h={24} />
         {SECT.map((x, k) => <div key={k} style={{position: 'absolute', left: 80 + k * (800 / (SECT.length - 1)) - 18, top: 28, width: 36, height: 36, borderRadius: 9, background: x.c, border: '4px solid #fff', boxSizing: 'border-box'}} />)}
