@@ -120,6 +120,7 @@ import {PresqueAccidentMetro} from '../presqueAccidentMetro/PresqueAccidentMetro
 import {ResponsabilitePenaleMetro} from '../responsabilitePenaleMetro/ResponsabilitePenaleMetro';
 import {ReglesOrPapier} from '../reglesOrPapier/ReglesOrPapier';
 import {PomodoroMetro} from '../pomodoroMetro/PomodoroMetro';
+import {PriseDePosteMetro} from '../priseDePosteMetro/PriseDePosteMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -279,6 +280,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-ResponsabilitePenaleMetro', C: ResponsabilitePenaleMetro, at: 102.6, dur: 9.0},
   {id: 'Demo-ReglesOrPapier', C: ReglesOrPapier, at: 150.6, dur: 7.0},
   {id: 'Demo-PomodoroMetro', C: PomodoroMetro, at: 123.2, dur: 7.0},
+  {id: 'Demo-PriseDePosteMetro', C: PriseDePosteMetro, at: 22.6, dur: 7.0},
 ];
 
 export const LibraryDemos: React.FC = () => (
