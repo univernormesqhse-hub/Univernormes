@@ -122,6 +122,7 @@ import {ReglesOrPapier} from '../reglesOrPapier/ReglesOrPapier';
 import {PomodoroMetro} from '../pomodoroMetro/PomodoroMetro';
 import {PriseDePosteMetro} from '../priseDePosteMetro/PriseDePosteMetro';
 import {DixOutilsQhseMetro} from '../dixOutilsQhseMetro/DixOutilsQhseMetro';
+import {CoordonnateurHseMetro} from '../coordonnateurHseMetro/CoordonnateurHseMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -283,6 +284,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-PomodoroMetro', C: PomodoroMetro, at: 123.2, dur: 7.0},
   {id: 'Demo-PriseDePosteMetro', C: PriseDePosteMetro, at: 22.6, dur: 7.0},
   {id: 'Demo-DixOutilsQhseMetro', C: DixOutilsQhseMetro, at: 125.4, dur: 7.0},
+  {id: 'Demo-CoordonnateurHseMetro', C: CoordonnateurHseMetro, at: 215.5, dur: 7.0},
 ];
 
 export const LibraryDemos: React.FC = () => (
