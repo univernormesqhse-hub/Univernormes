@@ -292,6 +292,7 @@ import {ManutentionMetro, MANUTENTION_METRO_FRAMES} from './manutentionMetro/Man
 import {PresqueAccidentMetro, PRESQUE_ACCIDENT_METRO_FRAMES} from './presqueAccidentMetro/PresqueAccidentMetro';
 import {ResponsabilitePenaleMetro, RESPONSABILITE_PENALE_METRO_FRAMES} from './responsabilitePenaleMetro/ResponsabilitePenaleMetro';
 import {ReglesOrPapier, REGLES_OR_PAPIER_FRAMES} from './reglesOrPapier/ReglesOrPapier';
+import {PomodoroMetro, POMODORO_METRO_FRAMES} from './pomodoroMetro/PomodoroMetro';
 import {BanniereFacebook, BANNIERE_FB_FRAMES} from './banniereFacebook/BanniereFacebook';
 import {CouvertureFacebook} from './couvertureFacebook/CouvertureFacebook';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
@@ -604,6 +605,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="PresqueAccidentMetro" component={PresqueAccidentMetro} durationInFrames={PRESQUE_ACCIDENT_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ResponsabilitePenaleMetro" component={ResponsabilitePenaleMetro} durationInFrames={RESPONSABILITE_PENALE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ReglesOrPapier" component={ReglesOrPapier} durationInFrames={REGLES_OR_PAPIER_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="PomodoroMetro" component={PomodoroMetro} durationInFrames={POMODORO_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="BanniereFacebook" component={BanniereFacebook} durationInFrames={BANNIERE_FB_FRAMES} fps={30} width={1640} height={720} />
   <Composition id="BanniereFacebook820" component={BanniereFacebook} durationInFrames={BANNIERE_FB_FRAMES} fps={30} width={820} height={360} />
   <Composition id="CouvertureFacebook" component={CouvertureFacebook} durationInFrames={1} fps={30} width={1640} height={856} defaultProps={{variant: 'A' as const, control: false, t: 1.3}} />
