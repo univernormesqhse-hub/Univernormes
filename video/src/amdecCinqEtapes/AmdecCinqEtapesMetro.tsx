@@ -5013,7 +5013,7 @@ const AmMeca: React.FC = () => {
       {t >= 43.7 && <>
         <StepTrack y={620} at={43.8} end={60.1} steps={AM_STEPS} />
         {t > 52.6 && <PopChip x={540} y={860} at={52.7} l="L'enchaînement n'est pas optionnel" c={DP_R} ic="Link" fs={28} />}
-        {t > 54.9 && <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 7}}>{[0, 1, 2, 3].map((i) => <Trace key={i} d={`M ${180 + i * 215} 760 Q ${287 + i * 215} 700 ${395 + i * 215} 760`} at={55.1 + i * 0.25} dur={0.3} c={TO_GOLD} w={6} head />)}</svg>}
+        {t < 52.5 && <Polaroids x0={60} y0={800} gap={330} w={290} items={[[IMG.equipe, 'Équipe', 44.4], [IMG.machineIll, 'Analyse', 45.8], [IMG.usure, 'Identification', 47.6]]} />}
         {t > 58.3 && <Stamp2 x={540} y={1080} at={58.4} l="VIABILITÉ ABSOLUE" c={DP_G} fs={46} />}
       </>}
     </>
