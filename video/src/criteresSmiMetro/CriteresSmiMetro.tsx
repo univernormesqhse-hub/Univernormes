@@ -4922,7 +4922,7 @@ const Absorb: React.FC<{at: number; pull: number; cx: number; cy: number; items:
   return <>
     <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 6}}>{[0, 1, 2].map((i) => { const u = ((t - at) * 0.7 + i / 3) % 1; return <circle key={i} cx={cx} cy={cy} r={core + u * 200} fill="none" stroke={TO_GOLD} strokeWidth={4} opacity={(1 - u) * 0.6} />; })}</svg>
     <div style={{position: 'absolute', left: cx - core, top: cy - core, width: core * 2, height: core * 2, borderRadius: core, background: `radial-gradient(circle at 35% 30%, #2C6BEA, ${NAVY})`, border: `8px solid ${NBK}`, zIndex: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transform: `scale(${Math.min(1.05, sp(t, at, 9, 11))})`}}><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 70 + 20 * p, color: '#fff', letterSpacing: 4}}>SMI</div>{p > 0.5 && <div style={{fontFamily: MONO, fontWeight: 700, fontSize: 16, color: '#FFD966', letterSpacing: 2, opacity: prog(t, pull + 0.7, pull + 1.1)}}>STRUCTURE UNIFIÉE</div>}</div>
-    {items.map(([src, l, c], i) => { const a0 = (i / items.length) * Math.PI * 2 - Math.PI / 4 + (t - at) * 0.2 * (1 - p); const R = lerp(330, 0, p); const sz = lerp(170, 60, p); const kk = Math.min(1.05, sp(t, at + 0.2 + i * 0.15, 9, 11)); return <div key={i} style={{position: 'absolute', left: cx + Math.cos(a0) * R - sz / 2, top: cy + Math.sin(a0) * R - sz / 2, width: sz, height: sz, zIndex: 7, opacity: 1 - prog(t, pull + 1.1, pull + 1.4), transform: `scale(${kk})`}}>
+    {items.map(([src, l, c], i) => { const a0 = (i / items.length) * Math.PI * 2 - Math.PI / 4 + (t - at) * 0.2 * (1 - p); const R = lerp(265, 0, p); const sz = lerp(170, 60, p); const kk = Math.min(1.05, sp(t, at + 0.2 + i * 0.15, 9, 11)); return <div key={i} style={{position: 'absolute', left: cx + Math.cos(a0) * R - sz / 2, top: cy + Math.sin(a0) * R - sz / 2, width: sz, height: sz, zIndex: 7, opacity: 1 - prog(t, pull + 1.1, pull + 1.4), transform: `scale(${kk})`}}>
       <div style={{width: '100%', height: '100%', borderRadius: sz / 2, overflow: 'hidden', border: `6px solid ${c}`}}><Img src={PH(src)} style={{width: '100%', height: '100%', objectFit: 'cover'}} /></div>
       {p < 0.3 && <div style={{position: 'absolute', left: -40, right: -40, top: sz + 4, textAlign: 'center'}}><span style={{...nb(c, 4), borderColor: NBK, padding: '3px 10px', fontFamily: sansFont, fontWeight: 900, fontSize: 20, color: '#fff'}}>{l}</span></div>}
     </div>; })}
@@ -5029,8 +5029,8 @@ const SmPlan: React.FC = () => {
         {t > 110.9 && <Stamp2 x={540} y={1200} at={111.0} l="LE MOTEUR EST ASSEMBLÉ" c={DP_G} fs={36} rot={0} />}
       </>}
       {t >= 112.3 && t < 125.8 && <>
-        <PopChip x={540} y={470} at={112.5} l="Système de management intégré" c={NAVY} ic="Network" fs={28} />
-        <Absorb at={115.7} pull={121.2} cx={540} cy={850} items={[[IMG.qualite, 'Qualité', DP_B], [IMG.sante, 'Hygiène', DP_T], [IMG.securite, 'Sécurité', DP_R], [IMG.envir, 'Environnement', DP_G]]} />
+        <PopChip x={540} y={470} at={112.5} l="Système de management intégré" c={NAVY} ic="Network" fs={28} out={115.6} />
+        <Absorb at={115.7} pull={121.2} cx={540} cy={820} items={[[IMG.qualite, 'Qualité', DP_B], [IMG.sante, 'Hygiène', DP_T], [IMG.securite, 'Sécurité', DP_R], [IMG.envir, 'Environnement', DP_G]]} />
       </>}
       {t >= 125.8 && <>
         <PicFX src={IMG.piliers} x={140} y={470} w={800} h={540} at={125.9} mode="shutter" tag="L'architecture globale" c={TO_GOLD} />
