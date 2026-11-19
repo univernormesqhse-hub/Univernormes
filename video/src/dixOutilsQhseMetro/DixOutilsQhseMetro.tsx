@@ -4994,7 +4994,7 @@ const ToEnv: React.FC = () => {
         {t > 273.2 && <PopChip x={540} y={1260} at={273.3} l="Protéger l'écosystème" c={DP_G} ic="Leaf" fs={28} />}
       </>}
       {t >= 274.8 && <>
-        <div style={{position: 'absolute', left: 0, top: 640, width: 1080, display: 'flex', justifyContent: 'center', gap: 20, zIndex: 7}}>{['Q', 'H', 'S', 'E'].map((L, i) => { const e = L === 'E'; const k = e ? prog(t, 276.6, 277.2, easeOut) : 0; return <div key={L} style={{width: 200, height: 220, ...nb(e ? DP_G : '#fff', 8), borderColor: NBK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 150, color: e ? '#fff' : '#B7AC8B', transform: `scale(${(Math.min(1.06, sp(t, 274.9 + i * 0.1, 9, 11))) * (1 + k * 0.2)}) translateY(${-k * 30}px)`, boxShadow: e ? `0 0 ${40 * k}px ${DP_G}` : undefined}}>{L}</div>; })}</div>
+        <div style={{position: 'absolute', left: 0, top: 640, width: 1080, display: 'flex', justifyContent: 'center', gap: 20, zIndex: 7}}>{['Q', 'H', 'S', 'E'].map((L, i) => { const e = L === 'E'; const k = e ? prog(t, 276.6, 277.2, easeOut) : 0; return <div key={L} style={{width: 200, height: 220, ...nb(e ? DP_G : '#fff', 8), borderColor: NBK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: sansFont, fontWeight: 900, fontSize: 150, color: e ? '#fff' : '#B7AC8B', transform: `scale(${(Math.min(1.06, sp(t, 274.9 + i * 0.1, 9, 11))) * (1 + k * 0.1)}) translateY(${-k * 30}px)`, boxShadow: e ? `0 0 ${40 * k}px ${DP_G}` : undefined}}>{L}</div>; })}</div>
         {t > 277.4 && <Stamp2 x={540} y={1010} at={277.5} l="DANS LA RÉALITÉ OPÉRATIONNELLE" c={DP_G} fs={32} rot={0} />}
       </>}
     </>
