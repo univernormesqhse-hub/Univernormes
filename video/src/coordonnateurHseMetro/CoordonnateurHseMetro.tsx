@@ -441,13 +441,13 @@ const STATIONS = [
   {n: 1, l: 'Le terrain', s: 'Terrain', at: 6.2},
   {n: 2, l: 'Le pont', s: 'Pont', at: 11.2},
   {n: 3, l: 'Trois verbes', s: 'Verbes', at: 40.0},
-  {n: 4, l: 'Coordonner', s: 'Coordonner', at: 71.1},
-  {n: 5, l: 'Les inspections', s: 'Inspections', at: 80.1},
+  {n: 4, l: 'Coordonner', s: 'Équipes', at: 71.1},
+  {n: 5, l: 'Les inspections', s: 'Rondes', at: 80.1},
   {n: 6, l: 'Les causeries', s: 'Causeries', at: 92.3},
-  {n: 7, l: "L'anticipation", s: 'Anticiper', at: 120.8},
+  {n: 7, l: "L'anticipation", s: 'Amont', at: 120.8},
   {n: 8, l: 'JSA / JHA', s: 'JSA', at: 132.8},
-  {n: 9, l: 'Les enquêtes', s: 'Enquêtes', at: 145.9},
-  {n: 10, l: 'Les indicateurs', s: 'Indicateurs', at: 181.8},
+  {n: 9, l: 'Les enquêtes', s: 'Enquête', at: 145.9},
+  {n: 10, l: 'Les indicateurs', s: 'Données', at: 181.8},
   {n: 11, l: 'La hiérarchie', s: 'Niveaux', at: 208.2},
   {n: 12, l: 'La clarté de mission', s: 'Mission', at: 312.0},
 ];
@@ -5489,7 +5489,7 @@ const KCover: React.FC = () => {
 /* ═════════════ Montage, bruitage ═════════════ */
 const TK = 3.4;
 const rep = (a: number, n: number, d: number, s0: string, v: number): Sfx[] => Array.from({length: n}, (_, k) => ({at: a + k * d, s: s0, v, dur: 0.6}));
-const trans = (x: {at: number}): Sfx[] => [{at: x.at, s: 'sfx/whoosh', v: 0.4}, ...rep(x.at + 0.1 / TK, 4, 0.18 / TK, 'sfx/ding', 0.12), {at: x.at + 0.45 / TK, s: 'soft-whoosh', v: 0.45, dur: 1}, {at: x.at + 0.95 / TK, s: 'sfx/thud', v: 0.4}, {at: x.at + 1.6 / TK, s: 'sfx/pop', v: 0.2}];
+const trans = (x: {at: number}): Sfx[] => [{at: x.at, s: 'alarme', v: 0.3, dur: 1.6}, {at: x.at, s: 'sfx/whoosh', v: 0.4}, ...rep(x.at + 0.1 / TK, 4, 0.18 / TK, 'sfx/ding', 0.12), {at: x.at + 0.45 / TK, s: 'soft-whoosh', v: 0.45, dur: 1}, {at: x.at + 0.95 / TK, s: 'sfx/thud', v: 0.4}, {at: x.at + 1.6 / TK, s: 'sfx/pop', v: 0.2}];
 const searchCues = (at: number, len: number, foundAt: number, clickAt: number): Sfx[] => [...rep(at + 0.3, Math.round(len / 2), 0.05, 'sfx/click', 0.1), {at: foundAt, s: 'validation', v: 0.3}, {at: clickAt, s: 'sfx/click', v: 0.5}, {at: clickAt + 0.15, s: 'soft-whoosh', v: 0.5, dur: 1}, {at: clickAt + 0.85, s: 'sfx/thud', v: 0.35}];
 const pops = (ts: number[], v = 0.18): Sfx[] => ts.map((at) => ({at, s: 'sfx/pop', v}));
 const CUES: Sfx[] = [
