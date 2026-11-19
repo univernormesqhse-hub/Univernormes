@@ -4846,7 +4846,6 @@ const ToAnalyse: React.FC = () => {
       {t >= 63.8 && t < 77.0 && <>
         <PopChip x={540} y={470} at={63.9} l="Une séquence non négociable" c={INK} ic="ListOrdered" fs={28} />
         <Polaroids x0={60} y0={570} gap={330} w={290} items={[[IMG.dangerP, '1. Identifier', 65.6], [IMG.risqueP, '2. Évaluer', 67.5], [IMG.epc, '3. Prévenir', 70.5]]} />
-        {[0, 1].map((i) => <Trace key={i} d={`M ${340 + i * 330} 990 L ${400 + i * 330} 990`} at={[67.4, 70.4][i]} dur={0.3} c={DP_R} w={10} head />)}
         {t > 72.4 && <Crossed x={240} y={1080} w={600} at={72.5} strike={73.3} l="Dans l'autre sens" fs={30} />}
         {t > 74.4 && <Stamp2 x={540} y={1250} at={74.5} l="PROACTIVITÉ" c={DP_G} fs={46} />}
       </>}
