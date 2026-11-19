@@ -114,13 +114,13 @@ export const DIX_OUTILS_QHSE_METRO_FRAMES = s(OUTRO_AT + 3.8);
 type TK = 'tube' | 'gyro' | 'loupe' | 'store' | 'none';
 type SX = {at: number; n: string; title: string; s: string; c: string; g: string; k: TK; lab: string};
 const SECT: SX[] = [
-  {at: 2.9, n: '!', title: 'Le responsable QHSE', s: 'Le système nerveux', c: NAVY, g: 'système nerveux', k: 'none', lab: 'INTRODUCTION'},
+  {at: 2.9, n: '!', title: 'Le responsable QHSE', s: 'Le système nerveux', c: NAVY, g: 'nerveux', k: 'none', lab: 'INTRODUCTION'},
   {at: 55.4, n: '1', title: 'Analyser', s: 'Risques, DUERP, JSA', c: '#D7263D', g: 'analyse', k: 'gyro', lab: 'OUTILS 1 À 3'},
-  {at: 143.6, n: '2', title: 'Enquêter', s: 'Arbre des causes, 5 pourquoi', c: '#F28C28', g: 'investigation', k: 'tube', lab: 'OUTILS 4 ET 5'},
-  {at: 176.3, n: '3', title: 'Agir', s: "Le plan d'action", c: '#14A35A', g: "plan d'action", k: 'loupe', lab: 'OUTIL 6'},
+  {at: 143.6, n: '2', title: 'Enquêter', s: 'Arbre des causes, 5 pourquoi', c: '#F28C28', g: 'enquête', k: 'tube', lab: 'OUTILS 4 ET 5'},
+  {at: 176.3, n: '3', title: 'Agir', s: "Le plan d'action", c: '#14A35A', g: 'actions', k: 'loupe', lab: 'OUTIL 6'},
   {at: 207.6, n: '4', title: 'Vérifier', s: 'Audit et veille', c: '#7A3EB1', g: 'audit', k: 'gyro', lab: 'OUTILS 7 ET 8'},
-  {at: 253.1, n: '5', title: 'Environnement', s: 'Aspects et impacts', c: '#14A3A3', g: 'environnementaux', k: 'tube', lab: 'OUTIL 9'},
-  {at: 278.4, n: '6', title: 'Piloter', s: 'Le tableau de bord', c: '#C99A06', g: 'tableau de bord', k: 'loupe', lab: 'OUTIL 10'},
+  {at: 253.1, n: '5', title: 'Environnement', s: 'Aspects et impacts', c: '#14A3A3', g: 'impacts', k: 'tube', lab: 'OUTIL 9'},
+  {at: 278.4, n: '6', title: 'Piloter', s: 'Le tableau de bord', c: '#C99A06', g: 'tableau', k: 'loupe', lab: 'OUTIL 10'},
   {at: 305.3, n: '★', title: "L'écosystème", s: 'Parfaitement circulaire', c: '#1F5BD8', g: 'écosystème', k: 'gyro', lab: 'LES 10 OUTILS'},
   {at: 328.8, n: '!', title: 'Le terrain', s: 'Mise en garde', c: '#D7263D', g: 'terrain', k: 'tube', lab: 'CONCLUSION'},
 ];
@@ -4727,7 +4727,7 @@ const PhotoShatter: React.FC<{src: string; x: number; y: number; w: number; h: n
   if (t < at) return null;
   const k = prog(t, at, at + 0.5, easeOut);
   const N = 6;
-  return <div style={{position: 'absolute', left: x, top: y, width: w, height: h, zIndex: 6, opacity: k}}>{Array.from({length: N}, (_, i) => { const f = prog(t, crash + i * 0.06, crash + 0.9 + i * 0.06, easeIn); return <div key={i} style={{position: 'absolute', left: (i * w) / N, top: 0, width: w / N + 1, height: h, overflow: 'hidden', transform: `translateY(${f * (700 + i * 60)}px) rotate(${f * (i % 2 ? 24 : -20)}deg)`, borderLeft: i && t > crash ? `3px solid ${NBK}` : undefined}}><Img src={PH(src)} style={{position: 'absolute', left: -(i * w) / N, top: 0, width: w, height: h, objectFit: 'cover', filter: t > crash ? 'saturate(1.4) contrast(1.2)' : undefined}} /></div>; })}
+  return <div style={{position: 'absolute', left: x, top: y, width: w, height: h, zIndex: 6, opacity: k}}>{Array.from({length: N}, (_, i) => { const f = prog(t, crash + i * 0.06, crash + 0.9 + i * 0.06, easeIn); return <div key={i} style={{position: 'absolute', left: (i * w) / N, top: 0, width: w / N + 1, height: h, overflow: 'hidden', transform: `translateY(${f * (380 + i * 40)}px) rotate(${f * (i % 2 ? 24 : -20)}deg)`, opacity: 1 - f, borderLeft: i && t > crash ? `3px solid ${NBK}` : undefined}}><Img src={PH(src)} style={{position: 'absolute', left: -(i * w) / N, top: 0, width: w, height: h, objectFit: 'cover', filter: t > crash ? 'saturate(1.4) contrast(1.2)' : undefined}} /></div>; })}
     <div style={{position: 'absolute', inset: 0, border: `7px solid ${NBK}`, borderRadius: 4, boxShadow: `9px 9px 0 ${c}`, opacity: 1 - prog(t, crash, crash + 0.2)}} /></div>;
 };
 /* PH-9 — mur de photos : grille qui se retourne carte par carte */
@@ -4798,12 +4798,11 @@ const ToIntro: React.FC = () => {
   return (
     <>
       {t < 8.2 && <>
-        <PicFX src={IMG.usine} x={90} y={470} w={900} h={560} at={2.1} mode="iris" tag="Le système nerveux de l'industrie" c={TO_GOLD} />
+        <PicFX src={IMG.usine} x={90} y={470} w={900} h={560} at={2.1} mode="iris" tag="Qualité · Hygiène · Sécurité · Environnement" c={TO_GOLD} />
         <NerveNet at={3.2} y0={520} y1={980} />
         {t > 6.6 && <Stamp2 x={540} y={1120} at={6.7} l="PAS UN SIMPLE TITRE" c={DP_R} fs={40} />}
       </>}
       {t >= 8.2 && t < 23.4 && <>
-        <PopChip x={540} y={470} at={8.4} l="Sur tous les fronts" c={INK} ic="Swords" fs={30} />
         <PicFX src={IMG.operateur} x={60} y={560} w={460} h={560} at={11.4} mode="blinds" tag="Opérateurs" c={DP_O} />
         <PicFX src={IMG.envir} x={560} y={560} w={460} h={560} at={15.6} mode="shutter" tag="Environnement" c={DP_G} />
         {t > 18.0 && <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 8}}><g transform={`translate(540 1180) rotate(${Math.sin(t * 2.4) * 6})`}><rect x={-420} y={-8} width={840} height={16} rx={8} fill={NBK} /><circle r={22} fill={TO_GOLD} stroke={NBK} strokeWidth={5} /></g><path d="M 520 1200 L 540 1180 L 560 1200 Z" fill={NBK} /></svg>}
@@ -4811,7 +4810,7 @@ const ToIntro: React.FC = () => {
         {t > 21.6 && <Crossed x={240} y={1240} w={600} at={21.7} strike={22.6} l="L'improvisation" fs={30} />}
       </>}
       {t >= 23.4 && t < 40.2 && <>
-        {t < 30.1 && <><PicFX src={IMG.tableauK} x={140} y={480} w={800} h={460} at={23.6} mode="tiles" tag="Une mécanique de précision" c={DP_B} />
+        {t < 30.1 && <><PicFX src={IMG.tableauK} x={140} y={480} w={800} h={460} at={23.6} mode="tiles" tag="Les outils fondamentaux" c={DP_B} />
           <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 7}}><Gear cx={330} cy={1110} r={95} n={12} a={t * 0.8} c={DP_B} /><Gear cx={530} cy={1060} r={60} n={8} a={-t * 1.27 + 0.2} c={TO_GOLD} /><Gear cx={700} cy={1130} r={80} n={10} a={t * 0.95} c={DP_G} /></svg></>}
         {t >= 30.1 && <>
           <PhotoShatter src={IMG.danger} x={140} y={480} w={800} h={520} at={30.2} crash={35.9} />
