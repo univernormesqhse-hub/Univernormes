@@ -4595,7 +4595,7 @@ const TomatoTimer: React.FC<{cx: number; cy: number; r: number; at: number; prog
 const NotifStorm: React.FC<{at: number; end: number; n?: number}> = ({at, end, n = 16}) => {
   const t = useT();
   if (t < at || t > end) return null;
-  const kinds: [string, string, string][] = [['Mail', 'Nouveau courriel', DP_B], ['MessageCircle', 'Message instantané', DP_G], ['Bell', 'Rappel', DP_O], ['Phone', 'Appel manqué', DP_R], ['CalendarDays', 'Réunion dans 5 min', DP_V]];
+  const kinds: [string, string, string][] = [['Mail', 'Nouveau courriel', DP_B], ['MessageCircle', 'Message instantané', DP_G], ['Bell', 'Rappel', DP_O], ['Phone', 'Appel manqué', DP_R], ['CalendarDays', 'Réunion imminente', DP_V]];
   return <>{Array.from({length: n}, (_, i) => {
     const a = at + i * 0.32; if (t < a) return null;
     const [ic, l, c] = kinds[i % kinds.length];
