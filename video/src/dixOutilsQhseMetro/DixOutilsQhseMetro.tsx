@@ -4788,7 +4788,7 @@ const WeakChain: React.FC<{at: number; brk: number; y: number}> = ({at, brk, y})
   const t = useT();
   if (t < at) return null;
   const b = prog(t, brk, brk + 0.5, easeOut);
-  return <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 6}}>{Array.from({length: 7}, (_, i) => { const weak = i === 4; const x = 130 + i * 130; const dx = weak ? 0 : (i > 4 ? b * 60 : i < 4 ? -b * 20 : 0); const dy = i > 4 ? b * b * 200 : 0; return <g key={i} transform={`translate(${x + dx} ${y + dy}) rotate(${i % 2 ? 0 : 0})`} opacity={prog(t, at + i * 0.08, at + i * 0.08 + 0.2)}><rect x={-80} y={-40} width={160} height={80} rx={40} fill="none" stroke={weak ? (b > 0 ? DP_R : '#B9A57A') : '#6B7480'} strokeWidth={22} strokeDasharray={weak && b > 0 ? `${200 - b * 120} 40` : undefined} /></g>; })}</svg>;
+  return <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 6}}>{Array.from({length: 7}, (_, i) => { const weak = i === 4; const x = 180 + i * 120; const dx = weak ? 0 : (i > 4 ? b * 60 : i < 4 ? -b * 20 : 0); const dy = i > 4 ? b * b * 200 : 0; return <g key={i} transform={`translate(${x + dx} ${y + dy}) rotate(${i % 2 ? 0 : 0})`} opacity={prog(t, at + i * 0.08, at + i * 0.08 + 0.2)}><rect x={-70} y={-36} width={140} height={72} rx={36} fill="none" stroke={weak ? (b > 0 ? DP_R : '#B9A57A') : '#6B7480'} strokeWidth={22} strokeDasharray={weak && b > 0 ? `${200 - b * 120} 40` : undefined} /></g>; })}</svg>;
 };
 
 /* ═══ Scènes ═══ */
