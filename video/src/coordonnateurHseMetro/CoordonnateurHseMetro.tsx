@@ -5070,8 +5070,8 @@ const CoEnd: React.FC = () => {
         <PopChip x={540} y={560} at={278.1} l="Une question fondamentale" c={INK} ic="CircleHelp" fs={30} />
         <PopChip x={540} y={760} at={282.2} l="Des frontières strictes…" c={DP_B} ic="Layers" fs={30} />
         <PopChip x={540} y={900} at={284.4} l="…empêchent-elles les failles ?" c={DP_R} ic="ShieldAlert" fs={30} />
-        <WeakChain at={285.6} brk={286.8} y={1150} />
-        {t > 287.6 && <Stamp2 x={540} y={1300} at={287.7} l="FAILLES POTENTIELLEMENT MORTELLES" c={DP_R} fs={28} />}
+        <WeakChain at={285.6} brk={286.8} y={1060} />
+        {t > 287.6 && <Stamp2 x={540} y={1250} at={287.7} l="FAILLES POTENTIELLEMENT MORTELLES" c={DP_R} fs={28} />}
       </>}
       {t >= 292.1 && t < 299.0 && <>
         <PhotoShatter src={IMG.chantierChim} x={140} y={480} w={800} h={460} at={292.2} crash={297.7} c={DP_O} />
