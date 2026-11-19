@@ -297,6 +297,7 @@ import {PriseDePosteMetro, PRISE_DE_POSTE_METRO_FRAMES} from './priseDePosteMetr
 import {DixOutilsQhseMetro, DIX_OUTILS_QHSE_METRO_FRAMES} from './dixOutilsQhseMetro/DixOutilsQhseMetro';
 import {CoordonnateurHseMetro, COORDONNATEUR_HSE_METRO_FRAMES} from './coordonnateurHseMetro/CoordonnateurHseMetro';
 import {CriteresSmiMetro, CRITERES_SMI_METRO_FRAMES} from './criteresSmiMetro/CriteresSmiMetro';
+import {AmdecCinqEtapesMetro, AMDEC_CINQ_ETAPES_METRO_FRAMES} from './amdecCinqEtapes/AmdecCinqEtapesMetro';
 import {BanniereFacebook, BANNIERE_FB_FRAMES} from './banniereFacebook/BanniereFacebook';
 import {CouvertureFacebook} from './couvertureFacebook/CouvertureFacebook';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
@@ -614,6 +615,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="DixOutilsQhseMetro" component={DixOutilsQhseMetro} durationInFrames={DIX_OUTILS_QHSE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CoordonnateurHseMetro" component={CoordonnateurHseMetro} durationInFrames={COORDONNATEUR_HSE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="CriteresSmiMetro" component={CriteresSmiMetro} durationInFrames={CRITERES_SMI_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="AmdecCinqEtapesMetro" component={AmdecCinqEtapesMetro} durationInFrames={AMDEC_CINQ_ETAPES_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="BanniereFacebook" component={BanniereFacebook} durationInFrames={BANNIERE_FB_FRAMES} fps={30} width={1640} height={720} />
   <Composition id="BanniereFacebook820" component={BanniereFacebook} durationInFrames={BANNIERE_FB_FRAMES} fps={30} width={820} height={360} />
   <Composition id="CouvertureFacebook" component={CouvertureFacebook} durationInFrames={1} fps={30} width={1640} height={856} defaultProps={{variant: 'A' as const, control: false, t: 1.3}} />
