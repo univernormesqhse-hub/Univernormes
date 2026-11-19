@@ -32,7 +32,7 @@ import {captions} from './captions';
 import {NeoCaptions} from '../components/NeoCaptions';
 
 /**
- * « Tu es responsable QHSE ? Les 10 outils » (voix d'origine, 6 min 24) — capsule métro en 2D sur l'habillage papier
+ * « Tu es responsable QHSE ? 10 outils à maîtriser » (voix d'origine, 6 min 24) — capsule métro en 2D sur l'habillage papier
  * cramé + deux cercles dorés (bordure de marquage au sol jaune / noir, roue PDCA « QHSE », couverture en triptyque
  * éditorial). Neuf guichets (introduction, analyser, enquêter, agir, vérifier, environnement, piloter, l'écosystème,
  * le terrain), douze stations, gyrophare / tube / loupe, NeoCaptions, aucune musique.
@@ -5069,7 +5069,7 @@ const ToField: React.FC = () => {
 };
 const TO_FILM = [IMG.detective, IMG.duerp, IMG.tache, IMG.arbre, IMG.plans, IMG.terrainA, IMG.veille, IMG.envir, IMG.tdb, IMG.terrainC];
 const ToAsk: React.FC = () => (
-  <SearchOpen x={60} y={450} w={960} h={860} at={380.6} query="10 outils QHSE" results={['Les 10 outils du responsable QHSE', "L'auto-évaluation", 'Le terrain']} found={0} foundAt={381.9} clickAt={382.2} c={DP_B}>
+  <SearchOpen x={60} y={450} w={960} h={860} at={380.6} query="10 outils QHSE" results={['Tu es responsable QHSE ? 10 outils à maîtriser', "L'auto-évaluation", 'Le terrain']} found={0} foundAt={381.9} clickAt={382.2} c={DP_B}>
     <FilmStrip imgs={TO_FILM} at={382.4} w={960} h={860} />
   </SearchOpen>
 );
@@ -5465,10 +5465,10 @@ const KCover: React.FC = () => {
     <AbsoluteFill style={{zIndex: 60, background: PAPER_CREME, opacity: 1 - out}}>
       <PaperGoldBg />
       <Abs x={0} y={40} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.14)'}}><Img src={staticFile(LOGO)} style={{height: 76, display: 'block'}} /></div></Abs>
-      <Abs x={0} y={180} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{...nb(SwN, 6), borderColor: NBK, padding: '8px 22px', ...CAP, fontSize: 26, color: '#fff'}}>Les 10 outils du responsable QHSE</div></Abs>
+      <Abs x={0} y={180} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{...nb(SwN, 6), borderColor: NBK, padding: '12px 30px', ...CAP, fontSize: 40, color: '#fff'}}>TU ES RESPONSABLE QHSE ?</div></Abs>
       <KTriptych y={300} h={540} />
-      <Abs x={0} y={890} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap', zIndex: 40}}><PhotoLetterAnim ch="10 OUTILS" src={IMG.cover} size={130} ls={4} seed={8} /></Abs>
-      <Abs x={0} y={1060} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap', zIndex: 40}}><PhotoLetterAnim ch="QHSE" src={IMG.tdb} size={210} ls={10} seed={13} /></Abs>
+      <Abs x={0} y={890} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap', zIndex: 40}}><PhotoLetterAnim ch="10 OUTILS" src={IMG.cover} size={150} ls={4} seed={8} /></Abs>
+      <Abs x={0} y={1060} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap', zIndex: 40}}><PhotoLetterAnim ch="À MAÎTRISER" src={IMG.tdb} size={120} ls={4} seed={13} /></Abs>
       <Abs x={60} y={1400} w={960} h={120} style={{background: '#fff', border: `5px solid ${INK}`, borderRadius: 18, boxShadow: `7px 7px 0 ${BURG}`, overflow: 'hidden', zIndex: 40}}>
         <Tube x={30} y={34} w={900} h={24} />
         {SECT.map((x, k) => <div key={k} style={{position: 'absolute', left: 80 + k * (800 / (SECT.length - 1)) - 18, top: 28, width: 36, height: 36, borderRadius: 9, background: x.c, border: '4px solid #fff', boxSizing: 'border-box'}} />)}
