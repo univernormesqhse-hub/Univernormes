@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 157,
+ "count": 158,
  "items": [
   {
    "section": "templates",
@@ -987,6 +987,36 @@
    "hash": "8b7fb0090144",
    "path": "assets/diagramme-tortue-metro/index.md",
    "preview": "assets/diagramme-tortue-metro/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "dix-outils-qhse",
+   "name": "Tu es responsable QHSE ? 10 outils à maîtriser — capsule métro (6 min 28) sur fond papier cramé et cercles dorés, plus de 40 photos du dépôt animées (iris, stores, tuiles, volet, encre, scanner, loupe, polaroïds, photo brisée, bascule 3D, comparateur avant / après, radar, mosaïque, anneau de photos, mur de photos)",
+   "description": "Capsule métro longue (voix d'origine) sur l'habillage `regles-or-papier` (`PaperGoldBg`, `DemingCorner`, bordure marquage au sol, couverture `KTriptych` Analyser / Agir / Piloter, titre en lettres-photos « 10 OUTILS / À MAÎTRISER »), neuf guichets, douze stations, gyrophare / tube / loupe, NeoCaptions, aucune musique. Boîte à outils « motion sur photos » : `PicFX` (entrée iris / stores / tuiles qui pivotent / volet diagonal / rideau / encre / zoom cadré, Ken Burns continu, reflet qui balaie, étiquette, sortie), `PhotoScan` (photo noir et blanc colorisée par une barre laser, grille HUD, coins de visée, mire qui pulse), `PhotoLoupe` (lentille qui se promène et grossit), `Polaroids` (tombent, tournent, s'empilent), `PhotoCompare` (curseur avant / après entre deux photos), `PhotoRadar` (balayage conique et échos), `PhotoTilt` (carte 3D qui bascule et se soulève), `PhotoShatter` (photo fendue en bandes qui chutent), `PhotoWall` (grille qui se retourne carte par carte, surlignage or), `PhotoRing` (anneau tournant de photos reliées par un circuit qui s'allume), `PhotoDeck` (pile en parallaxe) ; plus `ToolBanner` (« OUTIL n / 10 » avec reflet), `NerveNet` (réseau nerveux à impulsions), `WeakChain` (chaîne dont le maillon faible casse), `Medal`.",
+   "quand": "Toute capsule qui doit s'appuyer sur beaucoup de photos d'illustration animées ; listes d'outils / méthodes numérotées (« les N outils ») ; analyse des risques, DUERP, JSA, arbre des causes, 5 pourquoi, plan d'action, audit, veille, environnement, tableau de bord.",
+   "component": "src/dixOutilsQhseMetro/DixOutilsQhseMetro.tsx",
+   "demo": "Demo-DixOutilsQhseMetro",
+   "audio": null,
+   "tags": [
+    "responsable QHSE",
+    "10 outils",
+    "photos animées",
+    "analyse des risques",
+    "DUERP",
+    "JSA",
+    "arbre des causes",
+    "5 pourquoi",
+    "plan d'action",
+    "audit",
+    "veille réglementaire",
+    "tableau de bord",
+    "fond papier",
+    "2D",
+    "métro"
+   ],
+   "hash": "36d12e143661",
+   "path": "assets/dix-outils-qhse/index.md",
+   "preview": "assets/dix-outils-qhse/preview.mp4"
   },
   {
    "section": "assets",

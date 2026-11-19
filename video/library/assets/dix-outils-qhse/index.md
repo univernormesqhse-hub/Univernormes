@@ -1,0 +1,13 @@
+---
+name: Tu es responsable QHSE ? 10 outils à maîtriser — capsule métro (6 min 28) sur fond papier cramé et cercles dorés, plus de 40 photos du dépôt animées (iris, stores, tuiles, volet, encre, scanner, loupe, polaroïds, photo brisée, bascule 3D, comparateur avant / après, radar, mosaïque, anneau de photos, mur de photos)
+section: assets
+slug: dix-outils-qhse
+description: Capsule métro longue (voix d'origine) sur l'habillage `regles-or-papier` (`PaperGoldBg`, `DemingCorner`, bordure marquage au sol, couverture `KTriptych` Analyser / Agir / Piloter, titre en lettres-photos « 10 OUTILS / À MAÎTRISER »), neuf guichets, douze stations, gyrophare / tube / loupe, NeoCaptions, aucune musique. Boîte à outils « motion sur photos » : `PicFX` (entrée iris / stores / tuiles qui pivotent / volet diagonal / rideau / encre / zoom cadré, Ken Burns continu, reflet qui balaie, étiquette, sortie), `PhotoScan` (photo noir et blanc colorisée par une barre laser, grille HUD, coins de visée, mire qui pulse), `PhotoLoupe` (lentille qui se promène et grossit), `Polaroids` (tombent, tournent, s'empilent), `PhotoCompare` (curseur avant / après entre deux photos), `PhotoRadar` (balayage conique et échos), `PhotoTilt` (carte 3D qui bascule et se soulève), `PhotoShatter` (photo fendue en bandes qui chutent), `PhotoWall` (grille qui se retourne carte par carte, surlignage or), `PhotoRing` (anneau tournant de photos reliées par un circuit qui s'allume), `PhotoDeck` (pile en parallaxe) ; plus `ToolBanner` (« OUTIL n / 10 » avec reflet), `NerveNet` (réseau nerveux à impulsions), `WeakChain` (chaîne dont le maillon faible casse), `Medal`.
+quand: Toute capsule qui doit s'appuyer sur beaucoup de photos d'illustration animées ; listes d'outils / méthodes numérotées (« les N outils ») ; analyse des risques, DUERP, JSA, arbre des causes, 5 pourquoi, plan d'action, audit, veille, environnement, tableau de bord.
+component: src/dixOutilsQhseMetro/DixOutilsQhseMetro.tsx
+demo: Demo-DixOutilsQhseMetro
+tags: [responsable QHSE, 10 outils, photos animées, analyse des risques, DUERP, JSA, arbre des causes, 5 pourquoi, plan d'action, audit, veille réglementaire, tableau de bord, fond papier, 2D, métro]
+---
+
+## Utilisation
+`PicFX src x y w h at mode="iris|blinds|tiles|wipe|shutter|ink|zoom" tag c out kb gray` ; `PhotoScan src … dur target=[x, y, at]` ; `PhotoLoupe src … zoom` ; `Polaroids items=[[src, l, at]] x0 y0 gap w` ; `PhotoCompare a b la lb … slide=[t0, t1]` ; `PhotoRadar src …` ; `PhotoTilt src … lift` ; `PhotoShatter src … crash` ; `PhotoWall srcs cols at hl=[[i, at]]` ; `PhotoRing srcs cx cy r at links flow=[[i, at]]` ; `PhotoDeck srcs at y` ; `ToolBanner n l at y out c`.
