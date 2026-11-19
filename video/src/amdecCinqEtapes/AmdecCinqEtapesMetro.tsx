@@ -5086,7 +5086,7 @@ const AmAct: React.FC = () => {
         {t < 158.8 && <Crossed x={170} y={600} w={740} at={154.8} strike={157.9} l="Identifier sans agir ni suivre" fs={30} />}
         {t >= 158.8 && <PicFX src={IMG.suivi} x={140} y={470} w={800} h={480} at={158.9} mode="blinds" tag="Des protocoles de suivi hyper stricts" c={DP_B} />}
         {t >= 158.8 && <PopChip x={540} y={1050} at={163.1} l="L'efficacité dans le temps" c={DP_B} ic="Clock" fs={26} />}
-        <Medal x={540} y={1150} r={60} at={166.6} c={DP_G} ic="Lock" glow />
+        <Medal x={540} y={1175} r={55} at={166.6} c={DP_G} ic="Lock" glow />
       </>}
       {t >= 168.0 && <>
         <TwoCurves y={880} at={169.7} at2={171.1} />
