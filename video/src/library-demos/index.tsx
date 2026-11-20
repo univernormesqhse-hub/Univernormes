@@ -128,6 +128,7 @@ import {AmdecCinqEtapesMetro} from '../amdecCinqEtapes/AmdecCinqEtapesMetro';
 import {EisenhowerMetro} from '../eisenhowerMetro/EisenhowerMetro';
 import {NeufRaisonsRseMetro} from '../neufRaisonsRseMetro/NeufRaisonsRseMetro';
 import {IdentUiRubalise} from '../identui/IdentUiRubalise';
+import {QuelOutilQhseMetro} from '../quelOutilQhseMetro/QuelOutilQhseMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -295,6 +296,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-EisenhowerMetro', C: EisenhowerMetro, at: 283.0, dur: 7.0},
   {id: 'Demo-NeufRaisonsRseMetro', C: NeufRaisonsRseMetro, at: 130.5, dur: 7.0},
   {id: 'Demo-IdentificationEvaluationUiRubalise', C: IdentUiRubalise, at: 25.9, dur: 7.0},
+  {id: 'Demo-QuelOutilQhseMetro', C: QuelOutilQhseMetro, at: 142.6, dur: 7.0},
 ];
 
 export const LibraryDemos: React.FC = () => (
