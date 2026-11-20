@@ -4931,6 +4931,95 @@ const OrBadge: React.FC<{x: number; y: number; at: number}> = ({x, y, at}) => {
 
 const lerpC = (a: string, b: string, k: number) => { const pa = [1, 3, 5].map((i) => parseInt(a.slice(i, i + 2), 16)), pb = [1, 3, 5].map((i) => parseInt(b.slice(i, i + 2), 16)); return `rgb(${pa.map((v, i) => Math.round(v + (pb[i] - v) * Math.min(1, Math.max(0, k)))).join(',')})`; };
 
+/* ═══ Kit « rubalise » : bandeau de référence normative + transitions ruban / barrière / ruban qui se déroule ═══ */
+const TP_R = '#D7263D';
+const TP_STRIPES = (w: number, a = 45) => `repeating-linear-gradient(${a}deg, ${TP_R} 0 ${w}px, #FFFFFF ${w}px ${w * 2}px)`;
+/* R-1 — bandeau de référence normative : « ISO 45001 § 6.1.2 » qui glisse depuis la gauche, liseré rubalise, puis repart */
+const NormRef: React.FC<{at: number; dur?: number; l: string; sub?: string; y?: number}> = ({at, dur = 4.5, l, sub, y = 1250}) => {
+  const t = useT();
+  if (t < at || t > at + dur + 0.6) return null;
+  const k = eo3((t - at) / 0.5) * (1 - prog(t, at + dur, at + dur + 0.5, easeIn));
+  const sweep = prog(t, at + 0.4, at + 1.2, easeInOut);
+  return <div style={{position: 'absolute', left: 50 - (1 - k) * 700, top: y, zIndex: 72, display: 'flex', alignItems: 'stretch', filter: 'drop-shadow(5px 5px 0 rgba(0,0,0,0.35))'}}>
+    <div style={{width: 18, background: TP_STRIPES(9), borderRadius: '10px 0 0 10px', border: `3px solid ${NBK}`, borderRight: 'none'}} />
+    <div style={{background: NAVY, border: `3px solid ${NBK}`, borderLeft: 'none', borderRadius: '0 12px 12px 0', padding: '8px 18px 8px 14px', display: 'flex', alignItems: 'center', gap: 12, position: 'relative', overflow: 'hidden'}}>
+      <Ico n="BookOpen" size={30} c="#FFD966" />
+      <div><div style={{fontFamily: MONO, fontWeight: 700, fontSize: 14, color: '#FFD966', letterSpacing: 3}}>{sub ?? 'RÉFÉRENCE'}</div><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 26, color: '#fff', whiteSpace: 'nowrap'}}>{l}</div></div>
+      <div style={{position: 'absolute', top: 0, bottom: 0, width: 80, left: -100 + sweep * 700, background: 'linear-gradient(90deg, rgba(255,217,102,0), rgba(255,217,102,0.45), rgba(255,217,102,0))', transform: 'skewX(-20deg)'}} />
+    </div>
+  </div>;
+};
+/* R-2 — ruban diagonal qui traverse l'écran et emporte l'image : bande papier bordée de rubalise, coupure cachée au milieu */
+const RibbonSweep: React.FC<{at: number}> = ({at}) => {
+  const t = useT();
+  const u = (t - (at - 0.5)) / 1.0;
+  if (u <= 0 || u >= 1) return null;
+  const p = lerp(-3800, 1400, eo3(u) * 0.5 + u * 0.5);
+  const W = 2600;
+  return <AbsoluteFill style={{zIndex: 70, pointerEvents: 'none', overflow: 'hidden'}}>
+    <div style={{position: 'absolute', left: 540, top: 960, width: 0, height: 0, transform: 'rotate(-28deg)'}}>
+      <div style={{position: 'absolute', left: p, top: -2200, width: W, height: 4400, background: `radial-gradient(circle at 50% 50%, ${PAPER_CREME}, #E2D9B8)`}}>
+        {[0, 1].map((e) => <div key={e} style={{position: 'absolute', top: 0, bottom: 0, width: 110, left: e ? W - 55 : -55, background: TP_STRIPES(34, 0), boxShadow: '0 0 30px rgba(0,0,0,0.35)', border: `4px solid ${NBK}`}} />)}
+        <div style={{position: 'absolute', left: W / 2 - 230, top: 2200 - 60, width: 460, height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: 'rotate(28deg)'}}><div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 54, color: NBK, letterSpacing: 6, opacity: 0.8}}>UNIVERSNORMES</div></div>
+      </div>
+    </div>
+  </AbsoluteFill>;
+};
+/* R-3 — barrière : bandes de signalisation qui glissent et se ferment, puis se lèvent en pivotant comme une barrière */
+const BarrierLift: React.FC<{at: number}> = ({at}) => {
+  const t = useT();
+  if (t < at - 0.5 || t > at + 0.75) return null;
+  const N = 6, H = 1920 / N + 2;
+  return <AbsoluteFill style={{zIndex: 70, pointerEvents: 'none', overflow: 'hidden'}}>{Array.from({length: N}, (_, i) => {
+    const d = i * 0.05;
+    const close = eo3((t - (at - 0.5) - d) / 0.4);
+    const lift = prog(t, at + 0.05 + d * 1.2, at + 0.6 + d * 1.2, easeIn);
+    const fromLeft = i % 2 === 0;
+    return <div key={i} style={{position: 'absolute', left: 0, top: i * (H - 2), width: 1080, height: H, transformOrigin: fromLeft ? '0% 50%' : '100% 50%', transform: `translateX(${(1 - close) * (fromLeft ? -1100 : 1100)}px) rotate(${(fromLeft ? -1 : 1) * lift * 85}deg)`, opacity: 1 - prog(t, at + 0.45 + d, at + 0.7 + d)}}>
+      <div style={{position: 'absolute', inset: 0, background: TP_STRIPES(46, fromLeft ? 60 : 120), borderTop: `5px solid ${NBK}`, borderBottom: `5px solid ${NBK}`}} />
+      <div style={{position: 'absolute', top: H / 2 - 22, [fromLeft ? 'left' : 'right']: 24, width: 44, height: 44, borderRadius: 22, background: NBK, border: '6px solid #fff'}} />
+    </div>;
+  })}</AbsoluteFill>;
+};
+/* R-4a — rubalise qui se déroule le long d'un rectangle pour délimiter une zone (rouleau à la tête du ruban) */
+const TapeZone: React.FC<{x: number; y: number; w: number; h: number; at: number; dur?: number; out?: number}> = ({x, y, w, h, at, dur = 1.4, out}) => {
+  const t = useT();
+  if (t < at || (out !== undefined && t > out + 0.5)) return null;
+  const k = prog(t, at, at + dur, easeInOut);
+  const fade = out !== undefined ? 1 - prog(t, out, out + 0.5) : 1;
+  const P = 2 * (w + h), L = k * P;
+  const pt = (s: number): [number, number] => s < w ? [x + s, y] : s < w + h ? [x + w, y + s - w] : s < 2 * w + h ? [x + w - (s - w - h), y + h] : [x, y + h - (s - 2 * w - h)];
+  const [hx, hy] = pt(Math.min(L, P - 0.01));
+  return <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, zIndex: 71, pointerEvents: 'none', opacity: fade}}>
+    <defs><pattern id={`tz${at}`} width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="20" height="40" fill={TP_R} /><rect x="20" width="20" height="40" fill="#fff" /></pattern></defs>
+    <path d={`M ${x} ${y} h ${w} v ${h} h ${-w} Z`} fill="none" stroke={NBK} strokeWidth={30} pathLength={P} strokeDasharray={`${L} ${P}`} strokeLinejoin="round" />
+    <path d={`M ${x} ${y} h ${w} v ${h} h ${-w} Z`} fill="none" stroke={`url(#tz${at})`} strokeWidth={22} pathLength={P} strokeDasharray={`${L} ${P}`} strokeLinejoin="round" />
+    {k < 1 && <g transform={`translate(${hx} ${hy}) rotate(${L * 3})`}><circle r={30} fill="#fff" stroke={NBK} strokeWidth={6} /><circle r={12} fill={TP_R} stroke={NBK} strokeWidth={4} /></g>}
+  </svg>;
+};
+/* R-4b — transition « rubalise » : quatre rubans se déroulent en travers de l'écran, éclair papier pour masquer la coupure */
+const TapeCross: React.FC<{at: number}> = ({at}) => {
+  const t = useT();
+  if (t < at - 0.55 || t > at + 0.7) return null;
+  const tapes: [number, number, number][] = [[-30, 420, 0], [24, 1500, 0.08], [-14, 980, 0.16], [36, 700, 0.24]];
+  const fl = Math.max(0, 1 - Math.abs(t - at) / 0.22);
+  return <AbsoluteFill style={{zIndex: 70, pointerEvents: 'none', overflow: 'hidden'}}>
+    <AbsoluteFill style={{background: PAPER_CREME, opacity: 0.92 * fl}} />
+    {tapes.map(([ang, cy, d], i) => { const k = eo3((t - (at - 0.55) - d) / 0.4); const gone = prog(t, at + 0.2 + d, at + 0.65 + d, easeIn); const len = 2600 * k; return <div key={i} style={{position: 'absolute', left: -760, top: cy - 45, width: 2600, height: 90, transformOrigin: '50% 50%', transform: `rotate(${ang}deg) translateY(${gone * 1400}px)`}}>
+      <div style={{position: 'absolute', left: i % 2 ? 2600 - len : 0, top: 0, width: len, height: 90, background: TP_STRIPES(30), border: `5px solid ${NBK}`, boxShadow: '0 10px 24px rgba(0,0,0,0.3)'}} />
+      {k < 1 && <div style={{position: 'absolute', left: (i % 2 ? 2600 - len : len) - 55, top: -10, width: 110, height: 110, borderRadius: 55, background: '#fff', border: `7px solid ${NBK}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}><div style={{width: 40, height: 40, borderRadius: 20, background: TP_R, border: `5px solid ${NBK}`}} /></div>}
+    </div>; })}
+  </AbsoluteFill>;
+};
+/* orchestration : une transition rubalise sur chaque changement de scène (hors guichets), en alternance */
+const TapeFX: React.FC<{events: [number, 'ribbon' | 'barrier' | 'tape'][]; zones?: [number, number, number, number, number, number][]; refs?: [number, string, string?][]}> = ({events, zones = [], refs = []}) => (
+  <>
+    {events.map(([a, k], i) => k === 'ribbon' ? <RibbonSweep key={i} at={a} /> : k === 'barrier' ? <BarrierLift key={i} at={a} /> : <TapeCross key={i} at={a} />)}
+    {zones.map(([x, y, w, h, a, o], i) => <TapeZone key={`z${i}`} x={x} y={y} w={w} h={h} at={a} out={o} />)}
+    {refs.map(([a, l, s], i) => <NormRef key={`r${i}`} at={a} l={l} sub={s} />)}
+  </>
+);
+
 /* ═══ Outils propres à la capsule « matrice d'Eisenhower » ═══ */
 const EQ: [string, string, string, string][] = [['FAIRE', 'Urgent · important', DP_R, 'Zap'], ['PLANIFIER', 'Important · pas urgent', DP_B, 'CalendarClock'], ['DÉLÉGUER', 'Urgent · pas important', DP_O, 'Users'], ['SUPPRIMER', 'Ni urgent ni important', '#6B7480', 'Trash2']];
 /* matrice 2 × 2 : grille qui se dessine, cadrans qui s'allument, étiquettes qui tombent dans leur cadran */
@@ -5610,6 +5699,7 @@ const CUES: Sfx[] = [
   ...rep(228.6, 12, 0.25, 'notification', 0.07), {at: 245.8, s: 'sfx/whoosh', v: 0.2}, ...rep(255.8, 8, 0.35, 'sfx/thud', 0.12), ...[266.9, 268.9, 270.4, 271.7].map((at) => ({at, s: 'sfx/pop', v: 0.15})),
   ...[297.8, 298.1, 298.4].map((at) => ({at, s: 'sfx/swish', v: 0.18})), ...rep(326.5, 3, 0.12, 'sfx/ding', 0.15), {at: 343.1, s: 'bass-hit', v: 0.3}, ...[347.0, 352.4, 358.9, 363.0].map((at) => ({at, s: 'sfx/thud', v: 0.22})),
   ...[383.6, 391.8, 396.0, 399.8, 404.8].map((at) => ({at, s: 'sfx/ding', v: 0.18})), ...rep(397.6, 6, 0.25, 'tick', 0.12),
+  ...[10.45, 17.95, 30.35, 43.85, 62.65, 76.55, 96.65, 125.65, 139.65, 158.95, 171.65, 194.15, 222.25, 247.55, 258.65, 283.25, 320.05, 343.95, 383.15, 389.65, 399.35, 427.15, 439.95].map((at) => ({at, s: 'sfx/whoosh', v: 0.16})), {at: 91.0, s: 'sfx/pop', v: 0.2}, {at: 325.2, s: 'sfx/pop', v: 0.2},
   {at: OUTRO_AT + 0.2, s: 'signature-marque', v: 0.6, dur: 3.2},
 ];
 const TRANS: Record<string, React.FC<{i: number}>> = {gyro: Gyro, loupe: Loupe, tube: Pneumatique, store: Store};
@@ -5644,6 +5734,7 @@ export const EisenhowerMetro: React.FC = () => (
     <SwBlinds />
     <SwDust a={0} b={2.9} z={61} />
     <SwDust a={449.0} b={OUTRO_AT} z={37} />
+    <TapeFX events={[[10.9, 'ribbon'], [18.4, 'barrier'], [30.8, 'tape'], [44.3, 'ribbon'], [63.1, 'barrier'], [77.0, 'tape'], [97.1, 'ribbon'], [126.1, 'barrier'], [140.1, 'tape'], [159.4, 'ribbon'], [172.1, 'barrier'], [194.6, 'tape'], [222.7, 'ribbon'], [248.0, 'barrier'], [259.1, 'tape'], [283.7, 'ribbon'], [320.5, 'barrier'], [344.4, 'tape'], [383.6, 'ribbon'], [390.1, 'barrier'], [399.8, 'tape'], [427.6, 'ribbon'], [440.4, 'barrier']]} zones={[[552, 552, 396, 396, 130.6, 135.7], [552, 882, 376, 376, 285.0, 303.4], [552, 552, 366, 366, 430.0, 439.9]]} refs={[[91.0, 'Stephen Covey · 1989', 'SOURCE CITÉE'], [325.2, 'Haut-Commissariat au Plan', 'SOURCE CITÉE']]} />
     <SwNeon />
     <SwLaser />
     <SwShatter />
