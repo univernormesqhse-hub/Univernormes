@@ -5016,7 +5016,7 @@ const EiIntro: React.FC = () => {
         <Toasts x={130} y={930} items={[['Un client : document dans l\'heure', 'Mail', DP_R, 11.5], ['Réunion imprévue : deux heures', 'CalendarClock', DP_O, 13.5], ['Incident technique complexe', 'TriangleAlert', DP_V, 15.9]]} />
       </>}
       {t >= 18.3 && t < 30.7 && <>
-        <PicFX src={IMG.vendredi} x={240} y={470} w={600} h={260} at={20.3} mode="blinds" c={NBK} />
+        <PicFX src={IMG.vendredi} x={240} y={460} w={600} h={300} at={20.3} mode="blinds" c={NBK} kb={[1.0, 1.0, 0, 0]} />
         <WeekGrid y={780} at={18.6} fill={21.9} />
         {t > 21.8 && <PopChip x={540} y={1160} at={21.9} l="12 heures par jour" c={DP_R} ic="Clock" fs={30} />}
         {t > 26.5 && <Crossed x={170} y={1260} w={740} at={26.6} strike={27.7} l="Les dossiers de fond" fs={30} />}
