@@ -60,6 +60,7 @@ import {DuerpPdp, DUERPPDP_FRAMES} from './duerppdp/DuerpPdp';
 import {DuerpPdpCouverture} from './duerppdp/Couverture';
 import {IdentUi, IDENTUI_FRAMES} from './identui/IdentUi';
 import {IdentUiCouverture} from './identui/Couverture';
+import {IdentUiRubalise, IDENTUI_RUBALISE_FRAMES} from './identui/IdentUiRubalise';
 import {EquipeHse, EQUIPEHSE_FRAMES} from './equipeui/EquipeUi';
 import {EquipeHseCouverture} from './equipeui/Couverture';
 import {TableauBord, TABLEAUBORD_FRAMES} from './tableaubord/TableauBord';
@@ -378,6 +379,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="DuerpPlanPreventionCouverture" component={DuerpPdpCouverture} durationInFrames={91} fps={FPS} width={1080} height={1920} />
   <Composition id="IdentificationEvaluationUi" component={IdentUi} durationInFrames={IDENTUI_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="IdentificationEvaluationUiCouverture" component={IdentUiCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
+  <Composition id="IdentificationEvaluationUiRubalise" component={IdentUiRubalise} durationInFrames={IDENTUI_RUBALISE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="EquipeHsePerformante" component={EquipeHse} durationInFrames={EQUIPEHSE_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="EquipeHsePerformanteCouverture" component={EquipeHseCouverture} durationInFrames={1} fps={FPS} width={1080} height={1920} />
   <Composition id="TableauBordQhse" component={TableauBord} durationInFrames={TABLEAUBORD_FRAMES} fps={FPS} width={1080} height={1920} />
