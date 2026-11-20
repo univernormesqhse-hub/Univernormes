@@ -5193,7 +5193,7 @@ const EiEnd: React.FC = () => {
       </>}
       {t >= 427.5 && t < 440.3 && <>
         <EMatrix y={560} s={700} x={560} at={427.6} lit={[427.6, 427.6, 427.6, 427.6]} focus={[[1, 429.9, 440.3]]} />
-        {t > 432.5 && <PopChip x={540} y={1340} at={432.6} l="Pas les urgences bruyantes et éphémères" c={DP_R} ic="VolumeX" fs={22} />}
+        {t > 432.5 && <PopChip x={540} y={1300} at={432.6} l="Pas les urgences bruyantes et éphémères" c={DP_R} ic="VolumeX" fs={22} />}
       </>}
       {t >= 440.3 && <>
         <PopChip x={540} y={470} at={440.5} l="La question reste ouverte" c={DP_R} ic="CircleHelp" fs={28} />
