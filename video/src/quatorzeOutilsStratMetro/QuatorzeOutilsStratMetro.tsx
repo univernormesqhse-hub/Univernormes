@@ -5265,6 +5265,31 @@ const PhaseBar: React.FC<{y: number; at: number; a: [string, number]; b: [string
     </div>)}
   </div>;
 };
+/* transition « gyrophare » : le gyrophare surgit en haut, ses faisceaux rouge / ambre balaient l'écran et masquent la coupe */
+const BeaconSweep: React.FC<{at: number}> = ({at}) => {
+  const t = useT();
+  const u = t - (at - 0.55);
+  if (u < 0 || u > 1.25) return null;
+  const inn = eo3(u / 0.3), out = 1 - prog(t, at + 0.35, at + 0.7, easeIn);
+  const k = inn * out, peak = Math.max(0, 1 - Math.abs(t - at) / 0.3);
+  const ang = u * 760, by = lerp(-160, 230, inn) - (1 - out) * 300;
+  const beam = (a: number, c: string) => { const r = (d: number) => [540 + Math.cos(((a + d) * Math.PI) / 180) * 2400, by + Math.sin(((a + d) * Math.PI) / 180) * 2400]; const [x1, y1] = r(-13), [x2, y2] = r(13); return <polygon points={`540,${by} ${x1},${y1} ${x2},${y2}`} fill={`url(#bs${c})`} />; };
+  return <AbsoluteFill style={{zIndex: 69, pointerEvents: 'none', overflow: 'hidden'}}>
+    <AbsoluteFill style={{background: Math.floor(u * 6) % 2 ? 'rgba(215,38,61,1)' : 'rgba(245,180,0,1)', opacity: 0.5 * peak}} />
+    <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, opacity: k}}>
+      <defs>
+        <radialGradient id="bsR" cx="540" cy={by} r="1600" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#FF3B3B" stopOpacity="0.85" /><stop offset="1" stopColor="#FF3B3B" stopOpacity="0" /></radialGradient>
+        <radialGradient id="bsA" cx="540" cy={by} r="1600" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#FFC21A" stopOpacity="0.8" /><stop offset="1" stopColor="#FFC21A" stopOpacity="0" /></radialGradient>
+      </defs>
+      {beam(ang, 'R')}{beam(ang + 180, 'A')}
+      <rect x={540 - 120} y={by + 70} width={240} height={46} rx={10} fill="#2B2B2B" stroke={NBK} strokeWidth={6} />
+      <path d={`M ${540 - 95} ${by + 74} L ${540 - 95} ${by - 20} A 95 95 0 0 1 ${540 + 95} ${by - 20} L ${540 + 95} ${by + 74} Z`} fill={DP_R} stroke={NBK} strokeWidth={7} />
+      <ellipse cx={540 + Math.cos((ang * Math.PI) / 180) * 55} cy={by + 10} rx={26} ry={60} fill="#fff" opacity={0.55} />
+      <circle cx={540} cy={by + 10} r={34} fill="#FFE27A" opacity={0.6 + 0.4 * Math.abs(Math.sin(u * 14))} />
+    </svg>
+  </AbsoluteFill>;
+};
+const BeaconFX: React.FC<{times: number[]}> = ({times}) => <>{times.map((a) => <BeaconSweep key={a} at={a} />)}</>;
 
 const ST_FILM = [IMG.plan, IMG.archi, IMG.swot, IMG.tablette, IMG.salle, IMG.bistrot, IMG.direction, IMG.triple];
 
@@ -5798,7 +5823,7 @@ const SwConfetti: React.FC = () => {
 /* E8 — damier : la scène se révèle case par case en diagonale */
 const SwChecker: React.FC = () => {
   const t = useT();
-  const W: [number, string][] = [[15.4, SwN], [57.4, SwN], [106.5, SwN], [166.7, SwN], [245.9, SwN], [319.9, SwN]];
+  const W: [number, string][] = [];
   const w = W.find(([a]) => t >= a && t < a + 0.6);
   if (!w) return null;
   const [a, c] = w;
@@ -5808,7 +5833,7 @@ const SwChecker: React.FC = () => {
 /* E9 — tache d'encre qui se diffuse derrière la scène */
 const SwInk: React.FC = () => {
   const t = useT();
-  const W: [number, string][] = [[37.2, SwR], [81.9, SwG], [128.4, SwR], [215.6, SwG], [273.9, SwR], [344.1, SwG], [369.2, SwR]];
+  const W: [number, string][] = [];
   return <>{W.map(([a, c], j) => { const u = t - a; if (u < 0 || u > 2.2) return null; const q = prog(t, a, a + 0.9, easeOut); const R = 80 + q * 620; const d = Array.from({length: 61}, (_, i) => { const th = (i / 60) * Math.PI * 2; const r = R * (1 + 0.12 * Math.sin(th * 7 + j) + 0.06 * Math.sin(th * 13 + u * 2)); return `${i ? 'L' : 'M'} ${540 + Math.cos(th) * r} ${900 + Math.sin(th) * r * 0.9}`; }).join(' ') + ' Z'; return <svg key={j} width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0, pointerEvents: 'none', opacity: 0.1 * (1 - prog(t, a + 1.4, a + 2.2))}}><path d={d} fill={c} /></svg>; })}</>;
 };
 
@@ -5963,6 +5988,7 @@ const CUES: Sfx[] = [
   ...[25.2, 32.2, 76.5, 144.3, 205.3, 267.3, 311.2].flatMap((a) => rep(a, 14, 0.06, 'tick', 0.08)), ...rep(24.6, 9, 0.1, 'tick', 0.14),
   {at: 51.4, s: 'sfx/ding', v: 0.2}, {at: 64.4, s: 'sfx/bell', v: 0.18}, {at: 106.6, s: 'sfx/rise', v: 0.18, dur: 1.4}, {at: 165.4, s: 'sfx/thud', v: 0.3}, {at: 195.0, s: 'sfx/swish', v: 0.2}, {at: 229.3, s: 'sfx/bell', v: 0.2}, {at: 260.0, s: 'sfx/bell', v: 0.2}, {at: 303.9, s: 'sfx/ding', v: 0.15}, {at: 304.6, s: 'sfx/ding', v: 0.15}, {at: 305.3, s: 'sfx/ding', v: 0.15}, {at: 322.0, s: 'bass-hit', v: 0.3}, {at: 335.6, s: 'sfx/bell', v: 0.22}, {at: 343.6, s: 'sfx/thud', v: 0.25}, {at: 5.2, s: 'sfx/thud', v: 0.25},
   ...[6.55, 22.55, 49.25, 69.15, 98.65, 118.55, 163.55, 185.55, 230.35, 290.05, 336.35, 349.55, 373.25].map((at) => ({at, s: 'sfx/whoosh', v: 0.16})), {at: 46.0, s: 'sfx/pop', v: 0.2}, {at: 104.0, s: 'sfx/pop', v: 0.2},
+  ...[6.5, 14.9, 22.5, 36.7, 49.2, 56.9, 69.1, 81.4, 98.6, 106.0, 118.5, 127.9, 149.7, 163.5, 166.2, 185.5, 193.8, 215.1, 230.3, 245.4, 273.4, 290.0, 319.4, 323.0, 336.3, 343.6, 349.5, 368.7, 373.2].map((at) => ({at, s: 'alarme', v: 0.12, dur: 0.9})),
   {at: OUTRO_AT + 0.2, s: 'signature-marque', v: 0.6, dur: 3.2},
 ];
 const TRANS: Record<string, React.FC<{i: number}>> = {gyro: Gyro, loupe: Loupe, tube: Pneumatique, store: Store};
@@ -5997,6 +6023,7 @@ export const QuatorzeOutilsStratMetro: React.FC = () => (
     <SwBlinds />
     <SwDust a={0} b={2.9} z={61} />
     <SwDust a={378.0} b={OUTRO_AT} z={37} />
+    <BeaconFX times={[7.0, 15.4, 23.0, 37.2, 49.7, 57.4, 69.6, 81.9, 99.1, 106.5, 119.0, 128.4, 150.2, 164.0, 166.7, 186.0, 194.3, 215.6, 230.8, 245.9, 273.9, 290.5, 319.9, 323.5, 336.8, 344.1, 350.0, 369.2, 373.7]} />
     <TapeFX events={[[7.0, 'ribbon'], [23.0, 'barrier'], [49.7, 'tape'], [69.6, 'ribbon'], [99.1, 'barrier'], [119.0, 'tape'], [164.0, 'ribbon'], [186.0, 'barrier'], [230.8, 'tape'], [290.5, 'ribbon'], [336.8, 'barrier'], [350.0, 'tape'], [373.7, 'ribbon']]} zones={[[578, 946, 320, 320, 184.4, 185.8], [235, 670, 230, 230, 286.3, 289.0], [272, 946, 310, 310, 302.2, 305.8]]} refs={[[46.0, 'ISO 9001 § 6.2', 'OBJECTIFS ET PLANIFICATION'], [104.0, 'ISO 9001 § 4.1', 'ENJEUX EXTERNES']]} />
     <SwNeon />
     <SwLaser />
@@ -6013,6 +6040,6 @@ export const QuatorzeOutilsStratMetro: React.FC = () => (
   </AbsoluteFill>
 );
 
-export const _u2 = [wn, Avatar, Ring3D, SlamTag, Arrow, slamK, CAP, STAGE, SCAN, RING_ISO, Drum, Marked, Announce, MBadge, RailSteps, StairSteps, ZigSteps, QBubble, Grid15, RameWipe, Forklift, ICO, MC, ACR, lin, hexMix, cl, GyroFlash, Hot, Photo, Pill2, Ph, TChip, Row3, SlamCard, ZInk, ZTicker, ZAxis, ZDef, CI, CD, METH, JCirText, JMirror, JNewton, JFuse, JShock, JTree, JAccordion, JRing, JButterfly, JAmdec, JHazop, JHourglass, JRewind, JFlipArrow, JBoard, JYarn, JPrint, JFault, JGears, JYinYang, JConstellation, CONST, ESiren, ECompass, ENeonExit, EFloorPlan, EBlackout, EVestDrop, EQueue, EDoor, ESonar, ERadio, EHub, EConfusion, EDice, ETape, EChess, EFunnel, ETally, EGavel, EBaton, EFiretruck, EGauge, EDomino, ECycle, EMonths, EChecklist, ESpiral, EFeather, EOdometer, ECrack, ENail, ETarget, EUnity, ExitRunner, AssemblyIcon, Vest, CG, CR, CY, CO, LGearsTol, JCrtOff, LEar, LBook, LSeal, LEngrave, LBinders, LGap, L25, LPuppet, LOrg, LOrbit, LLaw, LPlane, LSlide, LSwiss, LBalance, LBattery, LTri, LRoutine, LNine, LPlant, LSign, LSayDo, LSteps, LKnit, LDaily, LAnchor, LDistill, LJuggle, LIceberg, LTrophy, LJenga, LToggle, LWeak, LY, LN, LR, LG, LB, VForce, VAcro, VFour, VWheel, VGauge, VPillars, VMirror, VMorph, VStairs, VSkills, VIoT, VBlueprint, YRoad, YHouse, YEngine, YDust, YCubes, YCompass, YBingo, YBricks, YWave, YRadar, YFlatline, YReactor, YDials, YFlatpack, YVault, YCurtain, YLights, YMagnify, YCert, YTriad, YToolbox, YDeming, YMagic, ToolArt, yGearPath, YB, YN, YT, YO, YR, YG, YY, ITangle, ITrilemma, IVenn, ISilos, IClone, IPile, IGasworks, IColumns, IConveyor, IGlobe, IShield, IWeld, IBeforeAfter, ISafe, IHelix, IOverlay, IAlign, ITable, ISpine, IPrism, ITrampoline, IBroadcast, IPodium, IOpenQ, QSE3, IQ, IS, IE, IN, IO, QXray, QSilhouette, qBody, QCrowd, QDesk, QSign, QTissues, QGear, QEquation, QLineup, QPullback, QMonolith, QSectors, QKeys, QWorkstation, QRotate, QLift, QHoist, QPuzzle, QGesture, QR, QN, QB, QG, QO, QY, Center, SW_BORDER, SwHazardFrame, SW_PTS, SW_C, SW_HEAT, SW_STRAT, SW4C, SwChip, SwGhost, PXU, wX, wY, swArcArrow, swLoupe, SW_PATH, SwMorph, SwTrace, SwWhipWordInner, SwWhipWord, SwBand, DP_B, DP_R, DP_Y, DP_G, DP_O, DP_V, DP_T, cl1, eo3, DP_FILM, DrawWord, Fold, Stamp2, DpStrike, Trace, ArcGauge, FilmStrip, DpRing, AC_C, NumList, PopChip, Acronym, Gear, Crossed, Medal, TO_GOLD, PicFX, PhotoScan, PhotoLoupe, Polaroids, PhotoCompare, PhotoRadar, PhotoTilt, PhotoShatter, PhotoWall, PhotoRing, PhotoDeck, ToolBanner, NerveNet, WeakChain, VerbCard, Bridge, InspCal, Scale2, DataFlow, Cycle3, Pyramid, Compartments, StepTrack, VarOrbit, Absorb, LoopN, OrBadge, lerpC, ST_TOOLS, ToolGrid14, Floaters, Counter, Boussole, TimeArrow, BMC_B, BmcCanvas, RadarSweep, FiveForces, Bullseye, Quad, ClusterMap, ValueChain, CheckList, LetterCards, Grid9, CoinFlow, SevenS, PhaseBar, SwotGrid, LetterTiles, BigWord, ST_FILM, StIntro, StFond, StEnv, StCroiss, StAvant, StPort, StDecide, StEnd, TP_R, TP_STRIPES, NormRef, RibbonSweep, BarrierLift, TapeZone, TapeCross, TapeFX, KTriptych, SW_IMPACT, SW_SCENE, SW_GYRO, swDecay, SW_SLAM, SW_SPARK, SwColorImg, SwRays, SwScramble];
+export const _u2 = [wn, Avatar, Ring3D, SlamTag, Arrow, slamK, CAP, STAGE, SCAN, RING_ISO, Drum, Marked, Announce, MBadge, RailSteps, StairSteps, ZigSteps, QBubble, Grid15, RameWipe, Forklift, ICO, MC, ACR, lin, hexMix, cl, GyroFlash, Hot, Photo, Pill2, Ph, TChip, Row3, SlamCard, ZInk, ZTicker, ZAxis, ZDef, CI, CD, METH, JCirText, JMirror, JNewton, JFuse, JShock, JTree, JAccordion, JRing, JButterfly, JAmdec, JHazop, JHourglass, JRewind, JFlipArrow, JBoard, JYarn, JPrint, JFault, JGears, JYinYang, JConstellation, CONST, ESiren, ECompass, ENeonExit, EFloorPlan, EBlackout, EVestDrop, EQueue, EDoor, ESonar, ERadio, EHub, EConfusion, EDice, ETape, EChess, EFunnel, ETally, EGavel, EBaton, EFiretruck, EGauge, EDomino, ECycle, EMonths, EChecklist, ESpiral, EFeather, EOdometer, ECrack, ENail, ETarget, EUnity, ExitRunner, AssemblyIcon, Vest, CG, CR, CY, CO, LGearsTol, JCrtOff, LEar, LBook, LSeal, LEngrave, LBinders, LGap, L25, LPuppet, LOrg, LOrbit, LLaw, LPlane, LSlide, LSwiss, LBalance, LBattery, LTri, LRoutine, LNine, LPlant, LSign, LSayDo, LSteps, LKnit, LDaily, LAnchor, LDistill, LJuggle, LIceberg, LTrophy, LJenga, LToggle, LWeak, LY, LN, LR, LG, LB, VForce, VAcro, VFour, VWheel, VGauge, VPillars, VMirror, VMorph, VStairs, VSkills, VIoT, VBlueprint, YRoad, YHouse, YEngine, YDust, YCubes, YCompass, YBingo, YBricks, YWave, YRadar, YFlatline, YReactor, YDials, YFlatpack, YVault, YCurtain, YLights, YMagnify, YCert, YTriad, YToolbox, YDeming, YMagic, ToolArt, yGearPath, YB, YN, YT, YO, YR, YG, YY, ITangle, ITrilemma, IVenn, ISilos, IClone, IPile, IGasworks, IColumns, IConveyor, IGlobe, IShield, IWeld, IBeforeAfter, ISafe, IHelix, IOverlay, IAlign, ITable, ISpine, IPrism, ITrampoline, IBroadcast, IPodium, IOpenQ, QSE3, IQ, IS, IE, IN, IO, QXray, QSilhouette, qBody, QCrowd, QDesk, QSign, QTissues, QGear, QEquation, QLineup, QPullback, QMonolith, QSectors, QKeys, QWorkstation, QRotate, QLift, QHoist, QPuzzle, QGesture, QR, QN, QB, QG, QO, QY, Center, SW_BORDER, SwHazardFrame, SW_PTS, SW_C, SW_HEAT, SW_STRAT, SW4C, SwChip, SwGhost, PXU, wX, wY, swArcArrow, swLoupe, SW_PATH, SwMorph, SwTrace, SwWhipWordInner, SwWhipWord, SwBand, DP_B, DP_R, DP_Y, DP_G, DP_O, DP_V, DP_T, cl1, eo3, DP_FILM, DrawWord, Fold, Stamp2, DpStrike, Trace, ArcGauge, FilmStrip, DpRing, AC_C, NumList, PopChip, Acronym, Gear, Crossed, Medal, TO_GOLD, PicFX, PhotoScan, PhotoLoupe, Polaroids, PhotoCompare, PhotoRadar, PhotoTilt, PhotoShatter, PhotoWall, PhotoRing, PhotoDeck, ToolBanner, NerveNet, WeakChain, VerbCard, Bridge, InspCal, Scale2, DataFlow, Cycle3, Pyramid, Compartments, StepTrack, VarOrbit, Absorb, LoopN, OrBadge, lerpC, ST_TOOLS, ToolGrid14, Floaters, Counter, Boussole, TimeArrow, BMC_B, BmcCanvas, RadarSweep, FiveForces, Bullseye, Quad, ClusterMap, ValueChain, CheckList, LetterCards, Grid9, CoinFlow, SevenS, PhaseBar, BeaconSweep, BeaconFX, SwotGrid, LetterTiles, BigWord, ST_FILM, StIntro, StFond, StEnv, StCroiss, StAvant, StPort, StDecide, StEnd, TP_R, TP_STRIPES, NormRef, RibbonSweep, BarrierLift, TapeZone, TapeCross, TapeFX, KTriptych, SW_IMPACT, SW_SCENE, SW_GYRO, swDecay, SW_SLAM, SW_SPARK, SwColorImg, SwRays, SwScramble];
 
 export const _u = [Kin, Brut, T, TitleBlock, Win, GLASS, Check, Card, Num, GlassCard, IcoLab, Mono, sectIdx, Blinds, Deep, LoupeSweep, PneuDeliver, Shine, YEL, Board, random, PhotoLetter, Watermark, Captions, Pill, Strike, Count, handFont, TEAL, GOLD, Tile, BURG, NAVY, VIO, Stamp, StationBanner, NIGHT, BLUE, Shot, Chip, SECTX, Dust, Row, Strk, arcP, ACC, fmt, ORANGE, IMG, easeIn, Barred, Flap];
