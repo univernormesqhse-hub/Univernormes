@@ -299,7 +299,7 @@ const Frise: React.FC = () => {
       <div style={{position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(14,26,58,0.15), rgba(14,26,58,0.78))'}} />
       <div style={{position: 'absolute', left: 0, right: 0, bottom: 40, textAlign: 'center', color: '#fff', fontFamily: FONT, fontWeight: 900}}>
         <div style={{fontSize: 34, opacity: eo((t - 30.3) / 0.4)}}>utilisée par plus de</div>
-        <div style={{fontSize: 140, lineHeight: 1, color: '#8FE3B8'}}>{t > 31.8 ? <Count v={400000} at={31.8} dur={1.4} /> : '0'}</div>
+        <div style={{fontSize: 140, lineHeight: 1, color: '#8FE3B8'}}>{t > 31.8 ? <Count v={400000} at={31.8} dur={1.4} /> : ' '}</div>
         <div style={{fontSize: 40, opacity: eo((t - 32.35) / 0.4)}}>organismes certifiés</div>
       </div>
     </Card>
@@ -350,7 +350,7 @@ const Philo: React.FC = () => {
     <Card x={60} y={930} w={960} h={170} at={51.58} from="left"><div style={{display: 'flex', alignItems: 'center', gap: 24, height: '100%', padding: '0 34px', borderLeft: `18px solid ${NAVY}`}}><Factory size={70} color={NAVY} style={{flexShrink: 0}} /><div style={{fontFamily: FONT, fontWeight: 900, fontSize: 42, color: NAVY, lineHeight: 1.1}}>« Quel est mon impact sur l'environnement ? »</div></div></Card>
     <Card x={60} y={1130} w={960} h={170} at={54.6} from="right"><div style={{display: 'flex', alignItems: 'center', gap: 24, height: '100%', padding: '0 34px', borderLeft: `18px solid ${EARTH}`}}><Sun size={70} color={EARTH} style={{flexShrink: 0}} /><div style={{fontFamily: FONT, fontWeight: 900, fontSize: 40, color: OLIVE, lineHeight: 1.1}}>« Comment l'environnement affecte-t-il mon activité ? »</div></div></Card>
     {t > 53.7 && t < 54.6 && <div style={{position: 'absolute', left: 0, right: 0, top: 1150, zIndex: 20, textAlign: 'center', fontFamily: FONT, fontWeight: 900, fontSize: 56, color: GREEN, opacity: eo((t - 53.74) / 0.25)}}>… mais aussi</div>}
-    <Stamp x={540} y={1430} at={56.4} l="DANS LES DEUX SENS" c={GREEN} fs={58} rot={-5} />
+    <Stamp x={540} y={1430} at={55.95} l="DANS LES DEUX SENS" c={GREEN} fs={58} rot={-5} />
   </>;
 };
 const PARTS: [string, string, number, string][] = [['I', 'Comprendre', 59.01, NAVY], ['II', 'Maîtriser', 60.98, GREEN], ['III', 'Auditer', 63.83, EARTH], ['IV', 'S\'exercer', 65.31, OLIVE]];
@@ -367,19 +367,19 @@ const Contenu: React.FC = () => {
   </>;
 };
 const FICHES = [63, 64, 67, 69, 72, 76, 78];
-const TOOLS: [number, string, LucideIcon, number][] = [[83, 'Diagnostic de transition', ClipboardCheck, 74.02], [87, 'Audit interne clause par clause', ListChecks, 76.19], [84, 'Politique environnementale', FileText, 78.57]];
+const TOOLS: [number, string, LucideIcon, number][] = [[83, 'Diagnostic', ClipboardCheck, 74.02], [87, 'Audit interne', ListChecks, 76.19], [84, 'Politique', FileText, 78.57]];
 const Outils: React.FC = () => {
   const t = useT();
   const up = prog(t, 73.4, 74.0, easeInOut);
   return <>
     <div style={{position: 'absolute', left: 0, right: 0, top: 220, zIndex: 20, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 18, transform: `scale(${Math.min(1.05, pop(t, 69.1, 12, 9))})`}}><Wrench size={66} color={GREEN} strokeWidth={2.6} style={{transform: `rotate(${Math.sin(t * 4) * 15}deg)`}} /><div style={{fontFamily: FONT, fontWeight: 900, fontSize: 60, color: NAVY}}>Des outils prêts à l'emploi</div></div>
-    {FICHES.map((n, i) => { const a = 71.0 + i * 0.16; const ang = (i - 3) * 9; const k = eo((t - a) / 0.45); const cx = 540 + (i - 3) * lerp(105, 80, up), cy = lerp(720, 560, up); return t >= a ? <div key={n} style={{position: 'absolute', left: cx - 120, top: cy - 180 + (1 - k) * -600, width: 240, height: 360, zIndex: 16 + i, transform: `rotate(${ang * k}deg) scale(${lerp(1, 0.78, up)})`, transformOrigin: '50% 120%', background: PAPER, borderRadius: 6, boxShadow: '0 16px 34px rgba(46,43,28,0.3)', overflow: 'hidden', opacity: k}}><Img src={PG(n)} style={{width: '100%', height: '100%', objectFit: 'cover'}} /></div> : null; })}
+    {FICHES.map((n, i) => { const a = 69.5 + i * 0.22; const ang = (i - 3) * 9; const k = eo((t - a) / 0.45); const cx = 540 + (i - 3) * lerp(96, 80, up), cy = lerp(720, 560, up); return t >= a ? <div key={n} style={{position: 'absolute', left: cx - 120, top: cy - 180 + (1 - k) * -600, width: 240, height: 360, zIndex: 16 + i, transform: `rotate(${ang * k}deg) scale(${lerp(1, 0.78, up)})`, transformOrigin: '50% 120%', background: PAPER, borderRadius: 6, boxShadow: '0 16px 34px rgba(46,43,28,0.3)', overflow: 'hidden', opacity: k}}><Img src={PG(n)} style={{width: '100%', height: '100%', objectFit: 'cover'}} /></div> : null; })}
     {t > 72.19 && <div style={{position: 'absolute', left: 540 - 210, top: lerp(1000, 770, up), zIndex: 30, width: 420, height: 110, borderRadius: 55, background: GREEN, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, fontFamily: FONT, fontWeight: 900, fontSize: 40, transform: `scale(${Math.min(1.08, pop(t, 72.19, 13, 9))})`, boxShadow: '0 12px 28px rgba(31,163,110,0.4)'}}><span style={{fontSize: 70}}>7</span>fiches pratiques</div>}
     {TOOLS.map(([n, l, Ic, a], i) => <React.Fragment key={n}>
       <Page n={n} x={60 + i * 335} y={900} w={290} at={a} rot={[-4, 2, 5][i]} z={20} />
-      <Chip x={205 + i * 335} y={1355} at={a + 0.3} l={l} Ic={Ic} c={[NAVY, EARTH, GREEN][i]} fs={i === 1 ? 19 : 21} />
+      <Chip x={205 + i * 335} y={1355} at={a + 0.3} l={l} Ic={Ic} c={[NAVY, EARTH, GREEN][i]} fs={26} />
     </React.Fragment>)}
-    {t > 80.9 && <div style={{position: 'absolute', left: 540 - 380, top: 1440, zIndex: 32, width: 760, height: 150, borderRadius: 34, background: NAVY, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 22, fontFamily: FONT, fontWeight: 900, transform: `scale(${Math.min(1.08, pop(t, 80.9, 12, 9))})`, boxShadow: '0 16px 36px rgba(19,41,107,0.35)'}}><span style={{fontSize: 100, color: '#8FE3B8', lineHeight: 1}}>{t > 82.15 ? <Count v={189} at={82.15} dur={0.7} /> : '0'}</span><span style={{fontSize: 38, lineHeight: 1.05}}>exigences<br />commentées</span></div>}
+    {t > 80.9 && <div style={{position: 'absolute', left: 540 - 380, top: 1440, zIndex: 32, width: 760, height: 150, borderRadius: 34, background: NAVY, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 22, fontFamily: FONT, fontWeight: 900, transform: `scale(${Math.min(1.08, pop(t, 80.9, 12, 9))})`, boxShadow: '0 16px 36px rgba(19,41,107,0.35)'}}><span style={{fontSize: 100, color: '#8FE3B8', lineHeight: 1}}>{t > 82.15 ? <Count v={189} at={82.15} dur={0.7} /> : '…'}</span><span style={{fontSize: 38, lineHeight: 1.05}}>exigences<br />commentées</span></div>}
   </>;
 };
 const PHASES: [string, string, string, number][] = [['Diagnostic', '2026', NAVY, 91.4], ['Mise à niveau', '2027', GREEN, 91.7], ['Consolidation', '2027 – 2028', EARTH, 92.0], ['Certification', '2028 – 2029', OLIVE, 92.3]];
@@ -397,6 +397,7 @@ const Transition: React.FC = () => {
       <div style={{marginTop: 22, textAlign: 'center', fontFamily: FONT, fontWeight: 800, fontSize: 30, color: OLIVE}}>Certifiés ISO 14001:2015 → ISO 14001:2026</div>
     </div></Card>
     {t > 88.23 && <div style={{position: 'absolute', left: 60, top: 720, zIndex: 30, display: 'flex', alignItems: 'center', gap: 20, transform: `scale(${Math.min(1.08, pop(t, 88.23, 14, 8))})`, transformOrigin: 'left center'}}><div style={{fontFamily: FONT, fontWeight: 900, fontSize: 150, color: RED, lineHeight: 1}}>2029</div><div style={{fontFamily: FONT, fontWeight: 900, fontSize: 40, color: INK, lineHeight: 1.1}}>date limite<br />pour migrer</div></div>}
+    <NormRef at={85.3} dur={2.5} l="Période de transition : 3 ans" sub="PRATIQUE IAF · § 5.2 DU LIVRE" x={60} y={760} />
     <Gyro x={900} y={800} at={88.1} out={93.3} size={140} />
     <Page n={46} x={60} y={960} w={300} at={90.0} rot={-5} z={18} />
     {PHASES.map(([l, y, c, a], i) => { const k = eo((t - a) / 0.4); return t >= a ? <div key={l} style={{position: 'absolute', left: 400, top: 950 + i * 118, width: 620, height: 104, zIndex: 20, opacity: k, transform: `translateX(${(1 - k) * 500}px)`, background: '#fff', borderRadius: 22, boxShadow: '0 10px 26px rgba(19,41,107,0.14)', display: 'flex', alignItems: 'center', gap: 18, padding: '0 20px', borderLeft: `16px solid ${c}`}}>
@@ -453,9 +454,9 @@ const CUES: Sfx[] = [
   {at: 17.6, s: 'riser', v: 0.22, dur: 1.4}, {at: 18.9, s: 'deep-hit', v: 0.32}, ...[21.65, 22.36, 23.24, 24.48].map((at) => ({at, s: 'sfx/pop', v: 0.22})), {at: 25.0, s: 'sfx/ding', v: 0.22},
   {at: 26.82, s: 'sfx/ding', v: 0.2}, {at: 28.6, s: 'sfx/swish', v: 0.2}, {at: 31.8, s: 'tick', v: 0.2}, {at: 33.2, s: 'validation', v: 0.22}, ...[34.42, 34.73, 36.06].map((at) => ({at, s: 'sfx/ding', v: 0.2})), {at: 36.49, s: 'tampon', v: 0.35},
   {at: 37.9, s: 'page', v: 0.3}, {at: 39.32, s: 'sfx/pop', v: 0.26}, ...[40.66, 43.43, 45.38, 47.16].map((at) => ({at, s: 'sfx/swish', v: 0.25})), ...[41.0, 45.6].map((at) => ({at, s: 'sfx/click', v: 0.22})),
-  {at: 48.5, s: 'sfx/ding', v: 0.22}, ...[49.6, 50.2].map((at) => ({at, s: 'sfx/pop', v: 0.22})), ...[52.13, 55.62].map((at) => ({at, s: 'soft-whoosh', v: 0.3})), ...[51.58, 54.6].map((at) => ({at, s: 'sfx/swish', v: 0.2})), {at: 56.4, s: 'tampon', v: 0.35},
+  {at: 48.5, s: 'sfx/ding', v: 0.22}, ...[49.6, 50.2].map((at) => ({at, s: 'sfx/pop', v: 0.22})), ...[52.13, 55.62].map((at) => ({at, s: 'soft-whoosh', v: 0.3})), ...[51.58, 54.6].map((at) => ({at, s: 'sfx/swish', v: 0.2})), {at: 55.95, s: 'tampon', v: 0.35},
   {at: 57.4, s: 'sfx/pop', v: 0.22}, {at: 58.25, s: 'sfx/pop', v: 0.22}, ...[58.9, 60.85, 63.7, 65.2, 66.55, 67.8].map((at) => ({at, s: 'page', v: 0.4})), {at: 67.97, s: 'sfx/ding', v: 0.22},
-  ...[0, 1, 2, 3, 4, 5, 6].map((i) => ({at: 71.0 + i * 0.16, s: 'page', v: 0.18})), {at: 72.19, s: 'sfx/pop', v: 0.26}, ...[74.02, 76.19, 78.57].map((at) => ({at, s: 'tampon', v: 0.25})), {at: 80.9, s: 'sfx/swish', v: 0.22}, {at: 82.15, s: 'tick', v: 0.22}, {at: 82.9, s: 'validation', v: 0.22},
+  ...[0, 1, 2, 3, 4, 5, 6].map((i) => ({at: 69.5 + i * 0.22, s: 'page', v: 0.18})), {at: 72.19, s: 'sfx/pop', v: 0.26}, ...[74.02, 76.19, 78.57].map((at) => ({at, s: 'tampon', v: 0.25})), {at: 80.9, s: 'sfx/swish', v: 0.22}, {at: 82.15, s: 'tick', v: 0.22}, {at: 82.9, s: 'validation', v: 0.22},
   {at: 85.0, s: 'sfx/rise', v: 0.18, dur: 3.2}, {at: 88.23, s: 'alarme', v: 0.14, dur: 1.8}, {at: 88.23, s: 'deep-hit', v: 0.32}, {at: 90.0, s: 'page', v: 0.3}, ...[91.4, 91.7, 92.0, 92.3].map((at) => ({at, s: 'sfx/click', v: 0.22})),
   ...[93.53, 95.05, 95.56, 96.06].map((at) => ({at, s: 'sfx/pop', v: 0.24})), {at: 97.7, s: 'tampon', v: 0.35},
   {at: 99.5, s: 'riser', v: 0.22, dur: 2.0}, {at: 101.49, s: 'sfx/ding', v: 0.25}, {at: 102.2, s: 'sfx/click', v: 0.35}, {at: 102.25, s: 'validation', v: 0.25}, {at: OUTRO_AT - 1.4, s: 'signature-marque', v: 0.5, dur: 3.5},

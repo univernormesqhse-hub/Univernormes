@@ -131,6 +131,7 @@ import {IdentUiRubalise} from '../identui/IdentUiRubalise';
 import {QuelOutilQhseMetro} from '../quelOutilQhseMetro/QuelOutilQhseMetro';
 import {QuatorzeOutilsStratMetro} from '../quatorzeOutilsStratMetro/QuatorzeOutilsStratMetro';
 import {TdbEpi} from '../tdbEpi/TdbEpi';
+import {LivreIso14001} from '../livreIso14001/LivreIso14001';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -301,6 +302,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-QuelOutilQhseMetro', C: QuelOutilQhseMetro, at: 142.6, dur: 7.0},
   {id: 'Demo-QuatorzeOutilsStratMetro', C: QuatorzeOutilsStratMetro, at: 106.4, dur: 7.0},
   {id: 'Demo-TableauBordEpi', C: TdbEpi, at: 36.0, dur: 7.0},
+  {id: 'Demo-LivreIso14001', C: LivreIso14001, at: 57.0, dur: 7.0},
 ];
 
 export const LibraryDemos: React.FC = () => (
