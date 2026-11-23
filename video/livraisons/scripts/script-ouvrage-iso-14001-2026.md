@@ -58,7 +58,7 @@
 **Voix off :**
 « Les organismes certifiés ISO 14001 version 2015 ont jusqu'en 2029 pour migrer. Le livre vous donne un calendrier de transition en quatre phases. »
 
-**À l'écran :** barre de progression 2026 → 2029 qui se remplit en quatre segments : Diagnostic, Mise à niveau, Déploiement, Certification. Gyrophare sur « 2029 ».
+**À l'écran :** barre de progression 2026 → 2029 qui se remplit en quatre segments : Diagnostic, Mise à niveau, Consolidation, Certification. Gyrophare sur « 2029 ».
 
 ## Scène 10 — Pour qui (1:28 – 1:34)
 **Voix off :**
