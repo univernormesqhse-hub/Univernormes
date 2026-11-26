@@ -134,6 +134,7 @@ import {TdbEpi} from '../tdbEpi/TdbEpi';
 import {LivreIso14001} from '../livreIso14001/LivreIso14001';
 import {EvalRisquesInterviewMetro} from '../evalRisquesInterviewMetro/EvalRisquesInterviewMetro';
 import {FondationProjetQhseMetro} from '../fondationProjetQhseMetro/FondationProjetQhseMetro';
+import {MatriceConformiteMetro} from '../matriceConformiteMetro/MatriceConformiteMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -307,6 +308,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-LivreIso14001', C: LivreIso14001, at: 57.0, dur: 7.0},
   {id: 'Demo-EvalRisquesInterviewMetro', C: EvalRisquesInterviewMetro, at: 60.8, dur: 7.0},
   {id: 'Demo-FondationProjetQhseMetro', C: FondationProjetQhseMetro, at: 241.0, dur: 7.0},
+  {id: 'Demo-MatriceConformiteMetro', C: MatriceConformiteMetro, at: 6.8, dur: 7.0},
 ];
 
 export const LibraryDemos: React.FC = () => (
