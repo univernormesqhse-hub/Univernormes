@@ -5974,16 +5974,47 @@ const SdShield: React.FC<{cy: number; at: number; firm: number}> = ({cy, at, fir
   </>;
 };
 
+/* ═════════════ Technique « scène à personnages détourés » (reprise du style de récit : fond crème, sol, enseigne, pastilles) ═════════════ */
+const ST_BG = '#F4EAD4', ST_GROUND = '#E3D5BF', ST_NAVY = '#141B3A', ST_YEL = '#F2B33D', ST_RED = '#C8323C';
+/* une scène : personnages détourés posés sur une bande de sol, enseigne marine, pastilles empilées au-dessus */
+const SdStage: React.FC<{y: number; at: number; h?: number; people: [string, number, number, number, boolean?][]; sign?: [string, number]; pills?: [string, 'w' | 'n' | 'r' | 'x', number][]; out?: number}> = ({y, at, h = 760, people, sign, pills = [], out}) => {
+  const t = useT();
+  if (t < at) return null;
+  const k = eo3((t - at) / 0.45), o = out !== undefined ? 1 - prog(t, out, out + 0.4) : 1, gy = h - 70;
+  return <div style={{position: 'absolute', left: 0, top: y, width: 1080, height: h, zIndex: 8, opacity: k * o, overflow: 'hidden', background: ST_BG}}>
+    <div style={{position: 'absolute', left: 620, top: 60, width: 640, height: 640, borderRadius: 320, background: 'rgba(230,214,186,0.55)'}} />
+    <div style={{position: 'absolute', left: -200, top: 300, width: 520, height: 520, borderRadius: 260, background: 'rgba(230,214,186,0.45)'}} />
+    {sign && t >= sign[1] && <div style={{position: 'absolute', left: 0, width: 1080, top: gy + 12, textAlign: 'center', zIndex: 6, transform: `translateY(${(1 - Math.min(1, sp(t, sign[1], 10, 11))) * 60}px)`}}><span style={{display: 'inline-block', background: ST_NAVY, color: ST_YEL, borderRadius: 12, padding: '8px 24px', fontFamily: sansFont, fontWeight: 900, fontSize: 32, letterSpacing: 1}}>{sign[0]}</span></div>}
+    {people.map(([src, x, hh, a, flip], i) => { if (t < a) return null; const e = Math.min(1.03, sp(t, a, 10, 12)); const br = 1 + 0.006 * Math.sin(t * 2.2 + i); return <React.Fragment key={src + i}>
+      <div style={{position: 'absolute', left: x - hh * 0.28, top: gy + 6, width: hh * 0.56, height: 28, borderRadius: '50%', background: 'rgba(60,40,20,0.22)', filter: 'blur(6px)', opacity: Math.min(1, e)}} />
+      <Img src={staticFile(src)} style={{position: 'absolute', left: x, top: gy + 40 - hh, height: hh, transform: `translateX(-50%) translateY(${(1 - Math.min(1, e)) * 80}px) scaleX(${flip ? -1 : 1}) scaleY(${br})`, transformOrigin: '50% 100%', opacity: Math.min(1, e * 1.4), zIndex: 3}} />
+    </React.Fragment>; })}
+    <div style={{position: 'absolute', left: 0, right: 0, top: gy, height: 70, background: ST_GROUND, zIndex: 4}} />
+    {pills.map(([l, kd, a], i) => { if (t < a) return null; const e = Math.min(1.06, sp(t, a, 11, 10)); const bg = kd === 'n' ? ST_NAVY : '#fff', fg = kd === 'n' ? ST_YEL : kd === 'r' || kd === 'x' ? ST_RED : ST_NAVY; return <div key={l} style={{position: 'absolute', left: 0, width: 1080, top: 30 + i * 70, textAlign: 'center', zIndex: 5, transform: `scale(${e})`}}><span style={{display: 'inline-block', position: 'relative', background: bg, color: fg, borderRadius: 40, padding: '10px 28px', fontFamily: sansFont, fontWeight: 900, fontSize: 32, boxShadow: '0 6px 16px rgba(60,40,20,0.18)'}}>{l}{kd === 'x' && <span style={{position: 'absolute', left: 16, right: 16, top: '52%', height: 5, background: ST_RED, transform: `scaleX(${prog(t, a + 0.5, a + 0.9, easeOut)})`, transformOrigin: '0 50%'}} />}</span></div>; })}
+  </div>;
+};
+/* fiche blanche à lignes (comme une fiche budget) : chaque ligne entre avec sa marque */
+const SdCard: React.FC<{y: number; at: number; title: string; rows: [string, string, number][]; total?: [string, number]}> = ({y, at, title, rows, total}) => {
+  const t = useT();
+  if (t < at) return null;
+  const k = Math.min(1.04, sp(t, at, 10, 11));
+  return <div style={{position: 'absolute', left: 130, top: y, width: 820, zIndex: 9, transform: `scale(${k})`, background: '#fff', borderRadius: 22, boxShadow: '0 14px 40px rgba(60,40,20,0.22)', padding: '22px 30px'}}>
+    <div style={{fontFamily: MONO, fontWeight: 700, fontSize: 20, color: '#8A8170', letterSpacing: 3, marginBottom: 6}}>{title}</div>
+    {rows.map(([l, ic, a], i) => { const on = t >= a; return <div key={l} style={{display: 'flex', alignItems: 'center', gap: 14, height: 70, borderBottom: '2px solid #F0E8DA', opacity: on ? 1 : 0, transform: `translateX(${on ? (1 - eo3((t - a) / 0.35)) * -60 : 0}px)`}}>
+      <Ico n={ic} size={36} c={ST_NAVY} />
+      <div style={{flex: 1, fontFamily: sansFont, fontWeight: 800, fontSize: 30, color: ST_NAVY}}>{l}</div>
+      <div style={{fontFamily: sansFont, fontWeight: 900, fontSize: 34, color: ST_RED}}>−</div>
+    </div>; })}
+    {total && t >= total[1] && <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: 12}}><span style={{background: ST_RED, color: '#fff', borderRadius: 12, padding: '6px 16px', fontFamily: sansFont, fontWeight: 900, fontSize: 28, transform: `scale(${Math.min(1.08, sp(t, total[1], 11, 9))})`, display: 'inline-block'}}>{total[0]}</span></div>}
+  </div>;
+};
+
 /* ═════════════ Scènes ═════════════ */
 const SdIntro: React.FC = () => {
   const t = useT();
   return <>
     <Floaters icons={['HardHat', 'ShieldCheck', 'HeartPulse', 'Building2', 'TriangleAlert', 'Users']} a={2.0} b={30.0} c={DP_O} />
-    {t < 14.6 && <>
-      <PicFX src={IMG.s_cover} x={140} y={480} w={800} h={420} at={2.2} mode="iris" tag="La santé et sécurité au travail" c={DP_O} />
-      <Crossed x={140} y={960} w={800} at={3.4} strike={4.4} l="Une simple obligation légale" fs={32} />
-      {t >= 6.0 && <Medal x={540} y={1150} r={80} at={6.4} c={DP_G} ic="Landmark" glow />}
-    </>}
+    {t < 14.6 && <SdStage y={470} at={2.2} people={[['personnages/equipe-hse/responsable.png', 250, 500, 2.6], ['personnages/equipe-hse/coordonnateur.png', 830, 500, 3.0, true]]} sign={['SANTÉ · SÉCURITÉ AU TRAVAIL', 2.4]} pills={[['Une simple obligation légale', 'x', 3.4], ['Un pilier de l\'entreprise', 'n', 6.0], ['Une entreprise qui dure', 'w', 8.4]]} />}
     {t >= 14.6 && <>
       <PicFX src={IMG.s_blesse} x={140} y={480} w={800} h={420} at={14.8} mode="shutter" tag="Un incident survient" c={DP_R} />
       <PopChip x={540} y={960} at={17.2} l="La personne blessée" c={DP_R} ic="Bandage" fs={28} />
@@ -6074,11 +6105,8 @@ const SdS3: React.FC = () => {
     </>}
     {t >= 196.6 && <>
       <PicFX src={IMG.s_accident} x={140} y={600} w={800} h={360} at={196.8} mode="shutter" tag="L'accident du travail" c={DP_R} />
-      <PopChip x={300} y={1010} at={205.6} l="Blessure physique" c={DP_R} ic="Bandage" fs={24} />
-      <PopChip x={790} y={1010} at={210.8} l="Arrêt de travail" c={DP_O} ic="CalendarX" fs={24} />
-      <PopChip x={300} y={1110} at={212.4} l="Poursuites en justice" c={NAVY} ic="Gavel" fs={24} />
-      <PopChip x={790} y={1110} at={214.4} l="Impact psychologique" c={DP_V} ic="Brain" fs={24} />
-      {t >= 202.8 && <Stamp2 x={540} y={1240} at={203.2} l="DRAMATIQUE" c={DP_R} fs={42} out={205.4} />}
+      <SdCard y={860} at={205.0} title="CE QUE COÛTE UN ACCIDENT" rows={[['Blessure physique', 'Bandage', 205.6], ['Arrêt de travail', 'CalendarX', 210.8], ['Poursuites en justice', 'Gavel', 212.4], ['Impact psychologique', 'Brain', 214.4]]} />
+      {t >= 202.8 && <Stamp2 x={540} y={1000} at={203.2} l="DRAMATIQUE" c={DP_R} fs={42} out={205.0} />}
     </>}
   </>;
 };
@@ -6092,9 +6120,7 @@ const SdS4: React.FC = () => {
       <PicFX src={IMG.s_prev} x={140} y={800} w={800} h={380} at={226.6} mode="tiles" tag="La gestion proactive" c={DP_G} />
     </>}
     {t >= 231.0 && t < 243.6 && <>
-      <PopChip x={540} y={480} at={231.4} l="L'atout le plus précieux : les gens" c={NAVY} ic="Users" fs={28} />
-      <SdShield cy={830} at={232.9} firm={239.7} />
-      {t >= 238.2 && <PopChip x={540} y={1210} at={238.4} l="Protéger les personnes = protéger l'entreprise" c={DP_G} ic="ShieldCheck" fs={22} />}
+      <SdStage y={470} at={231.2} people={[['personnages/equipe-hse/agent.png', 170, 430, 232.9], ['personnages/equipe-hse/assistant.png', 410, 430, 233.3], ['personnages/equipe-hse/superviseur.png', 660, 440, 233.7, true], ['personnages/ingenieur.png', 900, 420, 234.1, true]]} sign={['NOTRE VRAI CAPITAL', 234.8]} pills={[['L\'atout le plus précieux', 'w', 232.9], ['Les gens qui la composent', 'n', 235.4], ['Protéger les personnes = protéger l\'entreprise', 'w', 238.6]]} />
     </>}
     {t >= 243.6 && t < 265.4 && <>
       <NumList y={470} enter={244.0} h={150} gap={26} items={[['Identifier les dangers', 'Où sont les menaces ?', 'Search', 246.9], ['Réduire les risques', 'Éliminer le danger à la source', 'ShieldCheck', 252.0], ['Une culture de la sécurité', 'Partagée par tout le monde', 'Users', 258.6]]} cols={[DP_B, DP_O, DP_G]} />
@@ -6112,11 +6138,7 @@ const SdS5: React.FC = () => {
   const t = useT();
   return <>
     <Floaters icons={['Scale', 'Coins', 'HelpCircle', 'ShieldCheck', 'TrendingUp', 'Siren']} a={278.6} b={OUTRO_AT} c={NAVY} />
-    <PopChip x={540} y={470} at={279.4} l="Une dernière réflexion" c={NAVY} ic="Lightbulb" fs={28} />
-    <Scale2 at={279.8} y={760} tilt={[[280.0, 0], [283.6, -10], [286.4, 16]]} />
-    <PopChip x={250} y={640} at={283.6} l="Combien coûte la sécurité ?" c={DP_B} ic="ShieldCheck" fs={22} />
-    <PopChip x={830} y={860} at={286.4} l="Combien coûte l'inaction ?" c={DP_R} ic="Siren" fs={22} />
-    {t >= 288.4 && <Stamp2 x={540} y={1120} at={288.8} l="BIEN PLUS ÉLEVÉ" c={DP_R} fs={50} />}
+    <SdStage y={470} at={278.8} people={[['personnages/equipe-hse/responsable.png', 200, 480, 279.4], ['personnages/equipe-hse/coordonnateur.png', 540, 420, 279.8], ['personnages/equipe-hse/agent.png', 880, 470, 280.2, true]]} sign={['LA VRAIE QUESTION', 281.0]} pills={[['Une dernière réflexion', 'w', 279.2], ['Combien coûte la sécurité ?', 'x', 283.6], ['Combien coûte l\'inaction ?', 'n', 286.4], ['Bien plus élevé', 'r', 288.4]]} />
   </>;
 };
 const Intro: React.FC = () => (
@@ -6286,6 +6308,6 @@ export const SstDangersRisquesMetro: React.FC = () => (
   </AbsoluteFill>
 );
 
-export const _u2 = [SdDomino, SdLatent, SdBecome, SdTrack, SdBattery, SdSpread, SdDose, SdShield, SwSparkle, SwFlare, SwDust, SwConfetti, SwFireflies, SwShatter, SwGrain, SwRipple, wn, Avatar, Ring3D, SlamTag, Arrow, slamK, CAP, STAGE, SCAN, RING_ISO, Drum, Marked, Announce, MBadge, RailSteps, StairSteps, ZigSteps, QBubble, Grid15, RameWipe, Forklift, ICO, MC, ACR, lin, hexMix, cl, GyroFlash, Hot, Photo, Pill2, Ph, TChip, Row3, SlamCard, ZInk, ZTicker, ZAxis, ZDef, CI, CD, METH, JCirText, JMirror, JNewton, JFuse, JShock, JTree, JAccordion, JRing, JButterfly, JAmdec, JHazop, JHourglass, JRewind, JFlipArrow, JBoard, JYarn, JPrint, JFault, JGears, JYinYang, JConstellation, CONST, ESiren, ECompass, ENeonExit, EFloorPlan, EBlackout, EVestDrop, EQueue, EDoor, ESonar, ERadio, EHub, EConfusion, EDice, ETape, EChess, EFunnel, ETally, EGavel, EBaton, EFiretruck, EGauge, EDomino, ECycle, EMonths, EChecklist, ESpiral, EFeather, EOdometer, ECrack, ENail, ETarget, EUnity, ExitRunner, AssemblyIcon, Vest, CG, CR, CY, CO, LGearsTol, JCrtOff, LEar, LBook, LSeal, LEngrave, LBinders, LGap, L25, LPuppet, LOrg, LOrbit, LLaw, LPlane, LSlide, LSwiss, LBalance, LBattery, LTri, LRoutine, LNine, LPlant, LSign, LSayDo, LSteps, LKnit, LDaily, LAnchor, LDistill, LJuggle, LIceberg, LTrophy, LJenga, LToggle, LWeak, LY, LN, LR, LG, LB, VForce, VAcro, VFour, VWheel, VGauge, VPillars, VMirror, VMorph, VStairs, VSkills, VIoT, VBlueprint, YRoad, YHouse, YEngine, YDust, YCubes, YCompass, YBingo, YBricks, YWave, YRadar, YFlatline, YReactor, YDials, YFlatpack, YVault, YCurtain, YLights, YMagnify, YCert, YTriad, YToolbox, YDeming, YMagic, ToolArt, yGearPath, YB, YN, YT, YO, YR, YG, YY, ITangle, ITrilemma, IVenn, ISilos, IClone, IPile, IGasworks, IColumns, IConveyor, IGlobe, IShield, IWeld, IBeforeAfter, ISafe, IHelix, IOverlay, IAlign, ITable, ISpine, IPrism, ITrampoline, IBroadcast, IPodium, IOpenQ, QSE3, IQ, IS, IE, IN, IO, QXray, QSilhouette, qBody, QCrowd, QDesk, QSign, QTissues, QGear, QEquation, QLineup, QPullback, QMonolith, QSectors, QKeys, QWorkstation, QRotate, QLift, QHoist, QPuzzle, QGesture, QR, QN, QB, QG, QO, QY, Center, SW_BORDER, SwHazardFrame, SW_PTS, SW_C, SW_HEAT, SW_STRAT, SW4C, SwChip, SwGhost, PXU, wX, wY, swArcArrow, swLoupe, SW_PATH, SwMorph, SwTrace, SwWhipWordInner, SwWhipWord, SwBand, DP_B, DP_R, DP_Y, DP_G, DP_O, DP_V, DP_T, cl1, eo3, DP_FILM, DrawWord, Fold, Stamp2, DpStrike, Trace, ArcGauge, FilmStrip, DpRing, AC_C, NumList, PopChip, Acronym, Gear, Crossed, Medal, TO_GOLD, PicFX, PhotoScan, PhotoLoupe, Polaroids, PhotoCompare, PhotoRadar, PhotoTilt, PhotoShatter, PhotoWall, PhotoRing, PhotoDeck, ToolBanner, NerveNet, WeakChain, VerbCard, Bridge, InspCal, Scale2, DataFlow, Cycle3, Pyramid, Compartments, StepTrack, VarOrbit, Absorb, LoopN, OrBadge, lerpC, ST_TOOLS, ToolGrid14, Floaters, Counter, Boussole, TimeArrow, BMC_B, BmcCanvas, RadarSweep, FiveForces, Bullseye, Quad, ClusterMap, ValueChain, CheckList, LetterCards, Grid9, CoinFlow, SevenS, PhaseBar, BeaconSweep, BeaconFX, SwotGrid, LetterTiles, BigWord, ST_FILM, StIntro, StFond, StEnv, StCroiss, StAvant, StPort, StDecide, StEnd, TP_R, TP_STRIPES, NormRef, RibbonSweep, BarrierLift, TapeZone, TapeCross, TapeFX, KTriptych, SW_IMPACT, SW_SCENE, SW_GYRO, swDecay, SW_SLAM, SW_SPARK, SwColorImg, SwRays, SwScramble];
+export const _u2 = [SdStage, SdCard, SdDomino, SdLatent, SdBecome, SdTrack, SdBattery, SdSpread, SdDose, SdShield, SwSparkle, SwFlare, SwDust, SwConfetti, SwFireflies, SwShatter, SwGrain, SwRipple, wn, Avatar, Ring3D, SlamTag, Arrow, slamK, CAP, STAGE, SCAN, RING_ISO, Drum, Marked, Announce, MBadge, RailSteps, StairSteps, ZigSteps, QBubble, Grid15, RameWipe, Forklift, ICO, MC, ACR, lin, hexMix, cl, GyroFlash, Hot, Photo, Pill2, Ph, TChip, Row3, SlamCard, ZInk, ZTicker, ZAxis, ZDef, CI, CD, METH, JCirText, JMirror, JNewton, JFuse, JShock, JTree, JAccordion, JRing, JButterfly, JAmdec, JHazop, JHourglass, JRewind, JFlipArrow, JBoard, JYarn, JPrint, JFault, JGears, JYinYang, JConstellation, CONST, ESiren, ECompass, ENeonExit, EFloorPlan, EBlackout, EVestDrop, EQueue, EDoor, ESonar, ERadio, EHub, EConfusion, EDice, ETape, EChess, EFunnel, ETally, EGavel, EBaton, EFiretruck, EGauge, EDomino, ECycle, EMonths, EChecklist, ESpiral, EFeather, EOdometer, ECrack, ENail, ETarget, EUnity, ExitRunner, AssemblyIcon, Vest, CG, CR, CY, CO, LGearsTol, JCrtOff, LEar, LBook, LSeal, LEngrave, LBinders, LGap, L25, LPuppet, LOrg, LOrbit, LLaw, LPlane, LSlide, LSwiss, LBalance, LBattery, LTri, LRoutine, LNine, LPlant, LSign, LSayDo, LSteps, LKnit, LDaily, LAnchor, LDistill, LJuggle, LIceberg, LTrophy, LJenga, LToggle, LWeak, LY, LN, LR, LG, LB, VForce, VAcro, VFour, VWheel, VGauge, VPillars, VMirror, VMorph, VStairs, VSkills, VIoT, VBlueprint, YRoad, YHouse, YEngine, YDust, YCubes, YCompass, YBingo, YBricks, YWave, YRadar, YFlatline, YReactor, YDials, YFlatpack, YVault, YCurtain, YLights, YMagnify, YCert, YTriad, YToolbox, YDeming, YMagic, ToolArt, yGearPath, YB, YN, YT, YO, YR, YG, YY, ITangle, ITrilemma, IVenn, ISilos, IClone, IPile, IGasworks, IColumns, IConveyor, IGlobe, IShield, IWeld, IBeforeAfter, ISafe, IHelix, IOverlay, IAlign, ITable, ISpine, IPrism, ITrampoline, IBroadcast, IPodium, IOpenQ, QSE3, IQ, IS, IE, IN, IO, QXray, QSilhouette, qBody, QCrowd, QDesk, QSign, QTissues, QGear, QEquation, QLineup, QPullback, QMonolith, QSectors, QKeys, QWorkstation, QRotate, QLift, QHoist, QPuzzle, QGesture, QR, QN, QB, QG, QO, QY, Center, SW_BORDER, SwHazardFrame, SW_PTS, SW_C, SW_HEAT, SW_STRAT, SW4C, SwChip, SwGhost, PXU, wX, wY, swArcArrow, swLoupe, SW_PATH, SwMorph, SwTrace, SwWhipWordInner, SwWhipWord, SwBand, DP_B, DP_R, DP_Y, DP_G, DP_O, DP_V, DP_T, cl1, eo3, DP_FILM, DrawWord, Fold, Stamp2, DpStrike, Trace, ArcGauge, FilmStrip, DpRing, AC_C, NumList, PopChip, Acronym, Gear, Crossed, Medal, TO_GOLD, PicFX, PhotoScan, PhotoLoupe, Polaroids, PhotoCompare, PhotoRadar, PhotoTilt, PhotoShatter, PhotoWall, PhotoRing, PhotoDeck, ToolBanner, NerveNet, WeakChain, VerbCard, Bridge, InspCal, Scale2, DataFlow, Cycle3, Pyramid, Compartments, StepTrack, VarOrbit, Absorb, LoopN, OrBadge, lerpC, ST_TOOLS, ToolGrid14, Floaters, Counter, Boussole, TimeArrow, BMC_B, BmcCanvas, RadarSweep, FiveForces, Bullseye, Quad, ClusterMap, ValueChain, CheckList, LetterCards, Grid9, CoinFlow, SevenS, PhaseBar, BeaconSweep, BeaconFX, SwotGrid, LetterTiles, BigWord, ST_FILM, StIntro, StFond, StEnv, StCroiss, StAvant, StPort, StDecide, StEnd, TP_R, TP_STRIPES, NormRef, RibbonSweep, BarrierLift, TapeZone, TapeCross, TapeFX, KTriptych, SW_IMPACT, SW_SCENE, SW_GYRO, swDecay, SW_SLAM, SW_SPARK, SwColorImg, SwRays, SwScramble];
 
 export const _u = [Kin, Brut, T, TitleBlock, Win, GLASS, Check, Card, Num, GlassCard, IcoLab, Mono, sectIdx, Blinds, Deep, LoupeSweep, PneuDeliver, Shine, YEL, Board, random, PhotoLetter, Watermark, Captions, Pill, Strike, Count, handFont, TEAL, GOLD, Tile, BURG, NAVY, VIO, Stamp, StationBanner, NIGHT, BLUE, Shot, Chip, SECTX, Dust, Row, Strk, arcP, ACC, fmt, ORANGE, IMG, easeIn, Barred, Flap];
