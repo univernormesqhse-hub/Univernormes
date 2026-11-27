@@ -1,0 +1,13 @@
+---
+name: Exercice d'évacuation — capsule métro 2D (7 min 04) refaite d'après une présentation, titre en lettres-photos animées, plan d'évacuation animé, chaîne de commandement, chronomètre fendu, checklist go / no go, transitions gyrophare avec carillon
+section: assets
+slug: exercice-evacuation
+description: Capsule verticale 1080 × 1920 sur la voix d'origine d'une présentation sur l'exercice d'évacuation comme stress test de la résilience (mythe de la conformité, planification et maîtrise opérationnelle, test in situ, évaluation et analyse des écarts, amélioration continue, conclusion). Habillage papier cramé + deux cercles dorés, bordure de marquage au sol, ligne de métro à 12 stations, guichets ouverts par la transition gyrophare + carillon montant (gyro-carillon), tintement (gyro-tinte) à chaque changement de titre, rubalise (ruban diagonal, barrière, ruban qui se déroule, zones délimitées), bandeaux de référence normative ISO. Briques nouvelles - `EvExit` (panneau de sortie de secours, pictogramme qui court, chevrons qui défilent), `EvTick` (case du registre cochée au stylo), `EvGauge` (jauge de résilience qui tremble dans le rouge), `EvPlan` (plan d'évacuation vu de dessus : personnes qui sortent vers le point de rassemblement ; variantes observateurs à cônes de vision, serre-file qui oublie le local technique, goulot dans l'escalier), `EvRoles` (guide-file / serre-file / coordinateur reliés par une chaîne qui se rompt), `EvPaper` (nomination officielle signée), `EvChrono` (chronomètre qui file jusqu'à 3 min puis se fend), `EvRegister` (registre de sécurité qui s'ouvre et s'écrit), `EvVanish` (photo qui se désintègre en éclats), `EvGoNoGo` (interrupteurs + voyants GO / NO GO), `EvDash` (tableau de bord aux voyants verts balayé par la loupe), `EvRoots` (de l'écart à la cause racine). Réutilise PicFX, VerbCard + OrBadge, NumList, CheckList, Crossed, Stamp2, Medal, DrawWord.
+quand: Capsule sur les situations d'urgence : exercice d'évacuation, préparation et réponse aux urgences, rôles d'évacuation, audit terrain, retour d'expérience, registre de sécurité, checklist avant déploiement.
+component: src/exerciceEvacuationMetro/ExerciceEvacuationMetro.tsx
+demo: Demo-ExerciceEvacuationMetro
+tags: [évacuation, situation d'urgence, guide-file, serre-file, point de rassemblement, registre de sécurité, go / no go, résilience, métro, gyrophare, rubalise, photos animées, 2D]
+---
+
+## Utilisation
+Composition `ExerciceEvacuationMetro`. `EvPlan` (avec `go`, `jam`, `forgot`, `obs`), `EvRoles` (avec `snap`), `EvChrono`, `EvGoNoGo` et `EvRegister` se réutilisent pour toute capsule sur les urgences, l'évacuation ou l'audit terrain.
