@@ -33,10 +33,10 @@ import {NeoCaptions} from '../components/NeoCaptions';
 
 /**
  * « Vérités immuables en QHSE » (analyse, voix d'origine, 6 min 39) — capsule métro en 2D sur l'habillage papier cramé +
- * deux cercles dorés (bordure de marquage au sol jaune / noir, roue PDCA), couverture en triptyque « OBSERVER ·
+ * deux cercles dorés (bordure de marquage au sol jaune / noir, roue PDCA), couverture « VÉRITÉ IMMUABLE EN QHSE » en lettres-photos animées sur un triptyque « OBSERVER ·
  * COMPRENDRE · ENGAGER ». Sept guichets (pression économique, déséquilibre financier, maîtrise opérationnelle, signaux
  * faibles, approche systémique, humain au centre, question fondamentale) ouverts par la transition gyrophare avec
- * l'alarme, faisceau gyrophare à chaque changement de titre, douze stations, NeoCaptions, aucune musique. Motion très
+ * un carillon montant (gyro-carillon), faisceau gyrophare + tintement (gyro-tinte) à chaque changement de titre, douze stations, NeoCaptions, aucune musique. Motion très
  * dense : balance économie / prévention, table de pierre « règle immuable » gravée lettre à lettre avec éclats, compteur
  * « 40 ans », trois urgences qui font tomber sécurité et qualité, bilan comptable visible qui ronge la marge face au coût
  * d'accident invisible dans le brouillard (« le jour de la crise »), filtre des KPI qui lisse la réalité dentelée, travail
@@ -6283,8 +6283,9 @@ const KCover: React.FC = () => {
       <Abs x={0} y={40} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{background: '#fff', borderRadius: 26, padding: '10px 28px', boxShadow: '0 10px 30px rgba(0,0,0,0.14)'}}><Img src={staticFile(LOGO)} style={{height: 76, display: 'block'}} /></div></Abs>
       <Abs x={0} y={180} w={1080} style={{display: 'flex', justifyContent: 'center'}}><div style={{...nb(SwN, 6), borderColor: NBK, padding: '12px 30px', ...CAP, fontSize: 36, color: '#fff'}}>7 VÉRITÉS · QHSE</div></Abs>
       <KTriptych y={300} h={540} />
-      <Abs x={0} y={890} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap', zIndex: 40}}><PhotoLetterAnim ch="VÉRITÉS" src={IMG.v_signal} size={130} ls={4} seed={8} /></Abs>
-      <Abs x={0} y={1120} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap', zIndex: 40}}><PhotoLetterAnim ch="IMMUABLES" src={IMG.v_terrain} size={104} ls={3} seed={13} /></Abs>
+      <Abs x={0} y={860} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap', zIndex: 40}}><PhotoLetterAnim ch="VÉRITÉ" src={IMG.v_signal} size={124} ls={4} seed={8} /></Abs>
+      <Abs x={0} y={1020} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap', zIndex: 40}}><PhotoLetterAnim ch="IMMUABLE" src={IMG.v_terrain} size={112} ls={3} seed={13} /></Abs>
+      <Abs x={0} y={1175} w={1080} style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap', zIndex: 40}}><PhotoLetterAnim ch="EN QHSE" src={IMG.v_humain} size={100} ls={3} seed={21} /></Abs>
       <Abs x={60} y={1400} w={960} h={120} style={{background: '#fff', border: `5px solid ${INK}`, borderRadius: 18, boxShadow: `7px 7px 0 ${BURG}`, overflow: 'hidden', zIndex: 40}}>
         <Tube x={30} y={34} w={900} h={24} />
         {SECT.map((x, k) => <div key={k} style={{position: 'absolute', left: 80 + k * (800 / (SECT.length - 1)) - 18, top: 28, width: 36, height: 36, borderRadius: 9, background: x.c, border: '4px solid #fff', boxSizing: 'border-box'}} />)}
@@ -6298,7 +6299,7 @@ const KCover: React.FC = () => {
 /* ═════════════ Montage, bruitage ═════════════ */
 const TK = 3.4;
 const rep = (a: number, n: number, d: number, s0: string, v: number): Sfx[] => Array.from({length: n}, (_, k) => ({at: a + k * d, s: s0, v, dur: 0.6}));
-const trans = (x: {at: number}): Sfx[] => [{at: x.at, s: 'alarme', v: 0.3, dur: 1.6}, {at: x.at, s: 'sfx/whoosh', v: 0.4}, ...rep(x.at + 0.1 / TK, 4, 0.18 / TK, 'sfx/ding', 0.12), {at: x.at + 0.45 / TK, s: 'soft-whoosh', v: 0.45, dur: 1}, {at: x.at + 0.95 / TK, s: 'sfx/thud', v: 0.4}, {at: x.at + 1.6 / TK, s: 'sfx/pop', v: 0.2}];
+const trans = (x: {at: number}): Sfx[] => [{at: x.at, s: 'gyro-carillon', v: 0.42, dur: 1.9}, {at: x.at, s: 'sfx/whoosh', v: 0.3}, {at: x.at + 0.45 / TK, s: 'soft-whoosh', v: 0.45, dur: 1}, {at: x.at + 0.95 / TK, s: 'sfx/thud', v: 0.4}, {at: x.at + 1.6 / TK, s: 'sfx/pop', v: 0.2}];
 const searchCues = (at: number, len: number, foundAt: number, clickAt: number): Sfx[] => [...rep(at + 0.3, Math.round(len / 2), 0.05, 'sfx/click', 0.1), {at: foundAt, s: 'validation', v: 0.3}, {at: clickAt, s: 'sfx/click', v: 0.5}, {at: clickAt + 0.15, s: 'soft-whoosh', v: 0.5, dur: 1}, {at: clickAt + 0.85, s: 'sfx/thud', v: 0.35}];
 const pops = (ts: number[], v = 0.18): Sfx[] => ts.map((at) => ({at, s: 'sfx/pop', v}));
 const CUES: Sfx[] = [
@@ -6309,7 +6310,7 @@ const CUES: Sfx[] = [
   ...[10.9, 12.2, 13.8, 24.5, 33.7, 46.4, 72.6, 91.0, 104.6, 111.2, 116.0, 123.3, 128.0, 148.8, 159.1, 201.0, 216.4, 217.3, 221.0, 230.6, 264.6, 300.0, 337.0, 342.4, 349.0, 356.1, 357.1, 366.6, 396.0].map((at) => ({at, s: 'sfx/swish', v: 0.2})),
   ...pops([2.2, 2.6, 28.6, 37.6, 44.0, 66.3, 74.6, 86.1, 100.6, 103.7, 130.3, 132.3, 136.5, 142.3, 144.0, 157.8, 212.4, 213.9, 235.6, 250.5, 255.9, 272.6, 293.5, 306.5, 308.8, 364.2, 364.6, 365.1, 367.8, 368.7, 369.4, 385.5, 390.5], 0.15),
   ...[4.5, 9.7, 20.2, 33.5, 46.2, 60.1, 66.2, 72.4, 80.9, 97.4, 101.9, 115.9, 123.3, 127.8, 139.3, 158.9, 173.1, 186.4, 193.0, 214.4, 234.2, 254.5, 264.2, 272.4, 290.8, 310.8, 318.6, 326.9, 339.6, 366.4, 376.6, 382.2, 393.9].map((at) => ({at: at - 0.05, s: 'sfx/whoosh', v: 0.16})),
-  ...[4.5, 9.7, 20.2, 33.5, 46.2, 60.1, 66.2, 72.4, 80.9, 97.4, 101.9, 115.9, 123.3, 127.8, 139.3, 158.9, 173.1, 186.4, 193.0, 214.4, 234.2, 254.5, 264.2, 272.4, 290.8, 310.8, 318.6, 326.9, 339.6, 366.4, 376.6, 382.2, 393.9].map((at) => ({at, s: 'alarme', v: 0.1, dur: 0.9})),
+  ...[4.5, 9.7, 20.2, 33.5, 46.2, 60.1, 66.2, 72.4, 80.9, 97.4, 101.9, 115.9, 123.3, 127.8, 139.3, 158.9, 173.1, 186.4, 193.0, 214.4, 234.2, 254.5, 264.2, 272.4, 290.8, 310.8, 318.6, 326.9, 339.6, 366.4, 376.6, 382.2, 393.9].map((at) => ({at, s: 'gyro-tinte', v: 0.24, dur: 1.0})),
   {at: 2.5, s: 'sfx/thud', v: 0.3}, {at: 4.6, s: 'deep-hit', v: 0.3}, ...rep(4.9, 10, 0.1, 'sfx/click', 0.12), ...rep(9.4, 6, 0.1, 'tick', 0.14), {at: 17.6, s: 'sfx/thud', v: 0.3},
   ...[51.9, 52.9, 54.3].map((at) => ({at, s: 'sfx/click', v: 0.2})), {at: 57.4, s: 'sfx/rise', v: 0.15, dur: 1.2}, {at: 60.2, s: 'soft-whoosh', v: 0.3}, {at: 65.9, s: 'alarme', v: 0.18, dur: 1.2},
   {at: 104.6, s: 'tension', v: 0.12, dur: 3.5}, {at: 108.4, s: 'validation', v: 0.2}, {at: 126.6, s: 'sfx/swish', v: 0.2}, {at: 127.3, s: 'sfx/thud', v: 0.3},
