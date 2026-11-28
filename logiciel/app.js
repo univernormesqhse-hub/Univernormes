@@ -1,5 +1,6 @@
-/* UNIVERSNORMES QHSE — application monopage, sans serveur.
-   Données : localStorage (clé KEY). Routage : hash (#/module ou #/module/id).
+/* UNIVERSNORMES QHSE — application monopage.
+   Deux modes : local (données dans localStorage, aucun serveur) ou serveur (API du dossier serveur/, multi-utilisateurs,
+   synchronisation et file d'attente hors ligne). Routage : hash (#/module ou #/module/id).
    Chaque module simple est décrit par un schéma (MODULES) : champs du formulaire, colonnes du tableau, filtres.
    Les écrans riches (tableau de bord, fiche événement, réalisation d'audit, risques, indicateurs) ont leur propre rendu. */
 'use strict';
@@ -9,13 +10,7 @@ const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
-const pad = n => String(n).padStart(2, '0');
-const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
-const today = () => iso(new Date());
-const addDays = (s, n) => { const d = new Date(s + 'T00:00:00'); d.setDate(d.getDate() + n); return iso(d); };
-const addMonths = (s, n) => { const d = new Date(s + 'T00:00:00'); d.setMonth(d.getMonth() + n); return iso(d); };
-const fmtDate = s => s ? new Date(s + 'T00:00:00').toLocaleDateString('fr-FR') : '—';
-const daysBetween = (a, b) => Math.round((new Date(b + 'T00:00:00') - new Date(a + 'T00:00:00')) / 86400000);
+const { pad, iso, today, addDays, addMonths, fmtDate, daysBetween } = Regles;
 const MOIS = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
 const fmtMonth = m => { const [y, mo] = m.split('-'); return `${MOIS[+mo - 1]} ${y.slice(2)}`; };
 const nf = (n, d = 0) => Number.isFinite(n) ? n.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d }) : '—';
@@ -26,62 +21,157 @@ function toast(msg) {
   clearTimeout(toast.t); toast.t = setTimeout(() => t.hidden = true, 2600);
 }
 
-/* ───────────── Stockage ───────────── */
+/* ───────────── Stockage ─────────────
+   Mode local : tout est dans localStorage (KEY).
+   Mode serveur : les données sont chargées depuis l'API ; chaque modification est appliquée tout de suite à l'écran,
+   mise dans une file d'attente (conservée hors ligne) puis envoyée au serveur. Les modifications des autres
+   utilisateurs sont récupérées toutes les 30 secondes. */
 const KEY = 'universnormes-qhse-v1';
+const KEY_SRV = 'universnormes-qhse-serveur-v1';
 const COLLECTIONS = ['sites', 'personnel', 'evenements', 'risques', 'actions', 'modeles', 'audits', 'documents', 'formations', 'exigences', 'heures'];
+const MODE = { serveur: false, user: null, enLigne: true };
 const DB = {
-  d: null,
+  d: null, file: [], curseur: 0,
   load() {
     try { this.d = JSON.parse(localStorage.getItem(KEY)); } catch (e) { this.d = null; }
     if (!this.d || !this.d.meta) { this.d = seed(); this.save(); }
-    COLLECTIONS.forEach(c => this.d[c] ||= []);
-    this.d.meta.compteurs ||= {};
+    this.normaliser();
   },
+  normaliser() { this.d.meta ||= {}; COLLECTIONS.forEach(c => this.d[c] ||= []); this.d.meta.compteurs ||= {}; },
   save() {
-    try { localStorage.setItem(KEY, JSON.stringify(this.d)); }
-    catch (e) { toast('Stockage plein : supprimez des pièces jointes ou exportez vos données.'); }
+    try {
+      if (MODE.serveur) localStorage.setItem(KEY_SRV, JSON.stringify({ userId: MODE.user?.id, user: MODE.user, d: this.d, file: this.file, curseur: this.curseur }));
+      else localStorage.setItem(KEY, JSON.stringify(this.d));
+    } catch (e) {
+      if (MODE.serveur) { try { localStorage.removeItem(KEY_SRV); } catch (_) { } }
+      else toast('Stockage plein : supprimez des pièces jointes ou exportez vos données.');
+    }
   },
   all(c) { return this.d[c]; },
   get(c, id) { return this.d[c].find(x => x.id === id); },
+  poser(c, o) { const i = this.d[c].findIndex(x => x.id === o.id); if (i >= 0) this.d[c][i] = o; else this.d[c].push(o); },
   upsert(c, o) {
-    const i = this.d[c].findIndex(x => x.id === o.id);
-    if (i >= 0) this.d[c][i] = o; else this.d[c].push(o);
-    this.save(); return o;
+    this.poser(c, o);
+    if (MODE.serveur) this.pousser({ op: 'put', c, id: o.id, data: o }); else this.save();
+    return o;
   },
-  remove(c, id) { this.d[c] = this.d[c].filter(x => x.id !== id); this.save(); },
+  remove(c, id) {
+    this.d[c] = this.d[c].filter(x => x.id !== id);
+    if (MODE.serveur) this.pousser({ op: 'del', c, id }); else this.save();
+  },
   nextRef(prefix) {
     const y = new Date().getFullYear(), k = `${prefix}-${y}`;
     const n = (this.d.meta.compteurs[k] || 0) + 1;
     this.d.meta.compteurs[k] = n;
     return `${prefix}-${y}-${String(n).padStart(3, '0')}`;
+  },
+  // En mode serveur, la référence définitive est attribuée par le serveur (pas de doublon entre utilisateurs).
+  attribuerRef(o, prefix) {
+    if (MODE.serveur) { o.ref = `${prefix}-…`; o._refPending = prefix; } else o.ref = this.nextRef(prefix);
+  },
+  pousser(op) {
+    this.file = this.file.filter(x => !(x.c === op.c && x.id === op.id));
+    this.file.push(JSON.parse(JSON.stringify(op)));
+    this.save(); afficherSync(); Sync.planifier();
   }
 };
+
+async function apiCall(method, chemin, corps) {
+  const r = await fetch(chemin, { method, credentials: 'same-origin', headers: { 'Content-Type': 'application/json', 'X-QHSE': '1' }, body: corps === undefined ? undefined : JSON.stringify(corps) });
+  let j = null; try { j = await r.json(); } catch (e) { }
+  if (!r.ok) throw Object.assign(new Error(j?.erreur || `Erreur ${r.status}`), { status: r.status, corps: j });
+  return j;
+}
+
+/* Remplace, dans `cible`, les pièces jointes encore en data: par la version du serveur (même id), récursivement. */
+function remplacerFichiers(cible, source) {
+  const parId = new Map();
+  (function collecter(o) { if (Array.isArray(o)) o.forEach(collecter); else if (o && typeof o === 'object') { if (o.id && o.url) parId.set(o.id, o); Object.values(o).forEach(collecter); } })(source);
+  (function patcher(o) {
+    if (Array.isArray(o)) { o.forEach((x, i) => { if (x && x.id && x.data && parId.has(x.id)) o[i] = parId.get(x.id); else patcher(x); }); }
+    else if (o && typeof o === 'object') for (const [k, x] of Object.entries(o)) { if (x && x.id && x.data && parId.has(x.id)) o[k] = parId.get(x.id); else patcher(x); }
+  })(cible);
+}
+
+const Sync = {
+  t: null, enCours: false, rendreApres: false,
+  planifier(delai = 400) { clearTimeout(this.t); this.t = setTimeout(() => this.envoyer(), delai); },
+  async envoyer() {
+    if (!MODE.serveur || this.enCours || !DB.file.length) return;
+    this.enCours = true; afficherSync();
+    const ops = DB.file.slice(0, 20);
+    let retry = 0;
+    try {
+      const r = await apiCall('POST', 'api/lot', { ops });
+      MODE.enLigne = true;
+      DB.file = DB.file.filter(x => !ops.some(o => o.c === x.c && o.id === x.id && JSON.stringify(o) === JSON.stringify(x)));
+      for (const res of r.resultats) {
+        const plusRecent = DB.file.find(x => x.c === res.c && x.id === res.id);
+        if (!res.ok) {
+          toast(`Non enregistré : ${res.erreur}`);
+          if (!plusRecent) { const vrai = await apiCall('GET', 'api/donnees').catch(() => null); if (vrai) { DB.d[res.c] = vrai.donnees[res.c]; this.rendreApres = true; } }
+          continue;
+        }
+        if (plusRecent) {
+          if (plusRecent.data && res.data) { if (res.data.ref) { plusRecent.data.ref = res.data.ref; delete plusRecent.data._refPending; } remplacerFichiers(plusRecent.data, res.data); }
+          const cache = DB.get(res.c, res.id); if (cache && res.data) { cache.ref = res.data.ref || cache.ref; delete cache._refPending; remplacerFichiers(cache, res.data); }
+        } else if (res.data) { DB.poser(res.c, res.data); this.rendreApres = true; }
+      }
+    } catch (e) {
+      if (e.status === 401) { afficherConnexion('Votre session a expiré. Reconnectez-vous : vos modifications en attente seront envoyées ensuite.'); }
+      else if (e.status === 413) { toast('Envoi trop volumineux : retirez des photos.'); DB.file.shift(); }
+      else { MODE.enLigne = false; retry = 15000; }
+    } finally {
+      this.enCours = false; DB.save(); afficherSync(); rafraichirSiInactif();
+      if (DB.file.length && MODE.enLigne) this.planifier(50); else if (DB.file.length && retry) this.planifier(retry);
+    }
+  },
+  async tirer() {
+    if (!MODE.serveur || document.hidden) return;
+    try {
+      const r = await apiCall('GET', `api/changements?depuis=${DB.curseur}`);
+      MODE.enLigne = true;
+      for (const ch of r.changements) {
+        if (DB.file.some(x => x.c === ch.c && x.id === ch.id)) continue; // une modification locale en attente a la priorité
+        if (ch.data) DB.poser(ch.c, ch.data); else DB.d[ch.c] = DB.d[ch.c].filter(x => x.id !== ch.id);
+        this.rendreApres = true;
+      }
+      DB.curseur = r.curseur; DB.save();
+      if (DB.file.length) this.envoyer();
+    } catch (e) {
+      if (e.status === 401) afficherConnexion('Votre session a expiré.'); else MODE.enLigne = false;
+    }
+    afficherSync(); rafraichirSiInactif();
+  }
+};
+function enSaisie() {
+  if (!$('#modal').hidden) return true;
+  const a = document.activeElement;
+  return !!a && a.closest('#view') && a.matches('input,textarea,select');
+}
+function rafraichirSiInactif() { if (Sync.rendreApres && !enSaisie()) { Sync.rendreApres = false; route(); } }
+function afficherSync() {
+  const el = $('#syncEtat'); if (!el) return;
+  el.hidden = !MODE.serveur; if (!MODE.serveur) return;
+  const n = DB.file.length;
+  const [cls, txt] = !MODE.enLigne ? ['orange', `Hors ligne${n ? ` · ${n} en attente` : ''}`] : n || Sync.enCours ? ['yellow', `Envoi… (${n})`] : ['green', 'Synchronisé'];
+  el.className = 'sync ' + cls; el.textContent = txt;
+  el.title = !MODE.enLigne ? 'Vos saisies sont gardées sur cet appareil et seront envoyées au retour de la connexion.' : '';
+}
+const peut = col => !MODE.serveur || Regles.peutEcrire(MODE.user?.role, col);
+const peutSuppr = col => !MODE.serveur || Regles.peutSupprimer(MODE.user?.role, col);
+const estAdmin = () => !MODE.serveur || MODE.user?.role === 'admin';
+const estResp = () => !MODE.serveur || ['admin', 'responsable'].includes(MODE.user?.role);
 const siteName = id => DB.get('sites', id)?.nom || '—';
 const personName = id => DB.get('personnel', id)?.nom || '';
 const currentSite = () => DB.d.meta.site || '';
 const bySite = arr => currentSite() ? arr.filter(x => !('site' in x) || x.site === currentSite()) : arr;
 
-/* ───────────── Règles métier ───────────── */
-const ACTION_OUVERTE = ['À faire', 'En cours'];
-const actionLate = a => ACTION_OUVERTE.includes(a.statut) && a.echeance && a.echeance < today();
-const crit = (g, p) => (+g || 0) * (+p || 0);
-const critLevel = c => c >= 12 ? 4 : c >= 8 ? 3 : c >= 4 ? 2 : c > 0 ? 1 : 0;
+/* ───────────── Règles métier (regles.js, partagées avec le serveur) ───────────── */
+const { ACTION_OUVERTE, actionLate, crit, critLevel, echeanceState, auditScore, docRevueState } = Regles;
 const CRIT_LBL = ['—', 'Faible', 'Moyen', 'Élevé', 'Critique'];
 const CRIT_CLS = ['grey', 'green', 'yellow', 'orange', 'red'];
 const critBadge = c => badge(`${c || '—'} · ${CRIT_LBL[critLevel(c)]}`, CRIT_CLS[critLevel(c)]);
-function echeanceState(date, alerteJours = 60) {
-  if (!date) return { cls: 'grey', txt: 'Sans échéance', etat: 'ok' };
-  const d = daysBetween(today(), date);
-  if (d < 0) return { cls: 'red', txt: 'Expiré', etat: 'expire' };
-  if (d <= alerteJours) return { cls: 'orange', txt: `Dans ${d} j`, etat: 'bientot' };
-  return { cls: 'green', txt: 'Valide', etat: 'ok' };
-}
-function auditScore(a) {
-  const r = Object.values(a.reponses || {});
-  const c = r.filter(x => x.r === 'C').length, nc = r.filter(x => x.r === 'NC').length, na = r.filter(x => x.r === 'NA').length;
-  return { c, nc, na, repondu: c + nc + na, score: c + nc ? Math.round(100 * c / (c + nc)) : null };
-}
-const docRevueState = d => d.statut === 'Obsolète' ? { cls: 'grey', txt: 'Obsolète', etat: 'ok' } : echeanceState(d.prochaineRevue, 30);
 
 /* ───────────── Schémas des modules ───────────── */
 const SITE = { k: 'site', label: 'Site', type: 'site', required: true };
@@ -101,6 +191,7 @@ const MODULES = {
       { k: 'arret', label: 'Arrêt de travail', type: 'select', options: ['Non', 'Oui'], def: () => 'Non', showIf: o => o.type === 'Accident de travail' },
       { k: 'joursPerdus', label: 'Jours perdus', type: 'number', showIf: o => o.type === 'Accident de travail' && o.arret === 'Oui' },
       { k: 'mesureImmediate', label: 'Mesure immédiate prise', type: 'textarea', full: true },
+      { k: 'photos', label: 'Photos du lieu, du matériel, des dégâts', type: 'photos', full: true },
       { k: 'statut', label: 'Statut', type: 'select', options: ['Déclaré', 'En analyse', 'Actions en cours', 'Clôturé'], def: () => 'Déclaré' }
     ],
     cols: [
@@ -125,7 +216,8 @@ const MODULES = {
       { k: 'statut', label: 'Statut', type: 'select', options: ['À faire', 'En cours', 'Réalisée', 'Efficace', 'Inefficace'], def: () => 'À faire' },
       { k: 'description', label: 'Détails', type: 'textarea', full: true },
       { k: 'dateRealisation', label: 'Date de réalisation', type: 'date', showIf: o => !ACTION_OUVERTE.includes(o.statut) },
-      { k: 'efficacite', label: 'Vérification de l\'efficacité', type: 'textarea', full: true, showIf: o => ['Réalisée', 'Efficace', 'Inefficace'].includes(o.statut), hint: 'Comment avez-vous vérifié que le problème ne se reproduit pas ?' }
+      { k: 'efficacite', label: 'Vérification de l\'efficacité', type: 'textarea', full: true, showIf: o => ['Réalisée', 'Efficace', 'Inefficace'].includes(o.statut), hint: 'Comment avez-vous vérifié que le problème ne se reproduit pas ?' },
+      { k: 'photos', label: 'Photos (avant / après, preuve de réalisation)', type: 'photos', full: true }
     ],
     cols: [
       { k: 'ref', label: 'Réf.', cls: 'ref' }, { k: 'titre', label: 'Action' },
@@ -134,7 +226,7 @@ const MODULES = {
       { k: 'echeance', label: 'Échéance', html: o => `${fmtDate(o.echeance)} ${actionLate(o) ? badge('En retard', 'red') : ''}` },
       { k: 'statut', label: 'Statut', html: o => badge(o.statut, { 'À faire': '', 'En cours': 'yellow', 'Réalisée': 'green', 'Efficace': 'green', 'Inefficace': 'red' }[o.statut]) }
     ],
-    chips: { k: 'statut', values: ['À faire', 'En cours', 'Réalisée', 'Efficace', 'Inefficace'], extra: [{ id: 'retard', label: 'En retard', test: actionLate }] },
+    chips: { k: 'statut', values: ['À faire', 'En cours', 'Réalisée', 'Efficace', 'Inefficace'], extra: [{ id: 'retard', label: 'En retard', test: actionLate }, { id: 'miennes', label: 'Mes actions', visible: () => !!MODE.user?.personne, test: o => o.responsable === MODE.user?.personne }] },
     filters: ['type', 'responsable'], sort: ['echeance', 1]
   },
   risques: {
@@ -204,7 +296,7 @@ const MODULES = {
       { k: 'processus', label: 'Processus' }, { k: 'version', label: 'Vers.', cls: 'num' },
       { k: 'statut', label: 'Statut', html: o => badge(o.statut, { 'Brouillon': 'grey', 'En vérification': 'yellow', 'Approuvé': 'green', 'Obsolète': 'grey' }[o.statut]) },
       { k: 'prochaineRevue', label: 'Revue', html: o => { const s = docRevueState(o); return `${fmtDate(o.prochaineRevue)} ${s.etat !== 'ok' ? badge(s.txt, s.cls) : ''}`; } },
-      { k: 'f', label: '', val: () => '', html: o => o.fichier?.data || o.lien ? '📎' : '' }
+      { k: 'f', label: '', val: () => '', html: o => urlFichier(o.fichier) || o.lien ? '📎' : '' }
     ],
     chips: { k: 'statut', values: ['Brouillon', 'En vérification', 'Approuvé', 'Obsolète'], extra: [{ id: 'revue', label: 'Revue à faire', test: o => docRevueState(o).etat !== 'ok' }] },
     filters: ['typeDoc', 'processus'], sort: ['code', 1]
@@ -215,6 +307,8 @@ const MODULES = {
       { k: 'nom', label: 'Nom et prénom', required: true }, { k: 'matricule', label: 'Matricule' },
       { k: 'poste', label: 'Poste' }, SITE,
       { k: 'service', label: 'Service' }, { k: 'telephone', label: 'Téléphone', type: 'tel' },
+      { k: 'email', label: 'E-mail (alertes)', type: 'email' },
+      { k: 'whatsapp', label: 'WhatsApp (alertes)', type: 'tel', hint: 'Format international conseillé : +225 07 01 02 03 04' },
       { k: 'dateEmbauche', label: 'Date d\'embauche', type: 'date' },
       { k: 'actif', label: 'Situation', type: 'select', options: ['Actif', 'Parti'], def: () => 'Actif' }
     ],
@@ -309,23 +403,7 @@ function origineLink(a) {
 const persoAlertes = pid => DB.all('formations').filter(f => f.personne === pid && echeanceState(f.dateExpiration).etat !== 'ok').length;
 
 /* ───────────── Alertes ───────────── */
-function computeAlerts() {
-  const out = [];
-  bySite(DB.all('actions')).filter(actionLate).forEach(a => out.push({ niv: 'red', txt: `Action en retard : ${a.titre}`, sub: `Échéance ${fmtDate(a.echeance)} · ${personName(a.responsable)}`, go: `#/actions?ouvrir=${a.id}` }));
-  DB.all('formations').filter(f => (!currentSite() || MODULES.formations.siteVia(f) === currentSite())).forEach(f => {
-    const s = echeanceState(f.dateExpiration);
-    if (s.etat !== 'ok') out.push({ niv: s.etat === 'expire' ? 'red' : 'orange', txt: `${f.intitule} — ${personName(f.personne)}`, sub: s.etat === 'expire' ? `Expirée le ${fmtDate(f.dateExpiration)}` : `Expire le ${fmtDate(f.dateExpiration)}`, go: `#/formations?ouvrir=${f.id}` });
-  });
-  DB.all('documents').forEach(d => {
-    const s = docRevueState(d);
-    if (s.etat !== 'ok') out.push({ niv: s.etat === 'expire' ? 'red' : 'orange', txt: `Revue du document ${d.code}`, sub: `${d.titre} · prévue le ${fmtDate(d.prochaineRevue)}`, go: `#/documents?ouvrir=${d.id}` });
-  });
-  bySite(DB.all('audits')).filter(a => a.statut !== 'Terminé' && a.date < today()).forEach(a => out.push({ niv: 'orange', txt: `Audit non réalisé : ${DB.get('modeles', a.modele)?.nom || ''}`, sub: `Prévu le ${fmtDate(a.date)} · ${siteName(a.site)}`, go: `#/audits/${a.id}` }));
-  bySite(DB.all('risques')).filter(r => critLevel(crit(r.g, r.p)) === 4 && !actionsFor('risque', r.id).some(a => a.statut !== 'Inefficace')).forEach(r => out.push({ niv: 'red', txt: `Risque critique sans action : ${r.risque}`, sub: `${r.unite} · ${siteName(r.site)}`, go: `#/risques?ouvrir=${r.id}` }));
-  DB.all('exigences').filter(e => e.applicable !== 'Non' && e.conformite === 'Non conforme' && !actionsFor('exigence', e.id).length).forEach(e => out.push({ niv: 'red', txt: `Non-conformité réglementaire : ${e.texte}`, sub: e.theme || e.domaine, go: `#/exigences?ouvrir=${e.id}` }));
-  bySite(DB.all('evenements')).filter(e => e.statut === 'Déclaré' && daysBetween(e.date, today()) > 7).forEach(e => out.push({ niv: 'orange', txt: `Événement non analysé depuis ${daysBetween(e.date, today())} j`, sub: `${e.ref} · ${e.titre}`, go: `#/evenements/${e.id}` }));
-  return out.sort((a, b) => (a.niv === 'red' ? 0 : 1) - (b.niv === 'red' ? 0 : 1));
-}
+const computeAlerts = () => Regles.alertes(DB.d, currentSite());
 function renderAlertBadge() {
   const n = computeAlerts().length;
   $('#alertCount').textContent = n ? (n > 99 ? '99+' : n) : '';
@@ -339,6 +417,43 @@ function openAlerts() {
   $$('.alert-item', d).forEach(el => el.onclick = () => { d.hidden = true; location.hash = al[+el.dataset.i].go; });
 }
 
+/* ───────────── Photos et pièces jointes ───────────── */
+const urlFichier = f => f?.url || f?.data || '';
+const MAX_FICHIER = () => MODE.serveur ? 10 * 1024 * 1024 : 1024 * 1024;
+const readFile = file => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(file); });
+/* Réduit une photo (1600 px en mode serveur, 1024 px en local) et la convertit en JPEG : une photo de téléphone
+   de 4 Mo passe à 200–400 Ko, ce qui compte sur les réseaux mobiles. */
+async function compresserImage(file) {
+  const max = MODE.serveur ? 1600 : 1024, qualite = MODE.serveur ? 0.82 : 0.7;
+  const url = URL.createObjectURL(file);
+  try {
+    const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; });
+    const k = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
+    const c = document.createElement('canvas'); c.width = Math.round(img.naturalWidth * k); c.height = Math.round(img.naturalHeight * k);
+    c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+    return c.toDataURL('image/jpeg', qualite);
+  } finally { URL.revokeObjectURL(url); }
+}
+async function lirePhotos(fileList) {
+  const out = [];
+  for (const f of [...fileList]) {
+    if (!f.type.startsWith('image/')) { toast(`${f.name} n'est pas une image`); continue; }
+    try { out.push({ id: uid(), nom: f.name.replace(/\.\w+$/, '') + '.jpg', data: await compresserImage(f), quand: new Date().toISOString() }); }
+    catch (e) { toast(`Impossible de lire ${f.name}`); }
+  }
+  return out;
+}
+function galerie(photos = [], { editable = false } = {}) {
+  return `<div class="photos">${photos.map(p => `<figure><a href="${esc(urlFichier(p))}" target="_blank" rel="noopener"><img src="${esc(urlFichier(p))}" alt="${esc(p.nom || 'photo')}" loading="lazy"></a>${editable ? `<button type="button" class="ph-del" data-ph-del="${esc(p.id)}" aria-label="Retirer la photo">✕</button>` : ''}</figure>`).join('')}
+    ${editable ? `<label class="ph-add" title="Prendre ou ajouter des photos">📷<span>Photo</span><input type="file" accept="image/*" capture="environment" multiple data-ph-add hidden></label>` : ''}</div>`;
+}
+/* Branche une galerie éditable : `get()` renvoie la liste, `set(liste)` l'enregistre et redessine. */
+function brancherGalerie(el, get, set) {
+  const add = $('[data-ph-add]', el);
+  if (add) add.onchange = async () => { const n = await lirePhotos(add.files); if (n.length) set([...(get() || []), ...n]); };
+  $$('[data-ph-del]', el).forEach(b => b.onclick = e => { e.preventDefault(); if (confirm('Retirer cette photo ?')) set((get() || []).filter(p => p.id !== b.dataset.phDel)); });
+}
+
 /* ───────────── Formulaire générique ───────────── */
 function fieldInput(f, v) {
   const name = `name="${f.k}" ${f.required ? 'required' : ''}`;
@@ -349,28 +464,36 @@ function fieldInput(f, v) {
     case 'site': return `<select ${name}>${opts(DB.all('sites').map(s => [s.id, s.nom]))}</select>`;
     case 'personne': return `<select ${name}>${opts(DB.all('personnel').filter(p => p.actif !== 'Parti' || p.id === v).sort((a, b) => a.nom.localeCompare(b.nom)).map(p => [p.id, p.nom]))}</select>`;
     case 'modele': return `<select ${name}>${opts(DB.all('modeles').map(m => [m.id, m.nom]))}</select>`;
-    case 'file': return `<input type="file" name="${f.k}">${v?.nom ? `<div class="hint">Fichier actuel : <a href="${v.data}" download="${esc(v.nom)}">${esc(v.nom)}</a> — <label><input type="checkbox" name="${f.k}__suppr"> supprimer</label></div>` : ''}`;
+    case 'file': return `<input type="file" name="${f.k}">${v?.nom ? `<div class="hint">Fichier actuel : <a href="${esc(urlFichier(v))}" target="_blank" rel="noopener" download="${esc(v.nom)}">${esc(v.nom)}</a> — <label><input type="checkbox" name="${f.k}__suppr"> supprimer</label></div>` : ''}`;
+    case 'photos': return `<div data-photos="${f.k}"></div>`;
     case 'number': return `<input type="number" min="0" step="any" ${name} value="${esc(v)}">`;
     default: return `<input type="${f.type || 'text'}" ${name} value="${esc(v)}" ${f.list ? `list="${f.list}"` : ''}>`;
   }
 }
-const readFile = file => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(file); });
+const majTexte = o => o?._maj ? `Modifié par ${o._maj.par} le ${new Date(o._maj.quand).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' })}` : '';
 
 function openForm(col, obj, defaults = {}, onSaved) {
-  const m = MODULES[col], isNew = !obj;
-  const o = obj ? { ...obj } : { ...defaults };
+  const m = MODULES[col], isNew = !obj, ecriture = peut(col);
+  const o = obj ? JSON.parse(JSON.stringify(obj)) : { ...defaults };
   if (isNew) m.fields.forEach(f => { if (o[f.k] === undefined && f.def) o[f.k] = f.def(); });
-  if (isNew && m.fields.some(f => f.k === 'site') && !o.site) o.site = currentSite() || DB.all('sites')[0]?.id || '';
+  const moi = MODE.user?.personne;
+  if (isNew && m.fields.some(f => f.k === 'site') && !o.site) o.site = currentSite() || DB.get('personnel', moi)?.site || DB.all('sites')[0]?.id || '';
+  if (isNew && moi && col === 'evenements' && !o.declarant) o.declarant = moi;
+  if (isNew && moi && col === 'audits' && !o.auditeur) o.auditeur = moi;
+  const photos = Object.fromEntries(m.fields.filter(f => f.type === 'photos').map(f => [f.k, [...(o[f.k] || [])]]));
   const box = $('#modalBox');
   box.innerHTML = `<form novalidate>
-    <header><h2>${isNew ? 'Ajouter ' + m.un : esc(o.ref || o.code || o.nom || o.titre || 'Modifier')}</h2><button type="button" class="icon-btn" data-close aria-label="Fermer">✕</button></header>
-    <div class="body">${m.fields.map(f => `<label class="${f.full ? 'full' : ''}" data-field="${f.k}"><span>${esc(f.label)}${f.required ? ' <em>*</em>' : ''}</span>${fieldInput(f, o[f.k])}${f.hint ? `<div class="hint">${esc(f.hint)}</div>` : ''}</label>`).join('')}
+    <header><div><h2>${isNew ? 'Ajouter ' + m.un : esc(o.ref || o.code || o.nom || o.titre || 'Modifier')}</h2>${majTexte(o) ? `<div class="small muted">${esc(majTexte(o))}</div>` : ''}</div><button type="button" class="icon-btn" data-close aria-label="Fermer">✕</button></header>
+    <div class="body">${!ecriture ? '<div class="full lecture">Lecture seule : votre rôle ne permet pas de modifier ces fiches.</div>' : ''}${m.fields.map(f => `<label class="${f.full ? 'full' : ''}" data-field="${f.k}"><span>${esc(f.label)}${f.required ? ' <em>*</em>' : ''}</span>${fieldInput(f, o[f.k])}${f.hint ? `<div class="hint">${esc(f.hint)}</div>` : ''}</label>`).join('')}
     ${col === 'formations' ? `<datalist id="formations-types">${[...new Set(DB.all('formations').map(f => f.intitule).concat(['Sauveteur secouriste du travail (SST)', 'Habilitation électrique B1V', 'Travail en hauteur', 'Conduite de chariot élévateur', 'Équipier de première intervention (EPI incendie)', 'Gestes et postures', 'Visite médicale périodique']))].map(x => `<option value="${esc(x)}">`).join('')}</datalist>` : ''}
     </div>
-    <footer>${!isNew ? '<button type="button" class="btn danger left" data-del>Supprimer</button>' : ''}${!isNew && col !== 'actions' && ['evenements', 'risques', 'exigences'].includes(col) ? '<button type="button" class="btn" data-action>+ Action</button>' : ''}<button type="button" class="btn" data-close>Annuler</button><button class="btn primary">Enregistrer</button></footer>
+    <footer>${!isNew && peutSuppr(col) ? '<button type="button" class="btn danger left" data-del>Supprimer</button>' : ''}${!isNew && ['evenements', 'risques', 'exigences'].includes(col) && peut('actions') ? '<button type="button" class="btn" data-action>+ Action</button>' : ''}<button type="button" class="btn" data-close>${ecriture ? 'Annuler' : 'Fermer'}</button>${ecriture ? '<button class="btn primary">Enregistrer</button>' : ''}</footer>
   </form>`;
   const form = $('form', box);
-  const values = () => { const v = { ...o }; m.fields.forEach(f => { const el = form.elements[f.k]; if (el && f.type !== 'file') v[f.k] = el.value; }); return v; };
+  const dessinerPhotos = k => { const el = $(`[data-photos="${k}"]`, form); el.innerHTML = galerie(photos[k], { editable: ecriture }); brancherGalerie(el, () => photos[k], l => { photos[k] = l; dessinerPhotos(k); }); };
+  Object.keys(photos).forEach(dessinerPhotos);
+  if (!ecriture) $$('input,select,textarea', form).forEach(el => el.disabled = true);
+  const values = () => { const v = { ...o }; m.fields.forEach(f => { const el = form.elements[f.k]; if (el && f.type !== 'file' && f.type !== 'photos') v[f.k] = el.value; }); return v; };
   const applyShow = () => { const v = values(); m.fields.forEach(f => { if (f.showIf) $(`[data-field="${f.k}"]`, form).hidden = !f.showIf(v); }); };
   form.addEventListener('input', applyShow); form.addEventListener('change', applyShow); applyShow();
   $$('[data-close]', box).forEach(b => b.onclick = closeModal);
@@ -383,9 +506,10 @@ function openForm(col, obj, defaults = {}, onSaved) {
   if (act) act.onclick = () => { closeModal(); newActionFrom(col, o); };
   form.onsubmit = async e => {
     e.preventDefault();
+    if (!ecriture) return;
     const v = values();
     const missing = m.fields.filter(f => f.required && !(f.showIf && !f.showIf(v)) && !String(v[f.k] ?? '').trim());
-    $$('[data-field]', form).forEach(l => l.querySelector('input,select,textarea').style.borderColor = '');
+    $$('[data-field] [name]', form).forEach(el => el.style.borderColor = '');
     if (missing.length) {
       missing.forEach(f => $(`[data-field="${f.k}"] [name]`, form).style.borderColor = 'var(--red)');
       toast(`Champ obligatoire : ${missing.map(f => f.label).join(', ')}`); return;
@@ -394,19 +518,20 @@ function openForm(col, obj, defaults = {}, onSaved) {
       const inp = form.elements[f.k], file = inp.files?.[0];
       if (form.elements[f.k + '__suppr']?.checked) v[f.k] = null;
       if (file) {
-        if (file.size > 1024 * 1024) { toast('Fichier trop lourd (1 Mo max). Mettez plutôt un lien.'); return; }
-        v[f.k] = { nom: file.name, data: await readFile(file) };
+        if (file.size > MAX_FICHIER()) { toast(`Fichier trop lourd (${MODE.serveur ? 10 : 1} Mo max). Mettez plutôt un lien.`); return; }
+        v[f.k] = { id: uid(), nom: file.name, data: await readFile(file) };
       }
     }
+    Object.assign(v, photos);
     m.fields.forEach(f => { if (f.showIf && !f.showIf(v)) delete v[f.k]; });
-    if (isNew) { v.id = uid(); v.cree = today(); if (m.prefix && !v.ref) v.ref = DB.nextRef(m.prefix); }
+    if (isNew) { v.id = uid(); v.cree = today(); if (m.prefix && !v.ref) DB.attribuerRef(v, m.prefix); }
     if (col === 'actions' && !ACTION_OUVERTE.includes(v.statut) && !v.dateRealisation) v.dateRealisation = today();
     if (col === 'documents' && obj && obj.version !== v.version && v.statut === 'Approuvé') { v.historique = [...(obj.historique || []), { version: obj.version, date: obj.dateApprobation, modifs: obj.modifs }]; }
     DB.upsert(col, v); closeModal(); toast(isNew ? 'Fiche créée' : 'Modifications enregistrées');
     if (onSaved) onSaved(v); else route();
   };
   openModal();
-  setTimeout(() => form.querySelector('input:not([type=file]),select,textarea')?.focus(), 30);
+  setTimeout(() => form.querySelector('input:not([type=file]):not(:disabled),select:not(:disabled),textarea:not(:disabled)')?.focus(), 30);
 }
 function newActionFrom(col, src, extra = {}) {
   const type = { evenements: 'evenement', risques: 'risque', exigences: 'exigence', audits: 'audit' }[col];
@@ -415,14 +540,15 @@ function newActionFrom(col, src, extra = {}) {
     type: col === 'risques' ? 'Préventive' : 'Corrective',
     responsable: src.responsable || '', ...extra
   }, () => {
-    if (col === 'evenements' && ['Déclaré', 'En analyse'].includes(src.statut)) {
-      const e = DB.get('evenements', src.id); if (e) { e.statut = 'Actions en cours'; DB.save(); }
+    if (col === 'evenements' && peut('evenements')) {
+      const e = DB.get('evenements', src.id);
+      if (e && ['Déclaré', 'En analyse'].includes(e.statut)) DB.upsert('evenements', { ...e, statut: 'Actions en cours' });
     }
     route();
   });
 }
 function openModal() { $('#modal').hidden = false; document.body.style.overflow = 'hidden'; }
-function closeModal() { $('#modal').hidden = true; document.body.style.overflow = ''; }
+function closeModal() { $('#modal').hidden = true; document.body.style.overflow = ''; setTimeout(rafraichirSiInactif, 0); }
 
 /* ───────────── Liste générique ───────────── */
 const listState = {};
@@ -458,15 +584,15 @@ function renderList(col, opts = {}) {
       <div class="grow"><input type="search" placeholder="Rechercher…" value="${esc(st.q)}" data-q></div>
       ${(m.filters || []).map(filterSel).join('')}
       <button class="btn" data-csv>Exporter CSV</button>
-      <button class="btn primary" data-new>+ Ajouter</button>
+      ${peut(col) ? '<button class="btn primary" data-new>+ Ajouter</button>' : ''}
     </div>
     ${m.chips ? `<div class="chips"><button class="chip ${!st.chip ? 'on' : ''}" data-chip="">Tous (${base.length})</button>
       ${m.chips.values.map(v => `<button class="chip ${st.chip === v ? 'on' : ''}" data-chip="${esc(v)}">${esc(v)} (${chipCount(o => o[m.chips.k] === v)})</button>`).join('')}
-      ${(m.chips.extra || []).map(x => `<button class="chip ${st.chip === x.id ? 'on' : ''}" data-chip="${x.id}">${esc(x.label)} (${chipCount(x.test)})</button>`).join('')}</div>` : ''}
+      ${(m.chips.extra || []).filter(x => !x.visible || x.visible()).map(x => `<button class="chip ${st.chip === x.id ? 'on' : ''}" data-chip="${x.id}">${esc(x.label)} (${chipCount(x.test)})</button>`).join('')}</div>` : ''}
     ${rows.length ? `<div class="table-wrap"><table><thead><tr>${m.cols.map(c => `<th data-sort="${c.k}" class="${c.cls === 'num' ? 'num' : ''} ${sk === c.k ? 'sorted' + (sd > 0 ? ' asc' : '') : ''}">${esc(c.label)}</th>`).join('')}</tr></thead>
       <tbody>${rows.map(o => `<tr data-id="${o.id}">${m.cols.map(c => `<td class="${c.cls || ''}">${c.html ? c.html(o) : esc(c.fmt ? c.fmt(o[c.k]) : (c.val ? c.val(o) : o[c.k] ?? ''))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
       <div class="list-count">${rows.length} fiche${rows.length > 1 ? 's' : ''}</div>`
-      : `<div class="card empty">Aucune fiche${st.q || st.chip ? ' pour ce filtre' : ''}. <br><br><button class="btn primary" data-new>+ Ajouter ${m.un}</button></div>`}`;
+      : `<div class="card empty">Aucune fiche${st.q || st.chip ? ' pour ce filtre' : ''}. ${peut(col) ? `<br><br><button class="btn primary" data-new>+ Ajouter ${m.un}</button>` : ''}</div>`}`;
   const wrap = document.createElement('div'); wrap.innerHTML = html;
   const rerender = () => route();
   $('[data-q]', wrap)?.addEventListener('input', e => { st.q = e.target.value; clearTimeout(st.t); st.t = setTimeout(() => { rerender(); const i = $('[data-q]'); if (i) { i.focus(); i.setSelectionRange(i.value.length, i.value.length); } }, 250); });
@@ -641,7 +767,9 @@ function renderRisques() {
 function renderEvenement(id) {
   const e = DB.get('evenements', id);
   if (!e) return notFound();
-  e.analyse ||= { pourquoi: ['', '', '', '', ''], m5: {}, causeRacine: '' };
+  const lire = () => { const x = DB.get('evenements', id); x.analyse ||= { pourquoi: ['', '', '', '', ''], m5: {}, causeRacine: '' }; return x; };
+  const an = e.analyse || { pourquoi: ['', '', '', '', ''], m5: {}, causeRacine: '' };
+  const ecr = peut('evenements'), dis = ecr ? '' : 'disabled';
   const acts = actionsFor('evenement', e.id);
   const M5 = [['mainOeuvre', 'Main-d\'œuvre'], ['materiel', 'Matériel'], ['methode', 'Méthode'], ['milieu', 'Milieu'], ['matiere', 'Matière']];
   const v = document.createElement('div');
@@ -649,9 +777,9 @@ function renderEvenement(id) {
   <div class="detail-head">
     <a href="#/evenements" class="btn small">← Retour</a>
     <h2>${esc(e.ref)} · ${esc(e.titre)}</h2>
-    <select id="evStatut">${MODULES.evenements.fields.find(f => f.k === 'statut').options.map(s => `<option ${s === e.statut ? 'selected' : ''}>${s}</option>`).join('')}</select>
+    <select id="evStatut" ${dis}>${MODULES.evenements.fields.find(f => f.k === 'statut').options.map(s => `<option ${s === e.statut ? 'selected' : ''}>${s}</option>`).join('')}</select>
     <button class="btn" id="evPrint">Imprimer</button>
-    <button class="btn navy" id="evEdit">Modifier</button>
+    <button class="btn navy" id="evEdit">${ecr ? 'Modifier' : 'Détails'}</button>
   </div>
   <div class="card">
     <div class="facts">
@@ -662,49 +790,59 @@ function renderEvenement(id) {
     </div>
     <h3 style="margin:16px 0 6px">Description</h3><div class="prose">${esc(e.description || '—')}</div>
     ${e.mesureImmediate ? `<h3 style="margin:16px 0 6px">Mesure immédiate</h3><div class="prose">${esc(e.mesureImmediate)}</div>` : ''}
+    <h3 style="margin:16px 0 6px">Photos (${(e.photos || []).length})</h3><div id="evPhotos"></div>
+    ${majTexte(e) ? `<div class="small muted" style="margin-top:12px">${esc(majTexte(e))}</div>` : ''}
   </div>
   <div class="card">
-    <div class="card-head"><h2>Analyse des causes</h2><span class="small muted">Enregistrement automatique</span></div>
+    <div class="card-head"><h2>Analyse des causes</h2><span class="small muted">${ecr ? 'Enregistrement automatique' : 'Lecture seule'}</span></div>
     <h3 style="margin-bottom:8px">Méthode des 5 pourquoi</h3>
-    <div class="whys">${e.analyse.pourquoi.map((p, i) => `<label><input data-why="${i}" value="${esc(p)}" placeholder="${i === 0 ? 'Pourquoi l\'événement s\'est-il produit ?' : 'Pourquoi ?'}"></label>`).join('')}</div>
+    <div class="whys">${an.pourquoi.map((p, i) => `<label><input data-why="${i}" value="${esc(p)}" ${dis} placeholder="${i === 0 ? 'Pourquoi l\'événement s\'est-il produit ?' : 'Pourquoi ?'}"></label>`).join('')}</div>
     <h3 style="margin:18px 0 8px">Diagramme d'Ishikawa (5M)</h3>
-    <div class="ishikawa">${M5.map(([k, l]) => `<label><span>${l}</span><textarea data-m5="${k}" placeholder="Causes liées : ${l.toLowerCase()}">${esc(e.analyse.m5[k] || '')}</textarea></label>`).join('')}</div>
+    <div class="ishikawa">${M5.map(([k, l]) => `<label><span>${l}</span><textarea data-m5="${k}" ${dis} placeholder="Causes liées : ${l.toLowerCase()}">${esc(an.m5[k] || '')}</textarea></label>`).join('')}</div>
     <h3 style="margin:18px 0 8px">Cause racine retenue</h3>
-    <textarea data-racine placeholder="La cause profonde sur laquelle agir pour que cela ne se reproduise pas">${esc(e.analyse.causeRacine || '')}</textarea>
+    <textarea data-racine ${dis} placeholder="La cause profonde sur laquelle agir pour que cela ne se reproduise pas">${esc(an.causeRacine || '')}</textarea>
   </div>
   <div class="card">
-    <div class="card-head"><h2>Actions (${acts.length})</h2><button class="btn primary" id="evAction">+ Action corrective</button></div>
+    <div class="card-head"><h2>Actions (${acts.length})</h2>${peut('actions') ? '<button class="btn primary" id="evAction">+ Action corrective</button>' : ''}</div>
     ${acts.length ? `<ul class="mini">${acts.map(a => `<li data-act="${a.id}"><span class="t">${esc(a.titre)}<div class="small muted">${esc(personName(a.responsable))} · échéance ${fmtDate(a.echeance)}</div></span>${actionLate(a) ? badge('En retard', 'red') : ''} ${badge(a.statut, ACTION_OUVERTE.includes(a.statut) ? 'yellow' : a.statut === 'Inefficace' ? 'red' : 'green')}</li>`).join('')}</ul>` : '<div class="empty">Aucune action. Une fois la cause racine trouvée, créez au moins une action corrective.</div>'}
   </div>`;
+  const dessinerPhotos = () => {
+    const el = $('#evPhotos', v), ph = DB.get('evenements', id)?.photos || [];
+    el.innerHTML = ph.length || ecr ? galerie(ph, { editable: ecr }) : '<span class="muted small">Aucune photo</span>';
+    brancherGalerie(el, () => DB.get('evenements', id)?.photos || [], l => { DB.upsert('evenements', { ...DB.get('evenements', id), photos: l }); dessinerPhotos(); });
+  };
+  dessinerPhotos();
   const saveAnalyse = () => {
-    e.analyse.pourquoi = $$('[data-why]', v).map(i => i.value);
-    $$('[data-m5]', v).forEach(t => e.analyse.m5[t.dataset.m5] = t.value);
-    e.analyse.causeRacine = $('[data-racine]', v).value;
-    if (e.statut === 'Déclaré' && (e.analyse.causeRacine || e.analyse.pourquoi[0])) { e.statut = 'En analyse'; $('#evStatut', v).value = 'En analyse'; }
-    DB.upsert('evenements', e);
+    const x = lire();
+    x.analyse.pourquoi = $$('[data-why]', v).map(i => i.value);
+    $$('[data-m5]', v).forEach(t => x.analyse.m5[t.dataset.m5] = t.value);
+    x.analyse.causeRacine = $('[data-racine]', v).value;
+    if (x.statut === 'Déclaré' && (x.analyse.causeRacine || x.analyse.pourquoi[0])) { x.statut = 'En analyse'; $('#evStatut', v).value = 'En analyse'; }
+    DB.upsert('evenements', x);
   };
   let t; v.addEventListener('input', ev => { if (ev.target.matches('[data-why],[data-m5],[data-racine]')) { clearTimeout(t); t = setTimeout(saveAnalyse, 400); } });
   $('#evStatut', v).onchange = ev => {
-    if (ev.target.value === 'Clôturé' && acts.some(a => ACTION_OUVERTE.includes(a.statut)) && !confirm('Des actions sont encore ouvertes. Clôturer quand même ?')) { ev.target.value = e.statut; return; }
-    e.statut = ev.target.value; DB.upsert('evenements', e); toast('Statut mis à jour'); renderAlertBadge();
+    const x = lire();
+    if (ev.target.value === 'Clôturé' && actionsFor('evenement', id).some(a => ACTION_OUVERTE.includes(a.statut)) && !confirm('Des actions sont encore ouvertes. Clôturer quand même ?')) { ev.target.value = x.statut; return; }
+    x.statut = ev.target.value; DB.upsert('evenements', x); toast('Statut mis à jour'); renderAlertBadge();
   };
-  $('#evEdit', v).onclick = () => openForm('evenements', e);
+  $('#evEdit', v).onclick = () => openForm('evenements', lire());
   $('#evPrint', v).onclick = () => window.print();
-  $('#evAction', v).onclick = () => newActionFrom('evenements', e, { titre: e.analyse.causeRacine ? `Traiter : ${e.analyse.causeRacine}`.slice(0, 120) : '' });
+  const ea = $('#evAction', v);
+  if (ea) ea.onclick = () => { const x = lire(); newActionFrom('evenements', x, { titre: x.analyse.causeRacine ? `Traiter : ${x.analyse.causeRacine}`.slice(0, 120) : '' }); };
   $$('[data-act]', v).forEach(li => li.onclick = () => openForm('actions', DB.get('actions', li.dataset.act)));
   return v;
 }
 
 /* ───────────── Écran : réalisation d'un audit ───────────── */
 function renderAudit(id) {
-  const a = DB.get('audits', id);
-  if (!a) return notFound();
-  const mod = DB.get('modeles', a.modele);
-  a.reponses ||= {};
-  const qs = mod?.questions || [];
+  if (!DB.get('audits', id)) return notFound();
+  const lire = () => { const x = DB.get('audits', id); x.reponses ||= {}; return x; };
+  const ecr = peut('audits');
   const v = document.createElement('div');
   const draw = () => {
-    const s = auditScore(a);
+    const a = lire(), mod = DB.get('modeles', a.modele), qs = mod?.questions || [];
+    const s = auditScore(a), fige = a.statut === 'Terminé' || !ecr;
     let lastChap = null;
     v.innerHTML = `
     <div class="detail-head">
@@ -712,8 +850,8 @@ function renderAudit(id) {
       <h2>${esc(a.ref)} · ${esc(mod?.nom || 'Grille supprimée')}</h2>
       ${badge(a.statut, a.statut === 'Terminé' ? 'green' : 'yellow')}
       <button class="btn" id="auPrint">Imprimer le rapport</button>
-      <button class="btn" id="auEdit">Modifier</button>
-      ${a.statut !== 'Terminé' ? '<button class="btn primary" id="auClose">Terminer l\'audit</button>' : '<button class="btn" id="auReopen">Rouvrir</button>'}
+      <button class="btn" id="auEdit">${ecr ? 'Modifier' : 'Détails'}</button>
+      ${!ecr ? '' : a.statut !== 'Terminé' ? '<button class="btn primary" id="auClose">Terminer l\'audit</button>' : '<button class="btn" id="auReopen">Rouvrir</button>'}
     </div>
     <div class="grid g3" style="margin-bottom:16px">
       <div class="card"><div class="small muted">Score de conformité</div><div class="score">${s.score == null ? '—' : s.score + ' %'}</div><div class="small muted">${s.c} conforme(s) · ${s.nc} non conforme(s) · ${s.na} N/A</div></div>
@@ -725,39 +863,45 @@ function renderAudit(id) {
         const r = a.reponses[q.id] || {};
         const chap = q.chapitre && q.chapitre !== lastChap ? (lastChap = q.chapitre, `<h3 style="margin:14px 0 2px">${esc(q.chapitre)}</h3>`) : '';
         const act = r.action && DB.get('actions', r.action);
+        const ph = r.photos || [];
         return `${chap}<div class="q" data-q="${q.id}"><div><div class="txt">${esc(q.texte)}</div>${q.aide ? `<div class="small muted">${esc(q.aide)}</div>` : ''}${act ? `<div class="small">→ Action <a href="#/actions?ouvrir=${act.id}">${esc(act.ref)}</a> ${badge(act.statut)}</div>` : ''}</div>
-          <div class="ans">${['C', 'NC', 'NA'].map(x => `<button type="button" class="${x} ${r.r === x ? 'on' : ''}" data-r="${x}" ${a.statut === 'Terminé' ? 'disabled' : ''}>${x === 'NA' ? 'N/A' : x}</button>`).join('')}</div>
-          <input data-com placeholder="${r.r === 'NC' ? 'Constat : décrivez l\'écart observé (obligatoire pour une NC)' : 'Commentaire / preuve observée'}" value="${esc(r.commentaire || '')}" ${a.statut === 'Terminé' ? 'disabled' : ''}></div>`;
+          <div class="ans">${['C', 'NC', 'NA'].map(x => `<button type="button" class="${x} ${r.r === x ? 'on' : ''}" data-r="${x}" ${fige ? 'disabled' : ''}>${x === 'NA' ? 'N/A' : x}</button>`).join('')}</div>
+          <input data-com placeholder="${r.r === 'NC' ? 'Constat : décrivez l\'écart observé (obligatoire pour une NC)' : 'Commentaire / preuve observée'}" value="${esc(r.commentaire || '')}" ${fige ? 'disabled' : ''}>
+          ${ph.length || !fige ? `<div class="q-photos">${galerie(ph, { editable: !fige })}</div>` : ''}</div>`;
       }).join('') : '<div class="empty">Cette grille ne contient aucune question.</div>'}
     </div>`;
     $$('.q', v).forEach(div => {
       const qid = div.dataset.q;
       $$('[data-r]', div).forEach(b => b.onclick = () => {
-        const cur = a.reponses[qid] || {};
-        a.reponses[qid] = { ...cur, r: cur.r === b.dataset.r ? '' : b.dataset.r };
-        if (a.statut === 'Planifié') a.statut = 'En cours';
-        DB.upsert('audits', a); draw();
+        const x = lire(), cur = x.reponses[qid] || {};
+        x.reponses[qid] = { ...cur, r: cur.r === b.dataset.r ? '' : b.dataset.r };
+        if (x.statut === 'Planifié') x.statut = 'En cours';
+        DB.upsert('audits', x); draw();
       });
-      $('[data-com]', div).onchange = ev => { a.reponses[qid] = { ...(a.reponses[qid] || {}), commentaire: ev.target.value }; DB.upsert('audits', a); };
+      $('[data-com]', div).onchange = ev => { const x = lire(); x.reponses[qid] = { ...(x.reponses[qid] || {}), commentaire: ev.target.value }; DB.upsert('audits', x); };
+      const g = $('.q-photos', div);
+      if (g) brancherGalerie(g, () => lire().reponses[qid]?.photos || [], l => { const x = lire(); x.reponses[qid] = { ...(x.reponses[qid] || {}), photos: l }; if (x.statut === 'Planifié') x.statut = 'En cours'; DB.upsert('audits', x); draw(); });
     });
     $('#auPrint', v).onclick = () => window.print();
-    $('#auEdit', v).onclick = () => openForm('audits', a);
+    $('#auEdit', v).onclick = () => openForm('audits', lire());
     const close = $('#auClose', v);
     if (close) close.onclick = () => {
-      const s = auditScore(a);
-      if (s.repondu < qs.length && !confirm(`${qs.length - s.repondu} question(s) sans réponse. Terminer quand même ?`)) return;
-      const ncs = qs.filter(q => a.reponses[q.id]?.r === 'NC' && !a.reponses[q.id].action);
-      const resp = DB.get('sites', a.site)?.responsable || a.auditeur;
+      const x = lire(), s2 = auditScore(x);
+      if (s2.repondu < qs.length && !confirm(`${qs.length - s2.repondu} question(s) sans réponse. Terminer quand même ?`)) return;
+      const ncs = qs.filter(q => x.reponses[q.id]?.r === 'NC' && !x.reponses[q.id].action);
+      const resp = DB.get('sites', x.site)?.responsable || x.auditeur;
       ncs.forEach(q => {
-        const r = a.reponses[q.id];
-        const act = DB.upsert('actions', { id: uid(), ref: DB.nextRef('AC'), cree: today(), titre: `Lever l'écart : ${q.texte}`.slice(0, 140), description: r.commentaire ? `Constat d'audit : ${r.commentaire}` : '', type: 'Corrective', site: a.site, responsable: resp, echeance: addDays(today(), 30), priorite: 'Normale', statut: 'À faire', origine: { type: 'audit', id: a.id } });
-        r.action = act.id;
+        const r = x.reponses[q.id];
+        const nouvelle = { id: uid(), cree: today(), titre: `Lever l'écart : ${q.texte}`.slice(0, 140), description: r.commentaire ? `Constat d'audit : ${r.commentaire}` : '', type: 'Corrective', site: x.site, responsable: resp, echeance: addDays(today(), 30), priorite: 'Normale', statut: 'À faire', origine: { type: 'audit', id: x.id } };
+        DB.attribuerRef(nouvelle, 'AC');
+        DB.upsert('actions', nouvelle);
+        r.action = nouvelle.id;
       });
-      a.statut = 'Terminé'; a.dateRealisation = today(); DB.upsert('audits', a);
+      x.statut = 'Terminé'; x.dateRealisation = today(); DB.upsert('audits', x);
       toast(ncs.length ? `Audit terminé : ${ncs.length} action(s) corrective(s) créée(s) automatiquement` : 'Audit terminé');
       renderAlertBadge(); draw();
     };
-    const re = $('#auReopen', v); if (re) re.onclick = () => { a.statut = 'En cours'; DB.upsert('audits', a); draw(); };
+    const re = $('#auReopen', v); if (re) re.onclick = () => { const x = lire(); x.statut = 'En cours'; DB.upsert('audits', x); draw(); };
   };
   draw();
   return v;
@@ -767,8 +911,8 @@ function renderAudit(id) {
 function renderModeles() {
   const v = document.createElement('div');
   const mods = DB.all('modeles');
-  v.innerHTML = `<div class="toolbar"><div class="grow muted">Les grilles servent de base aux audits et inspections. Une ligne = une question ; préfixez par « # » pour un chapitre.</div><button class="btn primary" id="newMod">+ Nouvelle grille</button></div>
-    <div class="grid g2">${mods.map(m => `<div class="card"><div class="card-head"><h2>${esc(m.nom)}</h2><button class="btn small" data-edit="${m.id}">Modifier</button></div>
+  v.innerHTML = `<div class="toolbar"><div class="grow muted">Les grilles servent de base aux audits et inspections. Une ligne = une question ; préfixez par « # » pour un chapitre.</div>${peut('modeles') ? '<button class="btn primary" id="newMod">+ Nouvelle grille</button>' : ''}</div>
+    <div class="grid g2">${mods.map(m => `<div class="card"><div class="card-head"><h2>${esc(m.nom)}</h2>${peut('modeles') ? `<button class="btn small" data-edit="${m.id}">Modifier</button>` : ''}</div>
       <div class="small muted">${esc(m.referentiel || '')} · ${m.questions.length} question(s) · utilisée ${DB.all('audits').filter(a => a.modele === m.id).length} fois</div></div>`).join('')}</div>`;
   const edit = m => {
     const isNew = !m;
@@ -795,7 +939,7 @@ function renderModeles() {
     };
     openModal();
   };
-  $('#newMod', v).onclick = () => edit();
+  const nm = $('#newMod', v); if (nm) nm.onclick = () => edit();
   $$('[data-edit]', v).forEach(b => b.onclick = () => edit(DB.get('modeles', b.dataset.edit)));
   return v;
 }
@@ -861,10 +1005,220 @@ function renderParametres() {
 }
 function notFound() { const v = document.createElement('div'); v.innerHTML = '<div class="card empty">Fiche introuvable. <a href="#/dashboard">Retour au tableau de bord</a></div>'; return v; }
 
+/* ───────────── Écran : administration (mode serveur) ───────────── */
+const adminState = { onglet: 'comptes' };
+function renderAdmin() {
+  const v = document.createElement('div');
+  const onglets = [['compte', 'Mon compte', true], ['comptes', 'Utilisateurs', estAdmin()], ['alertes', 'Alertes e-mail / WhatsApp', estResp()], ['journal', 'Journal d\'activité', estResp()], ['sauvegarde', 'Sauvegarde', estResp()]].filter(o => o[2]);
+  if (!onglets.some(o => o[0] === adminState.onglet)) adminState.onglet = onglets[0][0];
+  v.innerHTML = `<div class="chips">${onglets.map(([k, l]) => `<button class="chip ${adminState.onglet === k ? 'on' : ''}" data-onglet="${k}">${l}</button>`).join('')}</div><div id="adminCorps"><div class="card empty">Chargement…</div></div>`;
+  $$('[data-onglet]', v).forEach(b => b.onclick = () => { adminState.onglet = b.dataset.onglet; route(); });
+  const corps = $('#adminCorps', v);
+  const echec = e => { corps.innerHTML = `<div class="card empty">${esc(e.status ? e.message : 'Connexion au serveur impossible. Cette page demande une connexion.')}</div>`; };
+  ({ compte: ongletCompte, comptes: ongletComptes, alertes: ongletAlertes, journal: ongletJournal, sauvegarde: ongletSauvegarde })[adminState.onglet](corps).catch(echec);
+  return v;
+}
+async function ongletCompte(el) {
+  const u = MODE.user;
+  el.innerHTML = `<div class="grid g2"><div class="card"><h2>${esc(u.nom)}</h2><p class="muted">${esc(u.email)} · ${esc(Regles.ROLES[u.role]?.nom || u.role)}${u.personne ? ` · fiche ${esc(personName(u.personne))}` : ''}</p>
+    <p class="small muted">${esc({ admin: 'Accès complet, y compris les comptes et les réglages.', responsable: 'Peut tout créer, modifier et supprimer, et voir le journal.', contributeur: 'Peut déclarer des événements, réaliser des audits et mettre à jour les actions.', lecteur: 'Peut tout consulter, sans rien modifier.' }[u.role] || '')}</p>
+    <button class="btn" id="deco">Se déconnecter</button></div>
+    <form class="card" id="mdp"><h2>Changer mon mot de passe</h2>
+      <label class="champ"><span>Mot de passe actuel</span><input type="password" name="ancien" autocomplete="current-password" required></label>
+      <label class="champ"><span>Nouveau mot de passe (8 caractères minimum)</span><input type="password" name="nouveau" autocomplete="new-password" minlength="8" required></label>
+      <button class="btn primary">Enregistrer</button></form></div>`;
+  $('#deco', el).onclick = deconnexion;
+  $('#mdp', el).onsubmit = async e => {
+    e.preventDefault(); const f = e.target;
+    try { await apiCall('POST', 'api/mot-de-passe', { ancien: f.ancien.value, nouveau: f.nouveau.value }); f.reset(); toast('Mot de passe modifié'); }
+    catch (err) { toast(err.message); }
+  };
+}
+async function ongletComptes(el) {
+  const { utilisateurs } = await apiCall('GET', 'api/utilisateurs');
+  el.innerHTML = `<div class="toolbar"><div class="grow muted">Chaque collègue a son propre compte. Reliez-le à sa fiche Personnel pour qu'il voie « Mes actions » et reçoive ses alertes.</div><button class="btn primary" id="newU">+ Nouveau compte</button></div>
+    <div class="table-wrap"><table><thead><tr><th>Nom</th><th>E-mail</th><th>Rôle</th><th>Fiche personnel</th><th>Dernière connexion</th><th>État</th></tr></thead><tbody>
+    ${utilisateurs.map(u => `<tr data-u="${u.id}"><td>${esc(u.nom)}</td><td>${esc(u.email)}</td><td>${badge(Regles.ROLES[u.role]?.nom || u.role, u.role === 'admin' ? '' : u.role === 'lecteur' ? 'grey' : 'green')}</td><td>${esc(personName(u.personne) || '—')}</td><td>${u.derniereConnexion ? new Date(u.derniereConnexion).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' }) : '<span class="muted">jamais</span>'}</td><td>${u.actif ? badge('Actif', 'green') : badge('Désactivé', 'grey')}</td></tr>`).join('')}
+    </tbody></table></div>`;
+  const form = u => {
+    const nouveau = !u;
+    $('#modalBox').innerHTML = `<form novalidate><header><h2>${nouveau ? 'Nouveau compte' : esc(u.nom)}</h2><button type="button" class="icon-btn" data-close>✕</button></header><div class="body">
+      <label><span>Nom <em>*</em></span><input name="nom" value="${esc(u?.nom)}" required></label>
+      <label><span>E-mail (identifiant) <em>*</em></span><input type="email" name="email" value="${esc(u?.email)}" required></label>
+      <label><span>Rôle</span><select name="role">${Object.entries(Regles.ROLES).map(([k, r]) => `<option value="${k}" ${(u?.role || 'contributeur') === k ? 'selected' : ''}>${esc(r.nom)}</option>`).join('')}</select></label>
+      <label><span>Fiche personnel liée</span><select name="personne"><option value=""></option>${DB.all('personnel').slice().sort((a, b) => a.nom.localeCompare(b.nom)).map(p => `<option value="${p.id}" ${u?.personne === p.id ? 'selected' : ''}>${esc(p.nom)}</option>`).join('')}</select></label>
+      <label><span>${nouveau ? 'Mot de passe provisoire <em>*</em>' : 'Nouveau mot de passe (laisser vide pour ne pas changer)'}</span><input name="motDePasse" type="text" autocomplete="off" value="${nouveau ? motDePasseAleatoire() : ''}"><div class="hint">8 caractères minimum. Communiquez-le à la personne, qui pourra le changer.</div></label>
+      <label><span>Options</span><div><label class="inline"><input type="checkbox" name="notifEmail" ${u?.notifEmail !== false ? 'checked' : ''}> Récapitulatif quotidien par e-mail</label>${nouveau ? '' : `<label class="inline"><input type="checkbox" name="actif" ${u.actif ? 'checked' : ''}> Compte actif</label>`}</div></label>
+      </div><footer><button type="button" class="btn" data-close>Annuler</button><button class="btn primary">Enregistrer</button></footer></form>`;
+    const f = $('#modalBox form');
+    $$('[data-close]', f).forEach(b => b.onclick = closeModal);
+    f.onsubmit = async e => {
+      e.preventDefault();
+      const corps = { nom: f.nom.value, email: f.email.value, role: f.role.value, personne: f.personne.value, notifEmail: f.notifEmail.checked };
+      if (f.motDePasse.value) corps.motDePasse = f.motDePasse.value;
+      if (!nouveau) corps.actif = f.actif.checked;
+      try { await apiCall(nouveau ? 'POST' : 'PUT', nouveau ? 'api/utilisateurs' : `api/utilisateurs/${u.id}`, corps); closeModal(); toast(nouveau ? `Compte créé. Mot de passe provisoire : ${corps.motDePasse}` : 'Compte modifié'); route(); }
+      catch (err) { toast(err.message); }
+    };
+    openModal();
+  };
+  $('#newU', el).onclick = () => form();
+  $$('[data-u]', el).forEach(tr => tr.onclick = () => form(utilisateurs.find(u => u.id === tr.dataset.u)));
+}
+function motDePasseAleatoire() {
+  const a = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789', r = crypto.getRandomValues(new Uint32Array(10));
+  return [...r].map(x => a[x % a.length]).join('');
+}
+async function ongletAlertes(el) {
+  const { etat, historique } = await apiCall('GET', 'api/notifications');
+  const ok = b => b ? badge('Configuré', 'green') : badge('Non configuré', 'orange');
+  const sansContact = DB.all('personnel').filter(p => p.actif !== 'Parti' && !p.email && !p.whatsapp).length;
+  el.innerHTML = `<div class="grid g2">
+    <div class="card"><h2>État</h2>
+      <div class="facts" style="margin:12px 0"><div><span>E-mail</span><b>${ok(etat.email)}</b></div><div><span>WhatsApp</span><b>${ok(etat.whatsapp)}</b></div>
+      <div><span>Récapitulatif quotidien</span><b>${etat.actives ? `Lun–ven à ${etat.heure} h` : 'Désactivé'}</b></div><div><span>Dernier envoi</span><b>${etat.dernierRecap ? fmtDate(etat.dernierRecap) : '—'}</b></div></div>
+      <p class="small muted">Chaque personne reçoit <b>ses</b> alertes (actions en retard, habilitations, revues de documents…). Les administrateurs et responsables QHSE reçoivent la liste complète. Envoi immédiat aussi quand une action est confiée à quelqu'un, et pour tout accident ou événement grave.</p>
+      ${sansContact ? `<p class="small" style="color:var(--orange)">${sansContact} personne(s) n'ont ni e-mail ni WhatsApp dans leur fiche Personnel : elles ne recevront rien.</p>` : ''}
+      ${!etat.email || !etat.whatsapp ? '<p class="small muted">Le paramétrage (serveur d\'envoi, compte WhatsApp) se fait dans le fichier <code>serveur/.env</code> : voir le guide d\'installation.</p>' : ''}
+      ${estAdmin() ? '<button class="btn" id="recap">Envoyer le récapitulatif maintenant</button>' : ''}</div>
+    ${estAdmin() ? `<form class="card" id="test"><h2>Envoyer un test</h2>
+      <label class="champ"><span>Canal</span><select name="canal"><option value="email">E-mail</option><option value="whatsapp">WhatsApp</option></select></label>
+      <label class="champ"><span>Destinataire</span><input name="destinataire" required placeholder="adresse e-mail ou +225…" value="${esc(MODE.user.email)}"></label>
+      <button class="btn primary">Envoyer</button><div id="testRes" class="small" style="margin-top:8px"></div></form>` : ''}
+  </div>
+  <h2 style="margin:22px 0 10px">Derniers envois</h2>
+  ${historique.length ? `<div class="table-wrap"><table><thead><tr><th>Date</th><th>Canal</th><th>Destinataire</th><th>Objet</th><th>Résultat</th></tr></thead><tbody>${historique.map(n => `<tr><td>${new Date(n.quand).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' })}</td><td>${n.canal === 'email' ? 'E-mail' : 'WhatsApp'}</td><td>${esc(n.destinataire)}</td><td>${esc(n.sujet)}</td><td>${badge(n.statut, n.statut === 'envoyé' ? 'green' : n.statut === 'échec' ? 'red' : 'grey')}${n.erreur ? `<div class="small muted">${esc(n.erreur)}</div>` : ''}</td></tr>`).join('')}</tbody></table></div>` : '<div class="card empty">Aucun envoi pour le moment.</div>'}`;
+  const rc = $('#recap', el);
+  if (rc) rc.onclick = async () => { rc.disabled = true; try { const r = await apiCall('POST', 'api/notifications/recap'); toast(`${r.alertes} alerte(s), ${r.envoyes} message(s) envoyé(s)`); route(); } catch (e) { toast(e.message); rc.disabled = false; } };
+  const t = $('#test', el);
+  if (t) {
+    t.canal.onchange = () => { t.destinataire.value = t.canal.value === 'email' ? MODE.user.email : (DB.get('personnel', MODE.user.personne)?.whatsapp || ''); };
+    t.onsubmit = async e => {
+      e.preventDefault(); const res = $('#testRes', t); res.textContent = 'Envoi…';
+      try { const r = await apiCall('POST', 'api/notifications/test', { canal: t.canal.value, destinataire: t.destinataire.value }); res.innerHTML = r.ok ? '<span style="color:var(--green)">Envoyé ✔</span>' : `<span style="color:var(--red)">Échec : ${esc(r.detail?.erreur || 'inconnu')}</span>`; }
+      catch (err) { res.textContent = err.message; }
+    };
+  }
+}
+async function ongletJournal(el) {
+  const { journal } = await apiCall('GET', 'api/journal?limite=300');
+  const noms = { evenements: 'Événement', risques: 'Risque', actions: 'Action', audits: 'Audit', documents: 'Document', exigences: 'Exigence', personnel: 'Personnel', formations: 'Formation', heures: 'Heures', sites: 'Site', modeles: 'Grille', utilisateurs: 'Compte' };
+  el.innerHTML = `<p class="muted">Qui a fait quoi et quand : la traçabilité demandée par les normes ISO. Les 300 dernières opérations.</p>
+    <div class="table-wrap"><table><thead><tr><th>Date</th><th>Utilisateur</th><th>Opération</th><th>Fiche</th></tr></thead><tbody>
+    ${journal.map(j => `<tr><td>${new Date(j.quand).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' })}</td><td>${esc(j.user_nom)}</td><td>${badge(j.action, j.action === 'suppression' ? 'red' : j.action === 'création' ? 'green' : '')}</td><td>${esc(noms[j.collection] || j.collection)} ${esc(j.libelle)}</td></tr>`).join('')}</tbody></table></div>`;
+}
+async function ongletSauvegarde(el) {
+  el.innerHTML = `<div class="grid g2">
+    <div class="card"><h2>Exporter</h2><p>Télécharge toutes les fiches au format JSON. Les photos restent sur le serveur : sauvegardez aussi le dossier <code>donnees</code> du serveur.</p><button class="btn primary" id="exp">Exporter la sauvegarde (.json)</button></div>
+    ${estAdmin() ? `<div class="card"><h2>Importer</h2><p>Ajoute ou remplace les fiches contenues dans une sauvegarde, par exemple celle d'un poste qui utilisait le logiciel sans serveur. Les fiches existantes portant le même identifiant sont remplacées.</p><label class="btn">Choisir un fichier .json<input type="file" id="imp" accept=".json" hidden></label></div>` : ''}
+  </div>`;
+  $('#exp', el).onclick = async () => { try { const d = await apiCall('GET', 'api/export'); download(`sauvegarde-qhse-${today()}.json`, JSON.stringify(d, null, 1), 'application/json'); } catch (e) { toast(e.message); } };
+  const imp = $('#imp', el);
+  if (imp) imp.onchange = async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try {
+      const d = JSON.parse(await f.text());
+      if (!d.meta || !Array.isArray(d.evenements)) throw new Error('Fichier invalide');
+      if (!confirm('Importer cette sauvegarde sur le serveur ? Les fiches de même identifiant seront remplacées.')) return;
+      const r = await apiCall('POST', 'api/import', { donnees: d });
+      toast(`${r.importees} fiche(s) importée(s)`); await Sync.tirer(); route();
+    } catch (err) { toast(err.message || 'Fichier invalide'); }
+  };
+}
+
+/* ───────────── Connexion et installation ───────────── */
+function ecranAuth(html) {
+  let el = $('#auth');
+  if (!el) { el = document.createElement('div'); el.id = 'auth'; document.body.append(el); }
+  el.innerHTML = `<div class="auth-box"><img src="assets/universnormes-logo.png" alt="UNIVERSNORMES"><div class="auth-sous">Logiciel QHSE</div>${html}</div>`;
+  el.hidden = false; return el;
+}
+function afficherConnexion(message = '') {
+  if ($('#auth') && !$('#auth').hidden && $('#auth form[data-connexion]')) return;
+  const el = ecranAuth(`<form data-connexion><h1>Connexion</h1>${message ? `<p class="small" style="color:var(--orange)">${esc(message)}</p>` : ''}
+    <label class="champ"><span>E-mail</span><input type="email" name="email" autocomplete="username" required value="${esc(MODE.user?.email || '')}"></label>
+    <label class="champ"><span>Mot de passe</span><input type="password" name="motDePasse" autocomplete="current-password" required></label>
+    <button class="btn primary large">Se connecter</button><p class="small muted">Mot de passe oublié ? Demandez à l'administrateur du logiciel de le réinitialiser.</p></form>`);
+  const f = $('form', el);
+  setTimeout(() => (f.email.value ? f.motDePasse : f.email).focus(), 30);
+  f.onsubmit = async e => {
+    e.preventDefault(); const btn = $('button', f); btn.disabled = true;
+    try {
+      const r = await apiCall('POST', 'api/connexion', { email: f.email.value, motDePasse: f.motDePasse.value });
+      el.hidden = true; await ouvrirSessionServeur(r.user);
+    } catch (err) { toast(err.message); btn.disabled = false; }
+  };
+}
+function afficherInstallation() {
+  let local = null;
+  try { local = JSON.parse(localStorage.getItem(KEY)); } catch (e) { }
+  const nbLocal = local ? COLLECTIONS.reduce((s, c) => s + (local[c]?.length || 0), 0) : 0;
+  const el = ecranAuth(`<form data-installation><h1>Installation</h1><p class="muted">Bienvenue ! Créez le compte administrateur. Vous pourrez ensuite créer les comptes de vos collègues.</p>
+    <label class="champ"><span>Votre nom</span><input name="nom" required autocomplete="name"></label>
+    <label class="champ"><span>E-mail</span><input type="email" name="email" required autocomplete="username"></label>
+    <label class="champ"><span>Mot de passe (8 caractères minimum)</span><input type="password" name="motDePasse" minlength="8" required autocomplete="new-password"></label>
+    <fieldset class="champ"><legend>Pour commencer</legend>
+      <label class="inline"><input type="radio" name="depart" value="vide" checked> Base vide (avec les grilles d'audit ISO 9001, 14001, 45001)</label>
+      <label class="inline"><input type="radio" name="depart" value="demo"> Données de démonstration</label>
+      ${nbLocal ? `<label class="inline"><input type="radio" name="depart" value="local"> Reprendre les ${nbLocal} fiches déjà saisies dans ce navigateur</label>` : ''}
+    </fieldset>
+    <button class="btn primary large">Créer le compte et démarrer</button></form>`);
+  const f = $('form', el);
+  f.onsubmit = async e => {
+    e.preventDefault(); const btn = $('button', f); btn.disabled = true;
+    const depart = f.depart.value, demo = seed();
+    const donnees = depart === 'demo' ? demo : depart === 'local' ? local : { meta: { compteurs: {} }, modeles: demo.modeles };
+    try {
+      const r = await apiCall('POST', 'api/installation', { nom: f.nom.value, email: f.email.value, motDePasse: f.motDePasse.value, donnees });
+      el.hidden = true; toast(`Installation terminée${r.importees ? ` : ${r.importees} fiches` : ''}`);
+      await ouvrirSessionServeur(r.user);
+    } catch (err) { toast(err.message); btn.disabled = false; }
+  };
+}
+async function deconnexion() {
+  if (DB.file.length && !confirm(`${DB.file.length} modification(s) n'ont pas encore été envoyées au serveur et seront perdues. Se déconnecter quand même ?`)) return;
+  try { await apiCall('POST', 'api/deconnexion'); } catch (e) { }
+  try { localStorage.removeItem(KEY_SRV); } catch (e) { }
+  DB.file = []; MODE.user = null; DB.d = { meta: {} }; DB.normaliser();
+  afficherConnexion();
+}
+/* Charge les données du serveur (ou le cache de cet appareil) puis affiche l'application. */
+async function ouvrirSessionServeur(user, horsLigne = false) {
+  MODE.serveur = true;
+  let cache = null; try { cache = JSON.parse(localStorage.getItem(KEY_SRV)); } catch (e) { }
+  if (cache && cache.userId !== user.id) {
+    if (cache.file?.length) toast(`${cache.file.length} modification(s) d'un autre compte non envoyées ont été écartées`);
+    cache = null;
+  }
+  MODE.user = user;
+  if (cache?.d) { DB.d = cache.d; DB.file = cache.file || []; DB.curseur = cache.curseur || 0; }
+  else if (!horsLigne) { const r = await apiCall('GET', 'api/donnees'); DB.d = { meta: { compteurs: {}, site: '' }, ...r.donnees }; DB.curseur = r.curseur; DB.file = []; }
+  DB.normaliser(); MODE.enLigne = !horsLigne; DB.save();
+  demarrerInterface();
+  if (!horsLigne) { Sync.tirer(); Sync.envoyer(); }
+}
+let interfaceDemarree = false;
+function demarrerInterface() {
+  $('#userBtn').hidden = !MODE.serveur;
+  if (MODE.serveur) $('#userBtn').textContent = (MODE.user?.nom || '?').split(/\s+/).map(x => x[0]).slice(0, 2).join('').toUpperCase();
+  renderSiteFilter(); afficherSync(); route();
+  if (interfaceDemarree) return;
+  interfaceDemarree = true;
+  window.addEventListener('hashchange', route);
+  if (MODE.serveur) {
+    setInterval(() => Sync.tirer(), 30000);
+    window.addEventListener('focus', () => Sync.tirer());
+    window.addEventListener('online', () => { MODE.enLigne = true; Sync.envoyer(); Sync.tirer(); });
+    window.addEventListener('offline', () => { MODE.enLigne = false; afficherSync(); });
+    document.addEventListener('focusout', () => setTimeout(rafraichirSiInactif, 50));
+    window.addEventListener('beforeunload', e => { if (DB.file.length && MODE.enLigne) { Sync.envoyer(); } });
+  }
+}
+
 /* ───────────── Navigation ───────────── */
 function renderNav(active) {
   const late = bySite(DB.all('actions')).filter(actionLate).length;
-  $('#nav').innerHTML = NAV.map(([g, items]) => `<div class="group">${g}</div>` + items.map(([k, ico, l]) => `<a href="#/${k}" class="${active === k ? 'active' : ''}"><span class="ico">${ico}</span>${l}${k === 'actions' && late ? `<span class="pill">${late}</span>` : ''}</a>`).join('')).join('');
+  $('#nav').innerHTML = NAV.map(([g, items]) => `<div class="group">${g}</div>` + items.map(([k, ico, l]) => `<a href="#/${k}" class="${active === k ? 'active' : ''}"><span class="ico">${ico}</span>${k === 'parametres' && MODE.serveur ? 'Administration' : l}${k === 'actions' && late ? `<span class="pill">${late}</span>` : ''}</a>`).join('')).join('');
 }
 function renderSiteFilter() {
   const s = $('#siteFilter');
@@ -874,12 +1228,12 @@ function route() {
   const [path, query] = location.hash.replace(/^#\/?/, '').split('?');
   const [mod, id] = (path || 'dashboard').split('/');
   const params = new URLSearchParams(query || '');
-  const titles = { dashboard: 'Tableau de bord', indicateurs: 'Indicateurs', modeles: 'Grilles d\'audit', parametres: 'Données et sauvegarde' };
+  const titles = { dashboard: 'Tableau de bord', indicateurs: 'Indicateurs', modeles: 'Grilles d\'audit', parametres: MODE.serveur ? 'Administration' : 'Données et sauvegarde' };
   let view;
   if (mod === 'dashboard') view = renderDashboard();
   else if (mod === 'indicateurs') view = renderIndicateurs();
   else if (mod === 'modeles') view = renderModeles();
-  else if (mod === 'parametres') view = renderParametres();
+  else if (mod === 'parametres') view = MODE.serveur ? renderAdmin() : renderParametres();
   else if (mod === 'risques') view = renderRisques();
   else if (mod === 'evenements' && id) view = renderEvenement(id);
   else if (mod === 'audits' && id) view = renderAudit(id);
@@ -1009,14 +1363,38 @@ function seed() {
   return { meta: { version: 1, compteurs: cpt, site: '' }, sites: S, personnel: P, evenements: E, risques: R, actions: A, modeles: M, audits: AU, documents: DOC, formations: F, exigences: EX, heures: H };
 }
 
-/* ───────────── Démarrage ───────────── */
-DB.load();
-renderSiteFilter();
+/* ───────────── Démarrage ─────────────
+   1. Si la page est servie par le serveur QHSE (api/session répond en JSON) : connexion / installation / mode serveur.
+   2. Sinon (simple hébergement de fichiers, ou ouverture du fichier) : mode local, comme avant.
+   3. Hors ligne avec un cache serveur sur l'appareil : mode serveur hors ligne, les saisies partent au retour du réseau. */
 $('#siteFilter').onchange = e => { DB.d.meta.site = e.target.value; DB.save(); route(); };
 $('#alertBtn').onclick = openAlerts;
+$('#userBtn').onclick = () => { location.hash = '#/parametres'; adminState.onglet = 'compte'; route(); };
 $('#menuBtn').onclick = () => $('#sidebar').classList.toggle('open');
 $('#modal').addEventListener('mousedown', e => { if (e.target.id === 'modal') closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); $('#alertDrawer').hidden = true; } });
-window.addEventListener('hashchange', route);
-route();
+
+(async function demarrer() {
+  let reponse = null, reseau = true;
+  if (location.protocol.startsWith('http')) {
+    try { reponse = await fetch('api/session', { credentials: 'same-origin', cache: 'no-store' }); }
+    catch (e) { reseau = false; }
+  }
+  let j = null;
+  if (reponse && (reponse.headers.get('content-type') || '').includes('application/json')) { try { j = await reponse.json(); } catch (e) { } }
+  if (j) {
+    MODE.serveur = true; DB.d = { meta: {} }; DB.normaliser();
+    if (j.installation) return afficherInstallation();
+    if (reponse.status === 401) {
+      try { const c = JSON.parse(localStorage.getItem(KEY_SRV)); if (c?.user) MODE.user = c.user; } catch (e) { }
+      return afficherConnexion();
+    }
+    return ouvrirSessionServeur(j.user).catch(err => { toast(err.message); afficherConnexion(); });
+  }
+  if (!reseau) {
+    let c = null; try { c = JSON.parse(localStorage.getItem(KEY_SRV)); } catch (e) { }
+    if (c?.user && c.d) return ouvrirSessionServeur(c.user, true);
+  }
+  DB.load(); demarrerInterface();
+})();
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});

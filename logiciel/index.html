@@ -18,15 +18,17 @@
         <span>Logiciel QHSE</span>
       </div>
       <nav id="nav"></nav>
-      <div class="sidebar-foot">Les données restent sur cet appareil et l'application marche hors ligne.</div>
+      <div class="sidebar-foot" id="sidebarFoot">Fonctionne aussi hors ligne : vos saisies sont gardées sur l'appareil.</div>
     </aside>
     <div class="main">
       <header class="topbar">
         <button class="icon-btn only-mobile" id="menuBtn" aria-label="Menu">☰</button>
         <h1 id="pageTitle">Tableau de bord</h1>
         <div class="topbar-right">
+          <span id="syncEtat" class="sync" hidden></span>
           <select id="siteFilter" aria-label="Site"></select>
           <button class="icon-btn bell" id="alertBtn" aria-label="Alertes">🔔<span id="alertCount"></span></button>
+          <button class="icon-btn user-btn" id="userBtn" aria-label="Mon compte" hidden></button>
         </div>
       </header>
       <main id="view"></main>
@@ -35,6 +37,7 @@
   <div class="drawer" id="alertDrawer" hidden></div>
   <div class="modal-back" id="modal" hidden><div class="modal" id="modalBox"></div></div>
   <div class="toast" id="toast" hidden></div>
+  <script src="regles.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 // Service worker : met l'application en cache pour qu'elle fonctionne sans connexion.
-const CACHE = 'un-qhse-v1';
+const CACHE = 'un-qhse-v2';
 const FILES = [
-  './', './index.html', './styles.css', './app.js', './manifest.webmanifest',
+  './', './index.html', './styles.css', './regles.js', './app.js', './manifest.webmanifest',
   './assets/universnormes-logo.png', './assets/icone-192.png', './assets/icone-512.png',
   './assets/fonts/Manrope-Bold.ttf', './assets/fonts/Manrope-ExtraBold.ttf',
   './assets/fonts/SourceSans3-Regular.ttf', './assets/fonts/SourceSans3-SemiBold.ttf', './assets/fonts/SourceSans3-Bold.ttf'
@@ -14,6 +14,8 @@ self.addEventListener('activate', e => {
 });
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+  // L'API (données, photos, session) n'est jamais mise en cache par le service worker : l'application gère elle-même le hors-ligne.
+  if (new URL(e.request.url).pathname.includes('/api/')) return;
   // Réseau d'abord (pour recevoir les mises à jour), cache en secours hors ligne.
   e.respondWith(
     fetch(e.request).then(r => {

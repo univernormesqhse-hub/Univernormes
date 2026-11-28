@@ -1,0 +1,4 @@
+serveur/node_modules
+serveur/donnees
+serveur/.env
+**/*.md

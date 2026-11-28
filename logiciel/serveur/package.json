@@ -1,0 +1,17 @@
+{
+  "name": "universnormes-qhse-serveur",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Serveur multi-utilisateurs du logiciel QHSE UNIVERSNORMES",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "dependencies": {
+    "nodemailer": "^10.6.1"
+  }
+}
