@@ -317,6 +317,7 @@ import {MatriceRisquesQhseMetro, MATRICE_RISQUES_QHSE_METRO_FRAMES} from './matr
 import {MaitriserQseSmiMetro, MAITRISER_QSE_SMI_METRO_FRAMES} from './maitriserQseSmiMetro/MaitriserQseSmiMetro';
 import {QhseInvestissementMetro, QHSE_INVESTISSEMENT_METRO_FRAMES} from './qhseInvestissementMetro/QhseInvestissementMetro';
 import {ImpactsAccidentTravailMetro, IMPACTS_ACCIDENT_TRAVAIL_METRO_FRAMES} from './impactsAccidentTravailMetro/ImpactsAccidentTravailMetro';
+import {Iso45001ProactiveMetro, ISO45001_PROACTIVE_METRO_FRAMES} from './iso45001ProactiveMetro/Iso45001ProactiveMetro';
 import {BanniereFacebook, BANNIERE_FB_FRAMES} from './banniereFacebook/BanniereFacebook';
 import {CouvertureFacebook} from './couvertureFacebook/CouvertureFacebook';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
@@ -654,6 +655,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="MaitriserQseSmiMetro" component={MaitriserQseSmiMetro} durationInFrames={MAITRISER_QSE_SMI_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="QhseInvestissementMetro" component={QhseInvestissementMetro} durationInFrames={QHSE_INVESTISSEMENT_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="ImpactsAccidentTravailMetro" component={ImpactsAccidentTravailMetro} durationInFrames={IMPACTS_ACCIDENT_TRAVAIL_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="Iso45001ProactiveMetro" component={Iso45001ProactiveMetro} durationInFrames={ISO45001_PROACTIVE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="BanniereFacebook" component={BanniereFacebook} durationInFrames={BANNIERE_FB_FRAMES} fps={30} width={1640} height={720} />
   <Composition id="BanniereFacebook820" component={BanniereFacebook} durationInFrames={BANNIERE_FB_FRAMES} fps={30} width={820} height={360} />
   <Composition id="CouvertureFacebook" component={CouvertureFacebook} durationInFrames={1} fps={30} width={1640} height={856} defaultProps={{variant: 'A' as const, control: false, t: 1.3}} />

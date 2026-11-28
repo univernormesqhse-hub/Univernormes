@@ -144,6 +144,7 @@ import {MatriceRisquesQhseMetro} from '../matriceRisquesQhseMetro/MatriceRisques
 import {MaitriserQseSmiMetro} from '../maitriserQseSmiMetro/MaitriserQseSmiMetro';
 import {QhseInvestissementMetro} from '../qhseInvestissementMetro/QhseInvestissementMetro';
 import {ImpactsAccidentTravailMetro} from '../impactsAccidentTravailMetro/ImpactsAccidentTravailMetro';
+import {Iso45001ProactiveMetro} from '../iso45001ProactiveMetro/Iso45001ProactiveMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -327,6 +328,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-MaitriserQseSmiMetro', C: MaitriserQseSmiMetro, at: 186.0, dur: 9.0},
   {id: 'Demo-QhseInvestissementMetro', C: QhseInvestissementMetro, at: 4.0, dur: 9.0},
   {id: 'Demo-ImpactsAccidentTravailMetro', C: ImpactsAccidentTravailMetro, at: 5.0, dur: 9.0},
+  {id: 'Demo-Iso45001ProactiveMetro', C: Iso45001ProactiveMetro, at: 18.0, dur: 9.0},
 ];
 
 export const LibraryDemos: React.FC = () => (

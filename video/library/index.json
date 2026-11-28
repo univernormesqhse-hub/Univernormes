@@ -1,6 +1,6 @@
 {
  "generated": "build-library.mjs — ne pas éditer",
- "count": 180,
+ "count": 181,
  "items": [
   {
    "section": "templates",
@@ -1839,6 +1839,35 @@
    "hash": "82ea05bdbc30",
    "path": "assets/iso26000-metro/index.md",
    "preview": "assets/iso26000-metro/preview.mp4"
+  },
+  {
+   "section": "assets",
+   "slug": "iso45001-proactive",
+   "name": "Qu'est-ce que l'ISO 45001 ? — capsule métro courte (39 s), musique de fond retirée, trois piliers qui montent et s'allument, sans particules",
+   "description": "Capsule verticale 1080 × 1920 sur une voix d'origine dont la musique de fond a été retirée par séparation de sources (UVR MDX-Net Voc_FT en onnx), puis nettoyée. Habillage papier cramé + deux cercles dorés, ligne de métro à 5 stations, transition gyrophare + carillon, sans particules ni musique. Brique - `IsPillars` (trois piliers posés sur un socle marine qui montent du sol en cascade, grisés ; chacun s'allume au moment où la voix le décrit : photo qui passe du gris à la couleur, pastille numérotée puis coche, halo de couleur, icône et sous-titre ; l'icône du dernier pilier peut tourner en boucle).",
+   "quand": "Capsule courte qui présente une démarche en 3 étapes (évaluer / prévenir / améliorer, PDCA simplifié, trois piliers d'une norme).",
+   "component": "src/iso45001ProactiveMetro/Iso45001ProactiveMetro.tsx",
+   "demo": "Demo-Iso45001ProactiveMetro",
+   "audio": null,
+   "tags": [
+    "ISO 45001",
+    "SST",
+    "sécurité proactive",
+    "culture sécurité",
+    "trois piliers",
+    "évaluer",
+    "prévenir",
+    "améliorer",
+    "séparation de sources",
+    "sans musique",
+    "sans particules",
+    "métro",
+    "gyrophare",
+    "2D"
+   ],
+   "hash": "40971a119646",
+   "path": "assets/iso45001-proactive/index.md",
+   "preview": "assets/iso45001-proactive/preview.mp4"
   },
   {
    "section": "assets",
