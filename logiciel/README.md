@@ -16,6 +16,10 @@ et téléphone, même sans connexion. Elle existe en deux modes :
 L'application choisit le mode toute seule : servie par le serveur QHSE, elle passe en mode serveur, sinon elle reste en
 mode local.
 
+> **Sans budget ?** La **version gratuite** fait tourner le mode serveur sur un compte Gmail : Google Apps Script
+> pour le serveur, Google Sheets pour les données, Drive pour les photos, Gmail pour les alertes. Elle ne demande
+> ni carte bancaire ni machine à entretenir. Voir [`gas/INSTALLATION.md`](gas/INSTALLATION.md).
+
 ## Démarrer
 
 **Mode local** : il suffit de servir le dossier `logiciel/` (par exemple `python3 -m http.server 8000`) ou de le
@@ -130,6 +134,7 @@ serveur/base.js                base SQLite (module intégré à Node), journal, 
 serveur/auth.js                comptes, mots de passe, sessions
 serveur/notifications.js       e-mails, WhatsApp, récapitulatif quotidien
 serveur/test/                  tests de l'API (npm test)
+gas/                           version gratuite Google Apps Script (src/, construire.js, dist/ à coller, test/)
 Dockerfile                     image prête à déployer
 ```
 

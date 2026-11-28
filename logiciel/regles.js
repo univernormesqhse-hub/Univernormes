@@ -32,25 +32,25 @@
   function alertes(d, site = '') {
     const L = c => d[c] || [];
     const get = (c, id) => L(c).find(x => x.id === id);
-    const nom = id => get('personnel', id)?.nom || '';
-    const siteNom = id => get('sites', id)?.nom || '—';
-    const respSite = id => get('sites', id)?.responsable;
+    const nom = id => (get('personnel', id) || {}).nom || '';
+    const siteNom = id => (get('sites', id) || {}).nom || '—';
+    const respSite = id => (get('sites', id) || {}).responsable;
     const inSite = o => !site || !('site' in o) || o.site === site;
-    const actionsFor = (type, id) => L('actions').filter(a => a.origine?.type === type && a.origine.id === id);
+    const actionsFor = (type, id) => L('actions').filter(a => a.origine && a.origine.type === type && a.origine.id === id);
     const ids = (...x) => [...new Set(x.filter(Boolean))];
     const out = [];
     L('actions').filter(inSite).filter(actionLate).forEach(a => out.push({ cle: 'action:' + a.id, niv: 'red', txt: `Action en retard : ${a.titre}`, sub: `Échéance ${fmtDate(a.echeance)} · ${nom(a.responsable)}`, go: `#/actions?ouvrir=${a.id}`, pour: ids(a.responsable) }));
     L('formations').forEach(f => {
       const pers = get('personnel', f.personne);
-      if (site && pers?.site !== site) return;
+      if (site && (pers || {}).site !== site) return;
       const s = echeanceState(f.dateExpiration);
-      if (s.etat !== 'ok') out.push({ cle: 'formation:' + f.id, niv: s.etat === 'expire' ? 'red' : 'orange', txt: `${f.intitule} — ${nom(f.personne)}`, sub: s.etat === 'expire' ? `Expirée le ${fmtDate(f.dateExpiration)}` : `Expire le ${fmtDate(f.dateExpiration)}`, go: `#/formations?ouvrir=${f.id}`, pour: ids(f.personne, respSite(pers?.site)) });
+      if (s.etat !== 'ok') out.push({ cle: 'formation:' + f.id, niv: s.etat === 'expire' ? 'red' : 'orange', txt: `${f.intitule} — ${nom(f.personne)}`, sub: s.etat === 'expire' ? `Expirée le ${fmtDate(f.dateExpiration)}` : `Expire le ${fmtDate(f.dateExpiration)}`, go: `#/formations?ouvrir=${f.id}`, pour: ids(f.personne, respSite((pers || {}).site)) });
     });
     L('documents').forEach(doc => {
       const s = docRevueState(doc);
       if (s.etat !== 'ok') out.push({ cle: 'document:' + doc.id, niv: s.etat === 'expire' ? 'red' : 'orange', txt: `Revue du document ${doc.code}`, sub: `${doc.titre} · prévue le ${fmtDate(doc.prochaineRevue)}`, go: `#/documents?ouvrir=${doc.id}`, pour: ids(doc.redacteur) });
     });
-    L('audits').filter(inSite).filter(a => a.statut !== 'Terminé' && a.date < today()).forEach(a => out.push({ cle: 'audit:' + a.id, niv: 'orange', txt: `Audit non réalisé : ${get('modeles', a.modele)?.nom || ''}`, sub: `Prévu le ${fmtDate(a.date)} · ${siteNom(a.site)}`, go: `#/audits/${a.id}`, pour: ids(a.auditeur) }));
+    L('audits').filter(inSite).filter(a => a.statut !== 'Terminé' && a.date < today()).forEach(a => out.push({ cle: 'audit:' + a.id, niv: 'orange', txt: `Audit non réalisé : ${(get('modeles', a.modele) || {}).nom || ''}`, sub: `Prévu le ${fmtDate(a.date)} · ${siteNom(a.site)}`, go: `#/audits/${a.id}`, pour: ids(a.auditeur) }));
     L('risques').filter(inSite).filter(r => critLevel(crit(r.g, r.p)) === 4 && !actionsFor('risque', r.id).some(a => a.statut !== 'Inefficace')).forEach(r => out.push({ cle: 'risque:' + r.id, niv: 'red', txt: `Risque critique sans action : ${r.risque}`, sub: `${r.unite} · ${siteNom(r.site)}`, go: `#/risques?ouvrir=${r.id}`, pour: ids(respSite(r.site)) }));
     L('exigences').filter(e => e.applicable !== 'Non' && e.conformite === 'Non conforme' && !actionsFor('exigence', e.id).length).forEach(e => out.push({ cle: 'exigence:' + e.id, niv: 'red', txt: `Non-conformité réglementaire : ${e.texte}`, sub: e.theme || e.domaine, go: `#/exigences?ouvrir=${e.id}`, pour: ids(e.responsable) }));
     L('evenements').filter(inSite).filter(e => e.statut === 'Déclaré' && daysBetween(e.date, today()) > 7).forEach(e => out.push({ cle: 'evenement:' + e.id, niv: 'orange', txt: `Événement non analysé depuis ${daysBetween(e.date, today())} j`, sub: `${e.ref} · ${e.titre}`, go: `#/evenements/${e.id}`, pour: ids(respSite(e.site)) }));
@@ -65,7 +65,7 @@
     lecteur: { nom: 'Lecteur', ecrire: [], supprimer: false }
   };
   const peutEcrire = (role, col) => { const r = ROLES[role]; return !!r && (r.ecrire === '*' || r.ecrire.includes(col)); };
-  const peutSupprimer = (role, col) => peutEcrire(role, col) && !!ROLES[role]?.supprimer;
+  const peutSupprimer = (role, col) => peutEcrire(role, col) && !!(ROLES[role] || {}).supprimer;
 
   const R = { pad, iso, today, addDays, addMonths, daysBetween, fmtDate, ACTION_OUVERTE, actionLate, crit, critLevel, echeanceState, docRevueState, auditScore, alertes, ROLES, peutEcrire, peutSupprimer };
   if (typeof module !== 'undefined' && module.exports) module.exports = R; else root.Regles = R;

@@ -76,7 +76,33 @@ const DB = {
   }
 };
 
+/* Version gratuite (Google Apps Script) : la page déclare window.QHSE_GAS. Pas de cookie : un jeton de session
+   est gardé sur l'appareil et joint à chaque requête. Appel par google.script.run quand la page est servie par
+   Apps Script, sinon par fetch (POST text/plain, sans requête préalable CORS). */
+const GAS = typeof window.QHSE_GAS === 'object' && window.QHSE_GAS !== null;
+const KEY_JETON = 'universnormes-qhse-jeton';
+const Jeton = {
+  get() { try { return localStorage.getItem(KEY_JETON) || ''; } catch (e) { return ''; } },
+  set(v) { try { if (v) localStorage.setItem(KEY_JETON, v); else localStorage.removeItem(KEY_JETON); } catch (e) { } }
+};
+async function appelGas(method, chemin, corps) {
+  const [p, q] = chemin.split('?');
+  const req = { route: `${method} /${p.replace(/^\//, '')}`, query: Object.fromEntries(new URLSearchParams(q || '')), corps, token: Jeton.get() };
+  let rep;
+  try {
+    if (window.google && google.script && google.script.run) {
+      rep = JSON.parse(await new Promise((ok, ko) => google.script.run.withSuccessHandler(ok).withFailureHandler(ko).api(JSON.stringify(req))));
+    } else {
+      const r = await fetch(QHSE_GAS.url, { method: 'POST', redirect: 'follow', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(req) });
+      rep = await r.json();
+    }
+  } catch (e) { throw new TypeError('Connexion impossible'); }
+  if ('jeton' in rep) Jeton.set(rep.jeton);
+  if (rep.status >= 400) throw Object.assign(new Error(rep.corps?.erreur || `Erreur ${rep.status}`), { status: rep.status, corps: rep.corps });
+  return rep.corps;
+}
 async function apiCall(method, chemin, corps) {
+  if (GAS) return appelGas(method, chemin, corps);
   const r = await fetch(chemin, { method, credentials: 'same-origin', headers: { 'Content-Type': 'application/json', 'X-QHSE': '1' }, body: corps === undefined ? undefined : JSON.stringify(corps) });
   let j = null; try { j = await r.json(); } catch (e) { }
   if (!r.ok) throw Object.assign(new Error(j?.erreur || `Erreur ${r.status}`), { status: r.status, corps: j });
@@ -99,7 +125,7 @@ const Sync = {
   async envoyer() {
     if (!MODE.serveur || this.enCours || !DB.file.length) return;
     this.enCours = true; afficherSync();
-    const ops = DB.file.slice(0, 20);
+    const ops = DB.file.slice(0, GAS ? 5 : 20);
     let retry = 0;
     try {
       const r = await apiCall('POST', 'api/lot', { ops });
@@ -411,10 +437,10 @@ function renderAlertBadge() {
 function openAlerts() {
   const al = computeAlerts(), d = $('#alertDrawer');
   d.innerHTML = `<div class="card-head"><h2>Alertes (${al.length})</h2><button class="btn small" id="closeDrawer">Fermer</button></div>
-    ${al.length ? al.map((a, i) => `<div class="alert-item" data-i="${i}"><span class="dot" style="background:var(--${a.niv})"></span><div><b>${esc(a.txt)}</b><div class="small muted">${esc(a.sub)}</div></div></div>`).join('') : '<div class="empty">Aucune alerte. Tout est à jour 👍</div>'}`;
+    ${al.length ? al.map((a, i) => `<div class="alert-item" data-i="${i}"><span class="dot" style="background:var(--${a.niv})"></span><div style="flex:1"><b>${esc(a.txt)}</b><div class="small muted">${esc(a.sub)}</div></div>${a.pour.filter(waPersonne).slice(0, 1).map(pid => `<a class="wa-mini" href="${esc(lienWa(waPersonne(pid), `UNIVERSNORMES QHSE — Bonjour ${personName(pid)}, rappel : ${a.txt} (${a.sub}).`))}" target="_blank" rel="noopener" title="Relancer ${esc(personName(pid))} sur WhatsApp" data-wa>📲</a>`).join('')}</div>`).join('') : '<div class="empty">Aucune alerte. Tout est à jour 👍</div>'}`;
   d.hidden = false;
   $('#closeDrawer').onclick = () => d.hidden = true;
-  $$('.alert-item', d).forEach(el => el.onclick = () => { d.hidden = true; location.hash = al[+el.dataset.i].go; });
+  $$('.alert-item', d).forEach(el => el.onclick = ev => { if (ev.target.closest('[data-wa]')) return; d.hidden = true; location.hash = al[+el.dataset.i].go; });
 }
 
 /* ───────────── Photos et pièces jointes ───────────── */
@@ -454,6 +480,31 @@ function brancherGalerie(el, get, set) {
   $$('[data-ph-del]', el).forEach(b => b.onclick = e => { e.preventDefault(); if (confirm('Retirer cette photo ?')) set((get() || []).filter(p => p.id !== b.dataset.phDel)); });
 }
 
+/* ───────────── WhatsApp gratuit : lien qui ouvre la conversation avec le message déjà écrit ───────────── */
+function numeroWa(n) {
+  const s = String(n || '').trim(); if (!s) return '';
+  if (s.startsWith('+')) return s.replace(/\D/g, '');
+  if (s.startsWith('00')) return s.replace(/\D/g, '').slice(2);
+  return '225' + s.replace(/\D/g, ''); // Côte d'Ivoire par défaut ; le 0 initial fait partie du numéro
+}
+const adresseApp = () => (GAS ? QHSE_GAS.url : location.origin + location.pathname) || '';
+const lienWa = (numero, texte) => `https://wa.me/${numeroWa(numero)}?text=${encodeURIComponent(texte + (adresseApp() ? `\n${adresseApp()}` : ''))}`;
+const waPersonne = id => DB.get('personnel', id)?.whatsapp || '';
+const boutonWa = (numero, texte, libelle = 'Prévenir sur WhatsApp') => `<a class="btn wa" href="${esc(lienWa(numero, texte))}" target="_blank" rel="noopener">📲 ${esc(libelle)}</a>`;
+const texteAction = a => `UNIVERSNORMES QHSE — Bonjour ${personName(a.responsable)}, l'action « ${a.titre} »${a.ref && !a.ref.includes('…') ? ` (${a.ref})` : ''} vous est confiée, échéance le ${fmtDate(a.echeance)}.`;
+const texteEvenement = e => `UNIVERSNORMES QHSE — ${e.type} déclaré le ${fmtDate(e.date)} sur ${siteName(e.site)} : « ${e.titre} », gravité ${e.gravite || '—'}.`;
+/* Après un enregistrement : propose d'envoyer le message WhatsApp (un appui sur « Envoyer » dans WhatsApp suffit). */
+function proposerWhatsApp(titre, nom, numero, texte) {
+  setTimeout(() => {
+    $('#modalBox').innerHTML = `<div><header><h2>${esc(titre)}</h2><button type="button" class="icon-btn" data-close>✕</button></header>
+      <div class="body"><p class="full">${numero ? `Prévenir <b>${esc(nom)}</b> sur WhatsApp ? Le message est déjà écrit : il suffira d'appuyer sur Envoyer.` : `Prévenir quelqu'un sur WhatsApp ? Vous choisirez le contact ou le groupe dans WhatsApp.`}</p>
+      <p class="full small muted" style="white-space:pre-wrap">${esc(texte)}</p></div>
+      <footer><button type="button" class="btn" data-close>Non merci</button>${boutonWa(numero, texte, numero ? `Prévenir ${nom}` : 'Ouvrir WhatsApp')}</footer></div>`;
+    $$('#modalBox [data-close], #modalBox .wa').forEach(b => b.addEventListener('click', () => setTimeout(closeModal, 50)));
+    openModal();
+  }, 150);
+}
+
 /* ───────────── Formulaire générique ───────────── */
 function fieldInput(f, v) {
   const name = `name="${f.k}" ${f.required ? 'required' : ''}`;
@@ -487,7 +538,7 @@ function openForm(col, obj, defaults = {}, onSaved) {
     <div class="body">${!ecriture ? '<div class="full lecture">Lecture seule : votre rôle ne permet pas de modifier ces fiches.</div>' : ''}${m.fields.map(f => `<label class="${f.full ? 'full' : ''}" data-field="${f.k}"><span>${esc(f.label)}${f.required ? ' <em>*</em>' : ''}</span>${fieldInput(f, o[f.k])}${f.hint ? `<div class="hint">${esc(f.hint)}</div>` : ''}</label>`).join('')}
     ${col === 'formations' ? `<datalist id="formations-types">${[...new Set(DB.all('formations').map(f => f.intitule).concat(['Sauveteur secouriste du travail (SST)', 'Habilitation électrique B1V', 'Travail en hauteur', 'Conduite de chariot élévateur', 'Équipier de première intervention (EPI incendie)', 'Gestes et postures', 'Visite médicale périodique']))].map(x => `<option value="${esc(x)}">`).join('')}</datalist>` : ''}
     </div>
-    <footer>${!isNew && peutSuppr(col) ? '<button type="button" class="btn danger left" data-del>Supprimer</button>' : ''}${!isNew && ['evenements', 'risques', 'exigences'].includes(col) && peut('actions') ? '<button type="button" class="btn" data-action>+ Action</button>' : ''}<button type="button" class="btn" data-close>${ecriture ? 'Annuler' : 'Fermer'}</button>${ecriture ? '<button class="btn primary">Enregistrer</button>' : ''}</footer>
+    <footer>${!isNew && peutSuppr(col) ? '<button type="button" class="btn danger left" data-del>Supprimer</button>' : ''}${!isNew && ['evenements', 'risques', 'exigences'].includes(col) && peut('actions') ? '<button type="button" class="btn" data-action>+ Action</button>' : ''}${!isNew && col === 'actions' && ACTION_OUVERTE.includes(o.statut) && o.responsable ? boutonWa(waPersonne(o.responsable), texteAction(o), 'WhatsApp') : ''}<button type="button" class="btn" data-close>${ecriture ? 'Annuler' : 'Fermer'}</button>${ecriture ? '<button class="btn primary">Enregistrer</button>' : ''}</footer>
   </form>`;
   const form = $('form', box);
   const dessinerPhotos = k => { const el = $(`[data-photos="${k}"]`, form); el.innerHTML = galerie(photos[k], { editable: ecriture }); brancherGalerie(el, () => photos[k], l => { photos[k] = l; dessinerPhotos(k); }); };
@@ -529,6 +580,10 @@ function openForm(col, obj, defaults = {}, onSaved) {
     if (col === 'documents' && obj && obj.version !== v.version && v.statut === 'Approuvé') { v.historique = [...(obj.historique || []), { version: obj.version, date: obj.dateApprobation, modifs: obj.modifs }]; }
     DB.upsert(col, v); closeModal(); toast(isNew ? 'Fiche créée' : 'Modifications enregistrées');
     if (onSaved) onSaved(v); else route();
+    const changeResp = col === 'actions' && v.responsable && v.responsable !== obj?.responsable && v.responsable !== MODE.user?.personne;
+    const grave = x => x && (x.type === 'Accident de travail' || ['Grave', 'Très grave'].includes(x.gravite));
+    if (changeResp && waPersonne(v.responsable)) proposerWhatsApp('Action enregistrée', personName(v.responsable), waPersonne(v.responsable), texteAction(v));
+    else if (col === 'evenements' && grave(v) && !grave(obj)) { const r = DB.get('sites', v.site)?.responsable; proposerWhatsApp('Événement grave enregistré', personName(r), waPersonne(r), texteEvenement(v)); }
   };
   openModal();
   setTimeout(() => form.querySelector('input:not([type=file]):not(:disabled),select:not(:disabled),textarea:not(:disabled)')?.focus(), 30);
@@ -778,6 +833,7 @@ function renderEvenement(id) {
     <a href="#/evenements" class="btn small">← Retour</a>
     <h2>${esc(e.ref)} · ${esc(e.titre)}</h2>
     <select id="evStatut" ${dis}>${MODULES.evenements.fields.find(f => f.k === 'statut').options.map(s => `<option ${s === e.statut ? 'selected' : ''}>${s}</option>`).join('')}</select>
+    ${boutonWa(waPersonne(DB.get('sites', e.site)?.responsable), texteEvenement(e), 'WhatsApp')}
     <button class="btn" id="evPrint">Imprimer</button>
     <button class="btn navy" id="evEdit">${ecr ? 'Modifier' : 'Détails'}</button>
   </div>
@@ -1075,14 +1131,15 @@ async function ongletAlertes(el) {
   const sansContact = DB.all('personnel').filter(p => p.actif !== 'Parti' && !p.email && !p.whatsapp).length;
   el.innerHTML = `<div class="grid g2">
     <div class="card"><h2>État</h2>
-      <div class="facts" style="margin:12px 0"><div><span>E-mail</span><b>${ok(etat.email)}</b></div><div><span>WhatsApp</span><b>${ok(etat.whatsapp)}</b></div>
+      <div class="facts" style="margin:12px 0"><div><span>E-mail</span><b>${etat.gratuit ? badge('Gmail', 'green') : ok(etat.email)}</b></div><div><span>WhatsApp</span><b>${etat.gratuit ? badge('Boutons 📲', 'green') : ok(etat.whatsapp)}</b></div>
+      ${etat.gratuit && etat.quotaEmail != null ? `<div><span>E-mails restants aujourd'hui</span><b>${etat.quotaEmail} / 100</b></div>` : ''}
       <div><span>Récapitulatif quotidien</span><b>${etat.actives ? `Lun–ven à ${etat.heure} h` : 'Désactivé'}</b></div><div><span>Dernier envoi</span><b>${etat.dernierRecap ? fmtDate(etat.dernierRecap) : '—'}</b></div></div>
       <p class="small muted">Chaque personne reçoit <b>ses</b> alertes (actions en retard, habilitations, revues de documents…). Les administrateurs et responsables QHSE reçoivent la liste complète. Envoi immédiat aussi quand une action est confiée à quelqu'un, et pour tout accident ou événement grave.</p>
       ${sansContact ? `<p class="small" style="color:var(--orange)">${sansContact} personne(s) n'ont ni e-mail ni WhatsApp dans leur fiche Personnel : elles ne recevront rien.</p>` : ''}
-      ${!etat.email || !etat.whatsapp ? '<p class="small muted">Le paramétrage (serveur d\'envoi, compte WhatsApp) se fait dans le fichier <code>serveur/.env</code> : voir le guide d\'installation.</p>' : ''}
+      ${etat.gratuit ? `<p class="small muted">Version gratuite : les e-mails partent de votre compte Gmail. Pour WhatsApp, les boutons verts 📲 des fiches et des alertes ouvrent WhatsApp avec le message déjà rédigé.${etat.classeur ? ` Vos données sont dans <a href="${esc(etat.classeur)}" target="_blank" rel="noopener">ce classeur Google Sheets</a>.` : ''}</p>` : !etat.email || !etat.whatsapp ? '<p class="small muted">Le paramétrage (serveur d\'envoi, compte WhatsApp) se fait dans le fichier <code>serveur/.env</code> : voir le guide d\'installation.</p>' : ''}
       ${estAdmin() ? '<button class="btn" id="recap">Envoyer le récapitulatif maintenant</button>' : ''}</div>
     ${estAdmin() ? `<form class="card" id="test"><h2>Envoyer un test</h2>
-      <label class="champ"><span>Canal</span><select name="canal"><option value="email">E-mail</option><option value="whatsapp">WhatsApp</option></select></label>
+      <label class="champ"><span>Canal</span><select name="canal"><option value="email">E-mail</option>${etat.gratuit ? '' : '<option value="whatsapp">WhatsApp</option>'}</select></label>
       <label class="champ"><span>Destinataire</span><input name="destinataire" required placeholder="adresse e-mail ou +225…" value="${esc(MODE.user.email)}"></label>
       <button class="btn primary">Envoyer</button><div id="testRes" class="small" style="margin-top:8px"></div></form>` : ''}
   </div>
@@ -1179,6 +1236,7 @@ async function deconnexion() {
   if (DB.file.length && !confirm(`${DB.file.length} modification(s) n'ont pas encore été envoyées au serveur et seront perdues. Se déconnecter quand même ?`)) return;
   try { await apiCall('POST', 'api/deconnexion'); } catch (e) { }
   try { localStorage.removeItem(KEY_SRV); } catch (e) { }
+  Jeton.set('');
   DB.file = []; MODE.user = null; DB.d = { meta: {} }; DB.normaliser();
   afficherConnexion();
 }
@@ -1206,7 +1264,7 @@ function demarrerInterface() {
   interfaceDemarree = true;
   window.addEventListener('hashchange', route);
   if (MODE.serveur) {
-    setInterval(() => Sync.tirer(), 30000);
+    setInterval(() => Sync.tirer(), GAS ? 45000 : 30000);
     window.addEventListener('focus', () => Sync.tirer());
     window.addEventListener('online', () => { MODE.enLigne = true; Sync.envoyer(); Sync.tirer(); });
     window.addEventListener('offline', () => { MODE.enLigne = false; afficherSync(); });
@@ -1375,6 +1433,20 @@ $('#modal').addEventListener('mousedown', e => { if (e.target.id === 'modal') cl
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); $('#alertDrawer').hidden = true; } });
 
 (async function demarrer() {
+  if (GAS) {
+    MODE.serveur = true; DB.d = { meta: {} }; DB.normaliser();
+    try {
+      const j = await apiCall('GET', 'api/session');
+      if (j.installation) return afficherInstallation();
+      return ouvrirSessionServeur(j.user).catch(err => { toast(err.message); afficherConnexion(); });
+    } catch (e) {
+      let c = null; try { c = JSON.parse(localStorage.getItem(KEY_SRV)); } catch (_) { }
+      if (e.status === 401) { if (c?.user) MODE.user = c.user; return afficherConnexion(); }
+      if (c?.user && c.d) return ouvrirSessionServeur(c.user, true);
+      document.body.innerHTML = '<p style="padding:30px;font-family:sans-serif">Connexion au serveur impossible. Vérifiez votre connexion Internet puis rechargez la page.</p>';
+      return;
+    }
+  }
   let reponse = null, reseau = true;
   if (location.protocol.startsWith('http')) {
     try { reponse = await fetch('api/session', { credentials: 'same-origin', cache: 'no-store' }); }
@@ -1397,4 +1469,4 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal
   }
   DB.load(); demarrerInterface();
 })();
-if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
+if (!GAS && 'serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
