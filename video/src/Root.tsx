@@ -313,6 +313,7 @@ import {ExerciceEvacuationMetro, EXERCICE_EVACUATION_METRO_FRAMES} from './exerc
 import {AnalyseRisquesTerrainMetro, ANALYSE_RISQUES_TERRAIN_METRO_FRAMES} from './analyseRisquesTerrainMetro/AnalyseRisquesTerrainMetro';
 import {IndicateursQhseMetro, INDICATEURS_QHSE_METRO_FRAMES} from './indicateursQhseMetro/IndicateursQhseMetro';
 import {SstDangersRisquesMetro, SST_DANGERS_RISQUES_METRO_FRAMES} from './sstDangersRisquesMetro/SstDangersRisquesMetro';
+import {MatriceRisquesQhseMetro, MATRICE_RISQUES_QHSE_METRO_FRAMES} from './matriceRisquesQhseMetro/MatriceRisquesQhseMetro';
 import {BanniereFacebook, BANNIERE_FB_FRAMES} from './banniereFacebook/BanniereFacebook';
 import {CouvertureFacebook} from './couvertureFacebook/CouvertureFacebook';
 import {LigneInvisible, LIGNE_FRAMES} from './ligneInvisible/LigneInvisible';
@@ -646,6 +647,7 @@ export const RemotionRoot: React.FC = () => (
   <Composition id="AnalyseRisquesTerrainMetro" component={AnalyseRisquesTerrainMetro} durationInFrames={ANALYSE_RISQUES_TERRAIN_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="IndicateursQhseMetro" component={IndicateursQhseMetro} durationInFrames={INDICATEURS_QHSE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="SstDangersRisquesMetro" component={SstDangersRisquesMetro} durationInFrames={SST_DANGERS_RISQUES_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
+  <Composition id="MatriceRisquesQhseMetro" component={MatriceRisquesQhseMetro} durationInFrames={MATRICE_RISQUES_QHSE_METRO_FRAMES} fps={FPS} width={1080} height={1920} />
   <Composition id="BanniereFacebook" component={BanniereFacebook} durationInFrames={BANNIERE_FB_FRAMES} fps={30} width={1640} height={720} />
   <Composition id="BanniereFacebook820" component={BanniereFacebook} durationInFrames={BANNIERE_FB_FRAMES} fps={30} width={820} height={360} />
   <Composition id="CouvertureFacebook" component={CouvertureFacebook} durationInFrames={1} fps={30} width={1640} height={856} defaultProps={{variant: 'A' as const, control: false, t: 1.3}} />

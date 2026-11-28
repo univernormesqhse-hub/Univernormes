@@ -23,3 +23,8 @@ description: Applique le style « scène à personnages détourés » (analysé 
 ## Composants prêts (src/sstDangersRisquesMetro/SstDangersRisquesMetro.tsx)
 - `SdStage({y, at, people: [src, x, hauteur, at, miroir?][], sign: [texte, at], pills: [texte, 'w'|'n'|'r'|'x', at][]})` — `x` barrée.
 - `SdCard({y, at, title, rows: [libellé, icône, at][], total?})` — fiche blanche à lignes.
+
+## Éléments animés complémentaires (src/matriceRisquesQhseMetro/MatriceRisquesQhseMetro.tsx)
+- `MxPanel({x, ground, at, size, label})` — le panneau QHSE détouré (disque vert, liseré blanc, poteau gris) redessiné en vectoriel : chute, plantage, oscillation amortie. À poser à côté d'un personnage sur une `MxStage`.
+- `MxSearch({y, at, q, results, hit})` — barre de recherche qui tape la requête, loupe qui tourne, résultats qui tombent, le dernier s'allume « TROUVÉ ».
+- `MxGrid` / `MxTable` — matrice 5 × 5 et tableaux qui se remplissent case par case ou lettre par lettre.
