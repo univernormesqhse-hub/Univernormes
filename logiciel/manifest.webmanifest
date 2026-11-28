@@ -1,0 +1,15 @@
+{
+  "name": "UNIVERSNORMES QHSE",
+  "short_name": "QHSE",
+  "description": "Logiciel de management Qualité, Hygiène, Sécurité, Environnement",
+  "lang": "fr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F4F2ED",
+  "theme_color": "#0A2669",
+  "icons": [
+    { "src": "assets/icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icone-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

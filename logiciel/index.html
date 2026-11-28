@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UNIVERSNORMES QHSE</title>
+  <meta name="description" content="Logiciel de management QHSE : événements, risques, plan d'actions, audits, documents, formations, veille réglementaire et indicateurs.">
+  <meta name="theme-color" content="#0A2669">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icone-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="assets/universnormes-logo.png" alt="UNIVERSNORMES">
+        <span>Logiciel QHSE</span>
+      </div>
+      <nav id="nav"></nav>
+      <div class="sidebar-foot">Les données restent sur cet appareil et l'application marche hors ligne.</div>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn only-mobile" id="menuBtn" aria-label="Menu">☰</button>
+        <h1 id="pageTitle">Tableau de bord</h1>
+        <div class="topbar-right">
+          <select id="siteFilter" aria-label="Site"></select>
+          <button class="icon-btn bell" id="alertBtn" aria-label="Alertes">🔔<span id="alertCount"></span></button>
+        </div>
+      </header>
+      <main id="view"></main>
+    </div>
+  </div>
+  <div class="drawer" id="alertDrawer" hidden></div>
+  <div class="modal-back" id="modal" hidden><div class="modal" id="modalBox"></div></div>
+  <div class="toast" id="toast" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>
