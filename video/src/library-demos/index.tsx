@@ -142,6 +142,7 @@ import {IndicateursQhseMetro} from '../indicateursQhseMetro/IndicateursQhseMetro
 import {SstDangersRisquesMetro} from '../sstDangersRisquesMetro/SstDangersRisquesMetro';
 import {MatriceRisquesQhseMetro} from '../matriceRisquesQhseMetro/MatriceRisquesQhseMetro';
 import {MaitriserQseSmiMetro} from '../maitriserQseSmiMetro/MaitriserQseSmiMetro';
+import {QhseInvestissementMetro} from '../qhseInvestissementMetro/QhseInvestissementMetro';
 
 // Aperçus de la librairie (library/<section>/<slug>/index.md → demo: Demo-<Slug>).
 const s = (sec: number) => Math.round(sec * FPS);
@@ -323,6 +324,7 @@ const DEMOS: {id: string; C: React.FC; at: number; dur: number}[] = [
   {id: 'Demo-SstDangersRisquesMetro', C: SstDangersRisquesMetro, at: 33.6, dur: 9.0},
   {id: 'Demo-MatriceRisquesQhseMetro', C: MatriceRisquesQhseMetro, at: 184.0, dur: 9.0},
   {id: 'Demo-MaitriserQseSmiMetro', C: MaitriserQseSmiMetro, at: 186.0, dur: 9.0},
+  {id: 'Demo-QhseInvestissementMetro', C: QhseInvestissementMetro, at: 4.0, dur: 9.0},
 ];
 
 export const LibraryDemos: React.FC = () => (

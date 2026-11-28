@@ -1,0 +1,30 @@
+import {Caption} from '../captions';
+
+// Sous-titres de la voix d'origine (transcription locale Whisper, corrigée, secondes).
+export const captions: Caption[] = [
+  {text: "Une bonne *stratégie QHSE*,", start: 0.25, end: 1.42},
+  {text: "ce n'est pas une *charge*,", start: 1.45, end: 2.57},
+  {text: "c'est *−30 % d'accidents*,", start: 2.60, end: 4.85},
+  {text: "*+35 % d'attractivité* pour", start: 4.88, end: 6.94},
+  {text: "les *talents*.", start: 6.97, end: 8.13},
+  {text: "Et *+20 % d'opportunités* de", start: 8.21, end: 9.58},
+  {text: "*business*.", start: 9.61, end: 10.35},
+  {text: "Et bien sûr le", start: 10.38, end: 11.05},
+  {text: "*bonus* non négligeable,", start: 11.08, end: 12.12},
+  {text: "la *sérénité* d'être", start: 12.15, end: 13.01},
+  {text: "parfaitement en *règle*.", start: 13.04, end: 14.66},
+  {text: "Finalement, on se rend", start: 14.85, end: 15.83},
+  {text: "compte que la *perspective*", start: 15.86, end: 16.97},
+  {text: "est complètement *inversée*.", start: 17.00, end: 18.67},
+  {text: "La bonne *question*,", start: 18.70, end: 19.50},
+  {text: "ce n'est pas de", start: 19.53, end: 20.21},
+  {text: "savoir *combien coûte* un", start: 20.24, end: 21.26},
+  {text: "système *QHSE*, la", start: 21.29, end: 22.31},
+  {text: "vraie, la seule *question*", start: 22.34, end: 23.84},
+  {text: "*pertinente*, c'est *combien*", start: 23.87, end: 25.46},
+  {text: "*coûte* à une entreprise", start: 25.49, end: 26.56},
+  {text: "de ne *rien* faire,", start: 26.59, end: 27.42},
+  {text: "chaque *jour*,", start: 27.45, end: 28.05},
+  {text: "chaque *mois*,", start: 28.08, end: 28.67},
+  {text: "chaque année ?", start: 28.70, end: 29.94},
+];
